@@ -1,0 +1,50 @@
+keys;nl_NL;nl;en
+VastroeienBeideBoorden;Vastroeien beide boorden;Houden beide boorden;todo
+HalenBeideBoorden;Halen beide boorden;Halen beide boorden;todo
+Bedankt;Bedankt;Bedankt;todo
+HalenSB;Halen SB;Halen SB;todo
+StrijkenSB;Strijken SB;Strijken SB;todo
+VastroeienSB;Vastroeien SB;Vastroeien SB;todo
+StrijkenBeidenBoorden;Strijken beiden boorden;Strijken beiden boorden;todo
+HalenBB;Halen BB;Halen BB;todo
+StrijkenBB;Strijken BB;Strijken BB;todo
+VastroeienBB;Vastroeien BB;Vastroeien BB;todo
+Boem;Boem;Boem;todo
+LegBootStil;Leg eerst de boot stil;Leg eerst de boot stil;todo
+EerstLatenLopen;Eerst laten lopen;Eerst laten lopen;todo
+SlippenBeideBoorden;Slippen beide boorden;Slippen beide boorden;todo
+SlippenSB;Slippen SB;Slippen SB;todo
+UitbrengenSB;Uitbrengen SB;Uitbrengen SB;todo
+PeddelendStrijkenSB;Peddelend strijken SB;Peddelend strijken SB;todo
+RondMakenSB;Rondmaken over SB;Rondmaken over SB;todo
+UitbrengenBeideBoorden;Uitbrengen beide boorden;Uitbrengen beide boorden;todo
+SlippenBB;Slippen BB;Slippen BB;todo
+UitbrengenBB;Uitbrengen BB;Uitbrengen BB;todo
+PeddelendStrijkenBB;Peddelend strijken BB;Peddelend strijken BB;todo
+RondMakenBB;Rondmaken over BB;Rondmaken over BB;todo
+LaatLopen;Laat lopen;Laat lopen;todo
+EerstLatenLopenOfBedankt;Eerst laten lopen of bedankt;Eerst laten lopen of bedankt;todo
+CommandoNietMogelijk;Commando niet mogelijk;Commando niet mogelijk;todo
+EerstSlippen;Eerst slippen;Eerst slippen;todo
+EerstUitBrengen;Eerst uitbrengen;Eerst uitbrengen;todo
+StartPositie;Start;Start;Start
+StartOpWater;Start op water;Start op water;todo
+StartAangelegd;Start wegvaren;Start wegvaren;todo
+UseButtons;Gebruik commando knoppen;Gebruik commando knoppen;Use command buttons
+IntroText;Gebruik dit voor het oefenen van de roeiboot stuurcommando's voor het Viking sturen 1 examen. Geef roei stuur commando's om een achtje om de 2 boeitjes te varen. Gebruik de start knop om weer terug naar een begin positie te gaan. Het is geen perfecte roeiboot simulatie, gebruik het vooral om stuur commando's te oefenen.\n\n Je kunt met de knoppen de commando's geven of met het toetsenbord via de commando selectie knop links boven. Selecteer de selectie knop en gebruik enter, begin letter van een commando en de pijltjes voor selectie.\n\nVeel plezier,\nTijmen;Gebruik dit voor het oefenen van de roeiboot stuurcommando's. Geef roei stuur commando's om een achtje om de 2 boeitjes te varen. Gebruik de start knop om weer terug naar een begin positie te gaan. Het is geen perfecte roeiboot simulatie, gebruik het vooral om stuur commando's te oefenen.\n\n Je kunt met de knoppen de commando's geven of met het toetsenbord via de commando selectie knop links boven. Selecteer de selectie knop en gebruik enter, begin letter van een commando en de pijltjes voor selectie.\n\nVeel plezier,\nTijmen\n;
+Close;Sluiten;Sluiten;Close
+ShowIntroText;Introductie tekst;Introductie tekst;Intro text
+Links;[center]tijmen@vangulik.org[/center]\n[center][url=https://github.com/tijmenvangulik/sturen]https://github.com/tijmenvangulik/sturen[/url][/center];[center]tijmen@vangulik.org[/center]\n[center][url=https://github.com/tijmenvangulik/sturen]https://github.com/tijmenvangulik/sturen[/url][/center];[center]tijmen@vangulik.org[/center]\n[center][url=https://github.com/tijmenvangulik/sturen]https://github.com/tijmenvangulik/sturen[/url][/center]
+LightPaddle;Light paddle;Light paddle;todo
+LightPaddleBedankt;Light paddle bedankt;Light paddle bedankt;todo
+RiemenHoogSB;Riemen hoog SB;Riemen hoog SB;todo
+RiemenHoogBB;Riemen hoog BB;Riemen hoog BB;todo
+StartAanleggen;Start aanleggen;Start aanleggen;todo
+StartAanleggenMinderKnoppen;Start aanleggen (minder knoppen);Start aanleggen (minder knoppen);todo
+StartAangelegdMinderKnoppen;Start wegvaren (minder knoppen);Start wegvaren (minder knoppen);todo
+StartStrijkendAanleggen;Start strijkend aanleggen;Start strijkend aanleggen;todo
+StartStrijkendAanleggenMinderKnoppen;Start strijkend aanleggen (minder knoppen);Start strijkend aanleggen (minder knoppen);todo
+StartAanleggenWal;Start aanleggen hoge wal;Start aanleggen;todo
+StartAanleggenWalMinderKnoppen;Start aanleggen hoge wal (minder knoppen);Start aanleggen (minder knoppen);todo
+StartStrijkendAanleggenWal;Start strijkend aanleggen hoge wal;Start strijkend aanleggen;todo
+StartStrijkendAanleggenWalMinderKnoppen;Start strijkend aanleggen hoge wal (minder knoppen);Start strijkend aanleggen (minder knoppen);todo
