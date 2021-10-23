@@ -267,16 +267,18 @@ func determinenewState(newState:int,direction:int):
 		return result
 	else:
 		if state==RowState.LaatLopen || state==RowState.Bedankt:
+			if isLowSpeed(currentSpeed): currentSpeed=0
 			match direction:
 				0:
 					result=newState			
 				1:
-					if isLowSpeed(currentSpeed):
+					if currentSpeed!=0:
 						showError("LegBootStil")
 					else:
+						currentSpeed=0
 						result=newState
 				-1:
-					if isLowSpeed(currentSpeed):
+					if currentSpeed!=0:
 						showError("LegBootStil")
 					else:
 						result=newState
@@ -373,9 +375,9 @@ func changeState(newState:int,direction:int):
 		RowState.StrijkenBeidenBoorden:
 			setSpeedAndDirection(-0.4,0,0.5,1,false)
 		RowState.StrijkenBB:
-			setSpeedAndDirection(-0.3,-0.3,0.5,1,false)
-		RowState.StrijkenSB:
 			setSpeedAndDirection(-0.3,0.3,0.5,1,false)
+		RowState.StrijkenSB:
+			setSpeedAndDirection(-0.3,-0.3,0.5,1,false)
 		RowState.PeddelendStrijkenBB:
 			setSpeedAndDirection(0.1,-0.1,1,1,true)
 		RowState.PeddelendStrijkenSB:
