@@ -3,8 +3,8 @@ Practice Rowing (coxing) commands
 Little serious game to practice rowing coxing commands. 
 
 The website:
-[(http://ergometer-space.org/PracticeRowingCommands]
-(http://ergometer-space.org/PracticeRowingCommands)
+[(https://ergometer-space.org/PracticeRowingCommands]
+(https://ergometer-space.org/PracticeRowingCommands)
 
 Written in godot
 
