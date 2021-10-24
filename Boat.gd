@@ -14,7 +14,7 @@ var max_turn= 0.6
 var currentTurnSpeed=0.0
 var turnIncFactor=0.005
 
-var lowTurnSpeed=10.0
+var lowTurnSpeed=1.0
 var forceMultiplier=1.0
 var turnMultiplier=1.0;	
 var sideWays=false;
@@ -346,7 +346,7 @@ func changeState(newState:int,direction:int):
 		RowState.LaatLopen:
 			setSpeedAndDirection(0,0,0.1,1,false)
 		RowState.Bedankt:
-			setSpeedAndDirection(0,0,0.3,1,false)
+			setSpeedAndDirection(0,0,0.6,1,false)
 		RowState.HalenSB:
 			setSpeedAndDirection(0.35,-0.5,1,1,false)
 		RowState.HalenBB:
