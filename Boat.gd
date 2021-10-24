@@ -381,7 +381,7 @@ func changeState(newState:int,direction:int):
 		RowState.StrijkenSB:
 			setSpeedAndDirection(-0.3,-0.3,0.5,1,false)
 		RowState.PeddelendStrijkenBB:
-			setSpeedAndDirection(0.1,0.1,1,1,true)
+			setSpeedAndDirection(-0.1,0.1,1,1,true)
 		RowState.PeddelendStrijkenSB:
 			setSpeedAndDirection(-0.1,-0.1,1,2,true)
 		RowState.RondmakenBB:
