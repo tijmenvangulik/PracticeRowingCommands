@@ -1,6 +1,5 @@
 extends KinematicBody2D
 
-var acceleration = Vector2.ZERO
 var velocity = Vector2.ZERO
 
 var toRotation=0
@@ -25,7 +24,7 @@ var lightPaddleTurnFactor=0.25
 var lightPaddleDestTurnFactor=0.5
 var lightPaddleOn=false
 
-var speedDirectErrorLevel=15
+var speedDirectErrorLevel=20
 
 enum RowState {HalenBeideBoorden,
   LaatLopen,Bedankt,HalenSB,StrijkenSB
@@ -121,10 +120,6 @@ func showError(message:String):
 #http://kidscancode.org/godot_recipes/basics/understanding_delta/
 # speed (velocity) is pixels per second
 func _physics_process(delta):
-	acceleration = Vector2.ZERO
-	# get_input()
-	# apply_friction()
-	# calculate_steering(delta)
 	
 	# calc speed
 	var forceCorrection=1.0
@@ -180,8 +175,6 @@ func _physics_process(delta):
 		
 	#var easeTurnSpeed=doEase(currentTurnSpeed,destinationTurnSpeed,-1.4);
 	var easeTurnSpeed=currentTurnSpeed
-	
-	if currentSpeed<0: easeTurnSpeed=easeTurnSpeed*-1
 		
 	rotation += easeTurnSpeed * delta
 	var sideWaysOffset=0
@@ -196,7 +189,6 @@ func _physics_process(delta):
 	
 	velocity = Vector2(easeSpeed*delta, 0).rotated(rotation+sideWaysOffset)
 	
-	#velocity += acceleration * delta
 	var collision = move_and_collide(velocity)
 	if collision:
 		currentSpeed=0
@@ -210,17 +202,7 @@ static func doEase(currentValue,maxValue,easing):
 	var easeValue=ease((abs(currentValue)*1.0)/maxValue,easing)*maxValue
 	if (currentValue<0): easeValue=easeValue*-1
 	return 	easeValue
-	
-static func apply_rotation_easing(from:float, to:float, easing:float, delta:float) -> float:
-	var diff = wrapf(to - from, -PI, PI)
-	var diff_norm = abs(diff)
-	var angle_speed = ease(diff_norm / PI, easing)
-	var angle_delta = angle_speed * delta
-	if angle_delta > diff_norm:
-		return to
-
-	return from + angle_delta * sign(diff)
-	
+		
 func setSpeedAndDirection(speedFactor:float,turnFactor:float,newForceMultiplier:float,newTurnMultiplier:float,newSideWays:bool):
 	currentTurnSpeedFactor=turnFactor
 	currentSpeedFactor=speedFactor
@@ -353,8 +335,11 @@ func setLightPaddle(newLightPaddle:bool):
 	else: lightPaddleOn=newLightPaddle
 
 func changeState(newState:int,direction:int):
-	
+	#first check if the new state is allowed
 	state=determinenewState(newState,direction);  
+	# going forward goes faster than backwards
+	# change factor of Max speed, max rotat, speed inc,rotation inc
+	# negative speed is backwards and negative turn speed is turn to the left
 	match state:
 		RowState.HalenBeideBoorden:
 			setSpeedAndDirection(1,0,1,1,false)
@@ -369,21 +354,21 @@ func changeState(newState:int,direction:int):
 		RowState.VastroeienBeideBoorden:
 			setSpeedAndDirection(0,0,1.5,1,false)
 		RowState.VastroeienSB:
-			if currentSpeed<0: setSpeedAndDirection(0,0.5,0.4,0.6,false)
+			if currentSpeed<0: setSpeedAndDirection(0,-0.5,0.4,0.6,false)
 			else : setSpeedAndDirection(0,0.6,0.4,0.6,false)
 		RowState.VastroeienBB:
-			if currentSpeed<0: setSpeedAndDirection(0,-0.5,0.4,0.4,false)
+			if currentSpeed<0: setSpeedAndDirection(0,0.5,0.4,0.4,false)
 			else : setSpeedAndDirection(0,-0.6,0.4,0.4,false)
 		RowState.StrijkenBeidenBoorden:
 			setSpeedAndDirection(-0.4,0,0.5,1,false)
 		RowState.StrijkenBB:
-			setSpeedAndDirection(-0.3,0.3,0.5,1,false)
-		RowState.StrijkenSB:
 			setSpeedAndDirection(-0.3,-0.3,0.5,1,false)
+		RowState.StrijkenSB:
+			setSpeedAndDirection(-0.3,0.3,0.5,1,false)
 		RowState.PeddelendStrijkenBB:
-			setSpeedAndDirection(-0.1,0.1,1,1,true)
+			setSpeedAndDirection(0.1,-0.1,1,1,true)
 		RowState.PeddelendStrijkenSB:
-			setSpeedAndDirection(-0.1,-0.1,1,2,true)
+			setSpeedAndDirection(-0.1,0.1,1,2,true)
 		RowState.RondmakenBB:
 			setSpeedAndDirection(0,-0.5,1,1,false)
 		RowState.RondmakenSB:
@@ -476,11 +461,13 @@ func oarsCommand(command: int):
 		showError("EerstLatenLopenOfBedankt")
 
 func setNewBoatPosition(x:int,y:int,newRotation,newStateOars : int):
+	# reset the boat into a new position and place
 	setStateOars(newStateOars)
 	rotation_degrees=newRotation
 	position.x=x
 	position.y=y
 	lightPaddleOn=false
+	# reset speed or turn
 	currentSpeed=0
 	currentTurnSpeed=0
 	state=RowState.LaatLopen
