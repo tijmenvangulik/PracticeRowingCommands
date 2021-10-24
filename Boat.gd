@@ -15,7 +15,7 @@ var max_turn= 0.6
 var currentTurnSpeed=0.0
 var turnIncFactor=0.005
 
-var lowTurnSpeed=20.0
+var lowTurnSpeed=10.0
 var forceMultiplier=1.0
 var turnMultiplier=1.0;	
 var sideWays=false;
@@ -178,7 +178,8 @@ func _physics_process(delta):
 	if noturnLowSleed &&  currentSpeed==0:
 		currentTurnSpeed=0
 		
-	var easeTurnSpeed=doEase(currentTurnSpeed,destinationTurnSpeed,-2.4);
+	#var easeTurnSpeed=doEase(currentTurnSpeed,destinationTurnSpeed,-1.4);
+	var easeTurnSpeed=currentTurnSpeed
 	
 	if currentSpeed<0: easeTurnSpeed=easeTurnSpeed*-1
 		
@@ -191,7 +192,7 @@ func _physics_process(delta):
 	
 	
 	#apply easing	
-	var easeSpeed=doEase(currentSpeed,max_speed,-2.4);
+	var easeSpeed=doEase(currentSpeed,max_speed,-1.2);
 	
 	velocity = Vector2(easeSpeed*delta, 0).rotated(rotation+sideWaysOffset)
 	
@@ -203,6 +204,7 @@ func _physics_process(delta):
 		showError("Boem")
 	
 static func doEase(currentValue,maxValue,easing):
+	#https://godotengine.org/qa/59172/how-do-i-properly-use-the-ease-function
 	if maxValue==0: return 0
 	maxValue=abs(maxValue)
 	var easeValue=ease((abs(currentValue)*1.0)/maxValue,easing)*maxValue
@@ -379,9 +381,9 @@ func changeState(newState:int,direction:int):
 		RowState.StrijkenSB:
 			setSpeedAndDirection(-0.3,-0.3,0.5,1,false)
 		RowState.PeddelendStrijkenBB:
-			setSpeedAndDirection(0.1,-0.1,1,1,true)
+			setSpeedAndDirection(0.1,0.1,1,1,true)
 		RowState.PeddelendStrijkenSB:
-			setSpeedAndDirection(-0.1,0.1,1,2,true)
+			setSpeedAndDirection(-0.1,-0.1,1,2,true)
 		RowState.RondmakenBB:
 			setSpeedAndDirection(0,-0.5,1,1,false)
 		RowState.RondmakenSB:
@@ -400,6 +402,8 @@ func setStateOars(newStateOars : int):
 	$"CollisionSlippenSB".disabled=true
 	$"SpriteSlippenBB".visible=false
 	$"CollisionSlippenBB".disabled=true
+	$"CollisionRiemenHoogBB".disabled=true
+	$"CollisionRiemenHoogSB".disabled=true
 	match stateOars:
 		StateOars.Roeien:
 			$"Sprite".visible=true
@@ -416,10 +420,10 @@ func setStateOars(newStateOars : int):
 			$"CollisionSlippenBB".disabled=false
 		StateOars.RiemenHoogSB:
 			$"Sprite".visible=true
-			$"CollisionSlippenSB".disabled=false
+			$"CollisionRiemenHoogSB".disabled=false
 		StateOars.RiemenHoogBB:
 			$"Sprite".visible=true
-			$"CollisionSlippenBB".disabled=false
+			$"CollisionRiemenHoogBB".disabled=false
 
 func oarsCommand(command: int):	
 	if boatInRest():

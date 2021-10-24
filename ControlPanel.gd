@@ -49,5 +49,5 @@ func _process(delta):
 		var value=$"../../Boat".currentSpeed
 		$Panel/VBoxContainer/Speedometer/Speed.text = "%4.1f" % value
 		var turnValue=$"../../Boat".currentTurnSpeed
-		$Panel/VBoxContainer/turnMeter/value.text = "%4.1f" % turnValue
+		$Panel/VBoxContainer/turnMeter/value.text = "%4.3f" % turnValue
 		
