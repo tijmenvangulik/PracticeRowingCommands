@@ -250,22 +250,14 @@ func determinenewState(newState:int,direction:int):
 		result=newState
 		return result
 	else:
-		if state==RowState.LaatLopen || state==RowState.Bedankt:
-			if isLowSpeed(currentSpeed): currentSpeed=0
-			match direction:
-				0:
-					result=newState			
-				1:
-					if currentSpeed!=0:
-						showError("LegBootStil")
-					else:
-						currentSpeed=0
-						result=newState
-				-1:
-					if currentSpeed!=0:
-						showError("LegBootStil")
-					else:
-						result=newState
+		var currentDirection=0
+		if currentSpeed<0:  currentDirection=-1
+		else: currentDirection=1
+		if (state==RowState.LaatLopen || state==RowState.Bedankt)  :
+			if  direction!=0 && direction!=currentDirection && !isLowSpeed(currentSpeed):
+				showError("LegBootStil")
+				return result
+			result=newState
 				
 		else:
 			showError("EerstLatenLopenOfBedankt")
