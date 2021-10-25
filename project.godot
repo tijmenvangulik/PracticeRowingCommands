@@ -32,6 +32,7 @@ font=false
 background=false
 color=false
 theme=false
+version=false
 
 [importer_defaults]
 
