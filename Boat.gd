@@ -31,6 +31,7 @@ enum RowState {HalenBeideBoorden,
   VastroeienSB,StrijkenBeidenBoorden,VastroeienBeideBoorden,
   HalenBB,StrijkenBB,VastroeienBB,
   PeddelendStrijkenBB,PeddelendStrijkenSB,
+  UitzettenBB,UitzettenSB,
   RondmakenBB,RondmakenSB
 }
 var state:int = RowState.LaatLopen
@@ -56,6 +57,8 @@ enum Command {
   VastroeienBB,
   PeddelendStrijkenSB,
   PeddelendStrijkenBB,
+  UitzettenSB,
+  UitzettenBB,
   RondmakenSB,
   RondmakenBB,
   Slippen,
@@ -83,6 +86,8 @@ var commandNames = [
   "VastroeienBB",
   "PeddelendStrijkenSB",
   "PeddelendStrijkenBB",
+  "UitzettenSB",
+  "UitzettenBB",
   "RondmakenSB",
   "RondmakenBB",
   "Slippen",
@@ -208,10 +213,12 @@ func setSpeedAndDirection(speedFactor:float,turnFactor:float,newForceMultiplier:
 	currentSpeedFactor=speedFactor
 	forceMultiplier=newForceMultiplier
 	turnMultiplier=newTurnMultiplier
-	if sideWays!=newSideWays:
+	sideWays=newSideWays;
+	
+func resetSpeedSideways():
+	if !sideWays:
 		currentSpeed=0.0
 		currentTurnSpeed=0.0
-	sideWays=newSideWays;
 	
 func boatInRest():
 	return state==RowState.LaatLopen ||	state==RowState.Bedankt 	 || currentSpeed==0
@@ -222,9 +229,6 @@ func isLowSpeed(speed):
 func determinenewState(newState:int,direction:int):
 	var result=state;
 	
-	if  ( stateOars==StateOars.RiemenHoogBB || stateOars==StateOars.RiemenHoogSB ):
-	  stateOars=StateOars.Roeien
-
 	if stateOars==StateOars.Slippen &&  newState!=RowState.Bedankt && newState!=RowState.PeddelendStrijkenBB && newState!=RowState.PeddelendStrijkenSB :
 		showError("CommandoNietMogelijk")	
 		return result
@@ -246,6 +250,15 @@ func determinenewState(newState:int,direction:int):
 	else: if newState==RowState.Bedankt &&  !isLowSpeed(currentSpeed) && (state==RowState.HalenBeideBoorden ):
 		showError("EerstLatenLopen")
 		return result
+	else: if newState==RowState.UitzettenSB && stateOars!=StateOars.SlippenSB && stateOars!=StateOars.RiemenHoogSB:
+		showError("CommandoNietMogelijk")
+		return result	
+	else: if newState==RowState.UitzettenBB && stateOars!=StateOars.SlippenBB && stateOars!=StateOars.RiemenHoogBB:
+		showError("CommandoNietMogelijk")
+		return result	
+	else: if (newState==RowState.UitzettenSB || newState==RowState.UitzettenBB) && !isLowSpeed(currentSpeed) :
+		showError("LegBootStil")
+		return result	
 	else: if newState==RowState.LaatLopen ||	newState==RowState.Bedankt 	 || currentSpeed==0:
 		result=newState
 		return result
@@ -291,9 +304,15 @@ func doCommand(command:int):
 		Command.VastroeienBB:
 			changeState(RowState.VastroeienBB,0)
 		Command.PeddelendStrijkenBB:
+			resetSpeedSideways()
 			changeState(RowState.PeddelendStrijkenBB,0)
 		Command.PeddelendStrijkenSB:
+			resetSpeedSideways()
 			changeState(RowState.PeddelendStrijkenSB,0)
+		Command.UitzettenBB:
+			changeState(RowState.UitzettenBB,0)
+		Command.UitzettenSB:
+			changeState(RowState.UitzettenSB,0)
 		Command.RondmakenBB:
 			changeState(RowState.RondmakenBB,-1)
 		Command.RondmakenSB:
@@ -327,8 +346,14 @@ func setLightPaddle(newLightPaddle:bool):
 	else: lightPaddleOn=newLightPaddle
 
 func changeState(newState:int,direction:int):
+	var oldState=state
 	#first check if the new state is allowed
-	state=determinenewState(newState,direction);  
+	state=determinenewState(newState,direction); 
+	
+	#if the state change was successfull reset the oars state
+	if  oldState!=state && (stateOars==StateOars.RiemenHoogBB || stateOars==StateOars.RiemenHoogSB ):
+	  stateOars=StateOars.Roeien
+ 
 	# going forward goes faster than backwards
 	# change factor of Max speed, max rotat, speed inc,rotation inc
 	# negative speed is backwards and negative turn speed is turn to the left
@@ -360,7 +385,18 @@ func changeState(newState:int,direction:int):
 		RowState.PeddelendStrijkenBB:
 			setSpeedAndDirection(0.1,-0.1,1,1,true)
 		RowState.PeddelendStrijkenSB:
-			setSpeedAndDirection(-0.1,0.1,1,2,true)
+			setSpeedAndDirection(-0.1,0.1,1,1,true)
+		RowState.UitzettenBB:
+			currentSpeed=35.0
+			currentTurnSpeed=0.0
+			state=RowState.LaatLopen
+			setSpeedAndDirection(0,0,1,1,true)
+		RowState.UitzettenSB:
+			currentSpeed=-35.0
+			currentTurnSpeed=0.0
+			state=RowState.LaatLopen
+			setSpeedAndDirection(0,0,1,1,true)
+
 		RowState.RondmakenBB:
 			setSpeedAndDirection(0,-0.5,1,1,false)
 		RowState.RondmakenSB:

@@ -12,4 +12,7 @@ extends Button
 #	pass
 func _pressed():
 	var boat=$"../../../../Boat"
-	boat.doCommand(boat.Command.PeddelendStrijkenSB)
+	var lang=$"../../../OptionLanguage"
+	if lang.isViking:
+		boat.doCommand(boat.Command.PeddelendStrijkenSB)
+	else: boat.doCommand(boat.Command.UitzettenSB)

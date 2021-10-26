@@ -65,6 +65,7 @@ func selected(itemIndex : int):
 	var valueIndex=get_selected_id()
 	var boat=$"../../Boat"
 	var Command=boat.Command
+	var isViking=$"../OptionLanguage".isViking
 	var showOnlyButonsArray=[]
 	match valueIndex:
 		StartPos.OpWater: boat.setNewBoatPosition(1100.95,2008.65,0,boat.StateOars.Roeien)
@@ -74,10 +75,17 @@ func selected(itemIndex : int):
 			boat.setNewBoatPosition(831.267,2372.928,45,boat.StateOars.Roeien)
 			showOnlyButonsArray =[Command.LightPaddle,Command.LightPaddleBedankt,Command.LaatLopen,Command.Bedankt,Command.HalenBeideBoorden,Command.RiemenHoogSB,Command.VastroeienBB]	
 		StartPos.Aangelegd: 
-			boat.setNewBoatPosition(1129.599,2590,0,boat.StateOars.SlippenSB)
-		StartPos.StartAangelegdMinderKnoppen: 
-			boat.setNewBoatPosition(1129.599,2590,0,boat.StateOars.SlippenSB)
-			showOnlyButonsArray =[Command.Bedankt,Command.HalenBeideBoorden,Command.PeddelendStrijkenSB,Command.StrijkenBB,Command.HalenSB,Command.UitbrengenSB]	
+			var newOars=boat.StateOars.RiemenHoogSB
+			if isViking: newOars=boat.StateOars.SlippenSB
+			boat.setNewBoatPosition(1129.599,2610,0,newOars)
+		StartPos.StartAangelegdMinderKnoppen:
+			var newOars=boat.StateOars.RiemenHoogSB
+			if isViking: newOars=boat.StateOars.SlippenSB
+			boat.setNewBoatPosition(1129.599,2610,0,newOars)
+			if isViking: 
+				showOnlyButonsArray =[Command.Bedankt,Command.HalenBeideBoorden,Command.PeddelendStrijkenSB,Command.StrijkenBB,Command.HalenSB,Command.UitbrengenSB]	
+			else:
+				showOnlyButonsArray =[Command.Bedankt,Command.HalenBeideBoorden,Command.PeddelendStrijkenSB,Command.HalenSB]	
 		StartPos.Intro: $"../IntroDialog".visible=true
 		StartPos.StartStrijkendAanleggen: 
 			boat.setNewBoatPosition(1589.091,2426.734,-30,boat.StateOars.Roeien)
