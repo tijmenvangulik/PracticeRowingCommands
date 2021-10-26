@@ -250,10 +250,10 @@ func determinenewState(newState:int,direction:int):
 	else: if newState==RowState.Bedankt &&  !isLowSpeed(currentSpeed) && (state==RowState.HalenBeideBoorden ):
 		showError("EerstLatenLopen")
 		return result
-	else: if newState==RowState.UitzettenSB && stateOars!=StateOars.SlippenSB && stateOars!=StateOars.RiemenHoogSB:
+	else: if newState==RowState.UitzettenSB && stateOars!=StateOars.RiemenHoogSB:
 		showError("CommandoNietMogelijk")
 		return result	
-	else: if newState==RowState.UitzettenBB && stateOars!=StateOars.SlippenBB && stateOars!=StateOars.RiemenHoogBB:
+	else: if newState==RowState.UitzettenBB  && stateOars!=StateOars.RiemenHoogBB:
 		showError("CommandoNietMogelijk")
 		return result	
 	else: if (newState==RowState.UitzettenSB || newState==RowState.UitzettenBB) && !isLowSpeed(currentSpeed) :
