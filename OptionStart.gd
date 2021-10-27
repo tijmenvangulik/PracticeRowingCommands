@@ -75,16 +75,16 @@ func selected(itemIndex : int):
 			boat.setNewBoatPosition(831.267,2372.928,45,boat.StateOars.Roeien)
 			showOnlyButonsArray =[Command.LightPaddle,Command.LightPaddleBedankt,Command.LaatLopen,Command.Bedankt,Command.HalenBeideBoorden,Command.RiemenHoogSB,Command.VastroeienBB]	
 		StartPos.Aangelegd: 
-			var newOars=boat.StateOars.RiemenHoogSB
-			if isViking: newOars=boat.StateOars.SlippenSB
-			boat.setNewBoatPosition(1129.599,2610,0,newOars)
-		StartPos.StartAangelegdMinderKnoppen:
-			var newOars=boat.StateOars.RiemenHoogSB
-			if isViking: newOars=boat.StateOars.SlippenSB
-			boat.setNewBoatPosition(1129.599,2610,0,newOars)
 			if isViking: 
+				boat.setNewBoatPosition(1124,2602,0,boat.StateOars.SlippenSB)
+			else:
+				boat.setNewBoatPosition(1124,2608,0,boat.StateOars.RiemenHoogSB)
+		StartPos.StartAangelegdMinderKnoppen:
+			if isViking: 
+				boat.setNewBoatPosition(1124,2602,0,boat.StateOars.SlippenSB)
 				showOnlyButonsArray =[Command.Bedankt,Command.HalenBeideBoorden,Command.PeddelendStrijkenSB,Command.StrijkenBB,Command.HalenSB,Command.UitbrengenSB]	
 			else:
+				boat.setNewBoatPosition(1124,2608,0,boat.StateOars.RiemenHoogSB)
 				showOnlyButonsArray =[Command.Bedankt,Command.HalenBeideBoorden,Command.PeddelendStrijkenSB,Command.HalenSB]	
 		StartPos.Intro: $"../IntroDialog".visible=true
 		StartPos.StartStrijkendAanleggen: 

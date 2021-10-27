@@ -23,6 +23,7 @@ var lightPaddleForceFactor=0.25
 var lightPaddleTurnFactor=0.25
 var lightPaddleDestTurnFactor=0.5
 var lightPaddleOn=false
+var lowNoRowingSpeed=lightPaddleFactor*max_speed
 
 var speedDirectErrorLevel=20
 
@@ -361,9 +362,15 @@ func changeState(newState:int,direction:int):
 		RowState.HalenBeideBoorden:
 			setSpeedAndDirection(1,0,1,1,false)
 		RowState.LaatLopen:
-			setSpeedAndDirection(0,0,0.1,1,false)
+			if abs(currentSpeed)<=lowNoRowingSpeed:
+				setSpeedAndDirection(0,0,0.1,1,false)
+			else: 
+				setSpeedAndDirection(0,0,0.6,1,false)
 		RowState.Bedankt:
-			setSpeedAndDirection(0,0,0.6,1,false)
+			if abs(currentSpeed)<=lowNoRowingSpeed:
+				setSpeedAndDirection(0,0,0.6,1,false)
+			else: 
+				setSpeedAndDirection(0,0,1,1,false)
 		RowState.HalenSB:
 			setSpeedAndDirection(0.35,-0.5,1,1,false)
 		RowState.HalenBB:
