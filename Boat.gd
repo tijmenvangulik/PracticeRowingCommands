@@ -363,7 +363,7 @@ func changeState(newState:int,direction:int):
 			setSpeedAndDirection(1,0,1,1,false)
 		RowState.LaatLopen:
 			if abs(currentSpeed)<=lowNoRowingSpeed:
-				setSpeedAndDirection(0,0,0.1,1,false)
+				setSpeedAndDirection(0,0,0.05,1,false)
 			else: 
 				setSpeedAndDirection(0,0,0.6,1,false)
 		RowState.Bedankt:
@@ -378,10 +378,16 @@ func changeState(newState:int,direction:int):
 		RowState.VastroeienBeideBoorden:
 			setSpeedAndDirection(0,0,1.5,1,false)
 		RowState.VastroeienSB:
-			if currentSpeed<0: setSpeedAndDirection(0,-0.5,0.4,0.6,false)
+			var extraLowSpeedRotation=1
+			if abs(currentSpeed)<=lowNoRowingSpeed:
+				extraLowSpeedRotation=0.5;
+			if currentSpeed<0: setSpeedAndDirection(0,-0.5,0.4,0.6*extraLowSpeedRotation,false)
 			else : setSpeedAndDirection(0,0.6,0.4,0.6,false)
 		RowState.VastroeienBB:
-			if currentSpeed<0: setSpeedAndDirection(0,0.5,0.4,0.4,false)
+			var extraLowSpeedRotation=1
+			if abs(currentSpeed)<=lowNoRowingSpeed:
+				extraLowSpeedRotation=0.5;
+			if currentSpeed<0: setSpeedAndDirection(0,0.5,0.4,0.4*extraLowSpeedRotation,false)
 			else : setSpeedAndDirection(0,-0.6,0.4,0.4,false)
 		RowState.StrijkenBeidenBoorden:
 			setSpeedAndDirection(-0.4,0,0.5,1,false)
