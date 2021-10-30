@@ -13,6 +13,5 @@ Press tab in the game
 
 The first version was written in [scratch](https://scratch.mit.edu/projects/578632637/)
 
-# version
 
-0.9 First beta release
+In the physics branch I try to get the same working with realistic physic simulation. This is still work in progress since I need to figure out how this works and what the optimum parameters are.

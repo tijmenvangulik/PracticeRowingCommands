@@ -174,8 +174,8 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	applied_force= Vector2(destinationSpeed,0).rotated(rotation+sideWaysOffset)
 	
 	if abs(destinationTurnSpeed)>0:
-		var extraTurnForce= Vector2(destinationTurnSpeed,0).rotated(rotation+sideWaysOffset)
-		add_force(Vector2(0,10*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
+		var extraTurnForce= Vector2(abs(destinationTurnSpeed),0).rotated(rotation+sideWaysOffset)
+		apply_impulse(Vector2(0,100*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
 	#var collision = move_and_collide(velocity)
 	
 	

@@ -709,7 +709,7 @@ points = PoolVector2Array( 126.989, 2.28595, 126.989, 2.28595, 126.71, 127.035, 
 37/z_index = 0
 
 [sub_resource type="PhysicsMaterial" id=27]
-friction = 5.0
+friction = 0.9
 
 [sub_resource type="StyleBoxFlat" id=21]
 bg_color = Color( 0.192157, 0.254902, 0.52549, 0 )
@@ -784,11 +784,12 @@ tile_data = PoolIntArray( -1, 17, 0, -65536, 17, 0, -65535, 17, 0, -65534, 17, 0
 [node name="Boat" parent="." instance=ExtResource( 3 )]
 position = Vector2( 984.05, 1995.76 )
 collision_layer = 31
-mass = 10.0
+mass = 4.0
 physics_material_override = SubResource( 27 )
 contacts_reported = 1
 contact_monitor = true
-angular_damp = 0.9
+linear_damp = 0.1
+angular_damp = 0.999
 
 [node name="Camera2D2" type="Camera2D" parent="Boat"]
 rotation = 1.5708
