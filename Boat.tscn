@@ -3,7 +3,7 @@
 [ext_resource path="res://Boat.gd" type="Script" id=1]
 [ext_resource path="res://assets/tiles.png" type="Texture" id=2]
 
-[node name="Boat" type="KinematicBody2D"]
+[node name="Boat" type="RigidBody2D"]
 position = Vector2( -0.420593, 0.0624841 )
 collision_mask = 0
 script = ExtResource( 1 )

@@ -34,6 +34,8 @@ color=false
 theme=false
 refresh=false
 frame=false
+mass=false
+weight=false
 
 [importer_defaults]
 
@@ -73,6 +75,10 @@ brake={
 
 translations=PoolStringArray( "res://translations/Translations.en.translation", "res://translations/Translations.nl.translation", "res://translations/Translations.nl_NL.translation" )
 locale_filter=[ 0, [  ] ]
+
+[physics]
+
+2d/default_gravity=0
 
 [rendering]
 

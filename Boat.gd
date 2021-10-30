@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends RigidBody2D
 
 var velocity = Vector2.ZERO
 
@@ -122,28 +122,18 @@ func showError(message:String):
 		yield(t, "timeout")
 		label.text=""
 		t.queue_free()
+
 		
 #http://kidscancode.org/godot_recipes/basics/understanding_delta/
 # speed (velocity) is pixels per second
-func _physics_process(delta):
+func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	
 	# calc speed
 	var forceCorrection=1.0
 	if (lightPaddleOn): forceCorrection=lightPaddleFactor
 	
 	var destinationSpeed=currentSpeedFactor*max_speed*forceCorrection;
-	var speedDiff=destinationSpeed-currentSpeed;
-	if speedDiff>0: 
-		currentSpeed+=speedIncFactor*forceMultiplier*lightPaddleForceFactor
-		if currentSpeed>destinationSpeed:
-			currentSpeed=destinationSpeed
-		
-	
-	if speedDiff<0:
-		currentSpeed-=speedIncFactor*forceMultiplier*lightPaddleForceFactor
-		if currentSpeed<destinationSpeed:
-			currentSpeed=destinationSpeed
-	
+	currentSpeed=destinationSpeed
 	
 	#calc rot
 	var destinationTurnSpeed=currentTurnSpeedFactor*max_turn;
@@ -162,27 +152,13 @@ func _physics_process(delta):
 		lightPaddleTurnMultiplier=lightPaddleTurnFactor
 		destinationTurnSpeed=destinationTurnSpeed*lightPaddleDestTurnFactor
 	
-	var turnDiff=destinationTurnSpeed-currentTurnSpeed;
-			
-	if turnDiff>0 :
-		currentTurnSpeed+=turnIncFactor*turnMultiplier*lightPaddleTurnMultiplier
-		if currentTurnSpeed>destinationTurnSpeed:
-			currentTurnSpeed=destinationTurnSpeed
-		
+	currentTurnSpeed=destinationTurnSpeed
 	
-	if turnDiff<0 :
-		currentTurnSpeed-=turnIncFactor*turnMultiplier
-		if currentTurnSpeed<destinationTurnSpeed:
-			currentTurnSpeed=destinationTurnSpeed
-	
-	
-	if noturnLowSleed &&  currentSpeed==0:
-		currentTurnSpeed=0
 		
 	#var easeTurnSpeed=doEase(currentTurnSpeed,destinationTurnSpeed,-1.4);
 	var easeTurnSpeed=currentTurnSpeed
 		
-	rotation += easeTurnSpeed * delta
+	# rotation += easeTurnSpeed * delta
 	var sideWaysOffset=0
 	if sideWays:
 		if currentSpeedFactor<0 :
@@ -191,16 +167,24 @@ func _physics_process(delta):
 	
 	
 	#apply easing	
-	var easeSpeed=doEase(currentSpeed,max_speed,-1.2);
+	# var easeSpeed=doEase(currentSpeed,max_speed,-1.2);
 	
-	velocity = Vector2(easeSpeed*delta, 0).rotated(rotation+sideWaysOffset)
+	# velocity = Vector2(easeSpeed*delta, 0).rotated(rotation+sideWaysOffset)
 	
-	var collision = move_and_collide(velocity)
-	if collision:
-		currentSpeed=0
+	applied_force= Vector2(destinationSpeed,0).rotated(rotation+sideWaysOffset)
+	
+	if abs(destinationTurnSpeed)>0:
+		var extraTurnForce= Vector2(destinationTurnSpeed,0).rotated(rotation+sideWaysOffset)
+		add_force(Vector2(0,10*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
+	#var collision = move_and_collide(velocity)
+	
+	
+	var collidingBodies=get_colliding_bodies()
+	
+	if collidingBodies.size()>0:
 		changeState(RowState.LaatLopen,0)
 		showError("Boem")
-	
+
 static func doEase(currentValue,maxValue,easing):
 	#https://godotengine.org/qa/59172/how-do-i-properly-use-the-ease-function
 	if maxValue==0: return 0
