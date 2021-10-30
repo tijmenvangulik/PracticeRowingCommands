@@ -184,19 +184,21 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	
 	applied_force= Vector2(destinationSpeed,0).rotated(rotation+sideWaysOffset)
 	
+	# apply turn forces
 	if abs(destinationTurnSpeed)>0:
 		var extraTurnForce= Vector2(abs(destinationTurnSpeed)*0.5,0).rotated(rotation+sideWaysOffset)
 		apply_impulse(Vector2(0,-50*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
 	#var collision = move_and_collide(velocity)
+	
+	# apply the breaking force
 	var currentSpeed=linear_velocity.length()
 	var angle=linear_velocity.angle()
-	if (destinationSpeed==0.0 && abs(currentSpeed)>10.0 ):
+	if (destinationSpeed==0.0 && abs(currentSpeed)>1.0 ):
 		
 		var extraTurnForce= Vector2(currentSpeed*0.1*forceMultiplier,0).rotated(angle+PI)
-		#apply_impulse(Vector2(0,10*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
-		apply_impulse(Vector2(0,0),extraTurnForce)
+		apply_impulse(Vector2(0,10*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
 	
-	
+	#check on colliding
 	var collidingBodies=get_colliding_bodies()
 	
 	if collidingBodies.size()>0:
@@ -365,14 +367,14 @@ func changeState(newState:int,direction:int):
 			setSpeedAndDirection(1,0,1,1,false)
 		RowState.LaatLopen:
 			if abs(currentSpeed)<=lowNoRowingSpeed:
-				setSpeedAndDirection(0,0,0.05,1,false)
+				setSpeedAndDirection(0,0,0.001,1,false)
 			else: 
-				setSpeedAndDirection(0,0,0.6,1,false)
+				setSpeedAndDirection(0,0,0.01,1,false)
 		RowState.Bedankt:
 			if abs(currentSpeed)<=lowNoRowingSpeed:
-				setSpeedAndDirection(0,0,0.6,1,false)
+				setSpeedAndDirection(0,0,0.2,1,false)
 			else: 
-				setSpeedAndDirection(0,0,1,1,false)
+				setSpeedAndDirection(0,0,1,0.5,false)
 		RowState.HalenSB:
 			setSpeedAndDirection(0.35,-0.5,1,1,false)
 		RowState.HalenBB:
