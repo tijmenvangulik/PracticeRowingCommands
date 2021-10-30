@@ -181,18 +181,24 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	# var easeSpeed=doEase(currentSpeed,max_speed,-1.2);
 	
 	# velocity = Vector2(easeSpeed*delta, 0).rotated(rotation+sideWaysOffset)
+
+	var currentSpeed=linear_velocity.length()
+	var angle=linear_velocity.angle()
+	var destinationSpeedAbs=abs(destinationSpeed)
 	
-	applied_force= Vector2(destinationSpeed,0).rotated(rotation+sideWaysOffset)
+	if destinationSpeedAbs>0 && currentSpeed<destinationSpeedAbs:
+		applied_force= Vector2(destinationSpeed,0).rotated(rotation+sideWaysOffset)
+	else: applied_force= Vector2(0,0)
 	
+	var destinationTurnSpeedAbs=abs(destinationTurnSpeed);
 	# apply turn forces
-	if abs(destinationTurnSpeed)>0:
+	if destinationTurnSpeedAbs>0 :
 		var extraTurnForce= Vector2(abs(destinationTurnSpeed)*0.5,0).rotated(rotation+sideWaysOffset)
 		apply_impulse(Vector2(0,-50*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
 	#var collision = move_and_collide(velocity)
 	
 	# apply the breaking force
-	var currentSpeed=linear_velocity.length()
-	var angle=linear_velocity.angle()
+	
 	if (destinationSpeed==0.0 && abs(currentSpeed)>1.0 ):
 		
 		var extraTurnForce= Vector2(currentSpeed*0.1*forceMultiplier,0).rotated(angle+PI)
@@ -219,6 +225,7 @@ func setSpeedAndDirection(speedFactor:float,turnFactor:float,newForceMultiplier:
 	forceMultiplier=newForceMultiplier
 	turnMultiplier=newTurnMultiplier
 	sideWays=newSideWays;
+	
 	
 func resetSpeedSideways():
 	if !sideWays:

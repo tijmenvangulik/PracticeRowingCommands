@@ -708,13 +708,13 @@ points = PoolVector2Array( 126.989, 2.28595, 126.989, 2.28595, 126.71, 127.035, 
 37/shapes = [  ]
 37/z_index = 0
 
-[sub_resource type="PhysicsMaterial" id=27]
+[sub_resource type="PhysicsMaterial" id=21]
 friction = 0.9
 
-[sub_resource type="StyleBoxFlat" id=21]
+[sub_resource type="StyleBoxFlat" id=22]
 bg_color = Color( 0.192157, 0.254902, 0.52549, 0 )
 
-[sub_resource type="StyleBoxFlat" id=22]
+[sub_resource type="StyleBoxFlat" id=23]
 content_margin_left = 3.0
 content_margin_right = 3.0
 content_margin_top = 3.0
@@ -725,14 +725,14 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="StyleBoxFlat" id=23]
+[sub_resource type="StyleBoxFlat" id=24]
 bg_color = Color( 0.235294, 0.396078, 0.219608, 0.705882 )
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id=24]
+[sub_resource type="StyleBoxFlat" id=25]
 content_margin_left = 3.0
 content_margin_right = 3.0
 content_margin_top = 3.0
@@ -749,14 +749,14 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="StyleBoxFlat" id=25]
+[sub_resource type="StyleBoxFlat" id=26]
 bg_color = Color( 0.235294, 0.231373, 0.231373, 0.705882 )
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id=26]
+[sub_resource type="StyleBoxFlat" id=27]
 bg_color = Color( 0.439216, 0.529412, 0.435294, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -785,7 +785,7 @@ tile_data = PoolIntArray( -1, 17, 0, -65536, 17, 0, -65535, 17, 0, -65534, 17, 0
 position = Vector2( 984.05, 1995.76 )
 collision_layer = 31
 mass = 4.0
-physics_material_override = SubResource( 27 )
+physics_material_override = SubResource( 21 )
 contacts_reported = 1
 contact_monitor = true
 linear_damp = 0.1
@@ -813,7 +813,7 @@ margin_left = 30.0
 margin_top = 449.0
 margin_right = 870.0
 margin_bottom = 609.0
-custom_styles/panel = SubResource( 21 )
+custom_styles/panel = SubResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -886,9 +886,9 @@ margin_left = 554.0
 margin_right = 720.0
 margin_bottom = 25.0
 theme = ExtResource( 29 )
-custom_styles/hover = SubResource( 22 )
-custom_styles/pressed = SubResource( 23 )
-custom_styles/focus = SubResource( 24 )
+custom_styles/hover = SubResource( 23 )
+custom_styles/pressed = SubResource( 24 )
+custom_styles/focus = SubResource( 25 )
 custom_styles/disabled = ExtResource( 53 )
 custom_styles/normal = ExtResource( 17 )
 text = "HalenSB"
@@ -999,7 +999,7 @@ margin_top = 60.0
 margin_right = 411.0
 margin_bottom = 85.0
 theme = ExtResource( 29 )
-custom_styles/hover = SubResource( 22 )
+custom_styles/hover = SubResource( 23 )
 custom_styles/pressed = ExtResource( 19 )
 custom_styles/focus = ExtResource( 20 )
 custom_styles/disabled = ExtResource( 53 )
@@ -1055,7 +1055,7 @@ margin_right = 202.0
 margin_bottom = 115.0
 theme = ExtResource( 29 )
 custom_styles/hover = ExtResource( 25 )
-custom_styles/pressed = SubResource( 25 )
+custom_styles/pressed = SubResource( 26 )
 custom_styles/focus = ExtResource( 28 )
 custom_styles/disabled = ExtResource( 53 )
 custom_styles/normal = ExtResource( 27 )
@@ -1139,7 +1139,7 @@ margin_right = 411.0
 margin_bottom = 145.0
 theme = ExtResource( 29 )
 custom_styles/hover = ExtResource( 25 )
-custom_styles/pressed = SubResource( 25 )
+custom_styles/pressed = SubResource( 26 )
 custom_styles/focus = ExtResource( 28 )
 custom_styles/disabled = ExtResource( 53 )
 custom_styles/normal = ExtResource( 27 )
@@ -1152,7 +1152,7 @@ margin_top = 120.0
 margin_right = 544.0
 margin_bottom = 145.0
 theme = ExtResource( 29 )
-custom_styles/hover = SubResource( 22 )
+custom_styles/hover = SubResource( 23 )
 custom_styles/pressed = ExtResource( 19 )
 custom_styles/focus = ExtResource( 20 )
 custom_styles/disabled = ExtResource( 53 )
@@ -1193,7 +1193,7 @@ margin_top = 58.0
 margin_right = 991.0
 margin_bottom = 597.0
 theme = ExtResource( 29 )
-custom_styles/panel = SubResource( 26 )
+custom_styles/panel = SubResource( 27 )
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
 window_title = "Info"
 script = ExtResource( 43 )
