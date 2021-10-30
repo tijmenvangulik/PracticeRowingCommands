@@ -26,6 +26,9 @@ var lightPaddleOn=false
 var lowNoRowingSpeed=lightPaddleFactor*max_speed
 
 var speedDirectErrorLevel=20
+var newRotation_degrees=-1.0;
+var newPosition_x=-1.0
+var newPosition_y=-1.0
 
 enum RowState {HalenBeideBoorden,
   LaatLopen,Bedankt,HalenSB,StrijkenSB
@@ -127,7 +130,15 @@ func showError(message:String):
 #http://kidscancode.org/godot_recipes/basics/understanding_delta/
 # speed (velocity) is pixels per second
 func _integrate_forces( statePhysics: Physics2DDirectBodyState):
-	
+	if newPosition_x!=-1.0:
+		var start_pos=Vector2(newPosition_x,newPosition_y)
+		var start_angle=deg2rad( newRotation_degrees)*1.0
+		
+		statePhysics.transform = Transform2D(start_angle, start_pos)
+		statePhysics.linear_velocity = Vector2()
+		newRotation_degrees=-1.0;
+		newPosition_x=-1.0
+		newPosition_y=1.0
 	# calc speed
 	var forceCorrection=1.0
 	if (lightPaddleOn): forceCorrection=lightPaddleFactor
@@ -174,9 +185,16 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	applied_force= Vector2(destinationSpeed,0).rotated(rotation+sideWaysOffset)
 	
 	if abs(destinationTurnSpeed)>0:
-		var extraTurnForce= Vector2(abs(destinationTurnSpeed),0).rotated(rotation+sideWaysOffset)
-		apply_impulse(Vector2(0,100*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
+		var extraTurnForce= Vector2(abs(destinationTurnSpeed)*0.5,0).rotated(rotation+sideWaysOffset)
+		apply_impulse(Vector2(0,-50*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
 	#var collision = move_and_collide(velocity)
+	var currentSpeed=linear_velocity.length()
+	var angle=linear_velocity.angle()
+	if (destinationSpeed==0.0 && abs(currentSpeed)>10.0 ):
+		
+		var extraTurnForce= Vector2(currentSpeed*0.1*forceMultiplier,0).rotated(angle+PI)
+		#apply_impulse(Vector2(0,10*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
+		apply_impulse(Vector2(0,0),extraTurnForce)
 	
 	
 	var collidingBodies=get_colliding_bodies()
@@ -484,13 +502,12 @@ func oarsCommand(command: int):
 				else: showError("CommandoNietMogelijk")	
 	else: 
 		showError("EerstLatenLopenOfBedankt")
-
 func setNewBoatPosition(x:int,y:int,newRotation,newStateOars : int):
 	# reset the boat into a new position and place
 	setStateOars(newStateOars)
-	rotation_degrees=newRotation
-	position.x=x
-	position.y=y
+	newRotation_degrees=newRotation
+	newPosition_x=x
+	newPosition_y=y
 	lightPaddleOn=false
 	# reset speed or turn
 	currentSpeed=0
