@@ -220,6 +220,16 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 		currentSpeedFactor=0.0
 		onePush=false;
 		
+	# Simulate the keel and reduce the side way forces
+	if !sideWays:
+		#remove the rotation
+		var force=applied_force.rotated(-rotation)
+		#reduce the force
+		force.y=0 #force.y*0.01;
+		#rotate back
+		applied_force=force.rotated(rotation)
+		
+				
 static func doEase(currentValue,maxValue,easing):
 	#https://godotengine.org/qa/59172/how-do-i-properly-use-the-ease-function
 	if maxValue==0: return 0
