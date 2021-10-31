@@ -29,6 +29,7 @@ var speedDirectErrorLevel=20
 var newRotation_degrees=-1.0;
 var newPosition_x=-1.0
 var newPosition_y=-1.0
+var onePush=false;
 
 enum RowState {HalenBeideBoorden,
   LaatLopen,Bedankt,HalenSB,StrijkenSB
@@ -193,8 +194,12 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	var destinationTurnSpeedAbs=abs(destinationTurnSpeed);
 	# apply turn forces
 	if destinationTurnSpeedAbs>0 :
-		var extraTurnForce= Vector2(abs(destinationTurnSpeed)*0.5,0).rotated(rotation+sideWaysOffset)
-		apply_impulse(Vector2(0,-50*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
+		if (sideWays):
+			var extraTurnForce= Vector2(abs(destinationTurnSpeed)*0.5,0).rotated(rotation+sideWaysOffset)
+			apply_impulse(Vector2(50,-0).rotated(rotation),extraTurnForce)
+		else:
+			var extraTurnForce= Vector2(abs(destinationTurnSpeed)*0.5,0).rotated(rotation+sideWaysOffset)
+			apply_impulse(Vector2(0,-50*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
 	#var collision = move_and_collide(velocity)
 	
 	# apply the breaking force
@@ -210,7 +215,11 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	if collidingBodies.size()>0:
 		changeState(RowState.LaatLopen,0)
 		showError("Boem")
-
+		
+	if onePush:
+		currentSpeedFactor=0.0
+		onePush=false;
+		
 static func doEase(currentValue,maxValue,easing):
 	#https://godotengine.org/qa/59172/how-do-i-properly-use-the-ease-function
 	if maxValue==0: return 0
@@ -411,16 +420,13 @@ func changeState(newState:int,direction:int):
 		RowState.PeddelendStrijkenSB:
 			setSpeedAndDirection(-0.1,0.1,1,1,true)
 		RowState.UitzettenBB:
-			currentSpeed=35.0
-			currentTurnSpeed=0.0
+			onePush=true
 			state=RowState.LaatLopen
-			setSpeedAndDirection(0,0,1,1,true)
+			setSpeedAndDirection(180,0,1,0,true)
 		RowState.UitzettenSB:
-			currentSpeed=-35.0
-			currentTurnSpeed=0.0
+			onePush=true
 			state=RowState.LaatLopen
-			setSpeedAndDirection(0,0,1,1,true)
-
+			setSpeedAndDirection(-180,0,1,0,true)
 		RowState.RondmakenBB:
 			setSpeedAndDirection(0,-0.5,1,1,false)
 		RowState.RondmakenSB:
