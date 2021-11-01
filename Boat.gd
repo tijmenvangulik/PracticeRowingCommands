@@ -196,9 +196,9 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	if destinationTurnSpeedAbs>0 :
 		if (sideWays):
 			var extraTurnForce= Vector2(abs(destinationTurnSpeed)*0.5,0).rotated(rotation+sideWaysOffset)
-			apply_impulse(Vector2(50,-0).rotated(rotation),extraTurnForce)
+			apply_impulse(Vector2(50,0).rotated(rotation),extraTurnForce)
 		else:
-			var extraTurnForce= Vector2(abs(destinationTurnSpeed)*0.5,0).rotated(rotation+sideWaysOffset)
+			var extraTurnForce= Vector2(abs(destinationTurnSpeed)*0.5,0).rotated(rotation) #deg2rad(-45*sign(destinationTurnSpeed))
 			apply_impulse(Vector2(0,-50*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
 	#var collision = move_and_collide(velocity)
 	
@@ -221,13 +221,14 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 		onePush=false;
 		
 	# Simulate the keel and reduce the side way forces
-	if !sideWays:
+	#does not work yet!
+#	if !sideWays:
 		#remove the rotation
-		var force=applied_force.rotated(-rotation)
-		#reduce the force
-		force.y=0 #force.y*0.01;
-		#rotate back
-		applied_force=force.rotated(rotation)
+#		var force=applied_force.rotated(-rotation)
+#		if force.y>0.01 or force.y<-0.01:
+#			force.y=force.y*0.01;
+			#rotate back
+#			applied_force=force.rotated(rotation)
 		
 				
 static func doEase(currentValue,maxValue,easing):
