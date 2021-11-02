@@ -193,21 +193,22 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	
 	var destinationTurnSpeedAbs=abs(destinationTurnSpeed);
 	# apply turn forces
-	if destinationTurnSpeedAbs>0 :
+	if destinationTurnSpeedAbs>0 && destinationSpeed!=0.0:
 		if (sideWays):
 			var extraTurnForce= Vector2(abs(destinationTurnSpeed)*0.5,0).rotated(rotation+sideWaysOffset)
-			apply_impulse(Vector2(50,0).rotated(rotation),extraTurnForce)
+			apply_impulse(Vector2(80,0).rotated(rotation),extraTurnForce)
 		else:
+			#apply_torque_impulse(destinationTurnSpeed*30);
 			var extraTurnForce= Vector2(abs(destinationTurnSpeed)*0.5,0).rotated(rotation) #deg2rad(-45*sign(destinationTurnSpeed))
-			apply_impulse(Vector2(0,-50*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
+			apply_impulse(Vector2(0,-80*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
 	#var collision = move_and_collide(velocity)
 	
 	# apply the breaking force
-	
-	if (destinationSpeed==0.0 && abs(currentSpeed)>1.0 ):
+	var absCurrentSpeed= abs(currentSpeed)
+	if (destinationSpeed==0.0 and absCurrentSpeed>0.5 ):
 		
 		var extraTurnForce= Vector2(currentSpeed*0.1*forceMultiplier,0).rotated(angle+PI)
-		apply_impulse(Vector2(0,10*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
+		apply_impulse(Vector2(0,25*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
 	
 	#check on colliding
 	var collidingBodies=get_colliding_bodies()
