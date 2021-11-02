@@ -222,14 +222,13 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 		onePush=false;
 		
 	# Simulate the keel and reduce the side way forces
-	#does not work yet!
-#	if !sideWays:
+	if !sideWays:
 		#remove the rotation
-#		var force=applied_force.rotated(-rotation)
-#		if force.y>0.01 or force.y<-0.01:
-#			force.y=force.y*0.01;
+		var force=linear_velocity.rotated(-rotation)
+		if force.y>0.01 or force.y<-0.01:
+			force.y=force.y*0.01;
 			#rotate back
-#			applied_force=force.rotated(rotation)
+			linear_velocity=force.rotated(rotation)
 		
 				
 static func doEase(currentValue,maxValue,easing):
