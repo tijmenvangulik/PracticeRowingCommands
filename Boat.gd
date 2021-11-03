@@ -8,19 +8,14 @@ var currentSpeedFactor = 0.0
 
 var max_speed = 60.0
 var currentSpeed=0.0;
-var speedIncFactor=1.0
 
 var max_turn= 0.6
 var currentTurnSpeed=0.0
-var turnIncFactor=0.005
 
 var lowTurnSpeed=1.0
 var forceMultiplier=1.0
-var turnMultiplier=1.0;	
 var sideWays=false;
 var lightPaddleFactor=0.5
-var lightPaddleForceFactor=0.25
-var lightPaddleTurnFactor=0.25
 var lightPaddleDestTurnFactor=0.5
 var lightPaddleOn=false
 var lowNoRowingSpeed=lightPaddleFactor*max_speed
@@ -150,18 +145,12 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	#calc rot
 	var destinationTurnSpeed=currentTurnSpeedFactor*max_turn;
 	
-	#if currentSpeedFactor==0 && currentTurnSpeed!=0:
-	#	turnIncFactor=turnIncFactor*(currentSpeedFactor/100)
-	#else:
-	
 	var noturnLowSleed=state==RowState.VastroeienSB || state==RowState.VastroeienBB;
 	
 	if noturnLowSleed && currentTurnSpeed>0 && abs(currentSpeed)<lowTurnSpeed:
 		destinationTurnSpeed=0
 	
-	var lightPaddleTurnMultiplier=1.0
 	if lightPaddleOn:
-		lightPaddleTurnMultiplier=lightPaddleTurnFactor
 		destinationTurnSpeed=destinationTurnSpeed*lightPaddleDestTurnFactor
 	
 	currentTurnSpeed=destinationTurnSpeed
@@ -195,19 +184,18 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	# apply turn forces
 	if destinationTurnSpeedAbs>0 && destinationSpeed!=0.0:
 		if (sideWays):
-			var extraTurnForce= Vector2(abs(destinationTurnSpeed)*0.5,0).rotated(rotation+sideWaysOffset)
+			var extraTurnForce= Vector2(destinationTurnSpeed*0.5,0).rotated(rotation+sideWaysOffset)
 			apply_impulse(Vector2(80,0).rotated(rotation),extraTurnForce)
 		else:
 			#apply_torque_impulse(destinationTurnSpeed*30);
 			var extraTurnForce= Vector2(abs(destinationTurnSpeed)*0.5,0).rotated(rotation) #deg2rad(-45*sign(destinationTurnSpeed))
-			apply_impulse(Vector2(0,-80*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
+			apply_impulse(Vector2(0,-50*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
 	#var collision = move_and_collide(velocity)
 	
 	# apply the breaking force
 	var absCurrentSpeed= abs(currentSpeed)
 	if (destinationSpeed==0.0 and absCurrentSpeed>0.5 ):
-		
-		var extraTurnForce= Vector2(currentSpeed*0.1*forceMultiplier,0).rotated(angle+PI)
+		var extraTurnForce= Vector2(currentSpeed*0.02*forceMultiplier,0).rotated(angle+PI)
 		apply_impulse(Vector2(0,25*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
 	
 	#check on colliding
@@ -239,11 +227,10 @@ static func doEase(currentValue,maxValue,easing):
 	if (currentValue<0): easeValue=easeValue*-1
 	return 	easeValue
 		
-func setSpeedAndDirection(speedFactor:float,turnFactor:float,newForceMultiplier:float,newTurnMultiplier:float,newSideWays:bool):
+func setSpeedAndDirection(speedFactor:float,turnFactor:float,newForceMultiplier:float,newSideWays:bool):
 	currentTurnSpeedFactor=turnFactor
 	currentSpeedFactor=speedFactor
 	forceMultiplier=newForceMultiplier
-	turnMultiplier=newTurnMultiplier
 	sideWays=newSideWays;
 	
 	
@@ -391,57 +378,51 @@ func changeState(newState:int,direction:int):
 	# negative speed is backwards and negative turn speed is turn to the left
 	match state:
 		RowState.HalenBeideBoorden:
-			setSpeedAndDirection(1,0,1,1,false)
+			setSpeedAndDirection(1,0,1,false)
 		RowState.LaatLopen:
 			if abs(currentSpeed)<=lowNoRowingSpeed:
-				setSpeedAndDirection(0,0,0.001,1,false)
+				setSpeedAndDirection(0,0,0.001,false)
 			else: 
-				setSpeedAndDirection(0,0,0.01,1,false)
+				setSpeedAndDirection(0,0,0.01,false)
 		RowState.Bedankt:
 			if abs(currentSpeed)<=lowNoRowingSpeed:
-				setSpeedAndDirection(0,0,0.2,1,false)
+				setSpeedAndDirection(0,0,0.2,false)
 			else: 
-				setSpeedAndDirection(0,0,1,0.5,false)
+				setSpeedAndDirection(0,0,1,false)
 		RowState.HalenSB:
-			setSpeedAndDirection(0.35,-0.5,1,1,false)
+			setSpeedAndDirection(0.35,-0.5,1,false)
 		RowState.HalenBB:
-			setSpeedAndDirection(0.35,0.5,1,1,false)
+			setSpeedAndDirection(0.35,0.5,1,false)
 		RowState.VastroeienBeideBoorden:
-			setSpeedAndDirection(0,0,1.5,1,false)
+			setSpeedAndDirection(0,0,1.5,false)
 		RowState.VastroeienSB:
-			var extraLowSpeedRotation=1
-			if abs(currentSpeed)<=lowNoRowingSpeed:
-				extraLowSpeedRotation=0.5;
-			if currentSpeed<0: setSpeedAndDirection(0,-0.5,0.4,0.6*extraLowSpeedRotation,false)
-			else : setSpeedAndDirection(0,0.6,0.4,0.6,false)
+			if currentSpeed<0: setSpeedAndDirection(0,-0.5,0.4,false)
+			else : setSpeedAndDirection(0,0.6,0.4,false)
 		RowState.VastroeienBB:
-			var extraLowSpeedRotation=1
-			if abs(currentSpeed)<=lowNoRowingSpeed:
-				extraLowSpeedRotation=0.5;
-			if currentSpeed<0: setSpeedAndDirection(0,0.5,0.4,0.4*extraLowSpeedRotation,false)
-			else : setSpeedAndDirection(0,-0.6,0.4,0.4,false)
+			if currentSpeed<0: setSpeedAndDirection(0,0.5,0.4,false)
+			else : setSpeedAndDirection(0,-0.6,0.4,false)
 		RowState.StrijkenBeidenBoorden:
-			setSpeedAndDirection(-0.4,0,0.5,1,false)
+			setSpeedAndDirection(-0.4,0,0.5,false)
 		RowState.StrijkenBB:
-			setSpeedAndDirection(-0.3,-0.3,0.5,1,false)
+			setSpeedAndDirection(-0.3,-0.3,0.5,false)
 		RowState.StrijkenSB:
-			setSpeedAndDirection(-0.3,0.3,0.5,1,false)
+			setSpeedAndDirection(-0.3,0.3,0.5,false)
 		RowState.PeddelendStrijkenBB:
-			setSpeedAndDirection(0.1,-0.1,1,1,true)
+			setSpeedAndDirection(0.1,-0.1,1,true)
 		RowState.PeddelendStrijkenSB:
-			setSpeedAndDirection(-0.1,0.1,1,1,true)
+			setSpeedAndDirection(-0.1,0.1,1,true)
 		RowState.UitzettenBB:
 			onePush=true
 			state=RowState.LaatLopen
-			setSpeedAndDirection(180,0,1,0,true)
+			setSpeedAndDirection(180,0,1,true)
 		RowState.UitzettenSB:
 			onePush=true
 			state=RowState.LaatLopen
-			setSpeedAndDirection(-180,0,1,0,true)
+			setSpeedAndDirection(-180,0,1,true)
 		RowState.RondmakenBB:
-			setSpeedAndDirection(0,-0.5,1,1,false)
+			setSpeedAndDirection(0.01,-0.5,1,false)
 		RowState.RondmakenSB:
-			setSpeedAndDirection(0,0.5,1,1,false)
+			setSpeedAndDirection(0.01,0.5,1,false)
 
 func determinenewStateOars(newStateOars):
 	return 	newStateOars

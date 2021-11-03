@@ -8,15 +8,12 @@ var player = null
 # angular_step 0.01
 
 
-var car_settings = [ 'max_speed','speedIncFactor',
-		 'max_turn', 'turnIncFactor',
-		'lowTurnSpeed'
+var car_settings = [ 'max_speed',
+		 'max_turn', 'lowTurnSpeed'
 		]
 
 var ranges = {'max_speed': [10, 150, 10],
-			'speedIncFactor': [0.1, 2, 0.1],
 			'max_turn': [0.1, 2, 0.01],
-			'turnIncFactor': [0, 0.1, 0.001],
 			'lowTurnSpeed': [1, 50, 1]
 			}
 			

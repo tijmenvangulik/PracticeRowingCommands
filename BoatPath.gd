@@ -18,7 +18,10 @@ func _process(delta):
 			points_arc.push_back(pos)
 			prevPos=pos;
 			update()		
-
+	else: if points_arc.size()>0:
+		points_arc=PoolVector2Array()
+		update()	
+		
 func _draw():
 	if debugMode():
 		for point in points_arc:
