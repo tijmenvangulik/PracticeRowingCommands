@@ -416,11 +416,11 @@ func changeState(newState:int,direction:int):
 		RowState.UitzettenBB:
 			onePush=true
 			state=RowState.LaatLopen
-			setSpeedAndDirection(180,0,1,true)
+			setSpeedAndDirection(60,0,1,true)
 		RowState.UitzettenSB:
 			onePush=true
 			state=RowState.LaatLopen
-			setSpeedAndDirection(-180,0,1,true)
+			setSpeedAndDirection(-60,0,1,true)
 		RowState.RondmakenBB:
 			setSpeedAndDirection(0.01,-0.5,1,false)
 		RowState.RondmakenSB:
