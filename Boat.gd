@@ -25,7 +25,7 @@ var newRotation_degrees=-1.0;
 var newPosition_x=-1.0
 var newPosition_y=-1.0
 var onePush=false;
-
+var crashState=false;
 enum RowState {HalenBeideBoorden,
   LaatLopen,Bedankt,HalenSB,StrijkenSB
   VastroeienSB,StrijkenBeidenBoorden,VastroeienBeideBoorden,
@@ -204,13 +204,14 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	if collidingBodies.size()>0:
 		changeState(RowState.LaatLopen,0)
 		showError("Boem")
+		crashState=true;
 		
 	if onePush:
 		currentSpeedFactor=0.0
 		onePush=false;
 		
 	# Simulate the keel and reduce the side way forces
-	if !sideWays:
+	if !sideWays && !crashState:
 		#remove the rotation
 		var force=linear_velocity.rotated(-rotation)
 		if force.y>0.01 or force.y<-0.01:
@@ -293,8 +294,7 @@ func determinenewState(newState:int,direction:int):
 				
 		else:
 			showError("EerstLatenLopenOfBedankt")
-	if result!=state:
-		prevError=""
+	
 	return result;
 
 func doCommand(command:int):
@@ -368,7 +368,9 @@ func changeState(newState:int,direction:int):
 	var oldState=state
 	#first check if the new state is allowed
 	state=determinenewState(newState,direction); 
-	
+	if oldState!=state: 
+		crashState=false;
+		prevError=""
 	#if the state change was successfull reset the oars state
 	if  oldState!=state && (stateOars==StateOars.RiemenHoogBB || stateOars==StateOars.RiemenHoogSB ):
 	  stateOars=StateOars.Roeien
