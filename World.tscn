@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=2]
+[gd_scene load_steps=83 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://HaleinBeideBoorden.gd" type="Script" id=2]
@@ -54,6 +54,7 @@
 [ext_resource path="res://RiemenHoogSB.gd" type="Script" id=52]
 [ext_resource path="res://ButtonDisabled.tres" type="StyleBox" id=53]
 [ext_resource path="res://BoatPath.gd" type="Script" id=54]
+[ext_resource path="res://Links.gd" type="Script" id=55]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 126.768, 18.0157, 117.559, 19.6902, 109.744, 13.2713, 106.395, 1.27078, 126.21, 1.27078 )
@@ -1229,6 +1230,7 @@ margin_right = 918.0
 margin_bottom = 483.0
 bbcode_enabled = true
 text = "IntroText"
+script = ExtResource( 55 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

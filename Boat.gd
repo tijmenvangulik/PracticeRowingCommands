@@ -18,6 +18,11 @@ var sideWays=false;
 var lightPaddleFactor=0.5
 var lightPaddleDestTurnFactor=0.5
 var lightPaddleOn=false
+
+var bestExtraRotation=2
+
+enum BestState {Normal,StuurboordBest,BakboordBest}
+var bestState : int= BestState.Normal
 var lowNoRowingSpeed=lightPaddleFactor*max_speed
 
 var speedDirectErrorLevel=20
@@ -70,7 +75,10 @@ enum Command {
   UitbrengenSB,
   UitbrengenBB,
   LightPaddle,
-  LightPaddleBedankt
+  LightPaddleBedankt,
+  StuurboordBest,
+  BakboortBest,
+  BestBedankt
 }
 var commandNames = [
   "LaatLopen",
@@ -99,7 +107,10 @@ var commandNames = [
   "UitbrengenSB",
   "UitbrengenBB",
   "LightPaddle",
-  "LightPaddleBedankt"
+  "LightPaddleBedankt",
+  "StuurboordBest",
+  "BakboortBest",
+  "BestBedankt"
 ]
 var lastCommand=-1
 var newCommand=-1
@@ -198,6 +209,10 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 		var extraTurnForce= Vector2(currentSpeed*0.02*forceMultiplier,0).rotated(angle+PI)
 		apply_impulse(Vector2(0,25*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
 	
+	if bestState==BestState.StuurboordBest:
+		apply_torque_impulse(-bestExtraRotation);
+	else: if bestState==BestState.BakboordBest:
+		apply_torque_impulse(bestExtraRotation);
 	#check on colliding
 	var collidingBodies=get_colliding_bodies()
 	
@@ -356,13 +371,34 @@ func doCommand(command:int):
 			oarsCommand(OarsCommand.RiemenHoogSB)
 		Command.RiemenHoogBB:
 			oarsCommand(OarsCommand.RiemenHoogBB)
-
+		Command.StuurboordBest:
+			setBest(BestState.StuurboordBest)
+		Command.BakboortBest:
+			setBest(BestState.BakboordBest)
+		Command.BestBedankt:
+			setBest(BestState.Normal)
 	lastCommand=command
+
+func setBestState(newState : int):
+	if (state!=RowState.HalenBeideBoorden):
+		showError("CommandoNietMogelijk")
+	else: 
+		if newState!=BestState.Normal && bestState!=BestState.Normal:
+			showError("CommandoNietMogelijk")
+		else: bestState=	newState
 	
 func setLightPaddle(newLightPaddle:bool):
 	if newLightPaddle==lightPaddleOn:
 		showError("CommandoNietMogelijk")
 	else: lightPaddleOn=newLightPaddle
+
+func setBest(newBestState :int):
+	if newBestState==BestState.Normal:
+		if bestState!=BestState.StuurboordBest && bestState!= BestState.BakboordBest:
+			showError("CommandoNietMogelijk")
+		else:setBestState(newBestState)
+	else:
+		setBestState(newBestState) 
 
 func changeState(newState:int,direction:int):
 	var oldState=state
@@ -518,7 +554,9 @@ func setNewBoatPosition(x:int,y:int,newRotation,newStateOars : int):
 	newPosition_x=x
 	newPosition_y=y
 	lightPaddleOn=false
+	bestState=BestState.Normal
 	# reset speed or turn
+	$"../CanvasLayer/ButtonsContainer".visible=true
 	currentSpeed=0
 	currentTurnSpeed=0
 	state=RowState.LaatLopen
