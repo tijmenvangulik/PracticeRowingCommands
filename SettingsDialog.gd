@@ -7,6 +7,11 @@ extends WindowDialog
 
 var commandTranslations = [""]
 
+func addLabel(container,text):
+	var new_label = Label.new()
+	new_label.text=text
+	new_label.add_font_override("font",load("res://Font.tres"))
+	container.add_child(new_label)
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,23 +32,15 @@ func _ready():
 	#https://www.tilcode.com/godot-3-centering-a-grid-of-evenly-spaced-buttons-on-screen/
 	#https://docs.godotengine.org/en/stable/getting_started/step_by_step/ui_game_user_interface.html
 	var commandIndex=0;
-	var new_label = Label.new()
-	new_label.text="Commando"
-	new_label.add_font_override("font",load("res://Font.tres"))
-	container.add_child(new_label)
-	new_label = Label.new()
-	new_label.add_font_override("font",load("res://Font.tres"))
-	new_label.text="Alternative text"
-	container.add_child(new_label)
+	addLabel(container,"Commando")
+	addLabel(container,"Alternative text")
 	for command in commands:
 		
-		
-		new_label = Label.new()
-		new_label.text=command
-		container.add_child(new_label)
+		addLabel(container,command)		
 		var editBox = preload("res://EditCommandText.tscn").instance()
 		editBox.commandName=command
 		editBox.command=commandIndex
+		
 		var altText=commandTranslations[commandIndex];
 		editBox.visible=true;
 		
