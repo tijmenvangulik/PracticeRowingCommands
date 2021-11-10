@@ -38,7 +38,7 @@ func fillDropDown(enabledCommands : Array):
 	var i=0;
 	for commandName in boat.commandNames:
 		if len(enabledCommands)==0 || enabledCommands.find(i,0)>=0:
-			add_item(tr(commandName),i)
+			add_item(commandName,i)
 		i=i+1
 
 func selected(itemIndex : int):
@@ -54,3 +54,7 @@ func selected(itemIndex : int):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_EditCommandText_customCommandTextChanged(command, commandName, value):
+	set_item_text(command+1,value)

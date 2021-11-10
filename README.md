@@ -1,4 +1,5 @@
 Practice Rowing (coxing) commands
+(Dutch: Oefenen roeien stuur commando's)
 
 Little serious game to practice rowing coxing commands. 
 

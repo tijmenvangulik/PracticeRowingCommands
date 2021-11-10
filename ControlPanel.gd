@@ -37,8 +37,10 @@ func _on_Value_changed(value, node):
 	node.get_node("Value").text = str(value)
 
 func _input(event):
-	if event.is_action_pressed("ui_focus_next"):
-		visible = !visible
+	
+	if event is InputEventKey and event.pressed:
+		if event.scancode == KEY_F1:
+			visible = !visible
 
 func _process(delta):
 	if player:

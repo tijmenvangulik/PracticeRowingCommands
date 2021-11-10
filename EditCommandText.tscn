@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://EditCommandText.gd" type="Script" id=2]
+
+[sub_resource type="Theme" id=1]
+
+[node name="EditCommandText" type="MarginContainer"]
+anchor_right = 0.33
+anchor_bottom = 0.053
+margin_right = 2.0
+margin_bottom = -1.8
+rect_min_size = Vector2( 300, 30 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="."]
+margin_right = 339.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 200, 30 )
+
+[connection signal="text_changed" from="LineEdit" to="." method="_on_LineEdit_text_changed"]

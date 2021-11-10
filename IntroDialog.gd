@@ -10,12 +10,14 @@ func handleShow():
 	if visible:
 		$"CloseButton".grab_focus()
 	else: $"../OptionCommands".grab_focus()
-
+	
 func _init():
 	connect("visibility_changed",self,"handleShow");
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	setText()
+	get_close_button().hide()
 	
 func setText():
 	var intro=$"IntroText"
@@ -27,7 +29,7 @@ func setText():
 func _process(delta):
 	if lang!=TranslationServer.get_locale():
 		setText()
-
+		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
