@@ -36,7 +36,7 @@ Close;Sluiten;Sluiten;Close
 ShowIntroText;Introductie tekst;Introductie tekst;Introduction text
 Links;[center]Broncode en project:[/center]\n[center] [url=https://github.com/tijmenvangulik/PracticeRowingCommands]https://github.com/tijmenvangulik/PracticeRowingCommands[/url][/center];[center]Broncode en project:[/center]\n[center] [url=https://github.com/tijmenvangulik/PracticeRowingCommands]https://github.com/tijmenvangulik/PracticeRowingCommands[/url][/center];[center]Source code and project:[/center]\n[center] [url=https://github.com/tijmenvangulik/PracticeRowingCommands]https://github.com/tijmenvangulik/PracticeRowingCommands[/url][/center]
 LightPaddle;Light paddle;Light paddle;Light paddle
-LightPaddleBedankt;Light paddle bedankt;Light paddle bedankt;todo
+LightPaddleBedankt;Light paddle bedankt;Light paddle bedankt;Light paddle off
 RiemenHoogSB;Riemen hoog SB;Riemen hoog SB;Starboard oars high
 RiemenHoogBB;Riemen hoog BB;Riemen hoog BB;Port oars high
 StartAanleggen;Start aanleggen;Start aanleggen;todo

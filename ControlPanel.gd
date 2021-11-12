@@ -45,7 +45,7 @@ func _input(event):
 func _process(delta):
 	if player:
 #		var value=player.velocity.length()
-		var value=$"../../Boat".linear_velocity.length()
+		var value=$"../../Boat".calcSpeed()
 		$Panel/VBoxContainer/Speedometer/Speed.text = "%4.3f" % value
 		var turnValue=$"../../Boat".angular_velocity
 		$Panel/VBoxContainer/turnMeter/value.text = "%4.3f" % turnValue

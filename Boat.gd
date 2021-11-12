@@ -25,7 +25,7 @@ enum BestState {Normal,StuurboordBest,BakboordBest}
 var bestState : int= BestState.Normal
 var lowNoRowingSpeed=lightPaddleFactor*max_speed
 
-var speedDirectErrorLevel=20
+var speedDirectErrorLevel=10
 var newRotation_degrees=-1.0;
 var newPosition_x=-1.0
 var newPosition_y=-1.0
@@ -256,11 +256,17 @@ func resetSpeedSideways():
 		currentTurnSpeed=0.0
 	
 func boatInRest():
-	return state==RowState.LaatLopen ||	state==RowState.Bedankt 	 || currentSpeed==0
+	return state==RowState.LaatLopen ||	state==RowState.Bedankt 	 || isLowSpeed(linear_velocity.length())
 
 func isLowSpeed(speed):
 	return abs(speed)<speedDirectErrorLevel
-
+	
+func calcSpeed():
+	var result=linear_velocity.length()
+	var angle=abs(rad2deg( linear_velocity.angle()-rotation))
+	if angle>170 && angle<190: result=result*-1
+	return result
+	
 func determinenewState(newState:int,direction:int):
 	var result=state;
 	
@@ -282,7 +288,7 @@ func determinenewState(newState:int,direction:int):
 	else: if newState==RowState.PeddelendStrijkenBB && (stateOars!=StateOars.SlippenBB && stateOars!=StateOars.Slippen ):
 		showError("EerstSlippen")	
 		return result
-	else: if newState==RowState.Bedankt &&  !isLowSpeed(currentSpeed) && (state==RowState.HalenBeideBoorden ):
+	else: if newState==RowState.Bedankt &&  !isLowSpeed(linear_velocity.length()) && (state==RowState.HalenBeideBoorden ):
 		showError("EerstLatenLopen")
 		return result
 	else: if newState==RowState.UitzettenSB && stateOars!=StateOars.SlippenSB && stateOars!=StateOars.RiemenHoogSB:
@@ -291,18 +297,18 @@ func determinenewState(newState:int,direction:int):
 	else: if newState==RowState.UitzettenBB && stateOars!=StateOars.SlippenBB && stateOars!=StateOars.RiemenHoogBB:
 		showError("CommandoNietMogelijk")
 		return result	
-	else: if (newState==RowState.UitzettenSB || newState==RowState.UitzettenBB) && !isLowSpeed(currentSpeed) :
+	else: if (newState==RowState.UitzettenSB || newState==RowState.UitzettenBB) && !isLowSpeed(linear_velocity.length()) :
 		showError("LegBootStil")
 		return result	
-	else: if newState==RowState.LaatLopen ||	newState==RowState.Bedankt 	 || currentSpeed==0:
+	else: if newState==RowState.LaatLopen ||	newState==RowState.Bedankt 	 || isLowSpeed(linear_velocity.length()):
 		result=newState
 		return result
 	else:
 		var currentDirection=0
-		if currentSpeed<0:  currentDirection=-1
+		if calcSpeed()<0:  currentDirection=-1
 		else: currentDirection=1
 		if (state==RowState.LaatLopen || state==RowState.Bedankt)  :
-			if  direction!=0 && direction!=currentDirection && !isLowSpeed(currentSpeed):
+			if  direction!=0 && direction!=currentDirection && !isLowSpeed(linear_velocity.length()):
 				showError("LegBootStil")
 				return result
 			result=newState
@@ -418,14 +424,14 @@ func changeState(newState:int,direction:int):
 		RowState.HalenBeideBoorden:
 			setSpeedAndDirection(1,0,1,false)
 		RowState.LaatLopen:
-			if abs(currentSpeed)<=lowNoRowingSpeed:
-				setSpeedAndDirection(0,0,0.001,false)
-			else: 
+#			if abs(currentSpeed)<=lowNoRowingSpeed:
+#				setSpeedAndDirection(0,0,0.001,false)
+#			else: 
 				setSpeedAndDirection(0,0,0.01,false)
 		RowState.Bedankt:
-			if abs(currentSpeed)<=lowNoRowingSpeed:
-				setSpeedAndDirection(0,0,0.2,false)
-			else: 
+#			if abs(currentSpeed)<=lowNoRowingSpeed:
+#				setSpeedAndDirection(0,0,0.2,false)
+#			else: 
 				setSpeedAndDirection(0,0,1,false)
 		RowState.HalenSB:
 			setSpeedAndDirection(0.35,-0.5,1,false)
@@ -434,11 +440,9 @@ func changeState(newState:int,direction:int):
 		RowState.VastroeienBeideBoorden:
 			setSpeedAndDirection(0,0,1.5,false)
 		RowState.VastroeienSB:
-			if currentSpeed<0: setSpeedAndDirection(0,-0.5,0.4,false)
-			else : setSpeedAndDirection(0,0.6,0.4,false)
+			setSpeedAndDirection(0,0.6,0.4,false)
 		RowState.VastroeienBB:
-			if currentSpeed<0: setSpeedAndDirection(0,0.5,0.4,false)
-			else : setSpeedAndDirection(0,-0.6,0.4,false)
+			setSpeedAndDirection(0,-0.6,0.4,false)
 		RowState.StrijkenBeidenBoorden:
 			setSpeedAndDirection(-0.4,0,0.5,false)
 		RowState.StrijkenBB:
