@@ -7,10 +7,8 @@ var currentTurnSpeedFactor = 0.0
 var currentSpeedFactor = 0.0
 
 var max_speed = 60.0
-var currentSpeed=0.0;
 
 var max_turn= 0.6
-var currentTurnSpeed=0.0
 
 var lowTurnSpeed=1.0
 var forceMultiplier=1.0
@@ -151,25 +149,15 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	if (lightPaddleOn): forceCorrection=lightPaddleFactor
 	
 	var destinationSpeed=currentSpeedFactor*max_speed*forceCorrection;
-	currentSpeed=destinationSpeed
 	
 	#calc rot
 	var destinationTurnSpeed=currentTurnSpeedFactor*max_turn;
 	
 	var noturnLowSleed=state==RowState.VastroeienSB || state==RowState.VastroeienBB;
-	
-	if noturnLowSleed && currentTurnSpeed>0 && abs(currentSpeed)<lowTurnSpeed:
-		destinationTurnSpeed=0
-	
+		
 	if lightPaddleOn:
 		destinationTurnSpeed=destinationTurnSpeed*lightPaddleDestTurnFactor
-	
-	currentTurnSpeed=destinationTurnSpeed
-	
-		
-	#var easeTurnSpeed=doEase(currentTurnSpeed,destinationTurnSpeed,-1.4);
-	var easeTurnSpeed=currentTurnSpeed
-		
+			
 	# rotation += easeTurnSpeed * delta
 	var sideWaysOffset=0
 	if sideWays:
@@ -204,8 +192,8 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	#var collision = move_and_collide(velocity)
 	
 	# apply the breaking force
-	var absCurrentSpeed= abs(currentSpeed)
-	if (destinationSpeed==0.0 and absCurrentSpeed>0.5 ):
+	
+	if (destinationSpeed==0.0 and currentSpeed>0.5 ):
 		var extraTurnForce= Vector2(currentSpeed*0.02*forceMultiplier,0).rotated(angle+PI)
 		apply_impulse(Vector2(0,25*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
 	
@@ -249,11 +237,6 @@ func setSpeedAndDirection(speedFactor:float,turnFactor:float,newForceMultiplier:
 	forceMultiplier=newForceMultiplier
 	sideWays=newSideWays;
 	
-	
-func resetSpeedSideways():
-	if !sideWays:
-		currentSpeed=0.0
-		currentTurnSpeed=0.0
 	
 func boatInRest():
 	return state==RowState.LaatLopen ||	state==RowState.Bedankt 	 || isLowSpeed(linear_velocity.length())
@@ -344,10 +327,8 @@ func doCommand(command:int):
 		Command.VastroeienBB:
 			changeState(RowState.VastroeienBB,0)
 		Command.PeddelendStrijkenBB:
-			resetSpeedSideways()
 			changeState(RowState.PeddelendStrijkenBB,0)
 		Command.PeddelendStrijkenSB:
-			resetSpeedSideways()
 			changeState(RowState.PeddelendStrijkenSB,0)
 		Command.UitzettenBB:
 			changeState(RowState.UitzettenBB,0)
@@ -561,8 +542,6 @@ func setNewBoatPosition(x:int,y:int,newRotation,newStateOars : int):
 	bestState=BestState.Normal
 	# reset speed or turn
 	$"../CanvasLayer/ButtonsContainer".visible=true
-	currentSpeed=0
-	currentTurnSpeed=0
 	state=RowState.LaatLopen
 	currentSpeedFactor=0
 	currentTurnSpeedFactor=0
