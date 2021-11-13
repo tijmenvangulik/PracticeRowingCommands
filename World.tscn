@@ -836,7 +836,7 @@ current = true
 zoom = Vector2( 1.5, 1.5 )
 smoothing_enabled = true
 
-[node name="Rules" type="Node" parent="Boat"]
+[node name="DefaultRules" type="Node" parent="Boat"]
 script = ExtResource( 62 )
 
 [node name="BoatPath" type="Node2D" parent="."]
@@ -1238,8 +1238,8 @@ margin_top = 58.0
 margin_right = 991.0
 margin_bottom = 597.0
 theme = ExtResource( 29 )
-custom_styles/panel = SubResource( 27 )
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
+custom_styles/panel = SubResource( 27 )
 window_title = "Info"
 script = ExtResource( 43 )
 __meta__ = {
@@ -1274,11 +1274,11 @@ margin_left = 439.744
 margin_top = 490.671
 margin_right = 511.744
 margin_bottom = 523.671
+custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 20 )
 custom_styles/pressed = ExtResource( 19 )
 custom_styles/focus = ExtResource( 20 )
 custom_styles/normal = ExtResource( 17 )
-custom_fonts/font = ExtResource( 50 )
 text = "Close"
 script = ExtResource( 42 )
 
@@ -1338,13 +1338,12 @@ scale = Vector2( 0.374661, 0.372717 )
 texture = ExtResource( 56 )
 
 [node name="SettingsDialog" type="WindowDialog" parent="CanvasLayer"]
-visible = true
 margin_left = 21.0
 margin_top = 58.0
 margin_right = 974.0
 margin_bottom = 591.0
-custom_styles/panel = SubResource( 27 )
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
+custom_styles/panel = SubResource( 27 )
 script = ExtResource( 58 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1357,9 +1356,9 @@ margin_left = 10.0
 margin_top = 9.0
 margin_right = -10.0
 margin_bottom = -53.0
+custom_fonts/font = ExtResource( 50 )
 custom_styles/tab_fg = SubResource( 28 )
 custom_styles/panel = SubResource( 29 )
-custom_fonts/font = ExtResource( 50 )
 tab_align = 0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1370,7 +1369,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 2.0
 margin_top = 31.0
-custom_styles/panel = SubResource( 30 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab"]
 anchor_right = 1.0
@@ -1397,11 +1395,11 @@ margin_left = 431.386
 margin_top = 488.543
 margin_right = 535.386
 margin_bottom = 521.543
+custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 18 )
 custom_styles/pressed = ExtResource( 19 )
 custom_styles/focus = ExtResource( 20 )
 custom_styles/normal = ExtResource( 17 )
-custom_fonts/font = ExtResource( 50 )
 text = "Close"
 script = ExtResource( 61 )
 __meta__ = {
