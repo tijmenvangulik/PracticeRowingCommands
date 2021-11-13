@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=2]
+[gd_scene load_steps=93 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://HaleinBeideBoorden.gd" type="Script" id=2]
@@ -61,6 +61,7 @@
 [ext_resource path="res://EditCommandText.tscn" type="PackedScene" id=59]
 [ext_resource path="res://ButtonsContainer.gd" type="Script" id=60]
 [ext_resource path="res://CloseSettingsButton.gd" type="Script" id=61]
+[ext_resource path="res://Rules.gd" type="Script" id=62]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 126.768, 18.0157, 117.559, 19.6902, 109.744, 13.2713, 106.395, 1.27078, 126.21, 1.27078 )
@@ -834,6 +835,9 @@ rotating = true
 current = true
 zoom = Vector2( 1.5, 1.5 )
 smoothing_enabled = true
+
+[node name="Rules" type="Node" parent="Boat"]
+script = ExtResource( 62 )
 
 [node name="BoatPath" type="Node2D" parent="."]
 script = ExtResource( 54 )

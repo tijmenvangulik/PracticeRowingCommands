@@ -54,3 +54,9 @@ StuurboordBest;Stuurboord best;Stuurboord best;todo
 BakboortBest;Bakboord best;Bakboord best;todo
 BestBedankt;Best bedankt;Best bedankt;todo
 CommandTranslateTab;Vertaal commando’s;Vertaal commando’s;Translate commands
+CommandIsAlreadyActive;Commando is al actief;Commando is al actief;Command is already active
+EerstSlippen;Eerst slippen;Eerst slippen;todo
+BestIsNietActief;Best is niet actief;Best is niet actief;todo
+BestAlleenTijdensHalen;Best kan alleen tijdens halen gegeven worden;Best kan alleen tijdens halen gegeven worden;todo
+RiemenHoogAlleenAlsRiemenUitgebracht;Riemen zijn niet volledig uitgebracht;Riemen zijn niet volledig uitgebracht;todo
+RiemenMoetenHoogZijn;Riemen moeten uitgebracht hoog aan de kant zijn;Riemen moeten uitgebracht hoog aan de kant zijn;todo

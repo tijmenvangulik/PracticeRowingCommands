@@ -114,13 +114,10 @@ var lastCommand=-1
 var newCommand=-1
 var stateOars = StateOars.Roeien
 
-var prevError=""
-
 func showError(message:String):
-	if prevError!=message || lastCommand!=newCommand:
+	
 		var label=$"../CanvasLayer/errorLabel"
 		label.text=tr(message)
-		prevError=message
 		#remove the error message after 2 secons
 		var t = Timer.new()
 		t.set_wait_time(2)
@@ -239,10 +236,10 @@ func setSpeedAndDirection(speedFactor:float,turnFactor:float,newForceMultiplier:
 	
 	
 func boatInRest():
-	return state==RowState.LaatLopen ||	state==RowState.Bedankt 	 || isLowSpeed(linear_velocity.length())
+	return state==RowState.LaatLopen ||	state==RowState.Bedankt 	 || isLowSpeed()
 
-func isLowSpeed(speed):
-	return abs(speed)<speedDirectErrorLevel
+func isLowSpeed():
+	return abs(linear_velocity.length())<speedDirectErrorLevel
 	
 func calcSpeed():
 	var result=linear_velocity.length()
@@ -250,56 +247,8 @@ func calcSpeed():
 	if angle>170 && angle<190: result=result*-1
 	return result
 	
-func determinenewState(newState:int,direction:int):
-	var result=state;
-	
-	if stateOars==StateOars.Slippen &&  newState!=RowState.Bedankt && newState!=RowState.PeddelendStrijkenBB && newState!=RowState.PeddelendStrijkenSB :
-		showError("CommandoNietMogelijk")	
-		return result
-	if stateOars!=StateOars.Roeien &&  stateOars!=StateOars.RiemenHoogSB && stateOars!=StateOars.RiemenHoogBB && (newState==RowState.HalenBeideBoorden || newState==RowState.StrijkenBeidenBoorden  || newState==RowState.RondmakenSB  || newState==RowState.RondmakenBB ):
-		showError("EerstUitBrengen")	
-		return result
-	else: if stateOars==StateOars.SlippenBB && (newState==RowState.HalenBB || newState==RowState.StrijkenBB || newState==RowState.VastroeienBB):
-		showError("EerstUitBrengen")	
-		return result
-	else: if stateOars==StateOars.SlippenSB && (newState==RowState.HalenSB || newState==RowState.StrijkenSB || newState==RowState.VastroeienSB) :
-		showError("EerstUitBrengen")	
-		return result
-	else: if newState==RowState.PeddelendStrijkenSB && (stateOars!=StateOars.SlippenSB && stateOars!=StateOars.Slippen ):
-		showError("EerstSlippen")	
-		return result
-	else: if newState==RowState.PeddelendStrijkenBB && (stateOars!=StateOars.SlippenBB && stateOars!=StateOars.Slippen ):
-		showError("EerstSlippen")	
-		return result
-	else: if newState==RowState.Bedankt &&  !isLowSpeed(linear_velocity.length()) && (state==RowState.HalenBeideBoorden ):
-		showError("EerstLatenLopen")
-		return result
-	else: if newState==RowState.UitzettenSB && stateOars!=StateOars.SlippenSB && stateOars!=StateOars.RiemenHoogSB:
-		showError("CommandoNietMogelijk")
-		return result	
-	else: if newState==RowState.UitzettenBB && stateOars!=StateOars.SlippenBB && stateOars!=StateOars.RiemenHoogBB:
-		showError("CommandoNietMogelijk")
-		return result	
-	else: if (newState==RowState.UitzettenSB || newState==RowState.UitzettenBB) && !isLowSpeed(linear_velocity.length()) :
-		showError("LegBootStil")
-		return result	
-	else: if newState==RowState.LaatLopen ||	newState==RowState.Bedankt 	 || isLowSpeed(linear_velocity.length()):
-		result=newState
-		return result
-	else:
-		var currentDirection=0
-		if calcSpeed()<0:  currentDirection=-1
-		else: currentDirection=1
-		if (state==RowState.LaatLopen || state==RowState.Bedankt)  :
-			if  direction!=0 && direction!=currentDirection && !isLowSpeed(linear_velocity.length()):
-				showError("LegBootStil")
-				return result
-			result=newState
-				
-		else:
-			showError("EerstLatenLopenOfBedankt")
-	
-	return result;
+func getRules():
+	return $"Rules"
 
 func doCommand(command:int):
 	newCommand=command	
@@ -366,34 +315,30 @@ func doCommand(command:int):
 			setBest(BestState.Normal)
 	lastCommand=command
 
-func setBestState(newState : int):
-	if (state!=RowState.HalenBeideBoorden):
-		showError("CommandoNietMogelijk")
-	else: 
-		if newState!=BestState.Normal && bestState!=BestState.Normal:
-			showError("CommandoNietMogelijk")
-		else: bestState=	newState
 	
 func setLightPaddle(newLightPaddle:bool):
-	if newLightPaddle==lightPaddleOn:
-		showError("CommandoNietMogelijk")
-	else: lightPaddleOn=newLightPaddle
+	var rules=getRules()
+	var newValue=rules.determineLightPaddleState(self,newLightPaddle)
+	if rules.error!="": showError(rules.error)
+	else: lightPaddleOn=newValue
 
+
+	
 func setBest(newBestState :int):
-	if newBestState==BestState.Normal:
-		if bestState!=BestState.StuurboordBest && bestState!= BestState.BakboordBest:
-			showError("CommandoNietMogelijk")
-		else:setBestState(newBestState)
-	else:
-		setBestState(newBestState) 
-
+	var rules=getRules()
+	var newState=rules.determineBestState(self,newBestState)
+	if rules.error!="": showError(rules.error)
+	else: bestState= newState
+	
 func changeState(newState:int,direction:int):
 	var oldState=state
-	#first check if the new state is allowed
-	state=determinenewState(newState,direction); 
+	#first check if the new state is allowed	
+	var rules=getRules()
+	state=rules.determinenewState(self,newState,direction); 
+	if rules.error!="": showError(rules.error)
+	
 	if oldState!=state: 
 		crashState=false;
-		prevError=""
 	#if the state change was successfull reset the oars state
 	if  oldState!=state && (stateOars==StateOars.RiemenHoogBB || stateOars==StateOars.RiemenHoogSB ):
 	  stateOars=StateOars.Roeien
@@ -483,55 +428,14 @@ func setStateOars(newStateOars : int):
 			$"Sprite".visible=true
 			$"CollisionRiemenHoogBB".disabled=false
 
-func oarsCommand(command: int):	
-	if boatInRest():
-		match command:
-			OarsCommand.Slippen:
-				if stateOars==StateOars.Roeien:
-					setStateOars(StateOars.Slippen)
-				else: 
-					showError("CommandoNietMogelijk")
-			OarsCommand.Uitbrengen:
-				if stateOars==StateOars.Slippen:
-					setStateOars(StateOars.Roeien)
-				else:
-					showError("CommandoNietMogelijk")
-			OarsCommand.SlippenBB:
-				
-				if stateOars==StateOars.Roeien:
-					setStateOars(StateOars.SlippenBB)
-				else: if stateOars==StateOars.SlippenSB:
-					setStateOars(StateOars.Slippen)
-				else: showError("CommandoNietMogelijk")	
-			OarsCommand.UitbrengenBB:
-				if stateOars==StateOars.SlippenBB:
-					setStateOars(StateOars.Roeien)
-				else: if stateOars==StateOars.Slippen:
-					setStateOars(StateOars.SlippenSB)
-				else: showError("CommandoNietMogelijk")	
-			OarsCommand.SlippenSB:
-				if stateOars==StateOars.Roeien:
-					setStateOars(StateOars.SlippenSB)
-				else: if stateOars==StateOars.SlippenBB:
-					setStateOars(StateOars.Slippen)
-				else: showError("CommandoNietMogelijk")	
-			OarsCommand.UitbrengenSB:
-				if stateOars==StateOars.SlippenSB:
-					setStateOars(StateOars.Roeien)
-				else: if stateOars==StateOars.Slippen:
-					setStateOars(StateOars.SlippenBB)
-				else: showError("CommandoNietMogelijk")
-			OarsCommand.RiemenHoogSB:
-				if stateOars==StateOars.Roeien:
-					setStateOars(StateOars.RiemenHoogSB)
-				else: showError("CommandoNietMogelijk")	
-				
-			OarsCommand.RiemenHoogBB:					
-				if stateOars==StateOars.Roeien:
-					setStateOars(StateOars.RiemenHoogBB)
-				else: showError("CommandoNietMogelijk")	
+func oarsCommand(command: int):
+	var rules=getRules()
+	var newOarsState=rules.determineOarsState(self,command)
+	if rules.error!="": showError(rules.error)
 	else: 
-		showError("EerstLatenLopenOfBedankt")
+		if newOarsState!=stateOars: setStateOars(newOarsState)
+	
+	
 func setNewBoatPosition(x:int,y:int,newRotation,newStateOars : int):
 	# reset the boat into a new position and place
 	setStateOars(newStateOars)
@@ -545,3 +449,6 @@ func setNewBoatPosition(x:int,y:int,newRotation,newStateOars : int):
 	state=RowState.LaatLopen
 	currentSpeedFactor=0
 	currentTurnSpeedFactor=0
+	linear_velocity=Vector2(0,0)
+	angular_velocity=0.0
+  
