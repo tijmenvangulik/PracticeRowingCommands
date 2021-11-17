@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=2]
+[gd_scene load_steps=94 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://HaleinBeideBoorden.gd" type="Script" id=2]
@@ -62,6 +62,7 @@
 [ext_resource path="res://ButtonsContainer.gd" type="Script" id=60]
 [ext_resource path="res://CloseSettingsButton.gd" type="Script" id=61]
 [ext_resource path="res://Rules.gd" type="Script" id=62]
+[ext_resource path="res://Speak.gd" type="Script" id=63]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 126.768, 18.0157, 117.559, 19.6902, 109.744, 13.2713, 106.395, 1.27078, 126.21, 1.27078 )
@@ -1219,6 +1220,17 @@ custom_styles/normal = ExtResource( 21 )
 shortcut_in_tooltip = false
 text = "RiemenHoogBB"
 script = ExtResource( 51 )
+
+[node name="Speak" type="Button" parent="CanvasLayer/ButtonsContainer/GridContainer"]
+visible = false
+margin_left = 730.0
+margin_top = 120.0
+margin_right = 848.0
+margin_bottom = 145.0
+script = ExtResource( 63 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="errorLabel" type="Label" parent="CanvasLayer"]
 margin_left = 364.428

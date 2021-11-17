@@ -11,3 +11,4 @@ func setChildNodeText(node,commandName,value):
 
 func _on_EditCommandText_customCommandTextChanged(command,commandName, value):
 	setChildNodeText(self, commandName,value)
+
