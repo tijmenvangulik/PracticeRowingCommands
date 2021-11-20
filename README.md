@@ -1,5 +1,5 @@
-App to practice Rowing (coxing) commands
-(Dutch: App voor het Oefenen roeien stuur commando's)
+# App to practice Rowing (coxing) commands
+## (App voor het Oefenen roeien stuur commando's)
 
 Little serious game to practice rowing coxing commands. 
 
