@@ -36,8 +36,9 @@ func fillDropDown(enabledCommands : Array):
 	add_item(tr("UseButtons"),USE_BUTTONS)
 	var boat=$"../../Boat"
 	var i=0;
+	var buttonContainter=$"../ButtonsContainer";
 	for commandName in boat.commandNames:
-		if len(enabledCommands)==0 || enabledCommands.find(i,0)>=0:
+		if (len(enabledCommands)==0 || enabledCommands.find(i,0)>=0 ) && buttonContainter.commandIsUsed(commandName):
 			add_item(commandName,i)
 		i=i+1
 

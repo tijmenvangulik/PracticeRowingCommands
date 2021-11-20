@@ -15,25 +15,15 @@ func _ready():
 		i=i+1
 	
 	connect("item_selected",self,"selected")
-	setDynamicTexts()
 	
-func setDynamicTexts():
-	var textBB="UitzettenBB"
-	var textSB="UitzettenSB"
-	if isViking:
-		 textBB="PeddelendStrijkenBB"
-		 textSB="PeddelendStrijkenSB"
-	
-	$"../ButtonsContainer/GridContainer/PeddelendStrijkenSB".text=tr(textSB)
-	$"../ButtonsContainer/GridContainer/PeddelendStrijkenBB".text=tr(textBB)
-	
+		
 func selected(itemIndex : int):
 	
 	if itemIndex>=0:
 		var langKey=languageKeys[itemIndex]
 		isViking= langKey=="nl_NL"
 		TranslationServer.set_locale(langKey)
-		setDynamicTexts()
+		$"../ButtonsContainer".initButtons()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

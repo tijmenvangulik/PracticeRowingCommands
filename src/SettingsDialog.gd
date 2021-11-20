@@ -68,7 +68,7 @@ func setSettings(dict):
 	if translations!=null && typeof(translations)==TYPE_DICTIONARY:
 		var keys=translations.keys();
 		for translationName in keys:
-			var iPos= boat.commandNames.find(translationName)
+			var iPos= boat.commandNameToCommand(translationName)
 			if iPos>=0:
 				commandTranslations[iPos]=translations[translationName]
 	

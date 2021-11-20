@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://GridButton.gd" type="Script" id=1]
+[ext_resource path="res://GridButtonContainer.gd" type="Script" id=2]
+
+[node name="GridButtonContainer" type="MarginContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridButton" type="Button" parent="."]
+margin_right = 52.0
+margin_bottom = 40.0
+text = "Empty"
+script = ExtResource( 1 )

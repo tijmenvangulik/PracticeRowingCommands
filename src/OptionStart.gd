@@ -48,10 +48,8 @@ func _ready():
 func disableCommand(name:String,disabled:bool):
 	#"../ButtonsContainer/GridContainer/HalenBeideBoorden"
 	#var itemNr=grid.find(name)
-	var item=$"../ButtonsContainer/GridContainer".find_node(name,true,false)
-	if item!=null:
-		item.disabled=disabled
-		
+	$"../ButtonsContainer".disableCommand(name,disabled)
+	
 func showOnlyButtons(var commands):
 	
 	var boat=$"../../Boat"

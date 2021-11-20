@@ -78,6 +78,7 @@ enum Command {
   BakboortBest,
   BestBedankt
 }
+
 var commandNames = [
   "LaatLopen",
   "Bedankt",
@@ -110,63 +111,40 @@ var commandNames = [
   "BakboortBest",
   "BestBedankt"
 ]
+
+enum CommandStyle {StyleButtonGray,StyleButtonDarkGray,StyleButtonSB,StyleButtonBB}
+
 var commandStyles=[
-"StyleButtonGray",
-"StyleButtonGray",
-"StyleButtonDarkGray",
-"StyleButtonSB",
-"StyleButtonBB",
-"StyleButtonGray",
-"StyleButtonSB",
-"StyleButtonBB",
-"StyleButtonDarkGray",
-"StyleButtonSB",
-"StyleButtonBB",
-"StyleButtonSB",
-"StyleButtonBB",
-"StyleButtonSB",
-"StyleButtonBB",
-"StyleButtonSB",
-"StyleButtonBB",
-"StyleButtonDarkGray",
-"StyleButtonSB",
-"StyleButtonBB",
-"StyleButtonSB",
-"StyleButtonBB",
-"StyleButtonDarkGray",
-"StyleButtonSB",
-"StyleButtonBB",
-"StyleButtonDarkGray",
-"StyleButtonDarkGray",
-"StyleButtonDarkGray",
-"StyleButtonDarkGray",
-"StyleButtonDarkGray"
-]
-var defaultButtons=[
-	Command.HalenBeideBoorden,
-	[Command.LaatLopen,Command.Bedankt],
-	Command.VastroeienSB,
-	Command.HalenSB,
-	Command.StrijkenSB,
-	Command.StrijkenBeidenBoorden,
-	Command.VastroeienBeideBoorden,
-	Command.VastroeienBB,
-	Command.HalenBB,
-	Command.StrijkenBB,
-	Command.Slippen,
-	Command.SlippenSB,
-	Command.UitbrengenSB,
-	Command.PeddelendStrijkenSB,
-	Command.RondmakenSB,
-	Command.Uitbrengen,
-	Command.SlippenBB,
-	Command.UitbrengenBB,
-	Command.PeddelendStrijkenBB,
-	Command.RondmakenBB,
-	Command.LightPaddle,
-	Command.LightPaddleBedankt,
-	Command.RiemenHoogSB,
-	Command.RiemenHoogBB
+CommandStyle.StyleButtonGray,
+CommandStyle.StyleButtonGray,
+CommandStyle.StyleButtonDarkGray,
+CommandStyle.StyleButtonSB,
+CommandStyle.StyleButtonBB,
+CommandStyle.StyleButtonGray,
+CommandStyle.StyleButtonSB,
+CommandStyle.StyleButtonBB,
+CommandStyle.StyleButtonDarkGray,
+CommandStyle.StyleButtonSB,
+CommandStyle.StyleButtonBB,
+CommandStyle.StyleButtonSB,
+CommandStyle.StyleButtonBB,
+CommandStyle.StyleButtonSB,
+CommandStyle.StyleButtonBB,
+CommandStyle.StyleButtonSB,
+CommandStyle.StyleButtonBB,
+CommandStyle.StyleButtonDarkGray,
+CommandStyle.StyleButtonSB,
+CommandStyle.StyleButtonBB,
+CommandStyle.StyleButtonSB,
+CommandStyle.StyleButtonBB,
+CommandStyle.StyleButtonDarkGray,
+CommandStyle.StyleButtonSB,
+CommandStyle.StyleButtonBB,
+CommandStyle.StyleButtonDarkGray,
+CommandStyle.StyleButtonDarkGray,
+CommandStyle.StyleButtonDarkGray,
+CommandStyle.StyleButtonDarkGray,
+CommandStyle.StyleButtonDarkGray
 ]
 var lastCommand=-1
 var newCommand=-1
@@ -186,7 +164,10 @@ func showError(message:String):
 		label.text=""
 		t.queue_free()
 
-		
+func commandNameToCommand(commandName : String):
+	var result=commandNames.find(commandName)
+	return result
+	
 #http://kidscancode.org/godot_recipes/basics/understanding_delta/
 # speed (velocity) is pixels per second
 func _integrate_forces( statePhysics: Physics2DDirectBodyState):

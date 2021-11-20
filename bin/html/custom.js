@@ -1,13 +1,6 @@
 var notSupported = "Speech recognition not supported by this browser. Try to use Chrome / Edge / Safari"
 var lang="nl-NL"
-var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
 
-// Firefox 1.0+
-var isFirefox = typeof InstallTrigger !== 'undefined';
-
-if (isOpera || isFirefox) {
-    alert(notSupported);
-}
 
 function soundex(stringToEncode)
 {
@@ -52,27 +45,42 @@ function soundex(stringToEncode)
     encodedArray[0] = firstLetter;
 
     //6. Append 3 zeros. Remove all but first letter and 3 digits after it
-    return (encodedArray.join('') + '000').slice(0, 12).toUpperCase();
+    return (encodedArray.join('') + '000').slice(0, 4).toUpperCase();
 }
-
+function wordsSoundex(words) {
+    return words.split(" ").map(e=>soundex(e)).join("");
+}
 
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
 var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
 
-var movesForGrammar =['halen','beide','boorden','laat','lopen','bedankt','vastroeien','stuurboord','bakboord'] ;
 var moves = ['halen beide boorden','laat lopen', 'bedankt', 'vastroeien','vastroeien stuurboord','vastroeien bakboord', 'halen stuurboord','halen bakboord'];
-var movesIndex=moves.map(s=>soundex(s.toLowerCase()));
+var movesIndex=moves.map(s=>wordsSoundex(s.toLowerCase()));
+
+var replacements = {
+    " bij de ":" beide ",
+    "borderij":"boorden",
+    "borden":"boorden",
+    "haren":"halen"
+}
 
 var grammar = '#JSGF V1.0; grammar movesForGrammar; public <movesForGrammar> = ' + moves.join(' | ') + ' ;'
+
 console.log(grammar);
 
 class SpeachInterface {
     callbackFunc=null;
     recognition;
-
+    supported=true;
     constructor() {
-        this.initSpeach()
+        var isFirefox = typeof InstallTrigger !== 'undefined';
+        var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+        if (isOpera || isFirefox) {
+            this.supported=false;
+        }
+
+        if (this.supported) this.initSpeach()
     }
     initSpeach() {
         var recognition = new SpeechRecognition();
@@ -82,7 +90,7 @@ class SpeachInterface {
         recognition.continuous = false;
         recognition.lang = lang;
         recognition.interimResults = false;
-        recognition.maxAlternatives = 5;
+        recognition.maxAlternatives = 3;
         
         recognition.onresult=this.recognitionResult.bind(this)
         recognition.onspeechend = function() {
@@ -101,37 +109,43 @@ class SpeachInterface {
         this.recognition=recognition;
     }
     recognitionResult(event) {
-        console.log(event.results[0]);
-        var recoResult = event.results[0][0].transcript;
-        console.log('Confidence: ' + event.results[0][0].confidence);
-        console.log(recoResult);
-        recoResult = recoResult.toLowerCase();
-        console.log(recoResult);
-    // Correction part :)
-        
-        //  Removing the last dot if exists
-        if(recoResult.substring(recoResult.length, recoResult.length - 1) == ".") {
-            recoResult = recoResult.substring(0, recoResult.length - 1);
-            console.log("The last dot removed - " + recoResult);
-        }
-        console.log(recoResult);
-    // Removing the double word if exists in recognition results
-        for (var i=0; i<moves.length; i++){
-            if (recoResult === moves[i]+ " " + moves[i]){
-              recoResult = moves[i];
-              console.log(recoResult);
-            }
-        }
+        var results=result[0];
+        console.log(results);
+        var i=0;
         var commandNr=-1;
-        if(recoResult) {
-            var lowerText=recoResult.toLowerCase();
-            var commandNr=movesIndex.indexOf(lowerText)
-            if (commandNr<0)
-                var indexString=soundex(lowerText);
-                commandNr=movesIndex.indexOf(indexString);
+        var lowerText="";
+        while (i<results.length && commandNr<0) {
+            var result= results[i]
+            var recoResult = result.transcript;
+            console.log('Confidence: ' + result.confidence);
+            console.log(recoResult);
+            recoResult = recoResult.toLowerCase();
+            console.log(recoResult);
+        // Correction part :)
             
+            //  Removing the last dot if exists
+            if(recoResult.substring(recoResult.length, recoResult.length - 1) == ".") {
+                recoResult = recoResult.substring(0, recoResult.length - 1);
+                console.log("The last dot removed - " + recoResult);
+            }
+            console.log(recoResult);
+        
+            
+            if(recoResult) {
+                lowerText=recoResult.toLowerCase();
+                for(var key in replacements)  {
+                    lowerText=lowerText.replace(key,replacements[key]);
+                }
+                commandNr=moves.indexOf(lowerText)
+                if (commandNr<0) {
+                    var indexString=wordsSoundex(lowerText);
+                    commandNr=movesIndex.indexOf(indexString);
+                }
+            }
+            i++
         }
-        this.callbackFunc(commandNr)
+        
+        this.callbackFunc(commandNr,lowerText)
     }
     waitForCommand(callbackFunc) {
         this.callbackFunc=callbackFunc;

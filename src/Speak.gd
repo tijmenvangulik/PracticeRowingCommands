@@ -5,7 +5,7 @@ extends Button
 # include in export header
 # <script type='text/javascript' src='custom.js'></script>
 
-# var speakCallBack = JavaScript.create_callback(self, "spoken") # This reference must be kept
+#var speakCallBack = JavaScript.create_callback(self, "spoken") # This reference must be kept
 
 #func _pressed():
 #	var speak = JavaScript.get_interface("speachInterface")
