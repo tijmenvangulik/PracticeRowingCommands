@@ -39,9 +39,6 @@ func setChildNodeDisable(node,commandName,disabled:bool):
 func disableCommand(commandName:String,disabled:bool):
 	setChildNodeDisable($GridContainer,commandName,disabled)
 	
-func _on_EditCommandText_customCommandTextChanged(command,commandName, value):
-	setChildNodeText($GridContainer, commandName,value)
-
 func clearGrid():
 	var node=$"GridContainer"
 	for N in node.get_children():
@@ -68,3 +65,6 @@ func loadButtons():
 			else: if commandNames.size()==1:
 				addButton(container,commandNames[0])
 
+func setButtonSet(newButtonSet):
+	currentButtonSet=newButtonSet
+	loadButtons()

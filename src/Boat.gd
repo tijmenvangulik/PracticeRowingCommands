@@ -142,8 +142,8 @@ CommandStyle.StyleButtonSB,
 CommandStyle.StyleButtonBB,
 CommandStyle.StyleButtonDarkGray,
 CommandStyle.StyleButtonDarkGray,
-CommandStyle.StyleButtonDarkGray,
-CommandStyle.StyleButtonDarkGray,
+CommandStyle.StyleButtonSB,
+CommandStyle.StyleButtonBB,
 CommandStyle.StyleButtonDarkGray
 ]
 var lastCommand=-1

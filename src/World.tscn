@@ -1,9 +1,12 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
+[ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
 [ext_resource path="res://Boat.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ControlPanel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/tiles.png" type="Texture" id=5]
+[ext_resource path="res://CommandContainerSource.gd" type="Script" id=6]
+[ext_resource path="res://GridItemGrouper2.tscn" type="PackedScene" id=7]
 [ext_resource path="res://OptionButton.gd" type="Script" id=16]
 [ext_resource path="res://StyleButtonSB.tres" type="StyleBox" id=17]
 [ext_resource path="res://StyleButtonSBHover.tres" type="StyleBox" id=18]
@@ -718,12 +721,24 @@ expand_margin_right = 8.0
 bg_color = Color( 0.411765, 0.47451, 0.419608, 1 )
 border_width_left = 2
 border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 border_color = Color( 0.321569, 0.403922, 0.313726, 1 )
 
 [sub_resource type="StyleBoxFlat" id=30]
-bg_color = Color( 0.411765, 0.47451, 0.419608, 1 )
-border_color = Color( 0, 0, 0, 1 )
-border_blend = true
+bg_color = Color( 0.129412, 0.14902, 0.129412, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.117647, 0.129412, 0.113725, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color( 0, 0, 0, 0.270588 )
+shadow_size = 4
+shadow_offset = Vector2( 4, 4 )
 
 [node name="World" type="Node2D"]
 script = ExtResource( 1 )
@@ -921,9 +936,10 @@ scale = Vector2( 0.374661, 0.372717 )
 texture = ExtResource( 56 )
 
 [node name="SettingsDialog" type="WindowDialog" parent="CanvasLayer"]
+visible = true
 margin_left = 21.0
-margin_top = 58.0
-margin_right = 974.0
+margin_top = 59.0
+margin_right = 1002.0
 margin_bottom = 591.0
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
 custom_styles/panel = SubResource( 27 )
@@ -952,6 +968,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 2.0
 margin_top = 31.0
+margin_right = -2.0
+margin_bottom = -2.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab"]
 anchor_right = 1.0
@@ -960,7 +978,6 @@ margin_left = 11.0
 margin_top = 10.0
 margin_right = -10.0
 margin_bottom = -10.0
-custom_styles/bg = SubResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -969,6 +986,118 @@ __meta__ = {
 custom_constants/vseparation = 4
 custom_constants/hseparation = 4
 columns = 2
+
+[node name="CommandButtonsTab" type="Tabs" parent="CanvasLayer/SettingsDialog/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 31.0
+margin_right = -2.0
+margin_bottom = -2.0
+script = ExtResource( 2 )
+
+[node name="CommandSelectScrollContainer" type="ScrollContainer" parent="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab"]
+margin_left = 5.0
+margin_top = 10.0
+margin_right = 950.0
+margin_bottom = 190.0
+rect_min_size = Vector2( 930, 180 )
+custom_styles/bg = SubResource( 30 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CommandContainerSource" type="GridContainer" parent="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/CommandSelectScrollContainer"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 2.0
+margin_bottom = 2.0
+custom_constants/vseparation = 4
+custom_constants/hseparation = 4
+columns = 5
+script = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab"]
+margin_left = 11.0
+margin_top = 202.0
+margin_right = 540.0
+margin_bottom = 222.0
+rect_min_size = Vector2( 240, 20 )
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 50 )
+text = "DragButtonExplain"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CommandSelectScrollContainerDest" type="ScrollContainer" parent="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab"]
+margin_left = 5.0
+margin_top = 235.0
+margin_right = 948.0
+margin_bottom = 397.0
+rect_min_size = Vector2( 900, 162 )
+custom_styles/bg = SubResource( 30 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CommandContainerDest" type="GridContainer" parent="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/CommandSelectScrollContainerDest"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 932.0
+margin_bottom = 160.0
+rect_min_size = Vector2( 930, 158 )
+custom_constants/vseparation = 4
+custom_constants/hseparation = 4
+columns = 5
+
+[node name="GridItemGrouper2" parent="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" instance=ExtResource( 7 )]
+visible = false
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab"]
+anchor_left = 0.992
+anchor_top = 0.485
+anchor_right = 0.992
+anchor_bottom = 0.485
+margin_left = -137.344
+margin_top = -12.945
+margin_right = -4.34406
+margin_bottom = 13.055
+grow_horizontal = 0
+size_flags_horizontal = 3
+custom_constants/hseparation = 5
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ClearCustomButtons" type="Button" parent="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/GridContainer"]
+margin_right = 168.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 18 )
+custom_styles/pressed = ExtResource( 19 )
+custom_styles/focus = ExtResource( 18 )
+custom_styles/normal = ExtResource( 17 )
+text = "ClearCustomButtons"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DefaultCustomButtons" type="Button" parent="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/GridContainer"]
+margin_left = 173.0
+margin_right = 358.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 18 )
+custom_styles/pressed = ExtResource( 19 )
+custom_styles/focus = ExtResource( 20 )
+custom_styles/normal = ExtResource( 17 )
+text = "DefaultCustomButtons"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="EditCommandText" parent="CanvasLayer/SettingsDialog" instance=ExtResource( 59 )]
 visible = false
@@ -989,5 +1118,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="about_to_show" from="CanvasLayer/SettingsDialog" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_SettingsDialog_about_to_show"]
+[connection signal="popup_hide" from="CanvasLayer/SettingsDialog" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_SettingsDialog_popup_hide"]
+[connection signal="button_droppedOnSourceGrid" from="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/CommandSelectScrollContainer/CommandContainerSource" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_CommandContainerSource_button_droppedOnSourceGrid"]
+[connection signal="pressed" from="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/GridContainer/ClearCustomButtons" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_ClearCustomButtons_pressed"]
+[connection signal="pressed" from="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/GridContainer/DefaultCustomButtons" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_DefaultCustomButtons_pressed"]
 [connection signal="customCommandTextChanged" from="CanvasLayer/SettingsDialog/EditCommandText" to="CanvasLayer/ButtonsContainer" method="_on_EditCommandText_customCommandTextChanged"]
 [connection signal="customCommandTextChanged" from="CanvasLayer/SettingsDialog/EditCommandText" to="CanvasLayer/SettingsDialog" method="_on_EditCommandText_customCommandTextChanged"]

@@ -34,6 +34,7 @@ func _ready():
 	var commandIndex=0;
 	addLabel(container,"Commando")
 	addLabel(container,"Alternative text")
+	$"TabContainer/CommandButtonsTab".init()
 	for command in commands:
 		
 		addLabel(container,command)		
@@ -49,7 +50,6 @@ func _ready():
 			editBox.setText(altText)
 		commandIndex=commandIndex+1
 	
-	
 func getSettings():
 	var commandDict={}
 	var boat=$"../../Boat"
@@ -58,13 +58,19 @@ func getSettings():
 		var translation=commandTranslations[i]
 		if translation!=null && translation!="":
 			commandDict[commandName]=translation
-
-	var save_dict = {"translations" : commandDict}
+	var customButtonSet=$"TabContainer/CommandButtonsTab".customButtonSet
+	var save_dict = {"translations" : commandDict,
+	  "customButtonSet":customButtonSet}
 	return save_dict
 	
 func setSettings(dict):
 	var translations= dict["translations"]
 	var boat=$"../../Boat"
+	var customButtonSet=dict["customButtonSet"]
+	if typeof(customButtonSet)==TYPE_ARRAY && customButtonSet.size()>0:
+		var buttonSetManger=$"TabContainer/CommandButtonsTab";
+		buttonSetManger.customButtonSet=customButtonSet
+		$"../ButtonsContainer".setButtonSet(customButtonSet)
 	if translations!=null && typeof(translations)==TYPE_DICTIONARY:
 		var keys=translations.keys();
 		for translationName in keys:
@@ -92,5 +98,3 @@ func loadSettings():
 
 func _on_EditCommandText_customCommandTextChanged(command, commandName, value):
 	commandTranslations[command]=value
-
-

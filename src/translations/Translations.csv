@@ -50,9 +50,9 @@ StartStrijkendAanleggenWal;Start strijkend aanleggen hoge wal;Start strijkend aa
 StartStrijkendAanleggenWalMinderKnoppen;Start strijkend aanleggen hoge wal (minder knoppen);Start strijkend aanleggen (minder knoppen);todo
 UitzettenSB;Uitzetten SB;Uitzetten SB;Push away starboard
 UitzettenBB;Uitzetten BB;Uitzetten BB;Push away port
-StuurboordBest;Stuurboord best;Stuurboord best;todo
-BakboortBest;Bakboord best;Bakboord best;todo
-BestBedankt;Best bedankt;Best bedankt;todo
+StuurboordBest;Stuurboord best;Stuurboord sterk;todo
+BakboortBest;Bakboord best;Bakboord sterk;todo
+BestBedankt;Best bedankt;Sterk bedankt;todo
 CommandTranslateTab;Vertaal commando`s;Vertaal commando`s;Translate commands
 CommandIsAlreadyActive;Commando is al actief;Commando is al actief;Command is already active
 EerstSlippen;Eerst slippen;Eerst slippen;todo
@@ -61,3 +61,7 @@ BestAlleenTijdensHalen;Best kan alleen tijdens halen gegeven worden;Best kan all
 RiemenHoogAlleenAlsRiemenUitgebracht;Riemen zijn niet volledig uitgebracht;Riemen zijn niet volledig uitgebracht;todo
 RiemenMoetenHoogZijn;Riemen moeten uitgebracht hoog aan de kant zijn;Riemen moeten uitgebracht hoog aan de kant zijn;todo
 ButtonSet;"[""HalenBeideBoorden"",""LaatLopen,Bedankt"",""VastroeienSB"",""HalenSB"",""StrijkenSB"",""StrijkenBeidenBoorden"",""VastroeienBeideBoorden"",""VastroeienBB"",""HalenBB"",""StrijkenBB"",""Slippen"",""SlippenSB"",""UitbrengenSB"",""PeddelendStrijkenSB"",""RondmakenSB"",""Uitbrengen"",""SlippenBB"",""UitbrengenBB"",""PeddelendStrijkenBB"",""RondmakenBB"",""LightPaddle"",""LightPaddleBedankt"",""RiemenHoogSB"",""RiemenHoogBB""]";"[""HalenBeideBoorden"",""LaatLopen,Bedankt"",""VastroeienSB"",""HalenSB"",""StrijkenSB"",""StrijkenBeidenBoorden"",""VastroeienBeideBoorden"",""VastroeienBB"",""HalenBB"",""StrijkenBB"",""Slippen"",""SlippenSB"",""UitbrengenSB"",""UitzettenSB"",""RondmakenSB"",""Uitbrengen"",""SlippenBB"",""UitbrengenBB"",""UitzettenBB"",""RondmakenBB"",""LightPaddle"",""LightPaddleBedankt"",""RiemenHoogSB"",""RiemenHoogBB""]";"[""HalenBeideBoorden"",""LaatLopen,Bedankt"",""VastroeienSB"",""HalenSB"",""StrijkenSB"",""StrijkenBeidenBoorden"",""VastroeienBeideBoorden"",""VastroeienBB"",""HalenBB"",""StrijkenBB"",""Slippen"",""SlippenSB"",""UitbrengenSB"",""UitzettenSB"",""RondmakenSB"",""Uitbrengen"",""SlippenBB"",""UitbrengenBB"",""UitzettenBB"",""RondmakenBB"",""LightPaddle"",""LightPaddleBedankt"",""RiemenHoogSB"",""RiemenHoogBB""]"
+CommandButtonsTab;Wijzig knopppenbalk;Wijzig knopppenbalk;Modify buttoner
+DragButtonExplain;Sleep de bovenstaande knoppen naar de onderstaande knoppenbalk;Sleep de bovenstaande knoppen naar de onderstaande knoppenbalk;Drag the buttons above to the button bar beneath.
+ClearCustomButtons;Wis knoppen;Wis knoppen;Clear buttons
+DefaultCustomButtons;Standaard knoppen;Standaard knoppen;Default buttons

@@ -1,11 +1,30 @@
 extends MarginContainer
 
+signal button_dropped(droppedInfo,droppedOn)
+
 var commandName=""
 var command=0;
+var canClickButton=true
+var canDrag=false;
+
+func _ready():
+	var editCommandText=$"/root/World/CanvasLayer/SettingsDialog/EditCommandText"
+
+	editCommandText.connect("customCommandTextChanged",self,"_on_EditCommandText_customCommandTextChanged")
+
+func _on_EditCommandText_customCommandTextChanged(changed_command,changed_commandName, changed_value):
+	if  changed_command==command:
+		var button=$GridButton
+		button.text=changed_value
+		
 
 func execCommand():
-	var  boat=$"/root/World/Boat"
-	boat.doCommand(command)
+	if canClickButton:
+		var  boat=$"/root/World/Boat"
+		boat.doCommand(command)
+		
+func callButtonDropped(droppedInfo):
+	emit_signal("button_dropped",droppedInfo,self)
 	
 func init(newCommandName):
 	var  boat=$"/root/World/Boat"
@@ -15,6 +34,7 @@ func init(newCommandName):
 	if command>=0:
 		var button=$GridButton
 		button.text=commandName
+		button.visible=true
 
 		button.add_font_override("font",load("res://Font.tres"))
 		
@@ -66,4 +86,7 @@ func init(newCommandName):
 
 		style= preload("res://ButtonDisabled.tres")
 		button.add_stylebox_override("disabled",style)
+	else:
 		
+		var button=$GridButton
+		button.visible=false
