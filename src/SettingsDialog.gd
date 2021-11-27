@@ -70,7 +70,7 @@ func setSettings(dict):
 	if typeof(customButtonSet)==TYPE_ARRAY && customButtonSet.size()>0:
 		var buttonSetManger=$"TabContainer/CommandButtonsTab";
 		buttonSetManger.customButtonSet=customButtonSet
-		$"../ButtonsContainer".setButtonSet(customButtonSet)
+		$"../ButtonsContainer".setCustomButtonSet(customButtonSet)
 	if translations!=null && typeof(translations)==TYPE_DICTIONARY:
 		var keys=translations.keys();
 		for translationName in keys:

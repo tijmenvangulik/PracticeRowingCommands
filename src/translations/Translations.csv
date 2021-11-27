@@ -10,28 +10,28 @@ HalenBB;Halen BB;Halen BB;Stroke port
 StrijkenBB;Strijken BB;Strijken BB;Back down port
 VastroeienBB;Vastroeien BB;Vastroeien BB;Check her down port
 Boem;Boem;Boem;Bang
-LegBootStil;Leg eerst de boot stil;Leg eerst de boot stil;todo
-EerstLatenLopen;Eerst laten lopen;Eerst laten lopen;todo
+LegBootStil;Leg eerst de boot stil;Leg eerst de boot stil;First stop the boat
+EerstLatenLopen;Eerst laten lopen;Eerst laten lopen;First let it run
 SlippenBeideBoorden;Slippen beide boorden;Slippen beide boorden;Blades along side
 SlippenSB;Slippen SB;Slippen SB;Blades along starboard side
-UitbrengenSB;Uitbrengen SB;Uitbrengen SB;todo
-PeddelendStrijkenSB;Peddelend strijken SB;Peddelend strijken SB;todo
-RondMakenSB;Rondmaken over SB;Rondmaken over SB;Spin turn starboard
-UitbrengenBeideBoorden;Uitbrengen beide boorden;Uitbrengen beide boorden;todo
+UitbrengenSB;Uitbrengen SB;Uitbrengen SB;Out oars starboard
+PeddelendStrijkenSB;Peddelend strijken SB;Peddelend strijken SB;Along side Back down starboard
+RondmakenSB;Rondmaken over SB;Rondmaken over SB;Spin turn starboard
+UitbrengenBeideBoorden;Uitbrengen beide boorden;Uitbrengen beide boorden;Along side off
 SlippenBB;Slippen BB;Slippen BB;Blades along port side
-UitbrengenBB;Uitbrengen BB;Uitbrengen BB;todo
-PeddelendStrijkenBB;Peddelend strijken BB;Peddelend strijken BB;todo
-RondMakenBB;Rondmaken over BB;Rondmaken over BB;Spin turn port
+UitbrengenBB;Uitbrengen BB;Uitbrengen BB;Out oars port
+PeddelendStrijkenBB;Peddelend strijken BB;Peddelend strijken BB;Along side back down port
+RondmakenBB;Rondmaken over BB;Rondmaken over BB;Spin turn port
 LaatLopen;Laat lopen;Laat lopen;Let it run
-EerstLatenLopenOfBedankt;Eerst laten lopen of bedankt;Eerst laten lopen of bedankt;todo
-CommandoNietMogelijk;Commando niet mogelijk;Commando niet mogelijk;todo
-EerstSlippen;Eerst slippen;Eerst slippen;todo
-EerstUitBrengen;Eerst uitbrengen;Eerst uitbrengen;todo
+EerstLatenLopenOfBedankt;Eerst laten lopen of bedankt;Eerst laten lopen of bedankt;First let it run or easy off
+CommandoNietMogelijk;Commando niet mogelijk;Commando niet mogelijk;Command not possible
+EerstSlippen;Eerst slippen;Eerst slippen;First along side
+EerstUitBrengen;Eerst uitbrengen;Eerst uitbrengen;First oars out
 StartPositie;Start;Start;Start
 StartOpWater;Start op water;Start op water;Start on water
-StartAangelegd;Start wegvaren;Start wegvaren;todo
+StartAangelegd;Start wegvaren;Start wegvaren;Start sail away
 UseButtons;Gebruik commando knoppen;Gebruik commando knoppen;Use command buttons
-IntroText;Stuurinstructie gaat een stuk sneller als je goed de commando’s kent voordat je in de boot stapt. Gebruik deze web app voor het oefenen van de stuurcommando`s. Probeer een achtje om de 2 boeitjes te varen of oefen het aanleggen. Gebruik de start knop om weer terug naar een begin positie te gaan. De boot heeft geen roer zodat je nog beter de commando`s kan oefenen.\n\n Je kunt met de knoppen de commando's geven of via het toetsenbord via de commando selectie knop links boven.\nIk ben nog op zoek naar vertalingen naar andere talen en naar vereniging specifieke vertalingen. Meer info staat op de project pagina. \n\nVeel plezier\n\nTijmen\ntijmen@vangulik.org;Stuurinstructie gaat een stuk sneller als je goed de commando’s kent voordat je in de boot stapt. Gebruik deze web app voor het oefenen van de stuurcommando`s. Probeer een achtje om de 2 boeitjes te varen of oefen het aanleggen. Gebruik de start knop om weer terug naar een begin positie te gaan. De boot heeft geen roer zodat je nog beter de commando`s kan oefenen.\n\n Je kunt met de knoppen de commando's geven of via het toetsenbord via de commando selectie knop links boven.\nIk ben nog op zoek naar vertalingen naar andere talen en naar vereniging specifieke vertalingen. Meer info staat op de project pagina. \n\nVeel plezier\n\nTijmen\ntijmen@vangulik.org;Not yet translated to english. This is work in progress\nSome help needed translating all the text to english. More info can be found on the project page.\nTijmen\ntijmen@vangulik.org
+IntroText;Stuurinstructie gaat een stuk sneller als je goed de commando’s kent voordat je in de boot stapt. Gebruik deze web app voor het oefenen van de stuurcommando`s. Probeer een achtje om de 2 boeitjes te varen of oefen het aanleggen. Gebruik de start knop om weer terug naar een begin positie te gaan. De boot heeft geen roer zodat je nog beter de commando`s kan oefenen.\n\n Je kunt met de knoppen de commando's geven of via het toetsenbord via de commando selectie knop links boven.\nIk ben nog op zoek naar vertalingen naar andere talen en naar vereniging specifieke vertalingen. Meer info staat op de project pagina. \n\nVeel plezier\n\nTijmen\ntijmen@vangulik.org;Stuurinstructie gaat een stuk sneller als je goed de commando’s kent voordat je in de boot stapt. Gebruik deze web app voor het oefenen van de stuurcommando`s. Probeer een achtje om de 2 boeitjes te varen of oefen het aanleggen. Gebruik de start knop om weer terug naar een begin positie te gaan. De boot heeft geen roer zodat je nog beter de commando`s kan oefenen.\n\n Je kunt met de knoppen de commando's geven of via het toetsenbord via de commando selectie knop links boven.\nIk ben nog op zoek naar vertalingen naar andere talen en naar vereniging specifieke vertalingen. Meer info staat op de project pagina. \n\nVeel plezier\n\nTijmen\ntijmen@vangulik.org;Learning coxing goes quicker if you know the commands before you step into the boat. You can train the commands using this application.\nEvery rowing club has its own command. You can translate the commands or create your own command buttons in the settings.  Not all the dutch commands could be directly translated to english. Some help needed translating all the commands to the official english terms. More info can be found on the project page.\n\nTijmen\ntijmen@vangulik.org
 Close;Sluiten;Sluiten;Close
 ShowIntroText;Introductie tekst;Introductie tekst;Introduction text
 Links;[center]Broncode en projectpagina:[/center]\n[center] [url=https://github.com/tijmenvangulik/PracticeRowingCommands]https://github.com/tijmenvangulik/PracticeRowingCommands[/url][/center];[center]Broncode en projectpagina:[/center]\n[center] [url=https://github.com/tijmenvangulik/PracticeRowingCommands]https://github.com/tijmenvangulik/PracticeRowingCommands[/url][/center];[center]Source code and project:[/center]\n[center] [url=https://github.com/tijmenvangulik/PracticeRowingCommands]https://github.com/tijmenvangulik/PracticeRowingCommands[/url][/center]
@@ -39,29 +39,30 @@ LightPaddle;Light paddle;Light paddle;Light paddle
 LightPaddleBedankt;Light paddle bedankt;Light paddle bedankt;Light paddle off
 RiemenHoogSB;Riemen hoog SB;Riemen hoog SB;Starboard oars high
 RiemenHoogBB;Riemen hoog BB;Riemen hoog BB;Port oars high
-StartAanleggen;Start aanleggen;Start aanleggen;todo
-StartAanleggenMinderKnoppen;Start aanleggen (minder knoppen);Start aanleggen (minder knoppen);todo
-StartAangelegdMinderKnoppen;Start wegvaren (minder knoppen);Start wegvaren (minder knoppen);todo
-StartStrijkendAanleggen;Start strijkend aanleggen;Start strijkend aanleggen;todo
-StartStrijkendAanleggenMinderKnoppen;Start strijkend aanleggen (minder knoppen);Start strijkend aanleggen (minder knoppen);todo
-StartAanleggenWal;Start aanleggen hoge wal;Start aanleggen;todo
-StartAanleggenWalMinderKnoppen;Start aanleggen hoge wal (minder knoppen);Start aanleggen (minder knoppen);todo
-StartStrijkendAanleggenWal;Start strijkend aanleggen hoge wal;Start strijkend aanleggen;todo
-StartStrijkendAanleggenWalMinderKnoppen;Start strijkend aanleggen hoge wal (minder knoppen);Start strijkend aanleggen (minder knoppen);todo
+StartAanleggen;Start aanleggen;Start aanleggen;Start docking
+StartAanleggenMinderKnoppen;Start aanleggen (minder knoppen);Start aanleggen (minder knoppen);Start docking (less buttons)
+StartAangelegdMinderKnoppen;Start wegvaren (minder knoppen);Start wegvaren (minder knoppen);Start sail away (less buttons)
+StartStrijkendAanleggen;Start strijkend aanleggen;Start strijkend aanleggen;Start docking backwards
+StartStrijkendAanleggenMinderKnoppen;Start strijkend aanleggen (minder knoppen);Start strijkend aanleggen (minder knoppen);Start docking backwards (less buttons)
+StartAanleggenWal;Start aanleggen hoge wal;Start aanleggen hoge wal;Start docking high shore
+StartAanleggenWalMinderKnoppen;Start aanleggen hoge wal (minder knoppen);Start aanleggen hoge wal (minder knoppen);Start docking high shore (less buttons)
+StartStrijkendAanleggenWal;Start strijkend aanleggen hoge wal;Start strijkend aanleggen hoge wal;Start docking backward high shore
+StartStrijkendAanleggenWalMinderKnoppen;Start strijkend aanleggen hoge wal (minder knoppen);Start strijkend aanleggen hoge wal (minder knoppen);Start docking backwards high shore (less buttons)
 UitzettenSB;Uitzetten SB;Uitzetten SB;Push away starboard
 UitzettenBB;Uitzetten BB;Uitzetten BB;Push away port
-StuurboordBest;Stuurboord best;Stuurboord sterk;todo
-BakboortBest;Bakboord best;Bakboord sterk;todo
-BestBedankt;Best bedankt;Sterk bedankt;todo
+StuurboordBest;Stuurboord best;Stuurboord sterk;Strong starboard
+BakboortBest;Bakboord best;Bakboord sterk;Strong port
+BestBedankt;Best bedankt;Sterk bedankt;Strong off
 CommandTranslateTab;Vertaal commando`s;Vertaal commando`s;Translate commands
 CommandIsAlreadyActive;Commando is al actief;Commando is al actief;Command is already active
-EerstSlippen;Eerst slippen;Eerst slippen;todo
-BestIsNietActief;Best is niet actief;Best is niet actief;todo
-BestAlleenTijdensHalen;Best kan alleen tijdens halen gegeven worden;Best kan alleen tijdens halen gegeven worden;todo
-RiemenHoogAlleenAlsRiemenUitgebracht;Riemen zijn niet volledig uitgebracht;Riemen zijn niet volledig uitgebracht;todo
-RiemenMoetenHoogZijn;Riemen moeten uitgebracht hoog aan de kant zijn;Riemen moeten uitgebracht hoog aan de kant zijn;todo
+EerstSlippen;Eerst slippen;Eerst slippen;First blades along side
+BestIsNietActief;Best is niet actief;Best is niet actief;Strong is not active
+BestAlleenTijdensHalen;Best kan alleen tijdens halen gegeven worden;Best kan alleen tijdens halen gegeven worden;Only strong command while rowing
+RiemenHoogAlleenAlsRiemenUitgebracht;Riemen zijn niet volledig uitgebracht;Riemen zijn niet volledig uitgebracht;Oars are not fully out
+RiemenMoetenHoogZijn;Riemen moeten uitgebracht hoog en bei de kant zijn voor uitzetten;Riemen moeten uitgebracht hoog en bei de kant zijn voor uitzetten;Oars must be up on the jetty for the push away command
 ButtonSet;"[""HalenBeideBoorden"",""LaatLopen,Bedankt"",""VastroeienSB"",""HalenSB"",""StrijkenSB"",""StrijkenBeidenBoorden"",""VastroeienBeideBoorden"",""VastroeienBB"",""HalenBB"",""StrijkenBB"",""Slippen"",""SlippenSB"",""UitbrengenSB"",""PeddelendStrijkenSB"",""RondmakenSB"",""Uitbrengen"",""SlippenBB"",""UitbrengenBB"",""PeddelendStrijkenBB"",""RondmakenBB"",""LightPaddle"",""LightPaddleBedankt"",""RiemenHoogSB"",""RiemenHoogBB""]";"[""HalenBeideBoorden"",""LaatLopen,Bedankt"",""VastroeienSB"",""HalenSB"",""StrijkenSB"",""StrijkenBeidenBoorden"",""VastroeienBeideBoorden"",""VastroeienBB"",""HalenBB"",""StrijkenBB"",""Slippen"",""SlippenSB"",""UitbrengenSB"",""UitzettenSB"",""RondmakenSB"",""Uitbrengen"",""SlippenBB"",""UitbrengenBB"",""UitzettenBB"",""RondmakenBB"",""LightPaddle"",""LightPaddleBedankt"",""RiemenHoogSB"",""RiemenHoogBB""]";"[""HalenBeideBoorden"",""LaatLopen,Bedankt"",""VastroeienSB"",""HalenSB"",""StrijkenSB"",""StrijkenBeidenBoorden"",""VastroeienBeideBoorden"",""VastroeienBB"",""HalenBB"",""StrijkenBB"",""Slippen"",""SlippenSB"",""UitbrengenSB"",""UitzettenSB"",""RondmakenSB"",""Uitbrengen"",""SlippenBB"",""UitbrengenBB"",""UitzettenBB"",""RondmakenBB"",""LightPaddle"",""LightPaddleBedankt"",""RiemenHoogSB"",""RiemenHoogBB""]"
-CommandButtonsTab;Wijzig knopppenbalk;Wijzig knopppenbalk;Modify buttoner
+CommandButtonsTab;Wijzig knopppenbalk;Wijzig knopppenbalk;Modify button bar
 DragButtonExplain;Sleep de bovenstaande knoppen naar de onderstaande knoppenbalk;Sleep de bovenstaande knoppen naar de onderstaande knoppenbalk;Drag the buttons above to the button bar beneath.
 ClearCustomButtons;Wis knoppen;Wis knoppen;Clear buttons
 DefaultCustomButtons;Standaard knoppen;Standaard knoppen;Default buttons
+Commando;Commando;Commando;Command

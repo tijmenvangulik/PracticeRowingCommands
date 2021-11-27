@@ -49,7 +49,7 @@ func loadDestButtons():
 	var buttonSet=customButtonSet
 	var buttonContainer=$"/root/World/CanvasLayer/ButtonsContainer"
 	if buttonSet.size()==0:
-		buttonSet=buttonContainer.defaultButtonSet
+		buttonSet=buttonContainer.currentButtonSet
 	for item in buttonSet:
 		var grouper=addGridGrouper(container)
 		var horiz=grouper.getHorizontalGroup()
@@ -97,7 +97,7 @@ func updateCustomButtonSet():
 func _on_SettingsDialog_popup_hide():
 	if customButtonSetChanged:
 		updateCustomButtonSet()
-		$"../../../ButtonsContainer".setButtonSet(customButtonSet)
+		$"../../../ButtonsContainer".setCustomButtonSet(customButtonSet)
 		$"../..".saveSettings()
 
 func _on_SettingsDialog_about_to_show():
@@ -107,7 +107,10 @@ func _on_SettingsDialog_about_to_show():
 func _on_DefaultCustomButtons_pressed():
 	customButtonSet=[]
 	loadDestButtons();
-	customButtonSetChanged=true
+	customButtonSetChanged=false
+	$"../../../ButtonsContainer".setCustomButtonSet(customButtonSet)
+	$"../..".saveSettings()
+
 	
 func _on_ClearCustomButtons_pressed():
 	customButtonSet=[]

@@ -9,6 +9,7 @@ func loadButtonsSetFromResources():
 		var p= JSON.parse(buttonSet)
 		if typeof(p.result)==TYPE_ARRAY:
 			currentButtonSet=p.result
+			defaultButtonSet=currentButtonSet
 
 func commandIsUsed(commandName : String):
 	return currentButtonSet.find(commandName)>=0
@@ -65,6 +66,7 @@ func loadButtons():
 			else: if commandNames.size()==1:
 				addButton(container,commandNames[0])
 
-func setButtonSet(newButtonSet):
-	currentButtonSet=newButtonSet
+func setCustomButtonSet(newButtonSet):
+	if newButtonSet.size()==0: currentButtonSet=defaultButtonSet
+	else: currentButtonSet=newButtonSet
 	loadButtons()
