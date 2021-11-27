@@ -66,3 +66,8 @@ DragButtonExplain;Sleep de bovenstaande knoppen naar de onderstaande knoppenbalk
 ClearCustomButtons;Wis knoppen;Wis knoppen;Clear buttons
 DefaultCustomButtons;Standaard knoppen;Standaard knoppen;Default buttons
 Commando;Commando;Commando;Command
+GeneralSettingsTab;Algemene instellingen;Algemene instellingen;General settings
+RuleSetLabel;Regelset;Regelset;Rule set
+RulesetDefault;Standaard;Standaard;Default
+RulesetNoRules;Geen regels;Geen regels;No rules
+LanguageRuleSet;RulesetDefault;RulesetDefault;RulesetDefault

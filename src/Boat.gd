@@ -287,8 +287,8 @@ func calcSpeed():
 	return result
 	
 func getRules():
-	return $"DefaultRules"
-
+	return $"Rulesets".getRuleset()
+	
 func doCommand(command:int):
 	newCommand=command	
 	match command:

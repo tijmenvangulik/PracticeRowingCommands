@@ -12,6 +12,30 @@ func addLabel(container,text):
 	new_label.text=text
 	new_label.add_font_override("font",load("res://Font.tres"))
 	container.add_child(new_label)
+
+func loadRulesets():
+	var ruleSets=$"/root/World/Boat/Rulesets".getRulesets()
+	var rulesetControl=$"TabContainer/GeneralSettingsTab/GridContainer/RuleSetDropDown"
+	var i=0
+	for ruleSet in ruleSets:
+		rulesetControl.add_item(ruleSet,i)
+		i=i+1
+
+func _on_RuleSetDropDown_item_selected(index):
+	var ruleSetsNode=$"/root/World/Boat/Rulesets"
+	var ruleSets=ruleSetsNode.getRulesets()
+	var ruleSet=ruleSets[index];
+	ruleSetsNode.setRuleset(ruleSet)
+	saveSettings()
+
+func setRuleset(ruleset):
+	var ruleSetsNode=$"/root/World/Boat/Rulesets"
+	var ruleSets=ruleSetsNode.getRulesets()
+	ruleSetsNode.setRuleset(ruleset)
+	var rulesetControl=$"TabContainer/GeneralSettingsTab/GridContainer/RuleSetDropDown"
+	var index=ruleSets.find(ruleset)
+	if index>=0:
+		rulesetControl.select(index)
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,6 +48,8 @@ func _ready():
 	
 	# wait till all readies are called	
 	yield(get_tree(), "idle_frame")
+	
+	loadRulesets();
 	
 	loadSettings()
 
@@ -59,14 +85,20 @@ func getSettings():
 		if translation!=null && translation!="":
 			commandDict[commandName]=translation
 	var customButtonSet=$"TabContainer/CommandButtonsTab".customButtonSet
+	var ruleset=$"/root/World/Boat/Rulesets".currentRulleset
 	var save_dict = {"translations" : commandDict,
-	  "customButtonSet":customButtonSet}
+	  "customButtonSet":customButtonSet,
+	  "ruleset":ruleset}
 	return save_dict
 	
 func setSettings(dict):
-	var translations= dict["translations"]
+	var translations=null
+	if dict.has("translations"):
+		translations=dict["translations"]
 	var boat=$"../../Boat"
-	var customButtonSet=dict["customButtonSet"]
+	var customButtonSet=null
+	if dict.has("customButtonSet"):
+		customButtonSet=dict["customButtonSet"]
 	if typeof(customButtonSet)==TYPE_ARRAY && customButtonSet.size()>0:
 		var buttonSetManger=$"TabContainer/CommandButtonsTab";
 		buttonSetManger.customButtonSet=customButtonSet
@@ -77,7 +109,13 @@ func setSettings(dict):
 			var iPos= boat.commandNameToCommand(translationName)
 			if iPos>=0:
 				commandTranslations[iPos]=translations[translationName]
-	
+	var ruleset=null
+	if dict.has("ruleset"):
+		ruleset=dict["ruleset"]
+	if ruleset!=null:
+		setRuleset(ruleset)
+		
+
 func saveSettings():
 	var save_game = File.new()
 	save_game.open("user://settings.save", File.WRITE)
@@ -98,3 +136,5 @@ func loadSettings():
 
 func _on_EditCommandText_customCommandTextChanged(command, commandName, value):
 	commandTranslations[command]=value
+
+

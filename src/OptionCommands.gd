@@ -33,7 +33,7 @@ func _ready():
 
 func fillDropDown(enabledCommands : Array):
 	clear()
-	add_item(tr("UseButtons"),USE_BUTTONS)
+	add_item("UseButtons",USE_BUTTONS)
 	var boat=$"../../Boat"
 	var i=0;
 	var buttonContainter=$"../ButtonsContainer";
