@@ -5,4 +5,4 @@ func _pressed():
 	$"../../OptionStart".visible=true
 	$"../../OptionCommands".visible=true
 	$"../../SettingsButton".visible=true
-	
+	$"../../ButtonsContainer".visible=true

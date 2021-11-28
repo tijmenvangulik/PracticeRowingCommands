@@ -842,14 +842,14 @@ __meta__ = {
 }
 
 [node name="IntroDialog" type="WindowDialog" parent="CanvasLayer"]
+visible = true
 margin_left = 21.0
 margin_top = 58.0
 margin_right = 991.0
-margin_bottom = 597.0
+margin_bottom = 522.0
 theme = ExtResource( 29 )
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
 custom_styles/panel = ExtResource( 10 )
-window_title = "Info"
 script = ExtResource( 43 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -867,10 +867,10 @@ __meta__ = {
 }
 
 [node name="Links" type="RichTextLabel" parent="CanvasLayer/IntroDialog"]
-margin_left = 38.0
-margin_top = 433.0
-margin_right = 918.0
-margin_bottom = 483.0
+margin_left = 36.0
+margin_top = 357.0
+margin_right = 916.0
+margin_bottom = 407.0
 bbcode_enabled = true
 text = "IntroText"
 script = ExtResource( 55 )
@@ -879,10 +879,10 @@ __meta__ = {
 }
 
 [node name="CloseButton" type="Button" parent="CanvasLayer/IntroDialog"]
-margin_left = 439.744
-margin_top = 490.671
-margin_right = 511.744
-margin_bottom = 523.671
+margin_left = 435.0
+margin_top = 417.0
+margin_right = 507.0
+margin_bottom = 450.0
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 20 )
 custom_styles/pressed = ExtResource( 19 )
@@ -947,7 +947,6 @@ scale = Vector2( 0.374661, 0.372717 )
 texture = ExtResource( 56 )
 
 [node name="SettingsDialog" type="WindowDialog" parent="CanvasLayer"]
-visible = true
 margin_left = 21.0
 margin_top = 59.0
 margin_right = 1002.0

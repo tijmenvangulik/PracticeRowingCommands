@@ -10,6 +10,7 @@ func _ready():
 	$"CanvasLayer/OptionStart".visible=false
 	$"CanvasLayer/OptionCommands".visible=false
 	$"CanvasLayer/SettingsButton".visible=false
+	$"CanvasLayer/ButtonsContainer".visible=false
 #	$"CanvasLayer/".visible=false
 	#loadSettings();
 	
