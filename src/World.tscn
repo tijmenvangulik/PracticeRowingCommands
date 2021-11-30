@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://RulesetNoRules.gd" type="Script" id=8]
 [ext_resource path="res://Rulesets.gd" type="Script" id=9]
 [ext_resource path="res://ButtonWithBorder.tres" type="StyleBox" id=10]
+[ext_resource path="res://ButtonWithBorderHover.tres" type="StyleBox" id=11]
 [ext_resource path="res://OptionButton.gd" type="Script" id=16]
 [ext_resource path="res://StyleButtonSB.tres" type="StyleBox" id=17]
 [ext_resource path="res://StyleButtonSBHover.tres" type="StyleBox" id=18]
@@ -734,6 +735,7 @@ content_margin_right = 3.0
 content_margin_top = 3.0
 content_margin_bottom = 3.0
 bg_color = Color( 0.32549, 0.486275, 0.309804, 0.705882 )
+draw_center = false
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -842,7 +844,6 @@ __meta__ = {
 }
 
 [node name="IntroDialog" type="WindowDialog" parent="CanvasLayer"]
-visible = true
 margin_left = 21.0
 margin_top = 58.0
 margin_right = 991.0
@@ -884,12 +885,15 @@ margin_top = 417.0
 margin_right = 507.0
 margin_bottom = 450.0
 custom_fonts/font = ExtResource( 50 )
-custom_styles/hover = ExtResource( 20 )
+custom_styles/hover = ExtResource( 11 )
 custom_styles/pressed = ExtResource( 19 )
 custom_styles/focus = ExtResource( 20 )
 custom_styles/normal = ExtResource( 17 )
 text = "Close"
 script = ExtResource( 42 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="OptionLanguage" type="OptionButton" parent="CanvasLayer"]
 margin_left = 795.678
@@ -1127,7 +1131,7 @@ margin_right = 182.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 custom_fonts/font = ExtResource( 50 )
-custom_styles/hover = ExtResource( 18 )
+custom_styles/hover = ExtResource( 11 )
 custom_styles/pressed = ExtResource( 19 )
 custom_styles/focus = ExtResource( 18 )
 custom_styles/normal = ExtResource( 10 )
@@ -1142,7 +1146,7 @@ margin_right = 386.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 custom_fonts/font = ExtResource( 50 )
-custom_styles/hover = ExtResource( 18 )
+custom_styles/hover = ExtResource( 11 )
 custom_styles/pressed = ExtResource( 19 )
 custom_styles/focus = ExtResource( 20 )
 custom_styles/normal = ExtResource( 10 )
@@ -1160,7 +1164,7 @@ margin_top = 488.543
 margin_right = 535.386
 margin_bottom = 521.543
 custom_fonts/font = ExtResource( 50 )
-custom_styles/hover = ExtResource( 18 )
+custom_styles/hover = ExtResource( 11 )
 custom_styles/pressed = ExtResource( 19 )
 custom_styles/focus = ExtResource( 20 )
 custom_styles/normal = SubResource( 31 )
