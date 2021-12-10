@@ -73,7 +73,7 @@ RulesetNoRules;Geen regels;Geen regels;No rules
 LanguageRuleSet;RulesetDefault;RulesetDefault;RulesetDefault
 EndGameAllFound;Alles gevonden in %s.;Alles gevonden in %s.;Everything found in %s.
 EndGameHighScore;Gefelicteerd je hebt de snelste tijd %s.;Gefelicteerd je hebt de snelste tijd %s.;Congratulations you have the best time %s.
-StartGameIntro;Verzamel zo snel mogelijk alle sterren door er overheen te varen. Als je botst mag je overnieuw beginnen.;Verzamel zo snel mogelijk alle sterren door er overheen te varen. Als je botst mag je overnieuw beginnen.;Collect ll starts as quick as possible by running over the stars. When you crash you have to start again.
+StartGameIntro;Verzamel zo snel mogelijk alle sterren door er overheen te varen. Als je botst moet je overnieuw beginnen.;Verzamel zo snel mogelijk alle sterren door er overheen te varen. Als je botst moet je overnieuw beginnen.;Collect ll starts as quick as possible by running over the stars. When you crash you have to start again.
 StartGameButton;Start;Start;Start
 CancelGameButton;Annuleren;Annuleren;Cancel
 StartStarGame;Start sterren spel;Start sterren spel;Start star game
