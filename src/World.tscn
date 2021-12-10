@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -11,11 +11,22 @@
 [ext_resource path="res://Rulesets.gd" type="Script" id=9]
 [ext_resource path="res://ButtonWithBorder.tres" type="StyleBox" id=10]
 [ext_resource path="res://ButtonWithBorderHover.tres" type="StyleBox" id=11]
+[ext_resource path="res://Collectable.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Collectables.gd" type="Script" id=13]
+[ext_resource path="res://assets/star.png" type="Texture" id=14]
+[ext_resource path="res://CollectedCount.gd" type="Script" id=15]
 [ext_resource path="res://OptionButton.gd" type="Script" id=16]
 [ext_resource path="res://StyleButtonSB.tres" type="StyleBox" id=17]
 [ext_resource path="res://StyleButtonSBHover.tres" type="StyleBox" id=18]
 [ext_resource path="res://StyleButtonSBPressed.tres" type="StyleBox" id=19]
 [ext_resource path="res://StyleButtonSBFocus.tres" type="StyleBox" id=20]
+[ext_resource path="res://StartCollectGame.gd" type="Script" id=21]
+[ext_resource path="res://StyleButtonGray.tres" type="StyleBox" id=22]
+[ext_resource path="res://StyleButtonGrayFocus.tres" type="StyleBox" id=23]
+[ext_resource path="res://StyleButtonGrayPressed.tres" type="StyleBox" id=24]
+[ext_resource path="res://StyleButtonGrayHover.tres" type="StyleBox" id=25]
+[ext_resource path="res://EndCollectGame.gd" type="Script" id=26]
+[ext_resource path="res://assets/trophy.png" type="Texture" id=27]
 [ext_resource path="res://Theme.tres" type="Theme" id=29]
 [ext_resource path="res://OptionStart.gd" type="Script" id=40]
 [ext_resource path="res://OptionCommands.gd" type="Script" id=41]
@@ -751,7 +762,7 @@ corner_radius_bottom_left = 4
 script = ExtResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2( -1145.32, -737.699 )
+position = Vector2( -1255, -825 )
 scale = Vector2( 1.65561, 1.64805 )
 color = Color( 0.552941, 0.768627, 0.207843, 1 )
 polygon = PoolVector2Array( 3155.45, 2915.4, -225.614, 2917.53, -232.07, -260.219, 3155, -242.551, 3150.17, 2498.73, 3150.17, 2498.73 )
@@ -762,6 +773,27 @@ cell_size = Vector2( 128, 128 )
 centered_textures = true
 format = 1
 tile_data = PoolIntArray( -1, 17, 0, -65536, 17, 0, -65535, 17, 0, -65534, 17, 0, -65533, 17, 0, -65532, 17, 0, -65531, 17, 0, -65530, 17, 0, -65529, 17, 0, -65528, 17, 0, -65527, 17, 0, -65526, 17, 0, -65525, 17, 0, -65524, 17, 0, -65523, 17, 0, -65522, 17, 0, -65521, 17, 0, -65520, 17, 0, -65519, 17, 0, -65518, 17, 0, -65517, 17, 0, 65535, 17, 0, 0, 37, 0, 1, 3, 0, 2, 3, 0, 3, 3, 0, 4, 3, 0, 5, 3, 0, 6, 3, 0, 7, 3, 0, 8, 3, 0, 9, 3, 0, 10, 3, 0, 11, 3, 0, 12, 3, 0, 13, 3, 0, 14, 3, 0, 15, 3, 0, 16, 3, 0, 17, 3, 0, 18, 4, 0, 19, 17, 0, 131071, 17, 0, 65536, 7, 0, 65537, 8, 0, 65538, 8, 0, 65539, 8, 0, 65540, 8, 0, 65541, 8, 0, 65542, 8, 0, 65543, 8, 0, 65544, 8, 0, 65545, 8, 0, 65546, 8, 0, 65547, 8, 0, 65548, 8, 0, 65549, 8, 0, 65550, 8, 0, 65551, 8, 0, 65552, 8, 0, 65553, 8, 0, 65554, 9, 0, 65555, 17, 0, 196607, 17, 0, 131072, 7, 0, 131073, 8, 0, 131074, 5, 0, 131075, 14, 0, 131076, 14, 0, 131077, 6, 0, 131078, 8, 0, 131079, 5, 0, 131080, 14, 0, 131081, 14, 0, 131082, 14, 0, 131083, 14, 0, 131084, 14, 0, 131085, 14, 0, 131086, 14, 0, 131087, 6, 0, 131088, 8, 0, 131089, 8, 0, 131090, 9, 0, 131091, 17, 0, 262143, 17, 0, 196608, 7, 0, 196609, 8, 0, 196610, 9, 0, 196611, 17, 0, 196612, 17, 0, 196613, 7, 0, 196614, 8, 0, 196615, 9, 0, 196616, 17, 0, 196617, 17, 0, 196618, 17, 0, 196619, 17, 0, 196620, 17, 0, 196621, 17, 0, 196622, 17, 0, 196623, 7, 0, 196624, 8, 0, 196625, 8, 0, 196626, 9, 0, 196627, 17, 0, 327679, 17, 0, 262144, 7, 0, 262145, 8, 0, 262146, 9, 0, 262147, 17, 0, 262148, 17, 0, 262149, 7, 0, 262150, 8, 0, 262151, 9, 0, 262152, 17, 0, 262153, 17, 0, 262154, 17, 0, 262155, 17, 0, 262156, 17, 0, 262157, 17, 0, 262158, 36, 0, 262159, 11, 0, 262160, 8, 0, 262161, 8, 0, 262162, 9, 0, 262163, 17, 0, 393215, 17, 0, 327680, 7, 0, 327681, 8, 0, 327682, 10, 0, 327683, 3, 0, 327684, 3, 0, 327685, 11, 0, 327686, 8, 0, 327687, 9, 0, 327688, 17, 0, 327689, 17, 0, 327690, 17, 0, 327691, 17, 0, 327692, 36, 0, 327693, 3, 0, 327694, 11, 0, 327695, 8, 0, 327696, 8, 0, 327697, 8, 0, 327698, 9, 0, 327699, 17, 0, 458751, 17, 0, 393216, 7, 0, 393217, 8, 0, 393218, 5, 0, 393219, 14, 0, 393220, 14, 0, 393221, 6, 0, 393222, 8, 0, 393223, 10, 0, 393224, 3, 0, 393225, 3, 0, 393226, 3, 0, 393227, 3, 0, 393228, 11, 0, 393229, 8, 0, 393230, 8, 0, 393231, 8, 0, 393232, 8, 0, 393233, 5, 0, 393234, 15, 0, 393235, 17, 0, 524287, 17, 0, 458752, 7, 0, 458753, 8, 0, 458754, 9, 0, 458755, 17, 0, 458756, 17, 0, 458757, 13, 0, 458758, 14, 0, 458759, 14, 0, 458760, 14, 0, 458761, 14, 0, 458762, 6, 0, 458763, 8, 0, 458764, 8, 0, 458765, 8, 0, 458766, 8, 0, 458767, 8, 0, 458768, 8, 0, 458769, 9, 0, 458770, 17, 0, 458771, 17, 0, 589823, 17, 0, 524288, 7, 0, 524289, 8, 0, 524290, 9, 0, 524291, 17, 0, 524292, 17, 0, 524293, 17, 0, 524294, 17, 0, 524295, 17, 0, 524296, 17, 0, 524297, 17, 0, 524298, 7, 0, 524299, 8, 0, 524300, 8, 0, 524301, 8, 0, 524302, 8, 0, 524303, 8, 0, 524304, 8, 0, 524305, 9, 0, 524306, 17, 0, 524307, 17, 0, 655359, 17, 0, 589824, 7, 0, 589825, 8, 0, 589826, 10, 0, 589827, 4, 0, 589828, 17, 0, 589829, 17, 0, 589830, 17, 0, 589831, 17, 0, 589832, 17, 0, 589833, 36, 0, 589834, 11, 0, 589835, 8, 0, 589836, 8, 0, 589837, 8, 0, 589838, 8, 0, 589839, 8, 0, 589840, 8, 0, 589841, 10, 0, 589842, 4, 0, 589843, 17, 0, 720895, 17, 0, 655360, 7, 0, 655361, 8, 0, 655362, 8, 0, 655363, 10, 0, 655364, 3, 0, 655365, 4, 0, 655366, 17, 0, 655367, 36, 0, 655368, 3, 0, 655369, 11, 0, 655370, 27, 0, 655371, 8, 0, 655372, 8, 0, 655373, 8, 0, 655374, 19, 0, 655375, 8, 0, 655376, 8, 0, 655377, 8, 0, 655378, 9, 0, 655379, 17, 0, 786431, 17, 0, 720896, 7, 0, 720897, 8, 0, 720898, 8, 0, 720899, 8, 0, 720900, 8, 0, 720901, 10, 0, 720902, 3, 0, 720903, 11, 0, 720904, 8, 0, 720905, 8, 0, 720906, 8, 0, 720907, 8, 0, 720908, 8, 0, 720909, 8, 0, 720910, 8, 0, 720911, 8, 0, 720912, 8, 0, 720913, 8, 0, 720914, 9, 0, 720915, 17, 0, 851967, 17, 0, 786432, 18, 0, 786433, 8, 0, 786434, 8, 0, 786435, 8, 0, 786436, 8, 0, 786437, 8, 0, 786438, 8, 0, 786439, 8, 0, 786440, 8, 0, 786441, 8, 0, 786442, 19, 0, 786443, 8, 0, 786444, 8, 0, 786445, 8, 0, 786446, 8, 0, 786447, 8, 0, 786448, 8, 0, 786449, 8, 0, 786450, 9, 0, 786451, 17, 0, 917503, 17, 0, 851968, 18, 0, 851969, 8, 0, 851970, 8, 0, 851971, 8, 0, 851972, 8, 0, 851973, 8, 0, 851974, 8, 0, 851975, 8, 0, 851976, 8, 0, 851977, 8, 0, 851978, 8, 0, 851979, 8, 0, 851980, 8, 0, 851981, 8, 0, 851982, 8, 0, 851983, 8, 0, 851984, 8, 0, 851985, 8, 0, 851986, 9, 0, 851987, 17, 0, 983039, 17, 0, 917504, 18, 0, 917505, 8, 0, 917506, 8, 0, 917507, 8, 0, 917508, 27, 0, 917509, 8, 0, 917510, 8, 0, 917511, 8, 0, 917512, 8, 0, 917513, 8, 0, 917514, 8, 0, 917515, 8, 0, 917516, 8, 0, 917517, 8, 0, 917518, 8, 0, 917519, 8, 0, 917520, 8, 0, 917521, 8, 0, 917522, 9, 0, 917523, 17, 0, 1048575, 17, 0, 983040, 18, 0, 983041, 8, 0, 983042, 8, 0, 983043, 8, 0, 983044, 8, 0, 983045, 8, 0, 983046, 8, 0, 983047, 8, 0, 983048, 8, 0, 983049, 8, 0, 983050, 8, 0, 983051, 8, 0, 983052, 8, 0, 983053, 8, 0, 983054, 8, 0, 983055, 8, 0, 983056, 8, 0, 983057, 8, 0, 983058, 9, 0, 983059, 17, 0, 1114111, 17, 0, 1048576, 7, 0, 1048577, 8, 0, 1048578, 8, 0, 1048579, 8, 0, 1048580, 19, 0, 1048581, 8, 0, 1048582, 8, 0, 1048583, 8, 0, 1048584, 8, 0, 1048585, 8, 0, 1048586, 8, 0, 1048587, 8, 0, 1048588, 8, 0, 1048589, 8, 0, 1048590, 27, 0, 1048591, 8, 0, 1048592, 8, 0, 1048593, 8, 0, 1048594, 9, 0, 1048595, 17, 0, 1179647, 17, 0, 1114112, 7, 0, 1114113, 8, 0, 1114114, 8, 0, 1114115, 8, 0, 1114116, 8, 0, 1114117, 8, 0, 1114118, 8, 0, 1114119, 8, 0, 1114120, 8, 0, 1114121, 8, 0, 1114122, 8, 0, 1114123, 8, 0, 1114124, 8, 0, 1114125, 8, 0, 1114126, 8, 0, 1114127, 8, 0, 1114128, 8, 0, 1114129, 8, 0, 1114130, 9, 0, 1114131, 17, 0, 1245183, 17, 0, 1179648, 13, 0, 1179649, 6, 0, 1179650, 8, 0, 1179651, 8, 0, 1179652, 8, 0, 1179653, 8, 0, 1179654, 8, 0, 1179655, 8, 0, 1179656, 8, 0, 1179657, 8, 0, 1179658, 8, 0, 1179659, 8, 0, 1179660, 8, 0, 1179661, 8, 0, 1179662, 8, 0, 1179663, 8, 0, 1179664, 8, 0, 1179665, 5, 0, 1179666, 15, 0, 1179667, 17, 0, 1310719, 17, 0, 1245184, 17, 0, 1245185, 13, 0, 1245186, 6, 0, 1245187, 8, 0, 1245188, 8, 0, 1245189, 8, 0, 1245190, 8, 0, 1245191, 8, 0, 1245192, 8, 0, 1245193, 8, 0, 1245194, 8, 0, 1245195, 8, 0, 1245196, 8, 0, 1245197, 8, 0, 1245198, 8, 0, 1245199, 8, 0, 1245200, 5, 0, 1245201, 15, 0, 1245202, 17, 0, 1245203, 17, 0, 1376255, 17, 0, 1310720, 17, 0, 1310721, 17, 0, 1310722, 13, 0, 1310723, 14, 0, 1310724, 14, 0, 1310725, 14, 0, 1310726, 26, 0, 1310727, 26, 0, 1310728, 26, 0, 1310729, 26, 0, 1310730, 26, 0, 1310731, 26, 0, 1310732, 26, 0, 1310733, 14, 0, 1310734, 14, 0, 1310735, 14, 0, 1310736, 15, 0, 1310737, 17, 0, 1310738, 17, 0, 1310739, 17, 0, 1441791, 17, 0, 1376256, 17, 0, 1376257, 17, 0, 1376258, 17, 0, 1376259, 17, 0, 1376260, 17, 0, 1376261, 17, 0, 1376262, 17, 0, 1376263, 17, 0, 1376264, 17, 0, 1376265, 17, 0, 1376266, 17, 0, 1376267, 17, 0, 1376268, 17, 0, 1376269, 17, 0, 1376270, 17, 0, 1376271, 17, 0, 1376272, 17, 0, 1376273, 17, 0, 1376274, 17, 0, 1376275, 17, 0 )
+
+[node name="Collectables" type="Node" parent="."]
+script = ExtResource( 13 )
+
+[node name="Collectable" parent="Collectables" instance=ExtResource( 12 )]
+position = Vector2( 1251, 2610 )
+
+[node name="Collectable2" parent="Collectables" instance=ExtResource( 12 )]
+position = Vector2( 1668, 1779 )
+
+[node name="Collectable5" parent="Collectables" instance=ExtResource( 12 )]
+position = Vector2( 574, 1988 )
+
+[node name="Collectable3" parent="Collectables" instance=ExtResource( 12 )]
+position = Vector2( 1113, 898 )
+
+[node name="Collectable4" parent="Collectables" instance=ExtResource( 12 )]
+position = Vector2( 1364, 201 )
+
+[node name="Collectable6" parent="Collectables" instance=ExtResource( 12 )]
+position = Vector2( 1364, 201 )
 
 [node name="Boat" parent="." instance=ExtResource( 3 )]
 position = Vector2( 984.05, 1995.76 )
@@ -790,6 +822,7 @@ script = ExtResource( 62 )
 script = ExtResource( 8 )
 
 [node name="BoatPath" type="Node2D" parent="."]
+position = Vector2( 220, 254 )
 script = ExtResource( 54 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -895,11 +928,196 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="StartCollectGame" type="WindowDialog" parent="CanvasLayer"]
+margin_left = 21.0
+margin_top = 189.0
+margin_right = 991.0
+margin_bottom = 424.0
+theme = ExtResource( 29 )
+custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
+custom_styles/panel = ExtResource( 10 )
+script = ExtResource( 21 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameIntroText" type="RichTextLabel" parent="CanvasLayer/StartCollectGame"]
+margin_left = 73.0
+margin_top = 88.0
+margin_right = 891.0
+margin_bottom = 153.0
+bbcode_enabled = true
+text = "StartGameIntro"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Star" type="Sprite" parent="CanvasLayer/StartCollectGame"]
+position = Vector2( 930, 39 )
+texture = ExtResource( 14 )
+
+[node name="Star2" type="Sprite" parent="CanvasLayer/StartCollectGame"]
+position = Vector2( 33, 36 )
+texture = ExtResource( 14 )
+
+[node name="Star3" type="Sprite" parent="CanvasLayer/StartCollectGame"]
+position = Vector2( 32, 201 )
+texture = ExtResource( 14 )
+
+[node name="Star4" type="Sprite" parent="CanvasLayer/StartCollectGame"]
+position = Vector2( 929, 196 )
+texture = ExtResource( 14 )
+
+[node name="HSplitContainer" type="HSplitContainer" parent="CanvasLayer/StartCollectGame"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -164.0
+margin_top = -40.0
+margin_right = 164.0
+margin_bottom = -10.0
+grow_horizontal = 2
+custom_constants/separation = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartGame" type="Button" parent="CanvasLayer/StartCollectGame/HSplitContainer"]
+margin_right = 160.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 19 )
+custom_styles/focus = ExtResource( 20 )
+custom_styles/normal = ExtResource( 17 )
+text = "StartGameButton"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CancelGame" type="Button" parent="CanvasLayer/StartCollectGame/HSplitContainer"]
+margin_left = 168.0
+margin_right = 328.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 25 )
+custom_styles/pressed = ExtResource( 24 )
+custom_styles/focus = ExtResource( 23 )
+custom_styles/normal = ExtResource( 22 )
+text = "CancelGameButton"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EndCollectGame" type="WindowDialog" parent="CanvasLayer"]
+margin_left = 184.0
+margin_top = 189.0
+margin_right = 845.0
+margin_bottom = 424.0
+theme = ExtResource( 29 )
+custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
+custom_styles/panel = ExtResource( 10 )
+script = ExtResource( 26 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EndGameText" type="Label" parent="CanvasLayer/EndCollectGame"]
+anchor_top = 0.35
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -9.5
+margin_bottom = 9.5
+grow_horizontal = 2
+text = "Einde spel. "
+align = 1
+
+[node name="PlayAgainLabel" type="Label" parent="CanvasLayer/EndCollectGame"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -9.5
+margin_bottom = 9.5
+text = "PlayAgain"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Trophy" type="Sprite" parent="CanvasLayer/EndCollectGame"]
+visible = false
+position = Vector2( 56, 113 )
+scale = Vector2( 0.76, 0.8 )
+texture = ExtResource( 27 )
+
+[node name="Trophy2" type="Sprite" parent="CanvasLayer/EndCollectGame"]
+visible = false
+position = Vector2( 611, 114 )
+scale = Vector2( 0.76, 0.8 )
+texture = ExtResource( 27 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/EndCollectGame"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -165.0
+margin_top = -40.0
+margin_right = 165.0
+margin_bottom = -10.0
+grow_horizontal = 2
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartGame" type="Button" parent="CanvasLayer/EndCollectGame/HBoxContainer"]
+margin_right = 160.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 19 )
+custom_styles/focus = ExtResource( 20 )
+custom_styles/normal = ExtResource( 17 )
+text = "StartGameButton"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CancelGame" type="Button" parent="CanvasLayer/EndCollectGame/HBoxContainer"]
+margin_left = 170.0
+margin_right = 330.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 25 )
+custom_styles/pressed = ExtResource( 24 )
+custom_styles/focus = ExtResource( 23 )
+custom_styles/normal = ExtResource( 22 )
+text = "CancelGameButton"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Star4" type="Sprite" parent="CanvasLayer/EndCollectGame"]
+visible = false
+position = Vector2( 38, 113 )
+texture = ExtResource( 14 )
+
+[node name="Star5" type="Sprite" parent="CanvasLayer/EndCollectGame"]
+visible = false
+position = Vector2( 623, 115 )
+texture = ExtResource( 14 )
+
 [node name="OptionLanguage" type="OptionButton" parent="CanvasLayer"]
-margin_left = 795.678
-margin_top = 4.98898
-margin_right = 971.678
-margin_bottom = 38.989
+margin_left = 795.0
+margin_top = 6.0
+margin_right = 971.0
+margin_bottom = 40.0
 theme = ExtResource( 29 )
 text = "Language"
 script = ExtResource( 16 )
@@ -908,10 +1126,11 @@ __meta__ = {
 }
 
 [node name="OptionStart" type="OptionButton" parent="CanvasLayer"]
+visible = false
 margin_left = 656.226
-margin_top = 6.06602
+margin_top = 6.0
 margin_right = 790.226
-margin_bottom = 41.066
+margin_bottom = 40.0
 theme = ExtResource( 29 )
 text = "Start"
 expand_icon = true
@@ -921,10 +1140,10 @@ __meta__ = {
 }
 
 [node name="OptionCommands" type="OptionButton" parent="CanvasLayer"]
-margin_left = 14.3915
-margin_top = 7.39682
-margin_right = 263.392
-margin_bottom = 41.3968
+margin_left = 14.392
+margin_top = 6.0
+margin_right = 263.393
+margin_bottom = 40.0
 custom_fonts/font = ExtResource( 50 )
 script = ExtResource( 41 )
 __meta__ = {
@@ -1174,6 +1393,62 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CollectedCount" type="HBoxContainer" parent="CanvasLayer"]
+visible = false
+anchor_left = 0.273
+anchor_top = 0.008
+anchor_right = 0.273
+anchor_bottom = 0.008
+margin_left = 0.447998
+margin_top = 0.2
+margin_right = 73.448
+margin_bottom = 40.2
+rect_min_size = Vector2( 0, 40 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/CollectedCount"]
+margin_right = 25.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 25, 32 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/CollectedCount/CenterContainer"]
+position = Vector2( 12, 19 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 14 )
+
+[node name="CountValue" type="Label" parent="CanvasLayer/CollectedCount"]
+margin_left = 29.0
+margin_top = 10.0
+margin_right = 38.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 50 )
+text = "0"
+
+[node name="ElapsedTime" type="Label" parent="CanvasLayer/CollectedCount"]
+margin_left = 42.0
+margin_top = 10.0
+margin_right = 51.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 50 )
+text = "0"
+
+[node name="HighScore" type="Label" parent="CanvasLayer/CollectedCount"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 50 )
+
+[connection signal="pressed" from="CanvasLayer/StartCollectGame/HSplitContainer/StartGame" to="CanvasLayer/StartCollectGame" method="_on_StartGame_pressed"]
+[connection signal="pressed" from="CanvasLayer/StartCollectGame/HSplitContainer/CancelGame" to="CanvasLayer/StartCollectGame" method="_on_CancelGame_pressed"]
+[connection signal="pressed" from="CanvasLayer/EndCollectGame/HBoxContainer/StartGame" to="CanvasLayer/EndCollectGame" method="_on_StartGame_pressed"]
+[connection signal="pressed" from="CanvasLayer/EndCollectGame/HBoxContainer/CancelGame" to="CanvasLayer/EndCollectGame" method="_on_CancelGame_pressed"]
 [connection signal="about_to_show" from="CanvasLayer/SettingsDialog" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_SettingsDialog_about_to_show"]
 [connection signal="popup_hide" from="CanvasLayer/SettingsDialog" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_SettingsDialog_popup_hide"]
 [connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/RuleSetDropDown" to="CanvasLayer/SettingsDialog" method="_on_RuleSetDropDown_item_selected"]

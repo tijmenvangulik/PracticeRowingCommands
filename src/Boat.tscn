@@ -5,7 +5,6 @@
 
 [node name="Boat" type="RigidBody2D"]
 position = Vector2( -0.420593, 0.0624841 )
-collision_mask = 0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -83,3 +82,10 @@ position = Vector2( 0, 9 )
 rotation = 1.5708
 polygon = PoolVector2Array( -10.2417, -55.86, -21.3062, -49.7131, -29.0338, -33.2041, -34.127, -19.6808, -36.7614, -0.537368, -45.0159, 25.4555, -42.7327, 47.0577, -33.4245, 46.882, -15.3348, 51.4484, 3.63292, 50.9215, 16.6293, 45.3014, 18.21, 40.2082, 18.21, 11.054, 43.5004, 10.1759, 43.676, 6.48773, 45.2566, -13.5338, 16.6293, -16.6951, 9.77988, -37.7704, 0.120376, -51.8206 )
 disabled = true
+
+[node name="CollectableArea" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionCollectables" type="CollisionPolygon2D" parent="CollectableArea"]
+polygon = PoolVector2Array( -42.5794, -24.0625, 16.4206, -24.0625, 40.4206, -16.0625, 56.4206, -4.06248, 55.4206, 4.93752, 37.4206, 16.9375, 20.4206, 22.9375, -31.5794, 24.9375, -46.5794, 24.9375, -53.5794, 4.93752, -51.5794, -15.0625 )

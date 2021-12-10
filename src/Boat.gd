@@ -150,19 +150,31 @@ var lastCommand=-1
 var newCommand=-1
 var stateOars = StateOars.Roeien
 
+func startTimer(time):
+	var t = Timer.new()
+	t.set_wait_time(time)
+	t.set_one_shot(true)
+	add_child(t)
+	t.start()
+	return t
+	
+func removeTimer(t):
+	remove_child(t)
+	t.queue_free()
+
+func resetCrashed():
+	crashState=false
+	
 func showError(message:String):
 	
 		var label=$"../CanvasLayer/errorLabel"
 		label.text=tr(message)
 		#remove the error message after 2 secons
-		var t = Timer.new()
-		t.set_wait_time(2)
-		t.set_one_shot(true)
-		self.add_child(t)
-		t.start()
+		var t=startTimer(2)
 		yield(t, "timeout")
+		removeTimer(t)
+		
 		label.text=""
-		t.queue_free()
 
 func commandNameToCommand(commandName : String):
 	var result=commandNames.find(commandName)
@@ -244,7 +256,7 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 		changeState(RowState.LaatLopen,0)
 		showError("Boem")
 		crashState=true;
-		
+		 
 	if onePush:
 		currentSpeedFactor=0.0
 		onePush=false;

@@ -16,12 +16,14 @@ enum StartPos {Start,OpWater,
   StartStrijkendAanleggen,
   StartStrijkendAanleggenMinderKnoppen
   StartStrijkendAanleggenWal,
-  StartStrijkendAanleggenWalMinderKnoppen
+  StartStrijkendAanleggenWalMinderKnoppen,
+  StarGame
 }
 
 func _ready():
 		
 	add_item(tr("StartPositie"),StartPos.Start)
+	add_item(tr("StartStarGame"),StartPos.StarGame)
 	add_item(tr("StartOpWater"),StartPos.OpWater)
 	add_item(tr("StartAanleggen"),StartPos.Aanleggen)
 	add_item(tr("StartAanleggenMinderKnoppen"),StartPos.StartAanleggenMinderKnoppen)
@@ -60,13 +62,19 @@ func showOnlyButtons(var commands):
 		disableCommand(boat.commandNames[command],false)
 	
 func selected(itemIndex : int):
+	
+	var game=$"../../Collectables"
+	if game.gameStarted:
+		game.stopGame()
+		
 	var valueIndex=get_selected_id()
 	var boat=$"../../Boat"
+	boat.resetCrashed()
 	var Command=boat.Command
 	var isViking=$"../OptionLanguage".isViking
 	var showOnlyButonsArray=[]
 	match valueIndex:
-		StartPos.OpWater: boat.setNewBoatPosition(1100.95,2008.65,0,boat.StateOars.Roeien)
+		StartPos.OpWater: boat.setNewBoatPosition(984.05,1995.76,0,boat.StateOars.Roeien)
 		StartPos.Aanleggen: 
 			boat.setNewBoatPosition(702.307,2145.531,45,boat.StateOars.Roeien)
 		StartPos.StartAanleggenMinderKnoppen: 
@@ -100,7 +108,9 @@ func selected(itemIndex : int):
 		StartPos.StartStrijkendAanleggenWalMinderKnoppen: 
 			boat.setNewBoatPosition(2220.23,1472.777,-120,boat.StateOars.Roeien)
 			showOnlyButonsArray =[Command.LaatLopen,Command.Bedankt,Command.StrijkenBeidenBoorden,Command.SlippenSB,Command.VastroeienBB]	
-		
+		StartPos.StarGame:
+			boat.setNewBoatPosition(984.05,1995.76,0,boat.StateOars.Roeien)
+			$"../../Collectables".startGame(false)
 	showOnlyButtons(showOnlyButonsArray)	
 	$"../OptionCommands".fillDropDown(showOnlyButonsArray)
 	select(StartPos.Start)		

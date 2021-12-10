@@ -6,6 +6,7 @@ extends WindowDialog
 # var b = "text"
 
 var commandTranslations = [""]
+var highScore=0.0
 
 func addLabel(container,text):
 	var new_label = Label.new()
@@ -88,7 +89,8 @@ func getSettings():
 	var ruleset=$"/root/World/Boat/Rulesets".currentRulleset
 	var save_dict = {"translations" : commandDict,
 	  "customButtonSet":customButtonSet,
-	  "ruleset":ruleset}
+	  "ruleset":ruleset,
+	  "highScore":highScore}
 	return save_dict
 	
 func setSettings(dict):
@@ -114,8 +116,9 @@ func setSettings(dict):
 		ruleset=dict["ruleset"]
 	if ruleset!=null:
 		setRuleset(ruleset)
+	if dict.has("highScore"):
+		highScore=dict["highScore"]
 		
-
 func saveSettings():
 	var save_game = File.new()
 	save_game.open("user://settings.save", File.WRITE)
