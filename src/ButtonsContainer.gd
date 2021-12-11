@@ -12,7 +12,14 @@ func loadButtonsSetFromResources():
 			defaultButtonSet=currentButtonSet
 
 func commandIsUsed(commandName : String):
-	return currentButtonSet.find(commandName)>=0
+	var found=false
+
+	for item in currentButtonSet:
+		if item==commandName || item.begins_with(commandName+",") || item.find(","+commandName)>0:
+			found=true
+			break
+			
+	return found
 	
 func initButtons():
 	loadButtonsSetFromResources()
