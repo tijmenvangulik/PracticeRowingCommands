@@ -107,10 +107,18 @@ func setSettings(dict):
 		$"../ButtonsContainer".setCustomButtonSet(customButtonSet)
 	if translations!=null && typeof(translations)==TYPE_DICTIONARY:
 		var keys=translations.keys();
+		var commandTranslationsGrid=$"TabContainer/CommandTranslateTab/ScrollContainer/GridContainer"
+	
 		for translationName in keys:
 			var iPos= boat.commandNameToCommand(translationName)
-			if iPos>=0:
-				commandTranslations[iPos]=translations[translationName]
+			
+			if iPos>=0:				
+				var text=translations[translationName]
+				commandTranslations[iPos]=text
+				var iposChild=3+iPos*2;
+				if iposChild<commandTranslationsGrid.get_child_count():
+					commandTranslationsGrid.get_child(iposChild).setText(text)
+				
 	var ruleset=null
 	if dict.has("ruleset"):
 		ruleset=dict["ruleset"]

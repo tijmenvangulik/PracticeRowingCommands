@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=73 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -27,7 +27,9 @@
 [ext_resource path="res://StyleButtonGrayHover.tres" type="StyleBox" id=25]
 [ext_resource path="res://EndCollectGame.gd" type="Script" id=26]
 [ext_resource path="res://assets/trophy.png" type="Texture" id=27]
+[ext_resource path="res://ExportSettingsButton.gd" type="Script" id=28]
 [ext_resource path="res://Theme.tres" type="Theme" id=29]
+[ext_resource path="res://ImportSettingsButton.gd" type="Script" id=30]
 [ext_resource path="res://OptionStart.gd" type="Script" id=40]
 [ext_resource path="res://OptionCommands.gd" type="Script" id=41]
 [ext_resource path="res://CloseButton.gd" type="Script" id=42]
@@ -1170,6 +1172,7 @@ scale = Vector2( 0.374661, 0.372717 )
 texture = ExtResource( 56 )
 
 [node name="SettingsDialog" type="WindowDialog" parent="CanvasLayer"]
+visible = true
 margin_left = 21.0
 margin_top = 59.0
 margin_right = 1002.0
@@ -1389,6 +1392,47 @@ custom_styles/focus = ExtResource( 20 )
 custom_styles/normal = SubResource( 31 )
 text = "Close"
 script = ExtResource( 61 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExportSettingsButton" type="Button" parent="CanvasLayer/SettingsDialog"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -131.0
+margin_top = -45.0
+margin_right = -10.0
+margin_bottom = -12.0
+grow_horizontal = 0
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 19 )
+custom_styles/focus = ExtResource( 20 )
+custom_styles/normal = SubResource( 31 )
+text = "ExportSettings"
+align = 2
+script = ExtResource( 28 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ImportSettingsButton" type="Button" parent="CanvasLayer/SettingsDialog"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 11.0
+margin_top = -44.0
+margin_right = 135.0
+margin_bottom = -11.0
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 19 )
+custom_styles/focus = ExtResource( 20 )
+custom_styles/normal = SubResource( 31 )
+text = "ImportSettings"
+align = 0
+script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
