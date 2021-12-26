@@ -129,7 +129,7 @@ func gameFinished():
 	yield(t, "timeout")
 	boat.removeTimer(t)
 
-	boat.setNewBoatPosition(984.05,1995.76,0,boat.StateOars.Roeien)
+	boat.setNewBoatPosition(984.05,1995.76,0,boat.StateOars.Roeien,true)
 	
 	t=boat.startTimer(1.1)
 	yield(t, "timeout")

@@ -150,6 +150,38 @@ var lastCommand=-1
 var newCommand=-1
 var stateOars = StateOars.Roeien
 
+var forwardsPositon=150
+var backwardsPosition=-200
+var currentPositionX=0;
+var isForwards=true
+var moveStep=1000
+
+func _ready():
+	setForwardsPosition(0)
+
+func _process(delta):
+	setForwardsPosition(delta)
+	
+func setForwardsPosition(delta):
+	if delta!=0:
+		if lastCommand==Command.StrijkenBeidenBoorden || lastCommand==Command.HalenBeideBoorden:
+			if lastCommand==Command.StrijkenBeidenBoorden: isForwards=false
+			else: isForwards=true
+
+	var positionX=forwardsPositon;	
+	if !isForwards: positionX=backwardsPosition	
+	
+	
+	if (currentPositionX!=positionX || delta==0):
+		if delta==0 : currentPositionX=positionX
+		else:
+			if currentPositionX>positionX: currentPositionX=currentPositionX-(moveStep*delta)
+			else: currentPositionX=currentPositionX+(moveStep*delta)
+		if currentPositionX>forwardsPositon: currentPositionX=forwardsPositon
+		if currentPositionX<backwardsPosition: currentPositionX=backwardsPosition
+		$"Camera2D2".position= Vector2(currentPositionX,0)
+
+
 func startTimer(time):
 	var t = Timer.new()
 	t.set_wait_time(time)
@@ -167,7 +199,7 @@ func resetCrashed():
 	
 func showError(message:String):
 	
-		var label=$"../CanvasLayer/errorLabel"
+		var label=$"errorLabel"
 		label.text=tr(message)
 		#remove the error message after 2 secons
 		var t=startTimer(2)
@@ -487,7 +519,9 @@ func oarsCommand(command: int):
 		if newOarsState!=stateOars: setStateOars(newOarsState)
 	
 	
-func setNewBoatPosition(x:int,y:int,newRotation,newStateOars : int):
+func setNewBoatPosition(x:int,y:int,newRotation,newStateOars : int,newIsForwards):
+	isForwards=newIsForwards
+	setForwardsPosition(0)
 	# reset the boat into a new position and place
 	setStateOars(newStateOars)
 	newRotation_degrees=newRotation

@@ -798,7 +798,7 @@ position = Vector2( 1364, 201 )
 position = Vector2( 1364, 201 )
 
 [node name="Boat" parent="." instance=ExtResource( 3 )]
-position = Vector2( 984.05, 1995.76 )
+position = Vector2( 958, 1906 )
 collision_layer = 31
 mass = 4.0
 physics_material_override = SubResource( 21 )
@@ -822,6 +822,20 @@ script = ExtResource( 62 )
 
 [node name="RulesetNoRules" type="Node" parent="Boat/Rulesets"]
 script = ExtResource( 8 )
+
+[node name="errorLabel" type="Label" parent="Boat"]
+margin_left = 120.0
+margin_top = -510.0
+margin_right = 813.0
+margin_bottom = -480.0
+rect_rotation = 90.0
+rect_scale = Vector2( 1.5, 1.5 )
+custom_colors/font_color = Color( 0.933333, 0.368627, 0.368627, 1 )
+custom_fonts/font = ExtResource( 50 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="BoatPath" type="Node2D" parent="."]
 position = Vector2( 220, 254 )
@@ -862,18 +876,6 @@ visible = false
 margin_right = 52.0
 margin_bottom = 40.0
 script = ExtResource( 63 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="errorLabel" type="Label" parent="CanvasLayer"]
-margin_left = 364.428
-margin_top = 346.0
-margin_right = 674.428
-margin_bottom = 375.0
-theme = ExtResource( 29 )
-custom_colors/font_color = Color( 0.933333, 0.368627, 0.368627, 1 )
-align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1172,7 +1174,6 @@ scale = Vector2( 0.374661, 0.372717 )
 texture = ExtResource( 56 )
 
 [node name="SettingsDialog" type="WindowDialog" parent="CanvasLayer"]
-visible = true
 margin_left = 21.0
 margin_top = 59.0
 margin_right = 1002.0

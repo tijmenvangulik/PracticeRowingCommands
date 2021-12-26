@@ -74,42 +74,42 @@ func selected(itemIndex : int):
 	var isViking=$"../OptionLanguage".isViking
 	var showOnlyButonsArray=[]
 	match valueIndex:
-		StartPos.OpWater: boat.setNewBoatPosition(984.05,1995.76,0,boat.StateOars.Roeien)
+		StartPos.OpWater: boat.setNewBoatPosition(984.05,1995.76,0,boat.StateOars.Roeien,true)
 		StartPos.Aanleggen: 
-			boat.setNewBoatPosition(702.307,2145.531,45,boat.StateOars.Roeien)
+			boat.setNewBoatPosition(702.307,2145.531,45,boat.StateOars.Roeien,true)
 		StartPos.StartAanleggenMinderKnoppen: 
-			boat.setNewBoatPosition(831.267,2372.928,45,boat.StateOars.Roeien)
+			boat.setNewBoatPosition(831.267,2372.928,45,boat.StateOars.Roeien,true)
 			showOnlyButonsArray =[Command.LightPaddle,Command.LightPaddleBedankt,Command.LaatLopen,Command.Bedankt,Command.HalenBeideBoorden,Command.RiemenHoogSB,Command.VastroeienBB]	
 		StartPos.Aangelegd: 
 			if isViking: 
-				boat.setNewBoatPosition(1124,2602,0,boat.StateOars.SlippenSB)
+				boat.setNewBoatPosition(1124,2602,0,boat.StateOars.SlippenSB,true)
 			else:
-				boat.setNewBoatPosition(1124,2608,0,boat.StateOars.RiemenHoogSB)
+				boat.setNewBoatPosition(1124,2608,0,boat.StateOars.RiemenHoogSB,true)
 		StartPos.StartAangelegdMinderKnoppen:
 			if isViking: 
-				boat.setNewBoatPosition(1124,2602,0,boat.StateOars.SlippenSB)
+				boat.setNewBoatPosition(1124,2602,0,boat.StateOars.SlippenSB,true)
 				showOnlyButonsArray =[Command.Bedankt,Command.HalenBeideBoorden,Command.PeddelendStrijkenSB,Command.StrijkenBB,Command.HalenSB,Command.UitbrengenSB]	
 			else:
-				boat.setNewBoatPosition(1124,2608,0,boat.StateOars.RiemenHoogSB)
+				boat.setNewBoatPosition(1124,2608,0,boat.StateOars.RiemenHoogSB,true)
 				showOnlyButonsArray =[Command.Bedankt,Command.HalenBeideBoorden,Command.PeddelendStrijkenSB,Command.HalenSB]	
 		StartPos.Intro: $"../IntroDialog".visible=true
 		StartPos.StartStrijkendAanleggen: 
-			boat.setNewBoatPosition(1589.091,2426.734,-30,boat.StateOars.Roeien)
+			boat.setNewBoatPosition(1589.091,2426.734,-30,boat.StateOars.Roeien,false)
 		StartPos.StartStrijkendAanleggenMinderKnoppen: 
-			boat.setNewBoatPosition(1589.091,2426.734,-30,boat.StateOars.Roeien)
+			boat.setNewBoatPosition(1589.091,2426.734,-30,boat.StateOars.Roeien,false)
 			showOnlyButonsArray =[Command.LaatLopen,Command.Bedankt,Command.StrijkenBeidenBoorden,Command.RiemenHoogSB,Command.VastroeienBB]	
 		StartPos.AanleggenWal: 
-			boat.setNewBoatPosition(2082.239,2042.082,-45,boat.StateOars.Roeien)
+			boat.setNewBoatPosition(2082.239,2042.082,-45,boat.StateOars.Roeien,true)
 		StartPos.StartAanleggenWalMinderKnoppen: 
-			boat.setNewBoatPosition(2082.239,2042.082,-45,boat.StateOars.Roeien)
+			boat.setNewBoatPosition(2082.239,2042.082,-45,boat.StateOars.Roeien,true)
 			showOnlyButonsArray =[Command.LightPaddle,Command.LightPaddleBedankt,Command.LaatLopen,Command.Bedankt,Command.HalenBeideBoorden,Command.SlippenSB,Command.VastroeienBB]	
 		StartPos.StartStrijkendAanleggenWal: 
-			boat.setNewBoatPosition(2220.23,1472.777,-120,boat.StateOars.Roeien)
+			boat.setNewBoatPosition(2220.23,1472.777,-120,boat.StateOars.Roeien,false)
 		StartPos.StartStrijkendAanleggenWalMinderKnoppen: 
-			boat.setNewBoatPosition(2220.23,1472.777,-120,boat.StateOars.Roeien)
+			boat.setNewBoatPosition(2220.23,1472.777,-120,boat.StateOars.Roeien,false)
 			showOnlyButonsArray =[Command.LaatLopen,Command.Bedankt,Command.StrijkenBeidenBoorden,Command.SlippenSB,Command.VastroeienBB]	
 		StartPos.StarGame:
-			boat.setNewBoatPosition(984.05,1995.76,0,boat.StateOars.Roeien)
+			boat.setNewBoatPosition(984.05,1995.76,0,boat.StateOars.Roeien,true)
 			$"../../Collectables".startGame(false)
 	showOnlyButtons(showOnlyButonsArray)	
 	$"../OptionCommands".fillDropDown(showOnlyButonsArray)
