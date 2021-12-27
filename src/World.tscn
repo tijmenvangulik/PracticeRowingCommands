@@ -812,7 +812,7 @@ angular_damp = 0.8
 rotation = 1.5708
 rotating = true
 current = true
-zoom = Vector2( 1.5, 1.5 )
+zoom = Vector2( 2.1, 2.1 )
 smoothing_enabled = true
 
 [node name="Rulesets" type="Node" parent="Boat"]
