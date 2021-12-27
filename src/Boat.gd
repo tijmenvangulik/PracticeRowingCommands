@@ -179,8 +179,9 @@ func setForwardsPosition(delta):
 			else: currentPositionX=currentPositionX+(moveStep*delta)
 		if currentPositionX>forwardsPositon: currentPositionX=forwardsPositon
 		if currentPositionX<backwardsPosition: currentPositionX=backwardsPosition
-		$"Camera2D2".position= Vector2(currentPositionX,0)
-
+		var zoomDif=$"Camera2D2".zoom.x-0.5;
+		$"Camera2D2".position= Vector2(currentPositionX*zoomDif,0)
+	
 
 func startTimer(time):
 	var t = Timer.new()

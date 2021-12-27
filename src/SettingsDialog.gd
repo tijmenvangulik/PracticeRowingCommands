@@ -87,10 +87,12 @@ func getSettings():
 			commandDict[commandName]=translation
 	var customButtonSet=$"TabContainer/CommandButtonsTab".customButtonSet
 	var ruleset=$"/root/World/Boat/Rulesets".currentRulleset
+	var zoom=$"/root/World/Boat/Camera2D2".zoom.x
 	var save_dict = {"translations" : commandDict,
 	  "customButtonSet":customButtonSet,
 	  "ruleset":ruleset,
-	  "highScore":highScore}
+	  "highScore":highScore,
+	  "zoom":zoom}
 	return save_dict
 	
 func setSettings(dict):
@@ -126,7 +128,13 @@ func setSettings(dict):
 		setRuleset(ruleset)
 	if dict.has("highScore"):
 		highScore=dict["highScore"]
-		
+	if dict.has("zoom"):
+		var zoom=dict["zoom"]
+		if zoom>0 && zoom<100:
+			$"/root/World/Boat/Camera2D2".zoom.x=zoom
+			$"/root/World/Boat/Camera2D2".zoom.y=zoom
+			$"/root/World/Boat".setForwardsPosition(0)
+	
 func saveSettings():
 	var save_game = File.new()
 	save_game.open("user://settings.save", File.WRITE)

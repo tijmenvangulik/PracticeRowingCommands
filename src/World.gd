@@ -5,12 +5,17 @@ func _init():
 	
 # jp is dutch viking
 
+func setVisibleControlButtons(visible):
+	$"CanvasLayer/OptionStart".visible=visible
+	$"CanvasLayer/OptionCommands".visible=visible
+	$"CanvasLayer/SettingsButton".visible=visible
+	$"CanvasLayer/ButtonsContainer".visible=visible
+	$"CanvasLayer/ZoomContainer".visible=visible
+	
 func _ready():
 	$"CanvasLayer/IntroDialog".visible=true
-	$"CanvasLayer/OptionStart".visible=false
-	$"CanvasLayer/OptionCommands".visible=false
-	$"CanvasLayer/SettingsButton".visible=false
-	$"CanvasLayer/ButtonsContainer".visible=false
+	setVisibleControlButtons(false)
+
 #	$"CanvasLayer/".visible=false
 	#loadSettings();
 	
