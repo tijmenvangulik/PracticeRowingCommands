@@ -73,7 +73,7 @@ func collect(amount : int):
 		gameFinished()
 
 func getCounterControl():
-	return $"/root/World/CanvasLayer/CollectedCount"	
+	return $"/root/World/CanvasLayer/RightTopButtons/CollectedCount"	
 	
 func setCollected(amount):
 	collectedCount=amount

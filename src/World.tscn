@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=2]
+[gd_scene load_steps=75 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -31,6 +31,7 @@
 [ext_resource path="res://Theme.tres" type="Theme" id=29]
 [ext_resource path="res://ImportSettingsButton.gd" type="Script" id=30]
 [ext_resource path="res://ZoomContainer.gd" type="Script" id=31]
+[ext_resource path="res://ForwardsBackwards.gd" type="Script" id=32]
 [ext_resource path="res://OptionStart.gd" type="Script" id=40]
 [ext_resource path="res://OptionCommands.gd" type="Script" id=41]
 [ext_resource path="res://CloseButton.gd" type="Script" id=42]
@@ -765,9 +766,10 @@ corner_radius_bottom_left = 4
 script = ExtResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2( -947, -837 )
+position = Vector2( 184, 126 )
 scale = Vector2( 1.65561, 1.64805 )
 color = Color( 0.552941, 0.768627, 0.207843, 1 )
+offset = Vector2( -683.132, -584.327 )
 polygon = PoolVector2Array( 3155.45, 2915.4, -225.614, 2917.53, -232.07, -260.219, 3155, -242.551, 3150.17, 2498.73, 3150.17, 2498.73 )
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -823,20 +825,6 @@ script = ExtResource( 62 )
 
 [node name="RulesetNoRules" type="Node" parent="Boat/Rulesets"]
 script = ExtResource( 8 )
-
-[node name="errorLabel" type="Label" parent="Boat"]
-margin_left = 120.0
-margin_top = -510.0
-margin_right = 813.0
-margin_bottom = -480.0
-rect_rotation = 90.0
-rect_scale = Vector2( 1.5, 1.5 )
-custom_colors/font_color = Color( 0.933333, 0.368627, 0.368627, 1 )
-custom_fonts/font = ExtResource( 50 )
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="BoatPath" type="Node2D" parent="."]
 position = Vector2( 220, 254 )
@@ -1118,31 +1106,6 @@ visible = false
 position = Vector2( 623, 115 )
 texture = ExtResource( 14 )
 
-[node name="OptionLanguage" type="OptionButton" parent="CanvasLayer"]
-margin_left = 795.0
-margin_top = 6.0
-margin_right = 971.0
-margin_bottom = 40.0
-theme = ExtResource( 29 )
-text = "Language"
-script = ExtResource( 16 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="OptionStart" type="OptionButton" parent="CanvasLayer"]
-margin_left = 656.226
-margin_top = 6.0
-margin_right = 790.226
-margin_bottom = 40.0
-theme = ExtResource( 29 )
-text = "Start"
-expand_icon = true
-script = ExtResource( 40 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="OptionCommands" type="OptionButton" parent="CanvasLayer"]
 margin_left = 14.392
 margin_top = 6.0
@@ -1153,25 +1116,6 @@ script = ExtResource( 41 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="SettingsButton" type="ToolButton" parent="CanvasLayer"]
-anchor_left = 0.959
-anchor_top = 0.007
-anchor_right = 0.996
-anchor_bottom = 0.068
-margin_left = -0.0159912
-margin_top = -0.2
-margin_right = -5.90399
-margin_bottom = 0.199997
-script = ExtResource( 57 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="options_icon" type="Sprite" parent="CanvasLayer/SettingsButton"]
-position = Vector2( 15.967, 18.5804 )
-scale = Vector2( 0.374661, 0.372717 )
-texture = ExtResource( 56 )
 
 [node name="SettingsDialog" type="WindowDialog" parent="CanvasLayer"]
 margin_left = 21.0
@@ -1438,57 +1382,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ZoomContainer" type="HBoxContainer" parent="CanvasLayer"]
-margin_left = 546.0
-margin_top = 7.0
-margin_right = 636.0
-margin_bottom = 39.0
-script = ExtResource( 31 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ZoomPlus" type="Button" parent="CanvasLayer/ZoomContainer"]
-margin_right = 21.0
-margin_bottom = 32.0
-custom_fonts/font = ExtResource( 50 )
-text = "+"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ZoomLabel" type="Label" parent="CanvasLayer/ZoomContainer"]
-margin_left = 25.0
+[node name="RightTopButtons" type="HBoxContainer" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -447.0
 margin_top = 6.0
-margin_right = 69.0
-margin_bottom = 25.0
-custom_fonts/font = ExtResource( 50 )
-text = "Zoom"
+margin_bottom = 30.0
+grow_horizontal = 0
+custom_constants/separation = 8
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ZoomMin" type="Button" parent="CanvasLayer/ZoomContainer"]
-margin_left = 73.0
-margin_right = 90.0
-margin_bottom = 32.0
-custom_fonts/font = ExtResource( 50 )
-text = "-"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CollectedCount" type="HBoxContainer" parent="CanvasLayer"]
+[node name="CollectedCount" type="HBoxContainer" parent="CanvasLayer/RightTopButtons"]
 visible = false
-anchor_left = 0.273
-anchor_top = 0.008
-anchor_right = 0.273
-anchor_bottom = 0.008
-margin_left = 0.447998
-margin_top = 0.2
-margin_right = 73.448
-margin_bottom = 40.2
-rect_min_size = Vector2( 0, 40 )
+margin_right = 55.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 15 )
@@ -1496,39 +1406,145 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/CollectedCount"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/RightTopButtons/CollectedCount"]
 margin_right = 25.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 25, 32 )
+margin_bottom = 30.0
+rect_min_size = Vector2( 25, 30 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="CanvasLayer/CollectedCount/CenterContainer"]
-position = Vector2( 12, 19 )
+[node name="Sprite" type="Sprite" parent="CanvasLayer/RightTopButtons/CollectedCount/CenterContainer"]
+position = Vector2( 8, 15 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 14 )
 
-[node name="CountValue" type="Label" parent="CanvasLayer/CollectedCount"]
+[node name="CountValue" type="Label" parent="CanvasLayer/RightTopButtons/CollectedCount"]
 margin_left = 29.0
-margin_top = 10.0
+margin_top = 5.0
 margin_right = 38.0
-margin_bottom = 29.0
+margin_bottom = 24.0
 custom_fonts/font = ExtResource( 50 )
 text = "0"
 
-[node name="ElapsedTime" type="Label" parent="CanvasLayer/CollectedCount"]
+[node name="ElapsedTime" type="Label" parent="CanvasLayer/RightTopButtons/CollectedCount"]
 margin_left = 42.0
-margin_top = 10.0
+margin_top = 5.0
 margin_right = 51.0
-margin_bottom = 29.0
+margin_bottom = 24.0
 custom_fonts/font = ExtResource( 50 )
 text = "0"
 
-[node name="HighScore" type="Label" parent="CanvasLayer/CollectedCount"]
-margin_right = 40.0
-margin_bottom = 14.0
+[node name="HighScore" type="Label" parent="CanvasLayer/RightTopButtons/CollectedCount"]
+margin_left = 55.0
+margin_top = 5.0
+margin_right = 55.0
+margin_bottom = 24.0
 custom_fonts/font = ExtResource( 50 )
+
+[node name="ForwardsBackwards" type="Button" parent="CanvasLayer/RightTopButtons"]
+margin_right = 95.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 50 )
+text = "Backwards"
+script = ExtResource( 32 )
+
+[node name="ZoomContainer" type="HBoxContainer" parent="CanvasLayer/RightTopButtons"]
+margin_left = 103.0
+margin_right = 193.0
+margin_bottom = 30.0
+script = ExtResource( 31 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ZoomPlus" type="Button" parent="CanvasLayer/RightTopButtons/ZoomContainer"]
+margin_right = 21.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 50 )
+text = "+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ZoomLabel" type="Label" parent="CanvasLayer/RightTopButtons/ZoomContainer"]
+margin_left = 25.0
+margin_top = 5.0
+margin_right = 69.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 50 )
+text = "Zoom"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ZoomMin" type="Button" parent="CanvasLayer/RightTopButtons/ZoomContainer"]
+margin_left = 73.0
+margin_right = 90.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 50 )
+text = "-"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionStart" type="OptionButton" parent="CanvasLayer/RightTopButtons"]
+margin_left = 201.0
+margin_right = 281.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 80, 0 )
+theme = ExtResource( 29 )
+text = "Start"
+expand_icon = true
+script = ExtResource( 40 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionLanguage" type="OptionButton" parent="CanvasLayer/RightTopButtons"]
+margin_left = 289.0
+margin_right = 392.0
+margin_bottom = 30.0
+theme = ExtResource( 29 )
+text = "Language"
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsButton" type="ToolButton" parent="CanvasLayer/RightTopButtons"]
+margin_left = 400.0
+margin_right = 430.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+script = ExtResource( 57 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="options_icon" type="Sprite" parent="CanvasLayer/RightTopButtons/SettingsButton"]
+position = Vector2( 12, 14 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 56 )
+
+[node name="errorLabel" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -83.0
+margin_top = -15.0
+margin_right = 83.0
+margin_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+custom_colors/font_color = Color( 0.933333, 0.368627, 0.368627, 1 )
+custom_fonts/font = ExtResource( 50 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="pressed" from="CanvasLayer/StartCollectGame/HSplitContainer/StartGame" to="CanvasLayer/StartCollectGame" method="_on_StartGame_pressed"]
 [connection signal="pressed" from="CanvasLayer/StartCollectGame/HSplitContainer/CancelGame" to="CanvasLayer/StartCollectGame" method="_on_CancelGame_pressed"]
@@ -1542,5 +1558,5 @@ custom_fonts/font = ExtResource( 50 )
 [connection signal="pressed" from="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/GridContainer/DefaultCustomButtons" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_DefaultCustomButtons_pressed"]
 [connection signal="customCommandTextChanged" from="CanvasLayer/SettingsDialog/EditCommandText" to="CanvasLayer/ButtonsContainer" method="_on_EditCommandText_customCommandTextChanged"]
 [connection signal="customCommandTextChanged" from="CanvasLayer/SettingsDialog/EditCommandText" to="CanvasLayer/SettingsDialog" method="_on_EditCommandText_customCommandTextChanged"]
-[connection signal="pressed" from="CanvasLayer/ZoomContainer/ZoomPlus" to="CanvasLayer/ZoomContainer" method="_on_ZoomPlus_pressed"]
-[connection signal="pressed" from="CanvasLayer/ZoomContainer/ZoomMin" to="CanvasLayer/ZoomContainer" method="_on_ZoomMin_pressed"]
+[connection signal="pressed" from="CanvasLayer/RightTopButtons/ZoomContainer/ZoomPlus" to="CanvasLayer/RightTopButtons/ZoomContainer" method="_on_ZoomPlus_pressed"]
+[connection signal="pressed" from="CanvasLayer/RightTopButtons/ZoomContainer/ZoomMin" to="CanvasLayer/RightTopButtons/ZoomContainer" method="_on_ZoomMin_pressed"]

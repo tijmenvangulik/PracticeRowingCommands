@@ -23,7 +23,7 @@ func selected(itemIndex : int):
 		var langKey=languageKeys[itemIndex]
 		isViking= langKey=="nl_NL"
 		TranslationServer.set_locale(langKey)
-		$"../ButtonsContainer".initButtons()
+		$"../../ButtonsContainer".initButtons()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

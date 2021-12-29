@@ -50,11 +50,11 @@ func _ready():
 func disableCommand(name:String,disabled:bool):
 	#"../ButtonsContainer/GridContainer/HalenBeideBoorden"
 	#var itemNr=grid.find(name)
-	$"../ButtonsContainer".disableCommand(name,disabled)
+	$"../../ButtonsContainer".disableCommand(name,disabled)
 	
 func showOnlyButtons(var commands):
 	
-	var boat=$"../../Boat"
+	var boat=$"../../../Boat"
 	for commandName in boat.commandNames:
 		disableCommand(commandName,len(commands)!=0)
 	
@@ -63,12 +63,12 @@ func showOnlyButtons(var commands):
 	
 func selected(itemIndex : int):
 	
-	var game=$"../../Collectables"
+	var game=$"../../../Collectables"
 	if game.gameStarted:
 		game.stopGame()
 		
 	var valueIndex=get_selected_id()
-	var boat=$"../../Boat"
+	var boat=$"../../../Boat"
 	boat.resetCrashed()
 	var Command=boat.Command
 	var isViking=$"../OptionLanguage".isViking
@@ -92,7 +92,7 @@ func selected(itemIndex : int):
 			else:
 				boat.setNewBoatPosition(1124,2608,0,boat.StateOars.RiemenHoogSB,true)
 				showOnlyButonsArray =[Command.Bedankt,Command.HalenBeideBoorden,Command.PeddelendStrijkenSB,Command.HalenSB]	
-		StartPos.Intro: $"../IntroDialog".visible=true
+		StartPos.Intro: $"../../IntroDialog".visible=true
 		StartPos.StartStrijkendAanleggen: 
 			boat.setNewBoatPosition(1589.091,2426.734,-30,boat.StateOars.Roeien,false)
 		StartPos.StartStrijkendAanleggenMinderKnoppen: 
@@ -110,9 +110,9 @@ func selected(itemIndex : int):
 			showOnlyButonsArray =[Command.LaatLopen,Command.Bedankt,Command.StrijkenBeidenBoorden,Command.SlippenSB,Command.VastroeienBB]	
 		StartPos.StarGame:
 			boat.setNewBoatPosition(984.05,1995.76,0,boat.StateOars.Roeien,true)
-			$"../../Collectables".startGame(false)
+			$"../../../Collectables".startGame(false)
 	showOnlyButtons(showOnlyButonsArray)	
-	$"../OptionCommands".fillDropDown(showOnlyButonsArray)
+	$"../../OptionCommands".fillDropDown(showOnlyButonsArray)
 	select(StartPos.Start)		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

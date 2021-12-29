@@ -161,12 +161,15 @@ func _ready():
 
 func _process(delta):
 	setForwardsPosition(delta)
-	
+
+var lastForwardsCommand=-1
+
 func setForwardsPosition(delta):
-	if delta!=0:
+	if delta!=0 && lastForwardsCommand!=lastCommand:
 		if lastCommand==Command.StrijkenBeidenBoorden || lastCommand==Command.HalenBeideBoorden:
 			if lastCommand==Command.StrijkenBeidenBoorden: isForwards=false
 			else: isForwards=true
+			lastForwardsCommand=lastCommand;
 
 	var positionX=forwardsPositon;	
 	if !isForwards: positionX=backwardsPosition	
@@ -181,8 +184,10 @@ func setForwardsPosition(delta):
 		if currentPositionX<backwardsPosition: currentPositionX=backwardsPosition
 		var zoomDif=$"Camera2D2".zoom.x-0.5;
 		$"Camera2D2".position= Vector2(currentPositionX*zoomDif,0)
-	
-
+		var toggelButton=$"../CanvasLayer/RightTopButtons/ForwardsBackwards";
+		if isForwards: toggelButton.text="Backwards"
+		else: toggelButton.text="Forwards"
+		
 func startTimer(time):
 	var t = Timer.new()
 	t.set_wait_time(time)
@@ -200,7 +205,7 @@ func resetCrashed():
 	
 func showError(message:String):
 	
-		var label=$"errorLabel"
+		var label=$"../CanvasLayer/errorLabel"
 		label.text=tr(message)
 		#remove the error message after 2 secons
 		var t=startTimer(2)

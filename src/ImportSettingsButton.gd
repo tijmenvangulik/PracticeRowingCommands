@@ -39,7 +39,8 @@ func _ready():
 
 func _pressed():	
 	var import = JavaScript.get_interface("importObject")
-	import.openFile(importCallBack)
+	if import!=null:
+		import.openFile(importCallBack)
 #	testImport()
 
 func doImport(settings):
