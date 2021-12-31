@@ -8,7 +8,7 @@ The website:
 
 Written in godot
 
-The current language is still dutch but more language will be Edit the translations Translations.cv to add more languages or rowing club specific commands.
+The default language is dutch. Most commands are translated to English. You can improve or add a translaton by editing the  Translations.csv file.
 The translations can be found [here](/src/translations/Translations.csv) This is a csv file which you can load in a spread sheet. You can send the translated version to me.
 You can also define a button set in this file for each language.
 
