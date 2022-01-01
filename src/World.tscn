@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=2]
+[gd_scene load_steps=76 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -17,7 +17,6 @@
 [ext_resource path="res://CollectedCount.gd" type="Script" id=15]
 [ext_resource path="res://OptionButton.gd" type="Script" id=16]
 [ext_resource path="res://StyleButtonSB.tres" type="StyleBox" id=17]
-[ext_resource path="res://StyleButtonSBHover.tres" type="StyleBox" id=18]
 [ext_resource path="res://StyleButtonSBPressed.tres" type="StyleBox" id=19]
 [ext_resource path="res://StyleButtonSBFocus.tres" type="StyleBox" id=20]
 [ext_resource path="res://StartCollectGame.gd" type="Script" id=21]
@@ -32,6 +31,8 @@
 [ext_resource path="res://ImportSettingsButton.gd" type="Script" id=30]
 [ext_resource path="res://ZoomContainer.gd" type="Script" id=31]
 [ext_resource path="res://ForwardsBackwards.gd" type="Script" id=32]
+[ext_resource path="res://DialogBackground.tres" type="StyleBox" id=33]
+[ext_resource path="res://ButtonWithBorderFocus.tres" type="StyleBox" id=34]
 [ext_resource path="res://OptionStart.gd" type="Script" id=40]
 [ext_resource path="res://OptionCommands.gd" type="Script" id=41]
 [ext_resource path="res://CloseButton.gd" type="Script" id=42]
@@ -709,8 +710,25 @@ friction = 0.9
 [sub_resource type="StyleBoxFlat" id=22]
 bg_color = Color( 0.192157, 0.254902, 0.52549, 0 )
 
+[sub_resource type="StyleBoxFlat" id=32]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color( 0.435294, 0.513726, 0.529412, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.2, 0.231373, 0.254902, 1 )
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color( 0, 0, 0, 0.270588 )
+shadow_offset = Vector2( 4, 4 )
+
 [sub_resource type="StyleBoxFlat" id=28]
-bg_color = Color( 0.411765, 0.47451, 0.419608, 1 )
+bg_color = Color( 0.294118, 0.439216, 0.470588, 1 )
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -722,7 +740,7 @@ expand_margin_left = 8.0
 expand_margin_right = 8.0
 
 [sub_resource type="StyleBoxFlat" id=29]
-bg_color = Color( 0.411765, 0.47451, 0.419608, 1 )
+bg_color = Color( 0.34902, 0.482353, 0.517647, 1 )
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -743,24 +761,6 @@ corner_radius_bottom_left = 5
 shadow_color = Color( 0, 0, 0, 0.270588 )
 shadow_size = 4
 shadow_offset = Vector2( 4, 4 )
-
-[sub_resource type="StyleBoxFlat" id=31]
-content_margin_left = 3.0
-content_margin_right = 3.0
-content_margin_top = 3.0
-content_margin_bottom = 3.0
-bg_color = Color( 0.32549, 0.486275, 0.309804, 0.705882 )
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 0.239216, 0.27451, 0.227451, 1 )
-border_blend = true
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
 
 [node name="World" type="Node2D"]
 script = ExtResource( 1 )
@@ -876,7 +876,7 @@ margin_right = 991.0
 margin_bottom = 522.0
 theme = ExtResource( 29 )
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
-custom_styles/panel = ExtResource( 10 )
+custom_styles/panel = SubResource( 32 )
 script = ExtResource( 43 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -912,9 +912,8 @@ margin_right = 507.0
 margin_bottom = 450.0
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 11 )
-custom_styles/pressed = ExtResource( 19 )
-custom_styles/focus = ExtResource( 20 )
-custom_styles/normal = ExtResource( 17 )
+custom_styles/pressed = ExtResource( 11 )
+custom_styles/normal = ExtResource( 10 )
 text = "Close"
 script = ExtResource( 42 )
 __meta__ = {
@@ -1123,7 +1122,7 @@ margin_top = 59.0
 margin_right = 1002.0
 margin_bottom = 591.0
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
-custom_styles/panel = ExtResource( 10 )
+custom_styles/panel = ExtResource( 33 )
 script = ExtResource( 58 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1299,8 +1298,8 @@ margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 11 )
-custom_styles/pressed = ExtResource( 19 )
-custom_styles/focus = ExtResource( 18 )
+custom_styles/pressed = ExtResource( 10 )
+custom_styles/focus = ExtResource( 34 )
 custom_styles/normal = ExtResource( 10 )
 text = "ClearCustomButtons"
 __meta__ = {
@@ -1313,10 +1312,6 @@ margin_right = 386.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 custom_fonts/font = ExtResource( 50 )
-custom_styles/hover = ExtResource( 11 )
-custom_styles/pressed = ExtResource( 19 )
-custom_styles/focus = ExtResource( 20 )
-custom_styles/normal = ExtResource( 10 )
 text = "DefaultCustomButtons"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1332,9 +1327,9 @@ margin_right = 535.386
 margin_bottom = 521.543
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 11 )
-custom_styles/pressed = ExtResource( 19 )
-custom_styles/focus = ExtResource( 20 )
-custom_styles/normal = SubResource( 31 )
+custom_styles/pressed = ExtResource( 10 )
+custom_styles/focus = ExtResource( 34 )
+custom_styles/normal = ExtResource( 10 )
 text = "Close"
 script = ExtResource( 61 )
 __meta__ = {
@@ -1353,9 +1348,9 @@ margin_bottom = -12.0
 grow_horizontal = 0
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 11 )
-custom_styles/pressed = ExtResource( 19 )
-custom_styles/focus = ExtResource( 20 )
-custom_styles/normal = SubResource( 31 )
+custom_styles/pressed = ExtResource( 10 )
+custom_styles/focus = ExtResource( 34 )
+custom_styles/normal = ExtResource( 10 )
 text = "ExportSettings"
 align = 2
 script = ExtResource( 28 )
@@ -1372,9 +1367,9 @@ margin_right = 135.0
 margin_bottom = -11.0
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 11 )
-custom_styles/pressed = ExtResource( 19 )
-custom_styles/focus = ExtResource( 20 )
-custom_styles/normal = SubResource( 31 )
+custom_styles/pressed = ExtResource( 10 )
+custom_styles/focus = ExtResource( 34 )
+custom_styles/normal = ExtResource( 10 )
 text = "ImportSettings"
 align = 0
 script = ExtResource( 30 )
