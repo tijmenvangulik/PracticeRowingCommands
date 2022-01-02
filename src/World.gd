@@ -17,7 +17,10 @@ func setVisibleControlButtons(visible):
 func _ready():
 	$"CanvasLayer/IntroDialog".visible=true
 	setVisibleControlButtons(false)
-
+	var styleDropDown= preload("res://MainDropDown.tres")
+	$"CanvasLayer/RightTopButtons/OptionStart".get_popup().add_stylebox_override("panel",styleDropDown)
+	$"CanvasLayer/RightTopButtons/OptionLanguage".get_popup().add_stylebox_override("panel",styleDropDown)
+	$"CanvasLayer/OptionCommands".get_popup().add_stylebox_override("panel",styleDropDown)
 #	$"CanvasLayer/".visible=false
 	#loadSettings();
 	

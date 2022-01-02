@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=2]
+[gd_scene load_steps=79 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://CollectedCount.gd" type="Script" id=15]
 [ext_resource path="res://OptionButton.gd" type="Script" id=16]
 [ext_resource path="res://StyleButtonSB.tres" type="StyleBox" id=17]
+[ext_resource path="res://MainDropDownHover.tres" type="StyleBox" id=18]
 [ext_resource path="res://StyleButtonSBPressed.tres" type="StyleBox" id=19]
 [ext_resource path="res://StyleButtonSBFocus.tres" type="StyleBox" id=20]
 [ext_resource path="res://StartCollectGame.gd" type="Script" id=21]
@@ -33,6 +34,8 @@
 [ext_resource path="res://ForwardsBackwards.gd" type="Script" id=32]
 [ext_resource path="res://DialogBackground.tres" type="StyleBox" id=33]
 [ext_resource path="res://ButtonWithBorderFocus.tres" type="StyleBox" id=34]
+[ext_resource path="res://MainDropDown.tres" type="StyleBox" id=35]
+[ext_resource path="res://MainDropFocus.tres" type="StyleBox" id=36]
 [ext_resource path="res://OptionStart.gd" type="Script" id=40]
 [ext_resource path="res://OptionCommands.gd" type="Script" id=41]
 [ext_resource path="res://CloseButton.gd" type="Script" id=42]
@@ -713,7 +716,7 @@ bg_color = Color( 0.192157, 0.254902, 0.52549, 0 )
 [sub_resource type="StyleBoxFlat" id=32]
 content_margin_left = 10.0
 content_margin_right = 10.0
-bg_color = Color( 0.435294, 0.513726, 0.529412, 1 )
+bg_color = Color( 0.203922, 0.196078, 0.239216, 0.760784 )
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -728,7 +731,7 @@ shadow_color = Color( 0, 0, 0, 0.270588 )
 shadow_offset = Vector2( 4, 4 )
 
 [sub_resource type="StyleBoxFlat" id=28]
-bg_color = Color( 0.294118, 0.439216, 0.470588, 1 )
+bg_color = Color( 0.235294, 0.227451, 0.27451, 1 )
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -740,11 +743,7 @@ expand_margin_left = 8.0
 expand_margin_right = 8.0
 
 [sub_resource type="StyleBoxFlat" id=29]
-bg_color = Color( 0.34902, 0.482353, 0.517647, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+bg_color = Color( 0.235294, 0.227451, 0.27451, 1 )
 border_color = Color( 0.321569, 0.403922, 0.313726, 1 )
 
 [sub_resource type="StyleBoxFlat" id=30]
@@ -1111,6 +1110,10 @@ margin_top = 6.0
 margin_right = 263.393
 margin_bottom = 40.0
 custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 18 )
+custom_styles/pressed = ExtResource( 36 )
+custom_styles/focus = ExtResource( 36 )
+custom_styles/normal = ExtResource( 35 )
 script = ExtResource( 41 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1121,7 +1124,6 @@ margin_left = 21.0
 margin_top = 59.0
 margin_right = 1002.0
 margin_bottom = 591.0
-custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
 custom_styles/panel = ExtResource( 33 )
 script = ExtResource( 58 )
 __meta__ = {
@@ -1146,10 +1148,7 @@ __meta__ = {
 [node name="GeneralSettingsTab" type="Tabs" parent="CanvasLayer/SettingsDialog/TabContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 2.0
-margin_top = 31.0
-margin_right = -2.0
-margin_bottom = -2.0
+margin_top = 29.0
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab"]
 anchor_left = 0.023
@@ -1438,15 +1437,19 @@ margin_bottom = 24.0
 custom_fonts/font = ExtResource( 50 )
 
 [node name="ForwardsBackwards" type="Button" parent="CanvasLayer/RightTopButtons"]
-margin_right = 95.0
+margin_right = 99.0
 margin_bottom = 30.0
 custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 18 )
+custom_styles/pressed = ExtResource( 36 )
+custom_styles/focus = ExtResource( 36 )
+custom_styles/normal = ExtResource( 35 )
 text = "Backwards"
 script = ExtResource( 32 )
 
 [node name="ZoomContainer" type="HBoxContainer" parent="CanvasLayer/RightTopButtons"]
-margin_left = 103.0
-margin_right = 193.0
+margin_left = 107.0
+margin_right = 205.0
 margin_bottom = 30.0
 script = ExtResource( 31 )
 __meta__ = {
@@ -1454,18 +1457,22 @@ __meta__ = {
 }
 
 [node name="ZoomPlus" type="Button" parent="CanvasLayer/RightTopButtons/ZoomContainer"]
-margin_right = 21.0
+margin_right = 25.0
 margin_bottom = 30.0
 custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 18 )
+custom_styles/pressed = ExtResource( 36 )
+custom_styles/focus = ExtResource( 36 )
+custom_styles/normal = ExtResource( 35 )
 text = "+"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ZoomLabel" type="Label" parent="CanvasLayer/RightTopButtons/ZoomContainer"]
-margin_left = 25.0
+margin_left = 29.0
 margin_top = 5.0
-margin_right = 69.0
+margin_right = 73.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 50 )
 text = "Zoom"
@@ -1474,21 +1481,29 @@ __meta__ = {
 }
 
 [node name="ZoomMin" type="Button" parent="CanvasLayer/RightTopButtons/ZoomContainer"]
-margin_left = 73.0
-margin_right = 90.0
+margin_left = 77.0
+margin_right = 98.0
 margin_bottom = 30.0
 custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 18 )
+custom_styles/pressed = ExtResource( 36 )
+custom_styles/focus = ExtResource( 36 )
+custom_styles/normal = ExtResource( 35 )
 text = "-"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="OptionStart" type="OptionButton" parent="CanvasLayer/RightTopButtons"]
-margin_left = 201.0
-margin_right = 281.0
+margin_left = 213.0
+margin_right = 293.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 80, 0 )
 theme = ExtResource( 29 )
+custom_styles/hover = ExtResource( 18 )
+custom_styles/pressed = ExtResource( 36 )
+custom_styles/focus = ExtResource( 36 )
+custom_styles/normal = ExtResource( 35 )
 text = "Start"
 expand_icon = true
 script = ExtResource( 40 )
@@ -1497,10 +1512,14 @@ __meta__ = {
 }
 
 [node name="OptionLanguage" type="OptionButton" parent="CanvasLayer/RightTopButtons"]
-margin_left = 289.0
-margin_right = 392.0
+margin_left = 301.0
+margin_right = 405.0
 margin_bottom = 30.0
 theme = ExtResource( 29 )
+custom_styles/hover = ExtResource( 18 )
+custom_styles/pressed = ExtResource( 18 )
+custom_styles/focus = ExtResource( 36 )
+custom_styles/normal = ExtResource( 35 )
 text = "Language"
 script = ExtResource( 16 )
 __meta__ = {
@@ -1508,8 +1527,8 @@ __meta__ = {
 }
 
 [node name="SettingsButton" type="ToolButton" parent="CanvasLayer/RightTopButtons"]
-margin_left = 400.0
-margin_right = 430.0
+margin_left = 413.0
+margin_right = 443.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 30, 30 )
 script = ExtResource( 57 )
