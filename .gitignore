@@ -1,5 +1,6 @@
 .import
 .history
+node_modules
 *.import
 bin/html/favicon.png
 bin/html/index.144x144.png
@@ -16,3 +17,4 @@ bin/html/index.pck
 bin/html/index.png
 bin/html/index.service.worker.js
 bin/html/index.wasm
+bin/html/index.wasm.br

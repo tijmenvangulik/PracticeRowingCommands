@@ -1,0 +1,23 @@
+{
+  "name": "practicerowingcommands",
+  "version": "1.0.0",
+  "description": "practice rowing commands",
+  "main": "index.js",
+  "dependencies": {
+    "gzipper": "^6.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "compress": "gzipper compress ./bin/html/index.wasm --brotli "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tijmenvangulik/PracticeRowingCommands.git"
+  },
+  "author": "Tijmen van Gulik",
+  "license": "GNU",
+  "bugs": {
+    "url": "https://github.com/tijmenvangulik/PracticeRowingCommands/issues"
+  },
+  "homepage": "https://ergometer-space.org/PracticeRowingCommands"
+}
