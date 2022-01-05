@@ -3,9 +3,8 @@
 [ext_resource path="res://GridItemGrouper2.gd" type="Script" id=1]
 
 [sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.228612, 0.246094, 0.22112, 1 )
-border_width_top = 2
-border_color = Color( 0.184314, 0.215686, 0.192157, 1 )
+bg_color = Color( 0.192157, 0.192157, 0.192157, 1 )
+border_color = Color( 0.243137, 0.243137, 0.243137, 1 )
 border_blend = true
 
 [node name="GridItemGrouper2" type="PanelContainer"]
@@ -20,7 +19,6 @@ __meta__ = {
 }
 
 [node name="GridItemGrouperHoriz2" type="HBoxContainer" parent="."]
-margin_top = 2.0
 margin_right = 80.0
 margin_bottom = 25.0
 size_flags_horizontal = 3

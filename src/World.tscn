@@ -1337,7 +1337,7 @@ __meta__ = {
 
 [node name="DefaultCustomButtons" type="Button" parent="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/GridContainer"]
 margin_left = 187.0
-margin_right = 386.0
+margin_right = 378.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 custom_fonts/font = ExtResource( 50 )
