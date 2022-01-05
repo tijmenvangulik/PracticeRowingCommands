@@ -6,7 +6,7 @@ Serious game to practice rowing coxing commands.
 The website:
 [https://ergometer-space.org/PracticeRowingCommands](https://ergometer-space.org/PracticeRowingCommands)
 
-Written in godot
+Written in godot (3.4.2, https://godotengine.org)
 
 The default language is dutch. Most commands are translated to English. You can improve or add a translaton by editing the  Translations.csv file.
 The translations can be found [here](/src/translations/Translations.csv) This is a csv file which you can load in a spread sheet. You can send the translated version to me.
