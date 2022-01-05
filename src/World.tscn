@@ -721,14 +721,15 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color( 0.2, 0.231373, 0.254902, 1 )
+border_color = Color( 0.180392, 0.180392, 0.180392, 1 )
 border_blend = true
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 shadow_color = Color( 0, 0, 0, 0.270588 )
-shadow_offset = Vector2( 4, 4 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 2 )
 
 [sub_resource type="StyleBoxFlat" id=33]
 content_margin_left = 10.0
@@ -738,13 +739,14 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color( 0.172549, 0.203922, 0.215686, 1 )
+border_color = Color( 0.180392, 0.180392, 0.180392, 1 )
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 shadow_color = Color( 0, 0, 0, 0.270588 )
-shadow_offset = Vector2( 4, 4 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 2 )
 
 [sub_resource type="StyleBoxFlat" id=34]
 content_margin_left = 10.0
@@ -754,13 +756,14 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color( 0.239216, 0.282353, 0.298039, 1 )
+border_color = Color( 0.180392, 0.180392, 0.180392, 1 )
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 shadow_color = Color( 0, 0, 0, 0.270588 )
-shadow_offset = Vector2( 4, 4 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 2 )
 
 [sub_resource type="StyleBoxFlat" id=28]
 bg_color = Color( 0.235294, 0.227451, 0.27451, 1 )
@@ -872,10 +875,11 @@ margin_bottom = 44.4202
 player_path = NodePath("../../Boat")
 
 [node name="ButtonsContainer" type="PanelContainer" parent="CanvasLayer"]
-margin_left = 30.0
-margin_top = 449.0
-margin_right = -30.0
-margin_bottom = -4.0
+anchor_left = 0.5
+anchor_top = 0.75
+anchor_right = 0.5
+anchor_bottom = 0.75
+grow_horizontal = 2
 custom_styles/panel = SubResource( 22 )
 script = ExtResource( 60 )
 __meta__ = {

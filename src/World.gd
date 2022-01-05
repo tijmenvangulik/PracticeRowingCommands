@@ -1,7 +1,5 @@
 extends Node2D
-
-func _init():
-   TranslationServer.set_locale("nl_NL")
+	
 	
 # jp is dutch viking
 
