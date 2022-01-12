@@ -1,12 +1,9 @@
-extends Node
+extends BaseRuleset
 
-
-var error=""
-
-func determinenewState(boat,newState:int,direction:int):	
+func determinenewState(boat: Boat,newState:int,direction:int)-> int:
 	return newState;
 
-func determineOarsState(boat,command : int):
+func determineOarsState(boat: Boat,command : int)-> int:
 
 	var stateOars=boat.stateOars
 	match command:
@@ -41,10 +38,10 @@ func determineOarsState(boat,command : int):
 			return Constants.StateOars.RiemenHoogBB
 	return stateOars
 
-func determineLightPaddleState(boat,newLightPaddle:bool):
+func determineLightPaddleState(boat: Boat,newLightPaddle:bool)-> bool:
 	return newLightPaddle
 
 	
-func determineBestState(boat,newBestState :int):
+func determineBestState(boat: Boat,newBestState :int)-> int:
 	return newBestState
 

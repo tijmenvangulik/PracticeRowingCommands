@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "BaseRuleset",
+"language": "GDScript",
+"path": "res://BaseRuleset.gd"
+}, {
 "base": "RigidBody2D",
 "class": "Boat",
 "language": "GDScript",
@@ -45,6 +50,7 @@ _global_script_classes=[ {
 "path": "res://StartCollectGame.gd"
 } ]
 _global_script_class_icons={
+"BaseRuleset": "",
 "Boat": "",
 "Collectables": "",
 "CollectedCounter": "",

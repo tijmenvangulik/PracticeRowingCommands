@@ -12,7 +12,7 @@ var currentRulleset=defaultRuleset
 func _ready():
 	pass # Replace with function body.
 
-func getRuleset():
+func getRuleset()->BaseRuleset :
 	var rulset=currentRulleset
 	if rulset==defaultRuleset:
 		rulset==tr("LanguageRuleSet")	

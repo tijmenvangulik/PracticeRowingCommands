@@ -1,15 +1,7 @@
-extends Node
+extends BaseRuleset
 
-
-var error=""
-
-func setError(errorMsg):
-	error=errorMsg
 	
-func clearError():
-	error=""
-	
-func determinenewState(boat,newState:int,direction:int):
+func determinenewState(boat: Boat,newState:int,direction:int)-> int:
 	clearError()
 	var state=boat.state
 	var stateOars=boat.stateOars
@@ -62,7 +54,7 @@ func determinenewState(boat,newState:int,direction:int):
 	
 	return result;
 
-func determineOarsState(boat,command : int):
+func determineOarsState(boat: Boat,command : int)-> int:
 	clearError()
 
 	var stateOars=boat.stateOars
@@ -116,7 +108,7 @@ func determineOarsState(boat,command : int):
 		setError("EerstLatenLopenOfBedankt")
 	return stateOars
 
-func determineLightPaddleState(boat,newLightPaddle:bool):
+func determineLightPaddleState(boat: Boat,newLightPaddle:bool)-> bool:
 	clearError()
 	if newLightPaddle==boat.lightPaddleOn:
 		setError("CommandIsAlreadyActive")
@@ -124,7 +116,7 @@ func determineLightPaddleState(boat,newLightPaddle:bool):
 	return boat.lightPaddleOn
 
 	
-func determineBestState(boat,newBestState :int):
+func determineBestState(boat: Boat,newBestState :int)-> int:
 	clearError()
 	var bestState=boat.bestState
 	var state=boat.state
