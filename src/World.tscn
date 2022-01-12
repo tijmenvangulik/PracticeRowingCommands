@@ -815,6 +815,8 @@ tile_data = PoolIntArray( -1, 17, 0, -65536, 17, 0, -65535, 17, 0, -65534, 17, 0
 
 [node name="Collectables" type="Node" parent="."]
 script = ExtResource( 13 )
+collectedCounter = NodePath("../CanvasLayer/RightTopButtons/CollectedCounter")
+boat = NodePath("../Boat")
 
 [node name="Collectable" parent="Collectables" instance=ExtResource( 12 )]
 position = Vector2( 1251, 2610 )
@@ -843,6 +845,7 @@ contacts_reported = 1
 contact_monitor = true
 linear_damp = 0.13
 angular_damp = 0.8
+rulesetManager = NodePath("Rulesets")
 
 [node name="Camera2D2" type="Camera2D" parent="Boat"]
 rotation = 1.5708
@@ -863,6 +866,7 @@ script = ExtResource( 8 )
 [node name="BoatPath" type="Node2D" parent="."]
 position = Vector2( 220, 254 )
 script = ExtResource( 54 )
+boat = NodePath("../Boat")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -872,7 +876,7 @@ margin_left = 3.75546
 margin_top = 44.4202
 margin_right = 3.75546
 margin_bottom = 44.4202
-player_path = NodePath("../../Boat")
+boat = NodePath("../../Boat")
 
 [node name="ButtonsContainer" type="PanelContainer" parent="CanvasLayer"]
 anchor_left = 0.5
@@ -967,6 +971,7 @@ script = ExtResource( 21 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+collectables = NodePath("../../Collectables")
 
 [node name="GameIntroText" type="RichTextLabel" parent="CanvasLayer/StartCollectGame"]
 margin_left = 73.0
@@ -1165,6 +1170,10 @@ script = ExtResource( 58 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+rulesetManager = NodePath("../../Boat/Rulesets")
+ruleSetDropDown = NodePath("TabContainer/GeneralSettingsTab/GridContainer/RuleSetDropDown")
+commandTranslationsGrid = NodePath("TabContainer/CommandTranslateTab/ScrollContainer/GridContainer")
+commandButtonsTab = NodePath("TabContainer/CommandButtonsTab")
 
 [node name="TabContainer" type="TabContainer" parent="CanvasLayer/SettingsDialog"]
 anchor_right = 1.0
@@ -1245,6 +1254,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 29.0
 script = ExtResource( 2 )
+commandContainerSource = NodePath("CommandSelectScrollContainer/CommandContainerSource")
+commandContainerDest = NodePath("CommandSelectScrollContainerDest/CommandContainerDest")
 
 [node name="CommandSelectScrollContainer" type="ScrollContainer" parent="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab"]
 margin_left = 5.0
@@ -1418,7 +1429,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CollectedCount" type="HBoxContainer" parent="CanvasLayer/RightTopButtons"]
+[node name="CollectedCounter" type="HBoxContainer" parent="CanvasLayer/RightTopButtons"]
 visible = false
 margin_right = 55.0
 margin_bottom = 30.0
@@ -1430,7 +1441,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/RightTopButtons/CollectedCount"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/RightTopButtons/CollectedCounter"]
 margin_right = 25.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 25, 30 )
@@ -1438,12 +1449,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="CanvasLayer/RightTopButtons/CollectedCount/CenterContainer"]
+[node name="Sprite" type="Sprite" parent="CanvasLayer/RightTopButtons/CollectedCounter/CenterContainer"]
 position = Vector2( 8, 15 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 14 )
 
-[node name="CountValue" type="Label" parent="CanvasLayer/RightTopButtons/CollectedCount"]
+[node name="CountValue" type="Label" parent="CanvasLayer/RightTopButtons/CollectedCounter"]
 margin_left = 29.0
 margin_top = 5.0
 margin_right = 38.0
@@ -1451,7 +1462,7 @@ margin_bottom = 24.0
 custom_fonts/font = ExtResource( 50 )
 text = "0"
 
-[node name="ElapsedTime" type="Label" parent="CanvasLayer/RightTopButtons/CollectedCount"]
+[node name="ElapsedTime" type="Label" parent="CanvasLayer/RightTopButtons/CollectedCounter"]
 margin_left = 42.0
 margin_top = 5.0
 margin_right = 51.0
@@ -1459,7 +1470,7 @@ margin_bottom = 24.0
 custom_fonts/font = ExtResource( 50 )
 text = "0"
 
-[node name="HighScore" type="Label" parent="CanvasLayer/RightTopButtons/CollectedCount"]
+[node name="HighScore" type="Label" parent="CanvasLayer/RightTopButtons/CollectedCounter"]
 margin_left = 55.0
 margin_top = 5.0
 margin_right = 55.0
@@ -1485,6 +1496,7 @@ script = ExtResource( 31 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+camera = NodePath("../../../Boat/Camera2D2")
 
 [node name="ZoomPlus" type="Button" parent="CanvasLayer/RightTopButtons/ZoomContainer"]
 margin_right = 25.0
@@ -1540,6 +1552,7 @@ script = ExtResource( 40 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+boat = NodePath("../../../Boat")
 
 [node name="OptionLanguage" type="OptionButton" parent="CanvasLayer/RightTopButtons"]
 margin_left = 301.0
@@ -1565,6 +1578,7 @@ script = ExtResource( 57 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+settingsDialog = NodePath("../../SettingsDialog")
 
 [node name="options_icon" type="Sprite" parent="CanvasLayer/RightTopButtons/SettingsButton"]
 position = Vector2( 12, 14 )
@@ -1600,7 +1614,5 @@ __meta__ = {
 [connection signal="button_droppedOnSourceGrid" from="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/CommandSelectScrollContainer/CommandContainerSource" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_CommandContainerSource_button_droppedOnSourceGrid"]
 [connection signal="pressed" from="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/GridContainer/ClearCustomButtons" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_ClearCustomButtons_pressed"]
 [connection signal="pressed" from="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/GridContainer/DefaultCustomButtons" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_DefaultCustomButtons_pressed"]
-[connection signal="customCommandTextChanged" from="CanvasLayer/SettingsDialog/EditCommandText" to="CanvasLayer/ButtonsContainer" method="_on_EditCommandText_customCommandTextChanged"]
-[connection signal="customCommandTextChanged" from="CanvasLayer/SettingsDialog/EditCommandText" to="CanvasLayer/SettingsDialog" method="_on_EditCommandText_customCommandTextChanged"]
 [connection signal="pressed" from="CanvasLayer/RightTopButtons/ZoomContainer/ZoomPlus" to="CanvasLayer/RightTopButtons/ZoomContainer" method="_on_ZoomPlus_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightTopButtons/ZoomContainer/ZoomMin" to="CanvasLayer/RightTopButtons/ZoomContainer" method="_on_ZoomMin_pressed"]

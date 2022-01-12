@@ -1,5 +1,6 @@
 extends Node2D
 
+export (NodePath) onready var boat = get_node(boat) as Boat
 
 var color=Color(1.0, 0.0, 0.0)
 var points_arc=PoolVector2Array()
@@ -13,7 +14,7 @@ func _process(delta):
 	
 	if  debugMode():
 		var ticks=OS.get_ticks_msec()
-		var pos=$"../Boat".position
+		var pos=boat.position
 		if (pos-prevPos).length()>10:
 			points_arc.push_back(pos)
 			prevPos=pos;

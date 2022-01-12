@@ -9,14 +9,16 @@ extends WindowDialog
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_close_button().hide()
+	GameEvents.connect("collectGameStateChangedSignal",self,"_collectGameStateChangedSignal")
 
 func _on_CancelGame_pressed():
 	self.visible=false;
+	GameState.changeCollectGameState( Constants.CollectGameState.None)
 
 
 func _on_StartGame_pressed():
 	self.visible=false;
-	$"../../Collectables".doStartGame()
+	GameState.changeCollectGameState( Constants.CollectGameState.DoStart)
 
 
 func init(time:String,isHighScore:bool):
@@ -38,3 +40,10 @@ func initCrashed():
 	$Star4.visible=false
 	$Star5.visible=false
 	
+func _collectGameStateChangedSignal(state):
+	if state==Constants.CollectGameState.Crashed:
+		initCrashed()
+		show_modal(true)
+	elif state==Constants.CollectGameState.Finished:
+		init(GameState.collectGameLastTimeString,GameState.collectGameIsHighScore)		
+		show_modal(true)

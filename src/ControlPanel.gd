@@ -1,8 +1,9 @@
 extends Control
 
-export (NodePath) var player_path
+
+export (NodePath) onready var boat = get_node(boat) as Boat
+
 var SettingSlider = preload("res://SettingSlider.tscn")
-var player = null
 # wheel_base 40
 # angular_easing 0.15
 # angular_step 0.01
@@ -18,22 +19,20 @@ var ranges = {'max_speed': [10, 150, 10],
 			}
 			
 func _ready():
-	if player_path:
-		player = get_node(player_path)
-		for setting in car_settings:
-			var ss = SettingSlider.instance()
-			ss.name = setting
-			$Panel/VBoxContainer.add_child(ss)
-			ss.get_node("Slider").min_value = ranges[setting][0]
-			ss.get_node("Slider").max_value = ranges[setting][1]
-			ss.get_node("Slider").step = ranges[setting][2]
-			ss.get_node("Slider").value = player.get(setting)
-			ss.get_node("Label").text = setting
-			ss.get_node("Value").text = str(player.get(setting))	
-			ss.get_node("Slider").connect("value_changed", self, "_on_Value_changed", [ss])
+	for setting in car_settings:
+		var ss = SettingSlider.instance()
+		ss.name = setting
+		$Panel/VBoxContainer.add_child(ss)
+		ss.get_node("Slider").min_value = ranges[setting][0]
+		ss.get_node("Slider").max_value = ranges[setting][1]
+		ss.get_node("Slider").step = ranges[setting][2]
+		ss.get_node("Slider").value = boat.get(setting)
+		ss.get_node("Label").text = setting
+		ss.get_node("Value").text = str(boat.get(setting))	
+		ss.get_node("Slider").connect("value_changed", self, "_on_Value_changed", [ss])
 			
 func _on_Value_changed(value, node):
-	player.set(node.name, value)
+	boat.set(node.name, value)
 	node.get_node("Value").text = str(value)
 
 func _input(event):
@@ -43,10 +42,8 @@ func _input(event):
 			visible = !visible
 
 func _process(delta):
-	if player:
-#		var value=player.velocity.length()
-		var value=$"../../Boat".calcSpeed()
-		$Panel/VBoxContainer/Speedometer/Speed.text = "%4.3f" % value
-		var turnValue=$"../../Boat".angular_velocity
-		$Panel/VBoxContainer/turnMeter/value.text = "%4.3f" % turnValue
+	var value=boat.calcSpeed()
+	$Panel/VBoxContainer/Speedometer/Speed.text = "%4.3f" % value
+	var turnValue=boat.angular_velocity
+	$Panel/VBoxContainer/turnMeter/value.text = "%4.3f" % turnValue
 		

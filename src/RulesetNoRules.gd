@@ -10,35 +10,35 @@ func determineOarsState(boat,command : int):
 
 	var stateOars=boat.stateOars
 	match command:
-		boat.OarsCommand.Slippen:
-				return boat.StateOars.Slippen
-		boat.OarsCommand.Uitbrengen:
-				return boat.StateOars.Roeien
-		boat.OarsCommand.SlippenBB:			
-			if stateOars==boat.StateOars.SlippenSB:
-				return boat.StateOars.Slippen
-			else: if stateOars==boat.StateOars.Roeien:
-				return boat.StateOars.SlippenBB
-		boat.OarsCommand.UitbrengenBB:
-			if stateOars==boat.StateOars.Slippen:
-				return boat.StateOars.SlippenSB
+		Constants.OarsCommand2.Slippen:
+				return Constants.StateOars.Slippen
+		Constants.OarsCommand2.Uitbrengen:
+				return Constants.StateOars.Roeien
+		Constants.OarsCommand2.SlippenBB:			
+			if stateOars==Constants.StateOars.SlippenSB:
+				return Constants.StateOars.Slippen
+			else: if stateOars==Constants.StateOars.Roeien:
+				return Constants.StateOars.SlippenBB
+		Constants.OarsCommand2.UitbrengenBB:
+			if stateOars==Constants.StateOars.Slippen:
+				return Constants.StateOars.SlippenSB
 			else:
-				return boat.StateOars.Roeien
-		boat.OarsCommand.SlippenSB:
-			if stateOars==boat.StateOars.SlippenBB:
-				return boat.StateOars.Slippen
+				return Constants.StateOars.Roeien
+		Constants.OarsCommand2.SlippenSB:
+			if stateOars==Constants.StateOars.SlippenBB:
+				return Constants.StateOars.Slippen
 			else:
-				return boat.StateOars.SlippenSB
-		boat.OarsCommand.UitbrengenSB:
-			if stateOars==boat.StateOars.Slippen:
-				return boat.StateOars.SlippenBB
+				return Constants.StateOars.SlippenSB
+		Constants.OarsCommand2.UitbrengenSB:
+			if stateOars==Constants.StateOars.Slippen:
+				return Constants.StateOars.SlippenBB
 			else:
-				return boat.StateOars.Roeien
-		boat.OarsCommand.RiemenHoogSB:
-			return boat.StateOars.RiemenHoogSB
+				return Constants.StateOars.Roeien
+		Constants.OarsCommand2.RiemenHoogSB:
+			return Constants.StateOars.RiemenHoogSB
 			
-		boat.OarsCommand.RiemenHoogBB:					
-			return boat.StateOars.RiemenHoogBB
+		Constants.OarsCommand2.RiemenHoogBB:					
+			return Constants.StateOars.RiemenHoogBB
 	return stateOars
 
 func determineLightPaddleState(boat,newLightPaddle:bool):

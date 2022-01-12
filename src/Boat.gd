@@ -1,5 +1,9 @@
 extends RigidBody2D
 
+class_name Boat
+
+export (NodePath) onready var rulesetManager = get_node(rulesetManager) as RuleSets
+
 var velocity = Vector2.ZERO
 
 var toRotation=0
@@ -19,8 +23,7 @@ var lightPaddleOn=false
 
 var bestExtraRotation=2
 
-enum BestState {Normal,StuurboordBest,BakboordBest}
-var bestState : int= BestState.Normal
+var bestState : int= Constants.BestState.Normal
 var lowNoRowingSpeed=lightPaddleFactor*max_speed
 
 var speedDirectErrorLevel=10
@@ -29,150 +32,43 @@ var newPosition_x=-1.0
 var newPosition_y=-1.0
 var onePush=false;
 var crashState=false;
-enum RowState {HalenBeideBoorden,
-  LaatLopen,Bedankt,HalenSB,StrijkenSB
-  VastroeienSB,StrijkenBeidenBoorden,VastroeienBeideBoorden,
-  HalenBB,StrijkenBB,VastroeienBB,
-  PeddelendStrijkenBB,PeddelendStrijkenSB,
-  UitzettenBB,UitzettenSB,
-  RondmakenBB,RondmakenSB
-}
-var state:int = RowState.LaatLopen
 
-enum OarsCommand {Slippen,Uitbrengen,
-  SlippenSB,UitbrengenSB,
-  SlippenBB,UitbrengenBB,
-  RiemenHoogSB,RiemenHoogBB}
+var state:int = Constants.RowState.LaatLopen
 
-enum StateOars {Roeien,Slippen,SlippenSB,SlippenBB,RiemenHoogSB,RiemenHoogBB}
 
-enum Command {
-  LaatLopen,
-  Bedankt,
-  HalenBeideBoorden,
-  HalenSB,
-  HalenBB,
-  StrijkenBeidenBoorden,
-  StrijkenSB,
-  StrijkenBB,
-  VastroeienBeideBoorden,
-  VastroeienSB,
-  VastroeienBB,
-  PeddelendStrijkenSB,
-  PeddelendStrijkenBB,
-  UitzettenSB,
-  UitzettenBB,
-  RondmakenSB,
-  RondmakenBB,
-  Slippen,
-  SlippenSB,
-  SlippenBB,
-  RiemenHoogSB,
-  RiemenHoogBB,
-  Uitbrengen,
-  UitbrengenSB,
-  UitbrengenBB,
-  LightPaddle,
-  LightPaddleBedankt,
-  StuurboordBest,
-  BakboortBest,
-  BestBedankt
-}
 
-var commandNames = [
-  "LaatLopen",
-  "Bedankt",
-  "HalenBeideBoorden",
-  "HalenSB",
-  "HalenBB",
-  "StrijkenBeidenBoorden",
-  "StrijkenSB",
-  "StrijkenBB",
-  "VastroeienBeideBoorden",
-  "VastroeienSB",
-  "VastroeienBB",
-  "PeddelendStrijkenSB",
-  "PeddelendStrijkenBB",
-  "UitzettenSB",
-  "UitzettenBB",
-  "RondmakenSB",
-  "RondmakenBB",
-  "Slippen",
-  "SlippenSB",
-  "SlippenBB",
-  "RiemenHoogSB",
-  "RiemenHoogBB",
-  "Uitbrengen",
-  "UitbrengenSB",
-  "UitbrengenBB",
-  "LightPaddle",
-  "LightPaddleBedankt",
-  "StuurboordBest",
-  "BakboortBest",
-  "BestBedankt"
-]
-
-enum CommandStyle {StyleButtonGray,StyleButtonDarkGray,StyleButtonSB,StyleButtonBB}
-
-var commandStyles=[
-CommandStyle.StyleButtonGray,
-CommandStyle.StyleButtonGray,
-CommandStyle.StyleButtonDarkGray,
-CommandStyle.StyleButtonSB,
-CommandStyle.StyleButtonBB,
-CommandStyle.StyleButtonGray,
-CommandStyle.StyleButtonSB,
-CommandStyle.StyleButtonBB,
-CommandStyle.StyleButtonDarkGray,
-CommandStyle.StyleButtonSB,
-CommandStyle.StyleButtonBB,
-CommandStyle.StyleButtonSB,
-CommandStyle.StyleButtonBB,
-CommandStyle.StyleButtonSB,
-CommandStyle.StyleButtonBB,
-CommandStyle.StyleButtonSB,
-CommandStyle.StyleButtonBB,
-CommandStyle.StyleButtonDarkGray,
-CommandStyle.StyleButtonSB,
-CommandStyle.StyleButtonBB,
-CommandStyle.StyleButtonSB,
-CommandStyle.StyleButtonBB,
-CommandStyle.StyleButtonDarkGray,
-CommandStyle.StyleButtonSB,
-CommandStyle.StyleButtonBB,
-CommandStyle.StyleButtonDarkGray,
-CommandStyle.StyleButtonDarkGray,
-CommandStyle.StyleButtonSB,
-CommandStyle.StyleButtonBB,
-CommandStyle.StyleButtonDarkGray
-]
 var lastCommand=-1
 var newCommand=-1
-var stateOars = StateOars.Roeien
+var stateOars = Constants.StateOars.Roeien
 
 var forwardsPositon=150
 var backwardsPosition=-200
 var currentPositionX=0;
-var isForwards=true
 var moveStep=1000
 
 func _ready():
 	setForwardsPosition(0)
-
+	GameEvents.connect("zoomChangedSignal",self,"_zoomChangedSignal")
+	GameEvents.connect("doCommandSignal",self,"_doCommandSignal")
+	
 func _process(delta):
 	setForwardsPosition(delta)
 
 var lastForwardsCommand=-1
 
+func _zoomChangedSignal():
+	setForwardsPosition(0)
+
 func setForwardsPosition(delta):
 	if delta!=0 && lastForwardsCommand!=lastCommand:
-		if lastCommand==Command.StrijkenBeidenBoorden || lastCommand==Command.HalenBeideBoorden:
-			if lastCommand==Command.StrijkenBeidenBoorden: isForwards=false
-			else: isForwards=true
+		if lastCommand==Constants.Command.StrijkenBeidenBoorden || lastCommand==Constants.Command.HalenBeideBoorden:
+			if lastCommand==Constants.Command.StrijkenBeidenBoorden: GameState.isForwards=false
+			else: GameState.isForwards=true			
 			lastForwardsCommand=lastCommand;
+			GameEvents.forwardBackwardsChanged()
 
 	var positionX=forwardsPositon;	
-	if !isForwards: positionX=backwardsPosition	
+	if !GameState.isForwards: positionX=backwardsPosition	
 	
 	
 	if (currentPositionX!=positionX || delta==0):
@@ -184,9 +80,7 @@ func setForwardsPosition(delta):
 		if currentPositionX<backwardsPosition: currentPositionX=backwardsPosition
 		var zoomDif=$"Camera2D2".zoom.x-0.5;
 		$"Camera2D2".position= Vector2(currentPositionX*zoomDif,0)
-		var toggelButton=$"../CanvasLayer/RightTopButtons/ForwardsBackwards";
-		if isForwards: toggelButton.text="Backwards"
-		else: toggelButton.text="Forwards"
+		
 		
 func startTimer(time):
 	var t = Timer.new()
@@ -214,9 +108,6 @@ func showError(message:String):
 		
 		label.text=""
 
-func commandNameToCommand(commandName : String):
-	var result=commandNames.find(commandName)
-	return result
 	
 #http://kidscancode.org/godot_recipes/basics/understanding_delta/
 # speed (velocity) is pixels per second
@@ -239,7 +130,7 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	#calc rot
 	var destinationTurnSpeed=currentTurnSpeedFactor*max_turn;
 	
-	var noturnLowSleed=state==RowState.VastroeienSB || state==RowState.VastroeienBB;
+	var noturnLowSleed=state==Constants.RowState.VastroeienSB || state==Constants.RowState.VastroeienBB;
 		
 	if lightPaddleOn:
 		destinationTurnSpeed=destinationTurnSpeed*lightPaddleDestTurnFactor
@@ -283,15 +174,15 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 		var extraTurnForce= Vector2(currentSpeed*0.02*forceMultiplier,0).rotated(angle+PI)
 		apply_impulse(Vector2(0,25*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
 	
-	if bestState==BestState.StuurboordBest:
+	if bestState==Constants.BestState.StuurboordBest:
 		apply_torque_impulse(-bestExtraRotation);
-	else: if bestState==BestState.BakboordBest:
+	else: if bestState==Constants.BestState.BakboordBest:
 		apply_torque_impulse(bestExtraRotation);
 	#check on colliding
 	var collidingBodies=get_colliding_bodies()
 	
 	if collidingBodies.size()>0:
-		changeState(RowState.LaatLopen,0)
+		changeState(Constants.RowState.LaatLopen,0)
 		showError("Boem")
 		crashState=true;
 		 
@@ -325,7 +216,7 @@ func setSpeedAndDirection(speedFactor:float,turnFactor:float,newForceMultiplier:
 	
 	
 func boatInRest():
-	return state==RowState.LaatLopen ||	state==RowState.Bedankt 	 || isLowSpeed()
+	return state==Constants.RowState.LaatLopen ||	state==Constants.RowState.Bedankt 	 || isLowSpeed()
 
 func isLowSpeed():
 	return abs(linear_velocity.length())<speedDirectErrorLevel
@@ -337,71 +228,71 @@ func calcSpeed():
 	return result
 	
 func getRules():
-	return $"Rulesets".getRuleset()
+	return rulesetManager.getRuleset()
 	
 func doCommand(command:int):
 	newCommand=command	
 	match command:
-		Command.HalenBeideBoorden:
-			changeState(RowState.HalenBeideBoorden,1)
-		Command.LaatLopen:
-			changeState(RowState.LaatLopen,0)
-		Command.Bedankt:
-			changeState(RowState.Bedankt,0)
-		Command.HalenSB:
-			changeState(RowState.HalenSB,1)
-		Command.StrijkenSB:
-			changeState(RowState.StrijkenSB,-1)
-		Command.VastroeienSB:
-			changeState(RowState.VastroeienSB,0)
-		Command.StrijkenBeidenBoorden:
-			changeState(RowState.StrijkenBeidenBoorden,-1)
-		Command.VastroeienBeideBoorden:
-			changeState(RowState.VastroeienBeideBoorden,0)
-		Command.HalenBB:
-			changeState(RowState.HalenBB,1)
-		Command.StrijkenBB:
-			changeState(RowState.StrijkenBB,-1)
-		Command.VastroeienBB:
-			changeState(RowState.VastroeienBB,0)
-		Command.PeddelendStrijkenBB:
-			changeState(RowState.PeddelendStrijkenBB,0)
-		Command.PeddelendStrijkenSB:
-			changeState(RowState.PeddelendStrijkenSB,0)
-		Command.UitzettenBB:
-			changeState(RowState.UitzettenBB,0)
-		Command.UitzettenSB:
-			changeState(RowState.UitzettenSB,0)
-		Command.RondmakenBB:
-			changeState(RowState.RondmakenBB,-1)
-		Command.RondmakenSB:
-			changeState(RowState.RondmakenSB,-1)
-		Command.Slippen:
-			oarsCommand(OarsCommand.Slippen)
-		Command.Uitbrengen:
-			oarsCommand(OarsCommand.Uitbrengen)
-		Command.SlippenSB:
-			oarsCommand(OarsCommand.SlippenSB)
-		Command.UitbrengenSB:
-			oarsCommand(OarsCommand.UitbrengenSB)
-		Command.SlippenBB:
-			oarsCommand(OarsCommand.SlippenBB)
-		Command.UitbrengenBB:
-			oarsCommand(OarsCommand.UitbrengenBB)
-		Command.LightPaddle:
+		Constants.Command.HalenBeideBoorden:
+			changeState(Constants.RowState.HalenBeideBoorden,1)
+		Constants.Command.LaatLopen:
+			changeState(Constants.RowState.LaatLopen,0)
+		Constants.Command.Bedankt:
+			changeState(Constants.RowState.Bedankt,0)
+		Constants.Command.HalenSB:
+			changeState(Constants.RowState.HalenSB,1)
+		Constants.Command.StrijkenSB:
+			changeState(Constants.RowState.StrijkenSB,-1)
+		Constants.Command.VastroeienSB:
+			changeState(Constants.RowState.VastroeienSB,0)
+		Constants.Command.StrijkenBeidenBoorden:
+			changeState(Constants.RowState.StrijkenBeidenBoorden,-1)
+		Constants.Command.VastroeienBeideBoorden:
+			changeState(Constants.RowState.VastroeienBeideBoorden,0)
+		Constants.Command.HalenBB:
+			changeState(Constants.RowState.HalenBB,1)
+		Constants.Command.StrijkenBB:
+			changeState(Constants.RowState.StrijkenBB,-1)
+		Constants.Command.VastroeienBB:
+			changeState(Constants.RowState.VastroeienBB,0)
+		Constants.Command.PeddelendStrijkenBB:
+			changeState(Constants.RowState.PeddelendStrijkenBB,0)
+		Constants.Command.PeddelendStrijkenSB:
+			changeState(Constants.RowState.PeddelendStrijkenSB,0)
+		Constants.Command.UitzettenBB:
+			changeState(Constants.RowState.UitzettenBB,0)
+		Constants.Command.UitzettenSB:
+			changeState(Constants.RowState.UitzettenSB,0)
+		Constants.Command.RondmakenBB:
+			changeState(Constants.RowState.RondmakenBB,-1)
+		Constants.Command.RondmakenSB:
+			changeState(Constants.RowState.RondmakenSB,-1)
+		Constants.Command.Slippen:
+			oarsCommand(Constants.OarsCommand2.Slippen)
+		Constants.Command.Uitbrengen:
+			oarsCommand(Constants.OarsCommand2.Uitbrengen)
+		Constants.Command.SlippenSB:
+			oarsCommand(Constants.OarsCommand2.SlippenSB)
+		Constants.Command.UitbrengenSB:
+			oarsCommand(Constants.OarsCommand2.UitbrengenSB)
+		Constants.Command.SlippenBB:
+			oarsCommand(Constants.OarsCommand2.SlippenBB)
+		Constants.Command.UitbrengenBB:
+			oarsCommand(Constants.OarsCommand2.UitbrengenBB)
+		Constants.Command.LightPaddle:
 			setLightPaddle(true)
-		Command.LightPaddleBedankt:
+		Constants.Command.LightPaddleBedankt:
 			setLightPaddle(false)
-		Command.RiemenHoogSB:
-			oarsCommand(OarsCommand.RiemenHoogSB)
-		Command.RiemenHoogBB:
-			oarsCommand(OarsCommand.RiemenHoogBB)
-		Command.StuurboordBest:
-			setBest(BestState.StuurboordBest)
-		Command.BakboortBest:
-			setBest(BestState.BakboordBest)
-		Command.BestBedankt:
-			setBest(BestState.Normal)
+		Constants.Command.RiemenHoogSB:
+			oarsCommand(Constants.OarsCommand2.RiemenHoogSB)
+		Constants.Command.RiemenHoogBB:
+			oarsCommand(Constants.OarsCommand2.RiemenHoogBB)
+		Constants.Command.StuurboordBest:
+			setBest(Constants.BestState.StuurboordBest)
+		Constants.Command.BakboortBest:
+			setBest(Constants.BestState.BakboordBest)
+		Constants.Command.BestBedankt:
+			setBest(Constants.BestState.Normal)
 	lastCommand=command
 
 	
@@ -429,56 +320,56 @@ func changeState(newState:int,direction:int):
 	if oldState!=state: 
 		crashState=false;
 	#if the state change was successfull reset the oars state
-	if  oldState!=state && (stateOars==StateOars.RiemenHoogBB || stateOars==StateOars.RiemenHoogSB ):
-	  stateOars=StateOars.Roeien
+	if  oldState!=state && (stateOars==Constants.StateOars.RiemenHoogBB || stateOars==Constants.StateOars.RiemenHoogSB ):
+	  stateOars=Constants.StateOars.Roeien
  
 	# going forward goes faster than backwards
 	# change factor of Max speed, max rotat, speed inc,rotation inc
 	# negative speed is backwards and negative turn speed is turn to the left
 	match state:
-		RowState.HalenBeideBoorden:
+		Constants.RowState.HalenBeideBoorden:
 			setSpeedAndDirection(1,0,1,false)
-		RowState.LaatLopen:
+		Constants.RowState.LaatLopen:
 #			if abs(currentSpeed)<=lowNoRowingSpeed:
 #				setSpeedAndDirection(0,0,0.001,false)
 #			else: 
 				setSpeedAndDirection(0,0,0.01,false)
-		RowState.Bedankt:
+		Constants.RowState.Bedankt:
 #			if abs(currentSpeed)<=lowNoRowingSpeed:
 #				setSpeedAndDirection(0,0,0.2,false)
 #			else: 
 				setSpeedAndDirection(0,0,1,false)
-		RowState.HalenSB:
+		Constants.RowState.HalenSB:
 			setSpeedAndDirection(0.35,-0.5,1,false)
-		RowState.HalenBB:
+		Constants.RowState.HalenBB:
 			setSpeedAndDirection(0.35,0.5,1,false)
-		RowState.VastroeienBeideBoorden:
+		Constants.RowState.VastroeienBeideBoorden:
 			setSpeedAndDirection(0,0,1.5,false)
-		RowState.VastroeienSB:
+		Constants.RowState.VastroeienSB:
 			setSpeedAndDirection(0,0.6,0.4,false)
-		RowState.VastroeienBB:
+		Constants.RowState.VastroeienBB:
 			setSpeedAndDirection(0,-0.6,0.4,false)
-		RowState.StrijkenBeidenBoorden:
+		Constants.RowState.StrijkenBeidenBoorden:
 			setSpeedAndDirection(-0.4,0,0.5,false)
-		RowState.StrijkenBB:
+		Constants.RowState.StrijkenBB:
 			setSpeedAndDirection(-0.3,-0.3,0.5,false)
-		RowState.StrijkenSB:
+		Constants.RowState.StrijkenSB:
 			setSpeedAndDirection(-0.3,0.3,0.5,false)
-		RowState.PeddelendStrijkenBB:
+		Constants.RowState.PeddelendStrijkenBB:
 			setSpeedAndDirection(0.1,-0.1,1,true)
-		RowState.PeddelendStrijkenSB:
+		Constants.RowState.PeddelendStrijkenSB:
 			setSpeedAndDirection(-0.1,0.1,1,true)
-		RowState.UitzettenBB:
+		Constants.RowState.UitzettenBB:
 			onePush=true
-			state=RowState.LaatLopen
+			state=Constants.RowState.LaatLopen
 			setSpeedAndDirection(60,0,1,true)
-		RowState.UitzettenSB:
+		Constants.RowState.UitzettenSB:
 			onePush=true
-			state=RowState.LaatLopen
+			state=Constants.RowState.LaatLopen
 			setSpeedAndDirection(-60,0,1,true)
-		RowState.RondmakenBB:
+		Constants.RowState.RondmakenBB:
 			setSpeedAndDirection(0.01,-0.5,1,false)
-		RowState.RondmakenSB:
+		Constants.RowState.RondmakenSB:
 			setSpeedAndDirection(0.01,0.5,1,false)
 
 func determinenewStateOars(newStateOars):
@@ -497,23 +388,23 @@ func setStateOars(newStateOars : int):
 	$"CollisionRiemenHoogBB".disabled=true
 	$"CollisionRiemenHoogSB".disabled=true
 	match stateOars:
-		StateOars.Roeien:
+		Constants.StateOars.Roeien:
 			$"Sprite".visible=true
 			$"CollisionPolygon2D".disabled=false
-		StateOars.Slippen:
+		Constants.StateOars.Slippen:
 			$"SpriteSlippen".visible=true
 			$"CollisionSlippen".disabled=false
-		StateOars.SlippenSB:
+		Constants.StateOars.SlippenSB:
 			$"SpriteSlippenSB".visible=true
 			$"CollisionSlippenSB".disabled=false
 			
-		StateOars.SlippenBB:
+		Constants.StateOars.SlippenBB:
 			$"SpriteSlippenBB".visible=true
 			$"CollisionSlippenBB".disabled=false
-		StateOars.RiemenHoogSB:
+		Constants.StateOars.RiemenHoogSB:
 			$"Sprite".visible=true
 			$"CollisionRiemenHoogSB".disabled=false
-		StateOars.RiemenHoogBB:
+		Constants.StateOars.RiemenHoogBB:
 			$"Sprite".visible=true
 			$"CollisionRiemenHoogBB".disabled=false
 
@@ -526,7 +417,7 @@ func oarsCommand(command: int):
 	
 	
 func setNewBoatPosition(x:int,y:int,newRotation,newStateOars : int,newIsForwards):
-	isForwards=newIsForwards
+	GameState.isForwards=newIsForwards
 	setForwardsPosition(0)
 	# reset the boat into a new position and place
 	setStateOars(newStateOars)
@@ -534,12 +425,13 @@ func setNewBoatPosition(x:int,y:int,newRotation,newStateOars : int,newIsForwards
 	newPosition_x=x
 	newPosition_y=y
 	lightPaddleOn=false
-	bestState=BestState.Normal
+	bestState=Constants.BestState.Normal
 	# reset speed or turn
-	$"../CanvasLayer/ButtonsContainer".visible=true
-	state=RowState.LaatLopen
+	state=Constants.RowState.LaatLopen
 	currentSpeedFactor=0
 	currentTurnSpeedFactor=0
 	linear_velocity=Vector2(0,0)
 	angular_velocity=0.0
   
+func _doCommandSignal(command:int):
+	doCommand(command)

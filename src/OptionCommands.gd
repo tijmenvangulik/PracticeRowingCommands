@@ -1,16 +1,12 @@
 extends OptionButton
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 var commandTitles= ["HalenBeideBoorden",
   "LaatLopen","Bedankt","HalenSB","StrijkenSB",
   "VastroeienSB","StrijkenBeidenBoorden","VastroeienBeideBoorden",
   "HalenBB","StrijkenBB","VastroeienBB",
   "PeddelendStrijkenBB","PeddelendStrijkenSB",
   "RondmakenBB","RondmakenSB"]
+
 const USE_BUTTONS=999
 
 #func _gui_input(ev):
@@ -27,31 +23,38 @@ const USE_BUTTONS=999
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	fillDropDown([])
 	connect("item_selected",self,"selected")
+	GameEvents.connect("customCommandTextChanged",self,"_on_EditCommandText_customCommandTextChanged")
+	GameEvents.connect("commandsChangedSignal",self,"_commandsChangedSignal")
+	GameEvents.connect("introSignal",self,"_introSignal")
+	var styleDropDown= preload("res://MainDropDown.tres")
+	get_popup().add_stylebox_override("panel",styleDropDown)
+
+func _introSignal(isVisible : bool):
+	visible=!isVisible
+	if !isVisible:
+		grab_focus()
 
 func fillDropDown(enabledCommands : Array):
 	clear()
 	add_item("UseButtons",USE_BUTTONS)
-	var boat=$"../../Boat"
 	var i=0;
-	var buttonContainter=$"../ButtonsContainer";
-	for commandName in boat.commandNames:
-		if (len(enabledCommands)==0 || enabledCommands.find(i,0)>=0 ) && buttonContainter.commandIsUsed(commandName):
+	for commandName in Constants.commandNames:
+		if (len(enabledCommands)==0 || enabledCommands.find(i,0)>=0 ) && Utilities.commandIsUsed(commandName):
 			add_item(commandName,i)
 		i=i+1
+	GameEvents.showButtons(true)
+
 
 func selected(itemIndex : int):
 	var value=get_selected_id()
 	
-	var buttons=$"../ButtonsContainer"
 	var useButtons=value==USE_BUTTONS ;
-	buttons.visible= useButtons
-	var boat=$"../../Boat"
+	GameEvents.showButtons(useButtons)
 	
 	if !useButtons:
-		boat.doCommand(value)
+		GameEvents.doCommand(value)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
@@ -59,3 +62,8 @@ func selected(itemIndex : int):
 
 func _on_EditCommandText_customCommandTextChanged(command, commandName, value):
 	set_item_text(command+1,value)
+	
+func _commandsChangedSignal(showOnlyButonsArray : Array):
+	fillDropDown(showOnlyButonsArray)
+
+	

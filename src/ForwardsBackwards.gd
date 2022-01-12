@@ -6,7 +6,23 @@ extends Button
 # var b = "text"
 
 
+func _ready():
+	setText()
+	GameEvents.connect("forwardBackwardsChangedSignal",self,"_forwardBackwardsChangedSignal")
+	GameEvents.connect("introSignal",self,"_introSignal")
+
+func _introSignal(isVisible : bool):
+	visible=!isVisible
+	
+func setText():
+	if GameState.isForwards: text="Backwards"
+	else: text="Forwards"
+	
 # Called when the node enters the scene tree for the first time.
 func _pressed():
-	var boat=$"../../../Boat"
-	boat.isForwards=!boat.isForwards
+	GameState.isForwards=!GameState.isForwards
+	GameEvents.forwardBackwardsChanged()
+
+func _forwardBackwardsChangedSignal():
+	setText()
+

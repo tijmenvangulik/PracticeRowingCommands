@@ -1,25 +1,14 @@
 extends PanelContainer
 
-var defaultButtonSet=["HalenBeideBoorden","LaatLopen,Bedankt","VastroeienSB","HalenSB","StrijkenSB","StrijkenBeidenBoorden","VastroeienBeideBoorden","VastroeienBB","HalenBB","StrijkenBB","Slippen","SlippenSB","UitbrengenSB","PeddelendStrijkenSB","RondmakenSB","Uitbrengen","SlippenBB","UitbrengenBB","PeddelendStrijkenBB","RondmakenBB","LightPaddle","LightPaddleBedankt","RiemenHoogSB","RiemenHoogBB"]
-var currentButtonSet=defaultButtonSet
-
 func loadButtonsSetFromResources():
 	var buttonSet=tr("ButtonSet")
 	if buttonSet!=null && buttonSet!="ButtonSet" && buttonSet!="":
 		var p= JSON.parse(buttonSet)
 		if typeof(p.result)==TYPE_ARRAY:
-			currentButtonSet=p.result
-			defaultButtonSet=currentButtonSet
+			GameState.currentButtonSet=p.result
+			GameState.defaultButtonSet=GameState.currentButtonSet
 
-func commandIsUsed(commandName : String):
-	var found=false
 
-	for item in currentButtonSet:
-		if item==commandName || item.begins_with(commandName+",") || item.find(","+commandName)>0:
-			found=true
-			break
-			
-	return found
 	
 func initButtons():
 	loadButtonsSetFromResources()
@@ -27,6 +16,10 @@ func initButtons():
 	
 func _ready():
 	initButtons()
+	GameEvents.connect("languageChangedSignal",self,"_languageChangedSignal");
+	GameEvents.connect("disableCommandSignal",self,"_disableCommandSignal");
+	GameEvents.connect("customButtonSetChangedSignal",self,"_customButtonSetChangedSignal")
+	GameEvents.connect("showButtonsSignal",self,"_showButtonsSignal")
 	
 func setChildNodeText(node,commandName,value):
 	for N in node.get_children():
@@ -62,7 +55,7 @@ func addButton(container,commandName :String):
 func loadButtons():
 	clearGrid()
 	var container =$"GridContainer"
-	for item in currentButtonSet:
+	for item in GameState.currentButtonSet:
 		if typeof(item)==TYPE_STRING:
 			var commandNames=item.split(",")
 			if commandNames.size()>1:
@@ -74,6 +67,18 @@ func loadButtons():
 				addButton(container,commandNames[0])
 
 func setCustomButtonSet(newButtonSet):
-	if newButtonSet.size()==0: currentButtonSet=defaultButtonSet
-	else: currentButtonSet=newButtonSet
+	if newButtonSet.size()==0: GameState.currentButtonSet=GameState.defaultButtonSet
+	else: GameState.currentButtonSet=newButtonSet
 	loadButtons()
+
+func _languageChangedSignal():
+	loadButtons()
+
+func _disableCommandSignal(commandName:String,disabled:bool):
+	disableCommand(commandName,disabled)
+
+func _customButtonSetChangedSignal():
+	setCustomButtonSet(Settings.customButtonSet)
+
+func _showButtonsSignal(show : bool):
+	visible=show

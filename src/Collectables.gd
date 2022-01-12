@@ -1,6 +1,9 @@
 extends Node
 
+class_name Collectables
 
+export (NodePath) onready var collectedCounter = get_node(collectedCounter) as CollectedCounter
+export (NodePath) onready var boat = get_node(boat) as Boat
 
 var collectedCount=0;
 var gameStarted=false;
@@ -10,19 +13,19 @@ var lastMinutes=0
 var lastTimeString=""
 var crashedState=false;
 
+
 func resetCrashed():
 	crashedState=false;
-	var boat=$"../Boat"
 	boat.resetCrashed()
 	
 func _process(delta: float) -> void:
 	if gameStarted:
 		time_elapsed += delta	
 		updateTime(false)
-		var boat=$"../Boat"
 		if boat.crashState && !crashedState:
 			crashedState=true;
-			gameFinished()
+			GameState.changeCollectGameState(Constants.CollectGameState.Finish)
+
 	
 func formatTime(minutes,seconds,miliSeconds):
 	var minStr=String(minutes)
@@ -58,27 +61,26 @@ func updateTime(includeMiliSeconds):
 	var miliSeconds=timeParts[2]
 
 	if includeMiliSeconds || lastSeconds!=seconds || lastMinutes!=minutes:
-		var c=getCounterControl()
+		
 		lastTimeString=formatTime(minutes,seconds,miliSeconds)
-		c.updateTime(lastTimeString)
+		collectedCounter.updateTime(lastTimeString)
 		lastSeconds=seconds
 		lastMinutes=minutes
 	
 func _ready():
 	hideAll()
+	GameEvents.connect("collectGameStateChangedSignal",self,"_collectGameStateChangedSignal")
 
 func collect(amount : int):
 	setCollected(collectedCount+amount)
 	if collectedCount==self.get_child_count():		
-		gameFinished()
+		GameState.changeCollectGameState(Constants.CollectGameState.Finish)
 
-func getCounterControl():
-	return $"/root/World/CanvasLayer/RightTopButtons/CollectedCount"	
 	
 func setCollected(amount):
 	collectedCount=amount
-	var c=getCounterControl();
-	c.setCount(collectedCount,self.get_child_count())
+
+	collectedCounter.setCount(collectedCount,self.get_child_count())
 	
 func reset():	
 	for c in get_children():
@@ -90,38 +92,34 @@ func hideAll():
 		c.hide()
 
 func updateHighScoreControl(highScore):
-	var counter=getCounterControl()
 	var highScoreText=formatScore(highScore,true)
-	counter.setHighScore(highScoreText)
+	collectedCounter.setHighScore(highScoreText)
 	
-func startGame(crashed):
+func startGame():
 	var highScore= getHighScore()
 	if highScore>0:
 		updateHighScoreControl(highScore)
-	var dlg=$"../CanvasLayer/StartCollectGame"
-	dlg.init()
-	dlg.show_modal(true)
 	
 func doStartGame():
 	
 	resetCrashed()
 	reset()
 	setCollected(0)
-	var c=getCounterControl();
-	c.visible=true;
+
+	collectedCounter.visible=true;
 	gameStarted=true
 
 func stopGame():
-	var c=getCounterControl();
-	c.visible=false;
+	collectedCounter.visible=false;
 	hideAll()
 	resetCrashed()
+	gameStarted=false
+	GameState.changeCollectGameState(Constants.CollectGameState.None)
 	
-func gameFinished():
+func gameFinish():
 	gameStarted=false
 	var crashed=crashedState
 	resetCrashed()
-	var boat=$"/root/World/Boat"
 	
 	updateTime(true)
 	
@@ -129,7 +127,7 @@ func gameFinished():
 	yield(t, "timeout")
 	boat.removeTimer(t)
 
-	boat.setNewBoatPosition(984.05,1995.76,0,boat.StateOars.Roeien,true)
+	boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)
 	
 	t=boat.startTimer(1.1)
 	yield(t, "timeout")
@@ -143,22 +141,27 @@ func gameFinished():
 		setHighScore(time_elapsed)
 		isHighScore=true	
 	
-	var dlg=$"../CanvasLayer/EndCollectGame";
 	if crashed:
-		dlg.initCrashed()
+		GameState.changeCollectGameState(Constants.CollectGameState.Crashed)
 	else:
-		dlg.init(lastTimeString,isHighScore)
+		GameState.collectGameLastTimeString =lastTimeString
+		GameState.collectGameIsHighScore=isHighScore
+		GameState.changeCollectGameState(Constants.CollectGameState.Finished)
 	
-	dlg.show_modal(true)
-
 func getHighScore():
-	var config=$"../CanvasLayer/SettingsDialog"
-	return config.highScore
+	return Settings.highScore
 	
 func setHighScore(score):
-	var config=$"../CanvasLayer/SettingsDialog"
-	config.highScore=score;
-	config.saveSettings()
+	Settings.highScore=score;
+	GameEvents.settingsChanged()
 	updateHighScoreControl(score);
 	
-
+func _collectGameStateChangedSignal(state):
+	if state==Constants.CollectGameState.DoStart:
+		doStartGame()
+	elif state==Constants.CollectGameState.Start:
+		startGame()
+	elif state==Constants.CollectGameState.Stop:
+		stopGame()
+	elif state==Constants.CollectGameState.Finish:
+		gameFinish()

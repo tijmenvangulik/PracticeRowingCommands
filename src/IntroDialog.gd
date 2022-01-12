@@ -9,7 +9,6 @@ var lang=""
 func handleShow():
 	if visible:
 		$"CloseButton".grab_focus()
-	else: $"../OptionCommands".grab_focus()
 	
 func _init():
 	connect("visibility_changed",self,"handleShow");
@@ -18,6 +17,7 @@ func _init():
 func _ready():
 	setText()
 	get_close_button().hide()
+	GameEvents.connect("introSignal",self,"_introSignal")
 	
 func setText():
 	var intro=$"IntroText"
@@ -30,7 +30,9 @@ func _process(delta):
 	if lang!=TranslationServer.get_locale():
 		setText()
 		
-
+func _introSignal(isVisible : bool):
+	visible=isVisible
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

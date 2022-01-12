@@ -1,9 +1,15 @@
 extends Tabs
 
-var customButtonSet=[]
+class_name CommandButtonsTab
+
+export (NodePath) onready var commandContainerSource = get_node(commandContainerSource) as GridContainer
+export (NodePath) onready var commandContainerDest = get_node(commandContainerDest) as GridContainer
 
 var customButtonSetChanged=false;
 
+func _ready():
+	GameEvents.connect("customButtonSetChangedSignal",self,"_customButtonSetChangedSignal")
+	
 func init():
 	loadCommandSet()
 	loadDestButtons()
@@ -31,41 +37,36 @@ func addGridButton(container,commandName :String, isSource : bool):
 
 	
 func loadCommandSet():
-	var boat=$"/root/World/Boat"
-	var commandSelectGrid=$"CommandSelectScrollContainer/CommandContainerSource"
-	for i in range(0,boat.commandNames.size()):
-		var commandName=boat.commandNames[i]
-		addGridButton(commandSelectGrid,commandName,true)
+	for i in range(0,Constants.commandNames.size()):
+		var commandName=Constants.commandNames[i]
+		addGridButton(commandContainerSource,commandName,true)
 	
 func clearDestGrid():
-	var node=$"CommandSelectScrollContainerDest/CommandContainerDest"
-	for N in node.get_children():
-		node.remove_child(N)
+	for N in commandContainerDest.get_children():
+		commandContainerDest.remove_child(N)
 	enableDisableSourceButtons()
 
 
 func loadDestButtons():
 	clearDestGrid()
-	var container =$"CommandSelectScrollContainerDest/CommandContainerDest"	
-	var buttonSet=customButtonSet
-	var buttonContainer=$"/root/World/CanvasLayer/ButtonsContainer"
+	
+	var buttonSet=Settings.customButtonSet
 	if buttonSet.size()==0:
-		buttonSet=buttonContainer.currentButtonSet
+		buttonSet=GameState.defaultButtonSet
 	for item in buttonSet:
-		var grouper=addGridGrouper(container)
+		var grouper=addGridGrouper(commandContainerDest)
 		var horiz=grouper.getHorizontalGroup()
 		if typeof(item)==TYPE_STRING:
 			var commandNames=item.split(",")
 			for buttonItem in commandNames:
 				addGridButton(horiz,buttonItem,false)
-	var totalGridItems=container.columns*5;
+	var totalGridItems=commandContainerDest.columns*5;
 	for item in range(buttonSet.size(),totalGridItems):
-		addGridGrouper(container)
+		addGridGrouper(commandContainerDest)
 	enableDisableSourceButtons()
 	
 func button_dropped_source(droppedInfo,dropped):
-	var sourceGrid=$CommandSelectScrollContainer/CommandContainerSource
-	if droppedInfo.dragButton.get_parent()!=sourceGrid :
+	if droppedInfo.dragButton.get_parent()!=commandContainerSource :
 		droppedInfo.dragButton.get_parent().remove_child(droppedInfo.dragButton)
 		customButtonSetChanged=true
 		enableDisableSourceButtons()
@@ -73,7 +74,6 @@ func button_dropped_source(droppedInfo,dropped):
 func button_dropped_dest(droppedInfo,dropped):
 	addGridButton(dropped.get_node(".."),dropped.commandName,false)
 	customButtonSetChanged=true
-	var grid=$CommandSelectScrollContainerDest/CommandContainerDest
 	enableDisableSourceButtons()
 	
 func button_droppedOnGrouper(droppedInfo,groupItem):
@@ -88,54 +88,55 @@ func _on_CommandContainerSource_button_droppedOnSourceGrid(droppedInfo):
 	enableDisableSourceButtons()
 	
 func enableDisableSourceButtons():
-	var gridSource =$"CommandSelectScrollContainer/CommandContainerSource"
 	var destDict=GetCustomButtonFlatDict()
-	for  button in gridSource.get_children():
+	for  button in commandContainerSource.get_children():
 		button.get_node("GridButton").disabled=destDict.has(button.commandName)
 		
 func updateCustomButtonSet():
-	customButtonSet=[]
-	var grid =$"CommandSelectScrollContainerDest/CommandContainerDest"	
-	for  grouper in grid.get_children():
+	Settings.customButtonSet=[]
+	for  grouper in commandContainerDest.get_children():
 		var buttonNames=""		
 		for  button in grouper.get_node("GridItemGrouperHoriz2").get_children():
 			if buttonNames!="":
 				buttonNames=buttonNames+","
 			buttonNames=buttonNames+button.commandName
-		customButtonSet.append(buttonNames)
+		Settings.customButtonSet.append(buttonNames)
 	
 func GetCustomButtonFlatDict():
 	var result={}
-	var grid =$"CommandSelectScrollContainerDest/CommandContainerDest"	
-	for  grouper in grid.get_children():
+	for  grouper in commandContainerDest.get_children():
 		for  button in grouper.get_node("GridItemGrouperHoriz2").get_children():
 			result[button.commandName]=1
 	return result
 
-	
-func _on_SettingsDialog_popup_hide():
+func ensureButtonsetSaved():
 	if customButtonSetChanged:
 		updateCustomButtonSet()
-		$"../../../ButtonsContainer".setCustomButtonSet(customButtonSet)
-		$"../..".saveSettings()
-
+		GameEvents.customButtonSetChanged()
+		GameEvents.settingsChanged()
+	
+func _on_SettingsDialog_popup_hide():
+	ensureButtonsetSaved()
 func _on_SettingsDialog_about_to_show():
 	customButtonSetChanged=false
 	loadDestButtons();
 
 func _on_DefaultCustomButtons_pressed():
-	customButtonSet=[]
+	Settings.customButtonSet=[]
 	loadDestButtons();
 	customButtonSetChanged=false
-	$"../../../ButtonsContainer".setCustomButtonSet(customButtonSet)
-	$"../..".saveSettings()
+	GameEvents.customButtonSetChanged()
+	GameEvents.settingsChanged()
 
 	
 func _on_ClearCustomButtons_pressed():
-	customButtonSet=[]
+	Settings.customButtonSet=[]
 	var totalGridItems=5*5;
 	for item in range(1,5):
-		customButtonSet.append("")
+		Settings.customButtonSet.append("")
 	loadDestButtons();
 	customButtonSetChanged=true
+
+func _customButtonSetChangedSignal():
+	loadDestButtons();
 	

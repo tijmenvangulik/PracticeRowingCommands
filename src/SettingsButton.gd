@@ -1,18 +1,13 @@
 extends ToolButton
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+export (NodePath) onready var settingsDialog = get_node(settingsDialog) as WindowDialog
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	GameEvents.connect("introSignal",self,"_introSignal")
 
+func _introSignal(isVisible : bool):
+	visible=!isVisible
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 func _pressed():
-	$"../../SettingsDialog".popup()
+	settingsDialog.popup()

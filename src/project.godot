@@ -8,8 +8,50 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "RigidBody2D",
+"class": "Boat",
+"language": "GDScript",
+"path": "res://Boat.gd"
+}, {
+"base": "Node",
+"class": "Collectables",
+"language": "GDScript",
+"path": "res://Collectables.gd"
+}, {
+"base": "HBoxContainer",
+"class": "CollectedCounter",
+"language": "GDScript",
+"path": "res://CollectedCount.gd"
+}, {
+"base": "Tabs",
+"class": "CommandButtonsTab",
+"language": "GDScript",
+"path": "res://CommandButtonsTab.gd"
+}, {
+"base": "Node",
+"class": "RuleSets",
+"language": "GDScript",
+"path": "res://Rulesets.gd"
+}, {
+"base": "WindowDialog",
+"class": "SettingsDialog",
+"language": "GDScript",
+"path": "res://SettingsDialog.gd"
+}, {
+"base": "WindowDialog",
+"class": "StartCollectGame",
+"language": "GDScript",
+"path": "res://StartCollectGame.gd"
+} ]
 _global_script_class_icons={
+"Boat": "",
+"Collectables": "",
+"CollectedCounter": "",
+"CommandButtonsTab": "",
+"RuleSets": "",
+"SettingsDialog": "",
+"StartCollectGame": ""
 }
 
 [application]
@@ -18,6 +60,14 @@ config/name="PracticeRowingCommands"
 config/description="Practice rowing (coxing) commands"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Constants="*res://constants.gd"
+GameEvents="*res://game_events.gd"
+Utilities="*res://utilities.gd"
+Settings="*res://settings.gd"
+GameState="*res://game_state.gd"
 
 [display]
 

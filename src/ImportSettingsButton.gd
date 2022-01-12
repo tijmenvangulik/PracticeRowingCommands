@@ -46,8 +46,8 @@ func _pressed():
 func doImport(settings):
 	settings.erase("highScore")
 	$"..".setSettings(settings)
-	$"..".saveSettings()
-	$"../TabContainer/CommandButtonsTab".loadDestButtons()
+	GameEvents.settingsChanged()
+	GameEvents.customButtonSetChanged()
 
 #func testImport():
 #	var settings = parse_json("{\"customButtonSet\":[\"HalenBeideBoorden\",\"LaatLopen,Bedankt\",\"VastroeienSB\",\"HalenSB\",\"StrijkenSB\",\"StrijkenBeidenBoorden\",\"VastroeienBeideBoorden\",\"VastroeienBB\",\"HalenBB\",\"StrijkenBB\",\"Slippen\",\"SlippenSB\",\"UitbrengenSB\",\"PeddelendStrijkenSB\",\"StuurboordBest\",\"Uitbrengen\",\"SlippenBB\",\"UitbrengenBB\",\"PeddelendStrijkenBB\",\"BakboortBest\",\"LightPaddle\",\"LightPaddleBedankt\",\"RiemenHoogSB\",\"RiemenHoogBB\",\"BestBedankt\"],\"ruleset\":\"RulesetNoRules\",\"translations\":{\"Bedankt\":\"Bedankt2\"}}")

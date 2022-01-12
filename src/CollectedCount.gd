@@ -1,5 +1,6 @@
 extends HBoxContainer
 
+class_name CollectedCounter
 
 func setCount(value,maxValue):
 	$"CountValue".text=String(value)+" / "+String(maxValue)

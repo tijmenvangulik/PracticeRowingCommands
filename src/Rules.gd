@@ -14,44 +14,44 @@ func determinenewState(boat,newState:int,direction:int):
 	var state=boat.state
 	var stateOars=boat.stateOars
 	var result=state;
-	if stateOars==boat.StateOars.Slippen &&  newState!=boat.RowState.Bedankt && newState!=boat.RowState.PeddelendStrijkenBB && newState!=boat.RowState.PeddelendStrijkenSB :
+	if stateOars==Constants.StateOars.Slippen &&  newState!=Constants.RowState.Bedankt && newState!=Constants.RowState.PeddelendStrijkenBB && newState!=Constants.RowState.PeddelendStrijkenSB :
 		setError("EerstUitBrengen")	
 		return result
-	if stateOars!=boat.StateOars.Roeien &&  stateOars!=boat.StateOars.RiemenHoogSB && stateOars!=boat.StateOars.RiemenHoogBB && (newState==boat.RowState.HalenBeideBoorden || newState==boat.RowState.StrijkenBeidenBoorden  || newState==boat.RowState.RondmakenSB  || newState==boat.RowState.RondmakenBB ):
+	if stateOars!=Constants.StateOars.Roeien &&  stateOars!=Constants.StateOars.RiemenHoogSB && stateOars!=Constants.StateOars.RiemenHoogBB && (newState==Constants.RowState.HalenBeideBoorden || newState==Constants.RowState.StrijkenBeidenBoorden  || newState==Constants.RowState.RondmakenSB  || newState==Constants.RowState.RondmakenBB ):
 		setError("EerstUitBrengen")	
 		return result
-	else: if stateOars==boat.StateOars.SlippenBB && (newState==boat.RowState.HalenBB || newState==boat.RowState.StrijkenBB || newState==boat.RowState.VastroeienBB):
+	else: if stateOars==Constants.StateOars.SlippenBB && (newState==Constants.RowState.HalenBB || newState==Constants.RowState.StrijkenBB || newState==Constants.RowState.VastroeienBB):
 		setError("EerstUitBrengen")	
 		return result
-	else: if stateOars==boat.StateOars.SlippenSB && (newState==boat.RowState.HalenSB || newState==boat.RowState.StrijkenSB || newState==boat.RowState.VastroeienSB) :
+	else: if stateOars==Constants.StateOars.SlippenSB && (newState==Constants.RowState.HalenSB || newState==Constants.RowState.StrijkenSB || newState==Constants.RowState.VastroeienSB) :
 		setError("EerstUitBrengen")	
 		return result
-	else: if newState==boat.RowState.PeddelendStrijkenSB && (stateOars!=boat.StateOars.SlippenSB && stateOars!=boat.StateOars.Slippen ):
+	else: if newState==Constants.RowState.PeddelendStrijkenSB && (stateOars!=Constants.StateOars.SlippenSB && stateOars!=Constants.StateOars.Slippen ):
 		setError("EerstSlippen")	
 		return result
-	else: if newState==boat.RowState.PeddelendStrijkenBB && (stateOars!=boat.StateOars.SlippenBB && stateOars!=boat.StateOars.Slippen ):
+	else: if newState==Constants.RowState.PeddelendStrijkenBB && (stateOars!=Constants.StateOars.SlippenBB && stateOars!=Constants.StateOars.Slippen ):
 		setError("EerstSlippen")	
 		return result
-	else: if newState==boat.RowState.Bedankt &&  !boat.isLowSpeed() && (state==boat.RowState.HalenBeideBoorden ):
+	else: if newState==Constants.RowState.Bedankt &&  !boat.isLowSpeed() && (state==Constants.RowState.HalenBeideBoorden ):
 		setError("EerstLatenLopen")
 		return result
-	else: if newState==boat.RowState.UitzettenSB && stateOars!=boat.StateOars.SlippenSB && stateOars!=boat.StateOars.RiemenHoogSB:
+	else: if newState==Constants.RowState.UitzettenSB && stateOars!=Constants.StateOars.SlippenSB && stateOars!=Constants.StateOars.RiemenHoogSB:
 		setError("RiemenMoetenHoogZijn")
 		return result
-	else: if newState==boat.RowState.UitzettenBB && stateOars!=boat.StateOars.SlippenBB && stateOars!=boat.StateOars.RiemenHoogBB:
+	else: if newState==Constants.RowState.UitzettenBB && stateOars!=Constants.StateOars.SlippenBB && stateOars!=Constants.StateOars.RiemenHoogBB:
 		setError("RiemenMoetenHoogZijn")
 		return result
-	else: if (newState==boat.RowState.UitzettenSB || newState==boat.RowState.UitzettenBB) && !boat.isLowSpeed():
+	else: if (newState==Constants.RowState.UitzettenSB || newState==Constants.RowState.UitzettenBB) && !boat.isLowSpeed():
 		setError("LegBootStil")
 		return result
-	else: if newState==boat.RowState.LaatLopen || newState==boat.RowState.Bedankt || boat.isLowSpeed():
+	else: if newState==Constants.RowState.LaatLopen || newState==Constants.RowState.Bedankt || boat.isLowSpeed():
 		result=newState
 		return result
 	else:
 		var currentDirection=0
 		if boat.calcSpeed()<0:  currentDirection=-1
 		else: currentDirection=1
-		if (state==boat.RowState.LaatLopen || state==boat.RowState.Bedankt)  :
+		if (state==Constants.RowState.LaatLopen || state==Constants.RowState.Bedankt)  :
 			if  direction!=0 && direction!=currentDirection && !boat.isLowSpeed():
 				setError("LegBootStil")
 				return result
@@ -68,49 +68,49 @@ func determineOarsState(boat,command : int):
 	var stateOars=boat.stateOars
 	if boat.boatInRest():
 		match command:
-			boat.OarsCommand.Slippen:
-				if stateOars==boat.StateOars.Roeien:
-					return boat.StateOars.Slippen
+			Constants.OarsCommand2.Slippen:
+				if stateOars==Constants.StateOars.Roeien:
+					return Constants.StateOars.Slippen
 				else: 
 					setError("CommandIsAlreadyActive")
-			boat.OarsCommand.Uitbrengen:
-				if stateOars==boat.StateOars.Slippen:
-					return boat.StateOars.Roeien
+			Constants.OarsCommand2.Uitbrengen:
+				if stateOars==Constants.StateOars.Slippen:
+					return Constants.StateOars.Roeien
 				else:
 					setError("EerstSlippen")
-			boat.OarsCommand.SlippenBB:
+			Constants.OarsCommand2.SlippenBB:
 				
-				if stateOars==boat.StateOars.Roeien:
-					return boat.StateOars.SlippenBB
-				else: if stateOars==boat.StateOars.SlippenSB:
-					return boat.StateOars.Slippen
+				if stateOars==Constants.StateOars.Roeien:
+					return Constants.StateOars.SlippenBB
+				else: if stateOars==Constants.StateOars.SlippenSB:
+					return Constants.StateOars.Slippen
 				else: setError("CommandIsAlreadyActive")	
-			boat.OarsCommand.UitbrengenBB:
-				if stateOars==boat.StateOars.SlippenBB:
-					return boat.StateOars.Roeien
-				else: if stateOars==boat.StateOars.Slippen:
-					return boat.StateOars.SlippenSB
+			Constants.OarsCommand2.UitbrengenBB:
+				if stateOars==Constants.StateOars.SlippenBB:
+					return Constants.StateOars.Roeien
+				else: if stateOars==Constants.StateOars.Slippen:
+					return Constants.StateOars.SlippenSB
 				else: setError("EerstSlippen")	
-			boat.OarsCommand.SlippenSB:
-				if stateOars==boat.StateOars.Roeien:
-					return boat.StateOars.SlippenSB
-				else: if stateOars==boat.StateOars.SlippenBB:
-					return boat.StateOars.Slippen
+			Constants.OarsCommand2.SlippenSB:
+				if stateOars==Constants.StateOars.Roeien:
+					return Constants.StateOars.SlippenSB
+				else: if stateOars==Constants.StateOars.SlippenBB:
+					return Constants.StateOars.Slippen
 				else: setError("CommandIsAlreadyActive")	
-			boat.OarsCommand.UitbrengenSB:
-				if stateOars==boat.StateOars.SlippenSB:
-					return boat.StateOars.Roeien
-				else: if stateOars==boat.StateOars.Slippen:
-					return boat.StateOars.SlippenBB
+			Constants.OarsCommand2.UitbrengenSB:
+				if stateOars==Constants.StateOars.SlippenSB:
+					return Constants.StateOars.Roeien
+				else: if stateOars==Constants.StateOars.Slippen:
+					return Constants.StateOars.SlippenBB
 				else: setError("EerstSlippen")
-			boat.OarsCommand.RiemenHoogSB:
-				if stateOars==boat.StateOars.Roeien :
-					return boat.StateOars.RiemenHoogSB
+			Constants.OarsCommand2.RiemenHoogSB:
+				if stateOars==Constants.StateOars.Roeien :
+					return Constants.StateOars.RiemenHoogSB
 				else: setError("RiemenHoogAlleenAlsRiemenUitgebracht")	
 				
-			boat.OarsCommand.RiemenHoogBB:					
-				if stateOars==boat.StateOars.Roeien:
-					return boat.StateOars.RiemenHoogBB
+			Constants.OarsCommand2.RiemenHoogBB:					
+				if stateOars==Constants.StateOars.Roeien:
+					return Constants.StateOars.RiemenHoogBB
 				else: setError("RiemenHoogAlleenAlsRiemenUitgebracht")	
 	else: 
 		setError("EerstLatenLopenOfBedankt")
@@ -128,14 +128,14 @@ func determineBestState(boat,newBestState :int):
 	clearError()
 	var bestState=boat.bestState
 	var state=boat.state
-	if newBestState==boat.BestState.Normal:
-		if bestState!=boat.BestState.StuurboordBest && bestState!= boat.BestState.BakboordBest:
+	if newBestState==Constants.BestState.Normal:
+		if bestState!=Constants.BestState.StuurboordBest && bestState!= Constants.BestState.BakboordBest:
 			setError("BestIsNietActief")
 			return bestState
-	if (state!=boat.RowState.HalenBeideBoorden):
+	if (state!=Constants.RowState.HalenBeideBoorden):
 		setError("BestAlleenTijdensHalen")
 	else: 
-		if newBestState!=boat.BestState.Normal && bestState!=boat.BestState.Normal:
+		if newBestState!=Constants.BestState.Normal && bestState!=Constants.BestState.Normal:
 			setError("CommandIsAlreadyActive")
 	return newBestState
 
