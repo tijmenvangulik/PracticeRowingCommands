@@ -1,10 +1,10 @@
 extends Node
 
-func commandNameToCommand(commandName : String):
+func commandNameToCommand(commandName : String)->int:
 	var result=Constants.commandNames.find(commandName)
 	return result
 	
-func commandIsUsed(commandName : String):
+func commandIsUsed(commandName : String)->bool:
 	var found=false
 
 	for item in GameState.currentButtonSet:
@@ -13,3 +13,8 @@ func commandIsUsed(commandName : String):
 			break
 			
 	return found
+	
+func getCommandTranslation(command:int)->String:
+	if command>=0 && command<Settings.commandTranslations.size():
+		return Settings.commandTranslations[command]
+	return ""

@@ -31,6 +31,9 @@ func init(newCommandName):
 	if command>=0:
 		var button=$GridButton
 		button.text=commandName
+		var alterNativeText=Utilities.getCommandTranslation(command)
+		if alterNativeText && alterNativeText!="":
+			button.text=alterNativeText
 		button.visible=true
 
 		button.add_font_override("font",load("res://Font.tres"))

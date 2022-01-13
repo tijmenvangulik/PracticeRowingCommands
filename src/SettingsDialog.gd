@@ -76,7 +76,7 @@ func _ready():
 		if altText!=null && altText!="":
 			editBox.setText(altText)
 		commandIndex=commandIndex+1
-	
+		
 func getSettings():
 	var commandDict={}
 	for i in range(0,Settings.commandTranslations.size()-1):
