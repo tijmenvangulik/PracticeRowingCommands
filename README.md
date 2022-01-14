@@ -4,7 +4,7 @@
 Serious game to practice rowing coxing commands. 
 
 The website:
-[https://ergometer-space.org/PracticeRowingCommands](https://ergometer-space.org/PracticeRowingCommands)
+[https://www.vangulik.org/PracticeRowingCommands/](https://www.vangulik.org/PracticeRowingCommands)
 
 Written in godot (3.4.2, https://godotengine.org)
 
