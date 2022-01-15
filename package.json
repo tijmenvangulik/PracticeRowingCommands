@@ -4,11 +4,17 @@
   "description": "practice rowing commands",
   "main": "index.js",
   "dependencies": {
-    "gzipper": "^6.2.1"
+    "gzipper": "^6.2.1",
+    "mustache": "^4.2.0"
   },
   "devDependencies": {},
   "scripts": {
-    "compress": "gzipper compress ./bin/html/index.wasm --brotli "
+    "compress": "gzipper compress ./bin/html/index.wasm --brotli ",
+    "updatehtml": "mustache package.json template/index.html > bin/html/index.html",
+    "copyjs": "mustache package.json template/index.js > bin/html/index.js",
+    "build": "npm run compress && npm run updatehtml && npm run copyjs",
+    "deploy": "rsync -rvu --exclude \".*\" bin/html/ /Volumes/www.vangulik.org/PracticeRowingCommands/",
+    "buildAndDeploy":"npm run build && npm run deploy"
   },
   "repository": {
     "type": "git",

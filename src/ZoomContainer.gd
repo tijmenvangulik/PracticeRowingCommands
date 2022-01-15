@@ -48,7 +48,7 @@ func _on_ZoomMin_pressed():
 	zoom(1)
 
 func _settings_changed_signal():
-	if camera.zoom.x!=Settings.zoom:
+	if Settings.zoom>0 && camera.zoom.x!=Settings.zoom:
 		camera.zoom.x=Settings.zoom
 		camera.zoom.y=Settings.zoom
 		GameEvents.zoomChanged()
