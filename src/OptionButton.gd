@@ -5,8 +5,10 @@ extends OptionButton
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var languageItems=["Nederlands viking","Nederlands","English"]
+var languageItems=["NL viking","Nederlands","English"]
 var languageKeys=["nl_NL","nl","en"]
+var flags=["nl","nl","gb"]
+
 var currentLang=""
 
 
@@ -22,8 +24,10 @@ func _init():
 func _ready():
 	GameEvents.connect("settingsChangedSignal",self,"_settings_changedSignal")
 	var i=0;
-	for item in languageItems:		
-		add_item(item,i)
+	for item in languageItems:
+		var flagName=flags[i]
+		var texture=load("res://assets/flags/"+flagName+".svg")
+		add_icon_item(texture,item,i)
 		i=i+1
 	
 	connect("item_selected",self,"selected")

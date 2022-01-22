@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=2]
+[gd_scene load_steps=82 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -36,6 +36,7 @@
 [ext_resource path="res://ButtonWithBorderFocus.tres" type="StyleBox" id=34]
 [ext_resource path="res://MainDropDown.tres" type="StyleBox" id=35]
 [ext_resource path="res://MainDropFocus.tres" type="StyleBox" id=36]
+[ext_resource path="res://assets/flags/nl.svg" type="Texture" id=37]
 [ext_resource path="res://OptionStart.gd" type="Script" id=40]
 [ext_resource path="res://OptionCommands.gd" type="Script" id=41]
 [ext_resource path="res://CloseButton.gd" type="Script" id=42]
@@ -1146,9 +1147,9 @@ position = Vector2( 623, 115 )
 texture = ExtResource( 14 )
 
 [node name="OptionCommands" type="OptionButton" parent="CanvasLayer"]
-margin_left = 14.392
+margin_left = 8.0
 margin_top = 6.0
-margin_right = 263.393
+margin_right = 257.001
 margin_bottom = 40.0
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 18 )
@@ -1556,7 +1557,7 @@ boat = NodePath("../../../Boat")
 
 [node name="OptionLanguage" type="OptionButton" parent="CanvasLayer/RightTopButtons"]
 margin_left = 301.0
-margin_right = 405.0
+margin_right = 427.0
 margin_bottom = 30.0
 theme = ExtResource( 29 )
 custom_styles/hover = ExtResource( 18 )
@@ -1564,14 +1565,15 @@ custom_styles/pressed = ExtResource( 18 )
 custom_styles/focus = ExtResource( 36 )
 custom_styles/normal = ExtResource( 35 )
 text = "Language"
+icon = ExtResource( 37 )
 script = ExtResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="SettingsButton" type="ToolButton" parent="CanvasLayer/RightTopButtons"]
-margin_left = 413.0
-margin_right = 443.0
+margin_left = 435.0
+margin_right = 465.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 30, 30 )
 script = ExtResource( 57 )

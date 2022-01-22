@@ -53,7 +53,7 @@ const Preloader = /** @constructor */ function () { // eslint-disable-line no-un
 			loaded: 0,
 			done: false,
 		};
-		var addVersion=typeof appVersion=="string"?"?v="+appVersion:"";
+		var addVersion=typeof cache_version=="string"?"?v="+appVersion:"";
 		return fetch(file+addVersion).then(function (response) {
 			if (!response.ok) {
 				return Promise.reject(new Error(`Failed loading file '${file}'`));
