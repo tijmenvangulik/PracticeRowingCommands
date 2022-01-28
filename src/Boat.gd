@@ -59,6 +59,20 @@ var lastForwardsCommand=-1
 func _zoomChangedSignal():
 	setForwardsPosition(0)
 
+func canPushSB():
+	var ray=$RayCastSB
+	ray.force_raycast_update()
+	var result=ray.is_colliding()
+	return result
+	
+func canPushBB():
+	var ray=$RayCastSB
+	ray.enabled=true
+	ray.force_raycast_update()
+	var result=ray.is_colliding()
+	ray.enabled=false
+	return result
+	
 func setForwardsPosition(delta):
 	if delta!=0 && lastForwardsCommand!=lastCommand:
 		if lastCommand==Constants.Command.StrijkenBeidenBoorden || lastCommand==Constants.Command.HalenBeideBoorden:
@@ -260,9 +274,11 @@ func doCommand(command:int):
 		Constants.Command.PeddelendStrijkenSB:
 			changeState(Constants.RowState.PeddelendStrijkenSB,0)
 		Constants.Command.UitzettenBB:
-			changeState(Constants.RowState.UitzettenBB,0)
+			if canPushBB():
+				changeState(Constants.RowState.UitzettenBB,0)
 		Constants.Command.UitzettenSB:
-			changeState(Constants.RowState.UitzettenSB,0)
+			if canPushSB():
+				changeState(Constants.RowState.UitzettenSB,0)
 		Constants.Command.RondmakenBB:
 			changeState(Constants.RowState.RondmakenBB,-1)
 		Constants.Command.RondmakenSB:

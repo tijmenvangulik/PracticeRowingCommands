@@ -89,3 +89,11 @@ collision_mask = 256
 
 [node name="CollisionCollectables" type="CollisionPolygon2D" parent="CollectableArea"]
 polygon = PoolVector2Array( -42.5794, -24.0625, 16.4206, -24.0625, 40.4206, -16.0625, 56.4206, -4.06248, 55.4206, 4.93752, 37.4206, 16.9375, 20.4206, 22.9375, -31.5794, 24.9375, -46.5794, 24.9375, -53.5794, 4.93752, -51.5794, -15.0625 )
+
+[node name="RayCastSB" type="RayCast2D" parent="."]
+cast_to = Vector2( 0, 47 )
+collide_with_areas = true
+
+[node name="RayCastBB" type="RayCast2D" parent="."]
+cast_to = Vector2( 0, -47 )
+collision_mask = 3

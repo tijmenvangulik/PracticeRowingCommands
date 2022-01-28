@@ -95,7 +95,7 @@ func selected(itemIndex : int):
 				showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.HalenBeideBoorden,Constants.Command.PeddelendStrijkenSB,Constants.Command.StrijkenBB,Constants.Command.HalenSB,Constants.Command.UitbrengenSB]	
 			else:
 				boat.setNewBoatPosition(1124,2608,0,Constants.StateOars.RiemenHoogSB,true)
-				showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.HalenBeideBoorden,Constants.Command.PeddelendStrijkenSB,Constants.Command.HalenSB]	
+				showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.HalenBeideBoorden,Constants.Command.HalenSB,Constants.Command.UitzettenSB]	
 		StartPos.Intro: GameEvents.intro(true)
 		StartPos.StartStrijkendAanleggen: 
 			boat.setNewBoatPosition(1589.091,2426.734,-30,Constants.StateOars.Roeien,false)
