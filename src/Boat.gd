@@ -274,11 +274,9 @@ func doCommand(command:int):
 		Constants.Command.PeddelendStrijkenSB:
 			changeState(Constants.RowState.PeddelendStrijkenSB,0)
 		Constants.Command.UitzettenBB:
-			if canPushBB():
-				changeState(Constants.RowState.UitzettenBB,0)
+			changeState(Constants.RowState.UitzettenBB,0)
 		Constants.Command.UitzettenSB:
-			if canPushSB():
-				changeState(Constants.RowState.UitzettenSB,0)
+			changeState(Constants.RowState.UitzettenSB,0)
 		Constants.Command.RondmakenBB:
 			changeState(Constants.RowState.RondmakenBB,-1)
 		Constants.Command.RondmakenSB:
