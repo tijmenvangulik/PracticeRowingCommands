@@ -19,7 +19,13 @@ func _init():
 		Settings.currentLang="nl_NL"
 	else:
 		Settings.currentLang="en"
-
+	var urlLang =JavaScript.eval("window.location.search");
+	
+	if urlLang!=null && urlLang.begins_with("?lang="):
+		urlLang=urlLang.replace("?lang=","")
+		if languageKeys.find(urlLang)>=0:
+			Settings.currentLang=urlLang
+		
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameEvents.connect("settingsChangedSignal",self,"_settings_changedSignal")
@@ -54,6 +60,8 @@ func selected(itemIndex : int):
 		var langKey=languageKeys[itemIndex]		
 		setLanguage(langKey)
 		GameEvents.settingsChanged()
+		JavaScript.eval("history.pushState({}, null, window.location.protocol + '//' + window.location.host + window.location.pathname + '?lang="+langKey+"')");
+
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
