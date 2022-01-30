@@ -7,6 +7,7 @@ extends OptionButton
 # var b = "text"
 var languageItems=["NL viking","Nederlands","English"]
 var languageKeys=["nl_NL","nl","en"]
+var urlKeys=["nl_viking","nl","en"]
 var flags=["nl","nl","gb"]
 
 var currentLang=""
@@ -19,13 +20,16 @@ func _init():
 		Settings.currentLang="nl_NL"
 	else:
 		Settings.currentLang="en"
+
+func initFromUrl():
 	var urlLang =JavaScript.eval("window.location.search");
 	
 	if urlLang!=null && urlLang.begins_with("?lang="):
 		urlLang=urlLang.replace("?lang=","")
-		if languageKeys.find(urlLang)>=0:
-			Settings.currentLang=urlLang
-		
+		var urlLangIndex=urlKeys.find(urlLang)
+		if urlLangIndex>=0:
+			Settings.currentLang=languageKeys[urlLangIndex]
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameEvents.connect("settingsChangedSignal",self,"_settings_changedSignal")
@@ -37,7 +41,7 @@ func _ready():
 		i=i+1
 	
 	connect("item_selected",self,"selected")
-
+	initFromUrl()
 	setLanguage(Settings.currentLang)	
 	var styleDropDown= preload("res://MainDropDown.tres")
 	get_popup().add_stylebox_override("panel",styleDropDown)
@@ -60,7 +64,8 @@ func selected(itemIndex : int):
 		var langKey=languageKeys[itemIndex]		
 		setLanguage(langKey)
 		GameEvents.settingsChanged()
-		JavaScript.eval("history.pushState({}, null, window.location.protocol + '//' + window.location.host + window.location.pathname + '?lang="+langKey+"')");
+		var urlLang=urlKeys[itemIndex]
+		JavaScript.eval("history.pushState({}, null, window.location.protocol + '//' + window.location.host + window.location.pathname + '?lang="+urlLang+"')");
 
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
