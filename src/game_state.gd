@@ -10,6 +10,7 @@ var collectGameIsHighScore=false
 
 var defaultButtonSet=["HalenBeideBoorden","LaatLopen,Bedankt","VastroeienSB","HalenSB","StrijkenSB","StrijkenBeidenBoorden","VastroeienBeideBoorden","VastroeienBB","HalenBB","StrijkenBB","Slippen","SlippenSB","UitbrengenSB","PeddelendStrijkenSB","RondmakenSB","Uitbrengen","SlippenBB","UitbrengenBB","PeddelendStrijkenBB","RondmakenBB","LightPaddle","LightPaddleBedankt","RiemenHoogSB","RiemenHoogBB"]
 var currentButtonSet=defaultButtonSet
+var useDefaultButtonSet=true;
 
 func changeCollectGameState(newState):
 	if collectGameState!=newState:

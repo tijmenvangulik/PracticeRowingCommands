@@ -5,8 +5,9 @@ func loadButtonsSetFromResources():
 	if buttonSet!=null && buttonSet!="ButtonSet" && buttonSet!="":
 		var p= JSON.parse(buttonSet)
 		if typeof(p.result)==TYPE_ARRAY:
-			GameState.currentButtonSet=p.result
-			GameState.defaultButtonSet=GameState.currentButtonSet
+			if GameState.useDefaultButtonSet:
+				GameState.currentButtonSet=p.result
+			GameState.defaultButtonSet=p.result
 
 
 	
@@ -67,12 +68,16 @@ func loadButtons():
 				addButton(container,commandNames[0])
 
 func setCustomButtonSet(newButtonSet):
-	if newButtonSet.size()==0: GameState.currentButtonSet=GameState.defaultButtonSet
-	else: GameState.currentButtonSet=newButtonSet
+	if newButtonSet.size()==0: 
+		GameState.currentButtonSet=GameState.defaultButtonSet
+		GameState.useDefaultButtonSet=true
+	else: 
+		GameState.currentButtonSet=newButtonSet
+		GameState.useDefaultButtonSet=false
 	loadButtons()
 
 func _languageChangedSignal():
-	loadButtons()
+	initButtons()
 
 func _disableCommandSignal(commandName:String,disabled:bool):
 	disableCommand(commandName,disabled)
