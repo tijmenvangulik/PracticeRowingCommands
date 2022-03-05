@@ -6,7 +6,7 @@ enum RowState {HalenBeideBoorden,
   HalenBB,StrijkenBB,VastroeienBB,
   PeddelendStrijkenBB,PeddelendStrijkenSB,
   UitzettenBB,UitzettenSB,
-  RondmakenBB,RondmakenSB
+  RondmakenBB,RondmakenSB,Roeien
 }
 
 enum BestState {Normal,StuurboordBest,BakboordBest}
@@ -48,7 +48,8 @@ enum Command {
   LightPaddleBedankt,
   StuurboordBest,
   BakboortBest,
-  BestBedankt
+  BestBedankt,
+  SlagklaarAf
 }
 enum CollectGameState {
 	None,
@@ -90,7 +91,8 @@ var commandNames = [
   "LightPaddleBedankt",
   "StuurboordBest",
   "BakboortBest",
-  "BestBedankt"
+  "BestBedankt",
+  "SlagklaarAf"
 ]
 
 enum CommandStyle {StyleButtonGray,StyleButtonDarkGray,StyleButtonSB,StyleButtonBB}
@@ -126,6 +128,7 @@ CommandStyle.StyleButtonDarkGray,
 CommandStyle.StyleButtonDarkGray,
 CommandStyle.StyleButtonSB,
 CommandStyle.StyleButtonBB,
+CommandStyle.StyleButtonDarkGray,
 CommandStyle.StyleButtonDarkGray
 ]
 

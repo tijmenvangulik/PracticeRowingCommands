@@ -307,6 +307,8 @@ func doCommand(command:int):
 			setBest(Constants.BestState.BakboordBest)
 		Constants.Command.BestBedankt:
 			setBest(Constants.BestState.Normal)
+		Constants.Command.SlagklaarAf:
+			changeState(Constants.RowState.Roeien,1)
 	lastCommand=command
 
 	
@@ -342,6 +344,8 @@ func changeState(newState:int,direction:int):
 	# negative speed is backwards and negative turn speed is turn to the left
 	match state:
 		Constants.RowState.HalenBeideBoorden:
+			setSpeedAndDirection(0.5,0,1,false)
+		Constants.RowState.Roeien:
 			setSpeedAndDirection(1,0,1,false)
 		Constants.RowState.LaatLopen:
 #			if abs(currentSpeed)<=lowNoRowingSpeed:

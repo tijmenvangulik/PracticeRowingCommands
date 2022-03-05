@@ -9,7 +9,6 @@ func loadButtonsSetFromResources():
 				GameState.currentButtonSet=p.result
 			GameState.defaultButtonSet=p.result
 
-
 	
 func initButtons():
 	loadButtonsSetFromResources()

@@ -9,7 +9,7 @@ func determinenewState(boat: Boat,newState:int,direction:int)-> int:
 	if stateOars==Constants.StateOars.Slippen &&  newState!=Constants.RowState.Bedankt && newState!=Constants.RowState.PeddelendStrijkenBB && newState!=Constants.RowState.PeddelendStrijkenSB :
 		setError("EerstUitBrengen")	
 		return result
-	if stateOars!=Constants.StateOars.Roeien &&  stateOars!=Constants.StateOars.RiemenHoogSB && stateOars!=Constants.StateOars.RiemenHoogBB && (newState==Constants.RowState.HalenBeideBoorden || newState==Constants.RowState.StrijkenBeidenBoorden  || newState==Constants.RowState.RondmakenSB  || newState==Constants.RowState.RondmakenBB ):
+	if stateOars!=Constants.StateOars.Roeien &&  stateOars!=Constants.StateOars.RiemenHoogSB && stateOars!=Constants.StateOars.RiemenHoogBB && (newState==Constants.RowState.HalenBeideBoorden || newState==Constants.RowState.Roeien || newState==Constants.RowState.StrijkenBeidenBoorden  || newState==Constants.RowState.RondmakenSB  || newState==Constants.RowState.RondmakenBB ):
 		setError("EerstUitBrengen")	
 		return result
 	else: if stateOars==Constants.StateOars.SlippenBB && (newState==Constants.RowState.HalenBB || newState==Constants.RowState.StrijkenBB || newState==Constants.RowState.VastroeienBB):
@@ -24,7 +24,7 @@ func determinenewState(boat: Boat,newState:int,direction:int)-> int:
 	else: if newState==Constants.RowState.PeddelendStrijkenBB && (stateOars!=Constants.StateOars.SlippenBB && stateOars!=Constants.StateOars.Slippen ):
 		setError("EerstSlippen")	
 		return result
-	else: if newState==Constants.RowState.Bedankt &&  !boat.isLowSpeed() && (state==Constants.RowState.HalenBeideBoorden ):
+	else: if newState==Constants.RowState.Bedankt &&  !boat.isLowSpeed() && (state==Constants.RowState.Roeien ):
 		setError("EerstLatenLopen")
 		return result
 	else: if newState==Constants.RowState.UitzettenSB && stateOars!=Constants.StateOars.SlippenSB && stateOars!=Constants.StateOars.RiemenHoogSB:
@@ -130,7 +130,7 @@ func determineBestState(boat: Boat,newBestState :int)-> int:
 		if bestState!=Constants.BestState.StuurboordBest && bestState!= Constants.BestState.BakboordBest:
 			setError("BestIsNietActief")
 			return bestState
-	if (state!=Constants.RowState.HalenBeideBoorden):
+	if (state!=Constants.RowState.HalenBeideBoorden && state!=Constants.RowState.Roeien):
 		setError("BestAlleenTijdensHalen")
 	else: 
 		if newBestState!=Constants.BestState.Normal && bestState!=Constants.BestState.Normal:
