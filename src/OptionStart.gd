@@ -83,7 +83,7 @@ func selected(itemIndex : int):
 			boat.setNewBoatPosition(702.307,2145.531,45,Constants.StateOars.Roeien,true)
 		StartPos.StartAanleggenMinderKnoppen: 
 			boat.setNewBoatPosition(831.267,2372.928,45,Constants.StateOars.Roeien,true)
-			showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.HalenBeideBoorden,Constants.Command.RiemenHoogSB,Constants.Command.VastroeienBB]	
+			showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.RiemenHoogSB,Constants.Command.VastroeienBB]	
 		StartPos.Aangelegd: 
 			if isViking: 
 				boat.setNewBoatPosition(1124,2602,0,Constants.StateOars.SlippenSB,true)
@@ -92,10 +92,10 @@ func selected(itemIndex : int):
 		StartPos.StartAangelegdMinderKnoppen:
 			if isViking: 
 				boat.setNewBoatPosition(1124,2602,0,Constants.StateOars.SlippenSB,true)
-				showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.HalenBeideBoorden,Constants.Command.PeddelendStrijkenSB,Constants.Command.StrijkenBB,Constants.Command.HalenSB,Constants.Command.UitbrengenSB]	
+				showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.PeddelendStrijkenSB,Constants.Command.StrijkenBB,Constants.Command.HalenSB,Constants.Command.UitbrengenSB]	
 			else:
 				boat.setNewBoatPosition(1124,2608,0,Constants.StateOars.RiemenHoogSB,true)
-				showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.HalenBeideBoorden,Constants.Command.HalenSB,Constants.Command.UitzettenSB]	
+				showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.HalenSB,Constants.Command.UitzettenSB]	
 		StartPos.Intro: GameEvents.intro(true)
 		StartPos.StartStrijkendAanleggen: 
 			boat.setNewBoatPosition(1589.091,2426.734,-30,Constants.StateOars.Roeien,false)
@@ -106,7 +106,7 @@ func selected(itemIndex : int):
 			boat.setNewBoatPosition(2082.239,2042.082,-45,Constants.StateOars.Roeien,true)
 		StartPos.StartAanleggenWalMinderKnoppen: 
 			boat.setNewBoatPosition(2082.239,2042.082,-45,Constants.StateOars.Roeien,true)
-			showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.HalenBeideBoorden,Constants.Command.SlippenSB,Constants.Command.VastroeienBB]	
+			showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.SlippenSB,Constants.Command.VastroeienBB]	
 		StartPos.StartStrijkendAanleggenWal: 
 			boat.setNewBoatPosition(2220.23,1472.777,-120,Constants.StateOars.Roeien,false)
 		StartPos.StartStrijkendAanleggenWalMinderKnoppen: 
