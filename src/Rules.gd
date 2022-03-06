@@ -42,6 +42,9 @@ func determinenewState(boat: Boat,newState:int,direction:int)-> int:
 	else: if (newState==Constants.RowState.UitzettenSB || newState==Constants.RowState.UitzettenBB) && !boat.isLowSpeed():
 		setError("LegBootStil")
 		return result
+	else: if newState==Constants.RowState.Roeien && !boat.isLowSpeed():
+		setError("LegBootStil")
+		return result
 	else: if newState==Constants.RowState.LaatLopen || newState==Constants.RowState.Bedankt || boat.isLowSpeed():
 		result=newState
 		return result
