@@ -23,11 +23,19 @@ func execCommand():
 		
 func callButtonDropped(droppedInfo):
 	emit_signal("button_dropped",droppedInfo,self)
+
+func get_tooltip_text(node):
+	var tootipTextName=commandName+"_tooltip";
+	var tootip=tr(tootipTextName)
+	if tootip!=tootipTextName:
+		return tootip
+	return ""
 	
 func init(newCommandName):
 	commandName=newCommandName;
+	GameEvents.register_tooltip($GridButton,self)
+
 	command=Utilities.commandNameToCommand(commandName)
-	
 	if command>=0:
 		var button=$GridButton
 		button.text=commandName
@@ -90,3 +98,6 @@ func init(newCommandName):
 		
 		var button=$GridButton
 		button.visible=false
+
+
+	

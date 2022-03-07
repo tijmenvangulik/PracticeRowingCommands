@@ -30,7 +30,8 @@ func _ready():
 	GameEvents.connect("introSignal",self,"_introSignal")
 	var styleDropDown= preload("res://MainDropDown.tres")
 	get_popup().add_stylebox_override("panel",styleDropDown)
-
+	GameEvents.register_tooltip(self,"OptionCommandsTooltip")
+	
 func _introSignal(isVisible : bool):
 	visible=!isVisible
 	if !isVisible:

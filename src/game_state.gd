@@ -16,3 +16,5 @@ func changeCollectGameState(newState):
 	if collectGameState!=newState:
 		collectGameState=newState
 		GameEvents.collectGameStateChanged(newState)
+
+var showTooltips= false

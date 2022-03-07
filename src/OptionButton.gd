@@ -20,6 +20,7 @@ func _init():
 		Settings.currentLang="nl_NL"
 	else:
 		Settings.currentLang="en"
+	GameEvents.register_tooltip(self,"OptionLanguageTooltip")
 
 func initFromUrl():
 	var urlLang =JavaScript.eval("window.location.search");

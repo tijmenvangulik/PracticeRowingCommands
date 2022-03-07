@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=2]
+[gd_scene load_steps=85 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -37,6 +37,8 @@
 [ext_resource path="res://MainDropDown.tres" type="StyleBox" id=35]
 [ext_resource path="res://MainDropFocus.tres" type="StyleBox" id=36]
 [ext_resource path="res://assets/flags/nl.svg" type="Texture" id=37]
+[ext_resource path="res://Tooltip.tscn" type="PackedScene" id=38]
+[ext_resource path="res://TooltipHelp.gd" type="Script" id=39]
 [ext_resource path="res://OptionStart.gd" type="Script" id=40]
 [ext_resource path="res://OptionCommands.gd" type="Script" id=41]
 [ext_resource path="res://CloseButton.gd" type="Script" id=42]
@@ -796,6 +798,21 @@ corner_radius_bottom_left = 5
 shadow_color = Color( 0, 0, 0, 0.270588 )
 shadow_size = 4
 shadow_offset = Vector2( 4, 4 )
+
+[sub_resource type="StyleBoxFlat" id=37]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 0.478431, 0.584314, 0.67451, 0.768627 )
+border_color = Color( 0.811765, 0.811765, 0.811765, 1 )
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color( 0.227451, 0.231373, 0.341176, 0.6 )
+shadow_offset = Vector2( 1, 1 )
 
 [node name="World" type="Node2D"]
 script = ExtResource( 1 )
@@ -1571,9 +1588,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SettingsButton" type="ToolButton" parent="CanvasLayer/RightTopButtons"]
+[node name="TooltipHelp" type="Button" parent="CanvasLayer/RightTopButtons"]
 margin_left = 435.0
-margin_right = 465.0
+margin_right = 458.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 18 )
+custom_styles/pressed = SubResource( 37 )
+custom_styles/normal = ExtResource( 35 )
+toggle_mode = true
+text = "?"
+script = ExtResource( 39 )
+
+[node name="SettingsButton" type="ToolButton" parent="CanvasLayer/RightTopButtons"]
+margin_left = 466.0
+margin_right = 496.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 30, 30 )
 script = ExtResource( 57 )
@@ -1605,6 +1634,12 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Tooltip" parent="CanvasLayer" instance=ExtResource( 38 )]
+visible = false
+margin_top = -662.0
+margin_right = 458.0
+margin_bottom = -528.0
 
 [connection signal="pressed" from="CanvasLayer/StartCollectGame/HSplitContainer/StartGame" to="CanvasLayer/StartCollectGame" method="_on_StartGame_pressed"]
 [connection signal="pressed" from="CanvasLayer/StartCollectGame/HSplitContainer/CancelGame" to="CanvasLayer/StartCollectGame" method="_on_CancelGame_pressed"]

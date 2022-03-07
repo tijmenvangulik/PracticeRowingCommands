@@ -10,7 +10,8 @@ func _ready():
 	setText()
 	GameEvents.connect("forwardBackwardsChangedSignal",self,"_forwardBackwardsChangedSignal")
 	GameEvents.connect("introSignal",self,"_introSignal")
-
+	GameEvents.register_tooltip(self,"ForwardsBackwardsTooltip")
+	
 func _introSignal(isVisible : bool):
 	visible=!isVisible
 	
