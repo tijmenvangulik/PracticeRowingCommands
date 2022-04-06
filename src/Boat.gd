@@ -188,10 +188,11 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 		var extraTurnForce= Vector2(currentSpeed*0.02*forceMultiplier,0).rotated(angle+PI)
 		apply_impulse(Vector2(0,25*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
 	
-	if bestState==Constants.BestState.StuurboordBest:
-		apply_torque_impulse(-bestExtraRotation);
-	else: if bestState==Constants.BestState.BakboordBest:
-		apply_torque_impulse(bestExtraRotation);
+	if  destinationSpeed!=0.0 and currentSpeed>1:
+		if bestState==Constants.BestState.StuurboordBest :
+			apply_torque_impulse(-bestExtraRotation);
+		else: if bestState==Constants.BestState.BakboordBest:
+			apply_torque_impulse(bestExtraRotation);
 	#check on colliding
 	var collidingBodies=get_colliding_bodies()
 	
