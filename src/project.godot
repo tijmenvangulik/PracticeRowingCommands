@@ -92,6 +92,7 @@ refresh=false
 frame=false
 mass=false
 weight=false
+snap=false
 
 [importer_defaults]
 

@@ -3,6 +3,7 @@ extends PanelContainer
 func loadButtonsSetFromResources():
 	var buttonSet=tr("ButtonSet")
 	if buttonSet!=null && buttonSet!="ButtonSet" && buttonSet!="":
+		
 		var p= JSON.parse(buttonSet)
 		if typeof(p.result)==TYPE_ARRAY:
 			if GameState.useDefaultButtonSet:
