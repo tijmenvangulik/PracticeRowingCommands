@@ -57,10 +57,10 @@
 [ext_resource path="res://GridButtonContainer.tscn" type="PackedScene" id=65]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( 128, 25.9488, 117.154, 24.3315, 109.015, 13.8659, 105.688, 0, 128, 0 )
+points = PoolVector2Array( 127.753, 29.8996, 117.154, 24.3315, 109.015, 13.8659, 105.688, 0, 128, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
-points = PoolVector2Array( 17.0778, 0, 17.8058, 8.89381, 14.1235, 18.9718, 0.363281, 25.3674, 0, 0 )
+points = PoolVector2Array( 17.0778, 0, 17.8058, 8.89381, 14.2882, 21.9535, 0.334106, 30.2872, 0, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 128, 46.7714, 0, 47.9342, 0, 0, 128, 0 )
@@ -102,7 +102,7 @@ points = PoolVector2Array( 0, 0, 128, 0, 127.866, 30.2233, 119.308, 33.4902, 95.
 points = PoolVector2Array( 128, 0, 128, 128, 109.729, 128, 104.899, 118.134, 102.388, 99.4356, 105.321, 75.931, 104.062, 63.9922, 95.4107, 49.2009, 77.5314, 34.8856, 53.3443, 25.8155, 25.4362, 23.4898, 0, 29.7178, 0, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=35]
-points = PoolVector2Array( 106.603, 127.529, 105.905, 127.296, 112.184, 117.761, 127.069, 110.552, 128, 127.762 )
+points = PoolVector2Array( 108.566, 127.86, 105.905, 127.296, 112.054, 115.65, 127.559, 108.285, 128, 127.762 )
 
 [sub_resource type="ConvexPolygonShape2D" id=36]
 points = PoolVector2Array( 0, 110.552, 7.44098, 111.947, 13.2552, 119.389, 16.2786, 128, 0, 128 )
