@@ -818,7 +818,7 @@ shadow_offset = Vector2( 1, 1 )
 script = ExtResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2( 184, 126 )
+position = Vector2( 1249, 151 )
 scale = Vector2( 1.65561, 1.64805 )
 color = Color( 0.552941, 0.768627, 0.207843, 1 )
 offset = Vector2( -683.132, -584.327 )
@@ -830,6 +830,357 @@ cell_size = Vector2( 128, 128 )
 centered_textures = true
 format = 1
 tile_data = PoolIntArray( -1, 17, 0, -65536, 17, 0, -65535, 17, 0, -65534, 17, 0, -65533, 17, 0, -65532, 17, 0, -65531, 17, 0, -65530, 17, 0, -65529, 17, 0, -65528, 17, 0, -65527, 17, 0, -65526, 17, 0, -65525, 17, 0, -65524, 17, 0, -65523, 17, 0, -65522, 17, 0, -65521, 17, 0, -65520, 17, 0, -65519, 17, 0, -65518, 17, 0, -65517, 17, 0, 65535, 17, 0, 0, 37, 0, 1, 3, 0, 2, 3, 0, 3, 3, 0, 4, 3, 0, 5, 3, 0, 6, 3, 0, 7, 3, 0, 8, 3, 0, 9, 3, 0, 10, 3, 0, 11, 3, 0, 12, 3, 0, 13, 3, 0, 14, 3, 0, 15, 3, 0, 16, 3, 0, 17, 3, 0, 18, 4, 0, 19, 17, 0, 131071, 17, 0, 65536, 7, 0, 65537, 8, 0, 65538, 8, 0, 65539, 8, 0, 65540, 8, 0, 65541, 8, 0, 65542, 8, 0, 65543, 8, 0, 65544, 8, 0, 65545, 8, 0, 65546, 8, 0, 65547, 8, 0, 65548, 8, 0, 65549, 8, 0, 65550, 8, 0, 65551, 8, 0, 65552, 8, 0, 65553, 8, 0, 65554, 9, 0, 65555, 17, 0, 196607, 17, 0, 131072, 7, 0, 131073, 8, 0, 131074, 5, 0, 131075, 14, 0, 131076, 14, 0, 131077, 6, 0, 131078, 8, 0, 131079, 5, 0, 131080, 14, 0, 131081, 14, 0, 131082, 14, 0, 131083, 14, 0, 131084, 14, 0, 131085, 14, 0, 131086, 14, 0, 131087, 6, 0, 131088, 8, 0, 131089, 8, 0, 131090, 9, 0, 131091, 17, 0, 262143, 17, 0, 196608, 7, 0, 196609, 8, 0, 196610, 9, 0, 196611, 17, 0, 196612, 17, 0, 196613, 7, 0, 196614, 8, 0, 196615, 9, 0, 196616, 17, 0, 196617, 17, 0, 196618, 17, 0, 196619, 17, 0, 196620, 17, 0, 196621, 17, 0, 196622, 17, 0, 196623, 7, 0, 196624, 8, 0, 196625, 8, 0, 196626, 9, 0, 196627, 17, 0, 327679, 17, 0, 262144, 7, 0, 262145, 8, 0, 262146, 9, 0, 262147, 17, 0, 262148, 17, 0, 262149, 7, 0, 262150, 8, 0, 262151, 9, 0, 262152, 17, 0, 262153, 17, 0, 262154, 17, 0, 262155, 17, 0, 262156, 17, 0, 262157, 17, 0, 262158, 36, 0, 262159, 11, 0, 262160, 8, 0, 262161, 8, 0, 262162, 9, 0, 262163, 17, 0, 393215, 17, 0, 327680, 7, 0, 327681, 8, 0, 327682, 10, 0, 327683, 3, 0, 327684, 3, 0, 327685, 11, 0, 327686, 8, 0, 327687, 9, 0, 327688, 17, 0, 327689, 17, 0, 327690, 17, 0, 327691, 17, 0, 327692, 36, 0, 327693, 3, 0, 327694, 11, 0, 327695, 8, 0, 327696, 8, 0, 327697, 8, 0, 327698, 9, 0, 327699, 17, 0, 458751, 17, 0, 393216, 7, 0, 393217, 8, 0, 393218, 5, 0, 393219, 14, 0, 393220, 14, 0, 393221, 6, 0, 393222, 8, 0, 393223, 10, 0, 393224, 3, 0, 393225, 3, 0, 393226, 3, 0, 393227, 3, 0, 393228, 11, 0, 393229, 8, 0, 393230, 8, 0, 393231, 8, 0, 393232, 8, 0, 393233, 5, 0, 393234, 15, 0, 393235, 17, 0, 524287, 17, 0, 458752, 7, 0, 458753, 8, 0, 458754, 9, 0, 458755, 17, 0, 458756, 17, 0, 458757, 13, 0, 458758, 14, 0, 458759, 14, 0, 458760, 14, 0, 458761, 14, 0, 458762, 6, 0, 458763, 8, 0, 458764, 8, 0, 458765, 8, 0, 458766, 8, 0, 458767, 8, 0, 458768, 8, 0, 458769, 9, 0, 458770, 17, 0, 458771, 17, 0, 589823, 17, 0, 524288, 7, 0, 524289, 8, 0, 524290, 9, 0, 524291, 17, 0, 524292, 17, 0, 524293, 17, 0, 524294, 17, 0, 524295, 17, 0, 524296, 17, 0, 524297, 17, 0, 524298, 7, 0, 524299, 8, 0, 524300, 8, 0, 524301, 8, 0, 524302, 8, 0, 524303, 8, 0, 524304, 8, 0, 524305, 9, 0, 524306, 17, 0, 524307, 17, 0, 655359, 17, 0, 589824, 7, 0, 589825, 8, 0, 589826, 10, 0, 589827, 4, 0, 589828, 17, 0, 589829, 17, 0, 589830, 17, 0, 589831, 17, 0, 589832, 17, 0, 589833, 36, 0, 589834, 11, 0, 589835, 8, 0, 589836, 8, 0, 589837, 8, 0, 589838, 8, 0, 589839, 8, 0, 589840, 8, 0, 589841, 10, 0, 589842, 4, 0, 589843, 17, 0, 720895, 17, 0, 655360, 7, 0, 655361, 8, 0, 655362, 8, 0, 655363, 10, 0, 655364, 3, 0, 655365, 4, 0, 655366, 17, 0, 655367, 36, 0, 655368, 3, 0, 655369, 11, 0, 655370, 27, 0, 655371, 8, 0, 655372, 8, 0, 655373, 8, 0, 655374, 19, 0, 655375, 8, 0, 655376, 8, 0, 655377, 8, 0, 655378, 9, 0, 655379, 17, 0, 786431, 17, 0, 720896, 7, 0, 720897, 8, 0, 720898, 8, 0, 720899, 8, 0, 720900, 8, 0, 720901, 10, 0, 720902, 3, 0, 720903, 11, 0, 720904, 8, 0, 720905, 8, 0, 720906, 8, 0, 720907, 8, 0, 720908, 8, 0, 720909, 8, 0, 720910, 8, 0, 720911, 8, 0, 720912, 8, 0, 720913, 8, 0, 720914, 9, 0, 720915, 17, 0, 851967, 17, 0, 786432, 18, 0, 786433, 8, 0, 786434, 8, 0, 786435, 8, 0, 786436, 8, 0, 786437, 8, 0, 786438, 8, 0, 786439, 8, 0, 786440, 8, 0, 786441, 8, 0, 786442, 19, 0, 786443, 8, 0, 786444, 8, 0, 786445, 8, 0, 786446, 8, 0, 786447, 8, 0, 786448, 8, 0, 786449, 8, 0, 786450, 9, 0, 786451, 17, 0, 917503, 17, 0, 851968, 18, 0, 851969, 8, 0, 851970, 8, 0, 851971, 8, 0, 851972, 8, 0, 851973, 8, 0, 851974, 8, 0, 851975, 8, 0, 851976, 8, 0, 851977, 8, 0, 851978, 8, 0, 851979, 8, 0, 851980, 8, 0, 851981, 8, 0, 851982, 8, 0, 851983, 8, 0, 851984, 8, 0, 851985, 8, 0, 851986, 9, 0, 851987, 17, 0, 983039, 17, 0, 917504, 18, 0, 917505, 8, 0, 917506, 8, 0, 917507, 8, 0, 917508, 27, 0, 917509, 8, 0, 917510, 8, 0, 917511, 8, 0, 917512, 8, 0, 917513, 8, 0, 917514, 8, 0, 917515, 8, 0, 917516, 8, 0, 917517, 8, 0, 917518, 8, 0, 917519, 8, 0, 917520, 8, 0, 917521, 8, 0, 917522, 9, 0, 917523, 17, 0, 1048575, 17, 0, 983040, 18, 0, 983041, 8, 0, 983042, 8, 0, 983043, 8, 0, 983044, 8, 0, 983045, 8, 0, 983046, 8, 0, 983047, 8, 0, 983048, 8, 0, 983049, 8, 0, 983050, 8, 0, 983051, 8, 0, 983052, 8, 0, 983053, 8, 0, 983054, 8, 0, 983055, 8, 0, 983056, 8, 0, 983057, 8, 0, 983058, 9, 0, 983059, 17, 0, 1114111, 17, 0, 1048576, 7, 0, 1048577, 8, 0, 1048578, 8, 0, 1048579, 8, 0, 1048580, 19, 0, 1048581, 8, 0, 1048582, 8, 0, 1048583, 8, 0, 1048584, 8, 0, 1048585, 8, 0, 1048586, 8, 0, 1048587, 8, 0, 1048588, 8, 0, 1048589, 8, 0, 1048590, 27, 0, 1048591, 8, 0, 1048592, 8, 0, 1048593, 8, 0, 1048594, 9, 0, 1048595, 17, 0, 1179647, 17, 0, 1114112, 7, 0, 1114113, 8, 0, 1114114, 8, 0, 1114115, 8, 0, 1114116, 8, 0, 1114117, 8, 0, 1114118, 8, 0, 1114119, 8, 0, 1114120, 8, 0, 1114121, 8, 0, 1114122, 8, 0, 1114123, 8, 0, 1114124, 8, 0, 1114125, 8, 0, 1114126, 8, 0, 1114127, 8, 0, 1114128, 8, 0, 1114129, 8, 0, 1114130, 9, 0, 1114131, 17, 0, 1245183, 17, 0, 1179648, 13, 0, 1179649, 6, 0, 1179650, 8, 0, 1179651, 8, 0, 1179652, 8, 0, 1179653, 8, 0, 1179654, 8, 0, 1179655, 8, 0, 1179656, 8, 0, 1179657, 8, 0, 1179658, 8, 0, 1179659, 8, 0, 1179660, 8, 0, 1179661, 8, 0, 1179662, 8, 0, 1179663, 8, 0, 1179664, 8, 0, 1179665, 5, 0, 1179666, 15, 0, 1179667, 17, 0, 1310719, 17, 0, 1245184, 17, 0, 1245185, 13, 0, 1245186, 6, 0, 1245187, 8, 0, 1245188, 8, 0, 1245189, 8, 0, 1245190, 8, 0, 1245191, 8, 0, 1245192, 8, 0, 1245193, 8, 0, 1245194, 8, 0, 1245195, 8, 0, 1245196, 8, 0, 1245197, 8, 0, 1245198, 8, 0, 1245199, 8, 0, 1245200, 5, 0, 1245201, 15, 0, 1245202, 17, 0, 1245203, 17, 0, 1376255, 17, 0, 1310720, 17, 0, 1310721, 17, 0, 1310722, 13, 0, 1310723, 14, 0, 1310724, 14, 0, 1310725, 14, 0, 1310726, 26, 0, 1310727, 26, 0, 1310728, 26, 0, 1310729, 26, 0, 1310730, 26, 0, 1310731, 26, 0, 1310732, 26, 0, 1310733, 14, 0, 1310734, 14, 0, 1310735, 14, 0, 1310736, 15, 0, 1310737, 17, 0, 1310738, 17, 0, 1310739, 17, 0, 1441791, 17, 0, 1376256, 17, 0, 1376257, 17, 0, 1376258, 17, 0, 1376259, 17, 0, 1376260, 17, 0, 1376261, 17, 0, 1376262, 17, 0, 1376263, 17, 0, 1376264, 17, 0, 1376265, 17, 0, 1376266, 17, 0, 1376267, 17, 0, 1376268, 17, 0, 1376269, 17, 0, 1376270, 17, 0, 1376271, 17, 0, 1376272, 17, 0, 1376273, 17, 0, 1376274, 17, 0, 1376275, 17, 0 )
+
+[node name="Vegetation" type="Node" parent="."]
+
+[node name="BushDark" type="Sprite" parent="Vegetation"]
+position = Vector2( 823, 1350 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 164, 572, 62, 70 )
+
+[node name="BushMidle" type="Sprite" parent="Vegetation"]
+position = Vector2( 838.25, 1372 )
+scale = Vector2( 1.09184, 1.03226 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 427, 459, 49, 62 )
+
+[node name="BushMidle2" type="Sprite" parent="Vegetation"]
+position = Vector2( 2344, 930 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 427, 459, 49, 62 )
+
+[node name="BushMidle3" type="Sprite" parent="Vegetation"]
+position = Vector2( 2373.25, 1001.5 )
+scale = Vector2( 1.17347, 1.14516 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 427, 459, 49, 62 )
+
+[node name="Tree" type="Sprite" parent="Vegetation"]
+position = Vector2( 542, 979 )
+scale = Vector2( 0.892857, 0.92 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 9.146, 412.392, 112, 101 )
+
+[node name="Tree9" type="Sprite" parent="Vegetation"]
+position = Vector2( 36, 2530 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 9.146, 412.392, 112, 101 )
+
+[node name="Tree10" type="Sprite" parent="Vegetation"]
+position = Vector2( 2581.5, 1898.5 )
+scale = Vector2( 0.991071, 1.19 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 9.146, 412.392, 112, 101 )
+
+[node name="Tree7" type="Sprite" parent="Vegetation"]
+position = Vector2( -114, 646 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 9.146, 412.392, 112, 101 )
+
+[node name="Tree8" type="Sprite" parent="Vegetation"]
+position = Vector2( -86, 739 )
+scale = Vector2( 0.910714, 0.96 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 9.146, 412.392, 112, 101 )
+
+[node name="Tree6" type="Sprite" parent="Vegetation"]
+position = Vector2( -112, 1778 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 9.146, 412.392, 112, 101 )
+
+[node name="Tree5" type="Sprite" parent="Vegetation"]
+position = Vector2( -78, 1410 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 9.146, 412.392, 112, 101 )
+
+[node name="Tree4" type="Sprite" parent="Vegetation"]
+position = Vector2( 458, 481 )
+scale = Vector2( 1.01786, 1.02 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 9.146, 412.392, 112, 101 )
+
+[node name="Tree11" type="Sprite" parent="Vegetation"]
+position = Vector2( 2482, 207.5 )
+scale = Vector2( 0.875, 0.87 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 9.146, 412.392, 112, 101 )
+
+[node name="Tree12" type="Sprite" parent="Vegetation"]
+position = Vector2( 2252, -126 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 9.146, 412.392, 112, 101 )
+
+[node name="Tree2" type="Sprite" parent="Vegetation"]
+position = Vector2( 1077, 733 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 9.146, 412.392, 112, 101 )
+
+[node name="Tree3" type="Sprite" parent="Vegetation"]
+position = Vector2( 1129, 695.5 )
+scale = Vector2( 1.08929, 1.11 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 9.146, 412.392, 112, 101 )
+
+[node name="Bush" type="Sprite" parent="Vegetation"]
+position = Vector2( 798, 1361.75 )
+scale = Vector2( 0.935484, 0.957627 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 164, 454, 62, 59.392 )
+
+[node name="Bush12" type="Sprite" parent="Vegetation"]
+position = Vector2( 950, 1296 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 164, 454, 62, 59.392 )
+
+[node name="Bush13" type="Sprite" parent="Vegetation"]
+position = Vector2( 376, 1146 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 164, 454, 62, 59.392 )
+
+[node name="Bush14" type="Sprite" parent="Vegetation"]
+position = Vector2( 4, 2219 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 164, 454, 62, 59.392 )
+
+[node name="Bush15" type="Sprite" parent="Vegetation"]
+position = Vector2( 414, 2687 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 164, 454, 62, 59.392 )
+
+[node name="Bush16" type="Sprite" parent="Vegetation"]
+position = Vector2( 414, 2687 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 164, 454, 62, 59.392 )
+
+[node name="Bush17" type="Sprite" parent="Vegetation"]
+position = Vector2( 2183, 2563 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 164, 454, 62, 59.392 )
+
+[node name="Bush18" type="Sprite" parent="Vegetation"]
+position = Vector2( 2434, 1990.25 )
+scale = Vector2( 0.870968, 0.822034 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 164, 454, 62, 59.392 )
+
+[node name="Bush19" type="Sprite" parent="Vegetation"]
+position = Vector2( 2432, 2019 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 164, 454, 62, 59.392 )
+
+[node name="Bush20" type="Sprite" parent="Vegetation"]
+position = Vector2( 2474.5, 2016.75 )
+scale = Vector2( 1.14516, 1.12712 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 164, 454, 62, 59.392 )
+
+[node name="Bush3" type="Sprite" parent="Vegetation"]
+position = Vector2( 1442.5, -87.25 )
+scale = Vector2( 0.854839, 0.872881 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 164, 454, 62, 59.392 )
+
+[node name="Bush4" type="Sprite" parent="Vegetation"]
+position = Vector2( 1478, -84 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 164, 454, 62, 59.392 )
+
+[node name="Bush5" type="Sprite" parent="Vegetation"]
+position = Vector2( 1514.5, -94.25 )
+scale = Vector2( 1.1129, 1.00847 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 164, 454, 62, 59.392 )
+
+[node name="Bush6" type="Sprite" parent="Vegetation"]
+position = Vector2( 1529, -71.75 )
+scale = Vector2( 0.870968, 0.822034 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 164, 454, 62, 59.392 )
+
+[node name="Bush7" type="Sprite" parent="Vegetation"]
+position = Vector2( 1558, -93 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 164, 454, 62, 59.392 )
+
+[node name="Bush8" type="Sprite" parent="Vegetation"]
+position = Vector2( 1583, -94 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 164, 454, 62, 59.392 )
+
+[node name="Bush9" type="Sprite" parent="Vegetation"]
+position = Vector2( 1588, -78 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 164, 454, 62, 59.392 )
+
+[node name="Bush10" type="Sprite" parent="Vegetation"]
+position = Vector2( 1620, -85 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 164, 454, 62, 59.392 )
+
+[node name="Bush11" type="Sprite" parent="Vegetation"]
+position = Vector2( 1615, -81.25 )
+scale = Vector2( 1.16129, 1.12712 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 164, 454, 62, 59.392 )
+
+[node name="Bush2" type="Sprite" parent="Vegetation"]
+position = Vector2( 606, 606 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 164, 454, 62, 59.392 )
+
+[node name="TreeDark" type="Sprite" parent="Vegetation"]
+position = Vector2( 488.25, 1049 )
+scale = Vector2( 0.984211, 1.03704 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 34, 529, 95, 108 )
+
+[node name="TreeDark6" type="Sprite" parent="Vegetation"]
+position = Vector2( -99, 169 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 34, 529, 95, 108 )
+
+[node name="TreeDark7" type="Sprite" parent="Vegetation"]
+position = Vector2( 352, -45 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 34, 529, 95, 108 )
+
+[node name="TreeDark3" type="Sprite" parent="Vegetation"]
+position = Vector2( 890, 2788 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 34, 529, 95, 108 )
+
+[node name="TreeDark4" type="Sprite" parent="Vegetation"]
+position = Vector2( 1071.25, 2764 )
+scale = Vector2( 0.878947, 0.907407 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 34, 529, 95, 108 )
+
+[node name="TreeDark5" type="Sprite" parent="Vegetation"]
+position = Vector2( 1630.25, 2766 )
+scale = Vector2( 0.878947, 0.87037 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 34, 529, 95, 108 )
+
+[node name="TreeDark2" type="Sprite" parent="Vegetation"]
+position = Vector2( -118.75, 1716 )
+scale = Vector2( 0.942105, 0.87037 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 34, 529, 95, 108 )
+
+[node name="TreeMidle" type="Sprite" parent="Vegetation"]
+position = Vector2( 1195.5, 1093.75 )
+scale = Vector2( 1.05, 1.07282 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 270, 412, 100, 103 )
+
+[node name="TreeMidle6" type="Sprite" parent="Vegetation"]
+position = Vector2( 2442.5, 2497.75 )
+scale = Vector2( 1.11, 1.15049 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 270, 412, 100, 103 )
+
+[node name="TreeMidle7" type="Sprite" parent="Vegetation"]
+position = Vector2( 2511, 2564.25 )
+scale = Vector2( 0.86, 0.966019 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 270, 412, 100, 103 )
+
+[node name="TreeMidle8" type="Sprite" parent="Vegetation"]
+position = Vector2( 2376, 2577 )
+scale = Vector2( 1, 1.07282 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 270, 412, 100, 103 )
+
+[node name="TreeMidle5" type="Sprite" parent="Vegetation"]
+position = Vector2( 2506, 1318 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 270, 412, 100, 103 )
+
+[node name="TreeMidle2" type="Sprite" parent="Vegetation"]
+position = Vector2( 1790, 449 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 270, 412, 100, 103 )
+
+[node name="TreeMidle10" type="Sprite" parent="Vegetation"]
+position = Vector2( 1658, -118 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 270, 412, 100, 103 )
+
+[node name="TreeMidle9" type="Sprite" parent="Vegetation"]
+position = Vector2( 2547, 118 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 270, 412, 100, 103 )
+
+[node name="TreeMidle3" type="Sprite" parent="Vegetation"]
+position = Vector2( 1630.5, 446.25 )
+scale = Vector2( 0.97, 0.946602 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 270, 412, 100, 103 )
+
+[node name="TreeMidle4" type="Sprite" parent="Vegetation"]
+position = Vector2( 1480.5, 456.25 )
+scale = Vector2( 1.09, 1.08252 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 270, 412, 100, 103 )
+
+[node name="Tree4" type="Sprite" parent="."]
+position = Vector2( 453, 1003 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 9.146, 412.392, 112, 101 )
 
 [node name="Collectables" type="Node" parent="."]
 script = ExtResource( 13 )
