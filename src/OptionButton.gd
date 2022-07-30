@@ -5,10 +5,10 @@ extends OptionButton
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var languageItems=["NL viking","Nederlands","English"]
-var languageKeys=["nl_NL","nl","en"]
-var urlKeys=["nl_viking","nl","en"]
-var flags=["nl","nl","gb"]
+var languageItems=["NL viking","Nederlands","English","English 2"]
+var languageKeys=["nl_NL","nl","en","en_US"]
+var urlKeys=["nl_viking","nl","en","en2"]
+var flags=["nl","nl","gb","gb"]
 
 var currentLang=""
 

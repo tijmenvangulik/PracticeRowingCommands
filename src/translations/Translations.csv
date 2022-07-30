@@ -1,126 +1,126 @@
-keys;nl_NL;nl;en
-VastroeienBeideBoorden;Vastroeien beide boorden;Houden beide boorden;Check her down
-HalenBeideBoorden;Halen beide boorden;Halen beide boorden;Stroke both sides
-Bedankt;Bedankt;Bedankt;Easy off
-HalenSB;Halen SB;Halen SB;Stroke starboard
-StrijkenSB;Strijken SB;Strijken SB;Back down starboard
-VastroeienSB;Vastroeien SB;Vastroeien SB;Check her down starboard
-StrijkenBeidenBoorden;Strijken beiden boorden;Strijken beiden boorden;Back down
-HalenBB;Halen BB;Halen BB;Stroke port
-StrijkenBB;Strijken BB;Strijken BB;Back down port
-VastroeienBB;Vastroeien BB;Vastroeien BB;Check her down port
-Boem;Boem;Boem;Bang
-LegBootStil;Leg eerst de boot stil;Leg eerst de boot stil;First stop the boat
-EerstLatenLopen;Eerst laten lopen;Eerst laten lopen;First let it run
-Slippen;Slippen beide boorden;Slippen beide boorden;Blades along side
-SlippenSB;Slippen SB;Slippen SB;Blades along starboard side
-UitbrengenSB;Uitbrengen SB;Uitbrengen SB;Out oars starboard
-PeddelendStrijkenSB;Peddelend strijken SB;Peddelend strijken SB;Along side Back down starboard
-RondmakenSB;Rondmaken over SB;Rondmaken over SB;Spin turn starboard
-Uitbrengen;Uitbrengen beide boorden;Uitbrengen beide boorden;Along side off
-SlippenBB;Slippen BB;Slippen BB;Blades along port side
-UitbrengenBB;Uitbrengen BB;Uitbrengen BB;Out oars port
-PeddelendStrijkenBB;Peddelend strijken BB;Peddelend strijken BB;Along side back down port
-RondmakenBB;Rondmaken over BB;Rondmaken over BB;Spin turn port
-LaatLopen;Laat lopen;Laat lopen;Let it run
-EerstLatenLopenOfBedankt;Eerst laten lopen of bedankt;Eerst laten lopen of bedankt;First let it run or easy off
-CommandoNietMogelijk;Commando niet mogelijk;Commando niet mogelijk;Command not possible
-EerstSlippen;Eerst slippen;Eerst slippen;First along side
-EerstUitBrengen;Eerst uitbrengen;Eerst uitbrengen;First oars out
-StartPositie;Start;Start;Start
-StartOpWater;Start op water;Start op water;Start on water
-StartAangelegd;Start wegvaren;Start wegvaren;Start sail away
-UseButtons;Gebruik commando knoppen;Gebruik commando knoppen;Use command buttons
-IntroText;Stuurinstructie gaat een stuk sneller als je goed de commando’s kent voordat je in de boot stapt. Gebruik deze web app voor het oefenen van de stuurcommando`s. Probeer een achtje om de 2 boeitjes te varen of oefen het aanleggen. Gebruik de start knop om weer terug naar een begin positie te gaan. De boot heeft geen roer zodat je nog beter de commando`s kan oefenen.\n\n Je kunt met de knoppen de commando's geven of via het toetsenbord via de commando selectie knop links boven.\nIk ben nog op zoek naar vertalingen naar andere talen en naar vereniging specifieke vertalingen. Meer info staat op de project pagina. \n\nVeel plezier\n\nTijmen\ntijmen@vangulik.org;Stuurinstructie gaat een stuk sneller als je goed de commando’s kent voordat je in de boot stapt. Gebruik deze web app voor het oefenen van de stuurcommando`s. Probeer een achtje om de 2 boeitjes te varen of oefen het aanleggen. Gebruik de start knop om weer terug naar een begin positie te gaan. De boot heeft geen roer zodat je nog beter de commando`s kan oefenen.\n\n Je kunt met de knoppen de commando's geven of via het toetsenbord via de commando selectie knop links boven.\nIk ben nog op zoek naar vertalingen naar andere talen en naar vereniging specifieke vertalingen. Meer info staat op de project pagina. \n\nVeel plezier\n\nTijmen\ntijmen@vangulik.org;Learning coxing goes quicker if you know the commands before you step into the boat. You can train the commands using this application.\nEvery rowing club has its own command. You can translate the commands or create your own command buttons in the settings.  Not all the dutch commands could be directly translated to english. Some help needed translating all the commands to the official english terms. More info can be found on the project page.\n\nTijmen\ntijmen@vangulik.org
-Close;Sluiten;Sluiten;Close
-ShowIntroText;Introductie tekst;Introductie tekst;Introduction text
-Links;[center]Broncode en projectpagina:[/center]\n[center] [url=https://github.com/tijmenvangulik/PracticeRowingCommands]https://github.com/tijmenvangulik/PracticeRowingCommands[/url][/center];[center]Broncode en projectpagina:[/center]\n[center] [url=https://github.com/tijmenvangulik/PracticeRowingCommands]https://github.com/tijmenvangulik/PracticeRowingCommands[/url][/center];[center]Source code and project:[/center]\n[center] [url=https://github.com/tijmenvangulik/PracticeRowingCommands]https://github.com/tijmenvangulik/PracticeRowingCommands[/url][/center]
-LightPaddle;Light paddle;Light paddle;Light paddle
-LightPaddleBedankt;Light paddle bedankt;Light paddle bedankt;Light paddle off
-RiemenHoogSB;Riemen hoog SB;Riemen hoog SB;Starboard oars high
-RiemenHoogBB;Riemen hoog BB;Riemen hoog BB;Port oars high
-StartAanleggen;Start aanleggen;Start aanleggen;Start docking
-StartAanleggenMinderKnoppen;Start aanleggen (minder knoppen);Start aanleggen (minder knoppen);Start docking (less buttons)
-StartAangelegdMinderKnoppen;Start wegvaren (minder knoppen);Start wegvaren (minder knoppen);Start sail away (less buttons)
-StartStrijkendAanleggen;Start strijkend aanleggen;Start strijkend aanleggen;Start docking backwards
-StartStrijkendAanleggenMinderKnoppen;Start strijkend aanleggen (minder knoppen);Start strijkend aanleggen (minder knoppen);Start docking backwards (less buttons)
-StartAanleggenWal;Start aanleggen hoge wal;Start aanleggen hoge wal;Start docking high shore
-StartAanleggenWalMinderKnoppen;Start aanleggen hoge wal (minder knoppen);Start aanleggen hoge wal (minder knoppen);Start docking high shore (less buttons)
-StartStrijkendAanleggenWal;Start strijkend aanleggen hoge wal;Start strijkend aanleggen hoge wal;Start docking backward high shore
-StartStrijkendAanleggenWalMinderKnoppen;Start strijkend aanleggen hoge wal (minder knoppen);Start strijkend aanleggen hoge wal (minder knoppen);Start docking backwards high shore (less buttons)
-UitzettenSB;Uitzetten SB;Uitzetten SB;Push away starboard
-UitzettenBB;Uitzetten BB;Uitzetten BB;Push away port
-StuurboordBest;Stuurboord best;Stuurboord sterk;Strong starboard
-BakboortBest;Bakboord best;Bakboord sterk;Strong port
-BestBedankt;Best bedankt;Sterk bedankt;Strong off
-CommandTranslateTab;Vertaal commando`s;Vertaal commando`s;Translate commands
-CommandIsAlreadyActive;Commando is al actief;Commando is al actief;Command is already active
-EerstSlippen;Eerst slippen;Eerst slippen;First blades along side
-BestIsNietActief;Best is niet actief;Best is niet actief;Strong is not active
-BestAlleenTijdensHalen;Best kan alleen tijdens halen gegeven worden;Best kan alleen tijdens halen gegeven worden;Only strong command while rowing
-RiemenHoogAlleenAlsRiemenUitgebracht;Riemen zijn niet volledig uitgebracht;Riemen zijn niet volledig uitgebracht;Oars are not fully out
-RiemenMoetenHoogZijn;Riemen moeten uitgebracht hoog en bei de kant zijn voor uitzetten;Riemen moeten uitgebracht hoog en bei de kant zijn voor uitzetten;Oars must be up on the jetty for the push away command
-ButtonSet;"[""SlagklaarAf"",""LaatLopen,Bedankt"",""VastroeienSB"",""HalenSB"",""StrijkenSB"",""StrijkenBeidenBoorden"",""VastroeienBeideBoorden"",""VastroeienBB"",""HalenBB"",""StrijkenBB"",""Slippen"",""SlippenSB"",""UitbrengenSB"",""PeddelendStrijkenSB"",""RondmakenSB"",""Uitbrengen"",""SlippenBB"",""UitbrengenBB"",""PeddelendStrijkenBB"",""RondmakenBB"",""HalenBeideBoorden"",""LightPaddle"",""LightPaddleBedankt"",""RiemenHoogSB"",""RiemenHoogBB""]";"[""SlagklaarAf"",""LaatLopen,Bedankt"",""VastroeienSB"",""HalenSB"",""StrijkenSB"",""StrijkenBeidenBoorden"",""VastroeienBeideBoorden"",""VastroeienBB"",""HalenBB"",""StrijkenBB"",""Slippen"",""SlippenSB"",""UitbrengenSB"",""UitzettenSB"",""RondmakenSB"",""Uitbrengen"",""SlippenBB"",""UitbrengenBB"",""UitzettenBB"",""RondmakenBB"",""HalenBeideBoorden"",""LightPaddle"",""LightPaddleBedankt"",""RiemenHoogSB"",""RiemenHoogBB""]";"[""SlagklaarAf"",""LaatLopen,Bedankt"",""VastroeienSB"",""HalenSB"",""StrijkenSB"",""StrijkenBeidenBoorden"",""VastroeienBeideBoorden"",""VastroeienBB"",""HalenBB"",""StrijkenBB"",""Slippen"",""SlippenSB"",""UitbrengenSB"",""UitzettenSB"",""RondmakenSB"",""Uitbrengen"",""SlippenBB"",""UitbrengenBB"",""UitzettenBB"",""RondmakenBB"",""HalenBeideBoorden"",""LightPaddle"",""LightPaddleBedankt"",""RiemenHoogSB"",""RiemenHoogBB""]"
-CommandButtonsTab;Wijzig knopppenbalk;Wijzig knopppenbalk;Modify button bar
-DragButtonExplain;Sleep de bovenstaande knoppen naar de onderstaande knoppenbalk;Sleep de bovenstaande knoppen naar de onderstaande knoppenbalk;Drag the buttons above to the button bar beneath.
-ClearCustomButtons;Wis knoppen;Wis knoppen;Clear buttons
-DefaultCustomButtons;Standaard knoppen;Standaard knoppen;Default buttons
-Commando;Commando;Commando;Command
-GeneralSettingsTab;Algemene instellingen;Algemene instellingen;General settings
-RuleSetLabel;Regelset;Regelset;Rule set
-RulesetDefault;Standaard;Standaard;Default
-RulesetNoRules;Geen regels;Geen regels;No rules
-LanguageRuleSet;RulesetDefault;RulesetDefault;RulesetDefault
-EndGameAllFound;Alles gevonden in %s.;Alles gevonden in %s.;Everything found in %s.
-EndGameHighScore;Gefelicteerd je hebt de snelste tijd %s.;Gefelicteerd je hebt de snelste tijd %s.;Congratulations you have the best time %s.
-StartGameIntro;Verzamel zo snel mogelijk alle sterren door er overheen te varen. Als je botst moet je overnieuw beginnen.;Verzamel zo snel mogelijk alle sterren door er overheen te varen. Als je botst moet je overnieuw beginnen.;Collect ll starts as quick as possible by running over the stars. When you crash you have to start again.
-StartGameButton;Start;Start;Start
-CancelGameButton;Annuleren;Annuleren;Cancel
-StartStarGame;Start sterren spel;Start sterren spel;Start star game
-GameOverCrash;Helaas gebotst.;Helaas gebotst.;You have crashed the boat.
-BestHighscore;(Beste %s);(Beste %s);(Best %s)
-PlayAgain;Nog een keer spelen?;Nog een keer spelen?;Play again?
-ExportSettings;Exporteer instellingen;Exporteer instellingen;Export settings
-ImportSettings;Importeer instellingen;Importeer instellingen;Import settings
-Zoom;Zoom;Zoom;Zoom
-Forwards;Vooruit;Vooruit;Forwards
-Backwards;Achteruit;Achteruit;Backwards
-GeenWalVoorUItzetten;Geen wal of object in de buurt voor uitzetten;Geen wal of object in de buurt voor uitzetten;No shore of object nearby to push away
-SlagklaarAf;Slagklaar maken..af;Slagklaar maken..af;Get ready..go
-SlagklaarAf_tooltip;Slagklaar maken .. slag klaar.. af\nStart met roeien op volle snelheid. Gebruik laat lopen bedankt om te stoppen;Slagklaar maken .. slag klaar.. af\nStart met roeien op volle snelheid. Gebruik laat lopen bedankt om te stoppen;Get ready ..Ready all..go\nUse this to start rowing at full speed. Use let it run, easy off to stop rowing
-ShowHideTootipsTooltip;Toon/verberg extra info bij knoppen;Toon/verberg extra info bij knoppen;Show hide extra info for buttons
-OptionLanguageTooltip;Verander de taal of commando dialect van de roeivereniging. In de instelling is het ook mogelijk om je eigen vertaling te maken.;Verander de taal of commando dialect van de roeivereniging. In de instelling is het ook mogelijk om je eigen vertaling te maken.;Change the language or command dialect of your rowing club. In the settings you can make your own translation
-OptionStartTooltip;Start een game of roei opdracht.;Start een game of roei opdracht.;Start a game or rowing task
-ForwardsBackwardsTooltip;Wissel tussen voorwaard en achterwaartse positie om meer vooruit of achteruit te kunnen zien.;Wissel tussen voorwaard en achterwaartse positie om meer vooruit of achteruit te kunnen zien.;Change to forwards or backwards position to see more forwards or backwards.
-OptionCommandsTooltip;Gebruik de keuze lijst om commandos via het toetsenbord te kiezen. Gebruik enter, type een commando en weer enter voor selectie;Gebruik de keuze lijst om commandos via het toetsenbord te kiezen. Gebruik enter, type een commando en weer enter voor selectie;Use for command selection with the keyboard. Type enter , a command name and again enter for selection.
-SettingsButtonTooltip;Verander instellingen, vertalingen of knoppen;Verander instellingen, vertalingen of knoppen;Change settings,translations of buttons
-VastroeienBeideBoorden_tooltip;Rem de boot af. Gebruik bedankt om dit te beëindigen.;Rem de boot af. Gebruik bedankt om dit te beëindigen.;
-HalenBeideBoorden_tooltip;Boot gaat voorwaards, maar niet zo snel als bij commando “slagklaar maken.. af” Gebruik laat lopen , bedankt om dit te beëindigen.;Boot gaat voorwaards, maar niet zo snel als bij commando “slagklaar maken.. af” Gebruik laat lopen , bedankt om dit te beëindigen.;
-Bedankt_tooltip;Gebruik na laat lopen. Leg de riemen op het water zodat de boot verder afremt.;Gebruik na laat lopen. Leg de riemen op het water zodat de boot verder afremt.;
-HalenSB_tooltip;Boot gaat vooruit en draait naar bakboord (links). Gebruik bedankt om dit te beëindigen.;Boot gaat vooruit en draait naar bakboord (links). Gebruik bedankt om dit te beëindigen.;
-StrijkenSB_tooltip;Boot gaat achteruit en draait naar bakboord (links). Gebruik bedankt om dit te beëindigen.;Boot gaat achteruit en draait naar bakboord (links). Gebruik bedankt om dit te beëindigen.;
-VastroeienSB_tooltip;Boot remt af en draait naar stuurboord (rechts). Gebruik bedankt om dit te beëindigen.;Boot remt af en draait naar stuurboord (rechts). Gebruik bedankt om dit te beëindigen.;
-StrijkenBeidenBoorden_tooltip;Vaar recht achteruit. Gebruik bedankt om dit te beëindigen.;Vaar recht achteruit. Gebruik bedankt om dit te beëindigen.;
-HalenBB_tooltip;Boot gaat vooruit en draait naar stuurboord (rechts) Gebruik bedankt om dit te beëindigen.;Boot gaat vooruit en draait naar stuurboord (rechts) Gebruik bedankt om dit te beëindigen.;
-StrijkenBB_tooltip;Boot gaat achteruit en draait naar stuurboord (rechts) Gebruik bedankt om dit te beëindigen.;Boot gaat achteruit en draait naar stuurboord (rechts) Gebruik bedankt om dit te beëindigen.;
-VastroeienBB_tooltip;Boot remt af en draait  naar bakboord  (links) Gebruik bedankt om dit te beëindigen.;Boot remt af en draait  naar bakboord  (links) Gebruik bedankt om dit te beëindigen.;
-Slippen_tooltip;Breng alle riemen langszij om met de riemen niet ergens tegen aan te botsen. Gebruikt uitbrengen om dit te beëindigen;Breng alle riemen langszij om met de riemen niet ergens tegen aan te botsen. Gebruikt uitbrengen om dit te beëindigen;
-SlippenSB_tooltip;Breng stuurboord riemen langszij om aan een hoge wal aan te leggen. Gebruikt uitbrengen bakboord om dit te beëindigen;Breng stuurboord riemen langszij om aan een hoge wal aan te leggen. Gebruikt uitbrengen bakboord om dit te beëindigen;
-UitbrengenSB_tooltip;Gebruik dit commando na slippen stuurboord om weer door te kunnen roeien;Gebruik dit commando na slippen stuurboord om weer door te kunnen roeien;
-PeddelendStrijkenSB_tooltip;Beweeg de roeiboot zijwaarts van de kant af richting bakboord. Gebruik dit na het commando slippen. Hierna moet je de riemen weer uitbrengen om verder te roeien.;Beweeg de roeiboot zijwaarts van de kant af richting bakboord. Gebruik dit na het commando slippen. Hierna moet je de riemen weer uitbrengen om verder te roeien.;
-RondmakenSB_tooltip;Laat de boot ronddraaien om zijn as richting bakboord (links om).;Laat de boot ronddraaien om zijn as richting bakboord (links om).;
-Uitbrengen_tooltip;Gebruik na slippen om weer door te kunnen roeien;Gebruik na slippen om weer door te kunnen roeien;
-SlippenBB_tooltip;Breng bakboord riemen langszij om aan een hoge wal aan te leggen. Gebruikt uitbrengen bakboord om dit te beëindigen;Breng bakboord riemen langszij om aan een hoge wal aan te leggen. Gebruikt uitbrengen bakboord om dit te beëindigen;
-UitbrengenBB_tooltip;Gebruik na slippen bakboord om weer door te kunnen roeien;Gebruik na slippen bakboord om weer door te kunnen roeien;
-PeddelendStrijkenBB_tooltip;Beweeg de roeiboot zijwaarts van de kant af richting stuurboord. Gebruik dit na het commando slippen. Hierna moet je de riemen weer uitbrengen om verder te roeien.;Beweeg de roeiboot zijwaarts van de kant af richting stuurboord. Gebruik dit na het commando slippen. Hierna moet je de riemen weer uitbrengen om verder te roeien.;
-RondmakenBB_tooltip;Laat de boot ronddraaien om zijn as richting stuurboord (rechts om).;Laat de boot ronddraaien om zijn as richting stuurboord (rechts om).;
-LaatLopen_tooltip;Stop met een roei actie, de riemen blijven nog boven water zodat de boot niet afremt, gebruik hierna bedankt om de boot verder af te remmen.;Stop met een roei actie, de riemen blijven nog boven water zodat de boot niet afremt, gebruik hierna bedankt om de boot verder af te remmen.;
-UitzettenSB_tooltip;Zet van de kant af aan stuurboord zodat de boot zijwaarts naar bakboord gaat. Dit kan alleen als riemen zijn geslipt, hierna de riemen weer uitbrengen.;Zet van de kant af aan stuurboord zodat de boot zijwaarts naar bakboord gaat. Dit kan alleen als riemen zijn geslipt, hierna de riemen weer uitbrengen.;
-UitzettenBB_tooltip;Zet van de kant af aan bakboord zodat de boot zijwaarts naar stuurboord gaat. Dit kan alleen als riemen zijn geslipt, hierna de riemen weer uitbrengen.;Zet van de kant af aan bakboord zodat de boot zijwaarts naar stuurboord gaat. Dit kan alleen als riemen zijn geslipt, hierna de riemen weer uitbrengen.;
-StuurboordBest_tooltip;Gebruik dit tijdens het voorwaarts roeien om de boot naar bakboord te draaien. Gebruik best bedankt om dit te beëindigen;Gebruik dit tijdens het voorwaarts roeien om de boot naar bakboord te draaien. Gebruik best bedankt om dit te beëindigen;
-BakboortBest_tooltip;Gebruik dit tijdens het voorwaarts roeien om de boot naar stuurboord te draaien. Gebruik best bedankt om dit te beëindigen;Gebruik dit tijdens het voorwaarts roeien om de boot naar stuurboord te draaien. Gebruik best bedankt om dit te beëindigen;
-BestBedankt_tooltip;Beëindig best commando;Beëindig best commando;
-LightPaddle_tooltip;Laat de boot minder snel gaan. Gebruik light paddle bedankt om dit te beëindigen;Laat de boot minder snel gaan. Gebruik light paddle bedankt om dit te beëindigen;
-LightPaddleBedankt_tooltip;Ga weer naar normale snelheid.;Ga weer naar normale snelheid.;
-RiemenHoogSB_tooltip;Gebruik dit voor aanleggen aan het vlot om niet met de riemen aan stuurboord tegen het vlot aan te botsen;Gebruik dit voor aanleggen aan het vlot om niet met de riemen aan stuurboord tegen het vlot aan te botsen;
-RiemenHoogBB_tooltip;Gebruik dit voor aanleggen aan het vlot om niet met de riemen aan bakboord tegen het vlot aan te botsen;Gebruik dit voor aanleggen aan het vlot om niet met de riemen aan bakboord tegen het vlot aan te botsen;
+keys;nl_NL;nl;en;en_US
+VastroeienBeideBoorden;Vastroeien beide boorden;Houden beide boorden;Hold;Hold
+HalenBeideBoorden;Halen beide boorden;Halen beide boorden;Stroke both sides;Stroke both sides
+Bedankt;Bedankt;Bedankt;Easy off;Easy off
+HalenSB;Halen SB;Halen SB;Stroke bow side;Stroke starboard
+StrijkenSB;Strijken SB;Strijken SB;Back down bow side;Back down starboard
+VastroeienSB;Vastroeien SB;Houden SB;Hold bow side;Hold starboard
+StrijkenBeidenBoorden;Strijken beiden boorden;Strijken beiden boorden;Back down;Back down
+HalenBB;Halen BB;Halen BB;Stroke stroke side;Stroke port
+StrijkenBB;Strijken BB;Strijken BB;Back down stroke side;Back down port
+VastroeienBB;Vastroeien BB;Houden BB;Hold stroke side;Hold port
+Boem;Boem;Boem;Bang;Bang
+LegBootStil;Leg eerst de boot stil;Leg eerst de boot stil;First stop the boat;First stop the boat
+EerstLatenLopen;Eerst laten lopen;Eerst laten lopen;First let it run;First let it run
+Slippen;Slippen beide boorden;Slippen beide boorden;Blades along side;Blades along side
+SlippenSB;Slippen SB;Slippen SB;Blades along bow side;Blades along starboard side
+UitbrengenSB;Uitbrengen SB;Uitbrengen SB;Out oars bow side;Out oars starboard
+PeddelendStrijkenSB;Peddelend strijken SB;Peddelend strijken SB;Along side Back down bow side;Along side Back down starboard
+RondmakenSB;Rondmaken over SB;Rondmaken over SB;Spin turn bow side;Spin turn starboard
+Uitbrengen;Uitbrengen beide boorden;Uitbrengen beide boorden;Along side off;Along side off
+SlippenBB;Slippen BB;Slippen BB;Blades along stroke side;Blades along port side
+UitbrengenBB;Uitbrengen BB;Uitbrengen BB;Out oars stroke side;Out oars port
+PeddelendStrijkenBB;Peddelend strijken BB;Peddelend strijken BB;Along side back down stroke side;Along side back down port
+RondmakenBB;Rondmaken over BB;Rondmaken over BB;Spin turn stroke side;Spin turn port
+LaatLopen;Laat lopen;Laat lopen;Let it run;Let it run
+EerstLatenLopenOfBedankt;Eerst laten lopen of bedankt;Eerst laten lopen of bedankt;First let it run or easy off;First let it run or easy off
+CommandoNietMogelijk;Commando niet mogelijk;Commando niet mogelijk;Command not possible;Command not possible
+EerstSlippen;Eerst slippen;Eerst slippen;First along side;First along side
+EerstUitBrengen;Eerst uitbrengen;Eerst uitbrengen;First oars out;First oars out
+StartPositie;Start;Start;Start;Start
+StartOpWater;Start op water;Start op water;Start on water;Start on water
+StartAangelegd;Start wegvaren;Start wegvaren;Start sail away;Start sail away
+UseButtons;Gebruik commando knoppen;Gebruik commando knoppen;Use command buttons;Use command buttons
+IntroText;Stuurinstructie gaat een stuk sneller als je goed de commando’s kent voordat je in de boot stapt. Gebruik deze web app voor het oefenen van de stuurcommando`s. Probeer een achtje om de 2 boeitjes te varen of oefen het aanleggen. Gebruik de start knop om weer terug naar een begin positie te gaan. De boot heeft geen roer zodat je nog beter de commando`s kan oefenen.\n\n Je kunt met de knoppen de commando's geven of via het toetsenbord via de commando selectie knop links boven.\nIk ben nog op zoek naar vertalingen naar andere talen en naar vereniging specifieke vertalingen. Meer info staat op de project pagina. \n\nVeel plezier\n\nTijmen\ntijmen@vangulik.org;Stuurinstructie gaat een stuk sneller als je goed de commando’s kent voordat je in de boot stapt. Gebruik deze web app voor het oefenen van de stuurcommando`s. Probeer een achtje om de 2 boeitjes te varen of oefen het aanleggen. Gebruik de start knop om weer terug naar een begin positie te gaan. De boot heeft geen roer zodat je nog beter de commando`s kan oefenen.\n\n Je kunt met de knoppen de commando's geven of via het toetsenbord via de commando selectie knop links boven.\nIk ben nog op zoek naar vertalingen naar andere talen en naar vereniging specifieke vertalingen. Meer info staat op de project pagina. \n\nVeel plezier\n\nTijmen\ntijmen@vangulik.org;Learning coxing goes quicker if you know the commands before you step into the boat. You can train the commands using this application.\nEvery rowing club has its own command. You can translate the commands or create your own command buttons in the settings.  Not all the dutch commands could be directly translated to english. Some help needed translating all the commands to the official english terms. More info can be found on the project page.\n\nTijmen\ntijmen@vangulik.org;Learning coxing goes quicker if you know the commands before you step into the boat. You can train the commands using this application.\nEvery rowing club has its own command. You can translate the commands or create your own command buttons in the settings.  Not all the dutch commands could be directly translated to english. Some help needed translating all the commands to the official english terms. More info can be found on the project page.\n\nTijmen\ntijmen@vangulik.org
+Close;Sluiten;Sluiten;Close;Close
+ShowIntroText;Introductie tekst;Introductie tekst;Introduction text;Introduction text
+Links;[center]Broncode en projectpagina:[/center]\n[center] [url=https://github.com/tijmenvangulik/PracticeRowingCommands]https://github.com/tijmenvangulik/PracticeRowingCommands[/url][/center];[center]Broncode en projectpagina:[/center]\n[center] [url=https://github.com/tijmenvangulik/PracticeRowingCommands]https://github.com/tijmenvangulik/PracticeRowingCommands[/url][/center];[center]Source code and project:[/center]\n[center] [url=https://github.com/tijmenvangulik/PracticeRowingCommands]https://github.com/tijmenvangulik/PracticeRowingCommands[/url][/center];[center]Source code and project:[/center]\n[center] [url=https://github.com/tijmenvangulik/PracticeRowingCommands]https://github.com/tijmenvangulik/PracticeRowingCommands[/url][/center]
+LightPaddle;Light paddle;Light paddle;Light paddle;Light paddle
+LightPaddleBedankt;Light paddle bedankt;Light paddle bedankt;Light paddle off;Light paddle off
+RiemenHoogSB;Riemen hoog SB;Riemen hoog SB;Bow side oars high;Starboard oars high
+RiemenHoogBB;Riemen hoog BB;Riemen hoog BB;Stroke side oars high;Port oars high
+StartAanleggen;Start aanleggen;Start aanleggen;Start docking;Start docking
+StartAanleggenMinderKnoppen;Start aanleggen (minder knoppen);Start aanleggen (minder knoppen);Start docking (less buttons);Start docking (less buttons)
+StartAangelegdMinderKnoppen;Start wegvaren (minder knoppen);Start wegvaren (minder knoppen);Start sail away (less buttons);Start sail away (less buttons)
+StartStrijkendAanleggen;Start strijkend aanleggen;Start strijkend aanleggen;Start docking backwards;Start docking backwards
+StartStrijkendAanleggenMinderKnoppen;Start strijkend aanleggen (minder knoppen);Start strijkend aanleggen (minder knoppen);Start docking backwards (less buttons);Start docking backwards (less buttons)
+StartAanleggenWal;Start aanleggen hoge wal;Start aanleggen hoge wal;Start docking high shore;Start docking high shore
+StartAanleggenWalMinderKnoppen;Start aanleggen hoge wal (minder knoppen);Start aanleggen hoge wal (minder knoppen);Start docking high shore (less buttons);Start docking high shore (less buttons)
+StartStrijkendAanleggenWal;Start strijkend aanleggen hoge wal;Start strijkend aanleggen hoge wal;Start docking backward high shore;Start docking backward high shore
+StartStrijkendAanleggenWalMinderKnoppen;Start strijkend aanleggen hoge wal (minder knoppen);Start strijkend aanleggen hoge wal (minder knoppen);Start docking backwards high shore (less buttons);Start docking backwards high shore (less buttons)
+UitzettenSB;Uitzetten SB;Uitzetten SB;Push away bow side;Push away starboard
+UitzettenBB;Uitzetten BB;Uitzetten BB;Push away stroke side;Push away port
+StuurboordBest;Stuurboord best;Stuurboord sterk;Strong bow side;Strong starboard
+BakboortBest;Bakboord best;Bakboord sterk;Strong stroke side;Strong port
+BestBedankt;Best bedankt;Sterk bedankt;Strong off;Strong off
+CommandTranslateTab;Vertaal commando`s;Vertaal commando`s;Translate commands;Translate commands
+CommandIsAlreadyActive;Commando is al actief;Commando is al actief;Command is already active;Command is already active
+EerstSlippen;Eerst slippen;Eerst slippen;First blades along side;First blades along side
+BestIsNietActief;Best is niet actief;Best is niet actief;Strong is not active;Strong is not active
+BestAlleenTijdensHalen;Best kan alleen tijdens halen gegeven worden;Best kan alleen tijdens halen gegeven worden;Only strong command while rowing;Only strong command while rowing
+RiemenHoogAlleenAlsRiemenUitgebracht;Riemen zijn niet volledig uitgebracht;Riemen zijn niet volledig uitgebracht;Oars are not fully out;Oars are not fully out
+RiemenMoetenHoogZijn;Riemen moeten uitgebracht hoog en bei de kant zijn voor uitzetten;Riemen moeten uitgebracht hoog en bei de kant zijn voor uitzetten;Oars must be up on the jetty for the push away command;Oars must be up on the jetty for the push away command
+ButtonSet;"[""SlagklaarAf"",""LaatLopen,Bedankt"",""VastroeienSB"",""HalenSB"",""StrijkenSB"",""StrijkenBeidenBoorden"",""VastroeienBeideBoorden"",""VastroeienBB"",""HalenBB"",""StrijkenBB"",""Slippen"",""SlippenSB"",""UitbrengenSB"",""PeddelendStrijkenSB"",""RondmakenSB"",""Uitbrengen"",""SlippenBB"",""UitbrengenBB"",""PeddelendStrijkenBB"",""RondmakenBB"",""HalenBeideBoorden"",""LightPaddle"",""LightPaddleBedankt"",""RiemenHoogSB"",""RiemenHoogBB""]";"[""SlagklaarAf"",""LaatLopen,Bedankt"",""VastroeienSB"",""HalenSB"",""StrijkenSB"",""StrijkenBeidenBoorden"",""VastroeienBeideBoorden"",""VastroeienBB"",""HalenBB"",""StrijkenBB"",""Slippen"",""SlippenSB"",""UitbrengenSB"",""UitzettenSB"",""RondmakenSB"",""Uitbrengen"",""SlippenBB"",""UitbrengenBB"",""UitzettenBB"",""RondmakenBB"",""HalenBeideBoorden"",""LightPaddle"",""LightPaddleBedankt"",""RiemenHoogSB"",""RiemenHoogBB""]";"[""SlagklaarAf"",""LaatLopen,Bedankt"",""VastroeienSB"",""HalenSB"",""StrijkenSB"",""StrijkenBeidenBoorden"",""VastroeienBeideBoorden"",""VastroeienBB"",""HalenBB"",""StrijkenBB"",""Slippen"",""SlippenSB"",""UitbrengenSB"",""UitzettenSB"",""RondmakenSB"",""Uitbrengen"",""SlippenBB"",""UitbrengenBB"",""UitzettenBB"",""RondmakenBB"",""HalenBeideBoorden"",""LightPaddle"",""LightPaddleBedankt"",""RiemenHoogSB"",""RiemenHoogBB""]";"[""SlagklaarAf"",""LaatLopen,Bedankt"",""VastroeienSB"",""HalenSB"",""StrijkenSB"",""StrijkenBeidenBoorden"",""VastroeienBeideBoorden"",""VastroeienBB"",""HalenBB"",""StrijkenBB"",""Slippen"",""SlippenSB"",""UitbrengenSB"",""UitzettenSB"",""RondmakenSB"",""Uitbrengen"",""SlippenBB"",""UitbrengenBB"",""UitzettenBB"",""RondmakenBB"",""HalenBeideBoorden"",""LightPaddle"",""LightPaddleBedankt"",""RiemenHoogSB"",""RiemenHoogBB""]"
+CommandButtonsTab;Wijzig knopppenbalk;Wijzig knopppenbalk;Modify button bar;Modify button bar
+DragButtonExplain;Sleep de bovenstaande knoppen naar de onderstaande knoppenbalk;Sleep de bovenstaande knoppen naar de onderstaande knoppenbalk;Drag the buttons above to the button bar beneath.;Drag the buttons above to the button bar beneath.
+ClearCustomButtons;Wis knoppen;Wis knoppen;Clear buttons;Clear buttons
+DefaultCustomButtons;Standaard knoppen;Standaard knoppen;Default buttons;Default buttons
+Commando;Commando;Commando;Command;Command
+GeneralSettingsTab;Algemene instellingen;Algemene instellingen;General settings;General settings
+RuleSetLabel;Regelset;Regelset;Rule set;Rule set
+RulesetDefault;Standaard;Standaard;Default;Default
+RulesetNoRules;Geen regels;Geen regels;No rules;No rules
+LanguageRuleSet;RulesetDefault;RulesetDefault;RulesetDefault;RulesetDefault
+EndGameAllFound;Alles gevonden in %s.;Alles gevonden in %s.;Everything found in %s.;Everything found in %s.
+EndGameHighScore;Gefelicteerd je hebt de snelste tijd %s.;Gefelicteerd je hebt de snelste tijd %s.;Congratulations you have the best time %s.;Congratulations you have the best time %s.
+StartGameIntro;Verzamel zo snel mogelijk alle sterren door er overheen te varen. Als je botst moet je overnieuw beginnen.;Verzamel zo snel mogelijk alle sterren door er overheen te varen. Als je botst moet je overnieuw beginnen.;Collect ll starts as quick as possible by running over the stars. When you crash you have to start again.;Collect ll starts as quick as possible by running over the stars. When you crash you have to start again.
+StartGameButton;Start;Start;Start;Start
+CancelGameButton;Annuleren;Annuleren;Cancel;Cancel
+StartStarGame;Start sterren spel;Start sterren spel;Start star game;Start star game
+GameOverCrash;Helaas gebotst.;Helaas gebotst.;You have crashed the boat.;You have crashed the boat.
+BestHighscore;(Beste %s);(Beste %s);(Best %s);(Best %s)
+PlayAgain;Nog een keer spelen?;Nog een keer spelen?;Play again?;Play again?
+ExportSettings;Exporteer instellingen;Exporteer instellingen;Export settings;Export settings
+ImportSettings;Importeer instellingen;Importeer instellingen;Import settings;Import settings
+Zoom;Zoom;Zoom;Zoom;Zoom
+Forwards;Vooruit;Vooruit;Forwards;Forwards
+Backwards;Achteruit;Achteruit;Backwards;Backwards
+GeenWalVoorUItzetten;Geen wal of object in de buurt voor uitzetten;Geen wal of object in de buurt voor uitzetten;No shore of object nearby to push away;No shore of object nearby to push away
+SlagklaarAf;Slagklaar maken..af;Slagklaar maken..af;Get ready..go;Get ready..go
+SlagklaarAf_tooltip;Slagklaar maken .. slag klaar.. af\nStart met roeien op volle snelheid. Gebruik laat lopen bedankt om te stoppen;Slagklaar maken .. slag klaar.. af\nStart met roeien op volle snelheid. Gebruik laat lopen bedankt om te stoppen;Get ready ..Ready all..go\nUse this to start rowing at full speed. Use let it run, easy off to stop rowing;Get ready ..Ready all..go\nUse this to start rowing at full speed. Use let it run, easy off to stop rowing
+ShowHideTootipsTooltip;Toon/verberg extra info bij knoppen;Toon/verberg extra info bij knoppen;Show hide extra info for buttons;Show hide extra info for buttons
+OptionLanguageTooltip;Verander de taal of commando dialect van de roeivereniging. In de instelling is het ook mogelijk om je eigen vertaling te maken.;Verander de taal of commando dialect van de roeivereniging. In de instelling is het ook mogelijk om je eigen vertaling te maken.;Change the language or command dialect of your rowing club. In the settings you can make your own translation;Change the language or command dialect of your rowing club. In the settings you can make your own translation
+OptionStartTooltip;Start een game of roei opdracht.;Start een game of roei opdracht.;Start a game or rowing task;Start a game or rowing task
+ForwardsBackwardsTooltip;Wissel tussen voorwaard en achterwaartse positie om meer vooruit of achteruit te kunnen zien.;Wissel tussen voorwaard en achterwaartse positie om meer vooruit of achteruit te kunnen zien.;Change to forwards or backwards position to see more forwards or backwards.;Change to forwards or backwards position to see more forwards or backwards.
+OptionCommandsTooltip;Gebruik de keuze lijst om commandos via het toetsenbord te kiezen. Gebruik enter, type een commando en weer enter voor selectie;Gebruik de keuze lijst om commandos via het toetsenbord te kiezen. Gebruik enter, type een commando en weer enter voor selectie;Use for command selection with the keyboard. Type enter , a command name and again enter for selection.;Use for command selection with the keyboard. Type enter , a command name and again enter for selection.
+SettingsButtonTooltip;Verander instellingen, vertalingen of knoppen;Verander instellingen, vertalingen of knoppen;Change settings,translations of buttons;Change settings,translations of buttons
+VastroeienBeideBoorden_tooltip;Rem de boot af. Gebruik bedankt om dit te beëindigen.;Rem de boot af. Gebruik bedankt om dit te beëindigen.;;
+HalenBeideBoorden_tooltip;Boot gaat voorwaards, maar niet zo snel als bij commando “slagklaar maken.. af” Gebruik laat lopen , bedankt om dit te beëindigen.;Boot gaat voorwaards, maar niet zo snel als bij commando “slagklaar maken.. af” Gebruik laat lopen , bedankt om dit te beëindigen.;;
+Bedankt_tooltip;Gebruik na laat lopen. Leg de riemen op het water zodat de boot verder afremt.;Gebruik na laat lopen. Leg de riemen op het water zodat de boot verder afremt.;;
+HalenSB_tooltip;Boot gaat vooruit en draait naar bakboord (links). Gebruik bedankt om dit te beëindigen.;Boot gaat vooruit en draait naar bakboord (links). Gebruik bedankt om dit te beëindigen.;;
+StrijkenSB_tooltip;Boot gaat achteruit en draait naar bakboord (links). Gebruik bedankt om dit te beëindigen.;Boot gaat achteruit en draait naar bakboord (links). Gebruik bedankt om dit te beëindigen.;;
+VastroeienSB_tooltip;Boot remt af en draait naar stuurboord (rechts). Gebruik bedankt om dit te beëindigen.;Boot remt af en draait naar stuurboord (rechts). Gebruik bedankt om dit te beëindigen.;;
+StrijkenBeidenBoorden_tooltip;Vaar recht achteruit. Gebruik bedankt om dit te beëindigen.;Vaar recht achteruit. Gebruik bedankt om dit te beëindigen.;;
+HalenBB_tooltip;Boot gaat vooruit en draait naar stuurboord (rechts) Gebruik bedankt om dit te beëindigen.;Boot gaat vooruit en draait naar stuurboord (rechts) Gebruik bedankt om dit te beëindigen.;;
+StrijkenBB_tooltip;Boot gaat achteruit en draait naar stuurboord (rechts) Gebruik bedankt om dit te beëindigen.;Boot gaat achteruit en draait naar stuurboord (rechts) Gebruik bedankt om dit te beëindigen.;;
+VastroeienBB_tooltip;Boot remt af en draait  naar bakboord  (links) Gebruik bedankt om dit te beëindigen.;Boot remt af en draait  naar bakboord  (links) Gebruik bedankt om dit te beëindigen.;;
+Slippen_tooltip;Breng alle riemen langszij om met de riemen niet ergens tegen aan te botsen. Gebruikt uitbrengen om dit te beëindigen;Breng alle riemen langszij om met de riemen niet ergens tegen aan te botsen. Gebruikt uitbrengen om dit te beëindigen;;
+SlippenSB_tooltip;Breng stuurboord riemen langszij om aan een hoge wal aan te leggen. Gebruikt uitbrengen bakboord om dit te beëindigen;Breng stuurboord riemen langszij om aan een hoge wal aan te leggen. Gebruikt uitbrengen bakboord om dit te beëindigen;;
+UitbrengenSB_tooltip;Gebruik dit commando na slippen stuurboord om weer door te kunnen roeien;Gebruik dit commando na slippen stuurboord om weer door te kunnen roeien;;
+PeddelendStrijkenSB_tooltip;Beweeg de roeiboot zijwaarts van de kant af richting bakboord. Gebruik dit na het commando slippen. Hierna moet je de riemen weer uitbrengen om verder te roeien.;Beweeg de roeiboot zijwaarts van de kant af richting bakboord. Gebruik dit na het commando slippen. Hierna moet je de riemen weer uitbrengen om verder te roeien.;;
+RondmakenSB_tooltip;Laat de boot ronddraaien om zijn as richting bakboord (links om).;Laat de boot ronddraaien om zijn as richting bakboord (links om).;;
+Uitbrengen_tooltip;Gebruik na slippen om weer door te kunnen roeien;Gebruik na slippen om weer door te kunnen roeien;;
+SlippenBB_tooltip;Breng bakboord riemen langszij om aan een hoge wal aan te leggen. Gebruikt uitbrengen bakboord om dit te beëindigen;Breng bakboord riemen langszij om aan een hoge wal aan te leggen. Gebruikt uitbrengen bakboord om dit te beëindigen;;
+UitbrengenBB_tooltip;Gebruik na slippen bakboord om weer door te kunnen roeien;Gebruik na slippen bakboord om weer door te kunnen roeien;;
+PeddelendStrijkenBB_tooltip;Beweeg de roeiboot zijwaarts van de kant af richting stuurboord. Gebruik dit na het commando slippen. Hierna moet je de riemen weer uitbrengen om verder te roeien.;Beweeg de roeiboot zijwaarts van de kant af richting stuurboord. Gebruik dit na het commando slippen. Hierna moet je de riemen weer uitbrengen om verder te roeien.;;
+RondmakenBB_tooltip;Laat de boot ronddraaien om zijn as richting stuurboord (rechts om).;Laat de boot ronddraaien om zijn as richting stuurboord (rechts om).;;
+LaatLopen_tooltip;Stop met een roei actie, de riemen blijven nog boven water zodat de boot niet afremt, gebruik hierna bedankt om de boot verder af te remmen.;Stop met een roei actie, de riemen blijven nog boven water zodat de boot niet afremt, gebruik hierna bedankt om de boot verder af te remmen.;;
+UitzettenSB_tooltip;Zet van de kant af aan stuurboord zodat de boot zijwaarts naar bakboord gaat. Dit kan alleen als riemen zijn geslipt, hierna de riemen weer uitbrengen.;Zet van de kant af aan stuurboord zodat de boot zijwaarts naar bakboord gaat. Dit kan alleen als riemen zijn geslipt, hierna de riemen weer uitbrengen.;;
+UitzettenBB_tooltip;Zet van de kant af aan bakboord zodat de boot zijwaarts naar stuurboord gaat. Dit kan alleen als riemen zijn geslipt, hierna de riemen weer uitbrengen.;Zet van de kant af aan bakboord zodat de boot zijwaarts naar stuurboord gaat. Dit kan alleen als riemen zijn geslipt, hierna de riemen weer uitbrengen.;;
+StuurboordBest_tooltip;Gebruik dit tijdens het voorwaarts roeien om de boot naar bakboord te draaien. Gebruik best bedankt om dit te beëindigen;Gebruik dit tijdens het voorwaarts roeien om de boot naar bakboord te draaien. Gebruik best bedankt om dit te beëindigen;;
+BakboortBest_tooltip;Gebruik dit tijdens het voorwaarts roeien om de boot naar stuurboord te draaien. Gebruik best bedankt om dit te beëindigen;Gebruik dit tijdens het voorwaarts roeien om de boot naar stuurboord te draaien. Gebruik best bedankt om dit te beëindigen;;
+BestBedankt_tooltip;Beëindig best commando;Beëindig best commando;;
+LightPaddle_tooltip;Laat de boot minder snel gaan. Gebruik light paddle bedankt om dit te beëindigen;Laat de boot minder snel gaan. Gebruik light paddle bedankt om dit te beëindigen;;
+LightPaddleBedankt_tooltip;Ga weer naar normale snelheid.;Ga weer naar normale snelheid.;;
+RiemenHoogSB_tooltip;Gebruik dit voor aanleggen aan het vlot om niet met de riemen aan stuurboord tegen het vlot aan te botsen;Gebruik dit voor aanleggen aan het vlot om niet met de riemen aan stuurboord tegen het vlot aan te botsen;;
+RiemenHoogBB_tooltip;Gebruik dit voor aanleggen aan het vlot om niet met de riemen aan bakboord tegen het vlot aan te botsen;Gebruik dit voor aanleggen aan het vlot om niet met de riemen aan bakboord tegen het vlot aan te botsen;;
