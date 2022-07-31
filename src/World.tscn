@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=2]
+[gd_scene load_steps=86 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -43,6 +43,7 @@
 [ext_resource path="res://OptionCommands.gd" type="Script" id=41]
 [ext_resource path="res://CloseButton.gd" type="Script" id=42]
 [ext_resource path="res://IntroDialog.gd" type="Script" id=43]
+[ext_resource path="res://assets/boathouse.png" type="Texture" id=44]
 [ext_resource path="res://Font.tres" type="DynamicFont" id=50]
 [ext_resource path="res://BoatPath.gd" type="Script" id=54]
 [ext_resource path="res://Links.gd" type="Script" id=55]
@@ -821,7 +822,7 @@ script = ExtResource( 1 )
 position = Vector2( 1249, 151 )
 scale = Vector2( 1.65561, 1.64805 )
 color = Color( 0.552941, 0.768627, 0.207843, 1 )
-offset = Vector2( -683.132, -584.327 )
+offset = Vector2( -1600.13, -584.327 )
 polygon = PoolVector2Array( 3155.45, 2915.4, -225.614, 2917.53, -232.07, -260.219, 3155, -242.551, 3150.17, 2498.73, 3150.17, 2498.73 )
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -893,7 +894,7 @@ region_enabled = true
 region_rect = Rect2( 9.146, 412.392, 112, 101 )
 
 [node name="Tree6" type="Sprite" parent="Vegetation"]
-position = Vector2( -112, 1778 )
+position = Vector2( -169, 1512 )
 texture = ExtResource( 5 )
 region_enabled = true
 region_rect = Rect2( 9.146, 412.392, 112, 101 )
@@ -1104,7 +1105,7 @@ region_enabled = true
 region_rect = Rect2( 34, 529, 95, 108 )
 
 [node name="TreeDark2" type="Sprite" parent="Vegetation"]
-position = Vector2( -118.75, 1716 )
+position = Vector2( -89, 2004 )
 scale = Vector2( 0.942105, 0.87037 )
 texture = ExtResource( 5 )
 region_enabled = true
@@ -1176,11 +1177,20 @@ texture = ExtResource( 5 )
 region_enabled = true
 region_rect = Rect2( 270, 412, 100, 103 )
 
-[node name="Tree4" type="Sprite" parent="."]
+[node name="Tree13" type="Sprite" parent="Vegetation"]
 position = Vector2( 453, 1003 )
 texture = ExtResource( 5 )
 region_enabled = true
 region_rect = Rect2( 9.146, 412.392, 112, 101 )
+
+[node name="Boathouse" type="Sprite" parent="Vegetation"]
+position = Vector2( 1372, 2865 )
+rotation = 1.5708
+texture = ExtResource( 44 )
+
+[node name="Boathouse2" type="Sprite" parent="Vegetation"]
+position = Vector2( -161, 1737 )
+texture = ExtResource( 44 )
 
 [node name="Collectables" type="Node" parent="."]
 script = ExtResource( 13 )
