@@ -119,13 +119,13 @@ func stopGame():
 func gameFinish():
 	gameStarted=false
 	var crashed=crashedState
-	resetCrashed()
 	
 	updateTime(true)
 	
 	var t=boat.startTimer(1)
 	yield(t, "timeout")
 	boat.removeTimer(t)
+	resetCrashed()
 
 	boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)
 	

@@ -27,6 +27,7 @@ func stopGame():
 			yield(t, "timeout")
 			boat.removeTimer(t)
 			doStopGame()
+			
 		else: 
 			doStopGame()
 		
