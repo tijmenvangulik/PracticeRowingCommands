@@ -23,12 +23,12 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="false"
      showgrid="false"
-     inkscape:zoom="1.3259848"
-     inkscape:cx="231.14896"
-     inkscape:cy="203.24517"
+     inkscape:zoom="1.0674909"
+     inkscape:cx="208.43269"
+     inkscape:cy="239.3463"
      inkscape:window-width="1336"
      inkscape:window-height="755"
-     inkscape:window-x="167"
+     inkscape:window-x="104"
      inkscape:window-y="25"
      inkscape:window-maximized="0"
      inkscape:current-layer="layer1"
@@ -5467,13 +5467,13 @@
        inkscape:export-xdpi="192"
        inkscape:export-ydpi="192" />
     <rect
-       style="vector-effect:non-scaling-stroke;fill:none;fill-opacity:0.329935;stroke-width:0.0000701331;stroke-linejoin:round;-inkscape-stroke:hairline;stop-color:#000000;stroke:none"
+       style="vector-effect:non-scaling-stroke;fill:none;fill-opacity:0.329935;stroke:none;stroke-width:7.01331e-05;stroke-linejoin:round;-inkscape-stroke:hairline;stop-color:#000000"
        id="rect44725"
        width="448"
        height="392"
        x="0"
        y="3.0000001e-06"
-       inkscape:export-filename="/Users/tijmen/Code/PracticeRowingCommands/src/assets/tiles.png"
+       inkscape:export-filename="/Users/tijmen/Code/PracticeRowingCommands/src/assets/tiles2.png"
        inkscape:export-xdpi="192"
        inkscape:export-ydpi="192" />
     <path
@@ -8034,6 +8034,170 @@
        inkscape:export-xdpi="192"
        inkscape:export-ydpi="192"
        sodipodi:nodetypes="cccccccccccccc" />
+    <g
+       id="g2652"
+       transform="matrix(0.05582962,0,0,0.05582962,142.43306,326.31847)"
+       style="display:inline">
+      <path
+         style="fill:#ffc843"
+         d="m 244.75123,344.75613 h -48.428 c -9.024,0 -16.34,-7.316 -16.34,-16.34 v -51.471 c 0,-9.024 7.316,-16.34 16.34,-16.34 h 99.898 c 9.024,0 16.34,7.316 16.34,16.34 10e-4,37.39 -30.419,67.811 -67.81,67.811 z"
+         id="path2606" />
+      <g
+         id="g2612"
+         transform="translate(-199.43777,115.79913)">
+        <path
+           style="fill:#f9f9f9"
+           d="M 395.762,264.74 H 264.033 c -9.024,0 -16.34,-7.316 -16.34,-16.34 V 139.753 c 0,-45.327 36.877,-82.204 82.204,-82.204 45.328,0 82.205,36.877 82.205,82.204 V 248.4 c 0,9.025 -7.316,16.34 -16.34,16.34 z"
+           id="path2608" />
+        <path
+           style="fill:#f9f9f9"
+           d="M 206.051,454.451 C 92.435,454.451 0,362.017 0,248.4 0,239.376 7.316,232.06 16.34,232.06 h 379.421 c 9.024,0 16.34,7.316 16.34,16.34 10e-4,113.617 -92.433,206.051 -206.05,206.051 z"
+           id="path2610" />
+      </g>
+      <path
+         style="fill:#ececec;fill-opacity:1"
+         d="m 6.61323,502.37313 c -46.016,0 -88.888,-22.867 -114.681,-61.169 -7.297,-10.832 0.483,-25.468 13.553,-25.468 h 202.256 c 13.056,0 20.857,14.622 13.553,25.468 -25.793,38.302 -68.665,61.169 -114.681,61.169 z"
+         id="path2614" />
+      <path
+         style="fill:#e6e6e6"
+         d="M 196.32423,347.85813 H 6.61323 v 222.391 c 113.617,0 206.051,-92.434 206.051,-206.051 0,-9.024 -7.316,-16.34 -16.34,-16.34 z"
+         id="path2616" />
+      <path
+         style="fill:#cccccc;fill-opacity:1"
+         d="M 107.74023,415.73613 H 6.61323 v 86.637 c 46.016,0 88.889,-22.867 114.68,-61.169 7.305,-10.845 -0.496,-25.468 -13.553,-25.468 z"
+         id="path2618" />
+      <circle
+         style="fill:#4a5052"
+         cx="145.71524"
+         cy="250.62914"
+         r="21.615999"
+         id="circle2620" />
+      <g
+         id="g2622"
+         transform="translate(-199.43777,115.79913)" />
+      <g
+         id="g2624"
+         transform="translate(-199.43777,115.79913)" />
+      <g
+         id="g2626"
+         transform="translate(-199.43777,115.79913)" />
+      <g
+         id="g2628"
+         transform="translate(-199.43777,115.79913)" />
+      <g
+         id="g2630"
+         transform="translate(-199.43777,115.79913)" />
+      <g
+         id="g2632"
+         transform="translate(-199.43777,115.79913)" />
+      <g
+         id="g2634"
+         transform="translate(-199.43777,115.79913)" />
+      <g
+         id="g2636"
+         transform="translate(-199.43777,115.79913)" />
+      <g
+         id="g2638"
+         transform="translate(-199.43777,115.79913)" />
+      <g
+         id="g2640"
+         transform="translate(-199.43777,115.79913)" />
+      <g
+         id="g2642"
+         transform="translate(-199.43777,115.79913)" />
+      <g
+         id="g2644"
+         transform="translate(-199.43777,115.79913)" />
+      <g
+         id="g2646"
+         transform="translate(-199.43777,115.79913)" />
+      <g
+         id="g2648"
+         transform="translate(-199.43777,115.79913)" />
+      <g
+         id="g2650"
+         transform="translate(-199.43777,115.79913)" />
+    </g>
+    <path
+       style="fill:#ffc843;stroke-width:0.040754"
+       d="m 120.81629,348.96553 h -1.97364 c -0.36776,0 -0.66592,-0.29815 -0.66592,-0.66592 v -2.09764 c 0,-0.36777 0.29816,-0.66592 0.66592,-0.66592 h 4.07124 c 0.36777,0 0.66592,0.29815 0.66592,0.66592 4e-5,1.52379 -1.23969,2.76356 -2.76352,2.76356 z"
+       id="path3015" />
+    <g
+       id="g3021"
+       transform="matrix(0.04075398,0,0,0.04075398,102.71382,339.63463)"
+       style="fill:#fff900;fill-opacity:1">
+      <path
+         style="fill:#fff900;fill-opacity:1"
+         d="M 395.762,264.74 H 264.033 c -9.024,0 -16.34,-7.316 -16.34,-16.34 V 139.753 c 0,-45.327 36.877,-82.204 82.204,-82.204 45.328,0 82.205,36.877 82.205,82.204 V 248.4 c 0,9.025 -7.316,16.34 -16.34,16.34 z"
+         id="path3017" />
+      <path
+         style="fill:#fff900;fill-opacity:1"
+         d="M 206.051,454.451 C 92.435,454.451 0,362.017 0,248.4 0,239.376 7.316,232.06 16.34,232.06 h 379.421 c 9.024,0 16.34,7.316 16.34,16.34 10e-4,113.617 -92.433,206.051 -206.05,206.051 z"
+         id="path3019" />
+    </g>
+    <path
+       style="fill:#ffc843;stroke-width:0.040754"
+       d="m 111.11122,355.38905 c -1.87534,0 -3.62254,-0.93192 -4.67371,-2.49288 -0.29738,-0.44144 0.0197,-1.03792 0.55234,-1.03792 h 8.24273 c 0.53209,0 0.85001,0.59591 0.55234,1.03792 -1.05116,1.56096 -2.79837,2.49288 -4.6737,2.49288 z"
+       id="path3023" />
+    <path
+       style="fill:#fff983;stroke-width:0.040754;fill-opacity:1"
+       d="m 118.84269,349.09195 h -7.73147 v 9.06332 c 4.63034,0 8.39739,-3.76705 8.39739,-8.3974 0,-0.36776 -0.29815,-0.66592 -0.66592,-0.66592 z"
+       id="path3025" />
+    <path
+       style="fill:#f3da3f;stroke-width:0.040754;fill-opacity:1"
+       d="m 115.23254,351.85825 h -4.12132 v 3.5308 c 1.87533,0 3.62258,-0.93192 4.67366,-2.49288 0.29771,-0.44197 -0.0202,-1.03792 -0.55234,-1.03792 z"
+       id="path3027" />
+    <circle
+       style="fill:#4a5052;stroke-width:0.040754"
+       cx="116.78017"
+       cy="345.12949"
+       id="circle3029"
+       r="0.88093799" />
+    <g
+       id="g3031"
+       transform="matrix(0.04075398,0,0,0.04075398,102.71382,339.63463)" />
+    <g
+       id="g3033"
+       transform="matrix(0.04075398,0,0,0.04075398,102.71382,339.63463)" />
+    <g
+       id="g3035"
+       transform="matrix(0.04075398,0,0,0.04075398,102.71382,339.63463)" />
+    <g
+       id="g3037"
+       transform="matrix(0.04075398,0,0,0.04075398,102.71382,339.63463)" />
+    <g
+       id="g3039"
+       transform="matrix(0.04075398,0,0,0.04075398,102.71382,339.63463)" />
+    <g
+       id="g3041"
+       transform="matrix(0.04075398,0,0,0.04075398,102.71382,339.63463)" />
+    <g
+       id="g3043"
+       transform="matrix(0.04075398,0,0,0.04075398,102.71382,339.63463)" />
+    <g
+       id="g3045"
+       transform="matrix(0.04075398,0,0,0.04075398,102.71382,339.63463)" />
+    <g
+       id="g3047"
+       transform="matrix(0.04075398,0,0,0.04075398,102.71382,339.63463)" />
+    <g
+       id="g3049"
+       transform="matrix(0.04075398,0,0,0.04075398,102.71382,339.63463)" />
+    <g
+       id="g3051"
+       transform="matrix(0.04075398,0,0,0.04075398,102.71382,339.63463)" />
+    <g
+       id="g3053"
+       transform="matrix(0.04075398,0,0,0.04075398,102.71382,339.63463)" />
+    <g
+       id="g3055"
+       transform="matrix(0.04075398,0,0,0.04075398,102.71382,339.63463)" />
+    <g
+       id="g3057"
+       transform="matrix(0.04075398,0,0,0.04075398,102.71382,339.63463)" />
+    <g
+       id="g3059"
+       transform="matrix(0.04075398,0,0,0.04075398,102.71382,339.63463)" />
   </g>
   <g
      inkscape:groupmode="layer"

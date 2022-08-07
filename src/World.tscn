@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=2]
+[gd_scene load_steps=91 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -44,6 +44,9 @@
 [ext_resource path="res://CloseButton.gd" type="Script" id=42]
 [ext_resource path="res://IntroDialog.gd" type="Script" id=43]
 [ext_resource path="res://assets/boathouse.png" type="Texture" id=44]
+[ext_resource path="res://Duck.tscn" type="PackedScene" id=45]
+[ext_resource path="res://Ducklin.tscn" type="PackedScene" id=47]
+[ext_resource path="res://Ducks.gd" type="Script" id=48]
 [ext_resource path="res://Font.tres" type="DynamicFont" id=50]
 [ext_resource path="res://BoatPath.gd" type="Script" id=54]
 [ext_resource path="res://Links.gd" type="Script" id=55]
@@ -714,6 +717,17 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 [sub_resource type="PhysicsMaterial" id=21]
 friction = 0.9
 
+[sub_resource type="Curve2D" id=38]
+bake_interval = 20.0
+_data = {
+"points": PoolVector2Array( -256.685, 30.6467, 256.685, -30.6467, 1837.28, 1136.35, -97.2755, -197, 97.2755, 197, 2312, 1355, 150.012, -42.2438, -150.012, 42.2438, 1983, 1965, 241.285, 7.54712, -241.285, -7.54712, 1660.83, 1521.23, 443.992, -3.51535, -443.992, 3.51535, 1276.43, 1526.49, 53.0746, -181.073, -53.0746, 181.073, 780.698, 1902.96, -179.818, -96.186, 179.818, 96.186, 792.251, 2370.91, 36.379, 215.508, -36.379, -215.508, 2051.53, 2404.57, 26.5509, 273.518, -26.5509, -273.518, 1499.09, 2202.66, -22.8153, 126.138, 22.8153, -126.138, 1551.6, 1760.99, -282.712, 16.8846, 282.712, -16.8846, 1835.17, 1138.45 )
+}
+
+[sub_resource type="Curve2D" id=39]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 450, 185, -232.76, 24.288, 232.76, -24.288, 1031, 231, -214.544, -105.248, 214.544, 105.248, 2031, 181, 72.864, -163.944, -72.864, 163.944, 2118, 729, 139.656, 127.512, -139.656, -127.512, 827, 847, 54.648, 180.136, -54.648, -180.136, 191, 707, -99.1759, 121.44, 99.1759, -121.44, 195, 276, 0, 0, 0, 0, 450, 185 )
+}
+
 [sub_resource type="StyleBoxFlat" id=22]
 bg_color = Color( 0.192157, 0.254902, 0.52549, 0 )
 
@@ -819,7 +833,7 @@ shadow_offset = Vector2( 1, 1 )
 script = ExtResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2( 1249, 151 )
+position = Vector2( 1388, 127 )
 scale = Vector2( 1.65561, 1.64805 )
 color = Color( 0.552941, 0.768627, 0.207843, 1 )
 offset = Vector2( -1600.13, -584.327 )
@@ -1241,6 +1255,25 @@ script = ExtResource( 62 )
 
 [node name="RulesetNoRules" type="Node" parent="Boat/Rulesets"]
 script = ExtResource( 8 )
+
+[node name="Ducks" type="Node" parent="."]
+script = ExtResource( 48 )
+boat = NodePath("../Boat")
+
+[node name="Duck" parent="Ducks" instance=ExtResource( 45 )]
+visible = false
+
+[node name="Ducklin" parent="Ducks" instance=ExtResource( 47 )]
+visible = false
+contact_monitor = true
+
+[node name="DuckPath" type="Path2D" parent="Ducks"]
+position = Vector2( 46.6727, 44.4026 )
+scale = Vector2( 0.952131, 0.95094 )
+curve = SubResource( 38 )
+
+[node name="Duck2Path" type="Path2D" parent="Ducks"]
+curve = SubResource( 39 )
 
 [node name="BoatPath" type="Node2D" parent="."]
 position = Vector2( 220, 254 )

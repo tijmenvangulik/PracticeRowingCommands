@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/tiles.png" type="Texture" id=1]
+[ext_resource path="res://Ducklin.gd" type="Script" id=2]
+
+[node name="Ducklin" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -21, 2, -19, 13, -11, 19, 0, 21, 8, 16, 14, 7, 14, 2, 20, 0, 22, -5, 13, -5, 10, -12, 0, -11, -1, 1 )
+
+[node name="Image" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 203.48, 671.367, 45.2844, 49.113 )

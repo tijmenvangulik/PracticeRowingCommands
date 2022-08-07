@@ -26,7 +26,7 @@ var bestExtraRotation=2
 var bestState : int= Constants.BestState.Normal
 var lowNoRowingSpeed=lightPaddleFactor*max_speed
 
-var speedDirectErrorLevel=10
+var speedDirectErrorLevel=15
 var newRotation_degrees=-1.0;
 var newPosition_x=-1.0
 var newPosition_y=-1.0
@@ -196,7 +196,7 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	#check on colliding
 	var collidingBodies=get_colliding_bodies()
 	
-	if collidingBodies.size()>0:
+	if collidingBodies.size()>0 && (!isLowSpeed() || isTurning()):
 		changeState(Constants.RowState.LaatLopen,0)
 		showError("Boem")
 		crashState=true;
@@ -235,6 +235,9 @@ func boatInRest():
 
 func isLowSpeed():
 	return abs(linear_velocity.length())<speedDirectErrorLevel
+
+func isTurning():
+	return abs(get_angular_velocity())>0.05
 	
 func calcSpeed():
 	var result=linear_velocity.length()
