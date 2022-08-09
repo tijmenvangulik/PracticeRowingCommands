@@ -15,6 +15,7 @@ func addLabel(container,text):
 	new_label.text=text
 	new_label.add_font_override("font",load("res://Font.tres"))
 	container.add_child(new_label)
+	return new_label
 
 func loadRulesets():
 	var ruleSets=rulesetManager.getRulesets()
@@ -64,7 +65,13 @@ func _ready():
 	commandButtonsTab.init()
 	for command in commands:
 		
-		addLabel(commandTranslationsGrid,command)		
+		var label=addLabel(commandTranslationsGrid,command)
+		
+		var tootipTextName=command+"_tooltip";
+		label.mouse_filter=Control.MOUSE_FILTER_STOP
+
+		GameEvents.register_allways_tooltip(label,tootipTextName)
+
 		var editBox = preload("res://EditCommandText.tscn").instance()
 		editBox.commandName=command
 		editBox.command=commandIndex

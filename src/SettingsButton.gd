@@ -11,4 +11,4 @@ func _introSignal(isVisible : bool):
 	visible=!isVisible
 
 func _pressed():
-	settingsDialog.popup()
+	settingsDialog.show()

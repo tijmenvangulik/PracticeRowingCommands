@@ -70,6 +70,9 @@ func register_tooltip(control_node, tooltip_type):
 	control_node.connect("mouse_entered",self,"_on_show_tooltip",[control_node,tooltip_type])
 	control_node.connect("mouse_exited",self,"_on_hide_tooltip",[control_node,tooltip_type])
 	
+func register_allways_tooltip(control_node, tooltip_type):
+	control_node.connect("mouse_entered",self,"_on_allways_show_tooltip",[control_node,tooltip_type])
+	control_node.connect("mouse_exited",self,"_on_allways_hide_tooltip",[control_node,tooltip_type])
 
 #The register_tooltip method essentially adds these methods to each class 
 # you're registering a tooltip for. This makes adding a tooltip possible in 
@@ -82,4 +85,11 @@ func _on_show_tooltip(node,tooltip_type):
 func _on_hide_tooltip(node,tooltip_type):
 	if GameState.showTooltips:
 		emit_signal("toggle_tooltip",false, node, tooltip_type)
+		
+func _on_allways_show_tooltip(node,tooltip_type):
+		emit_signal("toggle_tooltip",true, node, tooltip_type)
+	
+func _on_allways_hide_tooltip(node,tooltip_type):
+		emit_signal("toggle_tooltip",false, node, tooltip_type)
+
 
