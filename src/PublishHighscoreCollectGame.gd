@@ -10,7 +10,7 @@ extends WindowDialog
 func _ready():
 	get_close_button().hide()
 	$HTTPRequest.connect("request_completed", self, "_onUploadRequest")
-
+	
 func statEndGameDialog():
 	visible=false
 	$"../EndCollectGame".show_modal(true)

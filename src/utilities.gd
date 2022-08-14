@@ -28,7 +28,10 @@ func formatTime(minutes,seconds,miliSeconds):
 		secStr="0"+secStr
 	var miliSecStr=""
 	if miliSeconds>=0:
-		miliSecStr="."+String(miliSeconds)
+		miliSecStr=String(miliSeconds)
+		while secStr.length()<3:
+			miliSecStr="0"+miliSecStr
+		miliSecStr="."+miliSecStr
 	return minStr+":"+secStr+miliSecStr
 
 func extractTimeParts(time,includeMiliSeconds):
