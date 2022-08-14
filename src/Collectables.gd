@@ -93,14 +93,14 @@ func stopGame():
 	GameState.changeCollectGameState(Constants.CollectGameState.None)
 	
 func highScorePosition(newScore):
-	if  GameState.publicHighscores.size()==0:
-		return 1
 	var result=false
 	var i=1
 	for score in GameState.publicHighscores:
 		if newScore<=score.score:
 			return i
 		i+i+1
+	if i<=5: 
+		return i
 	return 0
 	
 func gameFinish():
