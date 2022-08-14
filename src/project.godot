@@ -92,6 +92,7 @@ GameEvents="*res://game_events.gd"
 Utilities="*res://utilities.gd"
 Settings="*res://settings.gd"
 GameState="*res://game_state.gd"
+CalcSecurityCode="*res://calcSecurityCode.gd"
 
 [display]
 

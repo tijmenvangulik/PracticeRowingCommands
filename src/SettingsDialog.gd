@@ -168,3 +168,5 @@ func _handleSettingsChanged():
 
 func ensureButtonsetSaved():
 	commandButtonsTab.ensureButtonsetSaved()
+
+

@@ -115,11 +115,7 @@ func ensureButtonsetSaved():
 		GameEvents.customButtonSetChanged()
 		GameEvents.settingsChanged()
 	
-func _on_SettingsDialog_popup_hide():
-	ensureButtonsetSaved()
-func _on_SettingsDialog_about_to_show():
-	customButtonSetChanged=false
-	loadDestButtons();
+
 
 func _on_DefaultCustomButtons_pressed():
 	Settings.customButtonSet=[]
@@ -139,4 +135,10 @@ func _on_ClearCustomButtons_pressed():
 
 func _customButtonSetChangedSignal():
 	loadDestButtons();
-	
+
+func _on_SettingsDialog_visibility_changed():
+	if visible:
+		ensureButtonsetSaved()
+	else:
+		customButtonSetChanged=false
+		loadDestButtons();

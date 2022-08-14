@@ -29,6 +29,9 @@ func initDuck(new_patrol_path):
 	spawnDucklins()
 	visible=true
 	
+func is_class(name): 
+	return "Duck"==name
+	
 func stop():	
 	sleeping=true	
 	visible=false

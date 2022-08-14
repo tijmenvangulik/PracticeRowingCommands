@@ -13,7 +13,10 @@ var lastMinutes=0
 var lastTimeString=""
 var crashedState=false;
 
-
+func testEndGame():
+	time_elapsed=14.61
+	gameFinish()
+	
 func resetCrashed():
 	crashedState=false;
 	boat.resetCrashed()
@@ -26,43 +29,16 @@ func _process(delta: float) -> void:
 			crashedState=true;
 			GameState.changeCollectGameState(Constants.CollectGameState.Finish)
 
-	
-func formatTime(minutes,seconds,miliSeconds):
-	var minStr=String(minutes)
-	if minStr.length()==1:
-		minStr="0"+minStr
-	var secStr=String(seconds)
-	if secStr.length()==1:
-		secStr="0"+secStr
-	var miliSecStr=""
-	if miliSeconds>=0:
-		miliSecStr="."+String(miliSeconds)
-	return minStr+":"+secStr+miliSecStr
-
-func extractTimeParts(time,includeMiliSeconds):
-	var seconds = int( fmod(time, 60))
-	var minutes = int( time / 60)
-	var miliSeconds=-1
-	if includeMiliSeconds:
-		miliSeconds=int(fmod(time_elapsed*1000,1000))
-	return [minutes,seconds,miliSeconds]
-	
-func formatScore(time,includeMiliSeconds):
-	var timeParts=extractTimeParts(time,includeMiliSeconds)
-	var minutes = timeParts[0]
-	var seconds =  timeParts[1]
-	var miliSeconds=timeParts[2]
-	return formatTime(minutes,seconds,miliSeconds)
 		
 func updateTime(includeMiliSeconds):
-	var timeParts=extractTimeParts(time_elapsed,includeMiliSeconds)
+	var timeParts=Utilities.extractTimeParts(time_elapsed,includeMiliSeconds)
 	var minutes = timeParts[0]
 	var seconds =  timeParts[1]
 	var miliSeconds=timeParts[2]
 
 	if includeMiliSeconds || lastSeconds!=seconds || lastMinutes!=minutes:
 		
-		lastTimeString=formatTime(minutes,seconds,miliSeconds)
+		lastTimeString=Utilities.formatTime(minutes,seconds,miliSeconds)
 		collectedCounter.updateTime(lastTimeString)
 		lastSeconds=seconds
 		lastMinutes=minutes
@@ -92,7 +68,7 @@ func hideAll():
 		c.hide()
 
 func updateHighScoreControl(highScore):
-	var highScoreText=formatScore(highScore,true)
+	var highScoreText=Utilities.formatScore(highScore,true)
 	collectedCounter.setHighScore(highScoreText)
 	
 func startGame():
@@ -115,6 +91,15 @@ func stopGame():
 	resetCrashed()
 	gameStarted=false
 	GameState.changeCollectGameState(Constants.CollectGameState.None)
+	
+func highScorePosition(newScore):
+	var result=false
+	var i=1
+	for score in GameState.publicHighscores:
+		if newScore<=score.score:
+			return i
+		i+i+1
+	return 0
 	
 func gameFinish():
 	gameStarted=false
@@ -146,6 +131,10 @@ func gameFinish():
 	else:
 		GameState.collectGameLastTimeString =lastTimeString
 		GameState.collectGameIsHighScore=isHighScore
+		if isHighScore:
+			GameState.publicHighScorePositon=highScorePosition(time_elapsed)
+		else: 
+			GameState.publicHighScorePositon=0
 		GameState.changeCollectGameState(Constants.CollectGameState.Finished)
 	
 func getHighScore():
@@ -165,3 +154,4 @@ func _collectGameStateChangedSignal(state):
 		stopGame()
 	elif state==Constants.CollectGameState.Finish:
 		gameFinish()
+

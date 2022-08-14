@@ -20,6 +20,9 @@ func resetTarget():
 		var target=getTarget()
 		if target:
 			position=target
+
+func is_class(name): 
+	return "Duck"==name
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

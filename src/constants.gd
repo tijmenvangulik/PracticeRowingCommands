@@ -53,6 +53,7 @@ enum Command {
 }
 enum CollectGameState {
 	None,
+	ShowHighScores,
 	Start,
 	DoStart,
 	Finish,

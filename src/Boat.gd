@@ -196,10 +196,13 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	#check on colliding
 	var collidingBodies=get_colliding_bodies()
 	
-	if collidingBodies.size()>0 && (!isLowSpeed() || isTurning()):
-		changeState(Constants.RowState.LaatLopen,0)
-		showError("Boem")
-		crashState=true;
+	if collidingBodies.size()>0 :
+		var body=collidingBodies[0]
+		var isDuck= body.is_class("Duck") 
+		if (!isDuck || !isLowSpeed() || isTurning()):
+			changeState(Constants.RowState.LaatLopen,0)
+			showError("Boem")
+			crashState=true;
 		 
 	if onePush:
 		currentSpeedFactor=0.0

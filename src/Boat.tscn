@@ -5,6 +5,9 @@
 
 [node name="Boat" type="RigidBody2D"]
 position = Vector2( -0.420593, 0.0624841 )
+collision_layer = 31
+contacts_reported = 1
+contact_monitor = true
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true

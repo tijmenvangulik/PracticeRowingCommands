@@ -45,5 +45,8 @@ func _collectGameStateChangedSignal(state):
 		initCrashed()
 		show_modal(true)
 	elif state==Constants.CollectGameState.Finished:
-		init(GameState.collectGameLastTimeString,GameState.collectGameIsHighScore)		
-		show_modal(true)
+		init(GameState.collectGameLastTimeString,GameState.collectGameIsHighScore)
+		if GameState.publicHighScorePositon>0:
+			
+			$"../PublishHighscoreCollectGame".start()
+		else :show_modal(true)

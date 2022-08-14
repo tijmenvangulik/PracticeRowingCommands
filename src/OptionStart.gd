@@ -115,7 +115,7 @@ func selected(itemIndex : int):
 			showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.StrijkenBeidenBoorden,Constants.Command.SlippenSB,Constants.Command.VastroeienBB]	
 		StartPos.StarGame:
 			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)
-			GameState.changeCollectGameState(Constants.CollectGameState.Start)
+			GameState.changeCollectGameState(Constants.CollectGameState.ShowHighScores)
 
 	showOnlyButtons(showOnlyButonsArray)	
 	GameEvents.commandsChanged(showOnlyButonsArray)

@@ -72,7 +72,7 @@ RulesetDefault;Standaard;Standaard;Default;Default
 RulesetNoRules;Geen regels;Geen regels;No rules;No rules
 LanguageRuleSet;RulesetDefault;RulesetDefault;RulesetDefault;RulesetDefault
 EndGameAllFound;Alles gevonden in %s.;Alles gevonden in %s.;Everything found in %s.;Everything found in %s.
-EndGameHighScore;Gefelicteerd je hebt de snelste tijd %s.;Gefelicteerd je hebt de snelste tijd %s.;Congratulations you have the best time %s.;Congratulations you have the best time %s.
+EndGameHighScore;Gefeliciteerd je hebt de snelste persoonlijke tijd %s.;Gefeliciteerd je hebt de snelste persoonlijke tijd %s.;Congratulations you have the best personal time %s.;Congratulations you have the best personal time %s.
 StartGameIntro;Verzamel zo snel mogelijk alle sterren door er overheen te varen. Als je botst moet je overnieuw beginnen. Leg de boot stil voor de eentjes.;Verzamel zo snel mogelijk alle sterren door er overheen te varen. Als je botst moet je overnieuw beginnen. Leg de boot stil voor de eentjes.;Collect ll starts as quick as possible by running over the stars. When you crash you have to start again Stop the boat for the ducks.;Collect ll starts as quick as possible by running over the stars. When you crash you have to start again Stop the boat for the ducks.
 StartGameButton;Start;Start;Start;Start
 CancelGameButton;Annuleren;Annuleren;Cancel;Cancel
@@ -124,3 +124,12 @@ LightPaddle_tooltip;Laat de boot minder snel gaan. Gebruik light paddle bedankt 
 LightPaddleBedankt_tooltip;Ga weer naar normale snelheid.;Ga weer naar normale snelheid.;Go back to normal speed.;Go back to normal speed.
 RiemenHoogSB_tooltip;Gebruik dit voor aanleggen aan het vlot om niet met de riemen aan stuurboord tegen het vlot aan te botsen;Gebruik dit voor aanleggen aan het vlot om niet met de riemen aan stuurboord tegen het vlot aan te botsen;Use this when moring the raft on starboard (right) side.;Use this when moring the raft on starboard (right) side.
 RiemenHoogBB_tooltip;Gebruik dit voor aanleggen aan het vlot om niet met de riemen aan bakboord tegen het vlot aan te botsen;Gebruik dit voor aanleggen aan het vlot om niet met de riemen aan bakboord tegen het vlot aan te botsen;Use this when moring the raft on port (left) side.;Use this when moring the raft on port (left) side.
+HighScoreNone;Nog geen;Nog geen;Not yet;Not yet
+OwnHighscore;Eigen hoogste score;Eigen hoogste score;Own high score;Own high score
+PublicHighscores;Gepubliceerde hoogste scores;Gepubliceerde hoogste scores;Public high scores;Public high scores
+GameContinue;Doorgaan;Doorgaan;Continue;Continue
+PublishScoreQuestion;Je bent nummer %d op de publieke score lijst. Je mag je score op de lijst zetten.;Je bent nummer %d op de publieke score lijst. Je mag je score op de lijst zetten.;You are number %d on the public score list. You can publish your score.;
+PublishCoreName;Naam of alias;Naam of alias;Name or alias;
+PublishScore;Publiceer score;Publiceer score;Publish score;
+NoPublishScore;Niet publiceren;Niet publiceren;Do not publish;
+PublishScoreNoName;Vul een naam of alias in;Vul een naam of alias in;Please fill in a name or alias;

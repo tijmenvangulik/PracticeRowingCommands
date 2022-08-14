@@ -16,15 +16,9 @@
 [ext_resource path="res://assets/star.png" type="Texture" id=14]
 [ext_resource path="res://CollectedCount.gd" type="Script" id=15]
 [ext_resource path="res://OptionButton.gd" type="Script" id=16]
-[ext_resource path="res://StyleButtonSB.tres" type="StyleBox" id=17]
+[ext_resource path="res://StyleButtonDarkGrayFocus.tres" type="StyleBox" id=17]
 [ext_resource path="res://MainDropDownHover.tres" type="StyleBox" id=18]
-[ext_resource path="res://StyleButtonSBPressed.tres" type="StyleBox" id=19]
-[ext_resource path="res://StyleButtonSBFocus.tres" type="StyleBox" id=20]
 [ext_resource path="res://StartCollectGame.gd" type="Script" id=21]
-[ext_resource path="res://StyleButtonGray.tres" type="StyleBox" id=22]
-[ext_resource path="res://StyleButtonGrayFocus.tres" type="StyleBox" id=23]
-[ext_resource path="res://StyleButtonGrayPressed.tres" type="StyleBox" id=24]
-[ext_resource path="res://StyleButtonGrayHover.tres" type="StyleBox" id=25]
 [ext_resource path="res://EndCollectGame.gd" type="Script" id=26]
 [ext_resource path="res://assets/trophy.png" type="Texture" id=27]
 [ext_resource path="res://ExportSettingsButton.gd" type="Script" id=28]
@@ -45,9 +39,14 @@
 [ext_resource path="res://IntroDialog.gd" type="Script" id=43]
 [ext_resource path="res://assets/boathouse.png" type="Texture" id=44]
 [ext_resource path="res://Duck.tscn" type="PackedScene" id=45]
+[ext_resource path="res://HighScores.gd" type="Script" id=46]
 [ext_resource path="res://Ducklin.tscn" type="PackedScene" id=47]
 [ext_resource path="res://Ducks.gd" type="Script" id=48]
+[ext_resource path="res://PublishHighscoreCollectGame.gd" type="Script" id=49]
 [ext_resource path="res://Font.tres" type="DynamicFont" id=50]
+[ext_resource path="res://TestEndGame.gd" type="Script" id=51]
+[ext_resource path="res://StyleButtonDarkGrayHover.tres" type="StyleBox" id=52]
+[ext_resource path="res://StyleButtonDarkGrayPressed.tres" type="StyleBox" id=53]
 [ext_resource path="res://BoatPath.gd" type="Script" id=54]
 [ext_resource path="res://Links.gd" type="Script" id=55]
 [ext_resource path="res://assets/options_icon.svg" type="Texture" id=56]
@@ -58,6 +57,7 @@
 [ext_resource path="res://CloseSettingsButton.gd" type="Script" id=61]
 [ext_resource path="res://Rules.gd" type="Script" id=62]
 [ext_resource path="res://Speak.gd" type="Script" id=63]
+[ext_resource path="res://StyleButtonDarkGray.tres" type="StyleBox" id=64]
 [ext_resource path="res://GridButtonContainer.tscn" type="PackedScene" id=65]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -1231,11 +1231,8 @@ position = Vector2( 1364, 201 )
 
 [node name="Boat" parent="." instance=ExtResource( 3 )]
 position = Vector2( 958, 1906 )
-collision_layer = 31
 mass = 4.0
 physics_material_override = SubResource( 21 )
-contacts_reported = 1
-contact_monitor = true
 linear_damp = 0.13
 angular_damp = 0.8
 rulesetManager = NodePath("Rulesets")
@@ -1371,6 +1368,92 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="HighScores" type="WindowDialog" parent="CanvasLayer"]
+margin_left = 269.0
+margin_top = 102.0
+margin_right = 765.0
+margin_bottom = 424.0
+custom_styles/panel = ExtResource( 33 )
+script = ExtResource( 46 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+grid = NodePath("HighScoresGrid")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="CanvasLayer/HighScores"]
+timeout = 2000
+
+[node name="PublicHighscoresLabel" type="Label" parent="CanvasLayer/HighScores"]
+margin_left = 146.0
+margin_top = 89.0
+margin_right = 392.0
+margin_bottom = 116.0
+custom_colors/font_color = Color( 0.780392, 0.866667, 0.913725, 1 )
+custom_fonts/font = ExtResource( 50 )
+text = "PublicHighscores"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OwnHighscoreLabel" type="Label" parent="CanvasLayer/HighScores"]
+margin_left = 147.0
+margin_top = 22.0
+margin_right = 275.0
+margin_bottom = 49.0
+custom_colors/font_color = Color( 0.780392, 0.866667, 0.913725, 1 )
+custom_fonts/font = ExtResource( 50 )
+text = "OwnHighscore"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OwnHighScoreValue" type="Label" parent="CanvasLayer/HighScores"]
+margin_left = 146.0
+margin_top = 51.0
+margin_right = 301.0
+margin_bottom = 78.0
+custom_fonts/font = ExtResource( 50 )
+text = "HighScoreNone"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HighScoresGrid" type="GridContainer" parent="CanvasLayer/HighScores"]
+margin_left = 145.0
+margin_top = 121.0
+margin_right = 361.0
+margin_bottom = 250.0
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Trophy" type="Sprite" parent="CanvasLayer/HighScores"]
+position = Vector2( 56, 152 )
+scale = Vector2( 0.76, 0.8 )
+texture = ExtResource( 27 )
+
+[node name="Trophy2" type="Sprite" parent="CanvasLayer/HighScores"]
+position = Vector2( 432, 149 )
+scale = Vector2( 0.76, 0.8 )
+texture = ExtResource( 27 )
+
+[node name="ContinueToStartGame" type="Button" parent="CanvasLayer/HighScores"]
+margin_left = 165.0
+margin_top = 266.0
+margin_right = 325.0
+margin_bottom = 296.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 34 )
+custom_styles/pressed = ExtResource( 11 )
+custom_styles/focus = ExtResource( 11 )
+custom_styles/normal = ExtResource( 10 )
+text = "GameContinue"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="StartCollectGame" type="WindowDialog" parent="CanvasLayer"]
 margin_left = 21.0
 margin_top = 189.0
@@ -1433,9 +1516,9 @@ margin_bottom = 30.0
 rect_min_size = Vector2( 160, 0 )
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 11 )
-custom_styles/pressed = ExtResource( 19 )
-custom_styles/focus = ExtResource( 20 )
-custom_styles/normal = ExtResource( 17 )
+custom_styles/pressed = ExtResource( 34 )
+custom_styles/focus = ExtResource( 34 )
+custom_styles/normal = ExtResource( 10 )
 text = "StartGameButton"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1447,10 +1530,10 @@ margin_right = 328.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 160, 0 )
 custom_fonts/font = ExtResource( 50 )
-custom_styles/hover = ExtResource( 25 )
-custom_styles/pressed = ExtResource( 24 )
-custom_styles/focus = ExtResource( 23 )
-custom_styles/normal = ExtResource( 22 )
+custom_styles/hover = ExtResource( 52 )
+custom_styles/pressed = ExtResource( 53 )
+custom_styles/focus = ExtResource( 52 )
+custom_styles/normal = ExtResource( 64 )
 text = "CancelGameButton"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1524,9 +1607,9 @@ margin_bottom = 30.0
 rect_min_size = Vector2( 160, 0 )
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 11 )
-custom_styles/pressed = ExtResource( 19 )
-custom_styles/focus = ExtResource( 20 )
-custom_styles/normal = ExtResource( 17 )
+custom_styles/pressed = ExtResource( 34 )
+custom_styles/focus = ExtResource( 34 )
+custom_styles/normal = ExtResource( 10 )
 text = "StartGameButton"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1538,10 +1621,10 @@ margin_right = 330.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 160, 0 )
 custom_fonts/font = ExtResource( 50 )
-custom_styles/hover = ExtResource( 25 )
-custom_styles/pressed = ExtResource( 24 )
-custom_styles/focus = ExtResource( 23 )
-custom_styles/normal = ExtResource( 22 )
+custom_styles/hover = ExtResource( 17 )
+custom_styles/pressed = ExtResource( 53 )
+custom_styles/focus = ExtResource( 17 )
+custom_styles/normal = ExtResource( 64 )
 text = "CancelGameButton"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1556,6 +1639,144 @@ texture = ExtResource( 14 )
 visible = false
 position = Vector2( 623, 115 )
 texture = ExtResource( 14 )
+
+[node name="PublishHighscoreCollectGame" type="WindowDialog" parent="CanvasLayer"]
+margin_left = 47.0
+margin_top = 189.0
+margin_right = 1001.0
+margin_bottom = 424.0
+custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
+custom_styles/panel = ExtResource( 33 )
+script = ExtResource( 49 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EndGameText" type="Label" parent="CanvasLayer/PublishHighscoreCollectGame"]
+anchor_top = 0.35
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -25.25
+margin_bottom = -25.5
+grow_horizontal = 2
+custom_fonts/font = ExtResource( 50 )
+text = "PublishScoreQuestion"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Trophy" type="Sprite" parent="CanvasLayer/PublishHighscoreCollectGame"]
+position = Vector2( 56, 113 )
+scale = Vector2( 0.76, 0.8 )
+texture = ExtResource( 27 )
+
+[node name="Trophy2" type="Sprite" parent="CanvasLayer/PublishHighscoreCollectGame"]
+position = Vector2( 887, 114 )
+scale = Vector2( 0.76, 0.8 )
+texture = ExtResource( 27 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PublishHighscoreCollectGame"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -165.0
+margin_top = -40.0
+margin_right = 165.0
+margin_bottom = -10.0
+grow_horizontal = 2
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PublishScore" type="Button" parent="CanvasLayer/PublishHighscoreCollectGame/HBoxContainer"]
+margin_right = 160.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 11 )
+custom_styles/focus = ExtResource( 34 )
+custom_styles/normal = ExtResource( 10 )
+text = "PublishScore"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PublishScoreContine" type="Button" parent="CanvasLayer/PublishHighscoreCollectGame/HBoxContainer"]
+margin_left = 170.0
+margin_right = 330.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 52 )
+custom_styles/pressed = ExtResource( 53 )
+custom_styles/focus = ExtResource( 17 )
+custom_styles/normal = ExtResource( 64 )
+text = "NoPublishScore"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NameContainer" type="HBoxContainer" parent="CanvasLayer/PublishHighscoreCollectGame"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -200.0
+margin_top = -124.0
+margin_right = 202.0
+margin_bottom = -93.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayAgainNameLabel" type="Label" parent="CanvasLayer/PublishHighscoreCollectGame/NameContainer"]
+margin_top = 6.0
+margin_right = 140.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 50 )
+text = "PublishCoreName"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="TextEdit" parent="CanvasLayer/PublishHighscoreCollectGame/NameContainer"]
+margin_left = 144.0
+margin_right = 394.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 250, 0 )
+custom_fonts/font = ExtResource( 50 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NameRequiredError" type="Label" parent="CanvasLayer/PublishHighscoreCollectGame"]
+visible = false
+margin_left = 277.0
+margin_top = 161.0
+margin_right = 564.0
+margin_bottom = 186.0
+rect_pivot_offset = Vector2( 526, -111 )
+custom_colors/font_color = Color( 0.847059, 0.435294, 0.435294, 1 )
+text = "PublishScoreNoName"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="CanvasLayer/PublishHighscoreCollectGame"]
+timeout = 2000
+
+[node name="ErrorText" type="Label" parent="CanvasLayer/PublishHighscoreCollectGame"]
+margin_left = 191.0
+margin_top = 151.0
+margin_right = 800.0
+margin_bottom = 184.0
+custom_colors/font_color = Color( 0.847059, 0.388235, 0.388235, 1 )
+custom_fonts/font = ExtResource( 50 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="OptionCommands" type="OptionButton" parent="CanvasLayer"]
 margin_left = 8.0
@@ -2035,15 +2256,30 @@ margin_top = -662.0
 margin_right = 458.0
 margin_bottom = -528.0
 
+[node name="TestEndGame" type="Button" parent="CanvasLayer"]
+visible = false
+margin_left = 17.0
+margin_top = 73.0
+margin_right = 84.0
+margin_bottom = 93.0
+text = "Test end"
+script = ExtResource( 51 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="CanvasLayer/HighScores/ContinueToStartGame" to="CanvasLayer/HighScores" method="_on_ContinueToStartGame_pressed"]
 [connection signal="pressed" from="CanvasLayer/StartCollectGame/HSplitContainer/StartGame" to="CanvasLayer/StartCollectGame" method="_on_StartGame_pressed"]
 [connection signal="pressed" from="CanvasLayer/StartCollectGame/HSplitContainer/CancelGame" to="CanvasLayer/StartCollectGame" method="_on_CancelGame_pressed"]
 [connection signal="pressed" from="CanvasLayer/EndCollectGame/HBoxContainer/StartGame" to="CanvasLayer/EndCollectGame" method="_on_StartGame_pressed"]
 [connection signal="pressed" from="CanvasLayer/EndCollectGame/HBoxContainer/CancelGame" to="CanvasLayer/EndCollectGame" method="_on_CancelGame_pressed"]
+[connection signal="pressed" from="CanvasLayer/PublishHighscoreCollectGame/HBoxContainer/PublishScore" to="CanvasLayer/PublishHighscoreCollectGame" method="_on_PublishScore_pressed"]
+[connection signal="pressed" from="CanvasLayer/PublishHighscoreCollectGame/HBoxContainer/PublishScoreContine" to="CanvasLayer/PublishHighscoreCollectGame" method="_on_PublishScoreContine_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightTopButtons/ZoomContainer/ZoomPlus" to="CanvasLayer/RightTopButtons/ZoomContainer" method="_on_ZoomPlus_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightTopButtons/ZoomContainer/ZoomMin" to="CanvasLayer/RightTopButtons/ZoomContainer" method="_on_ZoomMin_pressed"]
-[connection signal="about_to_show" from="CanvasLayer/SettingsDialog" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_SettingsDialog_about_to_show"]
-[connection signal="popup_hide" from="CanvasLayer/SettingsDialog" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_SettingsDialog_popup_hide"]
+[connection signal="visibility_changed" from="CanvasLayer/SettingsDialog" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_SettingsDialog_visibility_changed"]
 [connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/RuleSetDropDown" to="CanvasLayer/SettingsDialog" method="_on_RuleSetDropDown_item_selected"]
 [connection signal="button_droppedOnSourceGrid" from="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/CommandSelectScrollContainer/CommandContainerSource" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_CommandContainerSource_button_droppedOnSourceGrid"]
 [connection signal="pressed" from="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/GridContainer/ClearCustomButtons" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_ClearCustomButtons_pressed"]
 [connection signal="pressed" from="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/GridContainer/DefaultCustomButtons" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_DefaultCustomButtons_pressed"]
+[connection signal="pressed" from="CanvasLayer/TestEndGame" to="CanvasLayer/TestEndGame" method="_on_TestEndGame_pressed"]
