@@ -29,7 +29,7 @@ func formatTime(minutes,seconds,miliSeconds):
 	var miliSecStr=""
 	if miliSeconds>=0:
 		miliSecStr=String(miliSeconds)
-		while secStr.length()<3:
+		while miliSecStr.length()<3:
 			miliSecStr="0"+miliSecStr
 		miliSecStr="."+miliSecStr
 	return minStr+":"+secStr+miliSecStr
