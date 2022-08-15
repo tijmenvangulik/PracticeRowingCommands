@@ -96,10 +96,10 @@ func highScorePosition(newScore):
 	var result=false
 	var i=1
 	for score in GameState.publicHighscores:
-		if newScore<=score.score:
+		if newScore<score.score:
 			return i
 		i+i+1
-	if i<=5: 
+	if i<5: 
 		return i
 	return 0
 	
