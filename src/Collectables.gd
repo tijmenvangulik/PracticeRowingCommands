@@ -14,7 +14,7 @@ var lastTimeString=""
 var crashedState=false;
 
 func testEndGame():
-	time_elapsed=14.61
+	time_elapsed=230.10
 	gameFinish()
 	
 func resetCrashed():
@@ -98,7 +98,7 @@ func highScorePosition(newScore):
 	for score in GameState.publicHighscores:
 		if newScore<score.score:
 			return i
-		i+i+1
+		i=i+1
 	if i<5: 
 		return i
 	return 0
