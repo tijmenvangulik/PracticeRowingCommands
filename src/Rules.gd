@@ -1,7 +1,7 @@
 extends BaseRuleset
 
 	
-func determinenewState(boat: Boat,newState:int,direction:int)-> int:
+func determinenewState(boat: Boat,command:int,newState:int,direction:int)-> int:
 	clearError()
 	var state=boat.state
 	var stateOars=boat.stateOars
@@ -42,7 +42,7 @@ func determinenewState(boat: Boat,newState:int,direction:int)-> int:
 	else: if (newState==Constants.RowState.UitzettenSB || newState==Constants.RowState.UitzettenBB) && !boat.isLowSpeed():
 		setError("LegBootStil")
 		return result
-	else: if newState==Constants.RowState.Roeien && !boat.isLowSpeed():
+	else: if newState==Constants.RowState.Roeien &&  command!=Constants.Command.PakMaarWeerOp && !boat.isLowSpeed():
 		setError("LegBootStil")
 		return result
 	else: if newState==Constants.RowState.LaatLopen || newState==Constants.RowState.Bedankt || boat.isLowSpeed():
@@ -63,12 +63,12 @@ func determinenewState(boat: Boat,newState:int,direction:int)-> int:
 	
 	return result;
 
-func determineOarsState(boat: Boat,command : int)-> int:
+func determineOarsState(boat: Boat,command,oarsCommand : int)-> int:
 	clearError()
 
 	var stateOars=boat.stateOars
 	if boat.boatInRest():
-		match command:
+		match oarsCommand:
 			Constants.OarsCommand2.Slippen:
 				if stateOars==Constants.StateOars.Roeien:
 					return Constants.StateOars.Slippen
@@ -117,7 +117,7 @@ func determineOarsState(boat: Boat,command : int)-> int:
 		setError("EerstLatenLopenOfBedankt")
 	return stateOars
 
-func determineLightPaddleState(boat: Boat,newLightPaddle:bool)-> bool:
+func determineLightPaddleState(boat: Boat,command: int,newLightPaddle:bool)-> bool:
 	clearError()
 	if newLightPaddle==boat.lightPaddleOn:
 		setError("CommandIsAlreadyActive")
@@ -125,7 +125,7 @@ func determineLightPaddleState(boat: Boat,newLightPaddle:bool)-> bool:
 	return boat.lightPaddleOn
 
 	
-func determineBestState(boat: Boat,newBestState :int)-> int:
+func determineBestState(boat: Boat,command: int,newBestState :int)-> int:
 	clearError()
 	var bestState=boat.bestState
 	var state=boat.state

@@ -49,7 +49,8 @@ enum Command {
   StuurboordBest,
   BakboortBest,
   BestBedankt,
-  SlagklaarAf
+  SlagklaarAf,
+  PakMaarWeerOp
 }
 enum CollectGameState {
 	None,
@@ -93,7 +94,8 @@ var commandNames = [
   "StuurboordBest",
   "BakboortBest",
   "BestBedankt",
-  "SlagklaarAf"
+  "SlagklaarAf",
+  "PakMaarWeerOp"
 ]
 
 enum CommandStyle {StyleButtonGray,StyleButtonDarkGray,StyleButtonSB,StyleButtonBB}
@@ -129,6 +131,7 @@ CommandStyle.StyleButtonDarkGray,
 CommandStyle.StyleButtonDarkGray,
 CommandStyle.StyleButtonSB,
 CommandStyle.StyleButtonBB,
+CommandStyle.StyleButtonDarkGray,
 CommandStyle.StyleButtonDarkGray,
 CommandStyle.StyleButtonDarkGray
 ]

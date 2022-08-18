@@ -200,7 +200,7 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 		var body=collidingBodies[0]
 		var isDuck= body.is_class("Duck") 
 		if (!isDuck || !isLowSpeed() || isTurning()):
-			changeState(Constants.RowState.LaatLopen,0)
+			changeState(Constants.Command.LaatLopen,Constants.RowState.LaatLopen,0)
 			showError("Boem")
 			crashState=true;
 		 
@@ -255,89 +255,94 @@ func doCommand(command:int):
 	newCommand=command	
 	match command:
 		Constants.Command.HalenBeideBoorden:
-			changeState(Constants.RowState.HalenBeideBoorden,1)
+			changeState(command,Constants.RowState.HalenBeideBoorden,1)
 		Constants.Command.LaatLopen:
-			changeState(Constants.RowState.LaatLopen,0)
+			changeState(command,Constants.RowState.LaatLopen,0)
 		Constants.Command.Bedankt:
-			changeState(Constants.RowState.Bedankt,0)
+			changeState(command,Constants.RowState.Bedankt,0)
 		Constants.Command.HalenSB:
-			changeState(Constants.RowState.HalenSB,1)
+			changeState(command,Constants.RowState.HalenSB,1)
 		Constants.Command.StrijkenSB:
-			changeState(Constants.RowState.StrijkenSB,-1)
+			changeState(command,Constants.RowState.StrijkenSB,-1)
 		Constants.Command.VastroeienSB:
-			changeState(Constants.RowState.VastroeienSB,0)
+			changeState(command,Constants.RowState.VastroeienSB,0)
 		Constants.Command.StrijkenBeidenBoorden:
-			changeState(Constants.RowState.StrijkenBeidenBoorden,-1)
+			changeState(command,Constants.RowState.StrijkenBeidenBoorden,-1)
 		Constants.Command.VastroeienBeideBoorden:
-			changeState(Constants.RowState.VastroeienBeideBoorden,0)
+			changeState(command,Constants.RowState.VastroeienBeideBoorden,0)
 		Constants.Command.HalenBB:
-			changeState(Constants.RowState.HalenBB,1)
+			changeState(command,Constants.RowState.HalenBB,1)
 		Constants.Command.StrijkenBB:
-			changeState(Constants.RowState.StrijkenBB,-1)
+			changeState(command,Constants.RowState.StrijkenBB,-1)
 		Constants.Command.VastroeienBB:
-			changeState(Constants.RowState.VastroeienBB,0)
+			changeState(command,Constants.RowState.VastroeienBB,0)
 		Constants.Command.PeddelendStrijkenBB:
-			changeState(Constants.RowState.PeddelendStrijkenBB,0)
+			changeState(command,Constants.RowState.PeddelendStrijkenBB,0)
 		Constants.Command.PeddelendStrijkenSB:
-			changeState(Constants.RowState.PeddelendStrijkenSB,0)
+			changeState(command,Constants.RowState.PeddelendStrijkenSB,0)
 		Constants.Command.UitzettenBB:
-			changeState(Constants.RowState.UitzettenBB,0)
+			changeState(command,Constants.RowState.UitzettenBB,0)
 		Constants.Command.UitzettenSB:
-			changeState(Constants.RowState.UitzettenSB,0)
+			changeState(command,Constants.RowState.UitzettenSB,0)
 		Constants.Command.RondmakenBB:
-			changeState(Constants.RowState.RondmakenBB,-1)
+			changeState(command,Constants.RowState.RondmakenBB,-1)
 		Constants.Command.RondmakenSB:
-			changeState(Constants.RowState.RondmakenSB,-1)
+			changeState(command,Constants.RowState.RondmakenSB,-1)
 		Constants.Command.Slippen:
-			oarsCommand(Constants.OarsCommand2.Slippen)
+			oarsCommand(command,Constants.OarsCommand2.Slippen)
 		Constants.Command.Uitbrengen:
-			oarsCommand(Constants.OarsCommand2.Uitbrengen)
+			oarsCommand(command,Constants.OarsCommand2.Uitbrengen)
 		Constants.Command.SlippenSB:
-			oarsCommand(Constants.OarsCommand2.SlippenSB)
+			oarsCommand(command,Constants.OarsCommand2.SlippenSB)
 		Constants.Command.UitbrengenSB:
-			oarsCommand(Constants.OarsCommand2.UitbrengenSB)
+			oarsCommand(command,Constants.OarsCommand2.UitbrengenSB)
 		Constants.Command.SlippenBB:
-			oarsCommand(Constants.OarsCommand2.SlippenBB)
+			oarsCommand(command,Constants.OarsCommand2.SlippenBB)
 		Constants.Command.UitbrengenBB:
-			oarsCommand(Constants.OarsCommand2.UitbrengenBB)
+			oarsCommand(command,Constants.OarsCommand2.UitbrengenBB)
 		Constants.Command.LightPaddle:
-			setLightPaddle(true)
+			setLightPaddle(command,true)
 		Constants.Command.LightPaddleBedankt:
-			setLightPaddle(false)
+			setLightPaddle(command,false)
 		Constants.Command.RiemenHoogSB:
-			oarsCommand(Constants.OarsCommand2.RiemenHoogSB)
+			oarsCommand(command,Constants.OarsCommand2.RiemenHoogSB)
 		Constants.Command.RiemenHoogBB:
-			oarsCommand(Constants.OarsCommand2.RiemenHoogBB)
+			oarsCommand(command,Constants.OarsCommand2.RiemenHoogBB)
 		Constants.Command.StuurboordBest:
-			setBest(Constants.BestState.StuurboordBest)
+			setBest(command,Constants.BestState.StuurboordBest)
 		Constants.Command.BakboortBest:
-			setBest(Constants.BestState.BakboordBest)
+			setBest(command,Constants.BestState.BakboordBest)
 		Constants.Command.BestBedankt:
-			setBest(Constants.BestState.Normal)
+			setBest(command,Constants.BestState.Normal)
 		Constants.Command.SlagklaarAf:
-			changeState(Constants.RowState.Roeien,1)
+			changeState(command,Constants.RowState.Roeien,1)
+		Constants.Command.PakMaarWeerOp:
+			if calcSpeed()<0:
+				changeState(command,Constants.RowState.StrijkenBeidenBoorden,-1)
+			else:
+				changeState(command,Constants.RowState.Roeien,1)
 	lastCommand=command
 
 	
-func setLightPaddle(newLightPaddle:bool):
+func setLightPaddle(command :int,newLightPaddle:bool):
 	var rules=getRules()
-	var newValue=rules.determineLightPaddleState(self,newLightPaddle)
+	var newValue=rules.determineLightPaddleState(self,command,newLightPaddle)
 	if rules.error!="": showError(rules.error)
 	else: lightPaddleOn=newValue
 
 
 	
-func setBest(newBestState :int):
+func setBest(command :int,newBestState :int):
 	var rules=getRules()
-	var newState=rules.determineBestState(self,newBestState)
+	var newState=rules.determineBestState(self,command,newBestState)
 	if rules.error!="": showError(rules.error)
 	else: bestState= newState
 	
-func changeState(newState:int,direction:int):
+func changeState(command:int,newState:int,direction:int):
 	var oldState=state
 	#first check if the new state is allowed	
 	var rules=getRules()
-	state=rules.determinenewState(self,newState,direction); 
+	state=rules.determinenewState(self,command,newState,direction); 
 	if rules.error!="": showError(rules.error)
 	
 	if oldState!=state: 
@@ -433,9 +438,9 @@ func setStateOars(newStateOars : int):
 			$"Sprite".visible=true
 			$"CollisionRiemenHoogBB".disabled=false
 
-func oarsCommand(command: int):
+func oarsCommand(command: int,oarsCommand: int):
 	var rules=getRules()
-	var newOarsState=rules.determineOarsState(self,command)
+	var newOarsState=rules.determineOarsState(self,command,oarsCommand)
 	if rules.error!="": showError(rules.error)
 	else: 
 		if newOarsState!=stateOars: setStateOars(newOarsState)

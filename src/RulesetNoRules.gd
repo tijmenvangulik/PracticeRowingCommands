@@ -1,12 +1,12 @@
 extends BaseRuleset
 
-func determinenewState(boat: Boat,newState:int,direction:int)-> int:
+func determinenewState(boat: Boat,command:int,newState:int,direction:int)-> int:
 	return newState;
 
-func determineOarsState(boat: Boat,command : int)-> int:
+func determineOarsState(boat: Boat,command,oarsCommand )-> int:
 
 	var stateOars=boat.stateOars
-	match command:
+	match oarsCommand:
 		Constants.OarsCommand2.Slippen:
 				return Constants.StateOars.Slippen
 		Constants.OarsCommand2.Uitbrengen:
@@ -38,10 +38,10 @@ func determineOarsState(boat: Boat,command : int)-> int:
 			return Constants.StateOars.RiemenHoogBB
 	return stateOars
 
-func determineLightPaddleState(boat: Boat,newLightPaddle:bool)-> bool:
+func determineLightPaddleState(boat: Boat,command: int,newLightPaddle:bool)-> bool:
 	return newLightPaddle
 
 	
-func determineBestState(boat: Boat,newBestState :int)-> int:
+func determineBestState(boat: Boat,command: int,newBestState :int)-> int:
 	return newBestState
 

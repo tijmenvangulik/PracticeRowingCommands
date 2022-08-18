@@ -10,14 +10,14 @@ func setError(errorMsg:String)->void:
 func clearError()->void:
 	error=""
 
-func determinenewState(boat,newState:int,direction:int) -> int:
+func determinenewState(boat,command:int,newState:int,direction:int) -> int:
 	return newState;
 
-func determineOarsState(boat,command : int) -> int:
+func determineOarsState(boat,command:int,oarsCommand : int) -> int:
 	return boat.stateOars
 	
-func determineLightPaddleState(boat,newLightPaddle:bool) -> bool:
+func determineLightPaddleState(boat,command: int,newLightPaddle:bool) -> bool:
 	return newLightPaddle
 	
-func determineBestState(boat,newBestState :int) -> int:
+func determineBestState(boat,command: int,newBestState :int) -> int:
 	return newBestState
