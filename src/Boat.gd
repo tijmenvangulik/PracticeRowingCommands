@@ -201,7 +201,14 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 		var isDuck= body.is_class("Duck") 
 		if (!isDuck || !isLowSpeed() || isTurning()):
 			changeState(Constants.Command.LaatLopen,Constants.RowState.LaatLopen,0)
-			showError("Boem")
+			var sound=$"CrashSound"
+			if isDuck:
+				showError("Kwak")
+				sound=$"CrashSoundDuck"
+			else:
+				showError("Boem")
+			if !sound.playing:
+				sound.play()
 			crashState=true;
 		 
 	if onePush:
