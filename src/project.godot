@@ -112,6 +112,7 @@ frame=false
 mass=false
 weight=false
 snap=false
+clear=false
 
 [importer_defaults]
 
@@ -151,4 +152,5 @@ locale_filter=[ 0, [  ] ]
 
 [rendering]
 
+environment/default_clear_color=Color( 0.552941, 0.768627, 0.207843, 1 )
 environment/default_environment="res://default_env.tres"
