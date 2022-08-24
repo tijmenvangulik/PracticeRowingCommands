@@ -9,9 +9,11 @@ collision_mask = 2
 script = ExtResource( 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0, -4.1875 )
+scale = Vector2( 1, 1.04167 )
 polygon = PoolVector2Array( -21, 2, -19, 13, -11, 19, 0, 21, 8, 16, 14, 7, 14, 2, 20, 0, 22, -5, 13, -5, 10, -12, 0, -11, -1, 1 )
 
 [node name="Image" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 203.48, 671.367, 45.2844, 49.113 )
+region_rect = Rect2( 217.946, 712.728, 48.4445, 38.6667 )

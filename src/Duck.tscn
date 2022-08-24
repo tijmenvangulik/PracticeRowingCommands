@@ -13,9 +13,11 @@ contact_monitor = true
 script = ExtResource( 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( -1.49788, 4.0625 )
+scale = Vector2( 0.995763, 1.04167 )
 polygon = PoolVector2Array( -11, -5, -29, -3, -23, 14, -5, 21, 14, 13, 19, -3, 28, -7, 30, -15, 18, -14, 15, -24, 4, -24, -1, -16, 0, -5 )
 
 [node name="Image" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 259.992, 671.367, 61.5273, 49.113 )
+region_rect = Rect2( 285.64, 695.839, 62, 57.2913 )

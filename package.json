@@ -1,6 +1,6 @@
 {
   "name": "practicerowingcommands",
-  "version": "2.7.1",
+  "version": "2.7.2",
   "description": "practice rowing commands",
   "main": "index.js",
   "dependencies": {

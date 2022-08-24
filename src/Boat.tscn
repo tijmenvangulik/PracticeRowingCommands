@@ -20,7 +20,7 @@ show_behind_parent = true
 rotation = 1.5708
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 656, 637, 109, 122 )
+region_rect = Rect2( 700.941, 666.39, 115.556, 124.444 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false
@@ -48,7 +48,7 @@ rotation = 1.5708
 texture = ExtResource( 2 )
 offset = Vector2( -9, 0 )
 region_enabled = true
-region_rect = Rect2( 529, 636, 91, 122 )
+region_rect = Rect2( 565.386, 668.612, 98.6666, 129.333 )
 region_filter_clip = true
 
 [node name="SpriteSlippenBB" type="Sprite" parent="."]
@@ -57,7 +57,15 @@ rotation = 1.5708
 texture = ExtResource( 2 )
 offset = Vector2( 9, 0 )
 region_enabled = true
-region_rect = Rect2( 786, 638, 91, 122 )
+region_rect = Rect2( 837.83, 666.835, 98.6667, 128.444 )
+region_filter_clip = true
+
+[node name="SpriteSlippen" type="Sprite" parent="."]
+visible = false
+rotation = 1.5708
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 449.791, 666.503, 80.2963, 124 )
 region_filter_clip = true
 
 [node name="CollisionSlippen" type="CollisionPolygon2D" parent="."]
@@ -65,14 +73,6 @@ visible = false
 rotation = 3.14159
 polygon = PoolVector2Array( -56.0005, 0.441849, -48.7999, -12.0277, -37.0329, -20.1066, -19.997, -25.9024, -6.82497, -27.1318, 27.7736, -36.6158, 49.3758, -33.8059, 50.7808, -29.4152, 48.3221, -22.7414, 52.5021, 0.581948, 48.6384, 17.9691, 46.1796, 25.3454, 51.6241, 27.9798, 49.341, 33.9512, 27.7388, 34.4781, -6.50861, 25.17, -21.7882, 23.9407, -43.7417, 14.4569 )
 disabled = true
-
-[node name="SpriteSlippen" type="Sprite" parent="."]
-visible = false
-rotation = 1.5708
-texture = ExtResource( 2 )
-region_enabled = true
-region_rect = Rect2( 421, 635, 73, 122 )
-region_filter_clip = true
 
 [node name="CollisionSlippenSB" type="CollisionPolygon2D" parent="."]
 visible = false

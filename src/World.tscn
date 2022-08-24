@@ -122,7 +122,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 3/texture = ExtResource( 5 )
 3/tex_offset = Vector2( 0, 0 )
 3/modulate = Color( 1, 1, 1, 1 )
-3/region = Rect2( 128, 0, 128, 128 )
+3/region = Rect2( 144, 8, 128, 128 )
 3/tile_mode = 0
 3/occluder_offset = Vector2( 0, 0 )
 3/navigation_offset = Vector2( 0, 0 )
@@ -143,7 +143,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 4/texture = ExtResource( 5 )
 4/tex_offset = Vector2( 0, 0 )
 4/modulate = Color( 1, 1, 1, 1 )
-4/region = Rect2( 256, 0, 128, 128 )
+4/region = Rect2( 280, 8, 128, 128 )
 4/tile_mode = 0
 4/occluder_offset = Vector2( 0, 0 )
 4/navigation_offset = Vector2( 0, 0 )
@@ -164,7 +164,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 5/texture = ExtResource( 5 )
 5/tex_offset = Vector2( 0, 0 )
 5/modulate = Color( 1, 1, 1, 1 )
-5/region = Rect2( 384, 0, 128, 128 )
+5/region = Rect2( 416, 8, 128, 128 )
 5/tile_mode = 0
 5/occluder_offset = Vector2( 0, 0 )
 5/navigation_offset = Vector2( 0, 0 )
@@ -185,7 +185,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 6/texture = ExtResource( 5 )
 6/tex_offset = Vector2( 0, 0 )
 6/modulate = Color( 1, 1, 1, 1 )
-6/region = Rect2( 512, 0, 128, 128 )
+6/region = Rect2( 552, 8, 128, 128 )
 6/tile_mode = 0
 6/occluder_offset = Vector2( 0, 0 )
 6/navigation_offset = Vector2( 0, 0 )
@@ -206,7 +206,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 7/texture = ExtResource( 5 )
 7/tex_offset = Vector2( 0, 0 )
 7/modulate = Color( 1, 1, 1, 1 )
-7/region = Rect2( 0, 128, 128, 128 )
+7/region = Rect2( 8, 144, 128, 128 )
 7/tile_mode = 0
 7/occluder_offset = Vector2( 0, 0 )
 7/navigation_offset = Vector2( 0, 0 )
@@ -227,7 +227,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 8/texture = ExtResource( 5 )
 8/tex_offset = Vector2( 0, 0 )
 8/modulate = Color( 1, 1, 1, 1 )
-8/region = Rect2( 128, 128, 128, 128 )
+8/region = Rect2( 144, 144, 128, 128 )
 8/tile_mode = 0
 8/occluder_offset = Vector2( 0, 0 )
 8/navigation_offset = Vector2( 0, 0 )
@@ -241,7 +241,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 9/texture = ExtResource( 5 )
 9/tex_offset = Vector2( 0, 0 )
 9/modulate = Color( 1, 1, 1, 1 )
-9/region = Rect2( 256, 128, 128, 128 )
+9/region = Rect2( 280, 144, 128, 128 )
 9/tile_mode = 0
 9/occluder_offset = Vector2( 0, 0 )
 9/navigation_offset = Vector2( 0, 0 )
@@ -262,7 +262,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 10/texture = ExtResource( 5 )
 10/tex_offset = Vector2( 0, 0 )
 10/modulate = Color( 1, 1, 1, 1 )
-10/region = Rect2( 384, 128, 128, 128 )
+10/region = Rect2( 416, 144, 128, 128 )
 10/tile_mode = 0
 10/occluder_offset = Vector2( 0, 0 )
 10/navigation_offset = Vector2( 0, 0 )
@@ -283,7 +283,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 11/texture = ExtResource( 5 )
 11/tex_offset = Vector2( 0, 0 )
 11/modulate = Color( 1, 1, 1, 1 )
-11/region = Rect2( 512, 128, 128, 128 )
+11/region = Rect2( 552, 144, 128, 128 )
 11/tile_mode = 0
 11/occluder_offset = Vector2( 0, 0 )
 11/navigation_offset = Vector2( 0, 0 )
@@ -304,7 +304,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 12/texture = ExtResource( 5 )
 12/tex_offset = Vector2( 0, 0 )
 12/modulate = Color( 1, 1, 1, 1 )
-12/region = Rect2( 640, 128, 128, 128 )
+12/region = Rect2( 688, 144, 128, 128 )
 12/tile_mode = 0
 12/occluder_offset = Vector2( 0, 0 )
 12/navigation_offset = Vector2( 0, 0 )
@@ -325,7 +325,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 13/texture = ExtResource( 5 )
 13/tex_offset = Vector2( 0, 0 )
 13/modulate = Color( 1, 1, 1, 1 )
-13/region = Rect2( 0, 256, 128, 128 )
+13/region = Rect2( 8, 280, 128, 128 )
 13/tile_mode = 0
 13/occluder_offset = Vector2( 0, 0 )
 13/navigation_offset = Vector2( 0, 0 )
@@ -346,7 +346,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 14/texture = ExtResource( 5 )
 14/tex_offset = Vector2( 0, 0 )
 14/modulate = Color( 1, 1, 1, 1 )
-14/region = Rect2( 128, 256, 128, 128 )
+14/region = Rect2( 144, 280, 128, 128 )
 14/tile_mode = 0
 14/occluder_offset = Vector2( 0, 0 )
 14/navigation_offset = Vector2( 0, 0 )
@@ -367,7 +367,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 15/texture = ExtResource( 5 )
 15/tex_offset = Vector2( 0, 0 )
 15/modulate = Color( 1, 1, 1, 1 )
-15/region = Rect2( 256, 256, 128, 128 )
+15/region = Rect2( 280, 280, 128, 128 )
 15/tile_mode = 0
 15/occluder_offset = Vector2( 0, 0 )
 15/navigation_offset = Vector2( 0, 0 )
@@ -388,7 +388,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 17/texture = ExtResource( 5 )
 17/tex_offset = Vector2( 0, 0 )
 17/modulate = Color( 1, 1, 1, 1 )
-17/region = Rect2( 384, 256, 128, 128 )
+17/region = Rect2( 416, 280, 128, 128 )
 17/tile_mode = 0
 17/occluder_offset = Vector2( 0, 0 )
 17/navigation_offset = Vector2( 0, 0 )
@@ -402,7 +402,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 18/texture = ExtResource( 5 )
 18/tex_offset = Vector2( 0, 0 )
 18/modulate = Color( 1, 1, 1, 1 )
-18/region = Rect2( 512, 256, 128, 128 )
+18/region = Rect2( 552, 280, 128, 128 )
 18/tile_mode = 0
 18/occluder_offset = Vector2( 0, 0 )
 18/navigation_offset = Vector2( 0, 0 )
@@ -423,7 +423,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 19/texture = ExtResource( 5 )
 19/tex_offset = Vector2( 0, 0 )
 19/modulate = Color( 1, 1, 1, 1 )
-19/region = Rect2( 640, 256, 128, 128 )
+19/region = Rect2( 688, 280, 128, 128 )
 19/tile_mode = 0
 19/occluder_offset = Vector2( 0, 0 )
 19/navigation_offset = Vector2( 0, 0 )
@@ -444,7 +444,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 20/texture = ExtResource( 5 )
 20/tex_offset = Vector2( 0, 0 )
 20/modulate = Color( 1, 1, 1, 1 )
-20/region = Rect2( 768, 256, 128, 128 )
+20/region = Rect2( 824, 280, 128, 128 )
 20/tile_mode = 0
 20/occluder_offset = Vector2( 0, 0 )
 20/navigation_offset = Vector2( 0, 0 )
@@ -465,7 +465,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 21/texture = ExtResource( 5 )
 21/tex_offset = Vector2( 0, 0 )
 21/modulate = Color( 1, 1, 1, 1 )
-21/region = Rect2( 128, 384, 128, 128 )
+21/region = Rect2( 144, 416, 128, 128 )
 21/tile_mode = 0
 21/occluder_offset = Vector2( 0, 0 )
 21/navigation_offset = Vector2( 0, 0 )
@@ -479,7 +479,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 22/texture = ExtResource( 5 )
 22/tex_offset = Vector2( 0, 0 )
 22/modulate = Color( 1, 1, 1, 1 )
-22/region = Rect2( 256, 384, 128, 128 )
+22/region = Rect2( 280, 416, 128, 128 )
 22/tile_mode = 0
 22/occluder_offset = Vector2( 0, 0 )
 22/navigation_offset = Vector2( 0, 0 )
@@ -493,7 +493,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 23/texture = ExtResource( 5 )
 23/tex_offset = Vector2( 0, 0 )
 23/modulate = Color( 1, 1, 1, 1 )
-23/region = Rect2( 384, 384, 128, 128 )
+23/region = Rect2( 416, 416, 128, 128 )
 23/tile_mode = 0
 23/occluder_offset = Vector2( 0, 0 )
 23/navigation_offset = Vector2( 0, 0 )
@@ -507,7 +507,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 24/texture = ExtResource( 5 )
 24/tex_offset = Vector2( 0, 0 )
 24/modulate = Color( 1, 1, 1, 1 )
-24/region = Rect2( 512, 384, 128, 128 )
+24/region = Rect2( 552, 416, 128, 128 )
 24/tile_mode = 0
 24/occluder_offset = Vector2( 0, 0 )
 24/navigation_offset = Vector2( 0, 0 )
@@ -521,7 +521,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 26/texture = ExtResource( 5 )
 26/tex_offset = Vector2( 0, 0 )
 26/modulate = Color( 1, 1, 1, 1 )
-26/region = Rect2( 640, 384, 128, 128 )
+26/region = Rect2( 688, 416, 128, 128 )
 26/tile_mode = 0
 26/occluder_offset = Vector2( 0, 0 )
 26/navigation_offset = Vector2( 0, 0 )
@@ -542,7 +542,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 27/texture = ExtResource( 5 )
 27/tex_offset = Vector2( 0, 0 )
 27/modulate = Color( 1, 1, 1, 1 )
-27/region = Rect2( 768, 384, 128, 128 )
+27/region = Rect2( 824, 416, 128, 128 )
 27/tile_mode = 0
 27/occluder_offset = Vector2( 0, 0 )
 27/navigation_offset = Vector2( 0, 0 )
@@ -605,7 +605,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 31/texture = ExtResource( 5 )
 31/tex_offset = Vector2( 0, 0 )
 31/modulate = Color( 1, 1, 1, 1 )
-31/region = Rect2( 384, 512, 128, 256 )
+31/region = Rect2( 416, 552, 128, 128 )
 31/tile_mode = 0
 31/occluder_offset = Vector2( 0, 0 )
 31/navigation_offset = Vector2( 0, 0 )
@@ -619,7 +619,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 32/texture = ExtResource( 5 )
 32/tex_offset = Vector2( 0, 0 )
 32/modulate = Color( 1, 1, 1, 1 )
-32/region = Rect2( 512, 512, 128, 256 )
+32/region = Rect2( 552, 552, 128, 128 )
 32/tile_mode = 0
 32/occluder_offset = Vector2( 0, 0 )
 32/navigation_offset = Vector2( 0, 0 )
@@ -633,7 +633,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 33/texture = ExtResource( 5 )
 33/tex_offset = Vector2( 0, 0 )
 33/modulate = Color( 1, 1, 1, 1 )
-33/region = Rect2( 640, 512, 128, 256 )
+33/region = Rect2( 688, 552, 128, 128 )
 33/tile_mode = 0
 33/occluder_offset = Vector2( 0, 0 )
 33/navigation_offset = Vector2( 0, 0 )
@@ -647,7 +647,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 34/texture = ExtResource( 5 )
 34/tex_offset = Vector2( 0, 0 )
 34/modulate = Color( 1, 1, 1, 1 )
-34/region = Rect2( 768, 512, 128, 128 )
+34/region = Rect2( 824, 552, 128, 128 )
 34/tile_mode = 0
 34/occluder_offset = Vector2( 0, 0 )
 34/navigation_offset = Vector2( 0, 0 )
@@ -661,7 +661,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 35/texture = ExtResource( 5 )
 35/tex_offset = Vector2( 0, 0 )
 35/modulate = Color( 1, 1, 1, 1 )
-35/region = Rect2( 768, 640, 128, 128 )
+35/region = Rect2( 824, 688, 128, 128 )
 35/tile_mode = 0
 35/occluder_offset = Vector2( 0, 0 )
 35/navigation_offset = Vector2( 0, 0 )
@@ -682,7 +682,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 36/texture = ExtResource( 5 )
 36/tex_offset = Vector2( 0, 0 )
 36/modulate = Color( 1, 1, 1, 1 )
-36/region = Rect2( 0, 0, 128, 128 )
+36/region = Rect2( 8, 8, 128, 128 )
 36/tile_mode = 0
 36/occluder_offset = Vector2( 0, 0 )
 36/navigation_offset = Vector2( 0, 0 )
@@ -703,7 +703,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 37/texture = ExtResource( 5 )
 37/tex_offset = Vector2( 0, 0 )
 37/modulate = Color( 1, 1, 1, 1 )
-37/region = Rect2( 0, 0, 128, 128 )
+37/region = Rect2( 824, 144, 128, 128 )
 37/tile_mode = 0
 37/occluder_offset = Vector2( 0, 0 )
 37/navigation_offset = Vector2( 0, 0 )
@@ -845,350 +845,350 @@ tile_data = PoolIntArray( -1, 17, 0, -65536, 17, 0, -65535, 17, 0, -65534, 17, 0
 position = Vector2( 823, 1350 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 164, 572, 62, 70 )
+region_rect = Rect2( 177, 599, 63, 76 )
 
 [node name="BushMidle" type="Sprite" parent="Vegetation"]
 position = Vector2( 838.25, 1372 )
 scale = Vector2( 1.09184, 1.03226 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 427, 459, 49, 62 )
+region_rect = Rect2( 453, 484, 58, 72 )
 
 [node name="BushMidle2" type="Sprite" parent="Vegetation"]
 position = Vector2( 2344, 930 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 427, 459, 49, 62 )
+region_rect = Rect2( 299, 451, 92, 85 )
 
 [node name="BushMidle3" type="Sprite" parent="Vegetation"]
 position = Vector2( 2373.25, 1001.5 )
 scale = Vector2( 1.17347, 1.14516 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 427, 459, 49, 62 )
+region_rect = Rect2( 299, 451, 92, 85 )
 
 [node name="Tree" type="Sprite" parent="Vegetation"]
 position = Vector2( 542, 979 )
 scale = Vector2( 0.892857, 0.92 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 9.146, 412.392, 112, 101 )
+region_rect = Rect2( 20, 445, 105, 104 )
 
 [node name="Tree9" type="Sprite" parent="Vegetation"]
 position = Vector2( 36, 2530 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 9.146, 412.392, 112, 101 )
+region_rect = Rect2( 27, 451, 92, 85 )
 
 [node name="Tree10" type="Sprite" parent="Vegetation"]
 position = Vector2( 2581.5, 1898.5 )
 scale = Vector2( 0.991071, 1.19 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 9.146, 412.392, 112, 101 )
+region_rect = Rect2( 27, 451, 92, 85 )
 
 [node name="Tree7" type="Sprite" parent="Vegetation"]
 position = Vector2( -114, 646 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 9.146, 412.392, 112, 101 )
+region_rect = Rect2( 27, 451, 92, 85 )
 
 [node name="Tree8" type="Sprite" parent="Vegetation"]
 position = Vector2( -86, 739 )
 scale = Vector2( 0.910714, 0.96 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 9.146, 412.392, 112, 101 )
+region_rect = Rect2( 27, 451, 92, 85 )
 
 [node name="Tree6" type="Sprite" parent="Vegetation"]
 position = Vector2( -169, 1512 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 9.146, 412.392, 112, 101 )
+region_rect = Rect2( 27, 451, 92, 85 )
 
 [node name="Tree5" type="Sprite" parent="Vegetation"]
 position = Vector2( -78, 1410 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 9.146, 412.392, 112, 101 )
+region_rect = Rect2( 27, 451, 92, 85 )
 
 [node name="Tree4" type="Sprite" parent="Vegetation"]
 position = Vector2( 458, 481 )
 scale = Vector2( 1.01786, 1.02 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 9.146, 412.392, 112, 101 )
+region_rect = Rect2( 27, 451, 92, 85 )
 
 [node name="Tree11" type="Sprite" parent="Vegetation"]
 position = Vector2( 2482, 207.5 )
 scale = Vector2( 0.875, 0.87 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 9.146, 412.392, 112, 101 )
+region_rect = Rect2( 27, 451, 92, 85 )
 
 [node name="Tree12" type="Sprite" parent="Vegetation"]
 position = Vector2( 2252, -126 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 9.146, 412.392, 112, 101 )
+region_rect = Rect2( 27, 451, 92, 85 )
 
 [node name="Tree2" type="Sprite" parent="Vegetation"]
 position = Vector2( 1077, 733 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 9.146, 412.392, 112, 101 )
+region_rect = Rect2( 27, 451, 92, 85 )
 
 [node name="Tree3" type="Sprite" parent="Vegetation"]
 position = Vector2( 1129, 695.5 )
 scale = Vector2( 1.08929, 1.11 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 9.146, 412.392, 112, 101 )
+region_rect = Rect2( 27, 451, 92, 85 )
 
 [node name="Bush" type="Sprite" parent="Vegetation"]
 position = Vector2( 798, 1361.75 )
 scale = Vector2( 0.935484, 0.957627 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 164, 454, 62, 59.392 )
+region_rect = Rect2( 187, 495, 46, 45 )
 
 [node name="Bush12" type="Sprite" parent="Vegetation"]
 position = Vector2( 950, 1296 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 164, 454, 62, 59.392 )
+region_rect = Rect2( 187, 495, 46, 45 )
 
 [node name="Bush13" type="Sprite" parent="Vegetation"]
 position = Vector2( 376, 1146 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 164, 454, 62, 59.392 )
+region_rect = Rect2( 187, 495, 46, 45 )
 
 [node name="Bush14" type="Sprite" parent="Vegetation"]
 position = Vector2( 4, 2219 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 164, 454, 62, 59.392 )
+region_rect = Rect2( 187, 495, 46, 45 )
 
 [node name="Bush15" type="Sprite" parent="Vegetation"]
 position = Vector2( 414, 2687 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 164, 454, 62, 59.392 )
+region_rect = Rect2( 187, 495, 46, 45 )
 
 [node name="Bush16" type="Sprite" parent="Vegetation"]
 position = Vector2( 414, 2687 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 164, 454, 62, 59.392 )
+region_rect = Rect2( 187, 495, 46, 45 )
 
 [node name="Bush17" type="Sprite" parent="Vegetation"]
 position = Vector2( 2183, 2563 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 164, 454, 62, 59.392 )
+region_rect = Rect2( 187, 495, 46, 45 )
 
 [node name="Bush18" type="Sprite" parent="Vegetation"]
 position = Vector2( 2434, 1990.25 )
 scale = Vector2( 0.870968, 0.822034 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 164, 454, 62, 59.392 )
+region_rect = Rect2( 187, 495, 46, 45 )
 
 [node name="Bush19" type="Sprite" parent="Vegetation"]
 position = Vector2( 2432, 2019 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 164, 454, 62, 59.392 )
+region_rect = Rect2( 187, 495, 46, 45 )
 
 [node name="Bush20" type="Sprite" parent="Vegetation"]
 position = Vector2( 2474.5, 2016.75 )
 scale = Vector2( 1.14516, 1.12712 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 164, 454, 62, 59.392 )
+region_rect = Rect2( 187, 495, 46, 45 )
 
 [node name="Bush3" type="Sprite" parent="Vegetation"]
 position = Vector2( 1442.5, -87.25 )
 scale = Vector2( 0.854839, 0.872881 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 164, 454, 62, 59.392 )
+region_rect = Rect2( 187, 495, 46, 45 )
 
 [node name="Bush4" type="Sprite" parent="Vegetation"]
 position = Vector2( 1478, -84 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 164, 454, 62, 59.392 )
+region_rect = Rect2( 187, 495, 46, 45 )
 
 [node name="Bush5" type="Sprite" parent="Vegetation"]
 position = Vector2( 1514.5, -94.25 )
 scale = Vector2( 1.1129, 1.00847 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 164, 454, 62, 59.392 )
+region_rect = Rect2( 187, 495, 46, 45 )
 
 [node name="Bush6" type="Sprite" parent="Vegetation"]
 position = Vector2( 1529, -71.75 )
 scale = Vector2( 0.870968, 0.822034 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 164, 454, 62, 59.392 )
+region_rect = Rect2( 187, 495, 46, 45 )
 
 [node name="Bush7" type="Sprite" parent="Vegetation"]
 position = Vector2( 1558, -93 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 164, 454, 62, 59.392 )
+region_rect = Rect2( 187, 495, 46, 45 )
 
 [node name="Bush8" type="Sprite" parent="Vegetation"]
 position = Vector2( 1583, -94 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 164, 454, 62, 59.392 )
+region_rect = Rect2( 187, 495, 46, 45 )
 
 [node name="Bush9" type="Sprite" parent="Vegetation"]
 position = Vector2( 1588, -78 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 164, 454, 62, 59.392 )
+region_rect = Rect2( 187, 495, 46, 45 )
 
 [node name="Bush10" type="Sprite" parent="Vegetation"]
 position = Vector2( 1620, -85 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 164, 454, 62, 59.392 )
+region_rect = Rect2( 187, 495, 46, 45 )
 
 [node name="Bush11" type="Sprite" parent="Vegetation"]
 position = Vector2( 1615, -81.25 )
 scale = Vector2( 1.16129, 1.12712 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 164, 454, 62, 59.392 )
+region_rect = Rect2( 187, 495, 46, 45 )
 
 [node name="Bush2" type="Sprite" parent="Vegetation"]
 position = Vector2( 606, 606 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 164, 454, 62, 59.392 )
+region_rect = Rect2( 187, 495, 46, 45 )
 
 [node name="TreeDark" type="Sprite" parent="Vegetation"]
 position = Vector2( 488.25, 1049 )
 scale = Vector2( 0.984211, 1.03704 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 34, 529, 95, 108 )
+region_rect = Rect2( 45, 568, 86, 88 )
 
 [node name="TreeDark6" type="Sprite" parent="Vegetation"]
 position = Vector2( -99, 169 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 34, 529, 95, 108 )
+region_rect = Rect2( 45, 568, 86, 88 )
 
 [node name="TreeDark7" type="Sprite" parent="Vegetation"]
 position = Vector2( 352, -45 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 34, 529, 95, 108 )
+region_rect = Rect2( 45, 568, 86, 88 )
 
 [node name="TreeDark3" type="Sprite" parent="Vegetation"]
 position = Vector2( 890, 2788 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 34, 529, 95, 108 )
+region_rect = Rect2( 45, 568, 86, 88 )
 
 [node name="TreeDark4" type="Sprite" parent="Vegetation"]
 position = Vector2( 1071.25, 2764 )
 scale = Vector2( 0.878947, 0.907407 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 34, 529, 95, 108 )
+region_rect = Rect2( 45, 568, 86, 88 )
 
 [node name="TreeDark5" type="Sprite" parent="Vegetation"]
 position = Vector2( 1630.25, 2766 )
 scale = Vector2( 0.878947, 0.87037 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 34, 529, 95, 108 )
+region_rect = Rect2( 45, 568, 86, 88 )
 
 [node name="TreeDark2" type="Sprite" parent="Vegetation"]
 position = Vector2( -89, 2004 )
 scale = Vector2( 0.942105, 0.87037 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 34, 529, 95, 108 )
+region_rect = Rect2( 45, 568, 86, 88 )
 
 [node name="TreeMidle" type="Sprite" parent="Vegetation"]
 position = Vector2( 1195.5, 1093.75 )
 scale = Vector2( 1.05, 1.07282 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 270, 412, 100, 103 )
+region_rect = Rect2( 299, 451, 92, 85 )
 
 [node name="TreeMidle6" type="Sprite" parent="Vegetation"]
 position = Vector2( 2442.5, 2497.75 )
 scale = Vector2( 1.11, 1.15049 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 270, 412, 100, 103 )
+region_rect = Rect2( 299, 451, 92, 85 )
 
 [node name="TreeMidle7" type="Sprite" parent="Vegetation"]
 position = Vector2( 2511, 2564.25 )
 scale = Vector2( 0.86, 0.966019 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 270, 412, 100, 103 )
+region_rect = Rect2( 299, 451, 92, 85 )
 
 [node name="TreeMidle8" type="Sprite" parent="Vegetation"]
 position = Vector2( 2376, 2577 )
 scale = Vector2( 1, 1.07282 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 270, 412, 100, 103 )
+region_rect = Rect2( 299, 451, 92, 85 )
 
 [node name="TreeMidle5" type="Sprite" parent="Vegetation"]
 position = Vector2( 2506, 1318 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 270, 412, 100, 103 )
+region_rect = Rect2( 299, 451, 92, 85 )
 
 [node name="TreeMidle2" type="Sprite" parent="Vegetation"]
 position = Vector2( 1790, 449 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 270, 412, 100, 103 )
+region_rect = Rect2( 299, 451, 92, 85 )
 
 [node name="TreeMidle10" type="Sprite" parent="Vegetation"]
 position = Vector2( 1658, -118 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 270, 412, 100, 103 )
+region_rect = Rect2( 299, 451, 92, 85 )
 
 [node name="TreeMidle9" type="Sprite" parent="Vegetation"]
 position = Vector2( 2547, 118 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 270, 412, 100, 103 )
+region_rect = Rect2( 299, 451, 92, 85 )
 
 [node name="TreeMidle3" type="Sprite" parent="Vegetation"]
 position = Vector2( 1630.5, 446.25 )
 scale = Vector2( 0.97, 0.946602 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 270, 412, 100, 103 )
+region_rect = Rect2( 299, 451, 92, 85 )
 
 [node name="TreeMidle4" type="Sprite" parent="Vegetation"]
 position = Vector2( 1480.5, 456.25 )
 scale = Vector2( 1.09, 1.08252 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 270, 412, 100, 103 )
+region_rect = Rect2( 299, 451, 92, 85 )
 
 [node name="Tree13" type="Sprite" parent="Vegetation"]
 position = Vector2( 453, 1003 )
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 9.146, 412.392, 112, 101 )
+region_rect = Rect2( 27, 451, 92, 85 )
 
 [node name="Boathouse" type="Sprite" parent="Vegetation"]
 position = Vector2( 1372, 2865 )
