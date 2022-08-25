@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/duck.mp3" type="AudioStream" id=4]
 
 [node name="Boat" type="RigidBody2D"]
-position = Vector2( -0.420593, 0.0624841 )
+position = Vector2( 6, 0 )
 collision_layer = 31
 contacts_reported = 1
 contact_monitor = true
@@ -17,10 +17,12 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="."]
 show_behind_parent = true
+position = Vector2( 1.43761, 5.20414e-06 )
 rotation = 1.5708
+scale = Vector2( 1, 1.00331 )
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 700.941, 666.39, 115.556, 124.444 )
+region_rect = Rect2( 700.941, 666.39, 115.556, 124 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false
@@ -48,7 +50,7 @@ rotation = 1.5708
 texture = ExtResource( 2 )
 offset = Vector2( -9, 0 )
 region_enabled = true
-region_rect = Rect2( 565.386, 668.612, 98.6666, 129.333 )
+region_rect = Rect2( 565.386, 668.612, 98.667, 124 )
 region_filter_clip = true
 
 [node name="SpriteSlippenBB" type="Sprite" parent="."]
@@ -57,7 +59,7 @@ rotation = 1.5708
 texture = ExtResource( 2 )
 offset = Vector2( 9, 0 )
 region_enabled = true
-region_rect = Rect2( 837.83, 666.835, 98.6667, 128.444 )
+region_rect = Rect2( 837.83, 666.835, 98.667, 124 )
 region_filter_clip = true
 
 [node name="SpriteSlippen" type="Sprite" parent="."]
