@@ -83,7 +83,7 @@ func selected(itemIndex : int):
 		StartPos.Aanleggen: 
 			boat.setNewBoatPosition(702.307,2145.531,45,Constants.StateOars.Roeien,true)
 		StartPos.StartAanleggenMinderKnoppen: 
-			boat.setNewBoatPosition(831.267,2372.928,45,Constants.StateOars.Roeien,true)
+			boat.setNewBoatPosition(702.307,2145.531,45,Constants.StateOars.Roeien,true)
 			showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.RiemenHoogSB,Constants.Command.VastroeienBB]	
 		StartPos.Aangelegd: 
 			if isViking: 

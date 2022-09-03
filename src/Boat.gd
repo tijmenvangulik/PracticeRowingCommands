@@ -196,11 +196,11 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	
 	var destinationTurnSpeedAbs=abs(destinationTurnSpeed);
 	# apply turn forces
-	if oarsInwater && destinationTurnSpeedAbs>0 && destinationSpeed!=0.0:
+	if  destinationTurnSpeedAbs>0 && destinationSpeed!=0.0:
 		if (sideWays):
 			var extraTurnForce= Vector2(destinationTurnSpeed*0.5,0).rotated(rotation+sideWaysOffset)
 			apply_impulse(Vector2(80,0).rotated(rotation),extraTurnForce)
-		else:
+		elif oarsInwater:
 			#apply_torque_impulse(destinationTurnSpeed*30);
 			var extraTurnForce= Vector2(abs(destinationTurnSpeed)*0.5,0).rotated(rotation) #deg2rad(-45*sign(destinationTurnSpeed))
 			apply_impulse(Vector2(0,-50*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)

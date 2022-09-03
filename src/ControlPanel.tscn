@@ -66,3 +66,41 @@ margin_right = 330.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 27 )
 text = "100"
+
+[node name="OarBB" type="HBoxContainer" parent="Panel/VBoxContainer"]
+margin_top = 46.0
+margin_right = 330.0
+margin_bottom = 65.0
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/OarBB"]
+margin_right = 299.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 27 )
+text = "OarBB"
+
+[node name="value" type="Label" parent="Panel/VBoxContainer/OarBB"]
+margin_left = 303.0
+margin_right = 330.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 27 )
+text = "100"
+
+[node name="OarSB" type="HBoxContainer" parent="Panel/VBoxContainer"]
+margin_top = 69.0
+margin_right = 330.0
+margin_bottom = 88.0
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/OarSB"]
+margin_right = 299.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 27 )
+text = "OarSB"
+
+[node name="value" type="Label" parent="Panel/VBoxContainer/OarSB"]
+margin_left = 303.0
+margin_right = 330.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 27 )
+text = "100"

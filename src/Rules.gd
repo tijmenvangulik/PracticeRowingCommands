@@ -27,14 +27,8 @@ func determinenewState(boat: Boat,command:int,newState:int,direction:int)-> int:
 	else: if newState==Constants.RowState.Bedankt &&  !boat.isLowSpeed() && (state==Constants.RowState.Roeien ):
 		setError("EerstLatenLopen")
 		return result
-	else: if newState==Constants.RowState.UitzettenSB && stateOars!=Constants.StateOars.SlippenSB && stateOars!=Constants.StateOars.RiemenHoogSB:
-		setError("RiemenMoetenHoogZijn")
-		return result
 	else: if newState==Constants.RowState.UitzettenSB && !boat.canPushSB():
 		setError("GeenWalVoorUItzetten")
-		return result
-	else: if newState==Constants.RowState.UitzettenBB && stateOars!=Constants.StateOars.SlippenBB && stateOars!=Constants.StateOars.RiemenHoogBB:
-		setError("RiemenMoetenHoogZijn")
 		return result
 	else: if newState==Constants.RowState.UitzettenBB && !boat.canPushBB():
 		setError("GeenWalVoorUItzetten")

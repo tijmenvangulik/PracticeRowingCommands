@@ -30,6 +30,7 @@ func _ready():
 		ss.get_node("Label").text = setting
 		ss.get_node("Value").text = str(boat.get(setting))	
 		ss.get_node("Slider").connect("value_changed", self, "_on_Value_changed", [ss])
+
 			
 func _on_Value_changed(value, node):
 	boat.set(node.name, value)
@@ -46,4 +47,14 @@ func _process(delta):
 	$Panel/VBoxContainer/Speedometer/Speed.text = "%4.3f" % value
 	var turnValue=boat.angular_velocity
 	$Panel/VBoxContainer/turnMeter/value.text = "%4.3f" % turnValue
-		
+	
+	var inWater=""
+	if boat.get_node("OarBB1").inWater:
+		inWater="In"		
+	$Panel/VBoxContainer/OarBB/value.text = inWater
+	
+	inWater=""
+	if boat.get_node("OarSB1").inWater:
+		inWater="in"		
+	$Panel/VBoxContainer/OarSB/value.text = inWater
+				

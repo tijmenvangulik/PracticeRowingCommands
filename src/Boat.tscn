@@ -52,11 +52,11 @@ collision_mask = 256
 polygon = PoolVector2Array( -42.5794, -24.0625, 16.4206, -24.0625, 40.4206, -16.0625, 57, -3, 57, 4, 37.4206, 16.9375, 20, 20, -32, 21, -43, 19, -50, 4, -51, -13 )
 
 [node name="RayCastSB" type="RayCast2D" parent="."]
-cast_to = Vector2( 0, 47 )
+cast_to = Vector2( 0, 60 )
 collide_with_areas = true
 
 [node name="RayCastBB" type="RayCast2D" parent="."]
-cast_to = Vector2( 0, -47 )
+cast_to = Vector2( 0, -60 )
 collision_mask = 3
 
 [node name="CrashSound" type="AudioStreamPlayer" parent="."]
