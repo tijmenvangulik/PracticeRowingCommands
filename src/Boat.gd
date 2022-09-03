@@ -190,7 +190,7 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	var angle=linear_velocity.angle()
 	var destinationSpeedAbs=abs(destinationSpeed)
 	
-	if oarsInwater && destinationSpeedAbs>0 && currentSpeed<destinationSpeedAbs:
+	if (oarsInwater || sideWays) && destinationSpeedAbs>0 && currentSpeed<destinationSpeedAbs:
 		applied_force= Vector2(destinationSpeed,0).rotated(rotation+sideWaysOffset)
 	else: applied_force= Vector2(0,0)
 	
@@ -290,6 +290,7 @@ func doCommand(command:int):
 	newCommand=command	
 	match command:
 		Constants.Command.HalenBeideBoorden:
+			setStateOars(Constants.StateOars.Roeien,false);
 			changeState(command,Constants.RowState.HalenBeideBoorden,1)
 		Constants.Command.LaatLopen:
 			changeState(command,Constants.RowState.LaatLopen,0)
@@ -302,8 +303,10 @@ func doCommand(command:int):
 		Constants.Command.VastroeienSB:
 			changeState(command,Constants.RowState.VastroeienSB,0)
 		Constants.Command.StrijkenBeidenBoorden:
+			setStateOars(Constants.StateOars.Roeien,false);
 			changeState(command,Constants.RowState.StrijkenBeidenBoorden,-1)
 		Constants.Command.VastroeienBeideBoorden:
+			setStateOars(Constants.StateOars.Roeien,false);
 			changeState(command,Constants.RowState.VastroeienBeideBoorden,0)
 		Constants.Command.HalenBB:
 			changeState(command,Constants.RowState.HalenBB,1)
@@ -350,6 +353,7 @@ func doCommand(command:int):
 		Constants.Command.BestBedankt:
 			setBest(command,Constants.BestState.Normal)
 		Constants.Command.SlagklaarAf:
+			setStateOars(Constants.StateOars.Roeien,false);
 			changeState(command,Constants.RowState.Roeien,1)
 		Constants.Command.PakMaarWeerOp:
 			if calcSpeed()<0:
@@ -420,10 +424,14 @@ func changeState(command:int,newState:int,direction:int,direct=false):
 #				setSpeedAndDirection(0,0,0.2,false)
 #			else: 
 			setSpeedAndDirection(0,0,1,false)
-			if !slippenBB:
+			if slippenBB:
+				oarBB.setNewScheme(false,oarBB.rotation_slippen,oarBB.rotation_slippen,direct)
+			else:
 				oarBB.setNewScheme(false,oarBB.rotation_rest,oarBB.rotation_rest,direct)
 
-			if !slippenSB:
+			if slippenSB:
+				oarSB.setNewScheme(false,oarBB.rotation_slippen,oarBB.rotation_slippen,direct)
+			else:
 				oarSB.setNewScheme(false,oarBB.rotation_rest,oarBB.rotation_rest,direct)
 
 		Constants.RowState.HalenSB:
@@ -468,11 +476,11 @@ func changeState(command:int,newState:int,direction:int,direct=false):
 		Constants.RowState.UitzettenBB:
 			onePush=true
 			state=Constants.RowState.LaatLopen
-			setSpeedAndDirection(60,0,1,true)
+			setSpeedAndDirection(10,0,1,true)
 		Constants.RowState.UitzettenSB:
 			onePush=true
 			state=Constants.RowState.LaatLopen
-			setSpeedAndDirection(-60,0,1,true)
+			setSpeedAndDirection(-10,0,1,true)
 		Constants.RowState.RondmakenBB:
 			setSpeedAndDirection(0.01,-0.5,1,false)
 			oarBB.setNewScheme(true,oarBB.rotation_out,oarBB.rotation_inHalen,direct)
@@ -491,24 +499,25 @@ func setStateOars(newStateOars : int,direct : bool):
 	stateOars=determinenewStateOars(newStateOars)
 	var oarBB=$"OarBB1"
 	var oarSB=$"OarSB1"
-	$"OarSB1Collision".disabled=false
-	$"OarSB2Collision".disabled=false
-	$"OarBB1Collision".disabled=false
-	$"OarBB2Collision".disabled=false
 	if direct:
 		oarBB.setNewScheme(false,oarSB.rotation_rest,oarBB.rotation_rest,direct)	
 		oarSB.setNewScheme(false,oarSB.rotation_rest,oarBB.rotation_rest,direct)	
-
+	
 	match stateOars:
 		Constants.StateOars.Roeien:
 			oarBB.setNewScheme(false,oarBB.rotation_rest,oarBB.rotation_rest,direct)
 			oarSB.setNewScheme(false,oarBB.rotation_rest,oarBB.rotation_rest,direct)	
+			RimenHoogSetDisabledBB(false)
+			RimenHoogSetDisabledSB(false)
 #			$"Sprite".visible=true
 #			$"CollisionPolygon2D".disabled=false
 		Constants.StateOars.Slippen:
 			oarBB.setNewScheme(false,oarBB.rotation_slippen,oarBB.rotation_slippen,direct)
 			oarSB.setNewScheme(false,oarBB.rotation_slippen,oarBB.rotation_slippen,direct)
+			RimenHoogSetDisabledBB(false)
+			RimenHoogSetDisabledSB(false)
 		Constants.StateOars.SlippenSB:
+			RimenHoogSetDisabledSB(false)
 			oarSB.setNewScheme(false,oarBB.rotation_slippen,oarBB.rotation_slippen,direct)
 			if oldStateOars==Constants.StateOars.Slippen:
 				oarBB.setNewScheme(false,oarSB.rotation_rest,oarBB.rotation_rest,direct)	
@@ -516,19 +525,26 @@ func setStateOars(newStateOars : int,direct : bool):
 			oarBB.setNewScheme(false,oarBB.rotation_slippen,oarBB.rotation_slippen,direct)
 			if oldStateOars==Constants.StateOars.Slippen:
 				oarSB.setNewScheme(false,oarBB.rotation_rest,oarBB.rotation_rest,direct)
+			RimenHoogSetDisabledBB(false)
 		Constants.StateOars.RiemenHoogSB:
 			oarSB.setNewScheme(false,oarBB.rotation_center,oarBB.rotation_center,direct)
-			$"OarSB1Collision".disabled=true
-			$"OarSB2Collision".disabled=true
+			RimenHoogSetDisabledSB(true)
 #			$"CollisionRiemenHoogSB".disabled=false
 		Constants.StateOars.RiemenHoogBB:
 			oarBB.setNewScheme(false,oarBB.rotation_center,oarBB.rotation_center,direct)
-			$"OarBB1Collision".disabled=true
-			$"OarBB2Collision".disabled=true
+			RimenHoogSetDisabledBB(true)
 #			$"CollisionRiemenHoogBB".disabled=false
 	if direct:
 		updateOarRotation()
 		
+func RimenHoogSetDisabledSB(value):
+	$"OarSB1Collision".disabled=value
+	$"OarSB2Collision".disabled=value
+	
+func RimenHoogSetDisabledBB(value):
+	$"OarBB1Collision".disabled=value
+	$"OarBB2Collision".disabled=value
+	
 func oarsCommand(command: int,oarsCommand: int):
 	var rules=getRules()
 	var newOarsState=rules.determineOarsState(self,command,oarsCommand)

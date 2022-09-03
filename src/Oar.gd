@@ -60,7 +60,8 @@ func setNewScheme(startIsInNew : bool,startRotationNew  :float,endRotationNew,di
 	if direct:
 		swapFromNewScheme()		
 		setRotation(endRotationNew)
-				
+		frozen=true
+		
 func swapFromNewScheme():
 	startIsIn=newStartIsIn
 	startRotation=newStartRotation
@@ -166,6 +167,8 @@ func getNormalRoation(rot):
 		return rot
 
 func setRotation(newRotation):
+	normalRotation=newRotation
+
 	if isSB: #mirror sb but keep source rotions the same
 		rotation_degrees= mirrorRotation(newRotation)
 	else:
