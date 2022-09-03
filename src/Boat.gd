@@ -147,6 +147,7 @@ func showError(message:String):
 #http://kidscancode.org/godot_recipes/basics/understanding_delta/
 # speed (velocity) is pixels per second
 func _integrate_forces( statePhysics: Physics2DDirectBodyState):
+	
 	if newPosition_x!=-1.0:
 		var start_pos=Vector2(newPosition_x,newPosition_y)
 		var start_angle=deg2rad( newRotation_degrees)*1.0
@@ -156,6 +157,8 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 		newRotation_degrees=-1.0;
 		newPosition_x=-1.0
 		newPosition_y=1.0
+	var oarsInwater=$"OarBB1".inWater || $"OarSB1".inWater
+	
 	# calc speed
 	var forceCorrection=1.0
 	if (lightPaddleOn): forceCorrection=lightPaddleFactor
@@ -187,13 +190,13 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	var angle=linear_velocity.angle()
 	var destinationSpeedAbs=abs(destinationSpeed)
 	
-	if destinationSpeedAbs>0 && currentSpeed<destinationSpeedAbs:
+	if oarsInwater && destinationSpeedAbs>0 && currentSpeed<destinationSpeedAbs:
 		applied_force= Vector2(destinationSpeed,0).rotated(rotation+sideWaysOffset)
 	else: applied_force= Vector2(0,0)
 	
 	var destinationTurnSpeedAbs=abs(destinationTurnSpeed);
 	# apply turn forces
-	if destinationTurnSpeedAbs>0 && destinationSpeed!=0.0:
+	if oarsInwater && destinationTurnSpeedAbs>0 && destinationSpeed!=0.0:
 		if (sideWays):
 			var extraTurnForce= Vector2(destinationTurnSpeed*0.5,0).rotated(rotation+sideWaysOffset)
 			apply_impulse(Vector2(80,0).rotated(rotation),extraTurnForce)
@@ -205,15 +208,17 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	
 	# apply the breaking force
 	
-	if (destinationSpeed==0.0 and currentSpeed>0.5 ):
+	if oarsInwater and destinationSpeed==0.0 and currentSpeed>0.5 :
 		var extraTurnForce= Vector2(currentSpeed*0.02*forceMultiplier,0).rotated(angle+PI)
 		apply_impulse(Vector2(0,25*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
 	
-	if  destinationSpeed!=0.0 and currentSpeed>1:
+		
+	if  oarsInwater and destinationSpeed!=0.0 and currentSpeed>1:
 		if bestState==Constants.BestState.StuurboordBest :
 			apply_torque_impulse(-bestExtraRotation);
 		else: if bestState==Constants.BestState.BakboordBest:
 			apply_torque_impulse(bestExtraRotation);
+			
 	#check on colliding
 	var collidingBodies=get_colliding_bodies()
 	
