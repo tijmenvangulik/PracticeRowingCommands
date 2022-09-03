@@ -476,11 +476,11 @@ func changeState(command:int,newState:int,direction:int,direct=false):
 		Constants.RowState.UitzettenBB:
 			onePush=true
 			state=Constants.RowState.LaatLopen
-			setSpeedAndDirection(10,0,1,true)
+			setSpeedAndDirection(12,0,1,true)
 		Constants.RowState.UitzettenSB:
 			onePush=true
 			state=Constants.RowState.LaatLopen
-			setSpeedAndDirection(-10,0,1,true)
+			setSpeedAndDirection(-12,0,1,true)
 		Constants.RowState.RondmakenBB:
 			setSpeedAndDirection(0.01,-0.5,1,false)
 			oarBB.setNewScheme(true,oarBB.rotation_out,oarBB.rotation_inHalen,direct)

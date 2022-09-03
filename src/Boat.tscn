@@ -9,6 +9,7 @@
 [node name="Boat" type="RigidBody2D"]
 position = Vector2( 5, 7 )
 collision_layer = 31
+mass = 2.0
 contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 1 )
