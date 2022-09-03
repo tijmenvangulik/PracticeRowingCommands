@@ -87,12 +87,12 @@ func selected(itemIndex : int):
 			showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.RiemenHoogSB,Constants.Command.VastroeienBB]	
 		StartPos.Aangelegd: 
 			if isViking: 
-				boat.setNewBoatPosition(1124,2602,0,Constants.StateOars.SlippenSB,true)
+				boat.setNewBoatPosition(1124,2596,0,Constants.StateOars.SlippenSB,true)
 			else:
 				boat.setNewBoatPosition(1124,2608,0,Constants.StateOars.RiemenHoogSB,true)
 		StartPos.StartAangelegdMinderKnoppen:
 			if isViking: 
-				boat.setNewBoatPosition(1124,2602,0,Constants.StateOars.SlippenSB,true)
+				boat.setNewBoatPosition(1124,2596,0,Constants.StateOars.SlippenSB,true)
 				showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.PeddelendStrijkenSB,Constants.Command.StrijkenBB,Constants.Command.HalenSB,Constants.Command.UitbrengenSB]	
 			else:
 				boat.setNewBoatPosition(1124,2608,0,Constants.StateOars.RiemenHoogSB,true)

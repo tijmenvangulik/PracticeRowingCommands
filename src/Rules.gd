@@ -12,10 +12,10 @@ func determinenewState(boat: Boat,command:int,newState:int,direction:int)-> int:
 	if stateOars!=Constants.StateOars.Roeien &&  stateOars!=Constants.StateOars.RiemenHoogSB && stateOars!=Constants.StateOars.RiemenHoogBB && (newState==Constants.RowState.HalenBeideBoorden || newState==Constants.RowState.Roeien || newState==Constants.RowState.StrijkenBeidenBoorden  || newState==Constants.RowState.RondmakenSB  || newState==Constants.RowState.RondmakenBB ):
 		setError("EerstUitBrengen")	
 		return result
-	else: if stateOars==Constants.StateOars.SlippenBB && (newState==Constants.RowState.HalenBB || newState==Constants.RowState.StrijkenBB || newState==Constants.RowState.VastroeienBB):
+	else: if stateOars==Constants.StateOars.SlippenBB && (newState==Constants.RowState.HalenBB || newState==Constants.RowState.StrijkenBB || newState==Constants.RowState.VastroeienBB || newState==Constants.RowState.VastroeienBeideBoorden):
 		setError("EerstUitBrengen")	
 		return result
-	else: if stateOars==Constants.StateOars.SlippenSB && (newState==Constants.RowState.HalenSB || newState==Constants.RowState.StrijkenSB || newState==Constants.RowState.VastroeienSB) :
+	else: if stateOars==Constants.StateOars.SlippenSB && (newState==Constants.RowState.HalenSB || newState==Constants.RowState.StrijkenSB || newState==Constants.RowState.VastroeienSB  || newState==Constants.RowState.VastroeienBeideBoorden) :
 		setError("EerstUitBrengen")	
 		return result
 	else: if newState==Constants.RowState.PeddelendStrijkenSB && (stateOars!=Constants.StateOars.SlippenSB && stateOars!=Constants.StateOars.Slippen ):
@@ -105,12 +105,16 @@ func determineOarsState(boat: Boat,command,oarsCommand : int)-> int:
 					return Constants.StateOars.SlippenBB
 				else: setError("EerstSlippen")
 			Constants.OarsCommand2.RiemenHoogSB:
-				if stateOars==Constants.StateOars.Roeien :
+				if stateOars==Constants.StateOars.RiemenHoogSB :
+				 setError("CommandIsAlreadyActive")
+				elif stateOars==Constants.StateOars.Roeien || stateOars==Constants.StateOars.RiemenHoogBB :
 					return Constants.StateOars.RiemenHoogSB
 				else: setError("RiemenHoogAlleenAlsRiemenUitgebracht")	
 				
-			Constants.OarsCommand2.RiemenHoogBB:					
-				if stateOars==Constants.StateOars.Roeien:
+			Constants.OarsCommand2.RiemenHoogBB:	
+				if stateOars==Constants.StateOars.RiemenHoogBB :
+				 setError("CommandIsAlreadyActive")
+				elif stateOars==Constants.StateOars.Roeien || stateOars==Constants.StateOars.RiemenHoogSB:
 					return Constants.StateOars.RiemenHoogBB
 				else: setError("RiemenHoogAlleenAlsRiemenUitgebracht")	
 	else: 

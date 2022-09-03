@@ -46,14 +46,35 @@ var backwardsPosition=-200
 var currentPositionX=0;
 var moveStep=1000
 
+	
 func _ready():
 	setForwardsPosition(0)
 	GameEvents.connect("zoomChangedSignal",self,"_zoomChangedSignal")
 	GameEvents.connect("doCommandSignal",self,"_doCommandSignal")
+	$"OarBB2".masterOar=$"OarBB1"
+	$"OarSB2".masterOar=$"OarSB1"
+	$"OarBB1".slaveOar=$"OarBB2"
+	$"OarSB1".slaveOar=$"OarSB2"
+	
+	$"OarBB1".otherSideOar=$"OarSB1"
+	$"OarSB1".otherSideOar=$"OarBB1"
+	$"OarBB2".otherSideOar=$"OarSB2"
+	$"OarSB2".otherSideOar=$"OarBB2"
+	
+	
 	
 func _process(delta):
 	setForwardsPosition(delta)
+	updateOarRotation()
+	
+func updateOarRotation():
+	$"OarBB1Collision".rotation_degrees=$"OarBB1".rotation_degrees-90-180
+	$"OarBB2Collision".rotation_degrees=$"OarBB2".rotation_degrees-90-180
 
+	$"OarSB1Collision".rotation_degrees=$"OarSB1".rotation_degrees-90-180
+	$"OarSB2Collision".rotation_degrees=$"OarSB2".rotation_degrees-90-180
+	
+	
 var lastForwardsCommand=-1
 
 func _zoomChangedSignal():
@@ -200,7 +221,8 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 		var body=collidingBodies[0]
 		var isDuck= body.is_class("Duck") 
 		if (!isDuck || !isLowSpeed() || isTurning()):
-			changeState(Constants.Command.LaatLopen,Constants.RowState.LaatLopen,0)
+			crashState=true;
+			changeState(Constants.Command.LaatLopen,Constants.RowState.LaatLopen,0,true)
 			var sound=$"CrashSound"
 			if isDuck:
 				showError("Kwak")
@@ -209,7 +231,8 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 				showError("Boem")
 			if !sound.playing:
 				sound.play()
-			crashState=true;
+			$"OarBB1".freeze()
+			$"OarSB1".freeze()
 		 
 	if onePush:
 		currentSpeedFactor=0.0
@@ -345,7 +368,7 @@ func setBest(command :int,newBestState :int):
 	if rules.error!="": showError(rules.error)
 	else: bestState= newState
 	
-func changeState(command:int,newState:int,direction:int):
+func changeState(command:int,newState:int,direction:int,direct=false):
 	var oldState=state
 	#first check if the new state is allowed	
 	var rules=getRules()
@@ -357,45 +380,86 @@ func changeState(command:int,newState:int,direction:int):
 	#if the state change was successfull reset the oars state
 	if  oldState!=state && (stateOars==Constants.StateOars.RiemenHoogBB || stateOars==Constants.StateOars.RiemenHoogSB ):
 	  stateOars=Constants.StateOars.Roeien
- 
+	
+	var oarBB=$"OarBB1"
+	var oarSB=$"OarSB1"
+	
+	var slippenBB=stateOars==Constants.StateOars.SlippenBB || stateOars==Constants.StateOars.Slippen;
+	var slippenSB=stateOars==Constants.StateOars.SlippenSB || stateOars==Constants.StateOars.Slippen;
+	
 	# going forward goes faster than backwards
 	# change factor of Max speed, max rotat, speed inc,rotation inc
 	# negative speed is backwards and negative turn speed is turn to the left
 	match state:
 		Constants.RowState.HalenBeideBoorden:
 			setSpeedAndDirection(0.5,0,1,false)
+			oarBB.setNewScheme(true,oarBB.rotation_inHalen,oarBB.rotation_out,direct,true)
+			oarSB.setNewScheme(true,oarBB.rotation_inHalen,oarBB.rotation_out,direct,true)
 		Constants.RowState.Roeien:
 			setSpeedAndDirection(1,0,1,false)
+			oarBB.setNewScheme(true,oarBB.rotation_in,oarBB.rotation_out,direct,true)
+			oarSB.setNewScheme(true,oarBB.rotation_in,oarBB.rotation_out,direct,true)
 		Constants.RowState.LaatLopen:
 #			if abs(currentSpeed)<=lowNoRowingSpeed:
 #				setSpeedAndDirection(0,0,0.001,false)
 #			else: 
-				setSpeedAndDirection(0,0,0.01,false)
+			setSpeedAndDirection(0,0,0.01,false)
+			if !crashState:
+				if !slippenBB:
+					oarBB.setNewScheme(false,oarBB.rotation_rest,oarBB.rotation_rest,direct)
+				if !slippenSB:
+					oarSB.setNewScheme(false,oarBB.rotation_rest,oarBB.rotation_rest,direct)
+
 		Constants.RowState.Bedankt:
 #			if abs(currentSpeed)<=lowNoRowingSpeed:
 #				setSpeedAndDirection(0,0,0.2,false)
 #			else: 
-				setSpeedAndDirection(0,0,1,false)
+			setSpeedAndDirection(0,0,1,false)
+			if !slippenBB:
+				oarBB.setNewScheme(false,oarBB.rotation_rest,oarBB.rotation_rest,direct)
+
+			if !slippenSB:
+				oarSB.setNewScheme(false,oarBB.rotation_rest,oarBB.rotation_rest,direct)
+
 		Constants.RowState.HalenSB:
 			setSpeedAndDirection(0.35,-0.5,1,false)
+			oarSB.setNewScheme(true,oarBB.rotation_inHalen,oarBB.rotation_out,direct)
 		Constants.RowState.HalenBB:
 			setSpeedAndDirection(0.35,0.5,1,false)
+			oarBB.setNewScheme(true,oarBB.rotation_inHalen,oarBB.rotation_out,direct)
 		Constants.RowState.VastroeienBeideBoorden:
 			setSpeedAndDirection(0,0,1.5,false)
+			if !slippenBB:
+				oarBB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct,true)
+			if !slippenSB:
+				oarSB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct,true)
 		Constants.RowState.VastroeienSB:
 			setSpeedAndDirection(0,0.6,0.4,false)
+			if !slippenSB:
+				oarSB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct)
 		Constants.RowState.VastroeienBB:
 			setSpeedAndDirection(0,-0.6,0.4,false)
+			if !slippenBB:
+				oarBB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct)
+			if !slippenSB:
+				oarSB.setNewScheme(false,oarBB.rotation_rest,oarBB.rotation_rest,direct)
 		Constants.RowState.StrijkenBeidenBoorden:
 			setSpeedAndDirection(-0.4,0,0.5,false)
+			oarBB.setNewScheme(true,oarBB.rotation_out,oarBB.rotation_inHalen,direct,true)
+			oarSB.setNewScheme(true,oarBB.rotation_out,oarBB.rotation_inHalen,direct,true)
+
 		Constants.RowState.StrijkenBB:
 			setSpeedAndDirection(-0.3,-0.3,0.5,false)
+			oarBB.setNewScheme(true,oarBB.rotation_out,oarBB.rotation_inHalen,direct)
 		Constants.RowState.StrijkenSB:
 			setSpeedAndDirection(-0.3,0.3,0.5,false)
+			oarSB.setNewScheme(true,oarBB.rotation_out,oarBB.rotation_inHalen,direct)
 		Constants.RowState.PeddelendStrijkenBB:
 			setSpeedAndDirection(0.1,-0.1,1,true)
+			oarBB.setNewScheme(true,oarBB.rotation_slippen,oarBB.rotation_slippen_out,direct)
 		Constants.RowState.PeddelendStrijkenSB:
 			setSpeedAndDirection(-0.1,0.1,1,true)
+			oarSB.setNewScheme(true,oarBB.rotation_slippen,oarBB.rotation_slippen_out,direct)
 		Constants.RowState.UitzettenBB:
 			onePush=true
 			state=Constants.RowState.LaatLopen
@@ -406,58 +470,74 @@ func changeState(command:int,newState:int,direction:int):
 			setSpeedAndDirection(-60,0,1,true)
 		Constants.RowState.RondmakenBB:
 			setSpeedAndDirection(0.01,-0.5,1,false)
+			oarBB.setNewScheme(true,oarBB.rotation_out,oarBB.rotation_inHalen,direct)
+			oarSB.setNewScheme(false,oarBB.rotation_out,oarBB.rotation_inHalen,direct)
+
 		Constants.RowState.RondmakenSB:
 			setSpeedAndDirection(0.01,0.5,1,false)
+			oarBB.setNewScheme(false,oarBB.rotation_out,oarBB.rotation_inHalen,direct)
+			oarSB.setNewScheme(true,oarBB.rotation_out,oarBB.rotation_inHalen,direct)
 
 func determinenewStateOars(newStateOars):
 	return 	newStateOars
 		
-func setStateOars(newStateOars : int):
+func setStateOars(newStateOars : int,direct : bool):
+	var oldStateOars=stateOars
 	stateOars=determinenewStateOars(newStateOars)
-	$"Sprite".visible=false
-	$"CollisionPolygon2D".disabled=true
-	$"SpriteSlippen".visible=false
-	$"CollisionSlippen".disabled=true
-	$"SpriteSlippenSB".visible=false
-	$"CollisionSlippenSB".disabled=true
-	$"SpriteSlippenBB".visible=false
-	$"CollisionSlippenBB".disabled=true
-	$"CollisionRiemenHoogBB".disabled=true
-	$"CollisionRiemenHoogSB".disabled=true
+	var oarBB=$"OarBB1"
+	var oarSB=$"OarSB1"
+	$"OarSB1Collision".disabled=false
+	$"OarSB2Collision".disabled=false
+	$"OarBB1Collision".disabled=false
+	$"OarBB2Collision".disabled=false
+	if direct:
+		oarBB.setNewScheme(false,oarSB.rotation_rest,oarBB.rotation_rest,direct)	
+		oarSB.setNewScheme(false,oarSB.rotation_rest,oarBB.rotation_rest,direct)	
+
 	match stateOars:
 		Constants.StateOars.Roeien:
-			$"Sprite".visible=true
-			$"CollisionPolygon2D".disabled=false
+			oarBB.setNewScheme(false,oarBB.rotation_rest,oarBB.rotation_rest,direct)
+			oarSB.setNewScheme(false,oarBB.rotation_rest,oarBB.rotation_rest,direct)	
+#			$"Sprite".visible=true
+#			$"CollisionPolygon2D".disabled=false
 		Constants.StateOars.Slippen:
-			$"SpriteSlippen".visible=true
-			$"CollisionSlippen".disabled=false
+			oarBB.setNewScheme(false,oarBB.rotation_slippen,oarBB.rotation_slippen,direct)
+			oarSB.setNewScheme(false,oarBB.rotation_slippen,oarBB.rotation_slippen,direct)
 		Constants.StateOars.SlippenSB:
-			$"SpriteSlippenSB".visible=true
-			$"CollisionSlippenSB".disabled=false
-			
+			oarSB.setNewScheme(false,oarBB.rotation_slippen,oarBB.rotation_slippen,direct)
+			if oldStateOars==Constants.StateOars.Slippen:
+				oarBB.setNewScheme(false,oarSB.rotation_rest,oarBB.rotation_rest,direct)	
 		Constants.StateOars.SlippenBB:
-			$"SpriteSlippenBB".visible=true
-			$"CollisionSlippenBB".disabled=false
+			oarBB.setNewScheme(false,oarBB.rotation_slippen,oarBB.rotation_slippen,direct)
+			if oldStateOars==Constants.StateOars.Slippen:
+				oarSB.setNewScheme(false,oarBB.rotation_rest,oarBB.rotation_rest,direct)
 		Constants.StateOars.RiemenHoogSB:
-			$"Sprite".visible=true
-			$"CollisionRiemenHoogSB".disabled=false
+			oarSB.setNewScheme(false,oarBB.rotation_center,oarBB.rotation_center,direct)
+			$"OarSB1Collision".disabled=true
+			$"OarSB2Collision".disabled=true
+#			$"CollisionRiemenHoogSB".disabled=false
 		Constants.StateOars.RiemenHoogBB:
-			$"Sprite".visible=true
-			$"CollisionRiemenHoogBB".disabled=false
-
+			oarBB.setNewScheme(false,oarBB.rotation_center,oarBB.rotation_center,direct)
+			$"OarBB1Collision".disabled=true
+			$"OarBB2Collision".disabled=true
+#			$"CollisionRiemenHoogBB".disabled=false
+	if direct:
+		updateOarRotation()
+		
 func oarsCommand(command: int,oarsCommand: int):
 	var rules=getRules()
 	var newOarsState=rules.determineOarsState(self,command,oarsCommand)
 	if rules.error!="": showError(rules.error)
 	else: 
-		if newOarsState!=stateOars: setStateOars(newOarsState)
+		if newOarsState!=stateOars: setStateOars(newOarsState,false)
 	
 	
 func setNewBoatPosition(x:int,y:int,newRotation,newStateOars : int,newIsForwards):
 	GameState.isForwards=newIsForwards
 	setForwardsPosition(0)
+	setStateOars(newStateOars,true)
+	
 	# reset the boat into a new position and place
-	setStateOars(newStateOars)
 	newRotation_degrees=newRotation
 	newPosition_x=x
 	newPosition_y=y

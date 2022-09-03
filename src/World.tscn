@@ -1224,7 +1224,7 @@ position = Vector2( 1364, 201 )
 
 [node name="Boat" parent="." instance=ExtResource( 3 )]
 position = Vector2( 958, 1906 )
-mass = 4.0
+mass = 2.0
 physics_material_override = SubResource( 21 )
 linear_damp = 0.13
 angular_damp = 0.8

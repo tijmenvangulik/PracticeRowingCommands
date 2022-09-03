@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/tiles.png" type="Texture" id=1]
+[ext_resource path="res://Oar.gd" type="Script" id=2]
+
+[node name="OarBB" type="Node2D"]
+rotation = -1.5708
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+show_behind_parent = true
+position = Vector2( 1.43769, -23.3004 )
+rotation = -3.14159
+scale = Vector2( 1.00331, 0.873179 )
+texture = ExtResource( 1 )
+centered = false
+offset = Vector2( -38, -29.5 )
+region_enabled = true
+region_rect = Rect2( 463.284, 593.639, 55.1873, 8.41608 )
+
+[node name="SpriteInWater" type="Sprite" parent="."]
+visible = false
+show_behind_parent = true
+position = Vector2( 1.43769, -23.3004 )
+rotation = -3.14159
+scale = Vector2( 1.00331, 0.873179 )
+texture = ExtResource( 1 )
+centered = false
+offset = Vector2( -38, -29 )
+region_enabled = true
+region_rect = Rect2( 463.55, 605.135, 54.5388, 5.63245 )
