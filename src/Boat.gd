@@ -435,10 +435,10 @@ func changeState(command:int,newState:int,direction:int,direct=false):
 				oarSB.setNewScheme(false,oarBB.rotation_rest,oarBB.rotation_rest,direct)
 
 		Constants.RowState.HalenSB:
-			setSpeedAndDirection(0.35,-0.5,1,false)
+			setSpeedAndDirection(0.35,-0.3,1,false)
 			oarSB.setNewScheme(true,oarBB.rotation_inHalen,oarBB.rotation_out,direct)
 		Constants.RowState.HalenBB:
-			setSpeedAndDirection(0.35,0.5,1,false)
+			setSpeedAndDirection(0.35,0.3,1,false)
 			oarBB.setNewScheme(true,oarBB.rotation_inHalen,oarBB.rotation_out,direct)
 		Constants.RowState.VastroeienBeideBoorden:
 			setSpeedAndDirection(0,0,1.5,false)
