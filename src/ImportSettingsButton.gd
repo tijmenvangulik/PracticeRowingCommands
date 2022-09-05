@@ -44,8 +44,7 @@ func _pressed():
 #	testImport()
 
 func doImport(settings):
-	settings.erase("highScore")
-	$"..".setSettings(settings)
+	$"..".setSettings(settings,true)
 	GameEvents.settingsChanged()
 	GameEvents.customButtonSetChanged()
 

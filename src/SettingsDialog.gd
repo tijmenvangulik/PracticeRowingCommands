@@ -56,7 +56,6 @@ func _ready():
 	
 	loadSettings()
 
-	
 	#https://www.tilcode.com/godot-3-centering-a-grid-of-evenly-spaced-buttons-on-screen/
 	#https://docs.godotengine.org/en/stable/getting_started/step_by_step/ui_game_user_interface.html
 	var commandIndex=0;
@@ -84,7 +83,16 @@ func _ready():
 			editBox.setText(altText)
 		commandIndex=commandIndex+1
 		
-func getSettings():
+	
+	
+func get_parameter(parameter):
+	if OS.has_feature('JavaScript'):
+		var value= JavaScript.eval("var url_string = window.location.href; var url = new URL(url_string); url.searchParams.get('"+parameter+"');")
+		return value
+	return null
+			
+				
+func getSettings(removePrivate=false):
 	var commandDict={}
 	for i in range(0,Settings.commandTranslations.size()-1):
 		var commandName=Constants.commandNames[i]
@@ -99,9 +107,27 @@ func getSettings():
 	  "zoom":Settings.zoom,
 	  "language":Settings.currentLang
 	}
+	if removePrivate:
+		removePrivateSettings(save_dict)
 	return save_dict
 	
-func setSettings(dict):
+func removePrivateSettings(settings):
+	settings.erase("highScore")
+	
+	
+func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFromUrl=false):
+	if removePrivate:
+		removePrivateSettings(dict)
+		
+	if dict.has("highScore"):
+		Settings.highScore=dict["highScore"]
+	
+	if  dict.has("language"):
+		Settings.currentLang=dict["language"]
+
+	if alreadySetFromUrl:
+		return
+	
 	var translations=null
 	if dict.has("translations"):
 		translations=dict["translations"]
@@ -119,7 +145,7 @@ func setSettings(dict):
 		for translationName in keys:
 			var iPos= Utilities.commandNameToCommand(translationName)
 			
-			if iPos>=0:				
+			if iPos>=0:
 				var text=translations[translationName]
 				Settings.commandTranslations[iPos]=text
 				var iposChild=3+iPos*2;
@@ -131,16 +157,14 @@ func setSettings(dict):
 		ruleset=dict["ruleset"]
 	if ruleset!=null:
 		setRuleset(ruleset)
-	if dict.has("highScore"):
-		Settings.highScore=dict["highScore"]
+	
 	if dict.has("zoom"):
 		var zoom =dict["zoom"]
 		if zoom>0 && zoom<100:
 			Settings.zoom=zoom;
-	if  dict.has("language"):
-		Settings.currentLang=dict["language"]
-	
-	GameEvents.settingsChanged()
+			
+	if callSettingsChanged:
+		GameEvents.settingsChanged()
 	
 func saveSettings():
 	var save_game = File.new()
@@ -150,21 +174,57 @@ func saveSettings():
 	save_game.close()
 	
 func loadSettings():
-	var save_game = File.new()
-	if not save_game.file_exists(settingsFile):
-		return # Error! We don't have a save to load.
-	save_game.open(settingsFile, File.READ)
-	while save_game.get_position() < save_game.get_len():
-        # Get the saved dictionary from the next line in the save file
-		var dict = parse_json(save_game.get_line())
-		setSettings(dict)
-	save_game.close()
+	
+	var settingFromUrl=false
+	var settings=get_parameter("settings")
+	if settings!=null && settings!="":
+		var dict=parse_json(settings);
+		if dict!=null:
+			setSettings(dict,true)
+			settingFromUrl=true
+	
 
+	var save_game = File.new()
+	if  save_game.file_exists(settingsFile):
+		save_game.open(settingsFile, File.READ)
+		while save_game.get_position() < save_game.get_len():
+		# Get the saved dictionary from the next line in the save file
+			var dict = parse_json(save_game.get_line())
+			#only load the high score here when set from the url
+			# never call the setting changed
+			setSettings(dict,false,false,settingFromUrl)
+		save_game.close()
+	
+	#override the lang with the url lang
+	var urlLang=get_parameter("lang");
+	if urlLang!=null:
+		var urlLangIndex=Constants.urlKeys.find(urlLang)
+		if urlLangIndex>=0:
+			Settings.currentLang=Constants.languageKeys[urlLangIndex]
+
+	GameEvents.settingsChanged()
+	
 func _on_EditCommandText_customCommandTextChanged(command, commandName, value):
+	if commandName==value:
+		value=""
 	Settings.commandTranslations[command]=value
 
 func _handleSettingsChanged():
 	saveSettings()
+	setSettingInUrl()
+
+	
+func setSettingInUrl():
+	var urlLang=""
+	var lang=Settings.currentLang
+	var indexNr=Constants.languageKeys.find(lang)
+	if indexNr>=0:
+		urlLang=Constants.urlKeys[indexNr]
+	var settings=getSettings(true)
+	var urlSettings= to_json(settings).percent_encode()
+	JavaScript.eval("history.pushState({}, null, window.location.protocol + '//' + window.location.host + window.location.pathname + '?lang="+urlLang+"&settings="+urlSettings+"')");
+
+
 
 func ensureButtonsetSaved():
 	commandButtonsTab.ensureButtonsetSaved()

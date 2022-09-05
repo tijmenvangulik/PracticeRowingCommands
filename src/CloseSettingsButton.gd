@@ -1,5 +1,5 @@
 extends Button
 
 func _pressed():
-	$"..".saveSettings()
+	GameEvents.settingsChanged()
 	$"..".visible=false	

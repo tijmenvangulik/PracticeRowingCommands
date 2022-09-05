@@ -10,7 +10,7 @@ var collectGameIsHighScore=false
 var publicHighScorePositon=0
 var publicHighscores = []
 
-var defaultButtonSet=["SlagklaarAf","LaatLopen,Bedankt","VastroeienSB","HalenSB","StrijkenSB","StrijkenBeidenBoorden","VastroeienBeideBoorden","VastroeienBB","HalenBB","StrijkenBB","Slippen","SlippenSB","UitbrengenSB","UitzettenSB","RondmakenSB","Uitbrengen","SlippenBB","UitbrengenBB","UitzettenBB","RondmakenBB","HalenBeideBoorden","LightPaddle","LightPaddleBedankt","RiemenHoogSB","RiemenHoogBB"]
+var defaultButtonSet=["SlagklaarAf","LaatLopen,Bedankt","VastroeienSB","HalenSB","StrijkenSB","StrijkenBeidenBoorden","VastroeienBeideBoorden","VastroeienBB","HalenBB","StrijkenBB","Slippen","SlippenSB","UitbrengenSB","UitzettenSB","RondmakenSB","Uitbrengen","SlippenBB","UitbrengenBB","UitzettenBB","RondmakenBB","HalenBeideBoorden","LightPaddle","LightPaddleBedankt","RiemenHoogBB","RiemenHoogSB"]
 var currentButtonSet=defaultButtonSet
 var useDefaultButtonSet=true;
 

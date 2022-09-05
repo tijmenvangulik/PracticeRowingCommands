@@ -2200,6 +2200,7 @@ __meta__ = {
 }
 
 [node name="ExportSettingsButton" type="Button" parent="CanvasLayer/SettingsDialog"]
+visible = false
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -2222,6 +2223,7 @@ __meta__ = {
 }
 
 [node name="ImportSettingsButton" type="Button" parent="CanvasLayer/SettingsDialog"]
+visible = false
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 11.0

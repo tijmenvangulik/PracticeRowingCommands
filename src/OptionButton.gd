@@ -5,10 +5,6 @@ extends OptionButton
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var languageItems=["NL viking","Nederlands","English","English 2"]
-var languageKeys=["nl_NL","nl","en","en_US"]
-var urlKeys=["nl_viking","nl","en","en2"]
-var flags=["nl","nl","gb","gb"]
 
 var currentLang=""
 
@@ -21,34 +17,24 @@ func _init():
 	else:
 		Settings.currentLang="en"
 	GameEvents.register_tooltip(self,"OptionLanguageTooltip")
-
-func initFromUrl():
-	var urlLang =JavaScript.eval("window.location.search");
-	
-	if urlLang!=null && urlLang.begins_with("?lang="):
-		urlLang=urlLang.replace("?lang=","")
-		var urlLangIndex=urlKeys.find(urlLang)
-		if urlLangIndex>=0:
-			Settings.currentLang=languageKeys[urlLangIndex]
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameEvents.connect("settingsChangedSignal",self,"_settings_changedSignal")
 	var i=0;
-	for item in languageItems:
-		var flagName=flags[i]
+	for item in Constants.languageItems:
+		var flagName=Constants.flags[i]
 		var texture=load("res://assets/flags/"+flagName+".svg")
 		add_icon_item(texture,item,i)
 		i=i+1
 	
 	connect("item_selected",self,"selected")
-	initFromUrl()
 	setLanguage(Settings.currentLang)	
 	var styleDropDown= preload("res://MainDropDown.tres")
 	get_popup().add_stylebox_override("panel",styleDropDown)
 
 func setLanguage(langKey):
-	var indexNr=languageKeys.find(langKey)
+	var indexNr=Constants.languageKeys.find(langKey)
 	if indexNr>=0:
 		TranslationServer.set_locale(langKey)
 		GameState.isViking= langKey=="nl_NL"
@@ -62,11 +48,9 @@ func setLanguage(langKey):
 func selected(itemIndex : int):
 	
 	if itemIndex>=0:
-		var langKey=languageKeys[itemIndex]		
+		var langKey=Constants.languageKeys[itemIndex]		
 		setLanguage(langKey)
 		GameEvents.settingsChanged()
-		var urlLang=urlKeys[itemIndex]
-		JavaScript.eval("history.pushState({}, null, window.location.protocol + '//' + window.location.host + window.location.pathname + '?lang="+urlLang+"')");
 
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.

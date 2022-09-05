@@ -27,7 +27,7 @@ func _pressed():
 	GameEvents.settingsChanged()
 	var parent=self.get_parent()
 	parent.ensureButtonsetSaved();
-	var settings=parent.getSettings()
-	settings.erase("highScore")
+	var settings=parent.getSettings(true)
+
 	var settingsString=to_json(settings)
 	JavaScript.eval(safeFunc+"saveData('"+settingsString+"','settings.json')",true)
