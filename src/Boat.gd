@@ -48,6 +48,7 @@ var moveStep=1000
 
 	
 func _ready():
+	set_bounce(0.2)
 	setForwardsPosition(0)
 	GameEvents.connect("zoomChangedSignal",self,"_zoomChangedSignal")
 	GameEvents.connect("doCommandSignal",self,"_doCommandSignal")
@@ -222,10 +223,13 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	#check on colliding
 	var collidingBodies=get_colliding_bodies()
 	
-	if collidingBodies.size()>0 :
+	var crashStateChanged= !crashState
+	if crashStateChanged && collidingBodies.size()>0 :
 		var body=collidingBodies[0]
 		var isDuck= body.is_class("Duck") 
+		
 		if (!isDuck || !isLowSpeed() || isTurning()):
+			
 			crashState=true;
 			changeState(Constants.Command.LaatLopen,Constants.RowState.LaatLopen,0,true)
 			var sound=$"CrashSound"
@@ -234,7 +238,7 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 				sound=$"CrashSoundDuck"
 			else:
 				showError("Boem")
-			if !sound.playing:
+			if !sound.playing && crashStateChanged:
 				sound.play()
 			$"OarBB1".freeze()
 			$"OarSB1".freeze()
