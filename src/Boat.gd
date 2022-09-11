@@ -451,11 +451,11 @@ func changeState(command:int,newState:int,direction:int,direct=false):
 			if !slippenSB:
 				oarSB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct,true)
 		Constants.RowState.VastroeienSB:
-			setSpeedAndDirection(0,0.5,0.5,false)
+			setSpeedAndDirection(0,0.5,0.3,false)
 			if !slippenSB:
 				oarSB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct)
 		Constants.RowState.VastroeienBB:
-			setSpeedAndDirection(0,-0.5,0.5,false)
+			setSpeedAndDirection(0,-0.5,0.3,false)
 			if !slippenBB:
 				oarBB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct)
 			if !slippenSB:

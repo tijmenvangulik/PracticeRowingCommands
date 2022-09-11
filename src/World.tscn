@@ -715,7 +715,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 37/z_index = 0
 
 [sub_resource type="PhysicsMaterial" id=21]
-friction = 0.9
+friction = 0.5
 
 [sub_resource type="Curve2D" id=38]
 bake_interval = 20.0
@@ -1226,7 +1226,7 @@ position = Vector2( 1364, 201 )
 position = Vector2( 958, 1906 )
 mass = 1.2
 physics_material_override = SubResource( 21 )
-linear_damp = 0.13
+linear_damp = 0.1
 angular_damp = 0.8
 rulesetManager = NodePath("Rulesets")
 
