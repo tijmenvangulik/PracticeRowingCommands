@@ -39,6 +39,12 @@ func determinenewState(boat: Boat,command:int,newState:int,direction:int)-> int:
 	else: if newState==Constants.RowState.Roeien &&  command!=Constants.Command.PakMaarWeerOp && !boat.isLowSpeed():
 		setError("LegBootStil")
 		return result
+	else: if (newState==Constants.RowState.HalenSB && state==Constants.RowState.VastroeienBB) || (newState==Constants.RowState.VastroeienSB && state==Constants.RowState.HalenBB):
+		result=newState
+		return result
+	else: if (newState==Constants.RowState.HalenBB && state==Constants.RowState.VastroeienSB) || (newState==Constants.RowState.VastroeienBB && state==Constants.RowState.HalenSB):
+		result=newState
+		return result
 	else: if newState==Constants.RowState.LaatLopen || newState==Constants.RowState.Bedankt || boat.isLowSpeed():
 		result=newState
 		return result

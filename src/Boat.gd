@@ -17,7 +17,7 @@ var max_turn= 0.6
 var lowTurnSpeed=1.0
 var forceMultiplier=1.0
 var sideWays=false;
-var lightPaddleFactor=0.5
+var lightPaddleFactor=0.6
 var lightPaddleDestTurnFactor=0.5
 var lightPaddleOn=false
 
@@ -445,17 +445,17 @@ func changeState(command:int,newState:int,direction:int,direct=false):
 			setSpeedAndDirection(0.35,0.3,1,false)
 			oarBB.setNewScheme(true,oarBB.rotation_inHalen,oarBB.rotation_out,direct)
 		Constants.RowState.VastroeienBeideBoorden:
-			setSpeedAndDirection(0,0,1.5,false)
+			setSpeedAndDirection(0,0,0.4,false)
 			if !slippenBB:
 				oarBB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct,true)
 			if !slippenSB:
 				oarSB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct,true)
 		Constants.RowState.VastroeienSB:
-			setSpeedAndDirection(0,0.6,0.4,false)
+			setSpeedAndDirection(0,0.5,0.5,false)
 			if !slippenSB:
 				oarSB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct)
 		Constants.RowState.VastroeienBB:
-			setSpeedAndDirection(0,-0.6,0.4,false)
+			setSpeedAndDirection(0,-0.5,0.5,false)
 			if !slippenBB:
 				oarBB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct)
 			if !slippenSB:
