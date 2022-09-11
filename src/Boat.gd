@@ -97,7 +97,7 @@ func canPushBB():
 	
 func setForwardsPosition(delta):
 	if delta!=0 && lastForwardsCommand!=lastCommand:
-		if lastCommand==Constants.Command.StrijkenBeidenBoorden || lastCommand==Constants.Command.HalenBeideBoorden:
+		if lastCommand==Constants.Command.StrijkenBeidenBoorden || lastCommand==Constants.Command.HalenBeideBoorden || lastCommand==Constants.Command.SlagklaarAf:
 			if lastCommand==Constants.Command.StrijkenBeidenBoorden: GameState.isForwards=false
 			else: GameState.isForwards=true			
 			lastForwardsCommand=lastCommand;
