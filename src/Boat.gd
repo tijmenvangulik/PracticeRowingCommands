@@ -21,7 +21,7 @@ var lightPaddleFactor=0.6
 var lightPaddleDestTurnFactor=0.5
 var lightPaddleOn=false
 
-var bestExtraRotation=2
+var bestExtraRotation=1.5
 
 var bestState : int= Constants.BestState.Normal
 var lowNoRowingSpeed=lightPaddleFactor*max_speed
