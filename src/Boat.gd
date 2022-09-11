@@ -405,11 +405,11 @@ func changeState(command:int,newState:int,direction:int,direct=false):
 	# negative speed is backwards and negative turn speed is turn to the left
 	match state:
 		Constants.RowState.HalenBeideBoorden:
-			setSpeedAndDirection(0.5,0,1,false)
+			setSpeedAndDirection(0.4,0,1,false)
 			oarBB.setNewScheme(true,oarBB.rotation_inHalen,oarBB.rotation_out,direct,true)
 			oarSB.setNewScheme(true,oarBB.rotation_inHalen,oarBB.rotation_out,direct,true)
 		Constants.RowState.Roeien:
-			setSpeedAndDirection(1,0,1,false)
+			setSpeedAndDirection(0.6,0,1,false)
 			oarBB.setNewScheme(true,oarBB.rotation_in,oarBB.rotation_out,direct,true)
 			oarSB.setNewScheme(true,oarBB.rotation_in,oarBB.rotation_out,direct,true)
 		Constants.RowState.LaatLopen:

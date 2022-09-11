@@ -1421,6 +1421,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Loading" type="Label" parent="CanvasLayer/HighScores/HighScoresGrid"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 50 )
+text = "LoadingHighScores"
+
 [node name="Trophy" type="Sprite" parent="CanvasLayer/HighScores"]
 position = Vector2( 56, 152 )
 scale = Vector2( 0.76, 0.8 )
@@ -2241,6 +2247,19 @@ script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ExplainClose" type="Label" parent="CanvasLayer/SettingsDialog"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -446.0
+margin_top = -38.0
+margin_right = -28.0
+margin_bottom = -19.0
+custom_colors/font_color = Color( 0.690196, 0.690196, 0.690196, 1 )
+custom_fonts/font = ExtResource( 50 )
+text = "ExplainSaveLabel"
 
 [node name="Tooltip" parent="CanvasLayer" instance=ExtResource( 38 )]
 visible = false
