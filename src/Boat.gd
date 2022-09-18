@@ -48,7 +48,6 @@ var moveStep=1000
 
 	
 func _ready():
-	set_bounce(0.2)
 	setForwardsPosition(0)
 	GameEvents.connect("zoomChangedSignal",self,"_zoomChangedSignal")
 	GameEvents.connect("doCommandSignal",self,"_doCommandSignal")

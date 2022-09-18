@@ -716,6 +716,7 @@ points = PoolVector2Array( 128, 0, 127.653, 19.9148, 128, 128, 109.226, 128, 104
 
 [sub_resource type="PhysicsMaterial" id=21]
 friction = 0.5
+bounce = 0.2
 
 [sub_resource type="Curve2D" id=38]
 bake_interval = 20.0
@@ -1374,7 +1375,7 @@ __meta__ = {
 grid = NodePath("HighScoresGrid")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="CanvasLayer/HighScores"]
-timeout = 5.0
+timeout = 10.0
 
 [node name="PublicHighscoresLabel" type="Label" parent="CanvasLayer/HighScores"]
 margin_left = 146.0
@@ -1764,7 +1765,7 @@ custom_colors/font_color = Color( 0.847059, 0.435294, 0.435294, 1 )
 text = "PublishScoreNoName"
 
 [node name="HTTPRequest" type="HTTPRequest" parent="CanvasLayer/PublishHighscoreCollectGame"]
-timeout = 10.0
+timeout = 20.0
 
 [node name="ErrorText" type="Label" parent="CanvasLayer/PublishHighscoreCollectGame"]
 margin_left = 191.0
