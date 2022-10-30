@@ -14,6 +14,7 @@ func _ready():
 	$HTTPRequest.connect("request_completed", self, "_onHighScoresRequest")
 	GameEvents.connect("collectGameStateChangedSignal",self,"_collectGameStateChangedSignal")
 	get_close_button().hide()
+	loadHighScores()
 
 
 func loadHighScores():
