@@ -415,6 +415,7 @@ func changeState(command:int,newState:int,direction:int,direct=false):
 #			if abs(currentSpeed)<=lowNoRowingSpeed:
 #				setSpeedAndDirection(0,0,0.001,false)
 #			else: 
+			bestState=Constants.BestState.Normal;
 			setSpeedAndDirection(0,0,0.01,false)
 			if !crashState:
 				if !slippenBB:
@@ -427,6 +428,8 @@ func changeState(command:int,newState:int,direction:int,direct=false):
 #				setSpeedAndDirection(0,0,0.2,false)
 #			else: 
 			setSpeedAndDirection(0,0,1,false)
+			bestState=Constants.BestState.Normal;
+			
 			if slippenBB:
 				oarBB.setNewScheme(false,oarBB.rotation_slippen,oarBB.rotation_slippen,direct)
 			else:
