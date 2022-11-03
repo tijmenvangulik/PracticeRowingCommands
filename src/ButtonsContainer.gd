@@ -61,6 +61,7 @@ func loadButtons():
 			var commandNames=item.split(",")
 			if commandNames.size()>1:
 				var box= HBoxContainer.new();
+				box.alignment=box.ALIGN_CENTER;
 				container.add_child(box)
 				for buttonItem in commandNames:
 					addButton(box,buttonItem)

@@ -55,7 +55,9 @@ func loadDestButtons():
 		buttonSet=GameState.defaultButtonSet
 	for item in buttonSet:
 		var grouper=addGridGrouper(commandContainerDest)
+		
 		var horiz=grouper.getHorizontalGroup()
+		horiz.alignment=horiz.ALIGN_CENTER;		
 		if typeof(item)==TYPE_STRING:
 			var commandNames=item.split(",")
 			for buttonItem in commandNames:
@@ -72,7 +74,7 @@ func button_dropped_source(droppedInfo,dropped):
 		enableDisableSourceButtons()
 	
 func button_dropped_dest(droppedInfo,dropped):
-	addGridButton(dropped.get_node(".."),dropped.commandName,false)
+	addGridButton(dropped.get_node(".."),droppedInfo.commandName,false)
 	customButtonSetChanged=true
 	enableDisableSourceButtons()
 	
@@ -114,7 +116,6 @@ func ensureButtonsetSaved():
 		updateCustomButtonSet()
 		GameEvents.customButtonSetChanged()
 		GameEvents.settingsChanged()
-	
 
 
 func _on_DefaultCustomButtons_pressed():
