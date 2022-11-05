@@ -141,6 +141,8 @@ LoadingHighScores;..laden high scores…;..laden high scores…;…loading high 
 SlagklaarAf_shorttooltip;Slagklaar maken .. slag klaar.. af;Slagklaar maken .. slag klaar.. af;Get ready ..Ready all..go;Get ready ..Ready all..go
 Tooltip;Knop hint;Knop hint;Tooltip;Tooltip
 ShowTooltipSettingLabel;Toon knop hints;Toon knop hints;Show button tooltips;Show button tooltips
-ChoosePresetSettings;Kies voorgedefinieerde instellingen;Kies voorgedefinieerde instellingen;;
-DefaultSettings;Standaard instellingen;Standaard instellingen;;
+ChoosePresetSettings;Kies voorgedefinieerde instellingen;Kies voorgedefinieerde instellingen;Choose predefined settings;Choose predefined settings
+DefaultSettings;Standaard instellingen;Standaard instellingen;Default settings;Default settings
 SettingVikingExtendedShort;Viking NL uitgebreid kort;Viking NL uitgebreid kort;Viking NL extended short;Viking NL extended short
+SettingVikingOrgineel;Instellingen origineel Viking;Instellingen origineel Viking;Settings original Viking;Settings original Viking
+SettingOriginal;Instellingen origineel;Instellingen origineel;Settings original;Settings original
