@@ -57,7 +57,8 @@ func loadDestButtons():
 		var grouper=addGridGrouper(commandContainerDest)
 		
 		var horiz=grouper.getHorizontalGroup()
-		horiz.alignment=horiz.ALIGN_CENTER;		
+		
+		horiz.alignment=horiz.ALIGN_CENTER;
 		if typeof(item)==TYPE_STRING:
 			var commandNames=item.split(",")
 			for buttonItem in commandNames:

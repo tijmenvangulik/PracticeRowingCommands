@@ -6,17 +6,24 @@ var commandName=""
 var command=0;
 var canClickButton=true
 var canDrag=false;
+var customTooltipText=""
 
 func _ready():
 
 	GameEvents.connect("customCommandTextChanged",self,"_on_EditCommandText_customCommandTextChanged")
+	GameEvents.connect("customTooltipTextChanged",self,"_on_EditCommandText_customTooltipTextChanged")
+
+
 
 func _on_EditCommandText_customCommandTextChanged(changed_command,changed_commandName, changed_value):
 	if  changed_command==command:
 		var button=$GridButton
 		button.text=changed_value
 		
-
+func _on_EditCommandText_customTooltipTextChanged(changed_command,changed_commandName, changed_value):
+	if  changed_command==command:
+		customTooltipText=changed_value
+	
 func execCommand():
 	if canClickButton:
 		GameEvents.doCommand(command)
@@ -25,15 +32,25 @@ func callButtonDropped(droppedInfo):
 	emit_signal("button_dropped",droppedInfo,self)
 
 func get_tooltip_text(node):
-	var tootipTextName=commandName+"_tooltip";
+	if !GameState.showTooltips && !Settings.showCommandTooltips:
+		return ""
+
+	if customTooltipText!='' && !GameState.showTooltips:
+		return customTooltipText
+
+	var extension="_tooltip"
+	if !GameState.showTooltips :
+		extension="_shorttooltip";
+	var tootipTextName=commandName+extension;
 	var tootip=tr(tootipTextName)
+		
 	if tootip!=tootipTextName:
 		return tootip
 	return ""
 	
 func init(newCommandName):
 	commandName=newCommandName;
-	GameEvents.register_tooltip($GridButton,self)
+	GameEvents.register_allways_tooltip($GridButton,self)
 
 	command=Utilities.commandNameToCommand(commandName)
 	if command>=0:

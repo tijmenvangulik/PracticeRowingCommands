@@ -6,6 +6,8 @@ export (NodePath) onready var rulesetManager = get_node(rulesetManager) as RuleS
 export (NodePath) onready var ruleSetDropDown = get_node(ruleSetDropDown) as OptionButton
 export (NodePath) onready var commandTranslationsGrid = get_node(commandTranslationsGrid) as GridContainer
 
+export (NodePath) onready var showCommandTooltips = get_node(showCommandTooltips) as Button
+
 export (NodePath) onready var commandButtonsTab = get_node(commandButtonsTab) as CommandButtonsTab
 
 var settingsFile="user://settings.save"
@@ -41,6 +43,7 @@ func setRuleset(ruleset):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameEvents.connect("customCommandTextChanged",self,"_on_EditCommandText_customCommandTextChanged")
+	GameEvents.connect("customTooltipTextChanged",self,"_on_EditTooltipText_customTooltipTextChanged")
 	GameEvents.connect("settingsChangedSignal",self,"_handleSettingsChanged")
 
 	get_close_button().hide()
@@ -48,6 +51,9 @@ func _ready():
 	var commands=Constants.commandNames
 	while Settings.commandTranslations.size()<commands.size():
 		Settings.commandTranslations.push_back("")
+
+	while Settings.tooltipTranslations.size()<commands.size():
+		Settings.tooltipTranslations.push_back("")
 	
 	# wait till all readies are called	
 	yield(get_tree(), "idle_frame")
@@ -61,6 +67,7 @@ func _ready():
 	var commandIndex=0;
 	addLabel(commandTranslationsGrid,"Commando")
 	addLabel(commandTranslationsGrid,"Alternative text")
+	addLabel(commandTranslationsGrid,"Tooltip")
 	commandButtonsTab.init()
 	for command in commands:
 		
@@ -81,6 +88,19 @@ func _ready():
 		commandTranslationsGrid.add_child(editBox)
 		if altText!=null && altText!="":
 			editBox.setText(altText)
+		
+		var editTooltipBox = preload("res://EditTooltipText.tscn").instance()
+		editTooltipBox.commandName=command
+		editTooltipBox.command=commandIndex
+		
+		var altTooltipText=Settings.tooltipTranslations[commandIndex];
+		editTooltipBox.visible=true;
+		
+		commandTranslationsGrid.add_child(editTooltipBox)
+		if altTooltipText!=null && altTooltipText!="":
+			editTooltipBox.setText(altTooltipText)
+
+			
 		commandIndex=commandIndex+1
 		
 	
@@ -99,13 +119,23 @@ func getSettings(removePrivate=false):
 		var translation=Settings.commandTranslations[i]
 		if translation!=null && translation!="":
 			commandDict[commandName]=translation
+
+	var tooltipDict={}
+	for i in range(0,Settings.tooltipTranslations.size()-1):
+		var commandName=Constants.commandNames[i]
+		var translation=Settings.tooltipTranslations[i]
+		if translation!=null && translation!="":
+			tooltipDict[commandName]=translation
+	
 	var ruleset=rulesetManager.currentRulleset
 	var save_dict = {"translations" : commandDict,
 	  "customButtonSet":Settings.customButtonSet,
 	  "ruleset":ruleset,
 	  "highScore":Settings.highScore,
 	  "zoom":Settings.zoom,
-	  "language":Settings.currentLang
+	  "language":Settings.currentLang,
+	  "tooltips":tooltipDict,
+	  "showCommandTooltips":Settings.showCommandTooltips
 	}
 	if removePrivate:
 		removePrivateSettings(save_dict)
@@ -128,16 +158,35 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 	if alreadySetFromUrl:
 		return
 	
-	var translations=null
+	var translations={}
 	if dict.has("translations"):
 		translations=dict["translations"]
 		
-	var customButtonSet=null
+	var tooltips={}
+	if dict.has("tooltips"):
+		tooltips=dict["tooltips"]
+	
+	var 	tooltipsOn=true
+	if dict.has("showCommandTooltips"): 
+		 tooltipsOn=dict["showCommandTooltips"]
+	Settings.showCommandTooltips=tooltipsOn
+	showCommandTooltips.set_pressed(tooltipsOn)
+		
+	var customButtonSet=[]
 	if dict.has("customButtonSet"):
 		customButtonSet=dict["customButtonSet"]
-	if typeof(customButtonSet)==TYPE_ARRAY && customButtonSet.size()>0:
+	#else:
+	#	customButtonSet=GameState.defaultButtonSet
+		
+	if typeof(customButtonSet)==TYPE_ARRAY:
 		Settings.customButtonSet=customButtonSet
 		GameEvents.customButtonSetChanged()
+	
+	#clear translations and tooltips
+	for i in range(3,commandTranslationsGrid.get_child_count()):
+		var obj=commandTranslationsGrid.get_child(i);
+		if obj.has_method("setText"): 
+			commandTranslationsGrid.get_child(i).setText("")
 		
 	if translations!=null && typeof(translations)==TYPE_DICTIONARY:
 		var keys=translations.keys();
@@ -148,21 +197,38 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 			if iPos>=0:
 				var text=translations[translationName]
 				Settings.commandTranslations[iPos]=text
-				var iposChild=3+iPos*2;
+				var iposChild=4+iPos*3;
+				if iposChild<commandTranslationsGrid.get_child_count():
+					commandTranslationsGrid.get_child(iposChild).setText(text)
+
+	if tooltips!=null && typeof(tooltips)==TYPE_DICTIONARY:
+		var keys=tooltips.keys();
+	
+		for translationName in keys:
+			var iPos= Utilities.commandNameToCommand(translationName)
+			
+			if iPos>=0:
+				var text=tooltips[translationName]
+				Settings.tooltipTranslations[iPos]=text
+				var iposChild=5+iPos*3;
 				if iposChild<commandTranslationsGrid.get_child_count():
 					commandTranslationsGrid.get_child(iposChild).setText(text)
 				
 	var ruleset=null
 	if dict.has("ruleset"):
 		ruleset=dict["ruleset"]
+	else: 
+		ruleset="RulesetDefault"
+	
 	if ruleset!=null:
 		setRuleset(ruleset)
 	
+	var zoom = 2.1
 	if dict.has("zoom"):
-		var zoom =dict["zoom"]
-		if zoom>0 && zoom<100:
-			Settings.zoom=zoom;
-			
+		zoom =dict["zoom"]
+	if( zoom>0 && zoom<100) || zoom==-1:
+		Settings.zoom=zoom;
+	
 	if callSettingsChanged:
 		GameEvents.settingsChanged()
 	
@@ -209,6 +275,9 @@ func _on_EditCommandText_customCommandTextChanged(command, commandName, value):
 		value=""
 	Settings.commandTranslations[command]=value
 
+func _on_EditTooltipText_customTooltipTextChanged(command, commandName, value):
+	Settings.tooltipTranslations[command]=value
+
 func _handleSettingsChanged():
 	saveSettings()
 	setSettingInUrl()
@@ -230,3 +299,7 @@ func ensureButtonsetSaved():
 	commandButtonsTab.ensureButtonsetSaved()
 
 
+
+
+func _on_ShowCommandTooltips_toggled(button_pressed):
+	Settings.showCommandTooltips=button_pressed

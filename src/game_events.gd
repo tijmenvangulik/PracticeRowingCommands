@@ -2,6 +2,8 @@ extends Node
 
 signal customCommandTextChanged(command,commandName,value)
 
+signal customTooltipTextChanged(command,commandName,value)
+
 signal settingsChangedSignal
 
 signal languageChangedSignal
@@ -30,6 +32,11 @@ signal toggle_tooltip(do_show,tooltip_type)
 func sendCommandChanged(command : int,commandName :String,value : String) -> void:
 	emit_signal("customCommandTextChanged",command,commandName,value)
 # call_deferred("emit_signal","customCommandTextChanged")
+
+func sendTooltipChanged(command : int,commandName :String,value : String) -> void:
+	emit_signal("customTooltipTextChanged",command,commandName,value)
+
+
 
 func settingsChanged():
  emit_signal("settingsChangedSignal")

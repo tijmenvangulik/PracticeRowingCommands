@@ -9,13 +9,10 @@ func _ready():
 
 func setText(text):
 	$"LineEdit".text=text
-	if (text==""): 
-		text=commandName
-	GameEvents.sendCommandChanged(command,commandName,text)
+	GameEvents.sendTooltipChanged(command,commandName,text)
 
 func _on_LineEdit_text_changed(new_text):
 	var textValue=$ "LineEdit".text;
-	if (textValue==""): 
-		textValue=commandName
-	GameEvents.sendCommandChanged(command,commandName,textValue)
+	GameEvents.sendTooltipChanged(command,commandName,textValue)
 	
+
