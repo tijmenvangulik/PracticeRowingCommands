@@ -208,7 +208,7 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	
 	# apply the breaking force
 	
-	if oarsInwater and destinationSpeed==0.0 and currentSpeed>0.5 :
+	if oarsInwater and destinationSpeed==0.0 and currentSpeed>0.2 :
 		var extraTurnForce= Vector2(currentSpeed*0.02*forceMultiplier,0).rotated(angle+PI)
 		apply_impulse(Vector2(0,25*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
 	

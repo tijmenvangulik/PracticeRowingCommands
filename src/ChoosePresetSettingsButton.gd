@@ -20,6 +20,8 @@ func _ready():
 	add_item("SettingOriginal",3)
 	connect("item_selected",self,"selected")
 	resetSelected()
+	var font= preload("res://Font.tres")
+	get_popup().add_font_override("font",font)
 	
 func resetSelected():
 	selected=-1	

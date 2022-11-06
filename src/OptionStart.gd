@@ -26,18 +26,18 @@ func _ready():
 	add_item("StartPositie",StartPos.Start)
 	add_item("StartStarGame",StartPos.StarGame)
 	add_item("StartOpWater",StartPos.OpWater)
-	add_item("StartAanleggen",StartPos.Aanleggen)
 	add_item("StartAanleggenMinderKnoppen",StartPos.StartAanleggenMinderKnoppen)
-	add_item("StartAangelegd",StartPos.Aangelegd)
+	add_item("StartAanleggen",StartPos.Aanleggen)
 	add_item("StartAangelegdMinderKnoppen",StartPos.StartAangelegdMinderKnoppen)
-	add_item("StartStrijkendAanleggen",StartPos.StartStrijkendAanleggen)
+	add_item("StartAangelegd",StartPos.Aangelegd)
 	add_item("StartStrijkendAanleggenMinderKnoppen",StartPos.StartStrijkendAanleggenMinderKnoppen)
+	add_item("StartStrijkendAanleggen",StartPos.StartStrijkendAanleggen)
 
-	add_item("StartAanleggenWal",StartPos.AanleggenWal)
 	add_item("StartAanleggenWalMinderKnoppen",StartPos.StartAanleggenWalMinderKnoppen)
+	add_item("StartAanleggenWal",StartPos.AanleggenWal)
 
-	add_item("StartStrijkendAanleggenWal",StartPos.StartStrijkendAanleggenWal)
 	add_item("StartStrijkendAanleggenWalMinderKnoppen",StartPos.StartStrijkendAanleggenWalMinderKnoppen)
+	add_item("StartStrijkendAanleggenWal",StartPos.StartStrijkendAanleggenWal)
 	
 	add_item("ShowIntroText",StartPos.Intro)
 	

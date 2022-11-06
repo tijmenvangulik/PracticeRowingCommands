@@ -2205,6 +2205,7 @@ margin_left = 25.0
 margin_top = 536.0
 margin_right = 302.0
 margin_bottom = 568.0
+custom_fonts/font = ExtResource( 50 )
 text = "ChoosePresetSettings"
 script = ExtResource( 20 )
 
