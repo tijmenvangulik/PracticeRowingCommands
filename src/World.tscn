@@ -1222,9 +1222,6 @@ position = Vector2( 1113, 898 )
 [node name="Collectable4" parent="Collectables" instance=ExtResource( 12 )]
 position = Vector2( 1364, 201 )
 
-[node name="Collectable6" parent="Collectables" instance=ExtResource( 12 )]
-position = Vector2( 1364, 201 )
-
 [node name="Boat" parent="." instance=ExtResource( 3 )]
 position = Vector2( 958, 1906 )
 mass = 1.2
