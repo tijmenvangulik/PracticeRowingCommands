@@ -36,25 +36,26 @@ func _on_Value_changed(value, node):
 	boat.set(node.name, value)
 	node.get_node("Value").text = str(value)
 
-func _input(event):
+# func _input(event):
 	
-	if event is InputEventKey and event.pressed:
-		if event.scancode == KEY_F1:
-			visible = !visible
+#	if event is InputEventKey and event.pressed:
+#		if event.scancode == KEY_F1:
+#			visible = !visible
 
 func _process(delta):
-	var value=boat.calcSpeed()
-	$Panel/VBoxContainer/Speedometer/Speed.text = "%4.3f" % value
-	var turnValue=boat.angular_velocity
-	$Panel/VBoxContainer/turnMeter/value.text = "%4.3f" % turnValue
-	
-	var inWater=""
-	if boat.get_node("OarBB1").inWater:
-		inWater="In"		
-	$Panel/VBoxContainer/OarBB/value.text = inWater
-	
-	inWater=""
-	if boat.get_node("OarSB1").inWater:
-		inWater="in"		
-	$Panel/VBoxContainer/OarSB/value.text = inWater
-				
+	if visible:
+		var value=boat.calcSpeed()
+		$Panel/VBoxContainer/Speedometer/Speed.text = "%4.3f" % value
+		var turnValue=boat.angular_velocity
+		$Panel/VBoxContainer/turnMeter/value.text = "%4.3f" % turnValue
+		
+		var inWater=""
+		if boat.get_node("OarBB1").inWater:
+			inWater="In"		
+		$Panel/VBoxContainer/OarBB/value.text = inWater
+		
+		inWater=""
+		if boat.get_node("OarSB1").inWater:
+			inWater="in"		
+		$Panel/VBoxContainer/OarSB/value.text = inWater
+					
