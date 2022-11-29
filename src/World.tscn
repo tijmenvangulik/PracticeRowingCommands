@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=2]
+[gd_scene load_steps=101 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -21,6 +21,10 @@
 [ext_resource path="res://EditTooltipText.tscn" type="PackedScene" id=19]
 [ext_resource path="res://ChoosePresetSettingsButton.gd" type="Script" id=20]
 [ext_resource path="res://StartCollectGame.gd" type="Script" id=21]
+[ext_resource path="res://assets/megaphone.svg" type="Texture" id=22]
+[ext_resource path="res://FeedbackButton.gd" type="Script" id=23]
+[ext_resource path="res://assets/sad2.svg" type="Texture" id=24]
+[ext_resource path="res://assets/smile2.svg" type="Texture" id=25]
 [ext_resource path="res://EndCollectGame.gd" type="Script" id=26]
 [ext_resource path="res://assets/trophy.png" type="Texture" id=27]
 [ext_resource path="res://ExportSettingsButton.gd" type="Script" id=28]
@@ -61,6 +65,10 @@
 [ext_resource path="res://Speak.gd" type="Script" id=63]
 [ext_resource path="res://StyleButtonDarkGray.tres" type="StyleBox" id=64]
 [ext_resource path="res://GridButtonContainer.tscn" type="PackedScene" id=65]
+[ext_resource path="res://assets/love2.svg" type="Texture" id=66]
+[ext_resource path="res://assets/meh2.svg" type="Texture" id=67]
+[ext_resource path="res://assets/incommingenvelope.svg" type="Texture" id=68]
+[ext_resource path="res://QuickFeedbackDialog.gd" type="Script" id=69]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 127.753, 29.8996, 117.154, 24.3315, 109.015, 13.8659, 105.688, 0, 128, 0 )
@@ -1774,6 +1782,146 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="QuickFeedbackDialog" type="WindowDialog" parent="CanvasLayer"]
+visible = true
+margin_left = 92.0
+margin_top = 87.0
+margin_right = 946.0
+margin_bottom = 441.0
+custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
+custom_styles/panel = ExtResource( 33 )
+script = ExtResource( 69 )
+
+[node name="QuickFeedbackQuestion" type="Label" parent="CanvasLayer/QuickFeedbackDialog"]
+anchor_top = 0.35
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 1.0
+margin_top = -88.9
+margin_right = 1.0
+margin_bottom = -106.0
+grow_horizontal = 2
+custom_fonts/font = ExtResource( 50 )
+text = "QuickFeedbackQuestion"
+align = 1
+
+[node name="EmoticonSelection" type="HBoxContainer" parent="CanvasLayer/QuickFeedbackDialog"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -174.0
+margin_top = 69.0
+margin_right = 174.0
+margin_bottom = 147.0
+
+[node name="Sad" type="Button" parent="CanvasLayer/QuickFeedbackDialog/EmoticonSelection"]
+margin_right = 84.0
+margin_bottom = 78.0
+toggle_mode = true
+icon = ExtResource( 24 )
+
+[node name="Meh" type="Button" parent="CanvasLayer/QuickFeedbackDialog/EmoticonSelection"]
+margin_left = 88.0
+margin_right = 172.0
+margin_bottom = 78.0
+toggle_mode = true
+pressed = true
+icon = ExtResource( 67 )
+
+[node name="Smile" type="Button" parent="CanvasLayer/QuickFeedbackDialog/EmoticonSelection"]
+margin_left = 176.0
+margin_right = 260.0
+margin_bottom = 78.0
+toggle_mode = true
+icon = ExtResource( 25 )
+
+[node name="Love" type="Button" parent="CanvasLayer/QuickFeedbackDialog/EmoticonSelection"]
+margin_left = 264.0
+margin_right = 348.0
+margin_bottom = 78.0
+toggle_mode = true
+icon = ExtResource( 66 )
+
+[node name="QuickFeedbackQuestion2" type="Label" parent="CanvasLayer/QuickFeedbackDialog"]
+anchor_top = 0.35
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 7.0
+margin_top = 38.1
+margin_right = 7.0
+margin_bottom = 27.0
+grow_horizontal = 2
+custom_fonts/font = ExtResource( 50 )
+text = "CommentLabel"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/QuickFeedbackDialog"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -165.0
+margin_top = -40.0
+margin_right = 165.0
+margin_bottom = -10.0
+grow_horizontal = 2
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CancelFeedback" type="Button" parent="CanvasLayer/QuickFeedbackDialog/HBoxContainer"]
+margin_right = 160.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 52 )
+custom_styles/pressed = ExtResource( 53 )
+custom_styles/focus = ExtResource( 17 )
+custom_styles/normal = ExtResource( 64 )
+text = "CancelSend"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SendFeedback" type="Button" parent="CanvasLayer/QuickFeedbackDialog/HBoxContainer"]
+margin_left = 170.0
+margin_right = 330.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 11 )
+custom_styles/focus = ExtResource( 34 )
+custom_styles/normal = ExtResource( 10 )
+text = "SendFeedback"
+icon = ExtResource( 68 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NameRequiredError" type="Label" parent="CanvasLayer/QuickFeedbackDialog"]
+visible = false
+margin_left = 277.0
+margin_top = 161.0
+margin_right = 564.0
+margin_bottom = 186.0
+rect_pivot_offset = Vector2( 526, -111 )
+custom_colors/font_color = Color( 0.847059, 0.435294, 0.435294, 1 )
+text = "PublishScoreNoName"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="CanvasLayer/QuickFeedbackDialog"]
+timeout = 20.0
+
+[node name="Comment" type="TextEdit" parent="CanvasLayer/QuickFeedbackDialog"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -300.0
+margin_top = 194.0
+margin_right = 300.0
+margin_bottom = 298.0
+wrap_enabled = true
+caret_blink = true
+
 [node name="OptionCommands" type="OptionButton" parent="CanvasLayer"]
 margin_left = 8.0
 margin_top = 6.0
@@ -1787,16 +1935,16 @@ custom_styles/normal = ExtResource( 35 )
 script = ExtResource( 41 )
 
 [node name="RightTopButtons" type="HBoxContainer" parent="CanvasLayer"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -447.0
-margin_top = 6.0
-margin_bottom = 30.0
+anchor_left = 1.004
+anchor_top = 0.003
+anchor_right = 1.004
+anchor_bottom = 0.003
+margin_left = -545.096
+margin_top = 4.2
+margin_right = -6.09607
+margin_bottom = 31.2
 grow_horizontal = 0
 custom_constants/separation = 8
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CollectedCounter" type="HBoxContainer" parent="CanvasLayer/RightTopButtons"]
 visible = false
@@ -1848,7 +1996,7 @@ custom_fonts/font = ExtResource( 50 )
 
 [node name="ForwardsBackwards" type="Button" parent="CanvasLayer/RightTopButtons"]
 margin_right = 99.0
-margin_bottom = 30.0
+margin_bottom = 27.0
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 18 )
 custom_styles/pressed = ExtResource( 36 )
@@ -1860,7 +2008,7 @@ script = ExtResource( 32 )
 [node name="ZoomContainer" type="HBoxContainer" parent="CanvasLayer/RightTopButtons"]
 margin_left = 107.0
 margin_right = 205.0
-margin_bottom = 30.0
+margin_bottom = 27.0
 script = ExtResource( 31 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1869,7 +2017,7 @@ camera = NodePath("../../../Boat/Camera2D2")
 
 [node name="ZoomPlus" type="Button" parent="CanvasLayer/RightTopButtons/ZoomContainer"]
 margin_right = 25.0
-margin_bottom = 30.0
+margin_bottom = 27.0
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 18 )
 custom_styles/pressed = ExtResource( 36 )
@@ -1882,9 +2030,9 @@ __meta__ = {
 
 [node name="ZoomLabel" type="Label" parent="CanvasLayer/RightTopButtons/ZoomContainer"]
 margin_left = 29.0
-margin_top = 5.0
+margin_top = 4.0
 margin_right = 73.0
-margin_bottom = 24.0
+margin_bottom = 23.0
 custom_fonts/font = ExtResource( 50 )
 text = "Zoom"
 __meta__ = {
@@ -1894,7 +2042,7 @@ __meta__ = {
 [node name="ZoomMin" type="Button" parent="CanvasLayer/RightTopButtons/ZoomContainer"]
 margin_left = 77.0
 margin_right = 98.0
-margin_bottom = 30.0
+margin_bottom = 27.0
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 18 )
 custom_styles/pressed = ExtResource( 36 )
@@ -1908,7 +2056,7 @@ __meta__ = {
 [node name="OptionStart" type="OptionButton" parent="CanvasLayer/RightTopButtons"]
 margin_left = 213.0
 margin_right = 293.0
-margin_bottom = 30.0
+margin_bottom = 27.0
 rect_min_size = Vector2( 80, 0 )
 theme = ExtResource( 29 )
 custom_styles/hover = ExtResource( 18 )
@@ -1926,7 +2074,7 @@ boat = NodePath("../../../Boat")
 [node name="OptionLanguage" type="OptionButton" parent="CanvasLayer/RightTopButtons"]
 margin_left = 301.0
 margin_right = 427.0
-margin_bottom = 30.0
+margin_bottom = 27.0
 theme = ExtResource( 29 )
 custom_styles/hover = ExtResource( 18 )
 custom_styles/pressed = ExtResource( 18 )
@@ -1942,7 +2090,7 @@ __meta__ = {
 [node name="TooltipHelp" type="Button" parent="CanvasLayer/RightTopButtons"]
 margin_left = 435.0
 margin_right = 458.0
-margin_bottom = 30.0
+margin_bottom = 27.0
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 18 )
 custom_styles/pressed = SubResource( 37 )
@@ -1951,37 +2099,41 @@ toggle_mode = true
 text = "?"
 script = ExtResource( 39 )
 
-[node name="SettingsButton" type="ToolButton" parent="CanvasLayer/RightTopButtons"]
+[node name="FeedbackButton" type="Button" parent="CanvasLayer/RightTopButtons"]
 margin_left = 466.0
 margin_right = 496.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 30, 30 )
+margin_bottom = 27.0
+rect_min_size = Vector2( 30, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 18 )
+custom_styles/pressed = ExtResource( 36 )
+custom_styles/focus = ExtResource( 36 )
+custom_styles/normal = ExtResource( 35 )
+script = ExtResource( 23 )
+feedbackDialog = NodePath("../../QuickFeedbackDialog")
+
+[node name="Megaphone" type="Sprite" parent="CanvasLayer/RightTopButtons/FeedbackButton"]
+position = Vector2( 14.9409, 13.6667 )
+scale = Vector2( 0.402362, 0.373333 )
+texture = ExtResource( 22 )
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer/RightTopButtons"]
+margin_left = 504.0
+margin_right = 534.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 30, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 18 )
+custom_styles/pressed = ExtResource( 36 )
+custom_styles/focus = ExtResource( 36 )
+custom_styles/normal = ExtResource( 35 )
 script = ExtResource( 57 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 settingsDialog = NodePath("../../SettingsDialog")
 
 [node name="options_icon" type="Sprite" parent="CanvasLayer/RightTopButtons/SettingsButton"]
-position = Vector2( 12, 14 )
-scale = Vector2( 0.25, 0.25 )
+position = Vector2( 15, 13.5 )
+scale = Vector2( 0.19, 0.19 )
 texture = ExtResource( 56 )
-
-[node name="errorLabel" type="Label" parent="CanvasLayer"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -83.0
-margin_top = -15.0
-margin_right = 83.0
-margin_bottom = 15.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-custom_colors/font_color = Color( 0.933333, 0.368627, 0.368627, 1 )
-custom_fonts/font = ExtResource( 50 )
-align = 1
 
 [node name="SettingsDialog" type="WindowDialog" parent="CanvasLayer"]
 margin_left = 14.0
@@ -2276,9 +2428,10 @@ custom_fonts/font = ExtResource( 50 )
 text = "ExplainSaveLabel"
 
 [node name="Tooltip" parent="CanvasLayer" instance=ExtResource( 38 )]
-margin_top = -662.0
-margin_right = 458.0
-margin_bottom = -528.0
+margin_left = -24.0
+margin_top = -655.0
+margin_right = 434.0
+margin_bottom = -521.0
 
 [node name="TestEndGame" type="Button" parent="CanvasLayer"]
 visible = false
@@ -2299,6 +2452,12 @@ __meta__ = {
 [connection signal="pressed" from="CanvasLayer/EndCollectGame/HBoxContainer/CancelGame" to="CanvasLayer/EndCollectGame" method="_on_CancelGame_pressed"]
 [connection signal="pressed" from="CanvasLayer/PublishHighscoreCollectGame/HBoxContainer/PublishScore" to="CanvasLayer/PublishHighscoreCollectGame" method="_on_PublishScore_pressed"]
 [connection signal="pressed" from="CanvasLayer/PublishHighscoreCollectGame/HBoxContainer/PublishScoreContine" to="CanvasLayer/PublishHighscoreCollectGame" method="_on_PublishScoreContine_pressed"]
+[connection signal="pressed" from="CanvasLayer/QuickFeedbackDialog/EmoticonSelection/Sad" to="CanvasLayer/QuickFeedbackDialog" method="_on_Sad_pressed"]
+[connection signal="pressed" from="CanvasLayer/QuickFeedbackDialog/EmoticonSelection/Meh" to="CanvasLayer/QuickFeedbackDialog" method="_on_Meh_pressed"]
+[connection signal="pressed" from="CanvasLayer/QuickFeedbackDialog/EmoticonSelection/Smile" to="CanvasLayer/QuickFeedbackDialog" method="_on_Smile_pressed"]
+[connection signal="pressed" from="CanvasLayer/QuickFeedbackDialog/EmoticonSelection/Love" to="CanvasLayer/QuickFeedbackDialog" method="_on_Love_pressed"]
+[connection signal="pressed" from="CanvasLayer/QuickFeedbackDialog/HBoxContainer/CancelFeedback" to="CanvasLayer/QuickFeedbackDialog" method="_on_CancelFeedback_pressed"]
+[connection signal="pressed" from="CanvasLayer/QuickFeedbackDialog/HBoxContainer/SendFeedback" to="CanvasLayer/QuickFeedbackDialog" method="_on_SendFeedback_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightTopButtons/ZoomContainer/ZoomPlus" to="CanvasLayer/RightTopButtons/ZoomContainer" method="_on_ZoomPlus_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightTopButtons/ZoomContainer/ZoomMin" to="CanvasLayer/RightTopButtons/ZoomContainer" method="_on_ZoomMin_pressed"]
 [connection signal="visibility_changed" from="CanvasLayer/SettingsDialog" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_SettingsDialog_visibility_changed"]

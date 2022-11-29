@@ -9,7 +9,7 @@ var tooltipText="ShowHideTootipsTooltip"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GameEvents.register_tooltip(self,tooltipText)
+	GameEvents.register_allways_tooltip(self,tooltipText)
 
 
 func _pressed():
