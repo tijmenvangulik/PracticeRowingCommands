@@ -16,7 +16,7 @@ func _init():
 		Settings.currentLang="nl_NL"
 	else:
 		Settings.currentLang="en"
-	GameEvents.register_allways_tooltip(self,"OptionLanguageTooltip")
+	GameEvents.register_tooltip(self,"OptionLanguageTooltip")
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
