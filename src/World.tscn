@@ -1783,7 +1783,6 @@ __meta__ = {
 }
 
 [node name="QuickFeedbackDialog" type="WindowDialog" parent="CanvasLayer"]
-visible = true
 margin_left = 92.0
 margin_top = 87.0
 margin_right = 946.0
@@ -2426,6 +2425,22 @@ margin_bottom = -19.0
 custom_colors/font_color = Color( 0.690196, 0.690196, 0.690196, 1 )
 custom_fonts/font = ExtResource( 50 )
 text = "ExplainSaveLabel"
+
+[node name="errorLabel" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -83.0
+margin_top = -15.0
+margin_right = 83.0
+margin_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+custom_colors/font_color = Color( 0.933333, 0.368627, 0.368627, 1 )
+custom_fonts/font = ExtResource( 50 )
+align = 1
 
 [node name="Tooltip" parent="CanvasLayer" instance=ExtResource( 38 )]
 margin_left = -24.0
