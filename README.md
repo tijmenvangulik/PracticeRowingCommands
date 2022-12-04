@@ -24,3 +24,9 @@ Some highlights
 * User defined buttons sets and default button sets in the translation file.
 
 ![Screenshot](art/Screenshot.jpg)
+
+# Thank you 
+
+* Godot for the free user friendly game engine [link](https://godotengine.org/)
+* Kenny for such a good tile set [link](https://www.kenney.nl/assets/rpg-base)
+* Reinder for the button set and testing
