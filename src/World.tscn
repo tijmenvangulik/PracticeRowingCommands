@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=2]
+[gd_scene load_steps=103 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -793,6 +793,52 @@ corner_radius_bottom_left = 5
 shadow_color = Color( 0, 0, 0, 0.270588 )
 shadow_size = 3
 shadow_offset = Vector2( 2, 2 )
+
+[sub_resource type="StyleBoxFlat" id=41]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 0.235294, 0.360784, 0.466667, 0.768627 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.396078, 0.607843, 0.396078, 0.780392 )
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+expand_margin_top = 4.0
+expand_margin_bottom = 4.0
+shadow_color = Color( 0.227451, 0.231373, 0.341176, 0.6 )
+shadow_offset = Vector2( 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=40]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 0.196078, 0.305882, 0.396078, 0.768627 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.396078, 0.607843, 0.396078, 0.780392 )
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+expand_margin_top = 4.0
+expand_margin_bottom = 4.0
+shadow_color = Color( 0.227451, 0.231373, 0.341176, 0.6 )
+shadow_offset = Vector2( 1, 1 )
 
 [sub_resource type="StyleBoxFlat" id=37]
 content_margin_left = 8.0
@@ -1922,10 +1968,13 @@ wrap_enabled = true
 caret_blink = true
 
 [node name="OptionCommands" type="OptionButton" parent="CanvasLayer"]
-margin_left = 8.0
-margin_top = 6.0
-margin_right = 257.001
-margin_bottom = 40.0
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -216.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = 35.0
+grow_horizontal = 0
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 18 )
 custom_styles/pressed = ExtResource( 36 )
@@ -1934,16 +1983,152 @@ custom_styles/normal = ExtResource( 35 )
 script = ExtResource( 41 )
 
 [node name="RightTopButtons" type="HBoxContainer" parent="CanvasLayer"]
-anchor_left = 1.004
-anchor_top = 0.003
-anchor_right = 1.004
-anchor_bottom = 0.003
-margin_left = -545.096
-margin_top = 4.2
-margin_right = -6.09607
-margin_bottom = 31.2
-grow_horizontal = 0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 539.0
+margin_bottom = 27.0
 custom_constants/separation = 8
+
+[node name="OptionStart" type="OptionButton" parent="CanvasLayer/RightTopButtons"]
+margin_right = 80.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 80, 0 )
+theme = ExtResource( 29 )
+custom_styles/hover = SubResource( 41 )
+custom_styles/pressed = SubResource( 41 )
+custom_styles/focus = SubResource( 41 )
+custom_styles/normal = SubResource( 40 )
+text = "Start"
+expand_icon = true
+script = ExtResource( 40 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+boat = NodePath("../../../Boat")
+
+[node name="OptionLanguage" type="OptionButton" parent="CanvasLayer/RightTopButtons"]
+margin_left = 88.0
+margin_right = 214.0
+margin_bottom = 27.0
+theme = ExtResource( 29 )
+custom_styles/hover = ExtResource( 18 )
+custom_styles/pressed = ExtResource( 18 )
+custom_styles/focus = ExtResource( 36 )
+custom_styles/normal = ExtResource( 35 )
+text = "Language"
+icon = ExtResource( 37 )
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TooltipHelp" type="Button" parent="CanvasLayer/RightTopButtons"]
+margin_left = 222.0
+margin_right = 245.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 18 )
+custom_styles/pressed = SubResource( 37 )
+custom_styles/normal = ExtResource( 35 )
+toggle_mode = true
+text = "?"
+script = ExtResource( 39 )
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer/RightTopButtons"]
+margin_left = 253.0
+margin_right = 283.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 30, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 18 )
+custom_styles/pressed = ExtResource( 36 )
+custom_styles/focus = ExtResource( 36 )
+custom_styles/normal = ExtResource( 35 )
+script = ExtResource( 57 )
+settingsDialog = NodePath("../../SettingsDialog")
+
+[node name="options_icon" type="Sprite" parent="CanvasLayer/RightTopButtons/SettingsButton"]
+position = Vector2( 15, 13.5 )
+scale = Vector2( 0.19, 0.19 )
+texture = ExtResource( 56 )
+
+[node name="FeedbackButton" type="Button" parent="CanvasLayer/RightTopButtons"]
+margin_left = 291.0
+margin_right = 321.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 30, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 18 )
+custom_styles/pressed = ExtResource( 36 )
+custom_styles/focus = ExtResource( 36 )
+custom_styles/normal = ExtResource( 35 )
+script = ExtResource( 23 )
+feedbackDialog = NodePath("../../QuickFeedbackDialog")
+
+[node name="Megaphone" type="Sprite" parent="CanvasLayer/RightTopButtons/FeedbackButton"]
+position = Vector2( 14.9409, 13.6667 )
+scale = Vector2( 0.402362, 0.373333 )
+texture = ExtResource( 22 )
+
+[node name="ZoomContainer" type="HBoxContainer" parent="CanvasLayer/RightTopButtons"]
+margin_left = 329.0
+margin_right = 427.0
+margin_bottom = 27.0
+script = ExtResource( 31 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+camera = NodePath("../../../Boat/Camera2D2")
+
+[node name="ZoomPlus" type="Button" parent="CanvasLayer/RightTopButtons/ZoomContainer"]
+margin_right = 25.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 18 )
+custom_styles/pressed = ExtResource( 36 )
+custom_styles/focus = ExtResource( 36 )
+custom_styles/normal = ExtResource( 35 )
+text = "+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ZoomLabel" type="Label" parent="CanvasLayer/RightTopButtons/ZoomContainer"]
+margin_left = 29.0
+margin_top = 4.0
+margin_right = 73.0
+margin_bottom = 23.0
+custom_fonts/font = ExtResource( 50 )
+text = "Zoom"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ZoomMin" type="Button" parent="CanvasLayer/RightTopButtons/ZoomContainer"]
+margin_left = 77.0
+margin_right = 98.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 18 )
+custom_styles/pressed = ExtResource( 36 )
+custom_styles/focus = ExtResource( 36 )
+custom_styles/normal = ExtResource( 35 )
+text = "-"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ForwardsBackwards" type="Button" parent="CanvasLayer/RightTopButtons"]
+margin_left = 435.0
+margin_right = 534.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 18 )
+custom_styles/pressed = ExtResource( 36 )
+custom_styles/focus = ExtResource( 36 )
+custom_styles/normal = ExtResource( 35 )
+text = "Backwards"
+script = ExtResource( 32 )
 
 [node name="CollectedCounter" type="HBoxContainer" parent="CanvasLayer/RightTopButtons"]
 visible = false
@@ -1992,147 +2177,6 @@ margin_top = 5.0
 margin_right = 55.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 50 )
-
-[node name="ForwardsBackwards" type="Button" parent="CanvasLayer/RightTopButtons"]
-margin_right = 99.0
-margin_bottom = 27.0
-custom_fonts/font = ExtResource( 50 )
-custom_styles/hover = ExtResource( 18 )
-custom_styles/pressed = ExtResource( 36 )
-custom_styles/focus = ExtResource( 36 )
-custom_styles/normal = ExtResource( 35 )
-text = "Backwards"
-script = ExtResource( 32 )
-
-[node name="ZoomContainer" type="HBoxContainer" parent="CanvasLayer/RightTopButtons"]
-margin_left = 107.0
-margin_right = 205.0
-margin_bottom = 27.0
-script = ExtResource( 31 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-camera = NodePath("../../../Boat/Camera2D2")
-
-[node name="ZoomPlus" type="Button" parent="CanvasLayer/RightTopButtons/ZoomContainer"]
-margin_right = 25.0
-margin_bottom = 27.0
-custom_fonts/font = ExtResource( 50 )
-custom_styles/hover = ExtResource( 18 )
-custom_styles/pressed = ExtResource( 36 )
-custom_styles/focus = ExtResource( 36 )
-custom_styles/normal = ExtResource( 35 )
-text = "+"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ZoomLabel" type="Label" parent="CanvasLayer/RightTopButtons/ZoomContainer"]
-margin_left = 29.0
-margin_top = 4.0
-margin_right = 73.0
-margin_bottom = 23.0
-custom_fonts/font = ExtResource( 50 )
-text = "Zoom"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ZoomMin" type="Button" parent="CanvasLayer/RightTopButtons/ZoomContainer"]
-margin_left = 77.0
-margin_right = 98.0
-margin_bottom = 27.0
-custom_fonts/font = ExtResource( 50 )
-custom_styles/hover = ExtResource( 18 )
-custom_styles/pressed = ExtResource( 36 )
-custom_styles/focus = ExtResource( 36 )
-custom_styles/normal = ExtResource( 35 )
-text = "-"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="OptionStart" type="OptionButton" parent="CanvasLayer/RightTopButtons"]
-margin_left = 213.0
-margin_right = 293.0
-margin_bottom = 27.0
-rect_min_size = Vector2( 80, 0 )
-theme = ExtResource( 29 )
-custom_styles/hover = ExtResource( 18 )
-custom_styles/pressed = ExtResource( 36 )
-custom_styles/focus = ExtResource( 36 )
-custom_styles/normal = ExtResource( 35 )
-text = "Start"
-expand_icon = true
-script = ExtResource( 40 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-boat = NodePath("../../../Boat")
-
-[node name="OptionLanguage" type="OptionButton" parent="CanvasLayer/RightTopButtons"]
-margin_left = 301.0
-margin_right = 427.0
-margin_bottom = 27.0
-theme = ExtResource( 29 )
-custom_styles/hover = ExtResource( 18 )
-custom_styles/pressed = ExtResource( 18 )
-custom_styles/focus = ExtResource( 36 )
-custom_styles/normal = ExtResource( 35 )
-text = "Language"
-icon = ExtResource( 37 )
-script = ExtResource( 16 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TooltipHelp" type="Button" parent="CanvasLayer/RightTopButtons"]
-margin_left = 435.0
-margin_right = 458.0
-margin_bottom = 27.0
-custom_fonts/font = ExtResource( 50 )
-custom_styles/hover = ExtResource( 18 )
-custom_styles/pressed = SubResource( 37 )
-custom_styles/normal = ExtResource( 35 )
-toggle_mode = true
-text = "?"
-script = ExtResource( 39 )
-
-[node name="FeedbackButton" type="Button" parent="CanvasLayer/RightTopButtons"]
-margin_left = 466.0
-margin_right = 496.0
-margin_bottom = 27.0
-rect_min_size = Vector2( 30, 0 )
-custom_fonts/font = ExtResource( 50 )
-custom_styles/hover = ExtResource( 18 )
-custom_styles/pressed = ExtResource( 36 )
-custom_styles/focus = ExtResource( 36 )
-custom_styles/normal = ExtResource( 35 )
-script = ExtResource( 23 )
-feedbackDialog = NodePath("../../QuickFeedbackDialog")
-
-[node name="Megaphone" type="Sprite" parent="CanvasLayer/RightTopButtons/FeedbackButton"]
-position = Vector2( 14.9409, 13.6667 )
-scale = Vector2( 0.402362, 0.373333 )
-texture = ExtResource( 22 )
-
-[node name="SettingsButton" type="Button" parent="CanvasLayer/RightTopButtons"]
-margin_left = 504.0
-margin_right = 534.0
-margin_bottom = 27.0
-rect_min_size = Vector2( 30, 0 )
-custom_fonts/font = ExtResource( 50 )
-custom_styles/hover = ExtResource( 18 )
-custom_styles/pressed = ExtResource( 36 )
-custom_styles/focus = ExtResource( 36 )
-custom_styles/normal = ExtResource( 35 )
-script = ExtResource( 57 )
-settingsDialog = NodePath("../../SettingsDialog")
-
-[node name="options_icon" type="Sprite" parent="CanvasLayer/RightTopButtons/SettingsButton"]
-position = Vector2( 15, 13.5 )
-scale = Vector2( 0.19, 0.19 )
-texture = ExtResource( 56 )
 
 [node name="SettingsDialog" type="WindowDialog" parent="CanvasLayer"]
 margin_left = 14.0
@@ -2445,7 +2489,7 @@ align = 1
 [node name="Tooltip" parent="CanvasLayer" instance=ExtResource( 38 )]
 margin_left = -24.0
 margin_top = -655.0
-margin_right = 434.0
+margin_right = 355.0
 margin_bottom = -521.0
 
 [node name="TestEndGame" type="Button" parent="CanvasLayer"]

@@ -35,11 +35,11 @@ func _on_toggle_tooltip(do_show,node, tooltip_text):
 	else: 
 		showAbove=true
 		
-	var half_width = get_viewport_rect().size.x*.75	
+	var half_width = get_viewport_rect().size.x*.5	
 	if placement.x < half_width:
 		placement_offset.x =0
 	else:
-		placement_offset.x = -self.rect_size.x 
+		placement_offset.x = -self.rect_size.x + node.rect_size.x
 	if do_show:
 		if not showing:
 			var text=""
