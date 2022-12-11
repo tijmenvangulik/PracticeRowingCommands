@@ -208,8 +208,20 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	
 	# apply the breaking force
 	
-	if oarsInwater and destinationSpeed==0.0 and currentSpeed>0.2 :
-		var extraTurnForce= Vector2(currentSpeed*0.02*forceMultiplier,0).rotated(angle+PI)
+	if oarsInwater and destinationSpeed==0.0 and currentSpeed>0.1 :
+		# increase the turn factor when the speed is low
+		# this is due to the keel which works less at low speed 
+		# (It may be better to fix this in the future by changing the keel algo, but this fix is for now more safe )
+		var turnFactor1=0.03
+		if currentSpeed>10:
+			turnFactor1=0.02
+		if currentSpeed>15:
+			turnFactor1=0.01
+		if currentSpeed>20:
+			turnFactor1=0.005
+		var turnFactor=currentSpeed*turnFactor1*forceMultiplier ;
+		
+		var extraTurnForce= Vector2(turnFactor,0).rotated(angle+PI)
 		apply_impulse(Vector2(0,25*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
 	
 		
