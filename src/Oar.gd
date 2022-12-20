@@ -36,7 +36,9 @@ export var isSB = false
 func _ready():
 	
 	pass # Replace with function body.
-
+func isRowing():
+	return !frozen && startRotation!=newEndRotation
+	
 func mirrorRotation(rot):
 	rot=180-rot
 	if rot>0:

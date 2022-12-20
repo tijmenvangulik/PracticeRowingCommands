@@ -157,8 +157,9 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 		newRotation_degrees=-1.0;
 		newPosition_x=-1.0
 		newPosition_y=1.0
-	var oarsInwater=$"OarBB1".inWater || $"OarSB1".inWater
-	
+	var oarsInwater=($"OarBB1".inWater) || ( $"OarSB1".inWater)
+	var oarsInwaterRowing=($"OarBB1".isRowing() && $"OarBB1".inWater) || ($"OarSB1".isRowing() && $"OarSB1".inWater)
+	var rowingAndBreakingTogether=!oarsInwaterRowing && oarsInwater;
 	# calc speed
 	var forceCorrection=1.0
 	if (lightPaddleOn): forceCorrection=lightPaddleFactor
@@ -190,7 +191,7 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	var angle=linear_velocity.angle()
 	var destinationSpeedAbs=abs(destinationSpeed)
 	
-	if (oarsInwater || sideWays) && destinationSpeedAbs>0 && currentSpeed<destinationSpeedAbs:
+	if (oarsInwaterRowing || sideWays) && destinationSpeedAbs>0 && currentSpeed<destinationSpeedAbs:
 		applied_force= Vector2(destinationSpeed,0).rotated(rotation+sideWaysOffset)
 	else: applied_force= Vector2(0,0)
 	
@@ -201,6 +202,8 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 			var extraTurnForce= Vector2(destinationTurnSpeed*0.5,0).rotated(rotation+sideWaysOffset)
 			apply_impulse(Vector2(80,0).rotated(rotation),extraTurnForce)
 		elif oarsInwater:
+			if rowingAndBreakingTogether:
+				destinationTurnSpeed=destinationTurnSpeed*0.2
 			#apply_torque_impulse(destinationTurnSpeed*30);
 			var extraTurnForce= Vector2(abs(destinationTurnSpeed)*0.5,0).rotated(rotation) #deg2rad(-45*sign(destinationTurnSpeed))
 			apply_impulse(Vector2(0,-50*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
@@ -215,10 +218,16 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 		var turnFactor1=0.03
 		if currentSpeed>10:
 			turnFactor1=0.02
+		if currentSpeed>17:
+			turnFactor1=0.015
 		if currentSpeed>15:
 			turnFactor1=0.01
+		if currentSpeed>17:
+			turnFactor1=0.008
 		if currentSpeed>20:
-			turnFactor1=0.005
+			turnFactor1=0.007
+		#if oarsInwaterRowing:
+		#	turnFactor1=0.0000
 		var turnFactor=currentSpeed*turnFactor1*forceMultiplier ;
 		
 		var extraTurnForce= Vector2(turnFactor,0).rotated(angle+PI)
@@ -454,10 +463,15 @@ func changeState(command:int,newState:int,direction:int,direct=false):
 
 		Constants.RowState.HalenSB:
 			setSpeedAndDirection(0.35,-0.3,1,false)
-			oarSB.setNewScheme(true,oarBB.rotation_inHalen,oarBB.rotation_out,direct)
+			oarSB.setNewScheme(true,oarSB.rotation_inHalen,oarSB.rotation_out,direct)
+			#if !slippenBB:
+			#	oarBB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct)
+
 		Constants.RowState.HalenBB:
 			setSpeedAndDirection(0.35,0.3,1,false)
 			oarBB.setNewScheme(true,oarBB.rotation_inHalen,oarBB.rotation_out,direct)
+			#if !slippenSB:
+			#	oarSB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct)
 		Constants.RowState.VastroeienBeideBoorden:
 			setSpeedAndDirection(0,0,0.4,false)
 			if !slippenBB:
