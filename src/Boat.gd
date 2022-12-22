@@ -514,12 +514,12 @@ func changeState(command:int,newState:int,direction:int,direct=false):
 			state=Constants.RowState.LaatLopen
 			setSpeedAndDirection(-12,0,1,true)
 		Constants.RowState.RondmakenBB:
-			setSpeedAndDirection(0.01,-0.5,1,false)
+			setSpeedAndDirection(0.01,-0.3,1,false)
 			oarBB.setNewScheme(true,oarBB.rotation_out,oarBB.rotation_inHalen,direct)
 			oarSB.setNewScheme(false,oarBB.rotation_out,oarBB.rotation_inHalen,direct)
 
 		Constants.RowState.RondmakenSB:
-			setSpeedAndDirection(0.01,0.5,1,false)
+			setSpeedAndDirection(0.01,0.3,1,false)
 			oarBB.setNewScheme(false,oarBB.rotation_out,oarBB.rotation_inHalen,direct)
 			oarSB.setNewScheme(true,oarBB.rotation_out,oarBB.rotation_inHalen,direct)
 
