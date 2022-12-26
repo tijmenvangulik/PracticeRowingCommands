@@ -3,6 +3,7 @@ extends Node
 
 var commandTranslations = [""]
 var tooltipTranslations = [""]
+var commandTextTranslations = [""]
 var highScore=0.0
 var currentLang="nl_NL"
 var zoom=-1

@@ -18,7 +18,39 @@ func getCommandTranslation(command:int)->String:
 	if command>=0 && command<Settings.commandTranslations.size():
 		return Settings.commandTranslations[command]
 	return ""
-
+	
+func getCommandTextTranslation(command:int)->String:
+	if command>=0 && command<Settings.commandTextTranslations.size():
+		return Settings.commandTextTranslations[command]
+	return ""
+	
+func getCommandTooltip(command:int)->String:
+	if command>=0 && command<Settings.tooltipTranslations.size():
+		return Settings.tooltipTranslations[command]
+	return ""
+	
+func replaceCommandText(commandText :String) ->String:
+	var command=commandNameToCommand(commandText)
+	if command>=0:
+		var translation=getCommandTextTranslation(command)
+		if  translation!=null && translation.length()>0 :
+			return translation
+	return tr(commandText)
+	
+func replaceCommandsInText(text:String,decorate=false ) ->String:
+	var lastPos=0
+	while lastPos>=0:
+		lastPos=text.find("{",lastPos);
+		if lastPos>=0:
+			var posEnd=text.find("}",lastPos);
+			if posEnd>0:
+				var commandText=text.substr(lastPos+1,posEnd-lastPos-1)
+				commandText=replaceCommandText(commandText)
+				if decorate:
+					commandText="[color=#33eab4][u]"+commandText+"[/u][/color]"
+				text=text.substr(0,lastPos)+commandText+text.substr(posEnd+1,text.length())
+	return text
+	
 func formatTime(minutes,seconds,miliSeconds):
 	var minStr=String(minutes)
 	if minStr.length()==1:

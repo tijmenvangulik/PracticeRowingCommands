@@ -8,7 +8,7 @@ var lang=""
 
 func handleShow():
 	if visible:
-		$"CloseButton".grab_focus()
+		$"HSplitContainer/CloseButton".grab_focus()
 	
 func _init():
 	connect("visibility_changed",self,"handleShow");

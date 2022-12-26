@@ -28,9 +28,16 @@ signal doCommandSignal(command)
 
 signal toggle_tooltip(do_show,tooltip_type)
 
+signal startTour
+
+signal customCommandText2Changed
 
 func sendCommandChanged(command : int,commandName :String,value : String) -> void:
 	emit_signal("customCommandTextChanged",command,commandName,value)
+
+func sendCommandText2Changed(command : int,commandName :String,value : String) -> void:
+	emit_signal("customCommandText2Changed",command,commandName,value)
+
 # call_deferred("emit_signal","customCommandTextChanged")
 
 func sendTooltipChanged(command : int,commandName :String,value : String) -> void:
@@ -99,4 +106,5 @@ func _on_allways_show_tooltip(node,tooltip_type):
 func _on_allways_hide_tooltip(node,tooltip_type):
 		emit_signal("toggle_tooltip",false, node, tooltip_type)
 
-
+func startTour():
+	emit_signal("startTour")

@@ -18,7 +18,8 @@ enum StartPos {Start,OpWater,
   StartStrijkendAanleggenMinderKnoppen
   StartStrijkendAanleggenWal,
   StartStrijkendAanleggenWalMinderKnoppen,
-  StarGame
+  StarGame,
+  StartTour
 }
 
 func _ready():
@@ -40,6 +41,7 @@ func _ready():
 	add_item("StartStrijkendAanleggenWal",StartPos.StartStrijkendAanleggenWal)
 	
 	add_item("ShowIntroText",StartPos.Intro)
+	add_item("StartTour",StartPos.StartTour)
 	
 	
 	connect("item_selected",self,"selected")
@@ -67,6 +69,7 @@ func showOnlyButtons(var commands):
 	
 	for command in commands:
 		disableCommand(Constants.commandNames[command],false)
+
 	
 func selected(itemIndex : int):
 	
@@ -78,18 +81,22 @@ func selected(itemIndex : int):
 	var Command=Constants.Command
 	var isViking=GameState.isViking
 	var showOnlyButonsArray=[]
+	var explainPopup=$"%ExplainPracticeDialog"	
 	match valueIndex:
 		StartPos.OpWater: boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)
-		StartPos.Aanleggen: 
+		StartPos.Aanleggen:
 			boat.setNewBoatPosition(702.307,2145.531,45,Constants.StateOars.Roeien,true)
+			explainPopup.showDialog("MoringExplainRaftText")
 		StartPos.StartAanleggenMinderKnoppen: 
 			boat.setNewBoatPosition(702.307,2145.531,45,Constants.StateOars.Roeien,true)
 			showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.RiemenHoogSB,Constants.Command.VastroeienBB]	
+			explainPopup.showDialog("MoringExplainRaftText")
 		StartPos.Aangelegd: 
 			if isViking: 
 				boat.setNewBoatPosition(1124,2596,0,Constants.StateOars.SlippenSB,true)
 			else:
 				boat.setNewBoatPosition(1124,2608,0,Constants.StateOars.RiemenHoogSB,true)
+			explainPopup.showDialog("SailAwayExplainText")
 		StartPos.StartAangelegdMinderKnoppen:
 			if isViking: 
 				boat.setNewBoatPosition(1124,2596,0,Constants.StateOars.SlippenSB,true)
@@ -97,22 +104,30 @@ func selected(itemIndex : int):
 			else:
 				boat.setNewBoatPosition(1124,2608,0,Constants.StateOars.RiemenHoogSB,true)
 				showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.HalenSB,Constants.Command.UitzettenSB]	
+			explainPopup.showDialog("SailAwayExplainText")
 		StartPos.Intro: GameEvents.intro(true)
+		StartPos.StartTour: GameEvents.startTour()
 		StartPos.StartStrijkendAanleggen: 
 			boat.setNewBoatPosition(1589.091,2426.734,-30,Constants.StateOars.Roeien,false)
+			explainPopup.showDialog("BackwardsMoringRaftExplainText")
 		StartPos.StartStrijkendAanleggenMinderKnoppen: 
 			boat.setNewBoatPosition(1589.091,2426.734,-30,Constants.StateOars.Roeien,false)
 			showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.StrijkenBeidenBoorden,Constants.Command.RiemenHoogSB,Constants.Command.VastroeienBB]	
+			explainPopup.showDialog("BackwardsMoringRaftExplainText")
 		StartPos.AanleggenWal: 
 			boat.setNewBoatPosition(2082.239,2042.082,-45,Constants.StateOars.Roeien,true)
+			explainPopup.showDialog("MoringExplainText")
 		StartPos.StartAanleggenWalMinderKnoppen: 
 			boat.setNewBoatPosition(2082.239,2042.082,-45,Constants.StateOars.Roeien,true)
 			showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.SlippenSB,Constants.Command.VastroeienBB]	
+			explainPopup.showDialog("MoringExplainText")
 		StartPos.StartStrijkendAanleggenWal: 
 			boat.setNewBoatPosition(2220.23,1472.777,-120,Constants.StateOars.Roeien,false)
+			explainPopup.showDialog("BackwardsMoringExplainText")
 		StartPos.StartStrijkendAanleggenWalMinderKnoppen: 
 			boat.setNewBoatPosition(2220.23,1472.777,-120,Constants.StateOars.Roeien,false)
 			showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.StrijkenBeidenBoorden,Constants.Command.SlippenSB,Constants.Command.VastroeienBB]	
+			explainPopup.showDialog("BackwardsMoringExplainText")
 		StartPos.StarGame:
 			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)
 			GameState.changeCollectGameState(Constants.CollectGameState.ShowHighScores)

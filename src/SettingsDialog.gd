@@ -43,6 +43,7 @@ func setRuleset(ruleset):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameEvents.connect("customCommandTextChanged",self,"_on_EditCommandText_customCommandTextChanged")
+	GameEvents.connect("customCommandText2Changed",self,"_on_EditCommandText_customCommandText2Changed")
 	GameEvents.connect("customTooltipTextChanged",self,"_on_EditTooltipText_customTooltipTextChanged")
 	GameEvents.connect("settingsChangedSignal",self,"_handleSettingsChanged")
 
@@ -51,10 +52,12 @@ func _ready():
 	var commands=Constants.commandNames
 	while Settings.commandTranslations.size()<commands.size():
 		Settings.commandTranslations.push_back("")
-
+		
 	while Settings.tooltipTranslations.size()<commands.size():
 		Settings.tooltipTranslations.push_back("")
 	
+	while Settings.commandTextTranslations.size()<commands.size():
+		Settings.commandTextTranslations.push_back("")
 	# wait till all readies are called	
 	yield(get_tree(), "idle_frame")
 	
@@ -66,7 +69,8 @@ func _ready():
 	#https://docs.godotengine.org/en/stable/getting_started/step_by_step/ui_game_user_interface.html
 	var commandIndex=0;
 	addLabel(commandTranslationsGrid,"Commando")
-	addLabel(commandTranslationsGrid,"Alternative text")
+	addLabel(commandTranslationsGrid,"ButtonText")
+	addLabel(commandTranslationsGrid,"FullCommand")
 	addLabel(commandTranslationsGrid,"Tooltip")
 	commandButtonsTab.init()
 	for command in commands:
@@ -77,7 +81,7 @@ func _ready():
 		label.mouse_filter=Control.MOUSE_FILTER_STOP
 
 		GameEvents.register_allways_tooltip(label,tootipTextName)
-
+# button translation
 		var editBox = preload("res://EditCommandText.tscn").instance()
 		editBox.commandName=command
 		editBox.command=commandIndex
@@ -88,7 +92,20 @@ func _ready():
 		commandTranslationsGrid.add_child(editBox)
 		if altText!=null && altText!="":
 			editBox.setText(altText)
+
+# text translation
+		editBox = preload("res://EditCommandText2.tscn").instance()
+		editBox.commandName=command
+		editBox.command=commandIndex
 		
+		altText=Settings.commandTextTranslations[commandIndex];
+		editBox.visible=true;
+		
+		commandTranslationsGrid.add_child(editBox)
+		if altText!=null && altText!="":
+			editBox.setText(altText)
+
+# tooltip		
 		var editTooltipBox = preload("res://EditTooltipText.tscn").instance()
 		editTooltipBox.commandName=command
 		editTooltipBox.command=commandIndex
@@ -119,7 +136,14 @@ func getSettings(removePrivate=false):
 		var translation=Settings.commandTranslations[i]
 		if translation!=null && translation!="":
 			commandDict[commandName]=translation
-
+	
+	var commandTextDict={}
+	for i in range(0,Settings.commandTextTranslations.size()-1):
+		var commandName=Constants.commandNames[i]
+		var translation=Settings.commandTextTranslations[i]
+		if translation!=null && translation!="":
+			commandTextDict[commandName]=translation
+			
 	var tooltipDict={}
 	for i in range(0,Settings.tooltipTranslations.size()-1):
 		var commandName=Constants.commandNames[i]
@@ -135,6 +159,7 @@ func getSettings(removePrivate=false):
 	  "zoom":Settings.zoom,
 	  "language":Settings.currentLang,
 	  "tooltips":tooltipDict,
+	  "textTranslations":commandTextDict,
 	  "showCommandTooltips":Settings.showCommandTooltips
 	}
 	if removePrivate:
@@ -161,10 +186,14 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 	var translations={}
 	if dict.has("translations"):
 		translations=dict["translations"]
+	
+	var textTranslations={}
+	if dict.has("textTranslations"):
+		textTranslations=dict["textTranslations"]
 		
 	var tooltips={}
-	if dict.has("tooltips"):
-		tooltips=dict["tooltips"]
+	if dict.has("commandTexts"):
+		tooltips=dict["commandTexts"]
 	
 	var 	tooltipsOn=true
 	if dict.has("showCommandTooltips"): 
@@ -183,7 +212,7 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 		GameEvents.customButtonSetChanged()
 	
 	#clear translations and tooltips
-	for i in range(3,commandTranslationsGrid.get_child_count()):
+	for i in range(4,commandTranslationsGrid.get_child_count()):
 		var obj=commandTranslationsGrid.get_child(i);
 		if obj.has_method("setText"): 
 			commandTranslationsGrid.get_child(i).setText("")
@@ -197,10 +226,23 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 			if iPos>=0:
 				var text=translations[translationName]
 				Settings.commandTranslations[iPos]=text
-				var iposChild=4+iPos*3;
+				var iposChild=5+iPos*4;
 				if iposChild<commandTranslationsGrid.get_child_count():
 					commandTranslationsGrid.get_child(iposChild).setText(text)
-
+	
+	if textTranslations!=null && typeof(textTranslations)==TYPE_DICTIONARY:
+		var keys=textTranslations.keys();
+	
+		for translationName in keys:
+			var iPos= Utilities.commandNameToCommand(translationName)
+			
+			if iPos>=0:
+				var text=textTranslations[translationName]
+				Settings.commandTextTranslations[iPos]=text
+				var iposChild=6+iPos*4;
+				if iposChild<commandTranslationsGrid.get_child_count():
+					commandTranslationsGrid.get_child(iposChild).setText(text)
+					
 	if tooltips!=null && typeof(tooltips)==TYPE_DICTIONARY:
 		var keys=tooltips.keys();
 	
@@ -210,7 +252,7 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 			if iPos>=0:
 				var text=tooltips[translationName]
 				Settings.tooltipTranslations[iPos]=text
-				var iposChild=5+iPos*3;
+				var iposChild=7+iPos*4;
 				if iposChild<commandTranslationsGrid.get_child_count():
 					commandTranslationsGrid.get_child(iposChild).setText(text)
 				
@@ -236,7 +278,8 @@ func saveSettings():
 	var save_game = File.new()
 	save_game.open(settingsFile, File.WRITE)
 	var settings=getSettings()
-	save_game.store_line(to_json(settings))
+	var json=to_json(settings)
+	save_game.store_line(json)
 	save_game.close()
 	
 func loadSettings():
@@ -274,6 +317,11 @@ func _on_EditCommandText_customCommandTextChanged(command, commandName, value):
 	if commandName==value:
 		value=""
 	Settings.commandTranslations[command]=value
+
+func _on_EditCommandText_customCommandText2Changed(command, commandName, value):
+	if commandName==value:
+		value=""
+	Settings.commandTextTranslations[command]=value
 
 func _on_EditTooltipText_customTooltipTextChanged(command, commandName, value):
 	Settings.tooltipTranslations[command]=value

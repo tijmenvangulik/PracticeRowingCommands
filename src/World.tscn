@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=2]
+[gd_scene load_steps=107 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -69,6 +69,10 @@
 [ext_resource path="res://assets/meh2.svg" type="Texture" id=67]
 [ext_resource path="res://assets/incommingenvelope.svg" type="Texture" id=68]
 [ext_resource path="res://QuickFeedbackDialog.gd" type="Script" id=69]
+[ext_resource path="res://StartTour.gd" type="Script" id=70]
+[ext_resource path="res://TourDialog.gd" type="Script" id=71]
+[ext_resource path="res://ExplainPractice.gd" type="Script" id=72]
+[ext_resource path="res://EditCommandText2.tscn" type="PackedScene" id=73]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 127.753, 29.8996, 117.154, 24.3315, 109.015, 13.8659, 105.688, 0, 128, 0 )
@@ -1370,15 +1374,13 @@ theme = ExtResource( 29 )
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
 custom_styles/panel = SubResource( 32 )
 script = ExtResource( 43 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="IntroText" type="RichTextLabel" parent="CanvasLayer/IntroDialog"]
 margin_left = 40.0
 margin_top = 34.0
 margin_right = 931.0
 margin_bottom = 411.0
+custom_constants/line_separation = 7
 bbcode_enabled = true
 text = "IntroText"
 __meta__ = {
@@ -1397,16 +1399,39 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CloseButton" type="Button" parent="CanvasLayer/IntroDialog"]
-margin_left = 435.0
-margin_top = 417.0
-margin_right = 507.0
-margin_bottom = 450.0
+[node name="HSplitContainer" type="HSplitContainer" parent="CanvasLayer/IntroDialog"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -31.0
+margin_top = -49.0
+margin_right = 31.0
+margin_bottom = -13.0
+grow_horizontal = 2
+
+[node name="StartTour" type="Button" parent="CanvasLayer/IntroDialog/HSplitContainer"]
+margin_right = 94.0
+margin_bottom = 36.0
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 11 )
 custom_styles/pressed = ExtResource( 11 )
 custom_styles/normal = ExtResource( 10 )
-text = "Close"
+text = "StartTour"
+script = ExtResource( 70 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CloseButton" type="Button" parent="CanvasLayer/IntroDialog/HSplitContainer"]
+margin_left = 106.0
+margin_right = 208.0
+margin_bottom = 36.0
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 11 )
+custom_styles/normal = ExtResource( 10 )
+text = "CloseIntro"
 script = ExtResource( 42 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1473,8 +1498,8 @@ __meta__ = {
 }
 
 [node name="Loading" type="Label" parent="CanvasLayer/HighScores/HighScoresGrid"]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_right = 148.0
+margin_bottom = 19.0
 custom_fonts/font = ExtResource( 50 )
 text = "LoadingHighScores"
 
@@ -1982,6 +2007,216 @@ custom_styles/focus = ExtResource( 36 )
 custom_styles/normal = ExtResource( 35 )
 script = ExtResource( 41 )
 
+[node name="ExplainPracticeDialog" type="WindowDialog" parent="CanvasLayer"]
+unique_name_in_owner = true
+margin_left = 157.0
+margin_top = 80.0
+margin_right = 878.0
+margin_bottom = 527.0
+theme = ExtResource( 29 )
+custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
+custom_styles/panel = SubResource( 34 )
+script = ExtResource( 72 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ExplainPracticeDialog"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -80.5
+margin_top = -40.0
+margin_right = 79.5
+margin_bottom = -10.0
+grow_horizontal = 2
+custom_constants/separation = 10
+
+[node name="Start" type="Button" parent="CanvasLayer/ExplainPracticeDialog/HBoxContainer"]
+margin_right = 160.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 34 )
+custom_styles/focus = ExtResource( 34 )
+custom_styles/normal = ExtResource( 10 )
+text = "StartPractice"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PracticeExplain" type="RichTextLabel" parent="CanvasLayer/ExplainPracticeDialog"]
+margin_left = 37.0
+margin_top = 36.0
+margin_right = 665.0
+margin_bottom = 380.0
+custom_constants/line_separation = 8
+bbcode_enabled = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="TourDialog" type="WindowDialog" parent="CanvasLayer"]
+margin_left = 180.0
+margin_top = 156.0
+margin_right = 806.0
+margin_bottom = 333.0
+theme = ExtResource( 29 )
+custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
+custom_styles/panel = SubResource( 33 )
+script = ExtResource( 71 )
+
+[node name="TourText" type="RichTextLabel" parent="CanvasLayer/TourDialog"]
+margin_left = 36.0
+margin_top = 21.0
+margin_right = 586.0
+margin_bottom = 129.0
+custom_constants/line_separation = 7
+bbcode_enabled = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="HSplitContainer" type="HSplitContainer" parent="CanvasLayer/TourDialog"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -164.0
+margin_top = -40.0
+margin_right = 164.0
+margin_bottom = -10.0
+grow_horizontal = 2
+custom_constants/separation = 8
+
+[node name="TourStop" type="Button" parent="CanvasLayer/TourDialog/HSplitContainer"]
+margin_right = 160.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 52 )
+custom_styles/pressed = ExtResource( 53 )
+custom_styles/focus = ExtResource( 52 )
+custom_styles/normal = ExtResource( 64 )
+text = "TourStop"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TourNext" type="Button" parent="CanvasLayer/TourDialog/HSplitContainer"]
+margin_left = 168.0
+margin_right = 328.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 34 )
+custom_styles/focus = ExtResource( 34 )
+custom_styles/normal = ExtResource( 10 )
+text = "TourNext"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PointToStart" type="Line2D" parent="CanvasLayer/TourDialog"]
+visible = false
+position = Vector2( -209.849, -148.331 )
+rotation = -0.685914
+scale = Vector2( 0.481814, 0.80976 )
+points = PoolVector2Array( 104, 108, 224.248, 347.521 )
+default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
+joint_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="CanvasLayer/TourDialog/PointToStart"]
+position = Vector2( -149, -132 )
+points = PoolVector2Array( 294.021, 262.201, 254.339, 241.583, 237.505, 268.19 )
+default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PointToCommands" type="Line2D" parent="CanvasLayer/TourDialog"]
+visible = false
+position = Vector2( -91.9999, 357 )
+scale = Vector2( 0.481814, 0.80976 )
+points = PoolVector2Array( 421.325, -102.5, 421.325, -222.288 )
+default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
+joint_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="CanvasLayer/TourDialog/PointToCommands"]
+position = Vector2( -149, -132 )
+points = PoolVector2Array( 605.608, -0.137939, 570.325, 27.0306, 537.117, -1.37286 )
+default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PointToLanguage" type="Line2D" parent="CanvasLayer/TourDialog"]
+visible = false
+position = Vector2( -108, -152 )
+rotation = -0.685914
+scale = Vector2( 0.481814, 0.80976 )
+points = PoolVector2Array( 104, 108, 99.2102, 292.482 )
+default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
+joint_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="CanvasLayer/TourDialog/PointToLanguage"]
+position = Vector2( -149, -132 )
+points = PoolVector2Array( 282.452, 270.006, 254.339, 241.583, 224.396, 270.006 )
+default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PointToHelp" type="Line2D" parent="CanvasLayer/TourDialog"]
+visible = false
+position = Vector2( -37, -152 )
+rotation = -0.685914
+scale = Vector2( 0.481814, 0.80976 )
+points = PoolVector2Array( 104, 108, 99.2102, 292.482 )
+default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
+joint_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="CanvasLayer/TourDialog/PointToHelp"]
+position = Vector2( -149, -132 )
+points = PoolVector2Array( 282.452, 270.006, 254.339, 241.583, 224.396, 270.006 )
+default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PointToOptions" type="Line2D" parent="CanvasLayer/TourDialog"]
+visible = false
+position = Vector2( 2.00001, -152 )
+rotation = -0.685914
+scale = Vector2( 0.481814, 0.80976 )
+points = PoolVector2Array( 104, 108, 99.2102, 292.482 )
+default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
+joint_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="CanvasLayer/TourDialog/PointToOptions"]
+position = Vector2( -149, -132 )
+points = PoolVector2Array( 282.452, 270.006, 254.339, 241.583, 224.396, 270.006 )
+default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PointToBackwards" type="Line2D" parent="CanvasLayer/TourDialog"]
+position = Vector2( 216, -150 )
+rotation = -0.685914
+scale = Vector2( 0.481814, 0.80976 )
+points = PoolVector2Array( 104, 108, -169.3, 160.119 )
+default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
+joint_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="CanvasLayer/TourDialog/PointToBackwards"]
+position = Vector2( -149, -132 )
+points = PoolVector2Array( 230.735, 267.557, 254.339, 241.583, 195.555, 224.89 )
+default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
 [node name="RightTopButtons" type="HBoxContainer" parent="CanvasLayer"]
 margin_left = 8.0
 margin_top = 8.0
@@ -2276,7 +2511,7 @@ __meta__ = {
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab/ScrollContainer"]
 custom_constants/vseparation = 4
 custom_constants/hseparation = 4
-columns = 3
+columns = 4
 
 [node name="CommandButtonsTab" type="Tabs" parent="CanvasLayer/SettingsDialog/TabContainer"]
 visible = false
@@ -2389,6 +2624,8 @@ __meta__ = {
 
 [node name="EditCommandText" parent="CanvasLayer/SettingsDialog" instance=ExtResource( 59 )]
 visible = false
+
+[node name="EditCommandText2" parent="CanvasLayer/SettingsDialog" instance=ExtResource( 73 )]
 
 [node name="EditTooltipText" parent="CanvasLayer/SettingsDialog" instance=ExtResource( 19 )]
 
@@ -2517,6 +2754,10 @@ __meta__ = {
 [connection signal="pressed" from="CanvasLayer/QuickFeedbackDialog/EmoticonSelection/Love" to="CanvasLayer/QuickFeedbackDialog" method="_on_Love_pressed"]
 [connection signal="pressed" from="CanvasLayer/QuickFeedbackDialog/HBoxContainer/CancelFeedback" to="CanvasLayer/QuickFeedbackDialog" method="_on_CancelFeedback_pressed"]
 [connection signal="pressed" from="CanvasLayer/QuickFeedbackDialog/HBoxContainer/SendFeedback" to="CanvasLayer/QuickFeedbackDialog" method="_on_SendFeedback_pressed"]
+[connection signal="pressed" from="CanvasLayer/ExplainPracticeDialog/HBoxContainer/Start" to="CanvasLayer/ExplainPracticeDialog" method="_on_Start_pressed"]
+[connection signal="about_to_show" from="CanvasLayer/TourDialog" to="CanvasLayer/TourDialog" method="_on_TourDialog_about_to_show"]
+[connection signal="pressed" from="CanvasLayer/TourDialog/HSplitContainer/TourStop" to="CanvasLayer/TourDialog" method="_on_TourStop_pressed"]
+[connection signal="pressed" from="CanvasLayer/TourDialog/HSplitContainer/TourNext" to="CanvasLayer/TourDialog" method="_on_TourNext_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightTopButtons/ZoomContainer/ZoomPlus" to="CanvasLayer/RightTopButtons/ZoomContainer" method="_on_ZoomPlus_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightTopButtons/ZoomContainer/ZoomMin" to="CanvasLayer/RightTopButtons/ZoomContainer" method="_on_ZoomMin_pressed"]
 [connection signal="visibility_changed" from="CanvasLayer/SettingsDialog" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_SettingsDialog_visibility_changed"]
