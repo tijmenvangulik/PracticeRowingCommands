@@ -9,7 +9,8 @@ func _ready():
 # Called when the node enters the scene tree for the first time.
 func showDialog(explainText):
 	_explainText=explainText
-	showText()
+	if visible:
+		showText()
 	
 func showText():
 	var text=tr(_explainText);
