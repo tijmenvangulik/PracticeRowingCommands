@@ -6,7 +6,7 @@ extends WindowDialog
 # var b = "text"
 
 var tourStep=1
-var tourTexts= ["OptionLanguageTooltip","OptionStartTooltip","ShowHideTootipsTooltip","SettingsButtonTooltip","ForwardsBackwardsTooltip","CommandsTourText"]
+var tourTexts= ["OptionLanguageTooltip","OptionStartTooltip","ShowHideTootipsTooltip","SettingsButtonTooltip","ForwardsBackwardsTooltip","CommandsTourText","OptionCommandsTooltip"]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameEvents.connect("startTour",self,"_on_startTour")
@@ -44,6 +44,7 @@ func ShowStep():
 	$"PointToOptions".visible=tourStep==4
 	$"PointToBackwards".visible=tourStep==5
 	$"PointToCommands".visible=tourStep==6
+	$"PointToCommandDropDown".visible=tourStep==7
 	if tourStep<=tourTexts.size():
 		$"TourText".set_bbcode(Utilities.replaceCommandsInText( tr(tourTexts[tourStep-1]),true))
 	else:

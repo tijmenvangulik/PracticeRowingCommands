@@ -2056,6 +2056,7 @@ __meta__ = {
 }
 
 [node name="TourDialog" type="WindowDialog" parent="CanvasLayer"]
+visible = true
 margin_left = 180.0
 margin_top = 156.0
 margin_right = 806.0
@@ -2202,6 +2203,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="PointToBackwards" type="Line2D" parent="CanvasLayer/TourDialog"]
+visible = false
 position = Vector2( 216, -150 )
 rotation = -0.685914
 scale = Vector2( 0.481814, 0.80976 )
@@ -2210,6 +2212,23 @@ default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
 joint_mode = 2
 
 [node name="Line2D2" type="Line2D" parent="CanvasLayer/TourDialog/PointToBackwards"]
+position = Vector2( -149, -132 )
+points = PoolVector2Array( 230.735, 267.557, 254.339, 241.583, 195.555, 224.89 )
+default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PointToCommandDropDown" type="Line2D" parent="CanvasLayer/TourDialog"]
+visible = false
+position = Vector2( 556, -150 )
+rotation = -0.685914
+scale = Vector2( 0.481814, 0.80976 )
+points = PoolVector2Array( 104, 108, 21.3071, 123.77, -169.3, 160.119 )
+default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
+joint_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="CanvasLayer/TourDialog/PointToCommandDropDown"]
 position = Vector2( -149, -132 )
 points = PoolVector2Array( 230.735, 267.557, 254.339, 241.583, 195.555, 224.89 )
 default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
