@@ -19,6 +19,8 @@ func showText():
 	
 func _on_Start_pressed():
 	hide()
+	GameEvents.startPlay()
+
 
 func _on_languageChanged():
 	if visible:

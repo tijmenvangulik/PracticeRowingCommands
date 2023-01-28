@@ -1,4 +1,5 @@
 extends MarginContainer
+class_name GridButtonContainer
 
 signal button_dropped(droppedInfo,droppedOn)
 
@@ -7,7 +8,6 @@ var command=0;
 var canClickButton=true
 var canDrag=false;
 var customTooltipText=""
-
 func _ready():
 
 	GameEvents.connect("customCommandTextChanged",self,"_on_EditCommandText_customCommandTextChanged")

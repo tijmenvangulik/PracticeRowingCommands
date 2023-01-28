@@ -81,9 +81,12 @@ func selected(itemIndex : int):
 	var Command=Constants.Command
 	var isViking=GameState.isViking
 	var showOnlyButonsArray=[]
-	var explainPopup=$"%ExplainPracticeDialog"	
+	var explainPopup=$"%ExplainPracticeDialog"
+	var callStartPlay=false
 	match valueIndex:
-		StartPos.OpWater: boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)
+		StartPos.OpWater: 
+			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)
+			callStartPlay=true
 		StartPos.Aanleggen:
 			boat.setNewBoatPosition(702.307,2145.531,45,Constants.StateOars.Roeien,true)
 			explainPopup.showDialog("MoringExplainRaftText")
@@ -134,7 +137,10 @@ func selected(itemIndex : int):
 
 	showOnlyButtons(showOnlyButonsArray)	
 	GameEvents.commandsChanged(showOnlyButonsArray)
-	select(StartPos.Start)		
+	select(StartPos.Start)
+	if callStartPlay: 
+		GameEvents.startPlay()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=2]
+[gd_scene load_steps=106 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -40,7 +40,6 @@
 [ext_resource path="res://Tooltip.tscn" type="PackedScene" id=38]
 [ext_resource path="res://TooltipHelp.gd" type="Script" id=39]
 [ext_resource path="res://OptionStart.gd" type="Script" id=40]
-[ext_resource path="res://OptionCommands.gd" type="Script" id=41]
 [ext_resource path="res://CloseButton.gd" type="Script" id=42]
 [ext_resource path="res://IntroDialog.gd" type="Script" id=43]
 [ext_resource path="res://assets/boathouse.png" type="Texture" id=44]
@@ -1339,6 +1338,7 @@ margin_bottom = 44.4202
 boat = NodePath("../../Boat")
 
 [node name="ButtonsContainer" type="PanelContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
 anchor_left = 0.5
 anchor_top = 0.75
 anchor_right = 0.5
@@ -1992,21 +1992,6 @@ margin_bottom = 298.0
 wrap_enabled = true
 caret_blink = true
 
-[node name="OptionCommands" type="OptionButton" parent="CanvasLayer"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -216.0
-margin_top = 8.0
-margin_right = -8.0
-margin_bottom = 35.0
-grow_horizontal = 0
-custom_fonts/font = ExtResource( 50 )
-custom_styles/hover = ExtResource( 18 )
-custom_styles/pressed = ExtResource( 36 )
-custom_styles/focus = ExtResource( 36 )
-custom_styles/normal = ExtResource( 35 )
-script = ExtResource( 41 )
-
 [node name="ExplainPracticeDialog" type="WindowDialog" parent="CanvasLayer"]
 unique_name_in_owner = true
 margin_left = 157.0
@@ -2056,11 +2041,10 @@ __meta__ = {
 }
 
 [node name="TourDialog" type="WindowDialog" parent="CanvasLayer"]
-visible = true
 margin_left = 180.0
 margin_top = 156.0
 margin_right = 806.0
-margin_bottom = 333.0
+margin_bottom = 384.0
 theme = ExtResource( 29 )
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
 custom_styles/panel = SubResource( 33 )
@@ -2070,7 +2054,7 @@ script = ExtResource( 71 )
 margin_left = 36.0
 margin_top = 21.0
 margin_right = 586.0
-margin_bottom = 129.0
+margin_bottom = 182.0
 custom_constants/line_separation = 7
 bbcode_enabled = true
 __meta__ = {
@@ -2137,8 +2121,8 @@ end_cap_mode = 2
 
 [node name="PointToCommands" type="Line2D" parent="CanvasLayer/TourDialog"]
 visible = false
-position = Vector2( -91.9999, 357 )
-scale = Vector2( 0.481814, 0.80976 )
+position = Vector2( -91.9999, 320.541 )
+scale = Vector2( 0.481814, 0.415609 )
 points = PoolVector2Array( 421.325, -102.5, 421.325, -222.288 )
 default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
 joint_mode = 2
@@ -2212,23 +2196,6 @@ default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
 joint_mode = 2
 
 [node name="Line2D2" type="Line2D" parent="CanvasLayer/TourDialog/PointToBackwards"]
-position = Vector2( -149, -132 )
-points = PoolVector2Array( 230.735, 267.557, 254.339, 241.583, 195.555, 224.89 )
-default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
-joint_mode = 2
-begin_cap_mode = 2
-end_cap_mode = 2
-
-[node name="PointToCommandDropDown" type="Line2D" parent="CanvasLayer/TourDialog"]
-visible = false
-position = Vector2( 556, -150 )
-rotation = -0.685914
-scale = Vector2( 0.481814, 0.80976 )
-points = PoolVector2Array( 104, 108, 21.3071, 123.77, -169.3, 160.119 )
-default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
-joint_mode = 2
-
-[node name="Line2D2" type="Line2D" parent="CanvasLayer/TourDialog/PointToCommandDropDown"]
 position = Vector2( -149, -132 )
 points = PoolVector2Array( 230.735, 267.557, 254.339, 241.583, 195.555, 224.89 )
 default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )

@@ -32,6 +32,8 @@ signal startTour
 
 signal customCommandText2Changed
 
+signal startPlay
+
 func sendCommandChanged(command : int,commandName :String,value : String) -> void:
 	emit_signal("customCommandTextChanged",command,commandName,value)
 
@@ -43,7 +45,8 @@ func sendCommandText2Changed(command : int,commandName :String,value : String) -
 func sendTooltipChanged(command : int,commandName :String,value : String) -> void:
 	emit_signal("customTooltipTextChanged",command,commandName,value)
 
-
+func startPlay():
+ call_deferred("emit_signal","startPlay")
 
 func settingsChanged():
  emit_signal("settingsChangedSignal")

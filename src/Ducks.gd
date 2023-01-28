@@ -44,6 +44,7 @@ func _collectGameStateChangedSignal(state):
 
 	if state==Constants.CollectGameState.DoStart:
 		doStartGame()
+		GameEvents.startPlay()
 	elif state==Constants.CollectGameState.Start:
 		stopGame()
 	elif state==Constants.CollectGameState.Stop:
