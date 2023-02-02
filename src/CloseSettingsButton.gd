@@ -1,5 +1,7 @@
 extends Button
 
 func _pressed():
-	GameEvents.settingsChanged()
-	$"..".visible=false	
+	GameEvents.settingsChanged()	
+	$"..".visible=false
+	GameEvents.startPlay()
+	

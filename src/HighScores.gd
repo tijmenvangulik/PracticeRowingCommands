@@ -16,6 +16,11 @@ func _ready():
 	get_close_button().hide()
 	loadHighScores()
 
+func handleShow():
+	GameState.dialogIsOpen=visible
+		
+func _init():
+	connect("visibility_changed",self,"handleShow");
 
 func loadHighScores():
 	var url="https://ergometer-space.org/manager/gameHighScores?data[game]=1&data[level]=0"

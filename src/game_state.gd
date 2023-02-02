@@ -14,10 +14,11 @@ var defaultButtonSet=["SlagklaarAf","LaatLopen,Bedankt","VastroeienSB","HalenSB"
 var currentButtonSet=defaultButtonSet
 var useDefaultButtonSet=true;
 
+var dialogIsOpen = false;
+
 func changeCollectGameState(newState):
 	if collectGameState!=newState:
 		collectGameState=newState
 		GameEvents.collectGameStateChanged(newState)
 
 var showTooltips= false
-

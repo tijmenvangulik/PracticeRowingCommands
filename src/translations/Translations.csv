@@ -155,7 +155,7 @@ CommentLabel;Opmerking;Opmering;Comment;Comment
 StartTour;Korte rondleiding;Korte rondleiding;Short tour;Short tour
 TourStop;Stop;Stop;Stop;Stop
 TourNext;Volgende;Volgende;Next;Next
-CommandsTourText;Laat de boot varen door via de knoppen stuur commando’s te geven. Geef bijvoorbeeld het commando {SlagklaarAf} om weg te varen en {LaatLopen} , {Bedankt} en {VastroeienBeideBoorden} om te stoppen.\nGebruik de cursor knoppen of type de eerste letter van een commando om naar een knop te gaan gebruik spatie voor activatie.;Laat de boot varen door via de knoppen stuur commando’s te geven. Geef bijvoorbeeld het commando {SlagklaarAf} om weg te varen en {LaatLopen} , {Bedankt} en {VastroeienBeideBoorden} om te stoppen.\nGebruik de cursor knoppen of type de eerste letter van een commando om naar een knop te gaan gebruik spatie voor activatie.;Let the boat sail by pressing the command buttons. Use for example the command {SlagklaarAf} to start rowing and {LaatLopen} , {Bedankt} and {VastroeienBeideBoorden} to stop the boat.\nUse the cursor keys or type in the first letter of to go to a command and space to activate.;Let the boat sail by pressing the command buttons. Use for example the command {SlagklaarAf} to start rowing and {LaatLopen} , {Bedankt} and {VastroeienBeideBoorden} to stop the boat.\nUse the cursor keys or type in the first letter of to go to a command and space to activate.
+CommandsTourText;Laat de boot varen door via de knoppen stuur commando’s te geven. Geef bijvoorbeeld het commando {SlagklaarAf} om weg te varen en {LaatLopen} , {Bedankt} en {VastroeienBeideBoorden} om te stoppen.;Laat de boot varen door via de knoppen stuur commando’s te geven. Geef bijvoorbeeld het commando {SlagklaarAf} om weg te varen en {LaatLopen} , {Bedankt} en {VastroeienBeideBoorden} om te stoppen.;Let the boat sail by pressing the command buttons. Use for example the command {SlagklaarAf} to start rowing and {LaatLopen} , {Bedankt} and {VastroeienBeideBoorden} to stop the boat.;Let the boat sail by pressing the command buttons. Use for example the command {SlagklaarAf} to start rowing and {LaatLopen} , {Bedankt} and {VastroeienBeideBoorden} to stop the boat.
 CloseIntro;Sluit introductie;Sluit introductie;Close introduction;Close introduction
 MoringExplainRaftText;Voer de volgende stappen uit om aan te legen aan het vlot aan stuurboord\n\n1) {SlagklaarAf} : vaar onder een hoek van 45 graden richting de kant\n2) {LightPaddle} : ongeveer halverwege\n3) {LaatLopen} : vlak voor de kant \n4) {RiemenHoogSB} : direct daarna\n5) {VastroeienBB} : om te draaien \n6) {Bedankt} als de boot parallel langs de kant ligt\n;Voer de volgende stappen uit om aan te legen aan het vlot aan stuurboord\n\n1) {SlagklaarAf} : vaar onder een hoek van 45 graden richting de kant\n2) {LightPaddle} : ongeveer halverwege\n3) {LaatLopen} : vlak voor de kant \n4) {RiemenHoogSB} : direct daarna\n5) {VastroeienBB} : om te draaien \n6) {Bedankt} als de boot parallel langs de kant ligt\n;To moor the boat to the port side float, follow these steps:\n\n{SlagklaarAf}: Sail at a 45 degree angle towards the shore.\n{LightPaddle}: Approximately halfway.\n{LaatLopen}: Just before reaching the shore.\n{RiemenHoogSB}: Immediately after.\n{VastroeienBB}: To turn the boat.\n{Bedankt} when the boat is parallel to the shore;To moor the boat to the port side float, follow these steps:\n\n{SlagklaarAf}: Sail at a 45 degree angle towards the shore.\n{LightPaddle}: Approximately halfway.\n{LaatLopen}: Just before reaching the shore.\n{RiemenHoogSB}: Immediately after.\n{VastroeienBB}: To turn the boat.\n{Bedankt} when the boat is parallel to the shore
 StartPractice;Start oefening;Start oefening;Start practice;Start practice
@@ -169,3 +169,38 @@ SailAwayExplainText;Voer de volgende stappen uit om weg te varen van het vlot\n\
 \n1) {UitzettenSB}: extend the oars and wait until they rest on the water\n2) {SlagklaarAf}: sail away"
 ButtonText;Knop tekst;Knop tekst;Button text;Button text
 FullCommand;Volledige commando;Volledige commando;Full command;Full command
+BakboortBest_shortcut;e;r;z;z
+Bedankt_shortcut;b;b;o;o
+BestBedankt_shortcut;e;r;z;z
+HalenBB_shortcut;h;a;s;s
+HalenBeideBoorden_shortcut;h;a;s;s
+HalenSB_shortcut;h;a;s;s
+LaatLopen_shortcut;l;l;l;l
+LightPaddle_shortcut;g;c;u;u
+LightPaddleBedankt_shortcut;g;c;u;u
+PakMaarWeerOp_shortcut;m;m;p;p
+PeddelendStrijkenBB_shortcut;p;p;d;d
+PeddelendStrijkenSB_shortcut;p;p;d;d
+RiemenHoogBB_shortcut;r;i;i;i
+RiemenHoogSB_shortcut;r;i;i;i
+RondmakenBB_shortcut;d;d;t;t
+RondmakenSB_shortcut;d;d;t;t
+SlagklaarAf_shortcut;a;a;g;g
+Slippen_shortcut;s;s;a;a
+SlippenBB_shortcut;s;s;a;a
+SlippenSB_shortcut;s;s;a;a
+StrijkenBB_shortcut;t;t;b;b
+StrijkenBeidenBoorden_shortcut;t;t;b;b
+StrijkenSB_shortcut;t;t;b;b
+StuurboordBest_shortcut;e;r;z;z
+Uitbrengen_shortcut;u;u;r;r
+UitbrengenBB_shortcut;u;u;r;r
+UitbrengenSB_shortcut;u;u;r;r
+UitzettenBB_shortcut;z;z;p;p
+UitzettenSB_shortcut;z;z;p;p
+VastroeienBB_shortcut;v;h;h;h
+VastroeienBeideBoorden_shortcut;v;h;h;h
+VastroeienSB_shortcut;v;h;h;h
+ShowShortCutsInButtons;Toon snelltoets in knoppen ;Toon snelle knop koppeling in knoppen ;Show shortcuts in buttons;Show shortcuts in buttons
+Shortcut;Sneltoets;Sneltoets;Shortcut;Shortcut
+ShortCutTourText;Het is ook mogelijk de knoppen de toetsen te bedienen. Dit kan met de cursor toetsen of door de eerste letter van het commando in te typen. Schakel de optie 'Toon sneltoetskoppeling' in de instellingen aan om sneltoetsen zichtbaar te maken. Groepen toetsen kunnen de zelfde short cut hebben druk nog een keer de toets in om naar de volgende te gaan;Het is ook mogelijk de knoppen de toetsen te bedienen. Dit kan met de cursor toetsen of door de eerste letter van het commando in te typen. Schakel de optie 'Toon sneltoetskoppeling' in de instellingen aan om sneltoetsen zichtbaar te maken. Groepen toetsen kunnen de zelfde short cut hebben druk nog een keer de toets in om naar de volgende te gaan;It is also possible to control the buttons with the keys. This can be done with the cursor keys or by typing the first letter of the command. Enable the 'Show keyboard shortcut' option in the settings to make keyboard shortcuts visible. Key groups can have the same shortcut, press the key again to move to the next one.;It is also possible to control the buttons with the keys. This can be done with the cursor keys or by typing the first letter of the command. Enable the 'Show keyboard shortcut' option in the settings to make keyboard shortcuts visible. Key groups can have the same shortcut, press the key again to move to the next one.

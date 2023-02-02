@@ -10,7 +10,15 @@ export (NodePath) onready var showCommandTooltips = get_node(showCommandTooltips
 
 export (NodePath) onready var commandButtonsTab = get_node(commandButtonsTab) as CommandButtonsTab
 
+export (NodePath) onready var showShortCutsInButtons = get_node(showShortCutsInButtons) as Button
+
 var settingsFile="user://settings.save"
+
+func handleShow():
+	GameState.dialogIsOpen=visible
+		
+func _init():
+	connect("visibility_changed",self,"handleShow");
 
 func addLabel(container,text):
 	var new_label = Label.new()
@@ -45,6 +53,7 @@ func _ready():
 	GameEvents.connect("customCommandTextChanged",self,"_on_EditCommandText_customCommandTextChanged")
 	GameEvents.connect("customCommandText2Changed",self,"_on_EditCommandText_customCommandText2Changed")
 	GameEvents.connect("customTooltipTextChanged",self,"_on_EditTooltipText_customTooltipTextChanged")
+	GameEvents.connect("customShortcutTextChanged",self,"_on_EditTooltipText_customShortcutTextChanged")
 	GameEvents.connect("settingsChangedSignal",self,"_handleSettingsChanged")
 
 	get_close_button().hide()
@@ -55,6 +64,9 @@ func _ready():
 		
 	while Settings.tooltipTranslations.size()<commands.size():
 		Settings.tooltipTranslations.push_back("")
+		
+	while Settings.shortcutTranslations.size()<commands.size():
+		Settings.shortcutTranslations.push_back("")
 	
 	while Settings.commandTextTranslations.size()<commands.size():
 		Settings.commandTextTranslations.push_back("")
@@ -72,6 +84,8 @@ func _ready():
 	addLabel(commandTranslationsGrid,"ButtonText")
 	addLabel(commandTranslationsGrid,"FullCommand")
 	addLabel(commandTranslationsGrid,"Tooltip")
+	addLabel(commandTranslationsGrid,"Shortcut")
+	
 	commandButtonsTab.init()
 	for command in commands:
 		
@@ -117,7 +131,18 @@ func _ready():
 		if altTooltipText!=null && altTooltipText!="":
 			editTooltipBox.setText(altTooltipText)
 
-			
+# shortcut		
+		var editShortcutBox = preload("res://EditShortcutText.tscn").instance()
+		editShortcutBox.commandName=command
+		editShortcutBox.command=commandIndex
+		
+		var altShortcutText=Settings.shortcutTranslations[commandIndex];
+		editShortcutBox.visible=true;
+		
+		commandTranslationsGrid.add_child(editShortcutBox)
+		if altShortcutText!=null && altShortcutText!="":
+			editShortcutBox.setText(altShortcutText)
+					
 		commandIndex=commandIndex+1
 		
 	
@@ -150,6 +175,13 @@ func getSettings(removePrivate=false):
 		var translation=Settings.tooltipTranslations[i]
 		if translation!=null && translation!="":
 			tooltipDict[commandName]=translation
+
+	var shortcutDict={}
+	for i in range(0,Settings.shortcutTranslations.size()-1):
+		var commandName=Constants.commandNames[i]
+		var translation=Settings.shortcutTranslations[i]
+		if translation!=null && translation!="":
+			shortcutDict[commandName]=translation
 	
 	var ruleset=rulesetManager.currentRulleset
 	var save_dict = {"translations" : commandDict,
@@ -159,8 +191,10 @@ func getSettings(removePrivate=false):
 	  "zoom":Settings.zoom,
 	  "language":Settings.currentLang,
 	  "tooltips":tooltipDict,
+	  "shortcuts":shortcutDict,
 	  "textTranslations":commandTextDict,
-	  "showCommandTooltips":Settings.showCommandTooltips
+	  "showCommandTooltips":Settings.showCommandTooltips,
+	  "showShortCutsInButtons":Settings.showShortCutsInButtons
 	}
 	if removePrivate:
 		removePrivateSettings(save_dict)
@@ -192,15 +226,27 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 		textTranslations=dict["textTranslations"]
 		
 	var tooltips={}
-	if dict.has("commandTexts"):
-		tooltips=dict["commandTexts"]
+	if dict.has("tooltips"):
+		tooltips=dict["tooltips"]
+
+	var shortcuts={}
+	if dict.has("shortcuts"):
+		shortcuts=dict["shortcuts"]
 	
 	var 	tooltipsOn=true
 	if dict.has("showCommandTooltips"): 
 		 tooltipsOn=dict["showCommandTooltips"]
+	
+	
 	Settings.showCommandTooltips=tooltipsOn
 	showCommandTooltips.set_pressed(tooltipsOn)
-		
+
+	var 	shotCutsOn=false
+	if dict.has("showShortCutsInButtons"): 
+		 shotCutsOn=dict["showShortCutsInButtons"]
+	Settings.showShortCutsInButtons=shotCutsOn
+	showShortCutsInButtons.set_pressed(shotCutsOn)
+	
 	var customButtonSet=[]
 	if dict.has("customButtonSet"):
 		customButtonSet=dict["customButtonSet"]
@@ -212,7 +258,7 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 		GameEvents.customButtonSetChanged()
 	
 	#clear translations and tooltips
-	for i in range(4,commandTranslationsGrid.get_child_count()):
+	for i in range(5,commandTranslationsGrid.get_child_count()):
 		var obj=commandTranslationsGrid.get_child(i);
 		if obj.has_method("setText"): 
 			commandTranslationsGrid.get_child(i).setText("")
@@ -226,7 +272,7 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 			if iPos>=0:
 				var text=translations[translationName]
 				Settings.commandTranslations[iPos]=text
-				var iposChild=5+iPos*4;
+				var iposChild=6+iPos*5;
 				if iposChild<commandTranslationsGrid.get_child_count():
 					commandTranslationsGrid.get_child(iposChild).setText(text)
 	
@@ -239,7 +285,7 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 			if iPos>=0:
 				var text=textTranslations[translationName]
 				Settings.commandTextTranslations[iPos]=text
-				var iposChild=6+iPos*4;
+				var iposChild=7+iPos*5;
 				if iposChild<commandTranslationsGrid.get_child_count():
 					commandTranslationsGrid.get_child(iposChild).setText(text)
 					
@@ -252,7 +298,20 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 			if iPos>=0:
 				var text=tooltips[translationName]
 				Settings.tooltipTranslations[iPos]=text
-				var iposChild=7+iPos*4;
+				var iposChild=8+iPos*5;
+				if iposChild<commandTranslationsGrid.get_child_count():
+					commandTranslationsGrid.get_child(iposChild).setText(text)
+	
+	if shortcuts!=null && typeof(shortcuts)==TYPE_DICTIONARY:
+		var keys=shortcuts.keys();
+	
+		for translationName in keys:
+			var iPos= Utilities.commandNameToCommand(translationName)
+			
+			if iPos>=0:
+				var text=shortcuts[translationName]
+				Settings.shortcutTranslations[iPos]=text
+				var iposChild=9+iPos*5;
 				if iposChild<commandTranslationsGrid.get_child_count():
 					commandTranslationsGrid.get_child(iposChild).setText(text)
 				
@@ -326,6 +385,9 @@ func _on_EditCommandText_customCommandText2Changed(command, commandName, value):
 func _on_EditTooltipText_customTooltipTextChanged(command, commandName, value):
 	Settings.tooltipTranslations[command]=value
 
+func _on_EditTooltipText_customShortcutTextChanged(command, commandName, value):
+	Settings.shortcutTranslations[command]=value
+	
 func _handleSettingsChanged():
 	saveSettings()
 	setSettingInUrl()
@@ -351,3 +413,8 @@ func ensureButtonsetSaved():
 
 func _on_ShowCommandTooltips_toggled(button_pressed):
 	Settings.showCommandTooltips=button_pressed
+
+
+func _on_ShowShortCutsInButtons_toggled(button_pressed):
+	Settings.showShortCutsInButtons=button_pressed
+	GameEvents.languageChanged()

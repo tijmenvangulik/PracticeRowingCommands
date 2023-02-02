@@ -6,13 +6,19 @@ extends WindowDialog
 # var b = "text"
 
 var tourStep=1
-var tourTexts= ["OptionLanguageTooltip","OptionStartTooltip","ShowHideTootipsTooltip","SettingsButtonTooltip","ForwardsBackwardsTooltip","CommandsTourText"]
+var tourTexts= ["OptionLanguageTooltip","OptionStartTooltip","ShowHideTootipsTooltip","SettingsButtonTooltip","ForwardsBackwardsTooltip","CommandsTourText","ShortCutTourText"]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameEvents.connect("startTour",self,"_on_startTour")
 	GameEvents.connect("languageChangedSignal",self,"_on_languageChanged")
 	
 	get_close_button().hide()
+
+func handleShow():
+	GameState.dialogIsOpen=visible
+		
+func _init():
+	connect("visibility_changed",self,"handleShow");
 
 func _on_startTour():
 	tourStep=1
@@ -44,7 +50,7 @@ func ShowStep():
 	$"PointToHelp".visible=tourStep==3
 	$"PointToOptions".visible=tourStep==4
 	$"PointToBackwards".visible=tourStep==5
-	$"PointToCommands".visible=tourStep==6
+	$"PointToCommands".visible=tourStep==6 || tourStep==7
 	if tourStep<=tourTexts.size():
 		$"TourText".set_bbcode(Utilities.replaceCommandsInText( tr(tourTexts[tourStep-1]),true))
 	else:

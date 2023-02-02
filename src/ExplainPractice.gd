@@ -5,7 +5,13 @@ var _explainText=""
 func _ready():
 	get_close_button().hide()
 	GameEvents.connect("languageChangedSignal",self,"_on_languageChanged")
-	
+
+func handleShow():
+	GameState.dialogIsOpen=visible
+		
+func _init():
+	connect("visibility_changed",self,"handleShow");
+
 # Called when the node enters the scene tree for the first time.
 func showDialog(explainText):
 	_explainText=explainText

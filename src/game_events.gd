@@ -4,6 +4,8 @@ signal customCommandTextChanged(command,commandName,value)
 
 signal customTooltipTextChanged(command,commandName,value)
 
+signal customShortcutTextChanged(command,commandName,value)
+
 signal settingsChangedSignal
 
 signal languageChangedSignal
@@ -44,6 +46,9 @@ func sendCommandText2Changed(command : int,commandName :String,value : String) -
 
 func sendTooltipChanged(command : int,commandName :String,value : String) -> void:
 	emit_signal("customTooltipTextChanged",command,commandName,value)
+
+func sendShortcutChanged(command : int,commandName :String,value : String) -> void:
+	emit_signal("customShortcutTextChanged",command,commandName,value)
 
 func startPlay():
  call_deferred("emit_signal","startPlay")
@@ -87,9 +92,12 @@ func register_tooltip(control_node, tooltip_type):
 	control_node.connect("mouse_entered",self,"_on_show_tooltip",[control_node,tooltip_type])
 	control_node.connect("mouse_exited",self,"_on_hide_tooltip",[control_node,tooltip_type])
 	
-func register_allways_tooltip(control_node, tooltip_type):
+func register_allways_tooltip(control_node, tooltip_type,includeFocus=false):
 	control_node.connect("mouse_entered",self,"_on_allways_show_tooltip",[control_node,tooltip_type])
 	control_node.connect("mouse_exited",self,"_on_allways_hide_tooltip",[control_node,tooltip_type])
+	if includeFocus:
+		control_node.connect("focus_entered",self,"_on_allways_show_tooltip",[control_node,tooltip_type])
+		control_node.connect("focus_exited",self,"_on_allways_hide_tooltip",[control_node,tooltip_type])
 
 #The register_tooltip method essentially adds these methods to each class 
 # you're registering a tooltip for. This makes adding a tooltip possible in 

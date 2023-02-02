@@ -14,14 +14,33 @@ func loadButtonsSetFromResources():
 func initButtons():
 	loadButtonsSetFromResources()
 	loadButtons()
-	
+
+func _input(event):
+	if !GameState.dialogIsOpen && event is InputEventKey and event.pressed:
+		var focused_node = get_focus_owner()
+		var findNext=false;
+		var isGridNode=focused_node!=null && focused_node.find_parent("GridContainer")!=null
+		if focused_node==null || focused_node.find_parent("RightTopButtons")!=null:
+			var pressedChar=char(event.unicode).to_lower()
+			if pressedChar!="":
+				var button=focusFirstCommand()
+				if button!=null:
+					focused_node=button
+					var command=button.find_parent("*GridButtonContainer*")
+					findNext= command==null || command.shortcut!=pressedChar
+				
+		if findNext || isGridNode:
+			var pressedChar=char(event.unicode).to_lower()
+			if pressedChar!="":
+				gotoNextButton(focused_node.find_parent("*GridButtonContainer*"),pressedChar)
+				
 func _ready():
 	initButtons()
 	GameEvents.connect("languageChangedSignal",self,"_languageChangedSignal");
 	GameEvents.connect("disableCommandSignal",self,"_disableCommandSignal");
 	GameEvents.connect("customButtonSetChangedSignal",self,"_customButtonSetChangedSignal")
 	GameEvents.connect("showButtonsSignal",self,"_showButtonsSignal")
-	GameEvents.connect("startPlay",self,"_startPlaySignal")
+	#GameEvents.connect("startPlay",self,"_startPlaySignal")
 
 func setChildNodeText(node,commandName,value):
 	for N in node.get_children():
@@ -38,6 +57,13 @@ func setChildNodeDisable(node,commandName,disabled:bool):
 		else:
 			if N.name=="GridButton" && N.owner.commandName==commandName:
 				N.disabled=disabled
+#				if disabled:
+#					var button : Button=N
+#					if disabled:
+#						button.enabled_focus_mode=Control.FOCUS_NONE
+#					else:
+#						button.enabled_focus_mode=Control.FOCUS_ALL
+
 	
 func disableCommand(commandName:String,disabled:bool):
 	setChildNodeDisable($GridContainer,commandName,disabled)
@@ -82,6 +108,8 @@ func findNextButton(conainer :GridButtonContainer):
 	return null
 	
 func gotoNextButton(button : GridButtonContainer,pressedChar : String):
+	if GameState.dialogIsOpen:
+		return
 	var i=0;
 	var buttonSet= GameState.currentButtonSet;
 	var buttonCount=buttonSet.size()*2
@@ -89,30 +117,32 @@ func gotoNextButton(button : GridButtonContainer,pressedChar : String):
 	while i<buttonCount && !found && button!=null:
 		button=findNextButton(button)
 		if button!=null:
-			var innerButton : Button=button.get_node("GridButton")
-			var caption :String = tr(innerButton.text)
-			if !innerButton.disabled && caption.to_lower().begins_with(pressedChar):
+			var innerButton : Button=button.get_node("GridButton")			
+			if !innerButton.disabled && pressedChar==button.shortcut:
 				innerButton.grab_focus()
 				found=true
 		
 		i=i+1
 	pass
 	
-func _startPlaySignal():
-	focusFirstCommand()
+#func _startPlaySignal():
+#	focusFirstCommand()
 
 func focusFirstCommand():
+	if GameState.dialogIsOpen:
+		return null
+
 	var button=findNextFocus($GridContainer,$GridContainer.get_children()[0],false)
 	if button!=null:
 		button.grab_focus()
-		
+	return button;
+	
 func buttonInput(event,button):
-	if event is InputEventKey:
-		if event.pressed:
-			var pressedChar=char(event.unicode).to_lower()
-			if pressedChar!="":
-				gotoNextButton(button,pressedChar)
-			
+#	if !GameState.dialogIsOpen && event is InputEventKey && event.pressed:
+#			var pressedChar=char(event.unicode).to_lower()
+#			if pressedChar!="":
+#				gotoNextButton(button,pressedChar)
+	pass	
 
 func addButton(container,commandName :String):
 	var button = preload("res://GridButtonContainer.tscn").instance()

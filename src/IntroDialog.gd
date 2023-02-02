@@ -7,9 +7,10 @@ extends WindowDialog
 var lang=""
 
 func handleShow():
+	GameState.dialogIsOpen=visible
 	if visible:
 		$"HSplitContainer/CloseButton".grab_focus()
-	
+		
 func _init():
 	connect("visibility_changed",self,"handleShow");
 	

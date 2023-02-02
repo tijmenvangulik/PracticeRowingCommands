@@ -16,7 +16,7 @@ func get_drag_data(_pos):
 	 "commandName":owner.commandName,
 	 "text":text,
 	 "dragButton":$".."}
-
+	
 
 func can_drop_data(_pos, data):
 	return typeof(data) == TYPE_DICTIONARY && data["command"]!=null

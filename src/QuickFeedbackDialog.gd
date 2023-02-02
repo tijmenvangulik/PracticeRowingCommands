@@ -11,10 +11,11 @@ var saveState = "Meh"
 func _ready():
 	get_close_button().hide()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func handleShow():
+	GameState.dialogIsOpen=visible
+		
+func _init():
+	connect("visibility_changed",self,"handleShow");
 
 
 func _on_CancelFeedback_pressed():

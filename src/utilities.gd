@@ -29,6 +29,11 @@ func getCommandTooltip(command:int)->String:
 		return Settings.tooltipTranslations[command]
 	return ""
 	
+func getCommandShortcut(command:int)->String:
+	if command>=0 && command<Settings.shortcutTranslations.size():
+		return Settings.shortcutTranslations[command]
+	return ""
+	
 func replaceCommandText(commandText :String) ->String:
 	var command=commandNameToCommand(commandText)
 	if command>=0:
