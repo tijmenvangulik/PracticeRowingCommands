@@ -14,9 +14,9 @@ enum BestState {Normal,StuurboordBest,BakboordBest}
 enum OarsCommand2 {Slippen,Uitbrengen,
   SlippenSB,UitbrengenSB,
   SlippenBB,UitbrengenBB,
-  RiemenHoogSB,RiemenHoogBB}
+  RiemenHoogSB,RiemenHoogBB,IntrekkenSB,IntrekkenBB}
 
-enum StateOars {Roeien,Slippen,SlippenSB,SlippenBB,RiemenHoogSB,RiemenHoogBB}
+enum StateOars {Roeien,Slippen,SlippenSB,SlippenBB,RiemenHoogSB,RiemenHoogBB,IntrekkenSB,IntrekkenBB}
 
 enum Command {
   LaatLopen,
@@ -50,7 +50,9 @@ enum Command {
   BakboortBest,
   BestBedankt,
   SlagklaarAf,
-  PakMaarWeerOp
+  PakMaarWeerOp,
+  IntrekkenSB,
+  IntrekkenBB
 }
 enum CollectGameState {
 	None,
@@ -95,7 +97,9 @@ var commandNames = [
   "BakboortBest",
   "BestBedankt",
   "SlagklaarAf",
-  "PakMaarWeerOp"
+  "PakMaarWeerOp",
+  "IntrekkenSB",
+  "IntrekkenBB"
 ]
 
 enum CommandStyle {StyleButtonGray,StyleButtonDarkGray,StyleButtonSB,StyleButtonBB}
@@ -133,7 +137,9 @@ CommandStyle.StyleButtonSB,
 CommandStyle.StyleButtonBB,
 CommandStyle.StyleButtonGray,
 CommandStyle.StyleButtonDarkGray,
-CommandStyle.StyleButtonDarkGray
+CommandStyle.StyleButtonDarkGray,
+CommandStyle.StyleButtonSB,
+CommandStyle.StyleButtonBB
 ]
 
 const languageItems=["NL viking","Nederlands","English","English 2"]

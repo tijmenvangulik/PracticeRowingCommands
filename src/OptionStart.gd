@@ -122,14 +122,14 @@ func selected(itemIndex : int):
 			explainPopup.showDialog("MoringExplainText")
 		StartPos.StartAanleggenWalMinderKnoppen: 
 			boat.setNewBoatPosition(2082.239,2042.082,-45,Constants.StateOars.Roeien,true)
-			showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.SlippenSB,Constants.Command.VastroeienBB]	
+			showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.SlippenSB,Constants.Command.VastroeienBB,Constants.Command.IntrekkenSB]	
 			explainPopup.showDialog("MoringExplainText")
 		StartPos.StartStrijkendAanleggenWal: 
 			boat.setNewBoatPosition(2220.23,1472.777,-120,Constants.StateOars.Roeien,false)
 			explainPopup.showDialog("BackwardsMoringExplainText")
 		StartPos.StartStrijkendAanleggenWalMinderKnoppen: 
 			boat.setNewBoatPosition(2220.23,1472.777,-120,Constants.StateOars.Roeien,false)
-			showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.StrijkenBeidenBoorden,Constants.Command.SlippenSB,Constants.Command.VastroeienBB]	
+			showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.StrijkenBeidenBoorden,Constants.Command.SlippenSB,Constants.Command.VastroeienBB,Constants.Command.IntrekkenSB]	
 			explainPopup.showDialog("BackwardsMoringExplainText")
 		StartPos.StarGame:
 			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)

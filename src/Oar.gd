@@ -21,6 +21,7 @@ const rotation_slippen_out=-156.6
 
 const angleSpeed=40
 
+
 var inWater=false
 
 var startRotation=rotation_rest
@@ -30,6 +31,9 @@ var frozen=false
 var destinationRotation=rotation_rest
 var normalRotation
 
+enum MoveInOutOarDirection {None,In,Out}
+var moveOarInOut = MoveInOutOarDirection.None
+ 
 export var isSB = false
 
 # Called when the node enters the scene tree for the first time.
@@ -51,6 +55,9 @@ var newStartRotation =0.0
 var newEndRotation=0.0
 var newSyncBBandSB=false
 var syncBBandSB=false
+var pullIn=false
+var pulledIn=false
+var pullSpeed=40
 
 func setNewScheme(startIsInNew : bool,startRotationNew  :float,endRotationNew,direct=false,syncBBandSBNew=false ):
 	#set into a temp and swap when pssible
@@ -64,6 +71,16 @@ func setNewScheme(startIsInNew : bool,startRotationNew  :float,endRotationNew,di
 		setRotation(endRotationNew)
 		frozen=true
 		
+		resetPullIn()
+		if slaveOar!=null:
+			slaveOar.resetPullIn()
+func resetPullIn():
+	pulledIn=false
+	if isSB:
+		position.y=20
+	else:
+		position.y=-20
+
 func swapFromNewScheme():
 	startIsIn=newStartIsIn
 	startRotation=newStartRotation
@@ -91,6 +108,10 @@ func calcNewRotation(delta,currentRotation : float):
 	#mirror sb
 		
 	if !frozen && (endRotation!=startRotation || currentRotation!=startRotation):
+		if pulledIn:
+			doPullOut()
+			return currentRotation
+			
 		var lcoalOarsGoForwards= currentRotation<destinationRotation
 		
 		if lcoalOarsGoForwards:
@@ -154,7 +175,10 @@ func _process(delta):
 				syncBBandSB=false
 				otherSideOar.frozen=false
 				otherSideOar.syncBBandSB=false
-				
+	if normalRotation==rotation_center && pullIn!=pulledIn:
+		handlePullIn(delta)
+
+
 	setImage()
 
 func isRotation(checkRotation):
@@ -179,4 +203,32 @@ func setRotation(newRotation):
 		slaveOar.rotation_degrees=rotation_degrees
 		slaveOar.inWater=inWater
 
+func doPullIn():
+	pullIn=true;
+
 	
+func doPullOut():
+	pullIn=false;
+ 
+func handlePullIn(delta):	
+	var diff=pullSpeed*delta*(-1 if pullIn else 1)*(1 if isSB else -1)
+	position.y+=diff
+	
+	if pullIn:
+		if isSB && position.y<-10:
+			position.y=-10
+			pulledIn=true
+		elif !isSB && position.y>10:
+			position.y=10
+			pulledIn=true
+	else:
+		if isSB && position.y>20:
+			position.y=20
+			pulledIn=false
+		elif !isSB && position.y<-20:
+			position.y=-20
+			pulledIn=false
+	if slaveOar!=null:
+		slaveOar.position.y=position.y
+		slaveOar.pulledIn=pulledIn
+		slaveOar.pullIn=pullIn

@@ -17,6 +17,8 @@ func determineOarsState(boat: Boat,command,oarsCommand )-> int:
 			else: if stateOars==Constants.StateOars.Roeien:
 				return Constants.StateOars.SlippenBB
 		Constants.OarsCommand2.UitbrengenBB:
+			if stateOars==Constants.StateOars.IntrekkenBB:
+				return Constants.StateOars.Roeien
 			if stateOars==Constants.StateOars.Slippen:
 				return Constants.StateOars.SlippenSB
 			else:
@@ -27,6 +29,8 @@ func determineOarsState(boat: Boat,command,oarsCommand )-> int:
 			else:
 				return Constants.StateOars.SlippenSB
 		Constants.OarsCommand2.UitbrengenSB:
+			if stateOars==Constants.StateOars.IntrekkenSB:
+				return Constants.StateOars.Roeien
 			if stateOars==Constants.StateOars.Slippen:
 				return Constants.StateOars.SlippenBB
 			else:
@@ -34,8 +38,15 @@ func determineOarsState(boat: Boat,command,oarsCommand )-> int:
 		Constants.OarsCommand2.RiemenHoogSB:
 			return Constants.StateOars.RiemenHoogSB
 			
-		Constants.OarsCommand2.RiemenHoogBB:					
+		Constants.OarsCommand2.RiemenHoogBB:
 			return Constants.StateOars.RiemenHoogBB
+		Constants.OarsCommand2.IntrekkenBB:
+			if stateOars==Constants.StateOars.Roeien:
+				return Constants.StateOars.IntrekkenBB
+		Constants.OarsCommand2.IntrekkenSB:
+			if stateOars==Constants.StateOars.Roeien:
+				return Constants.StateOars.IntrekkenSB
+			
 	return stateOars
 
 func determineLightPaddleState(boat: Boat,command: int,newLightPaddle:bool)-> bool:
