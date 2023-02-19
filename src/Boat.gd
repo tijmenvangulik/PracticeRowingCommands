@@ -36,6 +36,7 @@ var crashState=false;
 var state:int = Constants.RowState.LaatLopen
 
 
+var org_linear_damp=0
 
 var lastCommand=-1
 var newCommand=-1
@@ -62,6 +63,7 @@ func _ready():
 	$"OarSB1".otherSideOar=$"OarBB1"
 	$"OarBB2".otherSideOar=$"OarSB2"
 	$"OarSB2".otherSideOar=$"OarBB2"
+	org_linear_damp=linear_damp
 	
 func _isScullSignal(isScull):
 	$"OarSB1".visible=isScull
@@ -274,7 +276,11 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	if onePush:
 		currentSpeedFactor=0.0
 		onePush=false;
-		
+	
+	if sideWays:
+		linear_damp=0.95
+	else:
+		 linear_damp=org_linear_damp
 	# Simulate the keel and reduce the side way forces
 	if !sideWays && !crashState:
 		#remove the rotation
@@ -525,11 +531,11 @@ func changeState(command:int,newState:int,direction:int,direct=false):
 		Constants.RowState.UitzettenBB:
 			onePush=true
 			state=Constants.RowState.LaatLopen
-			setSpeedAndDirection(12,0,1,true)
+			setSpeedAndDirection(50,0,1,true)
 		Constants.RowState.UitzettenSB:
 			onePush=true
 			state=Constants.RowState.LaatLopen
-			setSpeedAndDirection(-12,0,1,true)
+			setSpeedAndDirection(-50,0,1,true)
 		Constants.RowState.RondmakenBB:
 			setSpeedAndDirection(0.01,-0.3,1,false)
 			oarBB.setNewScheme(true,oarBB.rotation_out,oarBB.rotation_inHalen,direct)
