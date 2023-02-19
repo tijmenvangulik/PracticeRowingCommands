@@ -6,9 +6,10 @@ func loadButtonsSetFromResources():
 		
 		var p= JSON.parse(buttonSet)
 		if typeof(p.result)==TYPE_ARRAY:
-			if GameState.useDefaultButtonSet:
-				GameState.currentButtonSet=p.result
 			GameState.defaultButtonSet=p.result
+			if GameState.useDefaultButtonSet:
+				GameState.currentButtonSet=GameState.getDefaultButtonSet()
+			
 		
 	
 func initButtons():
@@ -171,7 +172,7 @@ func loadButtons():
 
 func setCustomButtonSet(newButtonSet):
 	if newButtonSet.size()==0: 
-		GameState.currentButtonSet=GameState.defaultButtonSet
+		GameState.currentButtonSet=GameState.getDefaultButtonSet()
 		GameState.useDefaultButtonSet=true
 	else: 
 		GameState.currentButtonSet=newButtonSet

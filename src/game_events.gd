@@ -36,6 +36,8 @@ signal customCommandText2Changed
 
 signal startPlay
 
+signal isScullChangedSignal
+
 func sendCommandChanged(command : int,commandName :String,value : String) -> void:
 	emit_signal("customCommandTextChanged",command,commandName,value)
 
@@ -84,6 +86,9 @@ func showButtons(show : bool):
 	
 func doCommand(command:int):
 	emit_signal("doCommandSignal",command)
+
+func isScullChanged(isScull:bool):
+	emit_signal("isScullChangedSignal",isScull)
 
 #you can put other stuff here, like maybe a path to a custom panel to put
 #into the tooltip scene. I have basiscs like which type it is and where it should

@@ -51,6 +51,8 @@ func _ready():
 	setForwardsPosition(0)
 	GameEvents.connect("zoomChangedSignal",self,"_zoomChangedSignal")
 	GameEvents.connect("doCommandSignal",self,"_doCommandSignal")
+	GameEvents.connect("isScullChangedSignal",self,"_isScullSignal")
+	
 	$"OarBB2".masterOar=$"OarBB1"
 	$"OarSB2".masterOar=$"OarSB1"
 	$"OarBB1".slaveOar=$"OarBB2"
@@ -61,7 +63,9 @@ func _ready():
 	$"OarBB2".otherSideOar=$"OarSB2"
 	$"OarSB2".otherSideOar=$"OarBB2"
 	
-	
+func _isScullSignal(isScull):
+	$"OarSB1".visible=isScull
+	$"OarBB2".visible=isScull
 	
 func _process(delta):
 	setForwardsPosition(delta)

@@ -22,3 +22,24 @@ func changeCollectGameState(newState):
 		GameEvents.collectGameStateChanged(newState)
 
 var showTooltips= false
+
+func getDefaultButtonSet():
+	if Settings.isScull:
+		return defaultButtonSet
+	# translate to not scull
+	var result :Array=[]
+	for item in GameState.defaultButtonSet:
+		var sumItems=item.split(",");
+		var subResult=[]
+		for subItem in sumItems:
+			if subItem== "SlippenSB":
+				subResult.append("IntrekkenSB")
+			elif subItem== "SlippenBB":
+				subResult.append("IntrekkenBB")
+			elif subItem!="Slippen" && subItem!="Uitbrengen":
+				subResult.append(subItem)
+		if subResult.size()>0:
+			result.append(",".join(subResult))
+		else:
+			result.append("")
+	return result

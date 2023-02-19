@@ -52,7 +52,7 @@ func loadDestButtons():
 	
 	var buttonSet=Settings.customButtonSet
 	if buttonSet.size()==0:
-		buttonSet=GameState.defaultButtonSet
+		buttonSet=GameState.getDefaultButtonSet()
 	for item in buttonSet:
 		var grouper=addGridGrouper(commandContainerDest)
 		

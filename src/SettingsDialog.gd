@@ -11,6 +11,8 @@ export (NodePath) onready var showCommandTooltips = get_node(showCommandTooltips
 export (NodePath) onready var commandButtonsTab = get_node(commandButtonsTab) as CommandButtonsTab
 
 export (NodePath) onready var showShortCutsInButtons = get_node(showShortCutsInButtons) as Button
+export (NodePath) onready var isScullButton = get_node(isScullButton) as Button
+
 
 var settingsFile="user://settings.save"
 
@@ -196,7 +198,8 @@ func getSettings(removePrivate=false):
 	  "shortcuts":shortcutDict,
 	  "textTranslations":commandTextDict,
 	  "showCommandTooltips":Settings.showCommandTooltips,
-	  "showShortCutsInButtons":Settings.showShortCutsInButtons
+	  "showShortCutsInButtons":Settings.showShortCutsInButtons,
+	  "isScull":Settings.isScull
 	}
 	if removePrivate:
 		removePrivateSettings(save_dict)
@@ -237,9 +240,7 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 	
 	var 	tooltipsOn=true
 	if dict.has("showCommandTooltips"): 
-		 tooltipsOn=dict["showCommandTooltips"]
-	
-	
+		 tooltipsOn=dict["showCommandTooltips"]	
 	Settings.showCommandTooltips=tooltipsOn
 	showCommandTooltips.set_pressed(tooltipsOn)
 
@@ -248,6 +249,12 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 		 shotCutsOn=dict["showShortCutsInButtons"]
 	Settings.showShortCutsInButtons=shotCutsOn
 	showShortCutsInButtons.set_pressed(shotCutsOn)
+
+	var 	isScull=true
+	if dict.has("isScull"): 
+		 isScull=dict["isScull"]
+	Settings.isScull=isScull
+	isScullButton.set_pressed(isScull)
 	
 	var customButtonSet=[]
 	if dict.has("customButtonSet"):
@@ -419,4 +426,12 @@ func _on_ShowCommandTooltips_toggled(button_pressed):
 
 func _on_ShowShortCutsInButtons_toggled(button_pressed):
 	Settings.showShortCutsInButtons=button_pressed
+	GameEvents.languageChanged()
+
+
+func _on_Scull_toggled(button_pressed):
+	Settings.isScull=button_pressed
+	GameEvents.isScullChanged(Settings.isScull)
+	if GameState.useDefaultButtonSet:
+		GameState.currentButtonSet=GameState.getDefaultButtonSet()
 	GameEvents.languageChanged()
