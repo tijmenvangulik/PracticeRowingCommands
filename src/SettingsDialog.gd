@@ -61,6 +61,7 @@ func _ready():
 	get_close_button().hide()
 	
 	GameEvents.register_allways_tooltip($TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons,"ShortCutTourText")
+	GameEvents.register_allways_tooltip($TabContainer/GeneralSettingsTab/GridContainer/Scull,"ScullTooltip")
 
 	var commands=Constants.commandNames
 	while Settings.commandTranslations.size()<commands.size():

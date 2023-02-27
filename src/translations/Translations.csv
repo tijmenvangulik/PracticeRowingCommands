@@ -211,3 +211,4 @@ IntrekkenBB_tooltip;Trek de riemen aan bakboord riemen in om aan een hoge wal aa
 IntrekkenSB_shortcut;k;k;n;n
 IntrekkenBB_shortcut;k;k;n;n
 Scull;Scull boot;Scull boot;Scull boat;Scull boat
+ScullTooltip;Als scull uit staat dan heeft de boot minder riemen en wordt bij de standaard knoppen sets slippen vervangen voor intrekken.;Als scull uit staat dan heeft de boot minder riemen en wordt bij de standaard knoppen sets slippen vervangen voor intrekken.;When scull is switched off the boat has less oars and when you use a standard button set the command blades along side will be replaced by pull in.;When scull is switched off the boat has less oars and when you use a standard button set the command blades along side will be replaced by pull in.
