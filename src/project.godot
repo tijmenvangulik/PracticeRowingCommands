@@ -127,6 +127,8 @@ weight=false
 snap=false
 clear=false
 collis=false
+ray=false
+path=false
 
 [importer_defaults]
 
