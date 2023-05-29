@@ -25,7 +25,6 @@ enum StartPos {Start,OpWater,
 func _ready():
 		
 	add_item("StartPositie",StartPos.Start)
-	add_item("StartStarGame",StartPos.StarGame)
 	add_item("StartOpWater",StartPos.OpWater)
 	add_item("StartAanleggenMinderKnoppen",StartPos.StartAanleggenMinderKnoppen)
 	add_item("StartAanleggen",StartPos.Aanleggen)
@@ -39,6 +38,8 @@ func _ready():
 
 	add_item("StartStrijkendAanleggenWalMinderKnoppen",StartPos.StartStrijkendAanleggenWalMinderKnoppen)
 	add_item("StartStrijkendAanleggenWal",StartPos.StartStrijkendAanleggenWal)
+
+	add_item("StartStarGame",StartPos.StarGame)
 	
 	add_item("ShowIntroText",StartPos.Intro)
 	add_item("StartTour",StartPos.StartTour)
