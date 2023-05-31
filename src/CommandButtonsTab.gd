@@ -9,9 +9,14 @@ var customButtonSetChanged=false;
 
 func _ready():
 	GameEvents.connect("customButtonSetChangedSignal",self,"_customButtonSetChangedSignal")
+	GameEvents.connect("languageChangedSignal",self,"_languageChangedSignal");
 	
 func init():
 	loadCommandSet()
+	loadDestButtons()
+
+	
+func _languageChangedSignal():
 	loadDestButtons()
 
 func addGridGrouper(container):
