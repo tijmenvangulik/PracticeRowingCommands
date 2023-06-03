@@ -39,14 +39,20 @@ func _ready():
 	add_separator()
 	add_item("ShowIntroText",StartPos.Intro)
 	add_item("StartTour",StartPos.StartTour)
-#	add_separator()
+	
 	
 	
 	connect("item_selected",self,"selected")
 	text="StartPositie"
-	
+
+	var pm=get_popup()
+	# hide the radio
+	for i in pm.get_item_count():
+	        if pm.is_item_radio_checkable(i):
+	            pm.set_item_as_radio_checkable(i, false)
+	#improve style
 	var styleDropDown= preload("res://MainDropDownPopup.tres")
-	get_popup().add_stylebox_override("panel",styleDropDown)
+	pm.add_stylebox_override("panel",styleDropDown)
 
 
 	GameEvents.connect("introSignal",self,"_introSignal")
