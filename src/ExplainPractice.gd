@@ -19,13 +19,13 @@ func showDialog(explainText,showLessButonsArray):
 	_explainText=explainText
 	_showLessButtonsArray=showLessButonsArray
 	showText()
+	show_modal(true)
+	$HBoxContainer/StartLessButtons.grab_focus()
 	
 func showText():
 	var text=tr(_explainText);
 	if text!=null && text!="" && text!=_explainText :
 		$PracticeExplain.set_bbcode(Utilities.replaceCommandsInText(text,true))
-		visible=true
-		$HBoxContainer/StartLessButtons.grab_focus()
 	
 func _on_Start_pressed():
 	hide()
