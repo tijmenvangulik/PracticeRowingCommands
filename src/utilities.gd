@@ -85,3 +85,17 @@ func formatScore(time,includeMiliSeconds):
 	var seconds =  timeParts[1]
 	var miliSeconds=timeParts[2]
 	return formatTime(minutes,seconds,miliSeconds)
+
+func disableCommand(name:String,disabled:bool):
+	#"../ButtonsContainer/GridContainer/HalenBeideBoorden"
+	#var itemNr=grid.find(name)
+	GameEvents.disableCommand(name,disabled)
+	
+func showOnlyButtons(var commands):
+	
+	for commandName in Constants.commandNames:
+		disableCommand(commandName,len(commands)!=0)
+	
+	for command in commands:
+		disableCommand(Constants.commandNames[command],false)
+	GameEvents.commandsChanged(commands)

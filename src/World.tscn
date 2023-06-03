@@ -2016,7 +2016,7 @@ margin_bottom = -10.0
 grow_horizontal = 2
 custom_constants/separation = 10
 
-[node name="Start" type="Button" parent="CanvasLayer/ExplainPracticeDialog/HBoxContainer"]
+[node name="StartLessButtons" type="Button" parent="CanvasLayer/ExplainPracticeDialog/HBoxContainer"]
 margin_right = 160.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 160, 0 )
@@ -2026,6 +2026,18 @@ custom_styles/pressed = ExtResource( 34 )
 custom_styles/focus = ExtResource( 34 )
 custom_styles/normal = ExtResource( 10 )
 text = "StartPractice"
+
+[node name="StartAllButtons" type="Button" parent="CanvasLayer/ExplainPracticeDialog/HBoxContainer"]
+margin_left = 170.0
+margin_right = 384.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 52 )
+custom_styles/pressed = ExtResource( 53 )
+custom_styles/focus = ExtResource( 17 )
+custom_styles/normal = ExtResource( 64 )
+text = "StartPracticeAllCommands"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2220,6 +2232,7 @@ custom_styles/hover = SubResource( 41 )
 custom_styles/pressed = SubResource( 41 )
 custom_styles/focus = SubResource( 41 )
 custom_styles/normal = SubResource( 40 )
+shortcut_in_tooltip = false
 text = "Start"
 expand_icon = true
 script = ExtResource( 40 )
@@ -2773,7 +2786,8 @@ __meta__ = {
 [connection signal="pressed" from="CanvasLayer/QuickFeedbackDialog/EmoticonSelection/Love" to="CanvasLayer/QuickFeedbackDialog" method="_on_Love_pressed"]
 [connection signal="pressed" from="CanvasLayer/QuickFeedbackDialog/HBoxContainer/CancelFeedback" to="CanvasLayer/QuickFeedbackDialog" method="_on_CancelFeedback_pressed"]
 [connection signal="pressed" from="CanvasLayer/QuickFeedbackDialog/HBoxContainer/SendFeedback" to="CanvasLayer/QuickFeedbackDialog" method="_on_SendFeedback_pressed"]
-[connection signal="pressed" from="CanvasLayer/ExplainPracticeDialog/HBoxContainer/Start" to="CanvasLayer/ExplainPracticeDialog" method="_on_Start_pressed"]
+[connection signal="pressed" from="CanvasLayer/ExplainPracticeDialog/HBoxContainer/StartLessButtons" to="CanvasLayer/ExplainPracticeDialog" method="_on_StartLessButtons_pressed"]
+[connection signal="pressed" from="CanvasLayer/ExplainPracticeDialog/HBoxContainer/StartAllButtons" to="CanvasLayer/ExplainPracticeDialog" method="_on_Start_pressed"]
 [connection signal="about_to_show" from="CanvasLayer/TourDialog" to="CanvasLayer/TourDialog" method="_on_TourDialog_about_to_show"]
 [connection signal="pressed" from="CanvasLayer/TourDialog/HSplitContainer/TourStop" to="CanvasLayer/TourDialog" method="_on_TourStop_pressed"]
 [connection signal="pressed" from="CanvasLayer/TourDialog/HSplitContainer/TourNext" to="CanvasLayer/TourDialog" method="_on_TourNext_pressed"]
