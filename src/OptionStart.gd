@@ -56,7 +56,7 @@ func _ready():
 
 
 	GameEvents.connect("introSignal",self,"_introSignal")
-	GameEvents.register_allways_tooltip(self,"OptionStartTooltip")
+	GameEvents.register_tooltip(self,"OptionStartTooltip")
 
 func _introSignal(isVisible : bool):
 	visible=!isVisible
