@@ -68,18 +68,22 @@ stream = ExtResource( 4 )
 
 [node name="OarBB2" parent="." instance=ExtResource( 5 )]
 position = Vector2( -5, -20 )
+boat = NodePath("..")
 
 [node name="OarBB1" parent="." instance=ExtResource( 5 )]
 position = Vector2( 15, -20 )
+boat = NodePath("..")
 
 [node name="OarSB2" parent="." instance=ExtResource( 5 )]
 position = Vector2( -5, 20 )
 scale = Vector2( -1, 1 )
+boat = NodePath("..")
 isSB = true
 
 [node name="OarSB1" parent="." instance=ExtResource( 5 )]
 position = Vector2( 15, 20 )
 scale = Vector2( -1, 1 )
+boat = NodePath("..")
 isSB = true
 
 [node name="OarBB1Collision" type="CollisionPolygon2D" parent="."]

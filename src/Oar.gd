@@ -6,6 +6,8 @@ extends Node2D
 # var b = "text"
 class_name Oar
 
+export (NodePath) onready var boat = get_node(boat) as Boat
+
 var masterOar :Oar =null
 
 var slaveOar :Oar =null
@@ -149,7 +151,11 @@ func setInWater():
 		inWater=startIsIn
 	else:
 		inWater=!startIsIn
+		if startIsIn && boat.oneStroke:
+			boat.endOneStroke()
+			
 
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	

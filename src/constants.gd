@@ -52,7 +52,11 @@ enum Command {
   SlagklaarAf,
   PakMaarWeerOp,
   IntrekkenSB,
-  IntrekkenBB
+  IntrekkenBB,
+  HaalSB,
+  HaalBB,
+  StrijkSB,
+  StrijkBB,
 }
 enum CollectGameState {
 	None,
@@ -99,7 +103,11 @@ var commandNames = [
   "SlagklaarAf",
   "PakMaarWeerOp",
   "IntrekkenSB",
-  "IntrekkenBB"
+  "IntrekkenBB",
+  "HaalSB",
+  "HaalBB",
+  "StrijkSB",
+  "StrijkBB",
 ]
 
 enum CommandStyle {StyleButtonGray,StyleButtonDarkGray,StyleButtonSB,StyleButtonBB}
@@ -138,6 +146,10 @@ CommandStyle.StyleButtonBB,
 CommandStyle.StyleButtonGray,
 CommandStyle.StyleButtonDarkGray,
 CommandStyle.StyleButtonDarkGray,
+CommandStyle.StyleButtonSB,
+CommandStyle.StyleButtonBB,
+CommandStyle.StyleButtonSB,
+CommandStyle.StyleButtonBB,
 CommandStyle.StyleButtonSB,
 CommandStyle.StyleButtonBB
 ]

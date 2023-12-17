@@ -213,3 +213,15 @@ IntrekkenSB_shortcut;k;k;n;n
 IntrekkenBB_shortcut;k;k;n;n
 Scull;Scull boot;Scull boot;Scull boat;Scull boat
 ScullTooltip;Als scull uit staat dan heeft de boot minder riemen en wordt bij de standaard knoppen sets slippen vervangen voor intrekken.;Als scull uit staat dan heeft de boot minder riemen en wordt bij de standaard knoppen sets slippen vervangen voor intrekken.;When scull is switched off the boat has less oars and when you use a standard button set the command blades along side will be replaced by pull in.;When scull is switched off the boat has less oars and when you use a standard button set the command blades along side will be replaced by pull in.
+HaalBB;1 haaltje BB;Klapje BB;1 Stroke stroke side;1 Stroke port
+HaalSB;1 haaltje SB;Klapje SB;1 Stroke bow side;1 Stroke starboard
+StrijkBB;1 strijkje BB;1 strijkje BB;1 Stroke stroke side;1 Back down port
+StrijkSB;1 strijkje SB;1 strijkje SB;1 Back down bow side;1 Back down starboard
+HaalBB_shortcut;1;1;1;1
+HaalSB_shortcut;2;2;2;2
+StrijkBB_shortcut;3;3;3;3
+StrijkSB_shortcut;4;4;4;4
+HaalBB_tooltip;1 haal bakboord;1 haal bakboord;1 Stroke stroke side;1 Stroke port
+HaalSB_tooltip;1 haal stuurboord;1 haal stuurboord;1 Stroke bow side;1 Stroke starboard
+StrijkBB_tooltip;1 strijk bakboord;1 strijk bakboord;1 Stroke stroke side;1 Back down port
+StrijkSB_tooltip;1 strijk stuurboord;1 strijk stuurboord;1 Back down bow side;1 Back down starboard

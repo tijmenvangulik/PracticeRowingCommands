@@ -34,6 +34,7 @@ var onePush=false;
 var crashState=false;
 
 var state:int = Constants.RowState.LaatLopen
+var oneStroke = false;
 
 
 var org_linear_damp=0
@@ -46,7 +47,6 @@ var forwardsPositon=150
 var backwardsPosition=-200
 var currentPositionX=0;
 var moveStep=1000
-
 	
 func _ready():
 	setForwardsPosition(0)
@@ -402,6 +402,14 @@ func doCommand(command:int):
 			oarsCommand(command,Constants.OarsCommand2.IntrekkenSB)
 		Constants.Command.IntrekkenBB:
 			oarsCommand(command,Constants.OarsCommand2.IntrekkenBB)
+		Constants.Command.HaalSB:
+			changeState(command,Constants.RowState.HalenSB,1,false,true)
+		Constants.Command.StrijkSB:
+			changeState(command,Constants.RowState.StrijkenSB,-1,false,true)
+		Constants.Command.HaalBB:
+			changeState(command,Constants.RowState.HalenBB,1,false,true)
+		Constants.Command.StrijkBB:
+			changeState(command,Constants.RowState.StrijkenBB,-1,false,true)
 				
 	lastCommand=command
 
@@ -412,7 +420,9 @@ func setLightPaddle(command :int,newLightPaddle:bool):
 	if rules.error!="": showError(rules.error)
 	else: lightPaddleOn=newValue
 
-
+func endOneStroke():
+	oneStroke=false
+	doCommand(Constants.Command.Bedankt)
 	
 func setBest(command :int,newBestState :int):
 	var rules=getRules()
@@ -420,7 +430,7 @@ func setBest(command :int,newBestState :int):
 	if rules.error!="": showError(rules.error)
 	else: bestState= newState
 	
-func changeState(command:int,newState:int,direction:int,direct=false):
+func changeState(command:int,newState:int,direction:int,direct=false,doOneStroke=false):
 	var oldState=state
 	#first check if the new state is allowed	
 	var rules=getRules()
@@ -437,11 +447,16 @@ func changeState(command:int,newState:int,direction:int,direct=false):
 	
 	var slippenBB=stateOars==Constants.StateOars.SlippenBB || stateOars==Constants.StateOars.Slippen ;
 	var slippenSB=stateOars==Constants.StateOars.SlippenSB || stateOars==Constants.StateOars.Slippen ;
-
+	
+		
 	# for no rule sets go back to rowing state when pulled in
 	if  oldState!=state && (stateOars==Constants.StateOars.IntrekkenBB || stateOars==Constants.StateOars.IntrekkenSB ) && !oarBB.pulledIn && !oarSB.pulledIn:
 	   stateOars=Constants.StateOars.Roeien
+	oneStroke=doOneStroke;
 	
+	var oneStokeFactor=1.0;
+	if oneStroke:
+		oneStokeFactor=0.6
 	# going forward goes faster than backwards
 	# change factor of Max speed, max rotat, speed inc,rotation inc
 	# negative speed is backwards and negative turn speed is turn to the left
@@ -485,13 +500,13 @@ func changeState(command:int,newState:int,direction:int,direct=false):
 					oarSB.setNewScheme(false,oarBB.rotation_rest,oarBB.rotation_rest,direct)
 
 		Constants.RowState.HalenSB:
-			setSpeedAndDirection(0.35,-0.3,1,false)
+			setSpeedAndDirection(0.35*oneStokeFactor,-0.3*oneStokeFactor,1,false)
 			oarSB.setNewScheme(true,oarSB.rotation_inHalen,oarSB.rotation_out,direct)
 			#if !slippenBB:
 			#	oarBB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct)
 
 		Constants.RowState.HalenBB:
-			setSpeedAndDirection(0.35,0.3,1,false)
+			setSpeedAndDirection(0.35*oneStokeFactor,0.3*oneStokeFactor,1,false)
 			oarBB.setNewScheme(true,oarBB.rotation_inHalen,oarBB.rotation_out,direct)
 			#if !slippenSB:
 			#	oarSB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct)
@@ -517,10 +532,10 @@ func changeState(command:int,newState:int,direction:int,direct=false):
 			oarSB.setNewScheme(true,oarBB.rotation_out,oarBB.rotation_inHalen,direct,true)
 
 		Constants.RowState.StrijkenBB:
-			setSpeedAndDirection(-0.3,-0.3,0.5,false)
+			setSpeedAndDirection(-0.3*oneStokeFactor,-0.3*oneStokeFactor,0.5,false)
 			oarBB.setNewScheme(true,oarBB.rotation_out,oarBB.rotation_inHalen,direct)
 		Constants.RowState.StrijkenSB:
-			setSpeedAndDirection(-0.3,0.3,0.5,false)
+			setSpeedAndDirection(-0.3*oneStokeFactor,0.3*oneStokeFactor,0.5,false)
 			oarSB.setNewScheme(true,oarBB.rotation_out,oarBB.rotation_inHalen,direct)
 		Constants.RowState.PeddelendStrijkenBB:
 			setSpeedAndDirection(0.1,-0.1,1,true)
