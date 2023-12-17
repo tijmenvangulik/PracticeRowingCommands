@@ -410,6 +410,10 @@ func doCommand(command:int):
 			changeState(command,Constants.RowState.HalenBB,1,false,true)
 		Constants.Command.StrijkBB:
 			changeState(command,Constants.RowState.StrijkenBB,-1,false,true)
+		Constants.Command.Haal:
+			changeState(command,Constants.RowState.HalenBeideBoorden,1,false,true)
+		Constants.Command.Strijk:
+			changeState(command,Constants.RowState.StrijkenBeidenBoorden,-1,false,true)
 				
 	lastCommand=command
 
@@ -462,7 +466,7 @@ func changeState(command:int,newState:int,direction:int,direct=false,doOneStroke
 	# negative speed is backwards and negative turn speed is turn to the left
 	match state:
 		Constants.RowState.HalenBeideBoorden:
-			setSpeedAndDirection(0.4,0,1,false)
+			setSpeedAndDirection(0.4*oneStokeFactor,0,1,false)
 			oarBB.setNewScheme(true,oarBB.rotation_inHalen,oarBB.rotation_out,direct,true)
 			oarSB.setNewScheme(true,oarBB.rotation_inHalen,oarBB.rotation_out,direct,true)
 		Constants.RowState.Roeien:
@@ -527,7 +531,7 @@ func changeState(command:int,newState:int,direction:int,direct=false,doOneStroke
 			if !slippenSB && !oarSB.pulledIn:
 				oarSB.setNewScheme(false,oarBB.rotation_rest,oarBB.rotation_rest,direct)
 		Constants.RowState.StrijkenBeidenBoorden:
-			setSpeedAndDirection(-0.4,0,0.5,false)
+			setSpeedAndDirection(-0.4*oneStokeFactor,0,0.5,false)
 			oarBB.setNewScheme(true,oarBB.rotation_out,oarBB.rotation_inHalen,direct,true)
 			oarSB.setNewScheme(true,oarBB.rotation_out,oarBB.rotation_inHalen,direct,true)
 

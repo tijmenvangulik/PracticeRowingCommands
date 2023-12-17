@@ -57,6 +57,8 @@ enum Command {
   HaalBB,
   StrijkSB,
   StrijkBB,
+  Haal,
+  Strijk
 }
 enum CollectGameState {
 	None,
@@ -108,6 +110,8 @@ var commandNames = [
   "HaalBB",
   "StrijkSB",
   "StrijkBB",
+  "Haal",
+  "Strijk"
 ]
 
 enum CommandStyle {StyleButtonGray,StyleButtonDarkGray,StyleButtonSB,StyleButtonBB}
@@ -151,7 +155,9 @@ CommandStyle.StyleButtonBB,
 CommandStyle.StyleButtonSB,
 CommandStyle.StyleButtonBB,
 CommandStyle.StyleButtonSB,
-CommandStyle.StyleButtonBB
+CommandStyle.StyleButtonBB,
+CommandStyle.StyleButtonDarkGray,
+CommandStyle.StyleButtonDarkGray,
 ]
 
 const languageItems=["NL viking","Nederlands","English","English 2"]

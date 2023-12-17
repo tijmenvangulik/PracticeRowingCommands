@@ -218,10 +218,16 @@ HaalSB;1 haaltje SB;Klapje SB;1 Stroke bow side;1 Stroke starboard
 StrijkBB;1 strijkje BB;1 strijkje BB;1 Stroke stroke side;1 Back down port
 StrijkSB;1 strijkje SB;1 strijkje SB;1 Back down bow side;1 Back down starboard
 HaalBB_shortcut;1;1;1;1
-HaalSB_shortcut;2;2;2;2
-StrijkBB_shortcut;3;3;3;3
-StrijkSB_shortcut;4;4;4;4
-HaalBB_tooltip;1 haal bakboord;1 haal bakboord;1 Stroke stroke side;1 Stroke port
-HaalSB_tooltip;1 haal stuurboord;1 haal stuurboord;1 Stroke bow side;1 Stroke starboard
-StrijkBB_tooltip;1 strijk bakboord;1 strijk bakboord;1 Stroke stroke side;1 Back down port
-StrijkSB_tooltip;1 strijk stuurboord;1 strijk stuurboord;1 Back down bow side;1 Back down starboard
+HaalSB_shortcut;4;4;4;4
+StrijkBB_shortcut;5;5;5;5
+StrijkSB_shortcut;7;7;7;7
+HaalBB_tooltip;1 haaltje bakboord;1 haal bakboord;1 Stroke stroke side;1 Stroke port
+HaalSB_tooltip;1 haaltje stuurboord;1 haal stuurboord;1 Stroke bow side;1 Stroke starboard
+StrijkBB_tooltip;1 strijkje bakboord;1 strijk bakboord;1 Stroke bow side;1 Back down port
+StrijkSB_tooltip;1 strijkje stuurboord;1 strijk stuurboord;1 Back down bow side;1 Back down starboard
+Haal;1 haaltje beide boorden;1 klapje beide boorden;1 Stroke both sides;1 Stroke both sides
+Haal_shortcut;3;3;3;3
+Haal_tooltip;1 haaltje beide boorden;1 haaltje;1 Stroke both sides;1 Stroke both sides
+Strijk;1 strijkje beide boorden;1 strijkje beide boorden;1 back down both sides;1 back down both sides
+Strijk_shortcut;6;6;6;6
+Strijk_tooltip;1 strijkje beide boorden;1 strijkje beide boorden;1 back down both sides;1 back down both sides
