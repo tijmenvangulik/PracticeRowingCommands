@@ -25,6 +25,11 @@ Some highlights
 
 ![Screenshot](art/Screenshot.jpg)
 
+# Self hosting
+To self host the app download the ![distribute.zip](distribute.zip) file and extract the files in a folder on your website. The app is mostly a static web app which does not require server interaction. There are two features in the app which require a server: The high scores and the feedback feature. The app will use my own server for these features. For communication with my server you need security codes which are not included in the source code. When my server is down or you do not want to use these features just ignore them ore remove it from the code. 
+
+In the zip file there is also an index.wasm.br file. This is not a required but this is a brotli compressed file of the wasm file. When you enable brotli compression on your web server this file can speed up downloading the app.
+
 # Thank you 
 
 * Godot for the free user friendly game engine [link](https://godotengine.org/)

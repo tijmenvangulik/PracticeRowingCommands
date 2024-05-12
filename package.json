@@ -15,7 +15,8 @@
     "build": "npm run compress && npm run updatehtml && npm run copyjs",
     "deploy": "rsync -rvu --exclude \".*\" bin/html/ /Volumes/www.vangulik.org/PracticeRowingCommands/",
     "buildAndDeploy":"npm run build && npm run deploy",
-    "prepare-git-commit":"cp src/calcSecurityCodeForGit.gd src/calcSecurityCode.gd ",
+    "createzip":"rm distribute.zip && cd ./bin/html && zip  -vr ../../distribute.zip . -x \"*.DS_Store\" -q  ",
+    "prepare-git-commit":"cp src/calcSecurityCodeForGit.gd src/calcSecurityCode.gd && npm run createzip ",
     "prepare-build":"cp src/calcSecurityCodeDoNotCommit.gd src/calcSecurityCode.gd"
   },
   "repository": {
