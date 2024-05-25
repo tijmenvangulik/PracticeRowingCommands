@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=2]
+[gd_scene load_steps=108 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -73,6 +73,7 @@
 [ext_resource path="res://TourDialog.gd" type="Script" id=71]
 [ext_resource path="res://ExplainPractice.gd" type="Script" id=72]
 [ext_resource path="res://EditCommandText2.tscn" type="PackedScene" id=73]
+[ext_resource path="res://PracticeStarts.gd" type="Script" id=74]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 127.753, 29.8996, 117.154, 24.3315, 109.015, 13.8659, 105.688, 0, 128, 0 )
@@ -1280,7 +1281,32 @@ position = Vector2( 1113, 898 )
 [node name="Collectable4" parent="Collectables" instance=ExtResource( 12 )]
 position = Vector2( 1364, 201 )
 
+[node name="PracticeStarts" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 74 )
+
+[node name="CollectableStopBoatPractice" parent="PracticeStarts" instance=ExtResource( 12 )]
+unique_name_in_owner = true
+position = Vector2( 1588, 1993 )
+triggerWhenBoatIsStopped = true
+
+[node name="CollectableMakeTurnPractice" parent="PracticeStarts" instance=ExtResource( 12 )]
+unique_name_in_owner = true
+position = Vector2( 1578, 1505 )
+triggerWhenBoatIsStopped = true
+
+[node name="CollectableBackDownPractice" parent="PracticeStarts" instance=ExtResource( 12 )]
+unique_name_in_owner = true
+position = Vector2( 720, 1988 )
+triggerWhenBoatIsStopped = true
+
+[node name="CollectableBackDownTurnPractice" parent="PracticeStarts" instance=ExtResource( 12 )]
+unique_name_in_owner = true
+position = Vector2( 723, 2182 )
+triggerWhenBoatIsStopped = true
+
 [node name="Boat" parent="." instance=ExtResource( 3 )]
+unique_name_in_owner = true
 position = Vector2( 958, 1906 )
 mass = 1.2
 physics_material_override = SubResource( 21 )

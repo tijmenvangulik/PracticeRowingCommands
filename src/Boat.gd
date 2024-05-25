@@ -27,6 +27,7 @@ var bestState : int= Constants.BestState.Normal
 var lowNoRowingSpeed=lightPaddleFactor*max_speed
 
 var speedDirectErrorLevel=15
+var speedIsStopped=4
 var newRotation_degrees=-1.0;
 var newPosition_x=-1.0
 var newPosition_y=-1.0
@@ -311,6 +312,9 @@ func boatInRest():
 
 func isLowSpeed():
 	return abs(linear_velocity.length())<speedDirectErrorLevel
+
+func isStopped():
+	return abs(linear_velocity.length())<speedIsStopped
 
 func isTurning():
 	return abs(get_angular_velocity())>0.05

@@ -28,4 +28,5 @@ pause_mode = 1
 stream = ExtResource( 1 )
 
 [connection signal="area_shape_entered" from="." to="." method="_on_Collectable_area_shape_entered"]
+[connection signal="area_shape_exited" from="." to="." method="_on_Collectable_area_shape_exited"]
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

@@ -7,25 +7,30 @@ export (NodePath) onready var boat = get_node(boat) as Boat
 # var b = "text"
 # Called when the node enters the scene tree for the first time.
 enum StartPos {Start,OpWater,
+  StilleggenOefenening,
+  AchteruitvarenOefenening,
+  BochtOefenening,
+  AchteruitBochtOefenening
   Aanleggen,
-  StartAanleggenMinderKnoppen,
   Aangelegd,
-  Intro,
-  StartAangelegdMinderKnoppen,
-  AanleggenWal,
-  StartAanleggenWalMinderKnoppen,
   StartStrijkendAanleggen,
-  StartStrijkendAanleggenMinderKnoppen
+  AanleggenWal,
   StartStrijkendAanleggenWal,
-  StartStrijkendAanleggenWalMinderKnoppen,
   StarGame,
-  StartTour
+  Intro,
+  StartTour,
 }
 
 func _ready():
 #	add_icon_item(
+
 	add_item("StartPositie",StartPos.Start)
-	add_item("StartOpWater",StartPos.OpWater)
+	add_item("StartStilleggenOefenening",StartPos.StilleggenOefenening)
+	add_item("StartAchteruitvarenOefenening",StartPos.AchteruitvarenOefenening)
+	
+	add_item("StartBochtOefenening",StartPos.BochtOefenening)
+	add_item("StartAchteruitBochtOefenening",StartPos.AchteruitBochtOefenening)
+	
 	add_item("StartAanleggen",StartPos.Aanleggen)
 	add_item("StartAangelegd",StartPos.Aangelegd)
 	add_item("StartStrijkendAanleggen",StartPos.StartStrijkendAanleggen)
@@ -35,7 +40,7 @@ func _ready():
 	add_item("StartStrijkendAanleggenWal",StartPos.StartStrijkendAanleggenWal)
 
 	add_item("StartStarGame",StartPos.StarGame)
-	
+	add_item("StartOpWater",StartPos.OpWater)
 	add_separator()
 	add_item("ShowIntroText",StartPos.Intro)
 	add_item("StartTour",StartPos.StartTour)
@@ -54,15 +59,12 @@ func _ready():
 	var styleDropDown= preload("res://MainDropDownPopup.tres")
 	pm.add_stylebox_override("panel",styleDropDown)
 
-
 	GameEvents.connect("introSignal",self,"_introSignal")
 	GameEvents.register_tooltip(self,"OptionStartTooltip")
 
 func _introSignal(isVisible : bool):
 	visible=!isVisible
-	
-
-	
+		
 func selected(itemIndex : int):
 	
 	if GameState.collectGameState!=Constants.CollectGameState.None:
@@ -77,11 +79,34 @@ func selected(itemIndex : int):
 	var callStartPlay=false
 	
 	Utilities.showOnlyButtons([])
-
+	$"%PracticeStarts".hideAll()
+	var forwards=true
 	match valueIndex:
 		StartPos.OpWater: 
 			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)
 			callStartPlay=true
+		StartPos.StilleggenOefenening:
+			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)
+			var showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.VastroeienBeideBoorden,Constants.Command.Bedankt]	
+			$"%CollectableStopBoatPractice".reset()
+			explainPopup.showDialog("StopBoatPracticeExplainText",showOnlyButonsArray)
+		StartPos.AchteruitvarenOefenening:
+			forwards=false
+			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)
+			var showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.VastroeienBeideBoorden,Constants.Command.Bedankt,Constants.Command.StrijkenBeidenBoorden]	
+			$"%CollectableBackDownPractice".reset()
+			explainPopup.showDialog("BackdownPracticeExplainText",showOnlyButonsArray)
+		StartPos.BochtOefenening:
+			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)
+			var showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.VastroeienBeideBoorden,Constants.Command.Bedankt,Constants.Command.HalenSB,Constants.Command.HalenBB,Constants.Command.HalenBeideBoorden]	
+			$"%CollectableMakeTurnPractice".reset()
+			explainPopup.showDialog("TurnPracticeExplainText",showOnlyButonsArray)
+		StartPos.AchteruitBochtOefenening:
+			forwards=false
+			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)
+			var showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.StrijkenBeidenBoorden,Constants.Command.VastroeienBeideBoorden,Constants.Command.Bedankt,Constants.Command.StrijkenSB,Constants.Command.StrijkenBB]	
+			$"%CollectableBackDownTurnPractice".reset()
+			explainPopup.showDialog("BackdownTurnPracticeExplainText",showOnlyButonsArray)
 		StartPos.Aanleggen:
 			boat.setNewBoatPosition(702.307,2145.531,45,Constants.StateOars.Roeien,true)
 			var showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.RiemenHoogSB,Constants.Command.VastroeienBB]	
@@ -112,8 +137,10 @@ func selected(itemIndex : int):
 		StartPos.StarGame:
 			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)
 			GameState.changeCollectGameState(Constants.CollectGameState.ShowHighScores)
-	
 	select(StartPos.Start)
+	if GameState.isForwards!=forwards:
+		GameState.changeForwards(forwards)
+	
 	if callStartPlay: 
 		GameEvents.startPlay()
 

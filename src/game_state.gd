@@ -23,6 +23,10 @@ func changeCollectGameState(newState):
 
 var showTooltips= false
 
+func changeForwards(newForwards):
+	isForwards=newForwards;
+	GameEvents.forwardBackwardsChanged()
+
 func getDefaultButtonSet():
 	if Settings.isScull:
 		return defaultButtonSet
