@@ -200,7 +200,8 @@ func getSettings(removePrivate=false):
 	  "textTranslations":commandTextDict,
 	  "showCommandTooltips":Settings.showCommandTooltips,
 	  "showShortCutsInButtons":Settings.showShortCutsInButtons,
-	  "isScull":Settings.isScull
+	  "isScull":Settings.isScull,
+	  "finishedPractices":Settings.finishedPractices
 	}
 	if removePrivate:
 		removePrivateSettings(save_dict)
@@ -208,6 +209,7 @@ func getSettings(removePrivate=false):
 	
 func removePrivateSettings(settings):
 	settings.erase("highScore")
+	settings.erase("finishedPractices")
 	
 	
 func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFromUrl=false):
@@ -260,13 +262,26 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 	var customButtonSet=[]
 	if dict.has("customButtonSet"):
 		customButtonSet=dict["customButtonSet"]
+		
 	#else:
 	#	customButtonSet=GameState.defaultButtonSet
+	
+	
 		
+	
 	if typeof(customButtonSet)==TYPE_ARRAY:
 		Settings.customButtonSet=customButtonSet
 		GameEvents.customButtonSetChanged()
 	
+	var finishedPractices=[]
+	if dict.has("finishedPractices"):
+		finishedPractices=dict["finishedPractices"]
+	if typeof(finishedPractices)==TYPE_ARRAY:
+		for i in finishedPractices.size():
+			finishedPractices[i]=int(finishedPractices[i])
+		Settings.finishedPractices=finishedPractices
+		
+		
 	#clear translations and tooltips
 	for i in range(5,commandTranslationsGrid.get_child_count()):
 		var obj=commandTranslationsGrid.get_child(i);

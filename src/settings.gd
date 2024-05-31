@@ -12,3 +12,4 @@ var customButtonSet=[]
 var showCommandTooltips=false
 var showShortCutsInButtons=false
 var isScull =true;
+var finishedPractices=[]

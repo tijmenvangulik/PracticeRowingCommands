@@ -37,3 +37,9 @@ func _introSignal(isVisible : bool):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_StartPractices_pressed():
+	GameEvents.intro(false)
+	$"%OptionStart".startPractices()
+

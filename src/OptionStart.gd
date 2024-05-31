@@ -6,10 +6,12 @@ export (NodePath) onready var boat = get_node(boat) as Boat
 # var a = 2
 # var b = "text"
 # Called when the node enters the scene tree for the first time.
-enum StartPos {Start,OpWater,
+#do not change the order of these items
+enum StartPos {
+  StartTour,
   StilleggenOefenening,
-  AchteruitvarenOefenening,
   BochtOefenening,
+  AchteruitvarenOefenening,
   AchteruitBochtOefenening
   Aanleggen,
   Aangelegd,
@@ -17,18 +19,41 @@ enum StartPos {Start,OpWater,
   AanleggenWal,
   StartStrijkendAanleggenWal,
   StarGame,
-  Intro,
-  StartTour,
+  Start,
+  Intro
 }
+
+var currentPractice  = StartPos.Start
+var stepDisabledTop=load("res://assets/stepDisabledTop.png")
+var stepDisabledMid=load("res://assets/stepDisabledMid.png")
+var stepDisabledBot=load("res://assets/stepDisabledBot.png")
+var stepCheckTop=load("res://assets/stepCheckTop.png")
+var stepCheckdMid=load("res://assets/stepCheckMid.png")
+var stepCheckBot=load("res://assets/stepCheckBot.png")
+var stepArrowTop=load("res://assets/stepArrowTop.png")
+var stepArrowMid=load("res://assets/stepArrowMid.png")
+var stepArrowBot=load("res://assets/stepArrowBot.png")
+var stepLightTop=load("res://assets/stepLightTop.png")
+var stepLightMid=load("res://assets/stepLightMid.png")
+var stepLightBot=load("res://assets/stepLightBot.png")
+
+var stepDisabledIcons=[stepDisabledTop,stepDisabledMid,stepDisabledBot]
+var stepCheckIcons=[stepCheckTop,stepCheckdMid,stepCheckBot]
+var stepArrowIcons=[stepArrowTop,stepArrowMid,stepArrowBot]
+var stepLightIcons=[stepLightTop,stepLightMid,stepLightBot]
+
+var iconBoat=load("res://assets/iconBoat.png")
+var infoIcon=load("res://assets/infoIcon.png")
 
 func _ready():
 #	add_icon_item(
-
-	add_item("StartPositie",StartPos.Start)
+	GameEvents.connect("crash",self,"_crashDetected")
+	#add_item("StartPositie",StartPos.Start)
+	add_item("StartTour",StartPos.StartTour)
 	add_item("StartStilleggenOefenening",StartPos.StilleggenOefenening)
+	add_item("StartBochtOefenening",StartPos.BochtOefenening)
 	add_item("StartAchteruitvarenOefenening",StartPos.AchteruitvarenOefenening)
 	
-	add_item("StartBochtOefenening",StartPos.BochtOefenening)
 	add_item("StartAchteruitBochtOefenening",StartPos.AchteruitBochtOefenening)
 	
 	add_item("StartAanleggen",StartPos.Aanleggen)
@@ -38,51 +63,159 @@ func _ready():
 	add_item("StartAanleggenWal",StartPos.AanleggenWal)
 
 	add_item("StartStrijkendAanleggenWal",StartPos.StartStrijkendAanleggenWal)
-
 	add_item("StartStarGame",StartPos.StarGame)
-	add_item("StartOpWater",StartPos.OpWater)
+
 	add_separator()
+	add_item("StartOpWater",StartPos.Start)
 	add_item("ShowIntroText",StartPos.Intro)
-	add_item("StartTour",StartPos.StartTour)
 	
-	
-	
+	setMenuIcons()
 	connect("item_selected",self,"selected")
 	text="StartPositie"
-
+	icon=null;
 	var pm=get_popup()
+	pm.add_constant_override("vseparation",-1)
 	# hide the radio
 	for i in pm.get_item_count():
 	        if pm.is_item_radio_checkable(i):
 	            pm.set_item_as_radio_checkable(i, false)
+    
 	#improve style
 	var styleDropDown= preload("res://MainDropDownPopup.tres")
-	pm.add_stylebox_override("panel",styleDropDown)
-
+	pm.add_stylebox_override("panel",styleDropDown)	
+	pm.connect("id_pressed",self,"_menuItemClicked")
 	GameEvents.connect("introSignal",self,"_introSignal")
 	GameEvents.register_tooltip(self,"OptionStartTooltip")
+	GameEvents.connect("settingsChangedSignal",self,"_handleSettingsChanged")
+	GameEvents.connect("collectGameStateChangedSignal",self,"_collectGameStateChangedSignal")
+
+func _menuItemClicked(itemId):
+	doStart(itemId)
+	
+func _collectGameStateChangedSignal(state):
+	if state==Constants.CollectGameState.Finished:
+		savePractice()
 
 func _introSignal(isVisible : bool):
 	visible=!isVisible
-		
-func selected(itemIndex : int):
+
+func _handleSettingsChanged():
+	setMenuIcons()
 	
+func practiceIsFinished(pos):
+	return Settings.finishedPractices.find(pos)>=0
+	
+func setStoreFinishedPractice(pos):
+	if (!practiceIsFinished(pos)):
+		Settings.finishedPractices.append(pos)
+		GameEvents.settingsChanged()
+		
+func setMenuIcons():
+	var firstNotDone=-1;
+	for i in items.size():
+	   
+		var itemId=get_item_id(i)
+		var itemText=get_item_text(i)
+		
+		if itemText=="":
+			itemId = -1
+		if isPractice(itemId):
+			var iconIndex=1
+			if itemId==StartPos.StartTour:
+				iconIndex=0
+			if itemId==StartPos.StarGame:
+				iconIndex=2
+			if practiceIsFinished(itemId):				
+				set_item_icon( i,stepCheckIcons[iconIndex])
+			else:
+				set_item_icon( i,stepDisabledIcons[iconIndex])
+				if firstNotDone<0:
+					firstNotDone=i
+					set_item_icon( i,stepArrowIcons[iconIndex])
+		if itemId==StartPos.Intro:
+			set_item_icon(i,infoIcon)
+		if itemId==StartPos.Start:
+			set_item_icon(i,iconBoat)
+	icon=null
+	
+func isPractice(pos):
+	return pos>=0 && pos!=StartPos.Start && pos!=StartPos.Intro
+  
+
+func endPractice():
+	if practiceActive():		
+		var t=boat.startTimer(2)
+		yield(t, "timeout")
+		boat.removeTimer(t)
+		
+		$"%EndPracticeDialog".show()
+
+func startPractices():
+	currentPractice=findNotFinishedPractice(StartPos.StartTour);
+	# for now start the first practice
+	doStart(currentPractice)
+
+func findNotFinishedPractice(startPos):
+	 
+	var i=getPracticeIndex(startPos)
+	while ( i<items.size() && practiceIsFinished(startPos) && startPos!= StartPos.StarGame):
+		i=i+1
+		startPos=practiceIndexToStartPos(i);
+	return startPos;
+	
+func savePractice():
+	if practiceActive():
+		setStoreFinishedPractice(currentPractice)		
+		setMenuIcons()	
+		
+func nextPractice():
+	if practiceActive():
+		savePractice()
+		currentPractice=findNotFinishedPractice(currentPractice)	
+		doStart(currentPractice)
+		
+func getPracticeIndex(startPos):
+	for i in items.size():
+		if get_item_id(i)==startPos:
+			return i
+	return -1
+func practiceIndexToStartPos(i):
+	return self.get_item_id(i)
+	
+func practiceActive():
+	return  isPractice( currentPractice)
+
+func _crashDetected():
+	if practiceActive():
+		var t=boat.startTimer(2)
+		yield(t, "timeout")
+		boat.removeTimer(t)
+		restartPractice();
+		
+func restartPractice():
+	doStart(currentPractice)
+
+func selected(itemIndex : int):	
+	select(StartPos.Start)
+	self.text="StartPositie"
+	icon=null
+	
+func doStart(startItemId):
 	if GameState.collectGameState!=Constants.CollectGameState.None:
 		GameState.changeCollectGameState(Constants.CollectGameState.Stop)
-		
-	var valueIndex=get_selected_id()
+	
 	boat.resetCrashed()
 	var Command=Constants.Command
 	var isViking=GameState.isViking
 	
 	var explainPopup=$"%ExplainPracticeDialog"
 	var callStartPlay=false
-	
 	Utilities.showOnlyButtons([])
 	$"%PracticeStarts".hideAll()
 	var forwards=true
-	match valueIndex:
-		StartPos.OpWater: 
+	currentPractice=startItemId;
+	match startItemId:
+		StartPos.Start: 
 			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)
 			callStartPlay=true
 		StartPos.StilleggenOefenening:
@@ -108,10 +241,12 @@ func selected(itemIndex : int):
 			$"%CollectableBackDownTurnPractice".reset()
 			explainPopup.showDialog("BackdownTurnPracticeExplainText",showOnlyButonsArray)
 		StartPos.Aanleggen:
+			$"%CollectableMooringPractice".reset()			
 			boat.setNewBoatPosition(702.307,2145.531,45,Constants.StateOars.Roeien,true)
 			var showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.RiemenHoogSB,Constants.Command.VastroeienBB]	
 			explainPopup.showDialog("MoringExplainRaftText",showOnlyButonsArray)
 		StartPos.Aangelegd:
+			$"%CollectableSailAwayPractice2".reset()			
 			var showOnlyButonsArray=[]
 			if isViking: 
 				boat.setNewBoatPosition(1124,2596,0,Constants.StateOars.SlippenSB,true)
@@ -123,21 +258,29 @@ func selected(itemIndex : int):
 		StartPos.Intro: GameEvents.intro(true)
 		StartPos.StartTour: GameEvents.startTour()
 		StartPos.StartStrijkendAanleggen: 
+			forwards=false
+			$"%CollectableBackDownMooringPractice2".reset()			
+			
 			boat.setNewBoatPosition(1589.091,2426.734,-30,Constants.StateOars.Roeien,false)
 			var showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.StrijkenBeidenBoorden,Constants.Command.RiemenHoogSB,Constants.Command.VastroeienBB]	
 			explainPopup.showDialog("BackwardsMoringRaftExplainText",showOnlyButonsArray)
 		StartPos.AanleggenWal: 
+			$"%CollectableMooringHighWallPractice".reset()
+			
 			boat.setNewBoatPosition(2082.239,2042.082,-45,Constants.StateOars.Roeien,true)
 			var showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.SlippenSB,Constants.Command.VastroeienBB,Constants.Command.IntrekkenSB]	
 			explainPopup.showDialog("MoringExplainText",showOnlyButonsArray)
 		StartPos.StartStrijkendAanleggenWal: 
+			forwards=false
+			$"%CollectableBackDownMooringHighWallPractice".reset()
+			
 			boat.setNewBoatPosition(2220.23,1472.777,-120,Constants.StateOars.Roeien,false)
 			var showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.StrijkenBeidenBoorden,Constants.Command.SlippenSB,Constants.Command.VastroeienBB,Constants.Command.IntrekkenSB]	
 			explainPopup.showDialog("BackwardsMoringExplainText",showOnlyButonsArray)
 		StartPos.StarGame:
 			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)
 			GameState.changeCollectGameState(Constants.CollectGameState.ShowHighScores)
-	select(StartPos.Start)
+	
 	if GameState.isForwards!=forwards:
 		GameState.changeForwards(forwards)
 	

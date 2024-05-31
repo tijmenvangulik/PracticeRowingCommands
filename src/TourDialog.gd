@@ -4,6 +4,7 @@ extends WindowDialog
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+var isLastStep=false
 
 var tourStep=1
 var tourTexts= ["OptionLanguageTooltip","OptionStartTooltip","ShowHideTootipsTooltip","SettingsButtonTooltip","ForwardsBackwardsTooltip","CommandsTourText","ShortCutTourText"]
@@ -22,6 +23,7 @@ func _init():
 
 func _on_startTour():
 	tourStep=1
+	isLastStep=false
 	ShowStep()
 	visible=true
 
@@ -37,6 +39,7 @@ func _on_TourStop_pressed():
 
 
 func _on_TourNext_pressed():
+	
 	tourStep=tourStep+1
 	ShowStep()
 
@@ -45,6 +48,7 @@ func stopTour():
 	GameEvents.startPlay()
 	
 func ShowStep():
+	isLastStep=tourStep>=tourTexts.size()
 	$"PointToLanguage".visible=tourStep==1
 	$"PointToStart".visible=tourStep==2
 	$"PointToHelp".visible=tourStep==3
@@ -55,5 +59,12 @@ func ShowStep():
 		$"TourText".set_bbcode(Utilities.replaceCommandsInText( tr(tourTexts[tourStep-1]),true))
 	else:
 		stopTour()
-	$HSplitContainer/TourNext.visible=tourStep<tourTexts.size()
+	
+	
+	$HSplitContainer/TourNext.visible=!isLastStep
+	$HSplitContainer/StartPractices.visible=isLastStep
 
+
+func _on_StartPractices_pressed():
+	visible=false
+	$"%OptionStart".nextPractice()

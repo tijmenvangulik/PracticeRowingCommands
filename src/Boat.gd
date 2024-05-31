@@ -273,6 +273,7 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 				sound.play()
 			$"OarBB1".freeze()
 			$"OarSB1".freeze()
+			GameEvents.crash()
 		 
 	if onePush:
 		currentSpeedFactor=0.0

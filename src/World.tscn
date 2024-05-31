@@ -69,11 +69,11 @@
 [ext_resource path="res://assets/meh2.svg" type="Texture" id=67]
 [ext_resource path="res://assets/incommingenvelope.svg" type="Texture" id=68]
 [ext_resource path="res://QuickFeedbackDialog.gd" type="Script" id=69]
-[ext_resource path="res://StartTour.gd" type="Script" id=70]
 [ext_resource path="res://TourDialog.gd" type="Script" id=71]
 [ext_resource path="res://ExplainPractice.gd" type="Script" id=72]
 [ext_resource path="res://EditCommandText2.tscn" type="PackedScene" id=73]
 [ext_resource path="res://PracticeStarts.gd" type="Script" id=74]
+[ext_resource path="res://EndPracticeDialog.gd" type="Script" id=75]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 127.753, 29.8996, 117.154, 24.3315, 109.015, 13.8659, 105.688, 0, 128, 0 )
@@ -1305,6 +1305,30 @@ unique_name_in_owner = true
 position = Vector2( 723, 2182 )
 triggerWhenBoatIsStopped = true
 
+[node name="CollectableMooringPractice" parent="PracticeStarts" instance=ExtResource( 12 )]
+unique_name_in_owner = true
+position = Vector2( 1225, 2628 )
+triggerWhenBoatIsStopped = true
+
+[node name="CollectableBackDownMooringPractice2" parent="PracticeStarts" instance=ExtResource( 12 )]
+unique_name_in_owner = true
+position = Vector2( 1241, 2624 )
+triggerWhenBoatIsStopped = true
+
+[node name="CollectableMooringHighWallPractice" parent="PracticeStarts" instance=ExtResource( 12 )]
+unique_name_in_owner = true
+position = Vector2( 2365, 1719 )
+triggerWhenBoatIsStopped = true
+
+[node name="CollectableBackDownMooringHighWallPractice" parent="PracticeStarts" instance=ExtResource( 12 )]
+unique_name_in_owner = true
+position = Vector2( 2366, 1748 )
+triggerWhenBoatIsStopped = true
+
+[node name="CollectableSailAwayPractice2" parent="PracticeStarts" instance=ExtResource( 12 )]
+unique_name_in_owner = true
+position = Vector2( 1304, 2493 )
+
 [node name="Boat" parent="." instance=ExtResource( 3 )]
 unique_name_in_owner = true
 position = Vector2( 958, 1906 )
@@ -1426,7 +1450,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HSplitContainer" type="HSplitContainer" parent="CanvasLayer/IntroDialog"]
+[node name="HSplitContainer" type="HBoxContainer" parent="CanvasLayer/IntroDialog"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -1437,27 +1461,26 @@ margin_right = 31.0
 margin_bottom = -13.0
 grow_horizontal = 2
 
-[node name="StartTour" type="Button" parent="CanvasLayer/IntroDialog/HSplitContainer"]
-margin_right = 94.0
+[node name="StartPractices" type="Button" parent="CanvasLayer/IntroDialog/HSplitContainer"]
+margin_right = 129.0
 margin_bottom = 36.0
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 11 )
 custom_styles/pressed = ExtResource( 11 )
 custom_styles/normal = ExtResource( 10 )
-text = "StartTour"
-script = ExtResource( 70 )
+text = "StartPractices"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CloseButton" type="Button" parent="CanvasLayer/IntroDialog/HSplitContainer"]
-margin_left = 106.0
-margin_right = 208.0
+margin_left = 133.0
+margin_right = 221.0
 margin_bottom = 36.0
 custom_fonts/font = ExtResource( 50 )
-custom_styles/hover = ExtResource( 11 )
-custom_styles/pressed = ExtResource( 11 )
-custom_styles/normal = ExtResource( 10 )
+custom_styles/hover = ExtResource( 52 )
+custom_styles/pressed = ExtResource( 53 )
+custom_styles/normal = ExtResource( 64 )
 text = "CloseIntro"
 script = ExtResource( 42 )
 __meta__ = {
@@ -1552,9 +1575,6 @@ custom_styles/pressed = ExtResource( 11 )
 custom_styles/focus = ExtResource( 11 )
 custom_styles/normal = ExtResource( 10 )
 text = "GameContinue"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="StartCollectGame" type="WindowDialog" parent="CanvasLayer"]
 margin_left = 21.0
@@ -1565,9 +1585,6 @@ theme = ExtResource( 29 )
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
 custom_styles/panel = SubResource( 33 )
 script = ExtResource( 21 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 collectables = NodePath("../../Collectables")
 
 [node name="GameIntroText" type="RichTextLabel" parent="CanvasLayer/StartCollectGame"]
@@ -1650,9 +1667,6 @@ theme = ExtResource( 29 )
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
 custom_styles/panel = SubResource( 34 )
 script = ExtResource( 26 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="EndGameText" type="Label" parent="CanvasLayer/EndCollectGame"]
 anchor_top = 0.35
@@ -1738,6 +1752,88 @@ position = Vector2( 38, 113 )
 texture = ExtResource( 14 )
 
 [node name="Star5" type="Sprite" parent="CanvasLayer/EndCollectGame"]
+visible = false
+position = Vector2( 623, 115 )
+texture = ExtResource( 14 )
+
+[node name="EndPracticeDialog" type="WindowDialog" parent="CanvasLayer"]
+unique_name_in_owner = true
+margin_left = 184.0
+margin_top = 189.0
+margin_right = 845.0
+margin_bottom = 424.0
+theme = ExtResource( 29 )
+custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
+custom_styles/panel = SubResource( 34 )
+script = ExtResource( 75 )
+
+[node name="EndPracticeText" type="Label" parent="CanvasLayer/EndPracticeDialog"]
+anchor_top = 0.35
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -9.5
+margin_bottom = 9.5
+grow_horizontal = 2
+text = "EndPracticeText"
+align = 1
+
+[node name="Trophy" type="Sprite" parent="CanvasLayer/EndPracticeDialog"]
+position = Vector2( 66.01, 118.35 )
+scale = Vector2( 1.4, 1.4 )
+texture = ExtResource( 14 )
+
+[node name="Trophy2" type="Sprite" parent="CanvasLayer/EndPracticeDialog"]
+position = Vector2( 610, 119 )
+scale = Vector2( 1.4, 1.4 )
+texture = ExtResource( 14 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/EndPracticeDialog"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -165.0
+margin_top = -40.0
+margin_right = 165.0
+margin_bottom = -10.0
+grow_horizontal = 2
+custom_constants/separation = 10
+
+[node name="StartNextPractice" type="Button" parent="CanvasLayer/EndPracticeDialog/HBoxContainer"]
+margin_right = 160.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 34 )
+custom_styles/focus = ExtResource( 34 )
+custom_styles/normal = ExtResource( 10 )
+text = "StartNextPractice"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CancelNextPractice" type="Button" parent="CanvasLayer/EndPracticeDialog/HBoxContainer"]
+margin_left = 170.0
+margin_right = 330.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 17 )
+custom_styles/pressed = ExtResource( 53 )
+custom_styles/focus = ExtResource( 17 )
+custom_styles/normal = ExtResource( 64 )
+text = "CancelNextPractice"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Star4" type="Sprite" parent="CanvasLayer/EndPracticeDialog"]
+visible = false
+position = Vector2( 38, 113 )
+texture = ExtResource( 14 )
+
+[node name="Star5" type="Sprite" parent="CanvasLayer/EndPracticeDialog"]
 visible = false
 position = Vector2( 623, 115 )
 texture = ExtResource( 14 )
@@ -2100,7 +2196,7 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="HSplitContainer" type="HSplitContainer" parent="CanvasLayer/TourDialog"]
+[node name="HSplitContainer" type="HBoxContainer" parent="CanvasLayer/TourDialog"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -2137,6 +2233,21 @@ custom_styles/pressed = ExtResource( 34 )
 custom_styles/focus = ExtResource( 34 )
 custom_styles/normal = ExtResource( 10 )
 text = "TourNext"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartPractices" type="Button" parent="CanvasLayer/TourDialog/HSplitContainer"]
+margin_left = 336.0
+margin_right = 496.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 34 )
+custom_styles/focus = ExtResource( 34 )
+custom_styles/normal = ExtResource( 10 )
+text = "StartPractices"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2250,6 +2361,7 @@ margin_bottom = 27.0
 custom_constants/separation = 8
 
 [node name="OptionStart" type="OptionButton" parent="CanvasLayer/RightTopButtons"]
+unique_name_in_owner = true
 margin_right = 80.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 80, 0 )
@@ -2789,21 +2901,24 @@ margin_bottom = -521.0
 
 [node name="TestEndGame" type="Button" parent="CanvasLayer"]
 visible = false
-margin_left = 17.0
-margin_top = 73.0
-margin_right = 84.0
-margin_bottom = 93.0
+margin_left = 137.0
+margin_top = 89.0
+margin_right = 204.0
+margin_bottom = 109.0
 text = "Test end"
 script = ExtResource( 51 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="pressed" from="CanvasLayer/IntroDialog/HSplitContainer/StartPractices" to="CanvasLayer/IntroDialog" method="_on_StartPractices_pressed"]
 [connection signal="pressed" from="CanvasLayer/HighScores/ContinueToStartGame" to="CanvasLayer/HighScores" method="_on_ContinueToStartGame_pressed"]
 [connection signal="pressed" from="CanvasLayer/StartCollectGame/HSplitContainer/StartGame" to="CanvasLayer/StartCollectGame" method="_on_StartGame_pressed"]
 [connection signal="pressed" from="CanvasLayer/StartCollectGame/HSplitContainer/CancelGame" to="CanvasLayer/StartCollectGame" method="_on_CancelGame_pressed"]
 [connection signal="pressed" from="CanvasLayer/EndCollectGame/HBoxContainer/StartGame" to="CanvasLayer/EndCollectGame" method="_on_StartGame_pressed"]
 [connection signal="pressed" from="CanvasLayer/EndCollectGame/HBoxContainer/CancelGame" to="CanvasLayer/EndCollectGame" method="_on_CancelGame_pressed"]
+[connection signal="pressed" from="CanvasLayer/EndPracticeDialog/HBoxContainer/StartNextPractice" to="CanvasLayer/EndPracticeDialog" method="_on_StartNextPractice_pressed"]
+[connection signal="pressed" from="CanvasLayer/EndPracticeDialog/HBoxContainer/CancelNextPractice" to="CanvasLayer/EndPracticeDialog" method="_on_CancelPractice_pressed"]
 [connection signal="pressed" from="CanvasLayer/PublishHighscoreCollectGame/HBoxContainer/PublishScore" to="CanvasLayer/PublishHighscoreCollectGame" method="_on_PublishScore_pressed"]
 [connection signal="pressed" from="CanvasLayer/PublishHighscoreCollectGame/HBoxContainer/PublishScoreContine" to="CanvasLayer/PublishHighscoreCollectGame" method="_on_PublishScoreContine_pressed"]
 [connection signal="pressed" from="CanvasLayer/QuickFeedbackDialog/EmoticonSelection/Sad" to="CanvasLayer/QuickFeedbackDialog" method="_on_Sad_pressed"]
@@ -2817,6 +2932,7 @@ __meta__ = {
 [connection signal="about_to_show" from="CanvasLayer/TourDialog" to="CanvasLayer/TourDialog" method="_on_TourDialog_about_to_show"]
 [connection signal="pressed" from="CanvasLayer/TourDialog/HSplitContainer/TourStop" to="CanvasLayer/TourDialog" method="_on_TourStop_pressed"]
 [connection signal="pressed" from="CanvasLayer/TourDialog/HSplitContainer/TourNext" to="CanvasLayer/TourDialog" method="_on_TourNext_pressed"]
+[connection signal="pressed" from="CanvasLayer/TourDialog/HSplitContainer/StartPractices" to="CanvasLayer/TourDialog" method="_on_StartPractices_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightTopButtons/ZoomContainer/ZoomPlus" to="CanvasLayer/RightTopButtons/ZoomContainer" method="_on_ZoomPlus_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightTopButtons/ZoomContainer/ZoomMin" to="CanvasLayer/RightTopButtons/ZoomContainer" method="_on_ZoomMin_pressed"]
 [connection signal="visibility_changed" from="CanvasLayer/SettingsDialog" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_SettingsDialog_visibility_changed"]

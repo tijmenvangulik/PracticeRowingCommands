@@ -32,6 +32,7 @@ func init(time:String,isHighScore:bool):
 			
 	$EndGameText.text=text
 	
+
 func initCrashed():
 	var text=tr("GameOverCrash")
 	$EndGameText.text=text

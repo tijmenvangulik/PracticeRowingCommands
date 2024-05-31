@@ -15,7 +15,7 @@ func hideAll():
 		c.hide()
 		
 func collect(amount):
-	pass;
+	$"%OptionStart".endPractice();
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
