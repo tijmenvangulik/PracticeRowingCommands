@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=2]
+[gd_scene load_steps=109 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -69,6 +69,7 @@
 [ext_resource path="res://assets/meh2.svg" type="Texture" id=67]
 [ext_resource path="res://assets/incommingenvelope.svg" type="Texture" id=68]
 [ext_resource path="res://QuickFeedbackDialog.gd" type="Script" id=69]
+[ext_resource path="res://assets/arrow.png" type="Texture" id=70]
 [ext_resource path="res://TourDialog.gd" type="Script" id=71]
 [ext_resource path="res://ExplainPractice.gd" type="Script" id=72]
 [ext_resource path="res://EditCommandText2.tscn" type="PackedScene" id=73]
@@ -1417,6 +1418,7 @@ __meta__ = {
 }
 
 [node name="IntroDialog" type="WindowDialog" parent="CanvasLayer"]
+visible = true
 margin_left = 21.0
 margin_top = 58.0
 margin_right = 991.0
@@ -1461,28 +1463,31 @@ margin_right = 31.0
 margin_bottom = -13.0
 grow_horizontal = 2
 
-[node name="StartPractices" type="Button" parent="CanvasLayer/IntroDialog/HSplitContainer"]
-margin_right = 129.0
-margin_bottom = 36.0
-custom_fonts/font = ExtResource( 50 )
-custom_styles/hover = ExtResource( 11 )
-custom_styles/pressed = ExtResource( 11 )
-custom_styles/normal = ExtResource( 10 )
-text = "StartPractices"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="CloseButton" type="Button" parent="CanvasLayer/IntroDialog/HSplitContainer"]
-margin_left = 133.0
-margin_right = 221.0
+margin_right = 160.0
 margin_bottom = 36.0
+rect_min_size = Vector2( 160, 0 )
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 52 )
 custom_styles/pressed = ExtResource( 53 )
 custom_styles/normal = ExtResource( 64 )
 text = "CloseIntro"
 script = ExtResource( 42 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartPractices" type="Button" parent="CanvasLayer/IntroDialog/HSplitContainer"]
+margin_left = 164.0
+margin_right = 319.0
+margin_bottom = 36.0
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 11 )
+custom_styles/normal = ExtResource( 10 )
+text = "StartPractices"
+icon = ExtResource( 70 )
+icon_align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1575,6 +1580,8 @@ custom_styles/pressed = ExtResource( 11 )
 custom_styles/focus = ExtResource( 11 )
 custom_styles/normal = ExtResource( 10 )
 text = "GameContinue"
+icon = ExtResource( 70 )
+icon_align = 2
 
 [node name="StartCollectGame" type="WindowDialog" parent="CanvasLayer"]
 margin_left = 21.0
@@ -1629,23 +1636,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StartGame" type="Button" parent="CanvasLayer/StartCollectGame/HSplitContainer"]
-margin_right = 160.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 160, 0 )
-custom_fonts/font = ExtResource( 50 )
-custom_styles/hover = ExtResource( 11 )
-custom_styles/pressed = ExtResource( 34 )
-custom_styles/focus = ExtResource( 34 )
-custom_styles/normal = ExtResource( 10 )
-text = "StartGameButton"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="CancelGame" type="Button" parent="CanvasLayer/StartCollectGame/HSplitContainer"]
-margin_left = 168.0
-margin_right = 328.0
+margin_right = 160.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 160, 0 )
 custom_fonts/font = ExtResource( 50 )
@@ -1654,6 +1646,23 @@ custom_styles/pressed = ExtResource( 53 )
 custom_styles/focus = ExtResource( 52 )
 custom_styles/normal = ExtResource( 64 )
 text = "CancelGameButton"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartGame" type="Button" parent="CanvasLayer/StartCollectGame/HSplitContainer"]
+margin_left = 168.0
+margin_right = 351.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 34 )
+custom_styles/focus = ExtResource( 34 )
+custom_styles/normal = ExtResource( 10 )
+text = "StartGameButton"
+icon = ExtResource( 70 )
+icon_align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1717,23 +1726,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StartGame" type="Button" parent="CanvasLayer/EndCollectGame/HBoxContainer"]
-margin_right = 160.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 160, 0 )
-custom_fonts/font = ExtResource( 50 )
-custom_styles/hover = ExtResource( 11 )
-custom_styles/pressed = ExtResource( 34 )
-custom_styles/focus = ExtResource( 34 )
-custom_styles/normal = ExtResource( 10 )
-text = "StartGameButton"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="CancelGame" type="Button" parent="CanvasLayer/EndCollectGame/HBoxContainer"]
-margin_left = 170.0
-margin_right = 330.0
+margin_right = 160.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 160, 0 )
 custom_fonts/font = ExtResource( 50 )
@@ -1742,6 +1736,23 @@ custom_styles/pressed = ExtResource( 53 )
 custom_styles/focus = ExtResource( 17 )
 custom_styles/normal = ExtResource( 64 )
 text = "CancelGameButton"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartGame" type="Button" parent="CanvasLayer/EndCollectGame/HBoxContainer"]
+margin_left = 170.0
+margin_right = 353.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 34 )
+custom_styles/focus = ExtResource( 34 )
+custom_styles/normal = ExtResource( 10 )
+text = "StartGameButton"
+icon = ExtResource( 70 )
+icon_align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1799,23 +1810,8 @@ margin_bottom = -10.0
 grow_horizontal = 2
 custom_constants/separation = 10
 
-[node name="StartNextPractice" type="Button" parent="CanvasLayer/EndPracticeDialog/HBoxContainer"]
-margin_right = 160.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 160, 0 )
-custom_fonts/font = ExtResource( 50 )
-custom_styles/hover = ExtResource( 11 )
-custom_styles/pressed = ExtResource( 34 )
-custom_styles/focus = ExtResource( 34 )
-custom_styles/normal = ExtResource( 10 )
-text = "StartNextPractice"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="CancelNextPractice" type="Button" parent="CanvasLayer/EndPracticeDialog/HBoxContainer"]
-margin_left = 170.0
-margin_right = 330.0
+margin_right = 160.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 160, 0 )
 custom_fonts/font = ExtResource( 50 )
@@ -1824,6 +1820,23 @@ custom_styles/pressed = ExtResource( 53 )
 custom_styles/focus = ExtResource( 17 )
 custom_styles/normal = ExtResource( 64 )
 text = "CancelNextPractice"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartNextPractice" type="Button" parent="CanvasLayer/EndPracticeDialog/HBoxContainer"]
+margin_left = 170.0
+margin_right = 355.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 34 )
+custom_styles/focus = ExtResource( 34 )
+custom_styles/normal = ExtResource( 10 )
+text = "StartNextPractice"
+icon = ExtResource( 70 )
+icon_align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1889,23 +1902,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PublishScore" type="Button" parent="CanvasLayer/PublishHighscoreCollectGame/HBoxContainer"]
-margin_right = 160.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 160, 0 )
-custom_fonts/font = ExtResource( 50 )
-custom_styles/hover = ExtResource( 11 )
-custom_styles/pressed = ExtResource( 11 )
-custom_styles/focus = ExtResource( 34 )
-custom_styles/normal = ExtResource( 10 )
-text = "PublishScore"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="PublishScoreContine" type="Button" parent="CanvasLayer/PublishHighscoreCollectGame/HBoxContainer"]
-margin_left = 170.0
-margin_right = 330.0
+margin_right = 160.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 160, 0 )
 custom_fonts/font = ExtResource( 50 )
@@ -1914,6 +1912,20 @@ custom_styles/pressed = ExtResource( 53 )
 custom_styles/focus = ExtResource( 17 )
 custom_styles/normal = ExtResource( 64 )
 text = "NoPublishScore"
+
+[node name="PublishScore" type="Button" parent="CanvasLayer/PublishHighscoreCollectGame/HBoxContainer"]
+margin_left = 170.0
+margin_right = 330.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 11 )
+custom_styles/focus = ExtResource( 34 )
+custom_styles/normal = ExtResource( 10 )
+text = "PublishScore"
+icon = ExtResource( 70 )
+icon_align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2088,6 +2100,7 @@ custom_styles/focus = ExtResource( 34 )
 custom_styles/normal = ExtResource( 10 )
 text = "SendFeedback"
 icon = ExtResource( 68 )
+icon_align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2138,20 +2151,8 @@ margin_bottom = -10.0
 grow_horizontal = 2
 custom_constants/separation = 10
 
-[node name="StartLessButtons" type="Button" parent="CanvasLayer/ExplainPracticeDialog/HBoxContainer"]
-margin_right = 160.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 160, 0 )
-custom_fonts/font = ExtResource( 50 )
-custom_styles/hover = ExtResource( 11 )
-custom_styles/pressed = ExtResource( 34 )
-custom_styles/focus = ExtResource( 34 )
-custom_styles/normal = ExtResource( 10 )
-text = "StartPractice"
-
 [node name="StartAllButtons" type="Button" parent="CanvasLayer/ExplainPracticeDialog/HBoxContainer"]
-margin_left = 170.0
-margin_right = 384.0
+margin_right = 214.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 160, 0 )
 custom_fonts/font = ExtResource( 50 )
@@ -2163,6 +2164,20 @@ text = "StartPracticeAllCommands"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="StartLessButtons" type="Button" parent="CanvasLayer/ExplainPracticeDialog/HBoxContainer"]
+margin_left = 224.0
+margin_right = 384.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 34 )
+custom_styles/focus = ExtResource( 34 )
+custom_styles/normal = ExtResource( 10 )
+text = "StartPractice"
+icon = ExtResource( 70 )
+icon_align = 2
 
 [node name="PracticeExplain" type="RichTextLabel" parent="CanvasLayer/ExplainPracticeDialog"]
 margin_left = 37.0
@@ -2209,9 +2224,9 @@ grow_horizontal = 2
 custom_constants/separation = 8
 
 [node name="TourStop" type="Button" parent="CanvasLayer/TourDialog/HSplitContainer"]
-margin_right = 160.0
+margin_right = 190.0
 margin_bottom = 30.0
-rect_min_size = Vector2( 160, 0 )
+rect_min_size = Vector2( 190, 0 )
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 52 )
 custom_styles/pressed = ExtResource( 53 )
@@ -2223,8 +2238,8 @@ __meta__ = {
 }
 
 [node name="TourNext" type="Button" parent="CanvasLayer/TourDialog/HSplitContainer"]
-margin_left = 168.0
-margin_right = 328.0
+margin_left = 198.0
+margin_right = 358.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 160, 0 )
 custom_fonts/font = ExtResource( 50 )
@@ -2233,13 +2248,15 @@ custom_styles/pressed = ExtResource( 34 )
 custom_styles/focus = ExtResource( 34 )
 custom_styles/normal = ExtResource( 10 )
 text = "TourNext"
+icon = ExtResource( 70 )
+icon_align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="StartPractices" type="Button" parent="CanvasLayer/TourDialog/HSplitContainer"]
-margin_left = 336.0
-margin_right = 496.0
+margin_left = 366.0
+margin_right = 526.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 160, 0 )
 custom_fonts/font = ExtResource( 50 )
@@ -2248,6 +2265,8 @@ custom_styles/pressed = ExtResource( 34 )
 custom_styles/focus = ExtResource( 34 )
 custom_styles/normal = ExtResource( 10 )
 text = "StartPractices"
+icon = ExtResource( 70 )
+icon_align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2604,14 +2623,14 @@ columns = 2
 
 [node name="RuleSetLabel" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_top = 3.0
-margin_right = 194.0
+margin_right = 196.0
 margin_bottom = 22.0
 custom_fonts/font = ExtResource( 50 )
 text = "RuleSetLabel"
 
 [node name="RuleSetDropDown" type="OptionButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_left = 214.0
-margin_right = 290.0
+margin_left = 216.0
+margin_right = 292.0
 margin_bottom = 25.0
 theme = ExtResource( 29 )
 custom_constants/hseparation = 10
@@ -2619,44 +2638,43 @@ custom_fonts/font = ExtResource( 50 )
 
 [node name="Label" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_top = 45.0
-margin_right = 194.0
+margin_right = 196.0
 margin_bottom = 64.0
 custom_fonts/font = ExtResource( 50 )
 text = "ShowTooltipSettingLabel"
 
 [node name="ShowCommandTooltips" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_left = 214.0
+margin_left = 216.0
 margin_top = 35.0
-margin_right = 290.0
+margin_right = 292.0
 margin_bottom = 75.0
 pressed = true
 
 [node name="Label2" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_top = 95.0
-margin_right = 194.0
+margin_right = 196.0
 margin_bottom = 114.0
 custom_fonts/font = ExtResource( 50 )
 text = "ShowShortCutsInButtons"
 
 [node name="ShowShortCutsInButtons" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_left = 214.0
+margin_left = 216.0
 margin_top = 85.0
-margin_right = 290.0
+margin_right = 292.0
 margin_bottom = 125.0
 
 [node name="Label3" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_left = 214.0
-margin_top = 180.0
-margin_right = 408.0
-margin_bottom = 199.0
+margin_top = 145.0
+margin_right = 196.0
+margin_bottom = 164.0
 custom_fonts/font = ExtResource( 50 )
 text = "Scull"
 
 [node name="Scull" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_left = 428.0
-margin_top = 170.0
-margin_right = 504.0
-margin_bottom = 210.0
+margin_left = 216.0
+margin_top = 135.0
+margin_right = 292.0
+margin_bottom = 175.0
 pressed = true
 
 [node name="CommandTranslateTab" type="Tabs" parent="CanvasLayer/SettingsDialog/TabContainer"]
@@ -2913,22 +2931,22 @@ __meta__ = {
 
 [connection signal="pressed" from="CanvasLayer/IntroDialog/HSplitContainer/StartPractices" to="CanvasLayer/IntroDialog" method="_on_StartPractices_pressed"]
 [connection signal="pressed" from="CanvasLayer/HighScores/ContinueToStartGame" to="CanvasLayer/HighScores" method="_on_ContinueToStartGame_pressed"]
-[connection signal="pressed" from="CanvasLayer/StartCollectGame/HSplitContainer/StartGame" to="CanvasLayer/StartCollectGame" method="_on_StartGame_pressed"]
 [connection signal="pressed" from="CanvasLayer/StartCollectGame/HSplitContainer/CancelGame" to="CanvasLayer/StartCollectGame" method="_on_CancelGame_pressed"]
-[connection signal="pressed" from="CanvasLayer/EndCollectGame/HBoxContainer/StartGame" to="CanvasLayer/EndCollectGame" method="_on_StartGame_pressed"]
+[connection signal="pressed" from="CanvasLayer/StartCollectGame/HSplitContainer/StartGame" to="CanvasLayer/StartCollectGame" method="_on_StartGame_pressed"]
 [connection signal="pressed" from="CanvasLayer/EndCollectGame/HBoxContainer/CancelGame" to="CanvasLayer/EndCollectGame" method="_on_CancelGame_pressed"]
-[connection signal="pressed" from="CanvasLayer/EndPracticeDialog/HBoxContainer/StartNextPractice" to="CanvasLayer/EndPracticeDialog" method="_on_StartNextPractice_pressed"]
+[connection signal="pressed" from="CanvasLayer/EndCollectGame/HBoxContainer/StartGame" to="CanvasLayer/EndCollectGame" method="_on_StartGame_pressed"]
 [connection signal="pressed" from="CanvasLayer/EndPracticeDialog/HBoxContainer/CancelNextPractice" to="CanvasLayer/EndPracticeDialog" method="_on_CancelPractice_pressed"]
-[connection signal="pressed" from="CanvasLayer/PublishHighscoreCollectGame/HBoxContainer/PublishScore" to="CanvasLayer/PublishHighscoreCollectGame" method="_on_PublishScore_pressed"]
+[connection signal="pressed" from="CanvasLayer/EndPracticeDialog/HBoxContainer/StartNextPractice" to="CanvasLayer/EndPracticeDialog" method="_on_StartNextPractice_pressed"]
 [connection signal="pressed" from="CanvasLayer/PublishHighscoreCollectGame/HBoxContainer/PublishScoreContine" to="CanvasLayer/PublishHighscoreCollectGame" method="_on_PublishScoreContine_pressed"]
+[connection signal="pressed" from="CanvasLayer/PublishHighscoreCollectGame/HBoxContainer/PublishScore" to="CanvasLayer/PublishHighscoreCollectGame" method="_on_PublishScore_pressed"]
 [connection signal="pressed" from="CanvasLayer/QuickFeedbackDialog/EmoticonSelection/Sad" to="CanvasLayer/QuickFeedbackDialog" method="_on_Sad_pressed"]
 [connection signal="pressed" from="CanvasLayer/QuickFeedbackDialog/EmoticonSelection/Meh" to="CanvasLayer/QuickFeedbackDialog" method="_on_Meh_pressed"]
 [connection signal="pressed" from="CanvasLayer/QuickFeedbackDialog/EmoticonSelection/Smile" to="CanvasLayer/QuickFeedbackDialog" method="_on_Smile_pressed"]
 [connection signal="pressed" from="CanvasLayer/QuickFeedbackDialog/EmoticonSelection/Love" to="CanvasLayer/QuickFeedbackDialog" method="_on_Love_pressed"]
 [connection signal="pressed" from="CanvasLayer/QuickFeedbackDialog/HBoxContainer/CancelFeedback" to="CanvasLayer/QuickFeedbackDialog" method="_on_CancelFeedback_pressed"]
 [connection signal="pressed" from="CanvasLayer/QuickFeedbackDialog/HBoxContainer/SendFeedback" to="CanvasLayer/QuickFeedbackDialog" method="_on_SendFeedback_pressed"]
-[connection signal="pressed" from="CanvasLayer/ExplainPracticeDialog/HBoxContainer/StartLessButtons" to="CanvasLayer/ExplainPracticeDialog" method="_on_StartLessButtons_pressed"]
 [connection signal="pressed" from="CanvasLayer/ExplainPracticeDialog/HBoxContainer/StartAllButtons" to="CanvasLayer/ExplainPracticeDialog" method="_on_Start_pressed"]
+[connection signal="pressed" from="CanvasLayer/ExplainPracticeDialog/HBoxContainer/StartLessButtons" to="CanvasLayer/ExplainPracticeDialog" method="_on_StartLessButtons_pressed"]
 [connection signal="about_to_show" from="CanvasLayer/TourDialog" to="CanvasLayer/TourDialog" method="_on_TourDialog_about_to_show"]
 [connection signal="pressed" from="CanvasLayer/TourDialog/HSplitContainer/TourStop" to="CanvasLayer/TourDialog" method="_on_TourStop_pressed"]
 [connection signal="pressed" from="CanvasLayer/TourDialog/HSplitContainer/TourNext" to="CanvasLayer/TourDialog" method="_on_TourNext_pressed"]
