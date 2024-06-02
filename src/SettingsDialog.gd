@@ -221,7 +221,21 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 	
 	if  dict.has("language"):
 		Settings.currentLang=dict["language"]
+	
+	var finishedPractices=[]
 
+	if dict.has("finishedPractices"):
+	
+		finishedPractices=dict["finishedPractices"]
+	
+		if typeof(finishedPractices)==TYPE_ARRAY:
+			for i in finishedPractices.size():
+				finishedPractices[i]=int(finishedPractices[i])
+			# for testing
+			#finishedPractices=[0,1,2,3,4,5,6,7,8,9,10]
+			Settings.finishedPractices=finishedPractices
+			
+			
 	if alreadySetFromUrl:
 		return
 	
@@ -273,15 +287,7 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 		Settings.customButtonSet=customButtonSet
 		GameEvents.customButtonSetChanged()
 	
-	var finishedPractices=[]
-	if dict.has("finishedPractices"):
-		finishedPractices=dict["finishedPractices"]
-		if typeof(finishedPractices)==TYPE_ARRAY:
-			for i in finishedPractices.size():
-				finishedPractices[i]=int(finishedPractices[i])
-			# for testing
-			#finishedPractices=[0,1,2,3,4,5,6,7,8,9,10]
-			Settings.finishedPractices=finishedPractices
+	
 			
 		
 	#clear translations and tooltips
@@ -370,12 +376,13 @@ func saveSettings():
 	
 func loadSettings():
 	
+	
 	var settingFromUrl=false
 	var settings=get_parameter("settings")
 	if settings!=null && settings!="":
 		var dict=parse_json(settings);
 		if dict!=null:
-			setSettings(dict,true)
+			setSettings(dict,true,false)
 			settingFromUrl=true
 	
 
@@ -384,10 +391,10 @@ func loadSettings():
 		save_game.open(settingsFile, File.READ)
 		while save_game.get_position() < save_game.get_len():
 		# Get the saved dictionary from the next line in the save file
-			var dict = parse_json(save_game.get_line())
+			var dict2 = parse_json(save_game.get_line())
 			#only load the high score here when set from the url
 			# never call the setting changed
-			setSettings(dict,false,false,settingFromUrl)
+			setSettings(dict2,false,false,settingFromUrl)
 		save_game.close()
 	
 	#override the lang with the url lang
@@ -398,6 +405,8 @@ func loadSettings():
 			Settings.currentLang=Constants.languageKeys[urlLangIndex]
 
 	GameEvents.settingsChanged()
+	
+	
 	
 func _on_EditCommandText_customCommandTextChanged(command, commandName, value):
 	if commandName==value:

@@ -13,7 +13,8 @@ func _ready():
 	#ui_signals is an autoloaded signal repository.
 	GameEvents.connect("toggle_tooltip",self,"_on_toggle_tooltip")
 	showing=false
-	anim.seek(0)
+	
+	#anim.seek(0)
 	
 func _process(delta):
 	if showing:

@@ -33,14 +33,10 @@ var stepCheckBot=load("res://assets/stepCheckBot.png")
 var stepArrowTop=load("res://assets/stepArrowTop.png")
 var stepArrowMid=load("res://assets/stepArrowMid.png")
 var stepArrowBot=load("res://assets/stepArrowBot.png")
-var stepLightTop=load("res://assets/stepLightTop.png")
-var stepLightMid=load("res://assets/stepLightMid.png")
-var stepLightBot=load("res://assets/stepLightBot.png")
 
 var stepDisabledIcons=[stepDisabledTop,stepDisabledMid,stepDisabledBot]
 var stepCheckIcons=[stepCheckTop,stepCheckdMid,stepCheckBot]
 var stepArrowIcons=[stepArrowTop,stepArrowMid,stepArrowBot]
-var stepLightIcons=[stepLightTop,stepLightMid,stepLightBot]
 
 var iconBoat=load("res://assets/iconBoat.png")
 var infoIcon=load("res://assets/infoIcon.png")
@@ -92,7 +88,6 @@ func _ready():
 func _menuItemClicked(itemId):
 	doStart(itemId)
 
-
 func _collectGameStateChangedSignal(state):
 	if state==Constants.CollectGameState.Finished:
 		savePractice()
@@ -113,7 +108,7 @@ func setStoreFinishedPractice(pos):
 		
 func setMenuIcons():
 	var firstNotDone=-1;
-	for i in items.size():
+	for i in get_item_count():
 	   
 		var itemId=get_item_id(i)
 		var itemText=get_item_text(i)
@@ -159,7 +154,7 @@ func startPractices():
 func findNotFinishedPractice(startPos):
 	 
 	var i=getPracticeIndex(startPos)
-	while ( i<items.size() && practiceIsFinished(startPos) && startPos!= StartPos.StarGame):
+	while ( i<get_item_count() && practiceIsFinished(startPos) && startPos!= StartPos.StarGame):
 		i=i+1
 		startPos=practiceIndexToStartPos(i);
 	return startPos;
@@ -176,12 +171,15 @@ func nextPractice():
 		doStart(currentPractice)
 		
 func getPracticeIndex(startPos):
-	for i in items.size():
+	for i in get_item_count():
 		if get_item_id(i)==startPos:
 			return i
-	return -1
+	return 0
 func practiceIndexToStartPos(i):
-	return self.get_item_id(i)
+	if i<get_item_count():
+		return self.get_item_id(i)
+	else:
+		return StartPos.StarGame
 	
 func practiceActive():
 	return  isPractice( currentPractice)
