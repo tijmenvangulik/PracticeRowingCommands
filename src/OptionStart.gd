@@ -211,7 +211,7 @@ func doStart(startItemId):
 	var explainPopup=$"%ExplainPracticeDialog"
 	var callStartPlay=false
 	Utilities.showOnlyButtons([])
-	$"%PracticeStarts".hideAll()
+	$"%PracticeCollectables".hideAll()
 	var forwards=true
 	currentPractice=startItemId;
 	match startItemId:

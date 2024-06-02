@@ -1282,51 +1282,49 @@ position = Vector2( 1113, 898 )
 [node name="Collectable4" parent="Collectables" instance=ExtResource( 12 )]
 position = Vector2( 1364, 201 )
 
-[node name="PracticeStarts" type="Node" parent="."]
+[node name="PracticeCollectables" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource( 74 )
 
-[node name="CollectableStopBoatPractice" parent="PracticeStarts" instance=ExtResource( 12 )]
+[node name="CollectableStopBoatPractice" parent="PracticeCollectables" instance=ExtResource( 12 )]
 unique_name_in_owner = true
 position = Vector2( 1588, 1993 )
 triggerWhenBoatIsStopped = true
 
-[node name="CollectableMakeTurnPractice" parent="PracticeStarts" instance=ExtResource( 12 )]
+[node name="CollectableMakeTurnPractice" parent="PracticeCollectables" instance=ExtResource( 12 )]
 unique_name_in_owner = true
 position = Vector2( 1578, 1505 )
-triggerWhenBoatIsStopped = true
 
-[node name="CollectableBackDownPractice" parent="PracticeStarts" instance=ExtResource( 12 )]
+[node name="CollectableBackDownPractice" parent="PracticeCollectables" instance=ExtResource( 12 )]
 unique_name_in_owner = true
 position = Vector2( 720, 1988 )
 triggerWhenBoatIsStopped = true
 
-[node name="CollectableBackDownTurnPractice" parent="PracticeStarts" instance=ExtResource( 12 )]
+[node name="CollectableBackDownTurnPractice" parent="PracticeCollectables" instance=ExtResource( 12 )]
 unique_name_in_owner = true
 position = Vector2( 723, 2182 )
-triggerWhenBoatIsStopped = true
 
-[node name="CollectableMooringPractice" parent="PracticeStarts" instance=ExtResource( 12 )]
+[node name="CollectableMooringPractice" parent="PracticeCollectables" instance=ExtResource( 12 )]
 unique_name_in_owner = true
 position = Vector2( 1225, 2628 )
 triggerWhenBoatIsStopped = true
 
-[node name="CollectableBackDownMooringPractice2" parent="PracticeStarts" instance=ExtResource( 12 )]
+[node name="CollectableBackDownMooringPractice2" parent="PracticeCollectables" instance=ExtResource( 12 )]
 unique_name_in_owner = true
 position = Vector2( 1241, 2624 )
 triggerWhenBoatIsStopped = true
 
-[node name="CollectableMooringHighWallPractice" parent="PracticeStarts" instance=ExtResource( 12 )]
+[node name="CollectableMooringHighWallPractice" parent="PracticeCollectables" instance=ExtResource( 12 )]
 unique_name_in_owner = true
 position = Vector2( 2365, 1719 )
 triggerWhenBoatIsStopped = true
 
-[node name="CollectableBackDownMooringHighWallPractice" parent="PracticeStarts" instance=ExtResource( 12 )]
+[node name="CollectableBackDownMooringHighWallPractice" parent="PracticeCollectables" instance=ExtResource( 12 )]
 unique_name_in_owner = true
 position = Vector2( 2366, 1748 )
 triggerWhenBoatIsStopped = true
 
-[node name="CollectableSailAwayPractice2" parent="PracticeStarts" instance=ExtResource( 12 )]
+[node name="CollectableSailAwayPractice2" parent="PracticeCollectables" instance=ExtResource( 12 )]
 unique_name_in_owner = true
 position = Vector2( 1304, 2493 )
 
@@ -1418,7 +1416,6 @@ __meta__ = {
 }
 
 [node name="IntroDialog" type="WindowDialog" parent="CanvasLayer"]
-visible = true
 margin_left = 21.0
 margin_top = 58.0
 margin_right = 991.0
