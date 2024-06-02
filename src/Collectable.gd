@@ -13,7 +13,7 @@ var isEntered=false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-var slowTween= [1,1.4]
+var slowTween= [1,1.5]
 
 func startSlowTween():
 	$TweenSlow.interpolate_property($SpriteTransparent, "scale", Vector2(slowTween[0],slowTween[0]), Vector2(slowTween[1],slowTween[1]), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)

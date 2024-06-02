@@ -88,10 +88,11 @@ func _ready():
 	GameEvents.register_tooltip(self,"OptionStartTooltip")
 	GameEvents.connect("settingsChangedSignal",self,"_handleSettingsChanged")
 	GameEvents.connect("collectGameStateChangedSignal",self,"_collectGameStateChangedSignal")
-
+	
 func _menuItemClicked(itemId):
 	doStart(itemId)
-	
+
+
 func _collectGameStateChangedSignal(state):
 	if state==Constants.CollectGameState.Finished:
 		savePractice()

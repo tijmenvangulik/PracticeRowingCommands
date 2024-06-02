@@ -276,13 +276,13 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 	var finishedPractices=[]
 	if dict.has("finishedPractices"):
 		finishedPractices=dict["finishedPractices"]
-	if typeof(finishedPractices)==TYPE_ARRAY:
-		for i in finishedPractices.size():
-			finishedPractices[i]=int(finishedPractices[i])
-		# for testing
-		#finishedPractices=[0,1,2,3,4,5,6,7,8,9,10]
-		Settings.finishedPractices=finishedPractices
-		
+		if typeof(finishedPractices)==TYPE_ARRAY:
+			for i in finishedPractices.size():
+				finishedPractices[i]=int(finishedPractices[i])
+			# for testing
+			#finishedPractices=[0,1,2,3,4,5,6,7,8,9,10]
+			Settings.finishedPractices=finishedPractices
+			
 		
 	#clear translations and tooltips
 	for i in range(5,commandTranslationsGrid.get_child_count()):
