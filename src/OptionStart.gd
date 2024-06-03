@@ -23,7 +23,7 @@ enum StartPos {
   Intro
 }
 
-var currentPractice  = StartPos.Start
+var currentStartPos  = StartPos.Start
 var stepDisabledTop=load("res://assets/stepDisabledTop.png")
 var stepDisabledMid=load("res://assets/stepDisabledMid.png")
 var stepDisabledBot=load("res://assets/stepDisabledBot.png")
@@ -40,6 +40,7 @@ var stepArrowIcons=[stepArrowTop,stepArrowMid,stepArrowBot]
 
 var iconBoat=load("res://assets/iconBoat.png")
 var infoIcon=load("res://assets/infoIcon.png")
+var practiceIsActive = false;
 
 func _ready():
 #	add_icon_item(
@@ -139,17 +140,27 @@ func isPractice(pos):
   
 
 func endPractice():
-	if practiceActive():		
+	if practiceIsActive:
+		practiceIsActive=false
+		savePractice()
 		var t=boat.startTimer(2)
 		yield(t, "timeout")
 		boat.removeTimer(t)
 		
 		$"%EndPracticeDialog".show()
 
+func _crashDetected():
+	if practiceIsActive:
+		practiceIsActive=false
+		var t=boat.startTimer(2)
+		yield(t, "timeout")
+		boat.removeTimer(t)
+		restartPractice();
+		
 func startPractices():
-	currentPractice=findNotFinishedPractice(StartPos.StartTour);
+	currentStartPos=findNotFinishedPractice(StartPos.StartTour);
 	# for now start the first practice
-	doStart(currentPractice)
+	doStart(currentStartPos)
 
 func findNotFinishedPractice(startPos):
 	 
@@ -160,15 +171,14 @@ func findNotFinishedPractice(startPos):
 	return startPos;
 	
 func savePractice():
-	if practiceActive():
-		setStoreFinishedPractice(currentPractice)		
+	if isPractice( currentStartPos):
+		setStoreFinishedPractice(currentStartPos)		
 		setMenuIcons()	
 		
 func nextPractice():
-	if practiceActive():
-		savePractice()
-		currentPractice=findNotFinishedPractice(currentPractice)	
-		doStart(currentPractice)
+	if isPractice( currentStartPos):
+		currentStartPos=findNotFinishedPractice(currentStartPos)	
+		doStart(currentStartPos)
 		
 func getPracticeIndex(startPos):
 	for i in get_item_count():
@@ -180,19 +190,10 @@ func practiceIndexToStartPos(i):
 		return self.get_item_id(i)
 	else:
 		return StartPos.StarGame
-	
-func practiceActive():
-	return  isPractice( currentPractice)
 
-func _crashDetected():
-	if practiceActive():
-		var t=boat.startTimer(2)
-		yield(t, "timeout")
-		boat.removeTimer(t)
-		restartPractice();
 		
 func restartPractice():
-	doStart(currentPractice)
+	doStart(currentStartPos)
 
 func selected(itemIndex : int):	
 	select(StartPos.Start)
@@ -212,7 +213,9 @@ func doStart(startItemId):
 	Utilities.showOnlyButtons([])
 	$"%PracticeCollectables".hideAll()
 	var forwards=true
-	currentPractice=startItemId;
+	currentStartPos=startItemId;
+	if isPractice(currentStartPos):
+		practiceIsActive=true
 	match startItemId:
 		StartPos.Start: 
 			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)
