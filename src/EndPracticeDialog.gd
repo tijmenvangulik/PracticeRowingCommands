@@ -25,4 +25,5 @@ func _on_StartNextPractice_pressed():
 
 
 func _on_CancelPractice_pressed():
+	$"%OptionStart".startOnWater()
 	hide()

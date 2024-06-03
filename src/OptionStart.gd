@@ -106,7 +106,10 @@ func setStoreFinishedPractice(pos):
 	if (!practiceIsFinished(pos)):
 		Settings.finishedPractices.append(pos)
 		GameEvents.settingsChanged()
-		
+
+func startOnWater():
+	doStart(StartPos.Start)
+	
 func setMenuIcons():
 	var firstNotDone=-1;
 	for i in get_item_count():
