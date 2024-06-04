@@ -236,7 +236,7 @@ func doStart(startItemId):
 			explainPopup.showDialog("BackdownPracticeExplainText",showOnlyButonsArray)
 		StartPos.BochtOefenening:
 			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)
-			var showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.VastroeienBeideBoorden,Constants.Command.Bedankt,Constants.Command.HalenSB,Constants.Command.HalenBB,Constants.Command.HalenBeideBoorden]	
+			var showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.VastroeienBeideBoorden,Constants.Command.Bedankt,Constants.Command.HalenSB,Constants.Command.HalenBB,Constants.Command.HalenBeideBoorden,Constants.Command.VastroeienBB,Constants.Command.VastroeienSB]	
 			$"%CollectableMakeTurnPractice".reset()
 			explainPopup.showDialog("TurnPracticeExplainText",showOnlyButonsArray)
 		StartPos.AchteruitBochtOefenening:
