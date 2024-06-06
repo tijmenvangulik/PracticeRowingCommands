@@ -62,7 +62,10 @@ func _ready():
 	
 	GameEvents.register_allways_tooltip($TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons,"ShortCutTourText")
 	GameEvents.register_allways_tooltip($TabContainer/GeneralSettingsTab/GridContainer/Scull,"ScullTooltip")
-
+	
+	Utilities.styleDropDown($TabContainer/GeneralSettingsTab/GridContainer/RuleSetDropDown)
+	Utilities.styleDropDown($ChoosePresetSettingsButton)
+	
 	var commands=Constants.commandNames
 	while Settings.commandTranslations.size()<commands.size():
 		Settings.commandTranslations.push_back("")

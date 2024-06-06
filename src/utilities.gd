@@ -99,3 +99,7 @@ func showOnlyButtons(var commands):
 	for command in commands:
 		disableCommand(Constants.commandNames[command],false)
 	GameEvents.commandsChanged(commands)
+
+func styleDropDown(dropdown):
+	dropdown.get_popup().add_constant_override("vseparation",10)
+	

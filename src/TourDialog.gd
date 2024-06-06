@@ -59,7 +59,8 @@ func ShowStep():
 		$"TourText".set_bbcode(Utilities.replaceCommandsInText( tr(tourTexts[tourStep-1]),true))
 	else:
 		stopTour()
-	
+	if isLastStep:
+		$"%OptionStart".savePractice()
 	
 	$HSplitContainer/TourNext.visible=!isLastStep
 	$HSplitContainer/StartPractices.visible=isLastStep

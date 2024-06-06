@@ -158,7 +158,7 @@ func _crashDetected():
 		var t=boat.startTimer(2)
 		yield(t, "timeout")
 		boat.removeTimer(t)
-		restartPractice();
+		$"%EndCrashPracticeDialog".start()
 		
 func startPractices():
 	currentStartPos=findNotFinishedPractice(StartPos.StartTour);

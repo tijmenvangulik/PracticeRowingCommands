@@ -31,8 +31,10 @@ func _ready():
 	connect("item_selected",self,"selected")
 	setLanguage(Settings.currentLang)	
 	var styleDropDown= preload("res://MainDropDown.tres")
-	get_popup().add_stylebox_override("panel",styleDropDown)
-
+	var pm=get_popup()
+	pm.add_stylebox_override("panel",styleDropDown)
+	Utilities.styleDropDown(self)
+	
 func setLanguage(langKey):
 	var indexNr=Constants.languageKeys.find(langKey)
 	if indexNr>=0:

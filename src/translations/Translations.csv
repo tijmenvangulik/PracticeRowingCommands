@@ -241,3 +241,6 @@ EndPracticeText;Goed gedaan!;Goed gedaan!;Well done!;Well done!
 CancelNextPractice;Stoppen;Stoppen;Stop;Stop
 StartNextPractice;Volgende oefening;Volgende oefening;Next practice;Next practice
 StartPractices;Start oefeningen;Start oefeningen;Start practices;Start practices
+EndCrashPracticeText;Jammer gebotst;Jammer gebotst;Too bad collided;Too bad collided
+StartSamePractice;Nog een keer;Nog een keer;Again;Again
+CancelNextPractice;Annuleer oefeningen;Annuleer oefeningen;Cancel practices;Cancel practices
