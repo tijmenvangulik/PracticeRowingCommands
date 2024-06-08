@@ -48,7 +48,8 @@ var forwardsPositon=150
 var backwardsPosition=-200
 var currentPositionX=0;
 var moveStep=1000
-	
+var isDuckCrash = false
+
 func _ready():
 	setForwardsPosition(0)
 	GameEvents.connect("zoomChangedSignal",self,"_zoomChangedSignal")
@@ -142,6 +143,7 @@ func removeTimer(t):
 
 func resetCrashed():
 	crashState=false
+	isDuckCrash=false
 	
 func showError(message:String):
 	
@@ -259,9 +261,9 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 		var body=collidingBodies[0]
 		var isDuck= body.is_class("Duck") 
 		
-		if (!isDuck || !isLowSpeed() || isTurning()):
-			
+		if (!isDuck || !isLowSpeed() || isTurning()):	
 			crashState=true;
+			isDuckCrash=isDuck
 			changeState(Constants.Command.LaatLopen,Constants.RowState.LaatLopen,0,true)
 			var sound=$"CrashSound"
 			if isDuck:
@@ -284,7 +286,7 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 	else:
 		 linear_damp=org_linear_damp
 	# Simulate the keel and reduce the side way forces
-	if !sideWays && !crashState:
+	if !sideWays && !(crashState && !isDuckCrash) :
 		#remove the rotation
 		var force=linear_velocity.rotated(-rotation)
 		if force.y>0.01 or force.y<-0.01:

@@ -153,7 +153,7 @@ func endPractice():
 		$"%EndPracticeDialog".show()
 
 func _crashDetected():
-	if practiceIsActive:
+	if practiceIsActive && currentStartPos!=StartPos.StarGame :
 		practiceIsActive=false
 		var t=boat.startTimer(2)
 		yield(t, "timeout")

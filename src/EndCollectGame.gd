@@ -14,7 +14,7 @@ func _ready():
 func _on_CancelGame_pressed():
 	self.visible=false;
 	GameState.changeCollectGameState( Constants.CollectGameState.None)
-
+	
 
 func _on_StartGame_pressed():
 	self.visible=false;
