@@ -15,6 +15,7 @@ var crashedState=false;
 
 func testEndGame():
 	time_elapsed=230.10
+	GameState.changeCollectGameState(Constants.CollectGameState.Finish)
 	gameFinish()
 	
 func resetCrashed():

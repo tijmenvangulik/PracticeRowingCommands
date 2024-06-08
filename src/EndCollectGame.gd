@@ -29,7 +29,9 @@ func init(time:String,isHighScore:bool):
 	$Trophy2.visible=isHighScore
 	$Star4.visible=!isHighScore
 	$Star5.visible=!isHighScore
-			
+	$Sad	.visible=false
+	$Sad2.visible=false
+	
 	$EndGameText.text=text
 	
 
@@ -40,6 +42,8 @@ func initCrashed():
 	$Trophy2.visible=false
 	$Star4.visible=false
 	$Star5.visible=false
+	$Sad	.visible=true
+	$Sad2.visible=true
 	
 func _collectGameStateChangedSignal(state):
 	if state==Constants.CollectGameState.Crashed:

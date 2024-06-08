@@ -1703,6 +1703,18 @@ position = Vector2( 56, 113 )
 scale = Vector2( 0.76, 0.8 )
 texture = ExtResource( 27 )
 
+[node name="Sad" type="Sprite" parent="CanvasLayer/EndCollectGame"]
+visible = false
+position = Vector2( 56, 103 )
+scale = Vector2( 1.30556, 1.26389 )
+texture = ExtResource( 24 )
+
+[node name="Sad2" type="Sprite" parent="CanvasLayer/EndCollectGame"]
+visible = false
+position = Vector2( 603, 103 )
+scale = Vector2( 1.30556, 1.26389 )
+texture = ExtResource( 24 )
+
 [node name="Trophy2" type="Sprite" parent="CanvasLayer/EndCollectGame"]
 visible = false
 position = Vector2( 611, 114 )
