@@ -10,15 +10,36 @@ var isEntered=false
 # Called when the node enters the scene tree for the first time.
 
 
+export var spriteStyle : int = 0
+
+export var practiceStartPosNr : int = -1
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 var slowTween= [1,1.2]
 
+func _ready():
+	setIconStyle(spriteStyle)
+
+var starSprite=load("res://assets/star.png")
+var startPractice=load("res://assets/starPractice.png")
+var starPracticeCollected=load("res://assets/starPracticeCollected.png")
+
+func setIconStyle(newStyle):
+	spriteStyle=newStyle
+	if spriteStyle==Constants.CollectableSpriteStyle.Game:
+		$Sprite.texture= starSprite
+	elif spriteStyle==Constants.CollectableSpriteStyle.Practice:
+		$Sprite.texture= startPractice
+	elif spriteStyle==Constants.CollectableSpriteStyle.PracticeCollected:
+		$Sprite.texture= starPracticeCollected
+
 func startSlowTween():
 	$TweenSlow.interpolate_property(self, "scale", Vector2(slowTween[0],slowTween[0]), Vector2(slowTween[1],slowTween[1]), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	
 	$TweenSlow.start()
+	
 
 func _on_TweenSlow_tween_all_completed():
 	slowTween.invert()

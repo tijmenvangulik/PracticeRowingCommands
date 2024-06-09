@@ -165,3 +165,8 @@ const languageKeys=["nl_NL","nl","en","en_US"]
 const urlKeys=["nl_viking","nl","en","en2"]
 const flags=["nl","nl","gb","gb"]
 
+enum CollectableSpriteStyle {
+	Game,
+	Practice,
+	PracticeCollected
+}

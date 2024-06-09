@@ -42,6 +42,8 @@ var iconBoat=load("res://assets/iconBoat.png")
 var infoIcon=load("res://assets/infoIcon.png")
 var practiceIsActive = false;
 
+var practicePoints = 0
+
 func _ready():
 #	add_icon_item(
 	GameEvents.connect("crash",self,"_crashDetected")
@@ -66,7 +68,7 @@ func _ready():
 	add_item("StartOpWater",StartPos.Start)
 	add_item("ShowIntroText",StartPos.Intro)
 	
-	setMenuIcons()
+	setIcons()
 	connect("item_selected",self,"selected")
 	text="StartPositie"
 	icon=null;
@@ -97,7 +99,7 @@ func _introSignal(isVisible : bool):
 	visible=!isVisible
 
 func _handleSettingsChanged():
-	setMenuIcons()
+	setIcons()
 	
 func practiceIsFinished(pos):
 	return Settings.finishedPractices.find(pos)>=0
@@ -107,10 +109,21 @@ func setStoreFinishedPractice(pos):
 		Settings.finishedPractices.append(pos)
 		GameEvents.settingsChanged()
 
+func resetFinishedPractices():
+	Settings.finishedPractices=[]
+	GameEvents.settingsChanged()
+	setIcons()	
+	
 func startOnWater():
 	doStart(StartPos.Start)
-	
-func setMenuIcons():
+func setStarStyle(startPos ,style): 
+	for c in $"%PracticeCollectables".get_children():
+		if c.practiceStartPosNr==startPos:
+			c.setIconStyle(style)
+
+func setIcons():
+	practicePoints=0
+	var nrOfPractices=0
 	var firstNotDone=-1;
 	for i in get_item_count():
 	   
@@ -120,14 +133,20 @@ func setMenuIcons():
 		if itemText=="":
 			itemId = -1
 		if isPractice(itemId):
+			if itemId!=StartPos.StartTour: 
+				nrOfPractices=nrOfPractices+1
 			var iconIndex=1
 			if itemId==StartPos.StartTour:
 				iconIndex=0
 			if itemId==StartPos.StarGame:
 				iconIndex=2
-			if practiceIsFinished(itemId):				
+			if practiceIsFinished(itemId):
+				if itemId!=StartPos.StartTour: 
+					practicePoints=practicePoints+1
 				set_item_icon( i,stepCheckIcons[iconIndex])
+				setStarStyle(itemId,Constants.CollectableSpriteStyle.PracticeCollected)
 			else:
+				setStarStyle(itemId,Constants.CollectableSpriteStyle.Practice)
 				set_item_icon( i,stepDisabledIcons[iconIndex])
 				if firstNotDone<0:
 					firstNotDone=i
@@ -137,20 +156,21 @@ func setMenuIcons():
 		if itemId==StartPos.Start:
 			set_item_icon(i,iconBoat)
 	icon=null
+	$"%PracticeCounter".setCount( practicePoints, nrOfPractices)
 	
 func isPractice(pos):
 	return pos>=0 && pos!=StartPos.Start && pos!=StartPos.Intro
-  
 
 func endPractice():
 	if practiceIsActive:
+		var earnedStar=!practiceIsFinished(currentStartPos)
 		practiceIsActive=false
 		savePractice()
 		var t=boat.startTimer(2)
 		yield(t, "timeout")
 		boat.removeTimer(t)
 		
-		$"%EndPracticeDialog".show()
+		$"%EndPracticeDialog".start(earnedStar)
 
 func _crashDetected():
 	if practiceIsActive && currentStartPos!=StartPos.StarGame :
@@ -176,7 +196,7 @@ func findNotFinishedPractice(startPos):
 func savePractice():
 	if isPractice( currentStartPos):
 		setStoreFinishedPractice(currentStartPos)		
-		setMenuIcons()	
+		setIcons()	
 		
 func nextPractice():
 	if isPractice( currentStartPos):

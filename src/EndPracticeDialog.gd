@@ -10,8 +10,8 @@ extends WindowDialog
 func _ready():
 	pass # Replace with function body.
 
-func start():
-	$EndPracticeText.text=tr("EndPracticeText")
+func start(earnedStar):
+	$EndPracticeStar.visible=earnedStar
 	show_modal(true)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.

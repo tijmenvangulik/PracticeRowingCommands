@@ -84,10 +84,12 @@ func doStartGame():
 	setCollected(0)
 
 	collectedCounter.visible=true;
+	$"%PracticeCounter".visible=false;
 	gameStarted=true
 
 func stopGame():
 	collectedCounter.visible=false;
+	$"%PracticeCounter".visible=true;
 	hideAll()
 	resetCrashed()
 	gameStarted=false

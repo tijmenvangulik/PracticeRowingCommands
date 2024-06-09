@@ -465,3 +465,8 @@ func _on_Scull_toggled(button_pressed):
 	if GameState.useDefaultButtonSet:
 		GameState.currentButtonSet=GameState.getDefaultButtonSet()
 	GameEvents.languageChanged()
+
+
+func _on_ResetPractices_pressed():
+	$"%OptionStart".resetFinishedPractices()
+	
