@@ -17,7 +17,7 @@ export var practiceStartPosNr : int = -1
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-var slowTween= [1,1.2]
+var slowTween= [0.8,1.1]
 
 func _ready():
 	setIconStyle(spriteStyle)

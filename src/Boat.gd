@@ -17,7 +17,7 @@ var max_turn= 0.6
 var lowTurnSpeed=1.0
 var forceMultiplier=1.0
 var sideWays=false;
-var lightPaddleFactor=0.6
+var lightPaddleFactor=0.7
 var lightPaddleDestTurnFactor=0.5
 var lightPaddleOn=false
 
