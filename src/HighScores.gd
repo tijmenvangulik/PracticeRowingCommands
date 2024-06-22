@@ -68,6 +68,7 @@ func _collectGameStateChangedSignal(state):
 	else:
 		if visible: 
 			stop()
+			start()
 			
 	
 func addLabel(container,text):
