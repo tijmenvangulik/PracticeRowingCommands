@@ -222,14 +222,19 @@ func selected(itemIndex : int):
 	select(StartPos.Start)
 	self.text="StartPositie"
 	icon=null
-	
+
+func usePushAway():
+	if  Settings.usePushAway == Constants.DefaultYesNo.Default:
+		var val=tr("UsePushAway")
+		return val=="TRUE"
+	return Settings.usePushAway  == Constants.DefaultYesNo.Yes;
+
 func doStart(startItemId):
 	if GameState.collectGameState!=Constants.CollectGameState.None:
 		GameState.changeCollectGameState(Constants.CollectGameState.Stop)
 	
 	boat.resetCrashed()
 	var Command=Constants.Command
-	var isViking=GameState.isViking
 	
 	var explainPopup=$"%ExplainPracticeDialog"
 	var callStartPlay=false
@@ -273,12 +278,12 @@ func doStart(startItemId):
 		StartPos.Aangelegd:
 			$"%CollectableSailAwayPractice2".reset()			
 			var showOnlyButonsArray=[]
-			if isViking: 
-				boat.setNewBoatPosition(1124,2596,0,Constants.StateOars.SlippenSB,true)
-				showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.PeddelendStrijkenSB,Constants.Command.StrijkenBB,Constants.Command.HalenSB,Constants.Command.UitbrengenSB]	
-			else:
+			if usePushAway(): 
 				boat.setNewBoatPosition(1124,2608,0,Constants.StateOars.RiemenHoogSB,true)
 				showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.HalenSB,Constants.Command.UitzettenSB]	
+			else:
+				boat.setNewBoatPosition(1124,2596,0,Constants.StateOars.SlippenSB,true)
+				showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.PeddelendStrijkenSB,Constants.Command.StrijkenBB,Constants.Command.HalenSB,Constants.Command.UitbrengenSB]	
 			explainPopup.showDialog("SailAwayExplainText",showOnlyButonsArray)
 		StartPos.Intro: GameEvents.intro(true)
 		StartPos.StartTour: GameEvents.startTour()

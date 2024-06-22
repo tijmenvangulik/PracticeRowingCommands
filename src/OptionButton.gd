@@ -17,6 +17,7 @@ func _init():
 	else:
 		Settings.currentLang="en"
 	GameEvents.register_tooltip(self,"OptionLanguageTooltip")
+
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -39,7 +40,6 @@ func setLanguage(langKey):
 	var indexNr=Constants.languageKeys.find(langKey)
 	if indexNr>=0:
 		TranslationServer.set_locale(langKey)
-		GameState.isViking= langKey=="nl_NL"
 		select(indexNr)
 		if currentLang!=langKey:
 			currentLang=langKey

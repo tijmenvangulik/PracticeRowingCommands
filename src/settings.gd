@@ -13,3 +13,4 @@ var showCommandTooltips=false
 var showShortCutsInButtons=false
 var isScull =true;
 var finishedPractices=[]
+var usePushAway = Constants.DefaultYesNo.Default;

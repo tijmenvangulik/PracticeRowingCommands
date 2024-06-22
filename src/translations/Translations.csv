@@ -247,3 +247,9 @@ CancelNextPractice;Annuleer oefeningen;Annuleer oefeningen;Cancel practices;Canc
 Reset;Reset;Reset;Reset;Reset
 ResetPractices;Reset oefeningen;Reset oefeningen;Reset practices;Reset practices
 EndPracticeStar;Je hebt een ster verdiend;Je hebt een ster verdiend;You earned a star;You earned a star
+UsePushAway;FALSE;TRUE;TRUE;TRUE
+Default;Standaard;Standaard;Default;Default
+Yes;Ja;Ja;Yes;Yes
+No;Nee;Nee;No;No
+UsePushAwayOption;Wegvaren gebruik wegzetten;Wegvaren gebruik wegzetten;Sail away use push away;Sail away use push away
+DoNotForgetEasyOff;Vergeet niet {Bedankt} te zeggen;Vergeet niet {Bedankt} te zeggen;Do not forget to say {Bedankt};Do not forget to say {Bedankt}

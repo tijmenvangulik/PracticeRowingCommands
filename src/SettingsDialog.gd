@@ -57,7 +57,12 @@ func _ready():
 	GameEvents.connect("customTooltipTextChanged",self,"_on_EditTooltipText_customTooltipTextChanged")
 	GameEvents.connect("customShortcutTextChanged",self,"_on_EditTooltipText_customShortcutTextChanged")
 	GameEvents.connect("settingsChangedSignal",self,"_handleSettingsChanged")
-
+	
+	var pushAwayOption=$TabContainer/GeneralSettingsTab/GridContainer/UsePushAwayOption
+	pushAwayOption.add_item("Default",Constants.DefaultYesNo.Default)
+	pushAwayOption.add_item("Yes",Constants.DefaultYesNo.Yes)
+	pushAwayOption.add_item("No",Constants.DefaultYesNo.No)
+	
 	get_close_button().hide()
 	
 	GameEvents.register_allways_tooltip($TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons,"ShortCutTourText")
@@ -85,6 +90,8 @@ func _ready():
 	
 	loadSettings()
 
+	pushAwayOption.select(Settings.usePushAway)
+	
 	#https://www.tilcode.com/godot-3-centering-a-grid-of-evenly-spaced-buttons-on-screen/
 	#https://docs.godotengine.org/en/stable/getting_started/step_by_step/ui_game_user_interface.html
 	var commandIndex=0;
@@ -204,7 +211,8 @@ func getSettings(removePrivate=false):
 	  "showCommandTooltips":Settings.showCommandTooltips,
 	  "showShortCutsInButtons":Settings.showShortCutsInButtons,
 	  "isScull":Settings.isScull,
-	  "finishedPractices":Settings.finishedPractices
+	  "finishedPractices":Settings.finishedPractices,
+	  "usePushAway": Settings.usePushAway
 	}
 	if removePrivate:
 		removePrivateSettings(save_dict)
@@ -258,6 +266,9 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 	if dict.has("shortcuts"):
 		shortcuts=dict["shortcuts"]
 	
+	if dict.has("usePushAway"):
+		Settings.usePushAway= dict["usePushAway"]
+		
 	var 	tooltipsOn=true
 	if dict.has("showCommandTooltips"): 
 		 tooltipsOn=dict["showCommandTooltips"]	
@@ -469,4 +480,9 @@ func _on_Scull_toggled(button_pressed):
 
 func _on_ResetPractices_pressed():
 	$"%OptionStart".resetFinishedPractices()
+	
+
+
+func _on_UsePushAwayOption_item_selected(index):
+	Settings.usePushAway= index;
 	

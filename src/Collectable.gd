@@ -7,6 +7,8 @@ extends Area2D
 export var triggerWhenBoatIsStopped=false
 var collected=false
 var isEntered=false
+var stopWarningGiven=false
+var warningStartDelay =0
 # Called when the node enters the scene tree for the first time.
 
 
@@ -60,6 +62,7 @@ func reset():
 	collected=false
 	isEntered=false
 	startSlowTween()
+	warningStartDelay=0
 	
 func hide():
 	visible=false
@@ -90,9 +93,19 @@ func _on_Collectable_area_shape_exited(area_rid, area, area_shape_index, local_s
 		isEntered=false
 
 func _process(delta):
-	if triggerWhenBoatIsStopped:
-		if self.visible && !collected && isEntered && triggerWhenBoatIsStopped && $"%Boat".isStopped() && $"%Boat".state==Constants.RowState.Bedankt :
-			doCollect()
+	if visible && triggerWhenBoatIsStopped:
+		if !collected && isEntered && triggerWhenBoatIsStopped && $"%Boat".isStopped():
+			if $"%Boat".state==Constants.RowState.Bedankt:
+				warningStartDelay=0
+				doCollect()
+			elif warningStartDelay==0:
+				warningStartDelay=Time.get_ticks_msec()
+		# when forgotten to say drop off then give a message
+		if warningStartDelay>0 && (Time.get_ticks_msec()-warningStartDelay)>2000:
+			warningStartDelay=0
+			var text=tr("DoNotForgetEasyOff")
+			text=Utilities.replaceCommandsInText(text,false)
+			$"%Boat".showError(text)
 		
 
 

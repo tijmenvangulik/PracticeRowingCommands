@@ -1,6 +1,5 @@
 extends Node
 
-var isViking=true
 var isForwards=true
 
 var collectGameState= Constants.CollectGameState.None
