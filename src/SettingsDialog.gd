@@ -374,6 +374,7 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 	var zoom = 2.1
 	if dict.has("zoom"):
 		zoom =dict["zoom"]
+	
 	if( zoom>0 && zoom<100) || zoom==-1:
 		Settings.zoom=zoom;
 	

@@ -14,7 +14,8 @@ uniform float distortion_speed = 2.0;
 
 uniform vec2 tile = vec2(5.0, 5.0);
 
-uniform float wave_speed = 1.5;
+uniform float wave_height1 = 0.15;
+uniform float wave_height2 = 0.05;
 
 
 
@@ -246,9 +247,9 @@ vec3 water(vec2 uv, vec3 cdir, float iTime)
 
     vec2 dist = vec2(
 
-    	sin(d1) * 0.15 + sin(d2) * 0.05,
+    	sin(d1) * wave_height1 + sin(d2) * wave_height2,
 
-    	cos(d1) * 0.15 + cos(d2) * 0.05
+    	cos(d1) * wave_height1 + cos(d2) * wave_height2
 
     );
 
