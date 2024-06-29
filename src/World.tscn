@@ -83,13 +83,13 @@
 
 [sub_resource type="ShaderMaterial" id=43]
 shader = ExtResource( 80 )
-shader_param/WATER_COL = Color( 0.435294, 0.811765, 0.87451, 1 )
-shader_param/WATER2_COL = Color( 0.513726, 0.839216, 0.894118, 1 )
-shader_param/FOAM_COL = Color( 0.432991, 0.778374, 0.835938, 1 )
+shader_param/WATER_COL = Color( 0.432, 0.757067, 0.8, 1 )
+shader_param/WATER2_COL = Color( 0.504, 0.8008, 0.84, 1 )
+shader_param/FOAM_COL = Color( 0.462, 0.734067, 0.77, 1 )
 shader_param/distortion_speed = 1.0
 shader_param/tile = Vector2( 30, 30 )
-shader_param/wave_height1 = 0.03
-shader_param/wave_height2 = 0.03
+shader_param/wave_height1 = 0.04
+shader_param/wave_height2 = 0.04
 
 [sub_resource type="NoiseTexture" id=47]
 
@@ -918,9 +918,6 @@ position = Vector2( 169, -302 )
 scale = Vector2( 0.823077, 1.1034 )
 texture = SubResource( 47 )
 polygon = PoolVector2Array( -218.692, 271.886, 2864.86, 271.886, 2895.23, 2741.52, -256.355, 2721.58, -217.477, 1918.61, -669.439, 1915.89, -675.514, 1670.29, -244.206, 1675.72 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 20 )

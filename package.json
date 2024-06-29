@@ -13,7 +13,7 @@
     "updatehtml": "mustache package.json template/index.html > bin/html/index.html",
     "copyjs": "mustache package.json template/index.js > bin/html/index.js",
     "build": "npm run compress && npm run updatehtml && npm run copyjs",
-    "deploy": "rsync -rvu --exclude \".*\" bin/html/ /Volumes/www.vangulik.org/PracticeRowingCommands/",
+    "deploy": "rsync -rvu --exclude \".*\" bin/html/ /Volumes/www.vangulik.org/PracticeRowingCommands2/",
     "buildAndDeploy":"npm run build && npm run deploy",
     "createzip":"rm distribute.zip && cd ./bin/html && zip  -vr ../../distribute.zip . -x \"*.DS_Store\" -q  ",
     "prepare-git-commit":"cp src/calcSecurityCodeForGit.gd src/calcSecurityCode.gd && npm run createzip ",

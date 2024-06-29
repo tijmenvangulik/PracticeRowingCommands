@@ -16,6 +16,7 @@ uniform vec2 tile = vec2(5.0, 5.0);
 
 uniform float wave_height1 = 0.15;
 uniform float wave_height2 = 0.05;
+//uniform bool secondColor = false;
 
 
 
@@ -56,24 +57,24 @@ float waterlayer(vec2 uv)
     float ret = 1.0;
 
     ret += circ(uv, vec2(0.37378, 0.277169), 0.0268181);
-
-    ret += circ(uv, vec2(0.0317477, 0.540372), 0.0193742);
+//for perfornace disable what you can not see
+  //  ret += circ(uv, vec2(0.0317477, 0.540372), 0.0193742);
 
     ret += circ(uv, vec2(0.430044, 0.882218), 0.0232337);
 
-    ret += circ(uv, vec2(0.641033, 0.695106), 0.0117864);
+//    ret += circ(uv, vec2(0.641033, 0.695106), 0.0117864);
 
     ret += circ(uv, vec2(0.0146398, 0.0791346), 0.0299458);
 
-    ret += circ(uv, vec2(0.43871, 0.394445), 0.0289087);
+ //   ret += circ(uv, vec2(0.43871, 0.394445), 0.0289087);
 
     ret += circ(uv, vec2(0.909446, 0.878141), 0.028466);
 
-    ret += circ(uv, vec2(0.310149, 0.686637), 0.0128496);
+ //   ret += circ(uv, vec2(0.310149, 0.686637), 0.0128496);
 
     ret += circ(uv, vec2(0.928617, 0.195986), 0.0152041);
 
-    ret += circ(uv, vec2(0.0438506, 0.868153), 0.0268601);
+  //  ret += circ(uv, vec2(0.0438506, 0.868153), 0.0268601);
 
     ret += circ(uv, vec2(0.308619, 0.194937), 0.00806102);
 
@@ -103,7 +104,7 @@ float waterlayer(vec2 uv)
 
     ret += circ(uv, vec2(0.334357, 0.266278), 0.0187145);
 
-    ret += circ(uv, vec2(0.918044, 0.968163), 0.0182928);
+ //   ret += circ(uv, vec2(0.918044, 0.968163), 0.0182928);
 
     ret += circ(uv, vec2(0.965445, 0.505026), 0.006348);
 
@@ -115,25 +116,25 @@ float waterlayer(vec2 uv)
 
     ret += circ(uv, vec2(0.748873, 0.413325), 0.0110795);
 
-    ret += circ(uv, vec2(0.0623365, 0.896713), 0.0236203);
+  //  ret += circ(uv, vec2(0.0623365, 0.896713), 0.0236203);
 
     ret += circ(uv, vec2(0.980482, 0.473849), 0.00573439);
 
     ret += circ(uv, vec2(0.647463, 0.654349), 0.0188713);
 
-    ret += circ(uv, vec2(0.651406, 0.981297), 0.00710875);
+ //   ret += circ(uv, vec2(0.651406, 0.981297), 0.00710875);
 
     ret += circ(uv, vec2(0.428928, 0.382426), 0.0298806);
 
     ret += circ(uv, vec2(0.811545, 0.62568), 0.00265539);
 
-    ret += circ(uv, vec2(0.400787, 0.74162), 0.00486609);
+//    ret += circ(uv, vec2(0.400787, 0.74162), 0.00486609);
 
     ret += circ(uv, vec2(0.331283, 0.418536), 0.00598028);
 
     ret += circ(uv, vec2(0.894762, 0.0657997), 0.00760375);
 
-    ret += circ(uv, vec2(0.525104, 0.572233), 0.0141796);
+ //   ret += circ(uv, vec2(0.525104, 0.572233), 0.0141796);
 
     ret += circ(uv, vec2(0.431526, 0.911372), 0.0213234);
 
@@ -151,27 +152,27 @@ float waterlayer(vec2 uv)
 
     ret += circ(uv, vec2(0.149073, 0.41204), 0.00497198);
 
-    ret += circ(uv, vec2(0.533816, 0.897634), 0.00650833);
+//    ret += circ(uv, vec2(0.533816, 0.897634), 0.00650833);
 
     ret += circ(uv, vec2(0.0409132, 0.83406), 0.0191398);
 
-    ret += circ(uv, vec2(0.638585, 0.646019), 0.0206129);
+ //   ret += circ(uv, vec2(0.638585, 0.646019), 0.0206129);
 
     ret += circ(uv, vec2(0.660342, 0.966541), 0.0053511);
 
-    ret += circ(uv, vec2(0.513783, 0.142233), 0.00471653);
+ //   ret += circ(uv, vec2(0.513783, 0.142233), 0.00471653);
 
     ret += circ(uv, vec2(0.124305, 0.644263), 0.00116724);
 
     ret += circ(uv, vec2(0.99871, 0.583864), 0.0107329);
 
-    ret += circ(uv, vec2(0.894879, 0.233289), 0.00667092);
+ //   ret += circ(uv, vec2(0.894879, 0.233289), 0.00667092);
 
     ret += circ(uv, vec2(0.246286, 0.682766), 0.00411623);
 
     ret += circ(uv, vec2(0.0761895, 0.16327), 0.0145935);
 
-    ret += circ(uv, vec2(0.949386, 0.802936), 0.0100873);
+//    ret += circ(uv, vec2(0.949386, 0.802936), 0.0100873);
 
     ret += circ(uv, vec2(0.480122, 0.196554), 0.0110185);
 
@@ -179,11 +180,11 @@ float waterlayer(vec2 uv)
 
     ret += circ(uv, vec2(0.292865, 0.762973), 0.00566413);
 
-    ret += circ(uv, vec2(0.0995585, 0.117457), 0.00869407);
+  //  ret += circ(uv, vec2(0.0995585, 0.117457), 0.00869407);
 
     ret += circ(uv, vec2(0.377713, 0.00335442), 0.0063147);
 
-    ret += circ(uv, vec2(0.506365, 0.531118), 0.0144016);
+ //   ret += circ(uv, vec2(0.506365, 0.531118), 0.0144016);
 
     ret += circ(uv, vec2(0.408806, 0.894771), 0.0243923);
 
@@ -193,7 +194,7 @@ float waterlayer(vec2 uv)
 
     ret += circ(uv, vec2(0.780695, 0.394644), 0.00475475);
 
-    ret += circ(uv, vec2(0.298036, 0.625531), 0.00325285);
+   // ret += circ(uv, vec2(0.298036, 0.625531), 0.00325285);
 
     ret += circ(uv, vec2(0.218423, 0.714537), 0.00157212);
 
@@ -201,7 +202,7 @@ float waterlayer(vec2 uv)
 
     ret += circ(uv, vec2(0.987324, 0.146545), 0.0288391);
 
-    ret += circ(uv, vec2(0.222646, 0.251694), 0.00092276);
+ //   ret += circ(uv, vec2(0.222646, 0.251694), 0.00092276);
 
     ret += circ(uv, vec2(0.159826, 0.528063), 0.00605293);
 
@@ -256,8 +257,9 @@ vec3 water(vec2 uv, vec3 cdir, float iTime)
     
 
     vec3 ret = mix(WATER_COL.rgb, WATER2_COL.rgb, waterlayer(uv + dist.xy));
-
-    ret = mix(ret, FOAM_COL.rgb, waterlayer(vec2(1.0) - uv - dist.yx));
+    ///if (secondColor) {
+       ret = mix(ret, FOAM_COL.rgb, waterlayer(vec2(1.0) - uv - dist.yx));
+//	}
 
     return ret;
 
@@ -268,7 +270,7 @@ vec3 water(vec2 uv, vec3 cdir, float iTime)
 void fragment() {
 
 	vec2 uv = UV;
-
+	
    COLOR.rgb = vec3(water(uv * tile, vec3(0,1,0), TIME * distortion_speed));
 
 }
