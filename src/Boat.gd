@@ -294,7 +294,8 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 			#rotate back
 			linear_velocity=force.rotated(rotation)
 		
-				
+	calcRippleEffect()
+
 static func doEase(currentValue,maxValue,easing):
 	#https://godotengine.org/qa/59172/how-do-i-properly-use-the-ease-function
 	if maxValue==0: return 0
@@ -665,3 +666,16 @@ func setNewBoatPosition(x:int,y:int,newRotation,newStateOars : int,newIsForwards
   
 func _doCommandSignal(command:int):
 	doCommand(command)
+const ripple_min = 4
+const ripple_max_trans = 0.49
+
+func calcRippleEffect():
+	var speed= linear_velocity.length()
+	var ripple=$RippleEffect
+	if speed>ripple_min:
+		ripple.playing=true
+		ripple.visible=true
+		ripple.modulate.a= (speed/40.0)*ripple_max_trans
+	else:
+		ripple.playing=false
+		ripple.visible=false
