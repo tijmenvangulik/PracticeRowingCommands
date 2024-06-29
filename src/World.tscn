@@ -85,7 +85,7 @@
 shader = ExtResource( 80 )
 shader_param/WATER_COL = Color( 0.432, 0.757067, 0.8, 1 )
 shader_param/WATER2_COL = Color( 0.504, 0.8008, 0.84, 1 )
-shader_param/FOAM_COL = Color( 0.462, 0.734067, 0.77, 1 )
+shader_param/FOAM_COL = Color( 0.456, 0.724533, 0.76, 1 )
 shader_param/distortion_speed = 1.0
 shader_param/tile = Vector2( 30, 30 )
 shader_param/wave_height1 = 0.04
