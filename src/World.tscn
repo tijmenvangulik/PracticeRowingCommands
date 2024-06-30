@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=2]
+[gd_scene load_steps=118 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -80,6 +80,8 @@
 [ext_resource path="res://PracticeCounter.gd" type="Script" id=78]
 [ext_resource path="res://StyleButtonGrayPressed.tres" type="StyleBox" id=79]
 [ext_resource path="res://WaterCanvasItems.gdshader" type="Shader" id=80]
+[ext_resource path="res://assets/water-clasic.png" type="Texture" id=88]
+[ext_resource path="res://Water.gd" type="Script" id=89]
 
 [sub_resource type="ShaderMaterial" id=43]
 shader = ExtResource( 80 )
@@ -92,6 +94,7 @@ shader_param/wave_height1 = 0.04
 shader_param/wave_height2 = 0.04
 
 [sub_resource type="NoiseTexture" id=47]
+resource_name = "WaterNoiceTexture"
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 127.753, 29.8996, 117.154, 24.3315, 109.015, 13.8659, 105.688, 0, 128, 0 )
@@ -913,10 +916,19 @@ shadow_offset = Vector2( 4, 4 )
 script = ExtResource( 1 )
 
 [node name="Water" type="Polygon2D" parent="."]
+visible = false
 material = SubResource( 43 )
 position = Vector2( 169, -302 )
 scale = Vector2( 0.823077, 1.1034 )
 texture = SubResource( 47 )
+polygon = PoolVector2Array( -218.692, 271.886, 2864.86, 271.886, 2895.23, 2741.52, -256.355, 2721.58, -217.477, 1918.61, -669.439, 1915.89, -675.514, 1670.29, -244.206, 1675.72 )
+script = ExtResource( 89 )
+
+[node name="WaterClasic" type="Polygon2D" parent="."]
+position = Vector2( 2172, 1102 )
+scale = Vector2( 0.823077, 1.1034 )
+offset = Vector2( -2433.55, -1272.43 )
+texture = ExtResource( 88 )
 polygon = PoolVector2Array( -218.692, 271.886, 2864.86, 271.886, 2895.23, 2741.52, -256.355, 2721.58, -217.477, 1918.61, -669.439, 1915.89, -675.514, 1670.29, -244.206, 1675.72 )
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -2838,32 +2850,45 @@ margin_top = 85.0
 margin_right = 366.0
 margin_bottom = 125.0
 
-[node name="Label3" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
+[node name="Label5" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_top = 145.0
 margin_right = 196.0
 margin_bottom = 164.0
+custom_fonts/font = ExtResource( 50 )
+text = "AnimatedWater"
+
+[node name="WaterAnimationButton" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
+margin_left = 216.0
+margin_top = 135.0
+margin_right = 366.0
+margin_bottom = 175.0
+
+[node name="Label3" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
+margin_top = 195.0
+margin_right = 196.0
+margin_bottom = 214.0
 custom_fonts/font = ExtResource( 50 )
 text = "Scull"
 
 [node name="Scull" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_left = 216.0
-margin_top = 135.0
+margin_top = 185.0
 margin_right = 366.0
-margin_bottom = 175.0
+margin_bottom = 225.0
 pressed = true
 
 [node name="Label4" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_top = 191.0
+margin_top = 241.0
 margin_right = 196.0
-margin_bottom = 210.0
+margin_bottom = 260.0
 custom_fonts/font = ExtResource( 50 )
 text = "Reset"
 
 [node name="ResetPractices" type="Button" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_left = 216.0
-margin_top = 185.0
+margin_top = 235.0
 margin_right = 366.0
-margin_bottom = 217.0
+margin_bottom = 267.0
 rect_min_size = Vector2( 150, 32 )
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 52 )
@@ -2873,17 +2898,17 @@ custom_styles/normal = ExtResource( 64 )
 text = "ResetPractices"
 
 [node name="UsePushAwayLabel" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_top = 230.0
+margin_top = 280.0
 margin_right = 196.0
-margin_bottom = 249.0
+margin_bottom = 299.0
 custom_fonts/font = ExtResource( 50 )
 text = "UsePushAwayOption"
 
 [node name="UsePushAwayOption" type="OptionButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_left = 216.0
-margin_top = 227.0
+margin_top = 277.0
 margin_right = 366.0
-margin_bottom = 252.0
+margin_bottom = 302.0
 theme = ExtResource( 29 )
 custom_constants/hseparation = 10
 custom_fonts/font = ExtResource( 50 )
@@ -3170,6 +3195,7 @@ __meta__ = {
 [connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/RuleSetDropDown" to="CanvasLayer/SettingsDialog" method="_on_RuleSetDropDown_item_selected"]
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/ShowCommandTooltips" to="CanvasLayer/SettingsDialog" method="_on_ShowCommandTooltips_toggled"]
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons" to="CanvasLayer/SettingsDialog" method="_on_ShowShortCutsInButtons_toggled"]
+[connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/WaterAnimationButton" to="CanvasLayer/SettingsDialog" method="_on_ShowShortCutsInButtons2Buttons2_toggled"]
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/Scull" to="CanvasLayer/SettingsDialog" method="_on_Scull_toggled"]
 [connection signal="pressed" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/ResetPractices" to="CanvasLayer/SettingsDialog" method="_on_ResetPractices_pressed"]
 [connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/UsePushAwayOption" to="CanvasLayer/SettingsDialog" method="_on_UsePushAwayOption_item_selected"]

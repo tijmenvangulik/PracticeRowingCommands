@@ -212,7 +212,8 @@ func getSettings(removePrivate=false):
 	  "showShortCutsInButtons":Settings.showShortCutsInButtons,
 	  "isScull":Settings.isScull,
 	  "finishedPractices":Settings.finishedPractices,
-	  "usePushAway": Settings.usePushAway
+	  "usePushAway": Settings.usePushAway,
+	  "waterAnimation":Settings.waterAnimation
 	}
 	if removePrivate:
 		removePrivateSettings(save_dict)
@@ -290,6 +291,14 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 	var customButtonSet=[]
 	if dict.has("customButtonSet"):
 		customButtonSet=dict["customButtonSet"]
+	
+	var 	waterAnimationOn=false
+	if dict.has("waterAnimation"): 
+		 waterAnimationOn=dict["waterAnimation"]
+	Settings.waterAnimation=waterAnimationOn
+	var waterAnimationButton=$TabContainer/GeneralSettingsTab/GridContainer/WaterAnimationButton
+	waterAnimationButton.set_pressed(waterAnimationOn)
+
 		
 	#else:
 	#	customButtonSet=GameState.defaultButtonSet
@@ -487,3 +496,8 @@ func _on_ResetPractices_pressed():
 func _on_UsePushAwayOption_item_selected(index):
 	Settings.usePushAway= index;
 	
+
+
+func _on_ShowShortCutsInButtons2Buttons2_toggled(button_pressed):
+	Settings.waterAnimation=button_pressed
+	GameEvents.settingsChanged()
