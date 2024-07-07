@@ -51,6 +51,7 @@ var moveStep=1000
 var isDuckCrash = false
 
 func _ready():
+	
 	setForwardsPosition(0)
 	GameEvents.connect("zoomChangedSignal",self,"_zoomChangedSignal")
 	GameEvents.connect("doCommandSignal",self,"_doCommandSignal")
@@ -66,6 +67,11 @@ func _ready():
 	$"OarBB2".otherSideOar=$"OarSB2"
 	$"OarSB2".otherSideOar=$"OarBB2"
 	org_linear_damp=linear_damp
+	
+	$"OarBB2".bladeWave=$"%BladeWaveBB2"
+	$"OarSB2".bladeWave=$"%BladeWaveSB2"
+	$"OarBB1".bladeWave=$"%BladeWaveBB1"
+	$"OarSB1".bladeWave=$"%BladeWaveSB1"
 	
 func _isScullSignal(isScull):
 	$"OarSB1".visible=isScull

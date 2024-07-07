@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=2]
+[gd_scene load_steps=121 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -80,6 +80,9 @@
 [ext_resource path="res://PracticeCounter.gd" type="Script" id=78]
 [ext_resource path="res://StyleButtonGrayPressed.tres" type="StyleBox" id=79]
 [ext_resource path="res://WaterCanvasItems.gdshader" type="Shader" id=80]
+[ext_resource path="res://assets/HD-off.png" type="Texture" id=81]
+[ext_resource path="res://HdButton.gd" type="Script" id=82]
+[ext_resource path="res://BladeWave.tscn" type="PackedScene" id=83]
 [ext_resource path="res://assets/water-clasic.png" type="Texture" id=88]
 [ext_resource path="res://Water.gd" type="Script" id=89]
 
@@ -930,6 +933,26 @@ scale = Vector2( 0.823077, 1.1034 )
 offset = Vector2( -2433.55, -1272.43 )
 texture = ExtResource( 88 )
 polygon = PoolVector2Array( -218.692, 271.886, 2864.86, 271.886, 2895.23, 2741.52, -256.355, 2721.58, -217.477, 1918.61, -669.439, 1915.89, -675.514, 1670.29, -244.206, 1675.72 )
+
+[node name="BladeWaveSB1" parent="." instance=ExtResource( 83 )]
+unique_name_in_owner = true
+visible = false
+frame = 9
+
+[node name="BladeWaveBB1" parent="." instance=ExtResource( 83 )]
+unique_name_in_owner = true
+visible = false
+frame = 8
+
+[node name="BladeWaveSB2" parent="." instance=ExtResource( 83 )]
+unique_name_in_owner = true
+visible = false
+frame = 9
+
+[node name="BladeWaveBB2" parent="." instance=ExtResource( 83 )]
+unique_name_in_owner = true
+visible = false
+frame = 9
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 20 )
@@ -2573,6 +2596,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="HdButton" type="Button" parent="CanvasLayer/RightTopButtons"]
+visible = false
+margin_left = 222.0
+margin_right = 266.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 30, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 18 )
+custom_styles/pressed = ExtResource( 36 )
+custom_styles/focus = ExtResource( 36 )
+custom_styles/normal = ExtResource( 35 )
+toggle_mode = true
+icon = ExtResource( 81 )
+icon_align = 1
+script = ExtResource( 82 )
+
 [node name="TooltipHelp" type="Button" parent="CanvasLayer/RightTopButtons"]
 margin_left = 222.0
 margin_right = 245.0
@@ -3148,10 +3187,10 @@ custom_fonts/font = ExtResource( 50 )
 align = 1
 
 [node name="Tooltip" parent="CanvasLayer" instance=ExtResource( 38 )]
-margin_left = -24.0
-margin_top = -655.0
-margin_right = 355.0
-margin_bottom = -521.0
+margin_left = -23.0
+margin_top = -753.0
+margin_right = 356.0
+margin_bottom = -619.0
 
 [node name="TestEndGame" type="Button" parent="CanvasLayer"]
 visible = false
@@ -3189,6 +3228,7 @@ __meta__ = {
 [connection signal="pressed" from="CanvasLayer/TourDialog/HSplitContainer/TourStop" to="CanvasLayer/TourDialog" method="_on_TourStop_pressed"]
 [connection signal="pressed" from="CanvasLayer/TourDialog/HSplitContainer/TourNext" to="CanvasLayer/TourDialog" method="_on_TourNext_pressed"]
 [connection signal="pressed" from="CanvasLayer/TourDialog/HSplitContainer/StartPractices" to="CanvasLayer/TourDialog" method="_on_StartPractices_pressed"]
+[connection signal="toggled" from="CanvasLayer/RightTopButtons/HdButton" to="CanvasLayer/RightTopButtons/HdButton" method="_on_HdButton_toggled"]
 [connection signal="pressed" from="CanvasLayer/RightTopButtons/ZoomContainer/ZoomPlus" to="CanvasLayer/RightTopButtons/ZoomContainer" method="_on_ZoomPlus_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightTopButtons/ZoomContainer/ZoomMin" to="CanvasLayer/RightTopButtons/ZoomContainer" method="_on_ZoomMin_pressed"]
 [connection signal="visibility_changed" from="CanvasLayer/SettingsDialog" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_SettingsDialog_visibility_changed"]

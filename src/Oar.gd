@@ -7,6 +7,7 @@ extends Node2D
 class_name Oar
 
 export (NodePath) onready var boat = get_node(boat) as Boat
+var bladeWave : BladeWave = null;
 
 var masterOar :Oar =null
 
@@ -154,6 +155,20 @@ func setInWater():
 		if startIsIn && boat.oneStroke:
 			boat.endOneStroke()
 			
+		
+		var rot=boat.rotation_degrees+90
+		
+		var isSideWays=false
+		if startRotation<endRotation:
+			rot=rot+180
+		if startRotation==rotation_slippen:
+			isSideWays=true
+			if isSB:
+				rot=rot+80
+			else:
+				rot=rot-80
+		startWave(rot,isSideWays)
+
 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -213,9 +228,19 @@ func doPullIn():
 	pullIn=true;
 
 	
-func doPullOut():
+func doPullOut():	
 	pullIn=false;
- 
+
+
+func startWave(rot,isSideways):
+	var pos=$WavePosition.global_position
+	if isSideways: 
+		pos=$WavePositionStrijken.global_position
+
+	bladeWave.startWave(pos,rot)
+	if  slaveOar!=null:
+		slaveOar.startWave(rot,isSideways)
+	
 func handlePullIn(delta):	
 	var diff=pullSpeed*delta*(-1 if pullIn else 1)*(1 if isSB else -1)
 	position.y+=diff

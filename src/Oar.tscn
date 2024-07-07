@@ -29,3 +29,9 @@ centered = false
 offset = Vector2( -38, -29 )
 region_enabled = true
 region_rect = Rect2( 463.55, 605.135, 54.5388, 5.63245 )
+
+[node name="WavePosition" type="Position2D" parent="."]
+position = Vector2( 42, 0.000152588 )
+
+[node name="WavePositionStrijken" type="Position2D" parent="."]
+position = Vector2( 35, 8.00013 )
