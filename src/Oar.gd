@@ -236,8 +236,8 @@ func startWave(rot,isSideways):
 	var pos=$WavePosition.global_position
 	if isSideways: 
 		pos=$WavePositionStrijken.global_position
-
-	bladeWave.startWave(pos,rot)
+	if visible:
+		bladeWave.startWave(pos,rot)
 	if  slaveOar!=null:
 		slaveOar.startWave(rot,isSideways)
 	
