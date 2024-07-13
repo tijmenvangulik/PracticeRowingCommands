@@ -678,7 +678,7 @@ const ripple_max_trans = 0.49
 func calcRippleEffect():
 	var speed= linear_velocity.length()
 	var ripple=$RippleEffect
-	if speed>ripple_min:
+	if calcSpeed()>ripple_min && !sideWays :
 		ripple.playing=true
 		ripple.visible=true
 		ripple.modulate.a= (speed/40.0)*ripple_max_trans

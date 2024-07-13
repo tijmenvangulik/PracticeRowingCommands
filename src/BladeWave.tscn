@@ -22,9 +22,10 @@ animations = [ {
 } ]
 
 [node name="BladeWave" type="AnimatedSprite"]
-position = Vector2( 86, 104.5 )
+position = Vector2( 86, 92 )
 scale = Vector2( 1.66667, 1.94737 )
 frames = SubResource( 48 )
+offset = Vector2( 0, 6.41891 )
 script = ExtResource( 12 )
 
 [connection signal="animation_finished" from="." to="." method="_on_BladeWave_animation_finished"]

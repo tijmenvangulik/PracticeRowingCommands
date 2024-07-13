@@ -12,14 +12,16 @@ class_name BladeWave
 func _ready():
 	pass # Replace with function body.
 
-func startWave( pos, rot):
+func startWave( pos, rot,isEnd):
 	var wave=$"."
 	
 	wave.global_position =pos
 	wave.rotation_degrees=rot
 	wave.frame=0;
-	wave.play()
-	visible=true
+	if isEnd:
+		wave.play()
+	if !visible:
+		visible=true
 	
 
 	

@@ -26,6 +26,7 @@ const angleSpeed=40
 
 
 var inWater=false
+var oarsMoving =false
 
 var startRotation=rotation_rest
 var startIsIn=false
@@ -108,9 +109,11 @@ func setImage():
 func calcNewRotation(delta,currentRotation : float):
 	var newRotation=currentRotation
 	var rotationStep=delta*angleSpeed;
+	oarsMoving=false
 	#mirror sb
 		
 	if !frozen && (endRotation!=startRotation || currentRotation!=startRotation):
+		oarsMoving=true
 		if pulledIn:
 			doPullOut()
 			return currentRotation
@@ -155,21 +158,7 @@ func setInWater():
 		if startIsIn && boat.oneStroke:
 			boat.endOneStroke()
 			
-		
-		var rot=boat.rotation_degrees+90
-		
-		var isSideWays=false
-		if startRotation<endRotation:
-			rot=rot+180
-		if startRotation==rotation_slippen:
-			isSideWays=true
-			if isSB:
-				rot=rot+80
-			else:
-				rot=rot-80
-		startWave(rot,isSideWays)
-
-
+		calcWave(true)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -201,6 +190,8 @@ func _process(delta):
 
 
 	setImage()
+	if inWater && oarsMoving:
+		calcWave(false)
 
 func isRotation(checkRotation):
 	var currentRotation= getNormalRoation(rotation_degrees)
@@ -232,15 +223,36 @@ func doPullOut():
 	pullIn=false;
 
 
-func startWave(rot,isSideways):
+func calcWave(isEndWave : bool):
+	var isSideWays=false
+	var isStrijken=false
+	var rot=boat.rotation_degrees+90
+	if newStartIsIn:
+		if startRotation<endRotation:
+			rot=rot+180
+			isStrijken=true
+	else:
+		if startRotation>endRotation:
+			rot=rot+180
+			isStrijken=true
+		
+	if startRotation==rotation_slippen:
+		isSideWays=true
+		if isSB:
+			rot=rot+80
+		else:
+			rot=rot-80
+	startWave(rot,isSideWays,isEndWave,isStrijken)
+	
+func startWave(rot,isSideways,isEnd,isStrijken):
 	var pos=$WavePosition.global_position
-	if isSideways: 
+	if isSideways || isStrijken: 
 		pos=$WavePositionStrijken.global_position
 	if visible:
-		bladeWave.startWave(pos,rot)
+		bladeWave.startWave(pos,rot,isEnd)
 	if  slaveOar!=null:
-		slaveOar.startWave(rot,isSideways)
-	
+		slaveOar.startWave(rot,isSideways,isEnd,isStrijken)
+
 func handlePullIn(delta):	
 	var diff=pullSpeed*delta*(-1 if pullIn else 1)*(1 if isSB else -1)
 	position.y+=diff
