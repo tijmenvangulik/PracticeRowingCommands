@@ -41,8 +41,6 @@ func startWave( pos, rot,isEnd,delta):
 		wave.frame=0
 	else:
 		var frame=(floor(waveCounter * 4) as int)  % 2
-		print(waveCounter)
-		print(frame)
 		wave.frame=frame
 
 
