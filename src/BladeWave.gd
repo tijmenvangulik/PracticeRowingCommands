@@ -12,7 +12,7 @@ class_name BladeWave
 func _ready():
 	pass # Replace with function body.
 
-func startWave( pos, rot,isEnd):
+func startWave( pos, rot,isEnd,delta):
 	var wave=$"."
 	
 	wave.global_position =pos
@@ -20,9 +20,18 @@ func startWave( pos, rot,isEnd):
 	wave.frame=0;
 	if isEnd:
 		wave.play()
+	
 	if !visible:
 		visible=true
 	
+	# when it is the first delta is 0
+	if !isEnd && delta==0:
+		modulate.a=0
+	else:
+		if visible && modulate.a!=1:
+			modulate.a=modulate.a+ delta
+			if modulate.a>1:
+				modulate.a=1
 
 	
 

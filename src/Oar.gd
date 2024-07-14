@@ -158,11 +158,11 @@ func setInWater():
 		if startIsIn && boat.oneStroke:
 			boat.endOneStroke()
 			
-		calcWave(true)
+		calcWave(true,0)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
+	var oldInWater=inWater
 	if newSchemeSet && (!inWater || frozen || startRotation==endRotation ) :		 
 			swapFromNewScheme()
 	if normalRotation==null: 
@@ -191,7 +191,10 @@ func _process(delta):
 
 	setImage()
 	if inWater && oarsMoving:
-		calcWave(false)
+		if oldInWater:
+			calcWave(false,delta)
+		else:
+			calcWave(false,0)
 
 func isRotation(checkRotation):
 	var currentRotation= getNormalRoation(rotation_degrees)
@@ -223,7 +226,7 @@ func doPullOut():
 	pullIn=false;
 
 
-func calcWave(isEndWave : bool):
+func calcWave(isEndWave : bool,delta):
 	var isSideWays=false
 	var isStrijken=false
 	var rot=boat.rotation_degrees+90
@@ -238,20 +241,22 @@ func calcWave(isEndWave : bool):
 		
 	if startRotation==rotation_slippen:
 		isSideWays=true
+		delta=delta*3
 		if isSB:
 			rot=rot+80
 		else:
 			rot=rot-80
-	startWave(rot,isSideWays,isEndWave,isStrijken)
 	
-func startWave(rot,isSideways,isEnd,isStrijken):
+	startWave(rot,isSideWays,isEndWave,isStrijken,delta)
+	
+func startWave(rot,isSideways,isEnd,isStrijken,delta):
 	var pos=$WavePosition.global_position
 	if isSideways || isStrijken: 
 		pos=$WavePositionStrijken.global_position
 	if visible:
-		bladeWave.startWave(pos,rot,isEnd)
+		bladeWave.startWave(pos,rot,isEnd,delta)
 	if  slaveOar!=null:
-		slaveOar.startWave(rot,isSideways,isEnd,isStrijken)
+		slaveOar.startWave(rot,isSideways,isEnd,isStrijken,delta)
 
 func handlePullIn(delta):	
 	var diff=pullSpeed*delta*(-1 if pullIn else 1)*(1 if isSB else -1)
