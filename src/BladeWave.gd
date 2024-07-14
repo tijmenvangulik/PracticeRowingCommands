@@ -7,6 +7,7 @@ class_name BladeWave
 # var a = 2
 # var b = "text"
 
+var waveCounter=0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,7 +18,7 @@ func startWave( pos, rot,isEnd,delta):
 	
 	wave.global_position =pos
 	wave.rotation_degrees=rot
-	wave.frame=0;
+	
 	if isEnd:
 		wave.play()
 	
@@ -27,13 +28,23 @@ func startWave( pos, rot,isEnd,delta):
 	# when it is the first delta is 0
 	if !isEnd && delta==0:
 		modulate.a=0
+		waveCounter=0
 	else:
+		if visible:
+			waveCounter=waveCounter+delta
 		if visible && modulate.a!=1:
 			modulate.a=modulate.a+ delta
+			
 			if modulate.a>1:
 				modulate.a=1
+	if isEnd:
+		wave.frame=0
+	else:
+		var frame=(floor(waveCounter * 4) as int)  % 2
+		print(waveCounter)
+		print(frame)
+		wave.frame=frame
 
-	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

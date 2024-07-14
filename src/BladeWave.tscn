@@ -22,7 +22,7 @@ animations = [ {
 } ]
 
 [node name="BladeWave" type="AnimatedSprite"]
-position = Vector2( 86, 92 )
+position = Vector2( 86, 91 )
 scale = Vector2( 1.66667, 1.94737 )
 frames = SubResource( 48 )
 offset = Vector2( 0, 6.41891 )

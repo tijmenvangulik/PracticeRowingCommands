@@ -241,12 +241,13 @@ func calcWave(isEndWave : bool,delta):
 		
 	if startRotation==rotation_slippen:
 		isSideWays=true
-		delta=delta*3
+		delta=delta*1.5
 		if isSB:
 			rot=rot+80
 		else:
 			rot=rot-80
-	
+	else:
+		delta=delta/2
 	startWave(rot,isSideWays,isEndWave,isStrijken,delta)
 	
 func startWave(rot,isSideways,isEnd,isStrijken,delta):
