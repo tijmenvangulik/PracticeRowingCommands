@@ -72,6 +72,7 @@ func _ready():
 	$"OarSB2".bladeWave=$"%BladeWaveSB2"
 	$"OarBB1".bladeWave=$"%BladeWaveBB1"
 	$"OarSB1".bladeWave=$"%BladeWaveSB1"
+
 	
 func _isScullSignal(isScull):
 	$"OarSB1".visible=isScull

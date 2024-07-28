@@ -1,11 +1,20 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/tiles.png" type="Texture" id=1]
 [ext_resource path="res://Oar.gd" type="Script" id=2]
+[ext_resource path="res://BladeSplash.tscn" type="PackedScene" id=3]
 
 [node name="OarBB" type="Node2D"]
 rotation = -1.5708
 script = ExtResource( 2 )
+
+[node name="BladeSplash" parent="." instance=ExtResource( 3 )]
+visible = false
+show_behind_parent = true
+position = Vector2( 41.8228, 4.08186 )
+rotation = -3.14159
+scale = Vector2( 1.15685, 2.24711 )
+offset = Vector2( -6.71175, -7.48948 )
 
 [node name="Sprite" type="Sprite" parent="."]
 show_behind_parent = true

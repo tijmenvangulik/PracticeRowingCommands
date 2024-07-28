@@ -3083,6 +3083,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CommandButtonsTab2" type="Tabs" parent="CanvasLayer/SettingsDialog/TabContainer"]
+visible = false
+margin_right = 40.0
+margin_bottom = 24.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab2"]
+margin_right = 12.0
+margin_bottom = 12.0
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab2/ScrollContainer"]
+
 [node name="EditCommandText" parent="CanvasLayer/SettingsDialog" instance=ExtResource( 59 )]
 visible = false
 

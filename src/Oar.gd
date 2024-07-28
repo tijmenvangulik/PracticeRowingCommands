@@ -9,6 +9,7 @@ class_name Oar
 export (NodePath) onready var boat = get_node(boat) as Boat
 var bladeWave : BladeWave = null;
 
+
 var masterOar :Oar =null
 
 var slaveOar :Oar =null
@@ -256,6 +257,10 @@ func startWave(rot,isSideways,isEnd,isStrijken,delta):
 		pos=$WavePositionStrijken.global_position
 	if visible:
 		bladeWave.startWave(pos,rot,isEnd,delta)
+			
+	if delta==0 && !isEnd && !isSideways : 
+		$BladeSplash.startSplash(isStrijken)
+		
 	if  slaveOar!=null:
 		slaveOar.startWave(rot,isSideways,isEnd,isStrijken,delta)
 
