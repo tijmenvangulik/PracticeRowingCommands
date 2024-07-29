@@ -10,11 +10,12 @@ script = ExtResource( 2 )
 
 [node name="BladeSplash" parent="." instance=ExtResource( 3 )]
 visible = false
+modulate = Color( 1, 1, 1, 1 )
 show_behind_parent = true
-position = Vector2( 41.8228, 4.08186 )
+position = Vector2( 31.1254, -1.71347 )
 rotation = -3.14159
-scale = Vector2( 1.15685, 2.24711 )
-offset = Vector2( -6.71175, -7.48948 )
+scale = Vector2( 0.60422, 0.987875 )
+offset = Vector2( -30.2106, -19.2825 )
 
 [node name="Sprite" type="Sprite" parent="."]
 show_behind_parent = true
