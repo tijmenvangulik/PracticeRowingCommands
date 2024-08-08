@@ -72,7 +72,12 @@ func _ready():
 	$"OarSB2".bladeWave=$"%BladeWaveSB2"
 	$"OarBB1".bladeWave=$"%BladeWaveBB1"
 	$"OarSB1".bladeWave=$"%BladeWaveSB1"
-
+	
+	$"OarBB1".collision=$"OarBB1Collision"
+	$"OarSB1".collision=$"OarSB1Collision"
+	$"OarBB2".collision=$"OarBB2Collision"
+	$"OarSB2".collision=$"OarSB2Collision"
+	
 	
 func _isScullSignal(isScull):
 	$"OarSB1".visible=isScull
@@ -335,7 +340,10 @@ func calcSpeed():
 	var angle=abs(rad2deg( linear_velocity.angle()-rotation))
 	if angle>170 && angle<190: result=result*-1
 	return result
-	
+
+func movingBackwards():
+	return calcSpeed()<0
+
 func getRules():
 	return rulesetManager.getRuleset()
 	
@@ -511,12 +519,12 @@ func changeState(command:int,newState:int,direction:int,direct=false,doOneStroke
 				if slippenBB:
 					oarBB.setNewScheme(false,oarBB.rotation_slippen,oarBB.rotation_slippen,direct)
 				else:
-					oarBB.setNewScheme(false,oarBB.rotation_rest,oarBB.rotation_rest,direct)
+					oarBB.setNewScheme(false,oarBB.rotation_rest,oarBB.rotation_rest,direct,false,Constants.OarWaveState.Bedankt)
 			if !oarSB.pulledIn:
 				if slippenSB:
 					oarSB.setNewScheme(false,oarBB.rotation_slippen,oarBB.rotation_slippen,direct)
 				else:
-					oarSB.setNewScheme(false,oarBB.rotation_rest,oarBB.rotation_rest,direct)
+					oarSB.setNewScheme(false,oarBB.rotation_rest,oarBB.rotation_rest,direct,false,Constants.OarWaveState.Bedankt)
 
 		Constants.RowState.HalenSB:
 			setSpeedAndDirection(0.35*oneStokeFactor,-0.3*oneStokeFactor,1,false)
@@ -532,17 +540,17 @@ func changeState(command:int,newState:int,direction:int,direct=false,doOneStroke
 		Constants.RowState.VastroeienBeideBoorden:
 			setSpeedAndDirection(0,0,0.4,false)
 			if !slippenBB && !oarBB.pulledIn:
-				oarBB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct,true)
+				oarBB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct,true,Constants.OarWaveState.Vastroeien)
 			if !slippenSB && !oarSB.pulledIn:
-				oarSB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct,true)
+				oarSB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct,true,Constants.OarWaveState.Vastroeien)
 		Constants.RowState.VastroeienSB:
 			setSpeedAndDirection(0,0.5,0.3,false)
 			if !slippenSB:
-				oarSB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct)
+				oarSB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct,false,Constants.OarWaveState.Vastroeien)
 		Constants.RowState.VastroeienBB:
 			setSpeedAndDirection(0,-0.5,0.3,false)
 			if !slippenBB && !oarBB.pulledIn:
-				oarBB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct)
+				oarBB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct,false,Constants.OarWaveState.Vastroeien)
 			if !slippenSB && !oarSB.pulledIn:
 				oarSB.setNewScheme(false,oarBB.rotation_rest,oarBB.rotation_rest,direct)
 		Constants.RowState.StrijkenBeidenBoorden:

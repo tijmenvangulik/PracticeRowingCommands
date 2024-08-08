@@ -1,24 +1,63 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/tiles.png" type="Texture" id=1]
 [ext_resource path="res://Oar.gd" type="Script" id=2]
 [ext_resource path="res://BladeSplash.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/blade_vastroeien1.png" type="Texture" id=4]
+[ext_resource path="res://assets/blade_wave_bedankt2.png" type="Texture" id=5]
+[ext_resource path="res://assets/blade_vastroeien2.png" type="Texture" id=6]
+[ext_resource path="res://assets/blade_wave_bedankt1.png" type="Texture" id=7]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="OarBB" type="Node2D"]
 rotation = -1.5708
 script = ExtResource( 2 )
 
+[node name="Wave_Vastroeien" type="AnimatedSprite" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.729412 )
+show_behind_parent = true
+position = Vector2( 31.0076, 0.406064 )
+rotation = -3.14159
+scale = Vector2( 0.258063, 0.217172 )
+frames = SubResource( 2 )
+offset = Vector2( 1.5239, 31.5469 )
+
 [node name="BladeSplash" parent="." instance=ExtResource( 3 )]
 visible = false
 modulate = Color( 1, 1, 1, 0.811765 )
 show_behind_parent = true
-position = Vector2( 31.4119, 1.08382 )
+position = Vector2( 31.0462, 0.420987 )
 rotation = -3.14159
-scale = Vector2( 0.60422, 0.987875 )
-frame = 4
+scale = Vector2( 0.529325, 0.987875 )
 offset = Vector2( -21.2794, -16.2736 )
 
+[node name="Wave_Bedankt" type="AnimatedSprite" parent="."]
+visible = false
+show_behind_parent = true
+position = Vector2( 31.9994, -0.0388031 )
+rotation = -3.14159
+scale = Vector2( 0.278812, 0.209591 )
+frames = SubResource( 1 )
+offset = Vector2( 1.10662, 40.2527 )
+
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 show_behind_parent = true
 position = Vector2( 1.43769, -23.3004 )
 rotation = -3.14159
@@ -30,7 +69,6 @@ region_enabled = true
 region_rect = Rect2( 463.284, 593.639, 55.1873, 8.41608 )
 
 [node name="SpriteInWater" type="Sprite" parent="."]
-visible = false
 show_behind_parent = true
 position = Vector2( 1.43769, -23.3004 )
 rotation = -3.14159

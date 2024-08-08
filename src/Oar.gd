@@ -8,7 +8,7 @@ class_name Oar
 
 export (NodePath) onready var boat = get_node(boat) as Boat
 var bladeWave : BladeWave = null;
-
+var collision : CollisionPolygon2D = null
 
 var masterOar :Oar =null
 
@@ -63,14 +63,17 @@ var syncBBandSB=false
 var pullIn=false
 var pulledIn=false
 var pullSpeed=40
+var waveState= Constants.OarWaveState.None
+var newWaveState=Constants.OarWaveState.None
 
-func setNewScheme(startIsInNew : bool,startRotationNew  :float,endRotationNew,direct=false,syncBBandSBNew=false ):
+func setNewScheme(startIsInNew : bool,startRotationNew  :float,endRotationNew,direct=false,syncBBandSBNew=false,waveStateNew  = Constants.OarWaveState.None ):
 	#set into a temp and swap when pssible
 	newStartIsIn=startIsInNew
 	newStartRotation=startRotationNew
 	newEndRotation=endRotationNew
 	newSchemeSet=true
 	newSyncBBandSB=syncBBandSBNew
+	newWaveState=waveStateNew
 	if direct:
 		swapFromNewScheme()		
 		setRotation(endRotationNew)
@@ -79,6 +82,7 @@ func setNewScheme(startIsInNew : bool,startRotationNew  :float,endRotationNew,di
 		resetPullIn()
 		if slaveOar!=null:
 			slaveOar.resetPullIn()
+	
 func resetPullIn():
 	pulledIn=false
 	if isSB:
@@ -93,6 +97,8 @@ func swapFromNewScheme():
 	destinationRotation=newStartRotation
 	newSchemeSet=false
 	syncBBandSB=newSyncBBandSB
+	waveState=newWaveState
+	slaveOar.waveState=newWaveState
 	#if startRotationNew>endRotation:
 	frozen=false
 	if !isRotation(startRotation):
@@ -196,6 +202,33 @@ func _process(delta):
 			calcWave(false,delta)
 		else:
 			calcWave(false,0)
+	var bedanktState= !boat.isStopped() && waveState==Constants.OarWaveState.Bedankt && !collision.disabled
+	var bedanktWave=$Wave_Bedankt
+
+	if bedanktWave.visible!=bedanktState:
+		bedanktWave.visible=bedanktState
+		if boat.movingBackwards():
+			bedanktWave.rotation_degrees=0
+		else:
+			bedanktWave.rotation_degrees=-180
+		if bedanktState:
+			bedanktWave.play()
+		else: 
+			bedanktWave.stop()
+#		bedanktWave.playings=bedanktState;
+		
+	var vastroeienState= !boat.isStopped() && waveState==Constants.OarWaveState.Vastroeien
+	var vastRoeienWave=$Wave_Vastroeien
+	if vastRoeienWave.visible!=vastroeienState:
+		vastRoeienWave.visible=vastroeienState
+		if boat.movingBackwards():
+			vastRoeienWave.rotation_degrees=0
+		else:
+			vastRoeienWave.rotation_degrees=-180
+		if vastroeienState:
+			vastRoeienWave.play()
+		else: 
+			vastRoeienWave.stop()
 
 func isRotation(checkRotation):
 	var currentRotation= getNormalRoation(rotation_degrees)

@@ -18,6 +18,9 @@ enum OarsCommand2 {Slippen,Uitbrengen,
 
 enum StateOars {Roeien,Slippen,SlippenSB,SlippenBB,RiemenHoogSB,RiemenHoogBB,IntrekkenSB,IntrekkenBB}
 
+enum OarWaveState {None,Bedankt,Vastroeien}
+
+
 enum Command {
   LaatLopen,
   Bedankt,
