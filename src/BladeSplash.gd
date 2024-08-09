@@ -15,7 +15,10 @@ func _ready():
 
 func startSplash(flip):
 	var wave=$"."
-	flip_h=flip
+	if flip:
+		rotation_degrees=0
+	else:
+		rotation_degrees=180
 	wave.play()
 	
 	if !visible:

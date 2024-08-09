@@ -17,11 +17,11 @@ animations = [ {
 
 [node name="BladeSplash" type="AnimatedSprite"]
 modulate = Color( 1, 1, 1, 0.521569 )
-position = Vector2( 112, 125 )
+position = Vector2( 119, 138 )
 scale = Vector2( 1.66667, 1.94737 )
 frames = SubResource( 1 )
 centered = false
-offset = Vector2( -15.6, -10.0135 )
+offset = Vector2( -19.8, -16.6892 )
 script = ExtResource( 5 )
 
 [connection signal="animation_finished" from="." to="." method="_on_BladeSplash_animation_finished"]
