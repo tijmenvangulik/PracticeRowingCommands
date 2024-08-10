@@ -30,7 +30,6 @@ script = ExtResource( 2 )
 
 [node name="Wave_Vastroeien" type="AnimatedSprite" parent="."]
 visible = false
-modulate = Color( 1, 1, 1, 0.729412 )
 show_behind_parent = true
 position = Vector2( 31.0076, 0.406064 )
 rotation = -3.14159

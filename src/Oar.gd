@@ -23,6 +23,9 @@ const rotation_rest=-93
 const rotation_slippen=-166
 const rotation_slippen_out=-156.6
 
+const lowSpeedfadeOutLevel=15.0
+const lowSpeedfadeOutLevelVastroeien=20.0
+
 const angleSpeed=40
 
 
@@ -207,6 +210,8 @@ func _process(delta):
 
 	if bedanktWave.visible!=bedanktState:
 		bedanktWave.visible=bedanktState
+		bedanktWave.modulate.a=1
+
 		if boat.movingBackwards():
 			bedanktWave.rotation_degrees=0
 		else:
@@ -216,11 +221,19 @@ func _process(delta):
 		else: 
 			bedanktWave.stop()
 #		bedanktWave.playings=bedanktState;
+	
+	
+	if bedanktWave.visible:
+		var boatSpeed=boat.linear_velocity.length()
 		
+		if boatSpeed<lowSpeedfadeOutLevel:
+			bedanktWave.modulate.a=boatSpeed/lowSpeedfadeOutLevel
+	
 	var vastroeienState= !boat.isStopped() && waveState==Constants.OarWaveState.Vastroeien
 	var vastRoeienWave=$Wave_Vastroeien
 	if vastRoeienWave.visible!=vastroeienState:
 		vastRoeienWave.visible=vastroeienState
+		vastRoeienWave.modulate.a=1
 		if boat.movingBackwards():
 			vastRoeienWave.rotation_degrees=0
 		else:
@@ -229,7 +242,13 @@ func _process(delta):
 			vastRoeienWave.play()
 		else: 
 			vastRoeienWave.stop()
-
+	if vastRoeienWave.visible:
+		var boatSpeed=boat.linear_velocity.length()
+		
+		if boatSpeed<lowSpeedfadeOutLevelVastroeien:
+			vastRoeienWave.modulate.a=(boatSpeed/lowSpeedfadeOutLevelVastroeien)
+		
+	
 func isRotation(checkRotation):
 	var currentRotation= getNormalRoation(rotation_degrees)
 	var result= currentRotation==checkRotation
