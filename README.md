@@ -35,3 +35,11 @@ In the zip file there is also an index.wasm.br file. This is not a required but 
 * Godot for the free user friendly game engine [link](https://godotengine.org/)
 * Kenny for such a good tile set [link](https://www.kenney.nl/assets/rpg-base)
 * Reinder for the button set and testing
+
+# License
+
+[License](LICENSE.md)
+
+# Privacy
+
+[Privacy](PRIVACY.md)
