@@ -1,4 +1,4 @@
-[gd_scene load_steps=121 format=2]
+[gd_scene load_steps=122 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -83,6 +83,7 @@
 [ext_resource path="res://assets/HD-off.png" type="Texture" id=81]
 [ext_resource path="res://HdButton.gd" type="Script" id=82]
 [ext_resource path="res://BladeWave.tscn" type="PackedScene" id=83]
+[ext_resource path="res://LogActivity.gd" type="Script" id=84]
 [ext_resource path="res://assets/water-clasic.png" type="Texture" id=88]
 [ext_resource path="res://Water.gd" type="Script" id=89]
 
@@ -3203,6 +3204,10 @@ script = ExtResource( 51 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="LogActivityRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 84 )
 
 [connection signal="pressed" from="CanvasLayer/IntroDialog/HSplitContainer/StartPractices" to="CanvasLayer/IntroDialog" method="_on_StartPractices_pressed"]
 [connection signal="pressed" from="CanvasLayer/HighScores/ContinueToStartGame" to="CanvasLayer/HighScores" method="_on_ContinueToStartGame_pressed"]

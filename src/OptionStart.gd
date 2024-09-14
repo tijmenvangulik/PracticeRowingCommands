@@ -94,7 +94,10 @@ func _menuItemClicked(itemId):
 func _collectGameStateChangedSignal(state):
 	if state==Constants.CollectGameState.Finished:
 		savePractice()
-
+		logEndPractice(true)
+	if state==Constants.CollectGameState.Crashed:
+		logEndPractice(false)
+	
 func _introSignal(isVisible : bool):
 	visible=!isVisible
 
@@ -171,6 +174,11 @@ func endPractice():
 		boat.removeTimer(t)
 		
 		$"%EndPracticeDialog".start(earnedStar)
+		logEndPractice(true)
+		
+func logEndPractice(success : bool):
+	var currentName= StartPos.keys()[currentStartPos] ;
+	$"%LogActivityRequest".logFinishedActivity(currentName,success)
 
 func _crashDetected():
 	if practiceIsActive && currentStartPos!=StartPos.StarGame :
@@ -179,6 +187,7 @@ func _crashDetected():
 		yield(t, "timeout")
 		boat.removeTimer(t)
 		$"%EndCrashPracticeDialog".start()
+		logEndPractice(false)
 		
 func startPractices():
 	currentStartPos=findNotFinishedPractice(StartPos.StartTour);
