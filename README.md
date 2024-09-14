@@ -38,7 +38,7 @@ In the zip file there is also an index.wasm.br file. This is not a required but 
 
 # License
 
-[License](LICENSE.md)
+[License](LICENSE)
 
 # Privacy
 
