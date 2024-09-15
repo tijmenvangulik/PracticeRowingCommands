@@ -163,10 +163,10 @@ CommandStyle.StyleButtonDarkGray,
 CommandStyle.StyleButtonDarkGray,
 ]
 
-const languageItems=["NL viking","Nederlands","English","English 2"]
-const languageKeys=["nl_NL","nl","en","en_US"]
-const urlKeys=["nl_viking","nl","en","en2"]
-const flags=["nl","nl","gb","gb"]
+const languageItems=["NL Viking","EN Viking","Nederlands","English","English 2"]
+const languageKeys=["nl_NL","en_BW","nl","en","en_US"]
+const urlKeys=["nl_viking","en_viking","nl","en","en2"]
+const flags=["nl","gb","nl","gb","gb"]
 
 enum DefaultYesNo {
 	Default,

@@ -171,7 +171,7 @@ brake={
 
 [locale]
 
-translations=PoolStringArray( "res://translations/Translations.en.translation", "res://translations/Translations.nl.translation", "res://translations/Translations.nl_NL.translation", "res://translations/Translations.en_US.translation" )
+translations=PoolStringArray( "res://translations/Translations.en.translation", "res://translations/Translations.nl.translation", "res://translations/Translations.nl_NL.translation", "res://translations/Translations.en_US.translation", "res://translations/Translations.en_BW.translation" )
 locale_filter=[ 0, [  ] ]
 
 [physics]

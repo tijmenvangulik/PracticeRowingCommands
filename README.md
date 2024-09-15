@@ -12,6 +12,9 @@ The default language is dutch. Most commands are translated to English. You can 
 The translations can be found [here](/src/translations/Translations.csv) This is a csv file which you can load in a spread sheet. You can send the translated version to me.
 You can also define a button set in this file for each language.
 
+Possible localization codes:
+[locals](https://docs.godotengine.org/en/3.5/tutorials/i18n/locales.html)
+
 Some help needed translating the app to different languages and rowing club slang.
 
 Press f1 in the game for debug mode
