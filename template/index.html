@@ -114,6 +114,65 @@
 			padding: 4px 6px;
 			visibility: visible;
 		}
+		
+		.phone-warning-overlay {
+			position: absolute;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
+			align-items: center;
+			/* don't consume click events - make children visible explicitly */
+
+			z-index: 1000;
+			
+			color: white;
+			padding: 20px;
+			background-color: #000a;
+		}
+		.phone-warning-panel {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
+			align-items: center;
+			background-color: #fff3cd;		
+			border-color: #ffeeba;
+			color: #856404;
+			border-radius: 12px;
+			border-style: solid;
+			border-width: 2px;
+			padding-left: 10px;
+			padding-right: 10px;
+		
+		}
+		.phone-warning-text {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: center;
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 20px;
+			padding-top: 20px;
+			padding-bottom: 20px;
+		}
+		.close-warning {
+			font-size: 20px;
+			padding: 12px;
+			background-color: #007bff;
+			color: white;
+			border-color: #014ea0;
+			border-radius: 12px;
+			border-style: solid;
+			margin-bottom: 20px;
+		}
+		@media screen and (min-device-width:480px  ) and (min-device-height:480px){
+			.phone-warning-overlay {
+				visibility:hidden;
+			}
+		}
 	</style>
 <link id='-gd-engine-icon' rel='icon' type='image/png' href='index.icon.png' />
 <link rel='apple-touch-icon' href='index.apple-touch-icon.png'/>
@@ -153,6 +212,12 @@
 			 <a href="https://github.com/tijmenvangulik/PracticeRowingCommands">Broncode en projectpagina </a>
 		</p>
 	</div>
+	<div  id="phone-warning-overlay" class="phone-warning-overlay">
+		<div class="phone-warning-panel">
+  		  <div class="phone-warning-text"><span>Warning!<br>This web app is designed for larger screens (tablet or computer).<span></div>
+		  <button  class="close-warning" onclick="document.all['phone-warning-overlay'].remove()" >I will still give it a try</button>
+		<div>  
+	</div>	
 	<script>
 		var appVersion="{{version}}";
 		if (window.window.devicePixelRatio!=2) {

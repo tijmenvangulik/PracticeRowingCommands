@@ -289,11 +289,12 @@ func doStart(startItemId):
 			var showOnlyButonsArray=[]
 			if usePushAway(): 
 				boat.setNewBoatPosition(1124,2608,0,Constants.StateOars.RiemenHoogSB,true)
-				showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.HalenSB,Constants.Command.UitzettenSB]	
+				showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.HalenSB,Constants.Command.UitzettenSB]
+				explainPopup.showDialog("SailAwayExplainPushAwayText",showOnlyButonsArray)
 			else:
 				boat.setNewBoatPosition(1124,2596,0,Constants.StateOars.SlippenSB,true)
 				showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.PeddelendStrijkenSB,Constants.Command.StrijkenBB,Constants.Command.HalenSB,Constants.Command.UitbrengenSB]	
-			explainPopup.showDialog("SailAwayExplainText",showOnlyButonsArray)
+				explainPopup.showDialog("SailAwayExplainText",showOnlyButonsArray)
 		StartPos.Intro: GameEvents.intro(true)
 		StartPos.StartTour: GameEvents.startTour()
 		StartPos.StartStrijkendAanleggen: 
