@@ -59,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Ducks.gd"
 }, {
+"base": "Tabs",
+"class": "EnablePracticesTab",
+"language": "GDScript",
+"path": "res://SettingsEnablePractices.gd"
+}, {
 "base": "MarginContainer",
 "class": "GridButtonContainer",
 "language": "GDScript",
@@ -95,6 +100,7 @@ _global_script_class_icons={
 "Duck": "",
 "Ducklin": "",
 "Ducks": "",
+"EnablePracticesTab": "",
 "GridButtonContainer": "",
 "Oar": "",
 "RuleSets": "",
@@ -117,6 +123,7 @@ Utilities="*res://utilities.gd"
 Settings="*res://settings.gd"
 GameState="*res://game_state.gd"
 CalcSecurityCode="*res://calcSecurityCode.gd"
+Practices="*res://practices.gd"
 
 [display]
 

@@ -60,6 +60,7 @@ func ShowStep():
 	else:
 		stopTour()
 	if isLastStep:
+		$"%OptionStart".logEndPractice(true)
 		$"%OptionStart".savePractice()
 	
 	$HSplitContainer/TourNext.visible=!isLastStep

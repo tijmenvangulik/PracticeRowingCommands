@@ -13,6 +13,8 @@ export (NodePath) onready var commandButtonsTab = get_node(commandButtonsTab) as
 export (NodePath) onready var showShortCutsInButtons = get_node(showShortCutsInButtons) as Button
 export (NodePath) onready var isScullButton = get_node(isScullButton) as Button
 
+export (NodePath) onready var enablePracticesTab = get_node(enablePracticesTab) as EnablePracticesTab 
+
 
 var settingsFile="user://settings.save"
 
@@ -102,6 +104,7 @@ func _ready():
 	addLabel(commandTranslationsGrid,"Shortcut")
 	
 	commandButtonsTab.init()
+	enablePracticesTab.init()
 	for command in commands:
 		
 		var label=addLabel(commandTranslationsGrid,command)
@@ -213,7 +216,8 @@ func getSettings(removePrivate=false):
 	  "isScull":Settings.isScull,
 	  "finishedPractices":Settings.finishedPractices,
 	  "usePushAway": Settings.usePushAway,
-	  "waterAnimation":Settings.waterAnimation
+	  "waterAnimation":Settings.waterAnimation,
+	  "disabledPractices":Settings.disabledPractices
 	}
 	if removePrivate:
 		removePrivateSettings(save_dict)
@@ -299,7 +303,17 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 	var waterAnimationButton=$TabContainer/GeneralSettingsTab/GridContainer/WaterAnimationButton
 	waterAnimationButton.set_pressed(waterAnimationOn)
 
-		
+	var disabledPractices=[]
+	if dict.has("disabledPractices"):
+		disabledPractices=dict["disabledPractices"]
+		if typeof(finishedPractices)==TYPE_ARRAY:
+			for i in disabledPractices.size():
+				var practice=int(disabledPractices[i])
+				disabledPractices[i]=practice
+	
+	if Settings.disabledPractices!=disabledPractices:
+		Settings.disabledPractices=disabledPractices
+		GameEvents.practicesChanged()
 	#else:
 	#	customButtonSet=GameState.defaultButtonSet
 	

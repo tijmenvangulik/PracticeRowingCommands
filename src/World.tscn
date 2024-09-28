@@ -1,4 +1,4 @@
-[gd_scene load_steps=122 format=2]
+[gd_scene load_steps=123 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -84,6 +84,7 @@
 [ext_resource path="res://HdButton.gd" type="Script" id=82]
 [ext_resource path="res://BladeWave.tscn" type="PackedScene" id=83]
 [ext_resource path="res://LogActivity.gd" type="Script" id=84]
+[ext_resource path="res://SettingsEnablePractices.gd" type="Script" id=85]
 [ext_resource path="res://assets/water-clasic.png" type="Texture" id=88]
 [ext_resource path="res://Water.gd" type="Script" id=89]
 
@@ -1376,6 +1377,13 @@ practiceStartPosNr = 4
 [node name="CollectableMooringPractice" parent="PracticeCollectables" instance=ExtResource( 12 )]
 unique_name_in_owner = true
 position = Vector2( 1225, 2628 )
+triggerWhenBoatIsStopped = true
+spriteStyle = 1
+practiceStartPosNr = 5
+
+[node name="CollectableMooringHarbourPractice" parent="PracticeCollectables" instance=ExtResource( 12 )]
+unique_name_in_owner = true
+position = Vector2( -126, 1588 )
 triggerWhenBoatIsStopped = true
 spriteStyle = 1
 practiceStartPosNr = 5
@@ -2814,6 +2822,7 @@ showCommandTooltips = NodePath("TabContainer/GeneralSettingsTab/GridContainer/Sh
 commandButtonsTab = NodePath("TabContainer/CommandButtonsTab")
 showShortCutsInButtons = NodePath("TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons")
 isScullButton = NodePath("TabContainer/GeneralSettingsTab/GridContainer/Scull")
+enablePracticesTab = NodePath("TabContainer/EnablePracticesTab")
 
 [node name="TabContainer" type="TabContainer" parent="CanvasLayer/SettingsDialog"]
 anchor_right = 1.0
@@ -2826,9 +2835,6 @@ custom_fonts/font = ExtResource( 50 )
 custom_styles/tab_fg = SubResource( 28 )
 custom_styles/panel = SubResource( 29 )
 tab_align = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="GeneralSettingsTab" type="Tabs" parent="CanvasLayer/SettingsDialog/TabContainer"]
 anchor_right = 1.0
@@ -3084,6 +3090,34 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="EnablePracticesTab" type="Tabs" parent="CanvasLayer/SettingsDialog/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 29.0
+script = ExtResource( 85 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="ExplainEnablePractices" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/EnablePracticesTab"]
+margin_left = 14.0
+margin_top = 11.0
+margin_right = 543.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 240, 20 )
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 50 )
+text = "ExplainVisiblePracticesText"
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/SettingsDialog/TabContainer/EnablePracticesTab"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 41.0
+margin_right = 10.0
+margin_bottom = -15.0
+
 [node name="EditCommandText" parent="CanvasLayer/SettingsDialog" instance=ExtResource( 59 )]
 visible = false
 
@@ -3237,6 +3271,7 @@ script = ExtResource( 84 )
 [connection signal="pressed" from="CanvasLayer/RightTopButtons/ZoomContainer/ZoomPlus" to="CanvasLayer/RightTopButtons/ZoomContainer" method="_on_ZoomPlus_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightTopButtons/ZoomContainer/ZoomMin" to="CanvasLayer/RightTopButtons/ZoomContainer" method="_on_ZoomMin_pressed"]
 [connection signal="visibility_changed" from="CanvasLayer/SettingsDialog" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_SettingsDialog_visibility_changed"]
+[connection signal="visibility_changed" from="CanvasLayer/SettingsDialog" to="CanvasLayer/SettingsDialog/TabContainer/EnablePracticesTab" method="_on_SettingsDialog_visibility_changed"]
 [connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/RuleSetDropDown" to="CanvasLayer/SettingsDialog" method="_on_RuleSetDropDown_item_selected"]
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/ShowCommandTooltips" to="CanvasLayer/SettingsDialog" method="_on_ShowCommandTooltips_toggled"]
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons" to="CanvasLayer/SettingsDialog" method="_on_ShowShortCutsInButtons_toggled"]

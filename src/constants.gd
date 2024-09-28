@@ -178,3 +178,20 @@ enum CollectableSpriteStyle {
 	Practice,
 	PracticeCollected
 }
+
+enum StartItem {
+  StartTour,
+  StilleggenOefenening,
+  BochtOefenening,
+  AchteruitvarenOefenening,
+  AchteruitBochtOefenening
+  Aanleggen,
+  Aangelegd,
+  StartStrijkendAanleggen,
+  AanleggenWal,
+  StartStrijkendAanleggenWal,
+  StarGame,
+  Start,
+  Intro,
+  MoringHarbour
+}
