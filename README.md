@@ -3,8 +3,21 @@
 
 Serious game to practice rowing coxing commands. This app is used by rowing club Viking in Utrecht to practice rowing commands for the steering instruction level 1.
 
+![Screenshot](art/Screenshot.jpg)
+
 The website:
 [https://www.vangulik.org/PracticeRowingCommands/](https://www.vangulik.org/PracticeRowingCommands)
+
+
+# License
+
+[License](LICENSE)
+
+# Privacy
+
+[Privacy](PRIVACY.md)
+
+# Development
 
 Written in godot (3.5.0, https://godotengine.org)
 
@@ -26,8 +39,6 @@ Some highlights
 * Easy to add new rules sets from code. Default rules set can be configured in the translation.csv file
 * User defined buttons sets and default button sets in the translation file.
 
-![Screenshot](art/Screenshot.jpg)
-
 # Self hosting
 To self host the app download the ![distribute.zip](distribute.zip) file and extract the files in a folder on your website. The app is mostly a static web app which does not require server interaction. There are two features in the app which require a server: The high scores and the feedback feature. The app will use my own server for these features. For communication with my server you need security codes which are not included in the source code. When my server is down or you do not want to use these features just ignore them ore remove it from the code. 
 
@@ -39,10 +50,3 @@ In the zip file there is also an index.wasm.br file. This is not a required but 
 * Kenny for such a good tile set [link](https://www.kenney.nl/assets/rpg-base)
 * Reinder for the button set and testing
 
-# License
-
-[License](LICENSE)
-
-# Privacy
-
-[Privacy](PRIVACY.md)
