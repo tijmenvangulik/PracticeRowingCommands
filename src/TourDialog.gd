@@ -45,7 +45,8 @@ func _on_TourNext_pressed():
 
 func stopTour():
 	visible=false
-	GameEvents.startPlay()
+	
+	$"%OptionStart".startOnWater()
 	
 func ShowStep():
 	isLastStep=tourStep>=tourTexts.size()

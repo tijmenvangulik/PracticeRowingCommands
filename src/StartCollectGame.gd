@@ -18,6 +18,7 @@ func _init():
 func _on_CancelGame_pressed():
 	self.visible=false;
 	GameState.changeCollectGameState( Constants.CollectGameState.None)
+	$"%OptionStart".startOnWater()
 
 
 func _on_StartGame_pressed():

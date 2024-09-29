@@ -29,6 +29,8 @@ var practiceIsActive = false;
 
 var practicePoints = 0
 
+var sendStartOnWaterMessage= false
+
 func loadItems():
 	clear()
 	for startItem in Practices.practices:
@@ -67,6 +69,7 @@ func _ready():
 	GameEvents.connect("settingsChangedSignal",self,"_handleSettingsChanged")
 	GameEvents.connect("collectGameStateChangedSignal",self,"_collectGameStateChangedSignal")
 	GameEvents.connect("practicesChanged",self,"_practicesChanged");
+	GameEvents.connect("doCommandSignal",self,"_doCommandSignal")
 	
 
 func _menuItemClicked(itemId):
@@ -85,7 +88,12 @@ func _introSignal(isVisible : bool):
 func _practicesChanged():
 	loadItems()
 
-	
+func _doCommandSignal(command:int):
+	if sendStartOnWaterMessage:
+		#for start on water log on first stroke
+		sendStartOnWaterMessage=false
+		logEndPractice(true)
+
 func _handleSettingsChanged():
 	setIcons()
 	
@@ -229,6 +237,9 @@ func usePushAway():
 func doStart(startItemId):
 	if GameState.collectGameState!=Constants.CollectGameState.None:
 		GameState.changeCollectGameState(Constants.CollectGameState.Stop)
+	
+	if startItemId==Constants.StartItem.Start:
+		sendStartOnWaterMessage=true
 	
 	boat.resetCrashed()
 	var Command=Constants.Command
