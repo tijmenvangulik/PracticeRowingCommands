@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/BuoyOrange.png" type="Texture" id=1]
+
+[node name="BuoyOrange2" type="Area2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -13, -20, -2, -26, 10, -24, 18, -14, 19, 0, 16, 12, 7, 22, -6, 22, -16, 15, -19, 5, -19, -8, -16, -16 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
