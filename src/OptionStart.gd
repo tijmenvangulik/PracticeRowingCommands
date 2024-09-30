@@ -321,9 +321,11 @@ func doStart(startItemId):
 			GameState.changeCollectGameState(Constants.CollectGameState.ShowHighScores)
 		Constants.StartItem.MoringHarbour: 
 			$"%CollectableMooringHarbourPractice".reset()
+			$"%CollectableMooringHarbourPractice2".reset()
+			$"%CollectableMooringHarbourPractice3".reset()
 			
 			boat.setNewBoatPosition(241,1219,90,Constants.StateOars.Roeien,true)
-			var showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.RiemenHoogSB,Constants.Command.VastroeienSB,Constants.Command.HalenBB,Constants.Command.HalenSB,Constants.Command.StrijkenBeidenBoorden,Constants.Command.StrijkenBB,Constants.Command.StrijkenSB,Constants.Command.HalenBeideBoorden]	
+			var showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.RiemenHoogSB,Constants.Command.VastroeienSB,Constants.Command.HalenBB,Constants.Command.HalenSB,Constants.Command.StrijkenBeidenBoorden,Constants.Command.StrijkenBB,Constants.Command.StrijkenSB,Constants.Command.HalenBeideBoorden,Constants.Command.VastroeienBB,Constants.Command.VastroeienBeideBoorden]	
 			explainPopup.showDialog("MoringHarbourExplainText",showOnlyButonsArray)
 	if GameState.isForwards!=forwards:
 		GameState.changeForwards(forwards)

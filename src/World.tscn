@@ -1386,7 +1386,21 @@ unique_name_in_owner = true
 position = Vector2( -126, 1588 )
 triggerWhenBoatIsStopped = true
 spriteStyle = 1
-practiceStartPosNr = 5
+practiceStartPosNr = 12
+
+[node name="CollectableMooringHarbourPractice2" parent="PracticeCollectables" instance=ExtResource( 12 )]
+unique_name_in_owner = true
+position = Vector2( -45, 1587 )
+triggerWhenBoatIsStopped = true
+spriteStyle = 1
+practiceStartPosNr = 12
+
+[node name="CollectableMooringHarbourPractice3" parent="PracticeCollectables" instance=ExtResource( 12 )]
+unique_name_in_owner = true
+position = Vector2( -217, 1589 )
+triggerWhenBoatIsStopped = true
+spriteStyle = 1
+practiceStartPosNr = 12
 
 [node name="CollectableSailAwayPractice2" parent="PracticeCollectables" instance=ExtResource( 12 )]
 unique_name_in_owner = true
@@ -1413,7 +1427,7 @@ unique_name_in_owner = true
 position = Vector2( 2366, 1748 )
 triggerWhenBoatIsStopped = true
 spriteStyle = 1
-practiceStartPosNr = 9
+practiceStartPosNr = 13
 
 [node name="Boat" parent="." instance=ExtResource( 3 )]
 unique_name_in_owner = true
