@@ -12,6 +12,7 @@ Constants.StartItem.StartStrijkendAanleggen,
 Constants.StartItem.AanleggenWal,
 Constants.StartItem.StartStrijkendAanleggenWal,
 Constants.StartItem.MoringHarbour,
+Constants.StartItem.SlalomPractice,
 Constants.StartItem.StarGame
 ]
 
@@ -27,6 +28,7 @@ var practiceNames = [
 "StartAanleggenWal",
 "StartStrijkendAanleggenWal",
 "StartMoringHarbour",
+"StartSlalomPractice",
 "StartStarGame"
 ]
 

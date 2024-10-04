@@ -193,5 +193,6 @@ enum StartItem {
   StarGame,
   Start,
   Intro,
-  MoringHarbour
+  MoringHarbour,
+  SlalomPractice
 }

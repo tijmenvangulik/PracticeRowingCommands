@@ -53,7 +53,7 @@ func determinenewState(boat: Boat,command:int,newState:int,direction:int)-> int:
 		if boat.calcSpeed()<0:  currentDirection=-1
 		else: currentDirection=1
 		if (state==Constants.RowState.LaatLopen || state==Constants.RowState.Bedankt)  :
-			if  direction!=0 && direction!=currentDirection && !boat.isLowSpeed():
+			if  direction!=0 && direction!=currentDirection && !boat.isLowSpeedCommandSwitch() && !isHalenStrijkenState(newState) :
 				setError("LegBootStil")
 				return result
 			result=newState
@@ -62,7 +62,8 @@ func determinenewState(boat: Boat,command:int,newState:int,direction:int)-> int:
 			setError("EerstLatenLopenOfBedankt")
 	
 	return result;
-
+func isHalenStrijkenState(state : int):
+	return state==Constants.RowState.HalenBB || state==Constants.RowState.HalenSB || state==Constants.RowState.StrijkenBB || state==Constants.RowState.StrijkenSB
 func determineOarsState(boat: Boat,command,oarsCommand : int)-> int:
 	clearError()
 

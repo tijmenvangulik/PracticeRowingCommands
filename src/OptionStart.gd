@@ -248,6 +248,7 @@ func doStart(startItemId):
 	var callStartPlay=false
 	Utilities.showOnlyButtons([])
 	$"%PracticeCollectables".hideAll()
+	$"%SlalomPracticeItems".changeVisible(false)
 	var forwards=true
 	currentStartPos=startItemId;
 	if isPractice(currentStartPos):
@@ -327,6 +328,12 @@ func doStart(startItemId):
 			boat.setNewBoatPosition(241,1219,90,Constants.StateOars.Roeien,true)
 			var showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.RiemenHoogSB,Constants.Command.VastroeienSB,Constants.Command.HalenBB,Constants.Command.HalenSB,Constants.Command.StrijkenBeidenBoorden,Constants.Command.StrijkenBB,Constants.Command.StrijkenSB,Constants.Command.HalenBeideBoorden,Constants.Command.VastroeienBB,Constants.Command.VastroeienBeideBoorden]	
 			explainPopup.showDialog("MoringHarbourExplainText",showOnlyButonsArray)
+		Constants.StartItem.SlalomPractice: 
+			$"%CollectableSlalomPractice".reset()
+			$"%SlalomPracticeItems".changeVisible(true)
+			boat.setNewBoatPosition(945,2160,0,Constants.StateOars.Roeien,true)
+			var showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.VastroeienSB,Constants.Command.HalenBB,Constants.Command.HalenSB,Constants.Command.StrijkenBeidenBoorden,Constants.Command.StrijkenBB,Constants.Command.StrijkenSB,Constants.Command.HalenBeideBoorden,Constants.Command.VastroeienBB,Constants.Command.VastroeienBeideBoorden,Constants.Command.SlippenBB,Constants.Command.Slippen,Constants.Command.SlippenSB,Constants.Command.UitbrengenBB,Constants.Command.Uitbrengen,Constants.Command.UitbrengenSB,Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt]
+			explainPopup.showDialog("StartSlalomPracticeExplainText",showOnlyButonsArray)
 	if GameState.isForwards!=forwards:
 		GameState.changeForwards(forwards)
 	

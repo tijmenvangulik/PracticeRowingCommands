@@ -1,5 +1,6 @@
 extends Area2D
 
+class_name Collectable
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -15,6 +16,12 @@ var warningStartDelay =0
 export var spriteStyle : int = 0
 
 export var practiceStartPosNr : int = -1
+
+func get_optional_node(obj):
+	if obj==null: return null
+	else: return get_node(obj)
+
+export (NodePath) onready var requiredCollectable = get_optional_node(requiredCollectable) as Collectable
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -85,7 +92,7 @@ func doCollect():
 func _on_Collectable_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
 	if area.name=="CollectableArea":
 		isEntered=true
-		if !collected && !triggerWhenBoatIsStopped :
+		if !collected && !triggerWhenBoatIsStopped && (requiredCollectable==null || requiredCollectable.collected ) :
 			doCollect()
 			
 func _on_Collectable_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):

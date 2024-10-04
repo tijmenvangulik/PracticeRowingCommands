@@ -1,4 +1,4 @@
-[gd_scene load_steps=123 format=2]
+[gd_scene load_steps=125 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -85,8 +85,10 @@
 [ext_resource path="res://BladeWave.tscn" type="PackedScene" id=83]
 [ext_resource path="res://LogActivity.gd" type="Script" id=84]
 [ext_resource path="res://SettingsEnablePractices.gd" type="Script" id=85]
+[ext_resource path="res://BuoyOrange.tscn" type="PackedScene" id=86]
 [ext_resource path="res://assets/water-clasic.png" type="Texture" id=88]
 [ext_resource path="res://Water.gd" type="Script" id=89]
+[ext_resource path="res://SlalomPracticeItems.gd" type="Script" id=90]
 
 [sub_resource type="ShaderMaterial" id=43]
 shader = ExtResource( 80 )
@@ -1429,9 +1431,47 @@ triggerWhenBoatIsStopped = true
 spriteStyle = 1
 practiceStartPosNr = 13
 
+[node name="CollectableSlalomPractice" parent="PracticeCollectables" instance=ExtResource( 12 )]
+unique_name_in_owner = true
+position = Vector2( 1597, 2148 )
+spriteStyle = 1
+practiceStartPosNr = 13
+requiredCollectable = NodePath("../../SlalomPracticeItems/Collectable2")
+
+[node name="SlalomPracticeItems" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 90 )
+
+[node name="Line2D" type="Line2D" parent="SlalomPracticeItems"]
+position = Vector2( -2, 3 )
+points = PoolVector2Array( 990, 2157, 1095, 2345, 1129, 2389, 1175, 2402, 1224, 2385, 1246, 2358, 1245, 1939, 1270, 1901, 1319, 1885, 1374, 1902, 1404, 1936, 1398, 2295, 1445, 2316, 1496, 2326, 1543, 2321, 1578, 2301, 1599, 2266, 1599, 2139 )
+width = 40.0
+default_color = Color( 0.356863, 0.517647, 0.72549, 0.282353 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="BuoyOrange3" parent="SlalomPracticeItems" instance=ExtResource( 86 )]
+position = Vector2( 1477, 2148 )
+
+[node name="BuoyOrange2" parent="SlalomPracticeItems" instance=ExtResource( 86 )]
+position = Vector2( 1326, 2148 )
+
+[node name="BuoyOrange" parent="SlalomPracticeItems" instance=ExtResource( 86 )]
+position = Vector2( 1162, 2148 )
+
+[node name="Collectable1" parent="SlalomPracticeItems" instance=ExtResource( 12 )]
+position = Vector2( 1243, 2146 )
+spriteStyle = 1
+
+[node name="Collectable2" parent="SlalomPracticeItems" instance=ExtResource( 12 )]
+position = Vector2( 1398, 2145 )
+spriteStyle = 1
+requiredCollectable = NodePath("../Collectable1")
+
 [node name="Boat" parent="." instance=ExtResource( 3 )]
 unique_name_in_owner = true
-position = Vector2( 958, 1906 )
+position = Vector2( 984, 1995 )
 mass = 1.2
 physics_material_override = SubResource( 21 )
 linear_damp = 0.1
