@@ -5,6 +5,8 @@ class_name SettingsDialog
 export (NodePath) onready var rulesetManager = get_node(rulesetManager) as RuleSets
 export (NodePath) onready var ruleSetDropDown = get_node(ruleSetDropDown) as OptionButton
 export (NodePath) onready var commandTranslationsGrid = get_node(commandTranslationsGrid) as GridContainer
+export (NodePath) onready var commandTranslationsHeaderGrid = get_node(commandTranslationsHeaderGrid) as GridContainer
+export (NodePath) onready var commandTranslationsCommandsGrid = get_node(commandTranslationsCommandsGrid) as GridContainer
 
 export (NodePath) onready var showCommandTooltips = get_node(showCommandTooltips) as Button
 
@@ -31,6 +33,14 @@ func addLabel(container,text):
 	container.add_child(new_label)
 	return new_label
 
+func addLabelCommandsGrid(container,text):
+	var labelPanel = preload("res://DisplayHeaderCommand.tscn").instance()
+	var label=labelPanel.get_node("Label")
+	label.text=text
+	container.add_child(labelPanel)
+	labelPanel.visible=true
+	return label
+	
 func loadRulesets():
 	var ruleSets=rulesetManager.getRulesets()
 	
@@ -97,17 +107,17 @@ func _ready():
 	#https://www.tilcode.com/godot-3-centering-a-grid-of-evenly-spaced-buttons-on-screen/
 	#https://docs.godotengine.org/en/stable/getting_started/step_by_step/ui_game_user_interface.html
 	var commandIndex=0;
-	addLabel(commandTranslationsGrid,"Commando")
-	addLabel(commandTranslationsGrid,"ButtonText")
-	addLabel(commandTranslationsGrid,"FullCommand")
-	addLabel(commandTranslationsGrid,"Tooltip")
-	addLabel(commandTranslationsGrid,"Shortcut")
+#	addLabelCommandsGrid(commandTranslationsHeaderGrid,"Commando")
+	addLabelCommandsGrid(commandTranslationsHeaderGrid,"ButtonText")
+	addLabelCommandsGrid(commandTranslationsHeaderGrid,"FullCommand")
+	addLabelCommandsGrid(commandTranslationsHeaderGrid,"Tooltip")
+	addLabelCommandsGrid(commandTranslationsHeaderGrid,"Shortcut")
 	
 	commandButtonsTab.init()
 	enablePracticesTab.init()
 	for command in commands:
 		
-		var label=addLabel(commandTranslationsGrid,command)
+		var label=addLabelCommandsGrid(commandTranslationsCommandsGrid,command)
 		
 		var tootipTextName=command+"_tooltip";
 		label.mouse_filter=Control.MOUSE_FILTER_STOP
@@ -162,7 +172,8 @@ func _ready():
 			editShortcutBox.setText(altShortcutText)
 					
 		commandIndex=commandIndex+1
-		
+
+	hideScrollBars()
 	
 	
 func get_parameter(parameter):
@@ -515,3 +526,21 @@ func _on_UsePushAwayOption_item_selected(index):
 func _on_ShowShortCutsInButtons2Buttons2_toggled(button_pressed):
 	Settings.waterAnimation=button_pressed
 	GameEvents.settingsChanged()
+
+
+
+func hideScrollBars():
+	var commands=$TabContainer/CommandTranslateTab/ScrollContainerCommands
+	var header=$TabContainer/CommandTranslateTab/ScrollContainerHeader
+	commands.get_h_scrollbar().rect_scale.x = 0
+	commands.get_v_scrollbar().rect_scale.y = 0
+	header.get_h_scrollbar().rect_scale.x = 0
+	header.get_v_scrollbar().rect_scale.y = 0
+	
+
+func _on_GridContainer_item_rect_changed():
+	var commands=$TabContainer/CommandTranslateTab/ScrollContainerCommands
+	var header=$TabContainer/CommandTranslateTab/ScrollContainerHeader
+	var grid=$TabContainer/CommandTranslateTab/ScrollContainer
+	header.scroll_horizontal=grid.scroll_horizontal
+	commands.scroll_vertical=grid.scroll_vertical

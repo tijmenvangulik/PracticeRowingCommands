@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Font.tres" type="DynamicFont" id=1]
+
+[sub_resource type="Theme" id=1]
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_top = 3.0
+content_margin_bottom = 3.0
+bg_color = Color( 0.275633, 0.265789, 0.324853, 1 )
+
+[node name="DisplayHeaderCommand" type="MarginContainer"]
+visible = false
+anchor_right = 0.33
+anchor_bottom = 0.053
+margin_right = 2.0
+margin_bottom = -1.8
+rect_min_size = Vector2( 300, 30 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_top = 5.0
+margin_right = 339.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 1 )
+custom_styles/normal = SubResource( 2 )
