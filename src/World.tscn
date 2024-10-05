@@ -3034,7 +3034,7 @@ margin_bottom = -444.0
 [node name="GridContainerHeader" type="GridContainer" parent="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab/ScrollContainerHeader"]
 custom_constants/vseparation = 4
 custom_constants/hseparation = 4
-columns = 5
+columns = 4
 
 [node name="ScrollContainerCommands" type="ScrollContainer" parent="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab"]
 anchor_bottom = 1.0
@@ -3058,7 +3058,7 @@ follow_focus = true
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab/ScrollContainer"]
 custom_constants/vseparation = 4
 custom_constants/hseparation = 4
-columns = 5
+columns = 4
 
 [node name="CommandButtonsTab" type="Tabs" parent="CanvasLayer/SettingsDialog/TabContainer"]
 visible = false

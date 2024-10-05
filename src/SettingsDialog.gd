@@ -335,11 +335,8 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 		Settings.customButtonSet=customButtonSet
 		GameEvents.customButtonSetChanged()
 	
-	
-			
-		
 	#clear translations and tooltips
-	for i in range(5,commandTranslationsGrid.get_child_count()):
+	for i in range(0,commandTranslationsGrid.get_child_count()):
 		var obj=commandTranslationsGrid.get_child(i);
 		if obj.has_method("setText"): 
 			commandTranslationsGrid.get_child(i).setText("")
@@ -353,7 +350,7 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 			if iPos>=0:
 				var text=translations[translationName]
 				Settings.commandTranslations[iPos]=text
-				var iposChild=6+iPos*5;
+				var iposChild=iPos*commandTranslationsGrid.columns;
 				if iposChild<commandTranslationsGrid.get_child_count():
 					commandTranslationsGrid.get_child(iposChild).setText(text)
 	
@@ -366,7 +363,7 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 			if iPos>=0:
 				var text=textTranslations[translationName]
 				Settings.commandTextTranslations[iPos]=text
-				var iposChild=7+iPos*5;
+				var iposChild=1+iPos*commandTranslationsGrid.columns;
 				if iposChild<commandTranslationsGrid.get_child_count():
 					commandTranslationsGrid.get_child(iposChild).setText(text)
 					
@@ -379,7 +376,7 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 			if iPos>=0:
 				var text=tooltips[translationName]
 				Settings.tooltipTranslations[iPos]=text
-				var iposChild=8+iPos*5;
+				var iposChild=2+iPos*commandTranslationsGrid.columns;
 				if iposChild<commandTranslationsGrid.get_child_count():
 					commandTranslationsGrid.get_child(iposChild).setText(text)
 	
@@ -392,7 +389,7 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 			if iPos>=0:
 				var text=shortcuts[translationName]
 				Settings.shortcutTranslations[iPos]=text
-				var iposChild=9+iPos*5;
+				var iposChild=3+iPos*commandTranslationsGrid.columns;
 				if iposChild<commandTranslationsGrid.get_child_count():
 					commandTranslationsGrid.get_child(iposChild).setText(text)
 				
