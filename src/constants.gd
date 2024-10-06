@@ -179,6 +179,7 @@ enum CollectableSpriteStyle {
 	PracticeCollected
 }
 
+# never change the order of these enums
 enum StartItem {
   StartTour,
   StilleggenOefenening,

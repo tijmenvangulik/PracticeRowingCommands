@@ -541,3 +541,15 @@ func _on_GridContainer_item_rect_changed():
 	var grid=$TabContainer/CommandTranslateTab/ScrollContainer
 	header.scroll_horizontal=grid.scroll_horizontal
 	commands.scroll_vertical=grid.scroll_vertical
+
+
+func _on_GridContainerCommands_item_rect_changed():
+	var commands=$TabContainer/CommandTranslateTab/ScrollContainerCommands
+	var grid=$TabContainer/CommandTranslateTab/ScrollContainer
+	grid.scroll_vertical=commands.scroll_vertical
+
+
+func _on_GridContainerHeader_item_rect_changed():
+	var header=$TabContainer/CommandTranslateTab/ScrollContainerHeader
+	var grid=$TabContainer/CommandTranslateTab/ScrollContainer
+	grid.scroll_horizontal=header.scroll_horizontal

@@ -2894,7 +2894,6 @@ custom_styles/panel = SubResource( 29 )
 tab_align = 0
 
 [node name="GeneralSettingsTab" type="Tabs" parent="CanvasLayer/SettingsDialog/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 29.0
@@ -3203,7 +3202,9 @@ visible = false
 [node name="DisplayHeaderCommand" parent="CanvasLayer/SettingsDialog" instance=ExtResource( 87 )]
 
 [node name="Label" parent="CanvasLayer/SettingsDialog/DisplayHeaderCommand" index="0"]
+margin_top = 2.0
 margin_right = 330.0
+margin_bottom = 27.0
 
 [node name="EditCommandText2" parent="CanvasLayer/SettingsDialog" instance=ExtResource( 73 )]
 
@@ -3363,8 +3364,8 @@ script = ExtResource( 84 )
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/Scull" to="CanvasLayer/SettingsDialog" method="_on_Scull_toggled"]
 [connection signal="pressed" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/ResetPractices" to="CanvasLayer/SettingsDialog" method="_on_ResetPractices_pressed"]
 [connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/UsePushAwayOption" to="CanvasLayer/SettingsDialog" method="_on_UsePushAwayOption_item_selected"]
-[connection signal="scroll_ended" from="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab/ScrollContainer" to="CanvasLayer/SettingsDialog" method="_on_ScrollContainer_scroll_ended"]
-[connection signal="scroll_started" from="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab/ScrollContainer" to="CanvasLayer/SettingsDialog" method="_on_ScrollContainer_scroll_started"]
+[connection signal="item_rect_changed" from="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab/ScrollContainerHeader/GridContainerHeader" to="CanvasLayer/SettingsDialog" method="_on_GridContainerHeader_item_rect_changed"]
+[connection signal="item_rect_changed" from="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab/ScrollContainerCommands/GridContainerCommands" to="CanvasLayer/SettingsDialog" method="_on_GridContainerCommands_item_rect_changed"]
 [connection signal="item_rect_changed" from="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab/ScrollContainer/GridContainer" to="CanvasLayer/SettingsDialog" method="_on_GridContainer_item_rect_changed"]
 [connection signal="button_droppedOnSourceGrid" from="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/CommandSelectScrollContainer/CommandContainerSource" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_CommandContainerSource_button_droppedOnSourceGrid"]
 [connection signal="pressed" from="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/GridContainer/ClearCustomButtons" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_ClearCustomButtons_pressed"]
