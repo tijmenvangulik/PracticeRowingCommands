@@ -123,7 +123,7 @@ func setForwardsPosition(delta):
 	if delta!=0 && lastForwardsCommand!=lastCommand:
 		if lastCommand==Constants.Command.StrijkenBeidenBoorden || lastCommand==Constants.Command.HalenBeideBoorden || lastCommand==Constants.Command.SlagklaarAf:
 			if lastCommand==Constants.Command.StrijkenBeidenBoorden: GameState.isForwards=false
-			else: GameState.isForwards=true			
+			else: GameState.isForwards=true
 			lastForwardsCommand=lastCommand;
 			GameEvents.forwardBackwardsChanged()
 
@@ -142,17 +142,6 @@ func setForwardsPosition(delta):
 		$"Camera2D2".position= Vector2(currentPositionX*zoomDif,0)
 		
 		
-func startTimer(time):
-	var t = Timer.new()
-	t.set_wait_time(time)
-	t.set_one_shot(true)
-	add_child(t)
-	t.start()
-	return t
-	
-func removeTimer(t):
-	remove_child(t)
-	t.queue_free()
 
 func resetCrashed():
 	crashState=false
@@ -163,9 +152,9 @@ func showError(message:String):
 		var label=$"../CanvasLayer/errorLabel"
 		label.text=tr(message)
 		#remove the error message after 2 secons
-		var t=startTimer(2)
+		var t=Utilities.startTimer(2)
 		yield(t, "timeout")
-		removeTimer(t)
+		Utilities.removeTimer(t)
 		
 		label.text=""
 
@@ -351,7 +340,10 @@ func getRules():
 	return rulesetManager.getRuleset()
 	
 func doCommand(command:int):
-	newCommand=command	
+	var recorder=$"%Recorder"
+	if recorder.isRecording:
+		recorder.recordCommad(command)
+	newCommand=command
 	match command:
 		Constants.Command.HalenBeideBoorden:
 			setStateOars(Constants.StateOars.Roeien,false);
@@ -532,12 +524,14 @@ func changeState(command:int,newState:int,direction:int,direct=false,doOneStroke
 		Constants.RowState.HalenSB:
 			setSpeedAndDirection(0.35*oneStokeFactor,-0.3*oneStokeFactor,1,false)
 			oarSB.setNewScheme(true,oarSB.rotation_inHalen,oarSB.rotation_out,direct)
+			RimenHoogSetDisabledSB(false)
 			#if !slippenBB:
 			#	oarBB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct)
 
 		Constants.RowState.HalenBB:
 			setSpeedAndDirection(0.35*oneStokeFactor,0.3*oneStokeFactor,1,false)
 			oarBB.setNewScheme(true,oarBB.rotation_inHalen,oarBB.rotation_out,direct)
+			RimenHoogSetDisabledBB(false)
 			#if !slippenSB:
 			#	oarSB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct)
 		Constants.RowState.VastroeienBeideBoorden:
@@ -550,29 +544,37 @@ func changeState(command:int,newState:int,direction:int,direct=false,doOneStroke
 			setSpeedAndDirection(0,0.5,0.3,false)
 			if !slippenSB:
 				oarSB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct,false,Constants.OarWaveState.Vastroeien)
+			RimenHoogSetDisabledSB(false)
 		Constants.RowState.VastroeienBB:
 			setSpeedAndDirection(0,-0.5,0.3,false)
 			if !slippenBB && !oarBB.pulledIn:
 				oarBB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct,false,Constants.OarWaveState.Vastroeien)
 			if !slippenSB && !oarSB.pulledIn:
 				oarSB.setNewScheme(false,oarBB.rotation_rest,oarBB.rotation_rest,direct)
+			RimenHoogSetDisabledBB(false)
 		Constants.RowState.StrijkenBeidenBoorden:
 			setSpeedAndDirection(-0.4*oneStokeFactor,0,0.5,false)
 			oarBB.setNewScheme(true,oarBB.rotation_out,oarBB.rotation_inHalen,direct,true)
 			oarSB.setNewScheme(true,oarBB.rotation_out,oarBB.rotation_inHalen,direct,true)
+			RimenHoogSetDisabledBB(false)
+			RimenHoogSetDisabledSB(false)
 
 		Constants.RowState.StrijkenBB:
 			setSpeedAndDirection(-0.3*oneStokeFactor,-0.3*oneStokeFactor,0.5,false)
 			oarBB.setNewScheme(true,oarBB.rotation_out,oarBB.rotation_inHalen,direct)
+			RimenHoogSetDisabledBB(false)
 		Constants.RowState.StrijkenSB:
 			setSpeedAndDirection(-0.3*oneStokeFactor,0.3*oneStokeFactor,0.5,false)
 			oarSB.setNewScheme(true,oarBB.rotation_out,oarBB.rotation_inHalen,direct)
+			RimenHoogSetDisabledSB(false)
 		Constants.RowState.PeddelendStrijkenBB:
 			setSpeedAndDirection(0.1,-0.1,1,true)
 			oarBB.setNewScheme(true,oarBB.rotation_slippen,oarBB.rotation_slippen_out,direct)
+			RimenHoogSetDisabledBB(false)
 		Constants.RowState.PeddelendStrijkenSB:
 			setSpeedAndDirection(-0.1,0.1,1,true)
 			oarSB.setNewScheme(true,oarBB.rotation_slippen,oarBB.rotation_slippen_out,direct)
+			RimenHoogSetDisabledSB(false)
 		Constants.RowState.UitzettenBB:
 			onePush=true
 			state=Constants.RowState.LaatLopen
@@ -585,11 +587,13 @@ func changeState(command:int,newState:int,direction:int,direct=false,doOneStroke
 			setSpeedAndDirection(0.01,-0.3,1,false)
 			oarBB.setNewScheme(true,oarBB.rotation_out,oarBB.rotation_inHalen,direct)
 			oarSB.setNewScheme(false,oarBB.rotation_out,oarBB.rotation_inHalen,direct)
+			RimenHoogSetDisabledBB(false)
 
 		Constants.RowState.RondmakenSB:
 			setSpeedAndDirection(0.01,0.3,1,false)
 			oarBB.setNewScheme(false,oarBB.rotation_out,oarBB.rotation_inHalen,direct)
 			oarSB.setNewScheme(true,oarBB.rotation_out,oarBB.rotation_inHalen,direct)
+			RimenHoogSetDisabledSB(false)
 
 func determinenewStateOars(newStateOars):
 	return 	newStateOars

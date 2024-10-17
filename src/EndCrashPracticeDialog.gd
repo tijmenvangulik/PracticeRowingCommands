@@ -6,7 +6,8 @@ func _ready():
 	pass # Replace with function body.
 
 func start():
-	show_modal(true)
+	if !GameState.isReplaying:
+		show_modal(true)
 	
 func _on_StartSamePractice_pressed():
 	hide()

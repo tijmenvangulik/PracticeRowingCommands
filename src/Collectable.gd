@@ -58,6 +58,10 @@ func _on_Tween_tween_all_completed():
 	visible=false
 
 func reset():
+	#wait a bit to fix problem that the position is reset earlier than the collection item is showing
+	var t=Utilities.startTimer(0.1)
+	yield(t, "timeout")
+	Utilities.removeTimer(t)
 	$Tween.stop_all()
 	$TweenSlow.stop_all()
 	visible=true
@@ -92,7 +96,7 @@ func doCollect():
 func _on_Collectable_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
 	if area.name=="CollectableArea":
 		isEntered=true
-		if !collected && !triggerWhenBoatIsStopped && (requiredCollectable==null || requiredCollectable.collected ) :
+		if  !collected && !triggerWhenBoatIsStopped && (requiredCollectable==null || requiredCollectable.collected ) :
 			doCollect()
 			
 func _on_Collectable_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):

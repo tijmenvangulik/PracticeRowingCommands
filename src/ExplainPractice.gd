@@ -16,11 +16,17 @@ func _init():
 
 # Called when the node enters the scene tree for the first time.
 func showDialog(explainText,showLessButonsArray):
-	_explainText=explainText
-	_showLessButtonsArray=showLessButonsArray
-	showText()
-	show_modal(true)
-	$HBoxContainer/StartLessButtons.grab_focus()
+	var practice=$"%OptionStart".currentStartPos
+	$HBoxContainer/StartDemo.visible=$"%Recorder".hasDemo(practice)
+	var recorder=$"%Recorder";
+	if GameState.isReplaying:
+		_on_StartLessButtons_pressed()
+	else:
+		_explainText=explainText
+		_showLessButtonsArray=showLessButonsArray
+		showText()
+		show_modal(true)
+		$HBoxContainer/StartLessButtons.grab_focus()
 	
 func showText():
 	var text=tr(_explainText);
@@ -40,3 +46,10 @@ func _on_StartLessButtons_pressed():
 func _on_languageChanged():
 	if visible:
 		showText()
+
+
+func _on_StartDemo_pressed():
+	hide()
+	var practice=$"%OptionStart".currentStartPos
+	$"%Recorder".replayDemo(practice)
+	

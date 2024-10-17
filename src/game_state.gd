@@ -15,6 +15,8 @@ var useDefaultButtonSet=true;
 
 var dialogIsOpen = false;
 
+var isReplaying = false
+
 func changeCollectGameState(newState):
 	if collectGameState!=newState:
 		collectGameState=newState

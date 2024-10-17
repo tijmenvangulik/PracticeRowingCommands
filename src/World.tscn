@@ -1,4 +1,4 @@
-[gd_scene load_steps=126 format=2]
+[gd_scene load_steps=127 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -90,6 +90,7 @@
 [ext_resource path="res://assets/water-clasic.png" type="Texture" id=88]
 [ext_resource path="res://Water.gd" type="Script" id=89]
 [ext_resource path="res://SlalomPracticeItems.gd" type="Script" id=90]
+[ext_resource path="res://Record.gd" type="Script" id=91]
 
 [sub_resource type="ShaderMaterial" id=43]
 shader = ExtResource( 80 )
@@ -1411,6 +1412,12 @@ position = Vector2( 1304, 2493 )
 spriteStyle = 1
 practiceStartPosNr = 6
 
+[node name="CollectableSailAwayPractice3" parent="PracticeCollectables" instance=ExtResource( 12 )]
+unique_name_in_owner = true
+position = Vector2( 1403, 2435 )
+spriteStyle = 1
+practiceStartPosNr = 6
+
 [node name="CollectableBackDownMooringPractice2" parent="PracticeCollectables" instance=ExtResource( 12 )]
 unique_name_in_owner = true
 position = Vector2( 1241, 2624 )
@@ -2397,8 +2404,23 @@ margin_bottom = -10.0
 grow_horizontal = 2
 custom_constants/separation = 10
 
+[node name="StartDemo" type="Button" parent="CanvasLayer/ExplainPracticeDialog/HBoxContainer"]
+margin_right = 160.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 52 )
+custom_styles/pressed = ExtResource( 53 )
+custom_styles/focus = ExtResource( 17 )
+custom_styles/normal = ExtResource( 64 )
+text = "Demo"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="StartAllButtons" type="Button" parent="CanvasLayer/ExplainPracticeDialog/HBoxContainer"]
-margin_right = 214.0
+margin_left = 170.0
+margin_right = 384.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 160, 0 )
 custom_fonts/font = ExtResource( 50 )
@@ -2412,8 +2434,8 @@ __meta__ = {
 }
 
 [node name="StartLessButtons" type="Button" parent="CanvasLayer/ExplainPracticeDialog/HBoxContainer"]
-margin_left = 224.0
-margin_right = 384.0
+margin_left = 394.0
+margin_right = 554.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 160, 0 )
 custom_fonts/font = ExtResource( 50 )
@@ -3306,6 +3328,24 @@ custom_colors/font_color = Color( 0.933333, 0.368627, 0.368627, 1 )
 custom_fonts/font = ExtResource( 50 )
 align = 1
 
+[node name="replayCommandText" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -83.0
+margin_top = -15.0
+margin_right = 83.0
+margin_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 50 )
+align = 1
+
 [node name="Tooltip" parent="CanvasLayer" instance=ExtResource( 38 )]
 margin_left = -23.0
 margin_top = -753.0
@@ -3323,6 +3363,27 @@ script = ExtResource( 51 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Recorder" type="Button" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+margin_left = 1.0
+margin_top = 412.0
+margin_right = 67.0
+margin_bottom = 437.0
+custom_fonts/font = ExtResource( 50 )
+toggle_mode = true
+text = "Record"
+script = ExtResource( 91 )
+boat = NodePath("../../Boat")
+
+[node name="Replay" type="Button" parent="CanvasLayer"]
+visible = false
+margin_top = 384.0
+margin_right = 68.0
+margin_bottom = 409.0
+custom_fonts/font = ExtResource( 50 )
+text = "Replay"
 
 [node name="LogActivityRequest" type="HTTPRequest" parent="."]
 unique_name_in_owner = true
@@ -3346,6 +3407,7 @@ script = ExtResource( 84 )
 [connection signal="pressed" from="CanvasLayer/QuickFeedbackDialog/EmoticonSelection/Love" to="CanvasLayer/QuickFeedbackDialog" method="_on_Love_pressed"]
 [connection signal="pressed" from="CanvasLayer/QuickFeedbackDialog/HBoxContainer/CancelFeedback" to="CanvasLayer/QuickFeedbackDialog" method="_on_CancelFeedback_pressed"]
 [connection signal="pressed" from="CanvasLayer/QuickFeedbackDialog/HBoxContainer/SendFeedback" to="CanvasLayer/QuickFeedbackDialog" method="_on_SendFeedback_pressed"]
+[connection signal="pressed" from="CanvasLayer/ExplainPracticeDialog/HBoxContainer/StartDemo" to="CanvasLayer/ExplainPracticeDialog" method="_on_StartDemo_pressed"]
 [connection signal="pressed" from="CanvasLayer/ExplainPracticeDialog/HBoxContainer/StartAllButtons" to="CanvasLayer/ExplainPracticeDialog" method="_on_Start_pressed"]
 [connection signal="pressed" from="CanvasLayer/ExplainPracticeDialog/HBoxContainer/StartLessButtons" to="CanvasLayer/ExplainPracticeDialog" method="_on_StartLessButtons_pressed"]
 [connection signal="about_to_show" from="CanvasLayer/TourDialog" to="CanvasLayer/TourDialog" method="_on_TourDialog_about_to_show"]
@@ -3371,5 +3433,7 @@ script = ExtResource( 84 )
 [connection signal="pressed" from="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/GridContainer/ClearCustomButtons" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_ClearCustomButtons_pressed"]
 [connection signal="pressed" from="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/GridContainer/DefaultCustomButtons" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_DefaultCustomButtons_pressed"]
 [connection signal="pressed" from="CanvasLayer/TestEndGame" to="CanvasLayer/TestEndGame" method="_on_TestEndGame_pressed"]
+[connection signal="toggled" from="CanvasLayer/Recorder" to="CanvasLayer/Recorder" method="_on_Record_toggled"]
+[connection signal="pressed" from="CanvasLayer/Replay" to="CanvasLayer/Recorder" method="_on_Replay_pressed"]
 
 [editable path="CanvasLayer/SettingsDialog/DisplayHeaderCommand"]

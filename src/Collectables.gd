@@ -112,16 +112,16 @@ func gameFinish():
 	
 	updateTime(true)
 	
-	var t=boat.startTimer(1)
+	var t=Utilities.startTimer(1)
 	yield(t, "timeout")
-	boat.removeTimer(t)
+	Utilities.removeTimer(t)
 	resetCrashed()
 
 	boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)
 	
-	t=boat.startTimer(1.1)
+	t=Utilities.startTimer(1.1)
 	yield(t, "timeout")
-	boat.removeTimer(t)
+	Utilities.removeTimer(t)
 
 	stopGame()
 	var isHighScore=false

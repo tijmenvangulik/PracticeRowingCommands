@@ -1,5 +1,7 @@
 extends PanelContainer
 
+var enabled=true
+
 func loadButtonsSetFromResources():
 	var buttonSet=tr("ButtonSet")
 	if buttonSet!=null && buttonSet!="ButtonSet" && buttonSet!="":
@@ -65,9 +67,20 @@ func setChildNodeDisable(node,commandName,disabled:bool):
 #					else:
 #						button.enabled_focus_mode=Control.FOCUS_ALL
 
-	
+func focusChildCommandFocus(node,commandName):
+	for N in node.get_children():
+		if N.get_child_count() > 0:
+			focusChildCommandFocus(N,commandName)
+		else:
+			if N.name=="GridButton" && N.owner.commandName==commandName:
+				N.grab_focus()
+				
 func disableCommand(commandName:String,disabled:bool):
 	setChildNodeDisable($GridContainer,commandName,disabled)
+
+func focusCommand(commandName:String):
+	focusChildCommandFocus($GridContainer,commandName)
+
 	
 func clearGrid():
 	var node=$"GridContainer"

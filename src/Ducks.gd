@@ -23,9 +23,9 @@ func stopGame():
 	if gameRunning:
 		if (boat.crashState):
 			# wait a bit so the user can see the crash
-			var t=boat.startTimer(1.1)
+			var t=Utilities.startTimer(1.1)
 			yield(t, "timeout")
-			boat.removeTimer(t)
+			Utilities.removeTimer(t)
 			doStopGame()
 			
 		else: 

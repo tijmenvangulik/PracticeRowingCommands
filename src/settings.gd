@@ -16,3 +16,10 @@ var finishedPractices=[]
 var usePushAway = Constants.DefaultYesNo.Default;
 var waterAnimation = false
 var disabledPractices=[]
+
+
+func usePushAwayActive():
+	if  Settings.usePushAway == Constants.DefaultYesNo.Default:
+		var val=tr("UsePushAway")
+		return val=="TRUE"
+	return Settings.usePushAway  == Constants.DefaultYesNo.Yes;
