@@ -126,14 +126,9 @@ func replayEnded(lastTime,practice,endTime):
 		t= Utilities.startTimer(2.5)
 		yield(t, "timeout")
 		Utilities.removeTimer(t)
-		if !GameState.isReplaying:
-			return
 			
-		optionsStart.doStart(practice)
-		t= Utilities.startTimer(0.1)
-		yield(t, "timeout")
-		Utilities.removeTimer(t)
 		GameState.isReplaying=false
+		optionsStart.doStart(practice)
 		
 	$"%ButtonsContainer".enabled=true
 	commandReplayText.visible=false
