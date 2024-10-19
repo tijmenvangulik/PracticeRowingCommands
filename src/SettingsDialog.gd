@@ -175,9 +175,11 @@ func _ready():
 
 	hideScrollBars()
 	
+func hasJavascript():
+	return OS.has_feature('JavaScript')
 	
 func get_parameter(parameter):
-	if OS.has_feature('JavaScript'):
+	if hasJavascript():
 		var value= JavaScript.eval("var url_string = window.location.href; var url = new URL(url_string); url.searchParams.get('"+parameter+"');")
 		return value
 	return null
@@ -451,7 +453,8 @@ func loadSettings():
 			Settings.currentLang=Constants.languageKeys[urlLangIndex]
 
 	GameEvents.settingsChanged()
-	
+	if settingFromUrl && hasJavascript():
+		clearSettingsInUrl();
 	
 	
 func _on_EditCommandText_customCommandTextChanged(command, commandName, value):
@@ -472,19 +475,10 @@ func _on_EditTooltipText_customShortcutTextChanged(command, commandName, value):
 	
 func _handleSettingsChanged():
 	saveSettings()
-	setSettingInUrl()
-
 	
-func setSettingInUrl():
-	var urlLang=""
-	var lang=Settings.currentLang
-	var indexNr=Constants.languageKeys.find(lang)
-	if indexNr>=0:
-		urlLang=Constants.urlKeys[indexNr]
-	var settings=getSettings(true)
-	var urlSettings= to_json(settings).percent_encode()
-	JavaScript.eval("history.pushState({}, null, window.location.protocol + '//' + window.location.host + window.location.pathname + '?lang="+urlLang+"&settings="+urlSettings+"')");
 
+func clearSettingsInUrl():
+	JavaScript.eval("history.pushState({}, null, window.location.protocol + '//' + window.location.host + window.location.pathname)");
 
 
 func ensureButtonsetSaved():
@@ -553,3 +547,16 @@ func _on_GridContainerHeader_item_rect_changed():
 	var header=$TabContainer/CommandTranslateTab/ScrollContainerHeader
 	var grid=$TabContainer/CommandTranslateTab/ScrollContainer
 	grid.scroll_horizontal=header.scroll_horizontal
+
+
+func saveAndClose():
+	GameEvents.settingsChanged()	
+	visible=false
+	GameEvents.startPlay()
+
+func _on_CloseSettingsButton_pressed():
+	saveAndClose()
+
+func _on_ShareSettings_pressed():
+	saveAndClose()
+	$"%ShareSettingsDialog".start()

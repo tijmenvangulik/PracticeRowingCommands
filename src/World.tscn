@@ -1,4 +1,4 @@
-[gd_scene load_steps=127 format=2]
+[gd_scene load_steps=128 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -60,7 +60,7 @@
 [ext_resource path="res://SettingsDialog.gd" type="Script" id=58]
 [ext_resource path="res://EditCommandText.tscn" type="PackedScene" id=59]
 [ext_resource path="res://ButtonsContainer.gd" type="Script" id=60]
-[ext_resource path="res://CloseSettingsButton.gd" type="Script" id=61]
+[ext_resource path="res://ShareSettingsDialog.gd" type="Script" id=61]
 [ext_resource path="res://Rules.gd" type="Script" id=62]
 [ext_resource path="res://Speak.gd" type="Script" id=63]
 [ext_resource path="res://StyleButtonDarkGray.tres" type="StyleBox" id=64]
@@ -91,6 +91,7 @@
 [ext_resource path="res://Water.gd" type="Script" id=89]
 [ext_resource path="res://SlalomPracticeItems.gd" type="Script" id=90]
 [ext_resource path="res://Record.gd" type="Script" id=91]
+[ext_resource path="res://assets/share.png" type="Texture" id=92]
 
 [sub_resource type="ShaderMaterial" id=43]
 shader = ExtResource( 80 )
@@ -2883,15 +2884,13 @@ custom_fonts/font = ExtResource( 50 )
 text = "0"
 
 [node name="SettingsDialog" type="WindowDialog" parent="CanvasLayer"]
+unique_name_in_owner = true
 margin_left = 14.0
 margin_top = 11.0
 margin_right = 1010.0
 margin_bottom = 591.0
 custom_styles/panel = ExtResource( 33 )
 script = ExtResource( 58 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 rulesetManager = NodePath("../../Boat/Rulesets")
 ruleSetDropDown = NodePath("TabContainer/GeneralSettingsTab/GridContainer/RuleSetDropDown")
 commandTranslationsGrid = NodePath("TabContainer/CommandTranslateTab/ScrollContainer/GridContainer")
@@ -3254,7 +3253,20 @@ custom_styles/pressed = ExtResource( 10 )
 custom_styles/focus = ExtResource( 34 )
 custom_styles/normal = ExtResource( 10 )
 text = "Close"
-script = ExtResource( 61 )
+
+[node name="ShareSettings" type="Button" parent="CanvasLayer/SettingsDialog"]
+margin_left = 781.0
+margin_top = 536.0
+margin_right = 978.0
+margin_bottom = 568.0
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 10 )
+custom_styles/focus = ExtResource( 34 )
+custom_styles/normal = ExtResource( 10 )
+text = "ShareSettings"
+icon = ExtResource( 92 )
+icon_align = 2
 
 [node name="ExportSettingsButton" type="Button" parent="CanvasLayer/SettingsDialog"]
 visible = false
@@ -3299,20 +3311,51 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ExplainClose" type="Label" parent="CanvasLayer/SettingsDialog"]
-anchor_left = 1.0
-anchor_top = 1.0
+[node name="ShareSettingsDialog" type="WindowDialog" parent="CanvasLayer"]
+unique_name_in_owner = true
+margin_left = 184.0
+margin_top = 189.0
+margin_right = 845.0
+margin_bottom = 424.0
+theme = ExtResource( 29 )
+custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
+custom_styles/panel = SubResource( 34 )
+script = ExtResource( 61 )
+
+[node name="ShareSettingsExplain" type="Label" parent="CanvasLayer/ShareSettingsDialog"]
+anchor_top = 0.35
 anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 38.0
+margin_top = -9.25
+margin_right = -33.0
+margin_bottom = 25.5
+grow_horizontal = 2
+text = "ShareSettingsExplain"
+align = 1
+autowrap = true
+
+[node name="CloseDialog" type="Button" parent="CanvasLayer/ShareSettingsDialog"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -446.0
-margin_top = -38.0
-margin_right = -28.0
-margin_bottom = -19.0
-custom_colors/font_color = Color( 0.690196, 0.690196, 0.690196, 1 )
+margin_left = -80.0
+margin_top = -44.0
+margin_right = 80.0
+margin_bottom = -14.0
+grow_horizontal = 2
+rect_min_size = Vector2( 160, 0 )
 custom_fonts/font = ExtResource( 50 )
-text = "ExplainSaveLabel"
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 34 )
+custom_styles/focus = ExtResource( 34 )
+custom_styles/normal = ExtResource( 10 )
+text = "ShareSettingsClose"
+icon_align = 2
 
 [node name="errorLabel" type="Label" parent="CanvasLayer"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -3432,6 +3475,9 @@ script = ExtResource( 84 )
 [connection signal="button_droppedOnSourceGrid" from="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/CommandSelectScrollContainer/CommandContainerSource" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_CommandContainerSource_button_droppedOnSourceGrid"]
 [connection signal="pressed" from="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/GridContainer/ClearCustomButtons" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_ClearCustomButtons_pressed"]
 [connection signal="pressed" from="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/GridContainer/DefaultCustomButtons" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_DefaultCustomButtons_pressed"]
+[connection signal="pressed" from="CanvasLayer/SettingsDialog/CloseSettingsButton" to="CanvasLayer/SettingsDialog" method="_on_CloseSettingsButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/SettingsDialog/ShareSettings" to="CanvasLayer/SettingsDialog" method="_on_ShareSettings_pressed"]
+[connection signal="pressed" from="CanvasLayer/ShareSettingsDialog/CloseDialog" to="CanvasLayer/ShareSettingsDialog" method="_on_CloseDialog_pressed"]
 [connection signal="pressed" from="CanvasLayer/TestEndGame" to="CanvasLayer/TestEndGame" method="_on_TestEndGame_pressed"]
 [connection signal="toggled" from="CanvasLayer/Recorder" to="CanvasLayer/Recorder" method="_on_Record_toggled"]
 [connection signal="pressed" from="CanvasLayer/Replay" to="CanvasLayer/Recorder" method="_on_Replay_pressed"]
