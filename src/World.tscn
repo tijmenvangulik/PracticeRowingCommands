@@ -2644,8 +2644,8 @@ end_cap_mode = 2
 [node name="RightTopButtons" type="HBoxContainer" parent="CanvasLayer"]
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 539.0
-margin_bottom = 27.0
+margin_right = 588.0
+margin_bottom = 38.0
 custom_constants/separation = 8
 
 [node name="OptionStart" type="OptionButton" parent="CanvasLayer/RightTopButtons"]
@@ -2701,19 +2701,27 @@ script = ExtResource( 82 )
 
 [node name="TooltipHelp" type="Button" parent="CanvasLayer/RightTopButtons"]
 margin_left = 222.0
-margin_right = 245.0
+margin_right = 246.0
 margin_bottom = 30.0
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 18 )
 custom_styles/pressed = SubResource( 37 )
 custom_styles/normal = ExtResource( 35 )
 toggle_mode = true
-text = "?"
+text = "  "
 script = ExtResource( 39 )
 
+[node name="Label" type="Label" parent="CanvasLayer/RightTopButtons/TooltipHelp"]
+margin_left = 9.0
+margin_top = 6.0
+margin_right = 18.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 50 )
+text = "?"
+
 [node name="SettingsButton" type="Button" parent="CanvasLayer/RightTopButtons"]
-margin_left = 253.0
-margin_right = 283.0
+margin_left = 254.0
+margin_right = 284.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 30, 0 )
 custom_fonts/font = ExtResource( 50 )
@@ -2721,17 +2729,19 @@ custom_styles/hover = ExtResource( 18 )
 custom_styles/pressed = ExtResource( 36 )
 custom_styles/focus = ExtResource( 36 )
 custom_styles/normal = ExtResource( 35 )
+icon_align = 1
 script = ExtResource( 57 )
 settingsDialog = NodePath("../../SettingsDialog")
 
 [node name="options_icon" type="Sprite" parent="CanvasLayer/RightTopButtons/SettingsButton"]
-position = Vector2( 15, 13.5 )
+position = Vector2( 15, 14.5 )
 scale = Vector2( 0.19, 0.19 )
 texture = ExtResource( 56 )
+offset = Vector2( 0, 4 )
 
 [node name="FeedbackButton" type="Button" parent="CanvasLayer/RightTopButtons"]
-margin_left = 291.0
-margin_right = 321.0
+margin_left = 292.0
+margin_right = 322.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 30, 0 )
 custom_fonts/font = ExtResource( 50 )
@@ -2743,13 +2753,13 @@ script = ExtResource( 23 )
 feedbackDialog = NodePath("../../QuickFeedbackDialog")
 
 [node name="Megaphone" type="Sprite" parent="CanvasLayer/RightTopButtons/FeedbackButton"]
-position = Vector2( 14.9409, 13.6667 )
+position = Vector2( 14.9409, 14.6667 )
 scale = Vector2( 0.402362, 0.373333 )
 texture = ExtResource( 22 )
 
 [node name="ZoomContainer" type="HBoxContainer" parent="CanvasLayer/RightTopButtons"]
-margin_left = 329.0
-margin_right = 427.0
+margin_left = 330.0
+margin_right = 430.0
 margin_bottom = 30.0
 script = ExtResource( 31 )
 __meta__ = {
@@ -2758,22 +2768,31 @@ __meta__ = {
 camera = NodePath("../../../Boat/Camera2D2")
 
 [node name="ZoomPlus" type="Button" parent="CanvasLayer/RightTopButtons/ZoomContainer"]
-margin_right = 25.0
+margin_right = 24.0
 margin_bottom = 30.0
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 18 )
 custom_styles/pressed = ExtResource( 36 )
 custom_styles/focus = ExtResource( 36 )
 custom_styles/normal = ExtResource( 35 )
-text = "+"
+text = "  "
+icon_align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label" type="Label" parent="CanvasLayer/RightTopButtons/ZoomContainer/ZoomPlus"]
+margin_left = 8.0
+margin_top = 6.0
+margin_right = 17.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 50 )
+text = "+"
+
 [node name="ZoomLabel" type="Label" parent="CanvasLayer/RightTopButtons/ZoomContainer"]
-margin_left = 29.0
+margin_left = 28.0
 margin_top = 5.0
-margin_right = 73.0
+margin_right = 72.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 50 )
 text = "Zoom"
@@ -2782,22 +2801,30 @@ __meta__ = {
 }
 
 [node name="ZoomMin" type="Button" parent="CanvasLayer/RightTopButtons/ZoomContainer"]
-margin_left = 77.0
-margin_right = 98.0
+margin_left = 76.0
+margin_right = 100.0
 margin_bottom = 30.0
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 18 )
 custom_styles/pressed = ExtResource( 36 )
 custom_styles/focus = ExtResource( 36 )
 custom_styles/normal = ExtResource( 35 )
-text = "-"
+text = "  "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label" type="Label" parent="CanvasLayer/RightTopButtons/ZoomContainer/ZoomMin"]
+margin_left = 10.0
+margin_top = 4.0
+margin_right = 17.0
+margin_bottom = 23.0
+custom_fonts/font = ExtResource( 50 )
+text = "-"
+
 [node name="ForwardsBackwards" type="Button" parent="CanvasLayer/RightTopButtons"]
-margin_left = 435.0
-margin_right = 534.0
+margin_left = 438.0
+margin_right = 537.0
 margin_bottom = 30.0
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 18 )
@@ -2857,8 +2884,8 @@ custom_fonts/font = ExtResource( 50 )
 
 [node name="PracticeCounter" type="HBoxContainer" parent="CanvasLayer/RightTopButtons"]
 unique_name_in_owner = true
-margin_left = 542.0
-margin_right = 580.0
+margin_left = 545.0
+margin_right = 583.0
 margin_bottom = 30.0
 script = ExtResource( 78 )
 
