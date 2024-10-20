@@ -1,4 +1,4 @@
-[gd_scene load_steps=131 format=2]
+[gd_scene load_steps=132 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -782,7 +782,7 @@ bg_color = Color( 0.192157, 0.254902, 0.52549, 0 )
 [sub_resource type="StyleBoxFlat" id=32]
 content_margin_left = 10.0
 content_margin_right = 10.0
-bg_color = Color( 0.203922, 0.196078, 0.239216, 0.760784 )
+bg_color = Color( 0.203922, 0.196078, 0.239216, 0.694118 )
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -798,10 +798,13 @@ shadow_size = 3
 shadow_offset = Vector2( 2, 2 )
 
 [sub_resource type="StyleBoxFlat" id=48]
-bg_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+bg_color = Color( 0.145098, 0.145098, 0.164706, 0.337255 )
+
+[sub_resource type="StyleBoxFlat" id=50]
+bg_color = Color( 0.14902, 0.176471, 0.196078, 0.501961 )
 
 [sub_resource type="StyleBoxFlat" id=49]
-bg_color = Color( 0.145098, 0.145098, 0.164706, 1 )
+bg_color = Color( 0.145098, 0.145098, 0.164706, 0 )
 border_color = Color( 0.8, 0.8, 0.8, 0 )
 
 [sub_resource type="StyleBoxFlat" id=33]
@@ -1678,6 +1681,7 @@ margin_right = 400.0
 margin_bottom = 361.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/panel = SubResource( 50 )
 
 [node name="ItemList" type="ItemList" parent="CanvasLayer/ChooseLanguage/ScrollContainer/Panel"]
 margin_left = 10.0
