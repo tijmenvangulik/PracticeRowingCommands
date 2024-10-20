@@ -17,6 +17,9 @@ var dialogIsOpen = false;
 
 var isReplaying = false
 
+var languageSetFromSettingsOrUl = false
+
+
 func changeCollectGameState(newState):
 	if collectGameState!=newState:
 		collectGameState=newState

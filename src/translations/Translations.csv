@@ -1,5 +1,6 @@
 keys;nl_NL;nl;en;en_US;en_BW
 LanguageDescription;Viking;Dutch;English;English alternatieve;Viking with english text
+ChooseLanguageAndClub;Kies taal en roeivereniging / Choose language ;Kies taal en roeivereniging;Choose language and rowing club;Choose language and rowing club;Choose language and rowing club
 VastroeienBeideBoorden;Vastroeien beide boorden;Houden beide boorden;Hold;Hold;Vastroeien beide boorden
 HalenBeideBoorden;Halen beide boorden;Halen beide boorden;Stroke both sides;Stroke both sides;Halen beide boorden
 Bedankt;Bedankt;Bedankt;Easy off (drop);Easy off;Bedankt
@@ -269,3 +270,4 @@ EndDemo;Probeer het nu zelf;Probeer het nu zelf;Now try it yourselves.;Now try i
 ShareSettings;Deel instellingen;Deel instellingen;Share settings;Share settings;Share settings
 ShareSettingsExplain;Je instellingen zijn toegevoegd aan de link in de navigatiebalk van je browser. Kopieer deze link en stuur hem naar de mensen met wie je de instellingen wilt delen.;Je instellingen zijn toegevoegd aan de link in de navigatiebalk van je browser. Kopieer deze link en stuur hem naar de mensen met wie je de instellingen wilt delen.;Your settings have been added to the link navigation bar of the browser. Copy the link and send it to the persons you want to share the settings with.;Your settings have been added to the link navigation bar of the browser. Copy the link and send it to the persons you want to share the settings with.;Your settings have been added to the link navigation bar of the browser. Copy the link and send it to the persons you want to share the settings with.
 ShareSettingsClose;Sluit en ga weer over op de link zonder instellingen;Sluit en ga weer over op de link zonder instellingen;Close and revert to the link without settings;;
+Continue;Verder;Verder;Continue;Continue;Continue

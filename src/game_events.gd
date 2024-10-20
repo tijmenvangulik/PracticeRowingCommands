@@ -42,6 +42,8 @@ signal crash
 
 signal practicesChanged
 
+signal settingsLoadedSignal
+
 func sendCommandChanged(command : int,commandName :String,value : String) -> void:
 	emit_signal("customCommandTextChanged",command,commandName,value)
 
@@ -134,3 +136,6 @@ func _on_allways_hide_tooltip(node,tooltip_type):
 
 func startTour():
 	emit_signal("startTour")
+
+func settingsLoaded():
+	emit_signal("settingsLoadedSignal")

@@ -1,5 +1,5 @@
 extends Button
 
 func _pressed():
-	GameEvents.intro(false)
+	$"%IntroDialog".closeIntro()
 	$"%OptionStart".startOnWater()

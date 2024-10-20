@@ -20,6 +20,7 @@ export (NodePath) onready var enablePracticesTab = get_node(enablePracticesTab) 
 
 var settingsFile="user://settings.save"
 
+
 func handleShow():
 	GameState.dialogIsOpen=visible
 		
@@ -101,6 +102,8 @@ func _ready():
 	loadRulesets();
 	
 	loadSettings()
+	
+	GameEvents.settingsLoaded()
 
 	pushAwayOption.select(Settings.usePushAway)
 	
@@ -174,6 +177,8 @@ func _ready():
 		commandIndex=commandIndex+1
 
 	hideScrollBars()
+	
+	
 	
 func hasJavascript():
 	return OS.has_feature('JavaScript')
@@ -250,6 +255,7 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 	
 	if  dict.has("language"):
 		Settings.currentLang=dict["language"]
+		GameState.languageSetFromSettingsOrUl=true
 	
 	var finishedPractices=[]
 
@@ -451,6 +457,7 @@ func loadSettings():
 		var urlLangIndex=Constants.urlKeys.find(urlLang)
 		if urlLangIndex>=0:
 			Settings.currentLang=Constants.languageKeys[urlLangIndex]
+			GameState.languageSetFromSettingsOrUl=true
 
 	GameEvents.settingsChanged()
 	if settingFromUrl && hasJavascript():
