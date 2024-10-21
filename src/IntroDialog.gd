@@ -38,7 +38,7 @@ func _settingsLoaded():
 		$"%RightTopButtons".visible=false
 		$"%ButtonsContainer".visible=false
 		GameEvents.intro(true)
-		$"%ChooseLanguage".show_modal(true)
+		$"%ChooseLanguage".showDialog()
 	else:
 		start()
 
