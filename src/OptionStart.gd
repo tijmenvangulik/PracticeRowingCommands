@@ -73,7 +73,7 @@ func _ready():
 	
 
 func _menuItemClicked(itemId):
-	GameState.isReplaying=false
+	$"%Recorder".cancelReplay()
 	doStart(itemId)
 
 func _collectGameStateChangedSignal(state):

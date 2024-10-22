@@ -19,12 +19,14 @@ func showDialog(explainText,showLessButonsArray):
 	var practice=$"%OptionStart".currentStartPos
 	$HBoxContainer/StartDemo.visible=$"%Recorder".hasDemo(practice)
 	var recorder=$"%Recorder";
-	if GameState.isReplaying:
+	if GameState.isReplaying :
 		_on_StartLessButtons_pressed()
 	else:
 		_explainText=explainText
 		_showLessButtonsArray=showLessButonsArray
 		showText()
+		var current=$"%OptionStart".currentStartPos;
+		$"%Recorder".replayDemo(current,true)
 		show_modal(true)
 		$HBoxContainer/StartLessButtons.grab_focus()
 	
@@ -34,10 +36,12 @@ func showText():
 		$PracticeExplain.set_bbcode(Utilities.replaceCommandsInText(text,true))
 	
 func _on_Start_pressed():
+	$"%Recorder".cancelReplay()
 	hide()
 	GameEvents.startPlay()
 
 func _on_StartLessButtons_pressed():
+	$"%Recorder".cancelReplay()
 	Utilities.showOnlyButtons(_showLessButtonsArray)
 	hide()
 	GameEvents.startPlay()

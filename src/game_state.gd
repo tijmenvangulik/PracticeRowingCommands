@@ -16,6 +16,7 @@ var useDefaultButtonSet=true;
 var dialogIsOpen = false;
 
 var isReplaying = false
+var backgroundReplay = false
 
 var languageSetFromSettingsOrUl = false
 

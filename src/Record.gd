@@ -13,6 +13,9 @@ var recording_commands= []
 var recording_time= []
 var startTime = 0;
 var jsonRecording = ""
+var _replayTimer= null
+func _init():
+	GameEvents.connect("introSignal",self,"_introSignal")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -67,11 +70,6 @@ func replay(json : String):
 		doReplayRecord(0,recording_commands,recording_times,0,practice,endTime)
 
 	
-func wait(time : int):
-	var t= Utilities.startTimer(float(time)/1000000.0)
-	yield(t, "timeout")
-	Utilities.removeTimer(t)
-	
 func hideCommandText(hideAfter):
 	var t= Utilities.startTimer(hideAfter)
 	yield(t, "timeout")
@@ -82,50 +80,63 @@ func doReplayRecord(i,recording_commands,recording_times,lastTime,practice,endTi
 	if i<recording_commands.size():
 		var time=int(recording_times[i])
 		var waitTime=float(time-lastTime)/1000000.0;
-		var t= Utilities.startTimer(waitTime)
+		_replayTimer= Utilities.startTimer(waitTime)
 		
 		if waitTime>2.2:
 			hideCommandText(2.0)
 			
-		yield(t, "timeout")
-		Utilities.removeTimer(t)
+		yield(_replayTimer, "timeout")
+		Utilities.removeTimer(_replayTimer)
+		_replayTimer=null
 		if GameState.isReplaying:
 			var command=int(recording_commands[i])
 			boat.doCommand(command)
 			
-			var commandName=Constants.commandNames[command]
-			$"%ButtonsContainer".focusCommand(commandName)
-			var commandReplayText=$"%replayCommandText"
-			commandReplayText.text=tr(commandName)
-			commandReplayText.visible=true
-			
-			var shotTooltipKey=commandName+"_shorttooltip"
-			var shortTooltipText=tr(shotTooltipKey)
-			if shortTooltipText!=shotTooltipKey:
-				commandReplayText.text=shortTooltipText
+			if !GameState.backgroundReplay:
+				var commandName=Constants.commandNames[command]
+				$"%ButtonsContainer".focusCommand(commandName)
+				var commandReplayText=$"%replayCommandText"
+				
+				commandReplayText.text=tr(commandName)
+				commandReplayText.visible=true
+				
+				var shotTooltipKey=commandName+"_shorttooltip"
+				var shortTooltipText=tr(shotTooltipKey)
+				if shortTooltipText!=shotTooltipKey:
+					commandReplayText.text=shortTooltipText
 			doReplayRecord(i+1,recording_commands,recording_times,time,practice,endTime)
 		else:
-			replayEnded(lastTime,practice,endTime)
+			replayEnded(recording_commands,recording_times,lastTime,practice,endTime)
 	else:
-		replayEnded(lastTime,practice,endTime)
+		replayEnded(recording_commands,recording_times,lastTime,practice,endTime)
 
-func replayEnded(lastTime,practice,endTime):
+func replayEnded(recording_commands,recording_times,lastTime,practice,endTime):
+
 	var optionsStart=$"%OptionStart"
 	var commandReplayText=$"%replayCommandText"
 	
 	if  GameState.isReplaying:
 		
-		var t= Utilities.startTimer(float(endTime-lastTime)/1000000.0)
-		yield(t, "timeout")
-		Utilities.removeTimer(t)
+		_replayTimer= Utilities.startTimer(float(endTime-lastTime)/1000000.0)
+		yield(_replayTimer, "timeout")
+		Utilities.removeTimer(_replayTimer)
+		_replayTimer=null
 		if !GameState.isReplaying:
 			return
 		
+		if GameState.backgroundReplay:
+			doReplayRecord(0,recording_commands,recording_times,0,practice,endTime)
+			return
+
 		boat.doCommand(Constants.Command.LaatLopen)
 		commandReplayText.text=tr("EndDemo")
-		t= Utilities.startTimer(2.5)
-		yield(t, "timeout")
-		Utilities.removeTimer(t)
+		_replayTimer= Utilities.startTimer(2.5)
+		yield(_replayTimer, "timeout")
+		Utilities.removeTimer(_replayTimer)
+		_replayTimer=null
+		
+		if !GameState.isReplaying:
+			return
 			
 		GameState.isReplaying=false
 		optionsStart.doStart(practice)
@@ -137,6 +148,12 @@ func stopRecording():
 	if isRecording:
 		isRecording=false
 		recordingChanged()
+
+func cancelReplay():
+	if GameState.isReplaying:
+		GameState.isReplaying=false
+		if _replayTimer!=null:
+			_replayTimer.stop()
 		
 func _on_Record_toggled(button_pressed):
 	isRecording=button_pressed
@@ -182,7 +199,15 @@ func getDemo(practice : int):
 func hasDemo(practice : int):
 	return getDemo(practice)!=""
 	
-func replayDemo(practice : int):
+func replayDemo(practice : int, isBackgroudReplay = false):
+	GameState.backgroundReplay=isBackgroudReplay
 	var demo=getDemo(practice)
 	if demo!="":
 		replay(demo)
+
+func _introSignal(visible):
+	if visible:
+		replayDemo(Constants.StartItem.Aanleggen,true)
+	else:
+		cancelReplay()
+
