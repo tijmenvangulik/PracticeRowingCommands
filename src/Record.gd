@@ -13,6 +13,7 @@ var recording_commands= []
 var recording_time= []
 var startTime = 0;
 var jsonRecording = ""
+var _replayTimer= null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -67,11 +68,6 @@ func replay(json : String):
 		doReplayRecord(0,recording_commands,recording_times,0,practice,endTime)
 
 	
-func wait(time : int):
-	var t= Utilities.startTimer(float(time)/1000000.0)
-	yield(t, "timeout")
-	Utilities.removeTimer(t)
-	
 func hideCommandText(hideAfter):
 	var t= Utilities.startTimer(hideAfter)
 	yield(t, "timeout")
@@ -82,13 +78,14 @@ func doReplayRecord(i,recording_commands,recording_times,lastTime,practice,endTi
 	if i<recording_commands.size():
 		var time=int(recording_times[i])
 		var waitTime=float(time-lastTime)/1000000.0;
-		var t= Utilities.startTimer(waitTime)
+		_replayTimer= Utilities.startTimer(waitTime)
 		
 		if waitTime>2.2:
 			hideCommandText(2.0)
 			
-		yield(t, "timeout")
-		Utilities.removeTimer(t)
+		yield(_replayTimer, "timeout")
+		Utilities.removeTimer(_replayTimer)
+		_replayTimer=null
 		if GameState.isReplaying:
 			var command=int(recording_commands[i])
 			boat.doCommand(command)
@@ -115,18 +112,20 @@ func replayEnded(lastTime,practice,endTime):
 	
 	if  GameState.isReplaying:
 		
-		var t= Utilities.startTimer(float(endTime-lastTime)/1000000.0)
-		yield(t, "timeout")
-		Utilities.removeTimer(t)
+		_replayTimer= Utilities.startTimer(float(endTime-lastTime)/1000000.0)
+		yield(_replayTimer, "timeout")
+		Utilities.removeTimer(_replayTimer)
+		_replayTimer=null
 		if !GameState.isReplaying:
 			return
 		
 		boat.doCommand(Constants.Command.LaatLopen)
 		commandReplayText.text=tr("EndDemo")
-		t= Utilities.startTimer(2.5)
-		yield(t, "timeout")
-		Utilities.removeTimer(t)
-			
+		_replayTimer= Utilities.startTimer(2.5)
+		yield(_replayTimer, "timeout")
+		Utilities.removeTimer(_replayTimer)
+		_replayTimer=null
+		
 		GameState.isReplaying=false
 		optionsStart.doStart(practice)
 		
@@ -177,7 +176,11 @@ func getDemo(practice : int):
 		return "{\"endTime\":61651427,\"practice\":13,\"recording_commands\":[2,0,9,1,4,1,6,1,2,0,20,1],\"recording_time\":[1461801,10921185,16226419,22968030,27920464,30296646,32105716,34814416,38949032,42281922,43922493,50973592]}"
 	return ""
 	
-
+func cancelReplay():
+	if GameState.isReplaying:
+		GameState.isReplaying=false
+		if _replayTimer!=null:
+			_replayTimer.stop()
 
 func hasDemo(practice : int):
 	return getDemo(practice)!=""
@@ -186,3 +189,4 @@ func replayDemo(practice : int):
 	var demo=getDemo(practice)
 	if demo!="":
 		replay(demo)
+
