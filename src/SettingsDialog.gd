@@ -16,10 +16,10 @@ export (NodePath) onready var showShortCutsInButtons = get_node(showShortCutsInB
 export (NodePath) onready var isScullButton = get_node(isScullButton) as Button
 
 export (NodePath) onready var enablePracticesTab = get_node(enablePracticesTab) as EnablePracticesTab 
+export (NodePath) onready var resolutionButton = get_node(resolutionButton) as OptionButton 
 
 
 var settingsFile="user://settings.save"
-
 
 func handleShow():
 	GameState.dialogIsOpen=visible
@@ -83,6 +83,7 @@ func _ready():
 	
 	Utilities.styleDropDown($TabContainer/GeneralSettingsTab/GridContainer/RuleSetDropDown)
 	Utilities.styleDropDown($ChoosePresetSettingsButton)
+	Utilities.styleDropDown(resolutionButton)
 	
 	var commands=Constants.commandNames
 	while Settings.commandTranslations.size()<commands.size():
@@ -244,7 +245,7 @@ func getSettings(removePrivate=false):
 func removePrivateSettings(settings):
 	settings.erase("highScore")
 	settings.erase("finishedPractices")
-	
+	settings.erase("waterAnimation")
 	
 func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFromUrl=false):
 	if removePrivate:
@@ -319,7 +320,7 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 	if dict.has("waterAnimation"): 
 		 waterAnimationOn=dict["waterAnimation"]
 	Settings.waterAnimation=waterAnimationOn
-	var waterAnimationButton=$TabContainer/GeneralSettingsTab/GridContainer/WaterAnimationButton
+	var waterAnimationButton=$TabContainer/DisplayTab/GridContainer/HBoxContainer2/WaterAnimationButton
 	waterAnimationButton.set_pressed(waterAnimationOn)
 
 	var disabledPractices=[]
@@ -463,6 +464,7 @@ func loadSettings():
 	if settingFromUrl && hasJavascript():
 		clearSettingsInUrl();
 	
+	loadResolution()
 	
 func _on_EditCommandText_customCommandTextChanged(command, commandName, value):
 	if commandName==value:
@@ -521,9 +523,6 @@ func _on_UsePushAwayOption_item_selected(index):
 	
 
 
-func _on_ShowShortCutsInButtons2Buttons2_toggled(button_pressed):
-	Settings.waterAnimation=button_pressed
-	GameEvents.settingsChanged()
 
 
 
@@ -560,10 +559,36 @@ func saveAndClose():
 	GameEvents.settingsChanged()	
 	visible=false
 	GameEvents.startPlay()
-
+	
 func _on_CloseSettingsButton_pressed():
 	saveAndClose()
 
 func _on_ShareSettings_pressed():
 	saveAndClose()
 	$"%ShareSettingsDialog".start()
+
+
+func _on_WaterAnimationButton_toggled(button_pressed):
+	Settings.waterAnimation=button_pressed
+	GameEvents.settingsChanged()
+
+
+func loadResolution():
+	var resolutionStr= JavaScript.eval("localStorage.getItem('resolution')");
+	var resolution=0
+	if resolutionStr=="Normal":
+		resolution=1
+	elif  resolutionStr=="High":
+		resolution=2
+	resolutionButton.selected=resolution
+
+func _on_Resolution_item_selected(index):
+	saveAndClose()
+	var value=""
+	if index==1:
+		value="Normal"
+	elif index==2:
+		value="High"
+	JavaScript.eval("localStorage.setItem('resolution','"+value+"');")
+	JavaScript.eval("window.location.reload()")
+

@@ -271,3 +271,10 @@ ShareSettings;Deel instellingen;Deel instellingen;Share settings;Share settings;
 ShareSettingsExplain;Je instellingen zijn toegevoegd aan de link in de navigatiebalk van je browser. Kopieer deze link en stuur hem naar de mensen met wie je de instellingen wilt delen.;Je instellingen zijn toegevoegd aan de link in de navigatiebalk van je browser. Kopieer deze link en stuur hem naar de mensen met wie je de instellingen wilt delen.;Your settings have been added to the link navigation bar of the browser. Copy the link and send it to the persons you want to share the settings with.;Your settings have been added to the link navigation bar of the browser. Copy the link and send it to the persons you want to share the settings with.;Your settings have been added to the link navigation bar of the browser. Copy the link and send it to the persons you want to share the settings with.
 ShareSettingsClose;Sluit en ga weer over op de link zonder instellingen;Sluit en ga weer over op de link zonder instellingen;Close and revert to the link without settings;;
 Continue;Verder;Verder;Continue;Continue;Continue
+ForceHiDef;Resolutie;Resolutie;Resolution;Resolution;Resolution
+DisplayTab;Scherm;Scherm;Display;Display;Display
+DisplayTabWarning;Voor de volgende instellingen is voldoende processor capaciteit nodig. De instellingen worden niet gedeeld. ;Voor de volgende instellingen is voldoende processor capaciteit nodig. De instellingen worden niet gedeeld. ;The following settings require enough processor power. The settings will not be shared.;The following settings require enough processor power. The settings will not be shared.;The following settings require enough processor power. The settings will not be shared.
+ResolutionNormal;Normaal;Normaal;Normal;Normal;Normal
+ResolutionHigh;Hoog;Hoog;High;High;High
+ResolutionDefault;Automatisch;Automatisch;Automatic;Automatic;Automatic
+RestartWarning;Na wijzigen herstart de applicatie;Na wijzigen herstart de applicatie;After change the application restarts;After change the application restarts;After change the application restarts

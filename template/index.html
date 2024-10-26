@@ -220,9 +220,10 @@
 	</div>	
 	<script>
 		var appVersion="{{version}}";
-		if (window.window.devicePixelRatio!=2) {
+		var resolution=localStorage.getItem('resolution');
+		if (resolution=="Normal" || (resolution!="High" && window.window.devicePixelRatio!=2 )) {
 			window.window.devicePixelRatio=1;
-		}
+		}		
 	</script>
 	<script type='text/javascript' src='index.js?v={{version}}'></script>
 	<script type='text/javascript'>//<![CDATA[
