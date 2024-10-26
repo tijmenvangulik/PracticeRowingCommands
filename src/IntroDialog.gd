@@ -6,6 +6,8 @@ extends WindowDialog
 # var b = "text"
 var lang=""
 
+var inIntro=false
+
 func handleShow():
 	GameState.dialogIsOpen=visible
 	if visible:
@@ -31,13 +33,17 @@ func _process(delta):
 	if lang!=TranslationServer.get_locale():
 		setText()
 
+func setIntroState(value : bool):
+	inIntro=value
+	GameEvents.intro(value)
+	
 func _settingsLoaded():
 	# when there is not yet a language then
 	# use aseparate dialog for choosing the dialog
 	if !GameState.languageSetFromSettingsOrUl:
 		$"%RightTopButtons".visible=false
 		$"%ButtonsContainer".visible=false
-		GameEvents.intro(true)
+		setIntroState(true)
 		$"%ChooseLanguage".showDialog()
 	else:
 		start()
@@ -49,8 +55,8 @@ func hideShowControls(visible):
 func start():
 	hideShowControls(false)
 	visible=true;
-	GameEvents.intro(true)
-
+	if !inIntro:
+		setIntroState(true)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -58,7 +64,7 @@ func start():
 
 func closeIntro():
 	hideShowControls(true)
-	GameEvents.intro(false)
+	setIntroState(false)
 	visible=false;
 
 func _on_StartPractices_pressed():

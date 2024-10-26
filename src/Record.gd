@@ -15,6 +15,9 @@ var startTime = 0;
 var jsonRecording = ""
 var _replayTimer= null
 
+func _init():
+	GameEvents.connect("introSignal",self,"_introSignal")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -90,16 +93,17 @@ func doReplayRecord(i,recording_commands,recording_times,lastTime,practice,endTi
 			var command=int(recording_commands[i])
 			boat.doCommand(command)
 			
-			var commandName=Constants.commandNames[command]
-			$"%ButtonsContainer".focusCommand(commandName)
-			var commandReplayText=$"%replayCommandText"
-			commandReplayText.text=tr(commandName)
-			commandReplayText.visible=true
-			
-			var shotTooltipKey=commandName+"_shorttooltip"
-			var shortTooltipText=tr(shotTooltipKey)
-			if shortTooltipText!=shotTooltipKey:
-				commandReplayText.text=shortTooltipText
+			if !GameState.backgroundReplay: 
+				var commandName=Constants.commandNames[command]
+				$"%ButtonsContainer".focusCommand(commandName)
+				var commandReplayText=$"%replayCommandText"
+				commandReplayText.text=tr(commandName)
+				commandReplayText.visible=true
+				
+				var shotTooltipKey=commandName+"_shorttooltip"
+				var shortTooltipText=tr(shotTooltipKey)
+				if shortTooltipText!=shotTooltipKey:
+					commandReplayText.text=shortTooltipText
 			doReplayRecord(i+1,recording_commands,recording_times,time,practice,endTime)
 		else:
 			replayEnded(lastTime,practice,endTime)
@@ -107,6 +111,9 @@ func doReplayRecord(i,recording_commands,recording_times,lastTime,practice,endTi
 		replayEnded(lastTime,practice,endTime)
 
 func replayEnded(lastTime,practice,endTime):
+	
+	if GameState.backgroundReplay:
+		return
 	var optionsStart=$"%OptionStart"
 	var commandReplayText=$"%replayCommandText"
 	
@@ -185,8 +192,14 @@ func cancelReplay():
 func hasDemo(practice : int):
 	return getDemo(practice)!=""
 	
-func replayDemo(practice : int):
+func replayDemo(practice : int, isBackgroudReplay = false):
+	GameState.backgroundReplay=isBackgroudReplay
 	var demo=getDemo(practice)
 	if demo!="":
 		replay(demo)
 
+func _introSignal(visible):
+	if visible:
+		replayDemo(Constants.StartItem.Aanleggen,true)
+	else:
+		cancelReplay()
