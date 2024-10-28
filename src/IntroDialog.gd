@@ -66,6 +66,8 @@ func closeIntro():
 	hideShowControls(true)
 	setIntroState(false)
 	visible=false;
+	$"%OptionStart".doStart(Constants.StartItem.Start)
+
 
 func _on_StartPractices_pressed():
 	closeIntro()
