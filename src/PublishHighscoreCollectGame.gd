@@ -37,7 +37,7 @@ func publishScore(name,highScore):
 	$"ErrorText".visible=false
 	var score=int(highScore*1000)
 	var hashValue= CalcSecurityCode.calcHashScore(name,0,score)
-	var url="https://ergometer-space.org/manager/newGameHighScore?data[game]=1&data[level]=0"
+	var url=Constants.serverUrl+"/newGameHighScore?data[game]=1&data[level]=0"
 	url=url+"&data[hash]="+hashValue
 	url=url+"&data[name]="+name.percent_encode()
 	url=url+"&data[score]="+str(score)

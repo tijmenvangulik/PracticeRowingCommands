@@ -90,7 +90,12 @@ func init(newCommandName):
 	command=Utilities.commandNameToCommand(commandName)
 	if command>=0:
 		var button=$GridButton
-		setButtonText(commandName)
+		var altButtonCommandName=commandName+"_buttonOnly";
+		var buttonResource=tr(altButtonCommandName)
+		if buttonResource && buttonResource!="" && buttonResource!=altButtonCommandName:
+			setButtonText(buttonResource)
+		else:
+			setButtonText(commandName)
 		var alterNativeText=Utilities.getCommandTranslation(command)
 		if alterNativeText && alterNativeText!="":
 			setButtonText(alterNativeText)

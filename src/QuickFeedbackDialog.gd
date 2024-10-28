@@ -23,7 +23,7 @@ func _on_CancelFeedback_pressed():
 
 func _on_SendFeedback_pressed():
 	var text=$Comment.text.percent_encode()
-	var url="https://ergometer-space.org/manager/sendFeedback?data[smiley]="+saveState
+	var url=Constants.serverUrl+"/sendFeedback?data[smiley]="+saveState
 	url=url+"&data[app]=prc&data[text]="+text
 	
 	$HTTPRequest.request(url, [], true, HTTPClient.METHOD_GET)

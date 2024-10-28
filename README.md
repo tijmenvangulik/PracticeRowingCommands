@@ -23,6 +23,13 @@ Written in godot (3.5.0, https://godotengine.org)
 
 The default language is dutch. Most commands are translated to English. You can improve or add a translaton by editing the  Translations.csv file.
 The translations can be found [here](/src/translations/Translations.csv) This is a csv file which you can load in a spread sheet. You can send the translated version to me.
+To make a short cut for a button in the resources you can extend the command name with:
+* [commandname]_tooltip (long tooltips when toolips are actie)
+* [commandname]_shorttooltip (short tootlip allways shown)
+* [commandname]_buttonOnly (show text the the button)
+* [commandname]_shortcut (a single character for a short cut)
+
+
 You can also define a button set in this file for each language.
 
 Possible localization codes:

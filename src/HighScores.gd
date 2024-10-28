@@ -23,7 +23,7 @@ func _init():
 	connect("visibility_changed",self,"handleShow");
 
 func loadHighScores():
-	var url="https://ergometer-space.org/manager/gameHighScores?data[game]=1&data[level]=0"
+	var url=Constants.serverUrl+"/gameHighScores?data[game]=1&data[level]=0"
 	$HTTPRequest.request(url, [], true, HTTPClient.METHOD_GET)
 
 func setMyHighScore():

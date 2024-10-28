@@ -198,3 +198,5 @@ enum StartItem {
   MoringHarbour,
   SlalomPractice
 }
+
+const serverUrl="https://ergometer-space.org/manager"
