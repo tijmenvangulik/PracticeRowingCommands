@@ -46,10 +46,13 @@ func loadItems():
 	for i in pm.get_item_count():
 	        if pm.is_item_radio_checkable(i):
 	            pm.set_item_as_radio_checkable(i, false)
+	
 
 	setIcons()
 	text="StartPositie"
 	icon=null;
+	
+	pm.rect_min_size = Vector2( 0, pm.get_item_count()*27)
 	
 func _ready():
 #	add_icon_item(

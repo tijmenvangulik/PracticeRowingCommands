@@ -19,7 +19,7 @@ The website:
 
 # Development
 
-Written in godot (3.5.0, https://godotengine.org)
+Written in godot (3.6.0, https://godotengine.org)
 
 The default language is dutch. Most commands are translated to English. You can improve or add a translaton by editing the  Translations.csv file.
 The translations can be found [here](/src/translations/Translations.csv) This is a csv file which you can load in a spread sheet. You can send the translated version to me.
