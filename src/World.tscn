@@ -934,7 +934,6 @@ shadow_size = 4
 shadow_offset = Vector2( 4, 4 )
 
 [node name="World" type="Node2D"]
-physics_interpolation_mode = 2
 script = ExtResource( 1 )
 
 [node name="Water" type="Polygon2D" parent="."]
