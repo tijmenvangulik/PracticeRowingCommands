@@ -84,7 +84,7 @@ func _isScullSignal(isScull):
 	$"OarSB1".visible=isScull
 	$"OarBB2".visible=isScull
 	
-func _process(delta):
+func _physics_process(delta):
 	setForwardsPosition(delta)
 	updateOarCollision()
 	

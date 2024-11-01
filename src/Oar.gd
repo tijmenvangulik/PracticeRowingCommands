@@ -171,9 +171,11 @@ func setInWater():
 		calcWave(true,0)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+# use the physics process because it also determines if the oar is in the water and this
+# has impact on the forces so this should be calculated with the same rate as the physics
+func _physics_process(delta):
 	var oldInWater=inWater
-	if newSchemeSet && (!inWater || frozen || startRotation==endRotation ) :		 
+	if newSchemeSet && (!inWater || frozen || startRotation==endRotation ) :
 			swapFromNewScheme()
 	if normalRotation==null: 
 		normalRotation=rotation_degrees

@@ -103,7 +103,7 @@ func _on_Collectable_area_shape_exited(area_rid, area, area_shape_index, local_s
 	if area.name=="CollectableArea":
 		isEntered=false
 
-func _process(delta):
+func _physics_process(delta):
 	if visible && triggerWhenBoatIsStopped:
 		if !collected && isEntered && triggerWhenBoatIsStopped && $"%Boat".isStopped():
 			if $"%Boat".state==Constants.RowState.Bedankt:
