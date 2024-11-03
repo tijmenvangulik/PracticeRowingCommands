@@ -304,7 +304,9 @@ func doStart(startItemId):
 				showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.PeddelendStrijkenSB,Constants.Command.StrijkenBB,Constants.Command.HalenSB,Constants.Command.UitbrengenSB]	
 				$"%CollectableSailAwayPractice2".reset()			
 				explainPopup.showDialog("SailAwayExplainText",showOnlyButonsArray)
-		Constants.StartItem.Intro: $"%IntroDialog".start()
+		Constants.StartItem.Intro:
+			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)		
+			$"%IntroDialog".start()
 		Constants.StartItem.StartTour: GameEvents.startTour()
 		Constants.StartItem.StartStrijkendAanleggen: 
 			forwards=false

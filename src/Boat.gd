@@ -57,7 +57,8 @@ func _ready():
 	GameEvents.connect("zoomChangedSignal",self,"_zoomChangedSignal")
 	GameEvents.connect("doCommandSignal",self,"_doCommandSignal")
 	GameEvents.connect("isScullChangedSignal",self,"_isScullSignal")
-	
+	GameEvents.connect("introSignal",self,"_introSignal")
+
 	$"OarBB2".masterOar=$"OarBB1"
 	$"OarSB2".masterOar=$"OarSB1"
 	$"OarBB1".slaveOar=$"OarBB2"
@@ -701,3 +702,7 @@ func calcRippleEffect():
 	else:
 		ripple.playing=false
 		ripple.visible=false
+
+func _introSignal(isVisible : bool):
+	visible=!isVisible
+	
