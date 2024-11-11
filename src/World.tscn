@@ -1539,7 +1539,6 @@ script = ExtResource( 54 )
 boat = NodePath("../Boat")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-physics_interpolation_mode = 1
 
 [node name="errorLabel" type="Label" parent="CanvasLayer"]
 anchor_left = 0.5
@@ -2576,7 +2575,7 @@ icon_align = 2
 [node name="PracticeExplain" type="RichTextLabel" parent="CanvasLayer/ExplainPracticeDialog"]
 margin_left = 37.0
 margin_top = 36.0
-margin_right = 689.0
+margin_right = 665.0
 margin_bottom = 380.0
 custom_constants/line_separation = 8
 bbcode_enabled = true
@@ -2779,7 +2778,6 @@ unique_name_in_owner = true
 margin_right = 80.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 80, 0 )
-size_flags_vertical = 3
 theme = ExtResource( 29 )
 custom_styles/hover = SubResource( 41 )
 custom_styles/pressed = SubResource( 41 )
