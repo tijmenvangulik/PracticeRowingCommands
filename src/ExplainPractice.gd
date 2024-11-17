@@ -5,7 +5,7 @@ var _explainText=""
 var _showLessButtonsArray=[]
 
 func _ready():
-	get_close_button().hide()
+#	get_close_button().hide()
 	GameEvents.connect("languageChangedSignal",self,"_on_languageChanged")
 
 func handleShow():
@@ -53,3 +53,8 @@ func _on_StartDemo_pressed():
 	var practice=$"%OptionStart".currentStartPos
 	$"%Recorder".replayDemo(practice)
 	
+
+
+func _on_SkipPractice_pressed():
+	visible=false
+	$"%OptionStart".skipPractice()

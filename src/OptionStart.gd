@@ -196,6 +196,10 @@ func _crashDetected():
 
 func startPractices():
 	currentStartPos=findNotFinishedPractice(Constants.StartItem.StartTour);
+	#wait a bit so the events can be handles first
+	var t=Utilities.startTimer(0.1)
+	yield(t, "timeout")
+	Utilities.removeTimer(t)
 	# for now start the first practice
 	doStart(currentStartPos)
 
@@ -216,6 +220,13 @@ func nextPractice():
 	if isPractice( currentStartPos):
 		currentStartPos=findNotFinishedPractice(currentStartPos)	
 		doStart(currentStartPos)
+		
+func skipPractice():
+	if isPractice( currentStartPos):
+		var i=getPracticeIndex(currentStartPos)+1
+		if i<get_item_count() :
+			currentStartPos=practiceIndexToStartPos(i);
+			doStart(currentStartPos)
 		
 func getPracticeIndex(startItem):
 	for i in get_item_count():

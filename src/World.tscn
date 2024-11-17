@@ -2530,9 +2530,9 @@ grow_horizontal = 2
 custom_constants/separation = 10
 
 [node name="StartDemo" type="Button" parent="CanvasLayer/ExplainPracticeDialog/HBoxContainer"]
-margin_right = 160.0
+margin_right = 80.0
 margin_bottom = 30.0
-rect_min_size = Vector2( 160, 0 )
+rect_min_size = Vector2( 80, 0 )
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 52 )
 custom_styles/pressed = ExtResource( 53 )
@@ -2543,9 +2543,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="SkipPractice" type="Button" parent="CanvasLayer/ExplainPracticeDialog/HBoxContainer"]
+margin_left = 90.0
+margin_right = 190.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 100, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 52 )
+custom_styles/pressed = ExtResource( 53 )
+custom_styles/focus = ExtResource( 17 )
+custom_styles/normal = ExtResource( 64 )
+text = "Skip"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="StartAllButtons" type="Button" parent="CanvasLayer/ExplainPracticeDialog/HBoxContainer"]
-margin_left = 170.0
-margin_right = 384.0
+margin_left = 200.0
+margin_right = 414.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 160, 0 )
 custom_fonts/font = ExtResource( 50 )
@@ -2559,8 +2574,8 @@ __meta__ = {
 }
 
 [node name="StartLessButtons" type="Button" parent="CanvasLayer/ExplainPracticeDialog/HBoxContainer"]
-margin_left = 394.0
-margin_right = 554.0
+margin_left = 424.0
+margin_right = 584.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 160, 0 )
 custom_fonts/font = ExtResource( 50 )
@@ -3632,6 +3647,7 @@ script = ExtResource( 84 )
 [connection signal="pressed" from="CanvasLayer/QuickFeedbackDialog/HBoxContainer/CancelFeedback" to="CanvasLayer/QuickFeedbackDialog" method="_on_CancelFeedback_pressed"]
 [connection signal="pressed" from="CanvasLayer/QuickFeedbackDialog/HBoxContainer/SendFeedback" to="CanvasLayer/QuickFeedbackDialog" method="_on_SendFeedback_pressed"]
 [connection signal="pressed" from="CanvasLayer/ExplainPracticeDialog/HBoxContainer/StartDemo" to="CanvasLayer/ExplainPracticeDialog" method="_on_StartDemo_pressed"]
+[connection signal="pressed" from="CanvasLayer/ExplainPracticeDialog/HBoxContainer/SkipPractice" to="CanvasLayer/ExplainPracticeDialog" method="_on_SkipPractice_pressed"]
 [connection signal="pressed" from="CanvasLayer/ExplainPracticeDialog/HBoxContainer/StartAllButtons" to="CanvasLayer/ExplainPracticeDialog" method="_on_Start_pressed"]
 [connection signal="pressed" from="CanvasLayer/ExplainPracticeDialog/HBoxContainer/StartLessButtons" to="CanvasLayer/ExplainPracticeDialog" method="_on_StartLessButtons_pressed"]
 [connection signal="about_to_show" from="CanvasLayer/TourDialog" to="CanvasLayer/TourDialog" method="_on_TourDialog_about_to_show"]
