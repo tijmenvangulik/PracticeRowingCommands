@@ -166,7 +166,7 @@ CommandStyle.StyleButtonDarkGray,
 const languageItems=["NL Viking","EN Viking","Nederlands","English","English 2"]
 const languageKeys=["nl_NL","en_BW","nl","en","en_US"]
 const urlKeys=["nl_viking","en_viking","nl","en","en2"]
-const flags=["nl","gb","nl","gb","gb"]
+const flags=["nl_viking","gb_viking","nl","gb","gb"]
 const languageLongItems=["Nederlands / Viking","English / Viking (dutch commands)","Nederlands / Generiek","English / Generic 1","English / Generic 2"]
 
 enum DefaultYesNo {

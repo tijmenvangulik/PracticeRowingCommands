@@ -40,6 +40,7 @@ func setIntroState(value : bool):
 func _settingsLoaded():
 	# when there is not yet a language then
 	# use aseparate dialog for choosing the dialog
+#	if true:
 	if !GameState.languageSetFromSettingsOrUl:
 		$"%RightTopButtons".visible=false
 		$"%ButtonsContainer".visible=false

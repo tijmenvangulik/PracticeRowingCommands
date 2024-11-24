@@ -26,6 +26,7 @@ func _ready():
 	for item in Constants.languageItems:
 		var flagName=Constants.flags[i]
 		var texture=load("res://assets/flags/"+flagName+".svg")
+		
 		add_icon_item(texture,item,i)
 		i=i+1
 	
