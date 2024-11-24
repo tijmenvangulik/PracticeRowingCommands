@@ -1765,15 +1765,13 @@ custom_fonts/font = ExtResource( 50 )
 text = "ChooseLanguageAndClub"
 
 [node name="HighScores" type="WindowDialog" parent="CanvasLayer"]
-margin_left = 269.0
+visible = true
+margin_left = 189.0
 margin_top = 102.0
-margin_right = 765.0
+margin_right = 854.0
 margin_bottom = 424.0
 custom_styles/panel = ExtResource( 33 )
 script = ExtResource( 46 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 grid = NodePath("HighScoresGrid")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="CanvasLayer/HighScores"]
@@ -1787,9 +1785,6 @@ margin_bottom = 116.0
 custom_colors/font_color = Color( 0.780392, 0.866667, 0.913725, 1 )
 custom_fonts/font = ExtResource( 50 )
 text = "PublicHighscores"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="OwnHighscoreLabel" type="Label" parent="CanvasLayer/HighScores"]
 margin_left = 147.0
@@ -1817,7 +1812,7 @@ __meta__ = {
 [node name="HighScoresGrid" type="GridContainer" parent="CanvasLayer/HighScores"]
 margin_left = 145.0
 margin_top = 121.0
-margin_right = 361.0
+margin_right = 435.0
 margin_bottom = 250.0
 columns = 3
 __meta__ = {
@@ -1836,15 +1831,19 @@ scale = Vector2( 0.76, 0.8 )
 texture = ExtResource( 27 )
 
 [node name="Trophy2" type="Sprite" parent="CanvasLayer/HighScores"]
-position = Vector2( 432, 149 )
+position = Vector2( 610, 149 )
 scale = Vector2( 0.76, 0.8 )
 texture = ExtResource( 27 )
 
 [node name="ContinueToStartGame" type="Button" parent="CanvasLayer/HighScores"]
-margin_left = 165.0
-margin_top = 266.0
-margin_right = 325.0
-margin_bottom = 296.0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -81.0
+margin_top = -50.0
+margin_right = 81.0
+margin_bottom = -20.0
 rect_min_size = Vector2( 160, 0 )
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 34 )
