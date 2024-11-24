@@ -29,6 +29,9 @@ func start():
 func _on_PublishScore_pressed():
 	var name=$"NameContainer/Name".text
 	if name.length()>0:
+		var club= $RowingClubContainer/RowingClub.text;
+		if club!=null && club!='':
+			name=name+" / "+club;
 		publishScore(name,Settings.highScore)
 	else:
 		$"NameRequiredError".visible=true;

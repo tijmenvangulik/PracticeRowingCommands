@@ -2234,13 +2234,10 @@ texture = ExtResource( 14 )
 margin_left = 47.0
 margin_top = 189.0
 margin_right = 1001.0
-margin_bottom = 424.0
+margin_bottom = 498.0
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
 custom_styles/panel = ExtResource( 33 )
 script = ExtResource( 49 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="EndGameText" type="Label" parent="CanvasLayer/PublishHighscoreCollectGame"]
 anchor_top = 0.35
@@ -2315,12 +2312,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -200.0
-margin_top = -124.0
+margin_top = -184.0
 margin_right = 202.0
-margin_bottom = -93.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_bottom = -153.0
 
 [node name="PlayAgainNameLabel" type="Label" parent="CanvasLayer/PublishHighscoreCollectGame/NameContainer"]
 margin_top = 6.0
@@ -2343,12 +2337,43 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="RowingClubContainer" type="HBoxContainer" parent="CanvasLayer/PublishHighscoreCollectGame"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -200.0
+margin_top = -136.0
+margin_right = 202.0
+margin_bottom = -105.0
+
+[node name="RowingClubLabel" type="Label" parent="CanvasLayer/PublishHighscoreCollectGame/RowingClubContainer"]
+margin_top = 6.0
+margin_right = 138.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 50 )
+text = "RowingClubName"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RowingClub" type="TextEdit" parent="CanvasLayer/PublishHighscoreCollectGame/RowingClubContainer"]
+margin_left = 142.0
+margin_right = 392.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 250, 0 )
+custom_fonts/font = ExtResource( 50 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="NameRequiredError" type="Label" parent="CanvasLayer/PublishHighscoreCollectGame"]
 visible = false
 margin_left = 277.0
-margin_top = 161.0
+margin_top = 216.0
 margin_right = 564.0
-margin_bottom = 186.0
+margin_bottom = 241.0
 rect_pivot_offset = Vector2( 526, -111 )
 custom_colors/font_color = Color( 0.847059, 0.435294, 0.435294, 1 )
 text = "PublishScoreNoName"
@@ -2363,9 +2388,6 @@ margin_right = 800.0
 margin_bottom = 184.0
 custom_colors/font_color = Color( 0.847059, 0.388235, 0.388235, 1 )
 custom_fonts/font = ExtResource( 50 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="QuickFeedbackDialog" type="WindowDialog" parent="CanvasLayer"]
 margin_left = 92.0
@@ -3598,9 +3620,6 @@ margin_right = 204.0
 margin_bottom = 109.0
 text = "Test end"
 script = ExtResource( 51 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Recorder" type="Button" parent="CanvasLayer"]
 unique_name_in_owner = true
