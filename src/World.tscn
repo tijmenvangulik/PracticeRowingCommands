@@ -1765,7 +1765,6 @@ custom_fonts/font = ExtResource( 50 )
 text = "ChooseLanguageAndClub"
 
 [node name="HighScores" type="WindowDialog" parent="CanvasLayer"]
-visible = true
 margin_left = 189.0
 margin_top = 102.0
 margin_right = 854.0

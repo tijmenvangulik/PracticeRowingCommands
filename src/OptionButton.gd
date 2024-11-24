@@ -46,7 +46,7 @@ func setLanguage(langKey):
 			currentLang=langKey
 			Settings.currentLang=langKey
 			GameEvents.languageChanged()
-			
+	text=""
 
 func selected(itemIndex : int):
 	
@@ -54,7 +54,7 @@ func selected(itemIndex : int):
 		var langKey=Constants.languageKeys[itemIndex]		
 		setLanguage(langKey)
 		GameEvents.settingsChanged()
-
+		
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
