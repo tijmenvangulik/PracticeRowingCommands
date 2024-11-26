@@ -23,7 +23,7 @@ func _init():
 func _ready():
 	GameEvents.connect("settingsChangedSignal",self,"_settings_changedSignal")
 	var i=0;
-	for item in Constants.languageItems:
+	for item in Constants.languageLongItems:
 		var flagName=Constants.flags[i]
 		var texture=load("res://assets/flags/"+flagName+".svg")
 		

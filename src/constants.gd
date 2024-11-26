@@ -163,7 +163,7 @@ CommandStyle.StyleButtonDarkGray,
 CommandStyle.StyleButtonDarkGray,
 ]
 
-const languageItems=["NL Viking","EN Viking","Nederlands","English","English 2"]
+#const languageItems=["NL Viking","EN Viking","Nederlands","English","English 2"]
 const languageKeys=["nl_NL","en_BW","nl","en","en_US"]
 const urlKeys=["nl_viking","en_viking","nl","en","en2"]
 const flags=["nl_viking","gb_viking","nl","gb","gb"]
