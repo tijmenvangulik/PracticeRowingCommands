@@ -12,15 +12,23 @@ func handleShow():
 	GameState.dialogIsOpen=visible
 	if visible:
 		$"HSplitContainer/CloseButton".grab_focus()
-		
+
+func get_version():
+	if OS.has_feature('JavaScript'):
+		var value= JavaScript.eval("appVersion")
+		return value
+	return "none"
+	
 func _init():
 	connect("visibility_changed",self,"handleShow");
 	GameEvents.connect("settingsLoadedSignal",self,"_settingsLoaded");
-
+	
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	setText()
 	get_close_button().hide()
+	$VersionNumber.text=get_version();
 	
 func setText():
 	var intro=$"IntroText"
