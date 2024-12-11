@@ -17,6 +17,10 @@ The website:
 
 [Privacy](PRIVACY.md)
 
+# Change log
+
+[Change log ](commits/main/)
+
 # Development
 
 Written in godot (3.5.0, https://godotengine.org)
