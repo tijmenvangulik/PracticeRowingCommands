@@ -19,7 +19,7 @@ The website:
 
 # Change log
 
-[Change log ](commits/main/)
+[Change log ](https://github.com/tijmenvangulik/PracticeRowingCommands/commits/main/)
 
 # Development
 
