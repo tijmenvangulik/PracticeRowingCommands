@@ -17,7 +17,7 @@ func get_version():
 	if OS.has_feature('JavaScript'):
 		var value= JavaScript.eval("appVersion")
 		return value
-	return "none"
+	return "0.0.0"
 	
 func _init():
 	connect("visibility_changed",self,"handleShow");
@@ -82,3 +82,14 @@ func _on_StartPractices_pressed():
 	closeIntro()
 	$"%OptionStart".startPractices()
 
+func _on_VersionNumber_gui_input(event):
+	if event is InputEventMouseButton:
+		JavaScript.eval("window.open('https://github.com/tijmenvangulik/PracticeRowingCommands/commits/main/')")
+
+
+func _on_VersionNumber_mouse_entered():
+	$VersionNumber.add_color_override("font_color", Color("e3e2e2"));
+
+
+func _on_VersionNumber_mouse_exited():
+	$VersionNumber.add_color_override("font_color", Color("3d5469"));

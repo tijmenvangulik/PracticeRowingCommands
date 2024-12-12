@@ -1641,9 +1641,6 @@ margin_bottom = 407.0
 bbcode_enabled = true
 text = "IntroText"
 script = ExtResource( 55 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HSplitContainer" type="HBoxContainer" parent="CanvasLayer/IntroDialog"]
 anchor_left = 0.5
@@ -1685,22 +1682,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LabelVersion" type="Label" parent="CanvasLayer/IntroDialog"]
-margin_left = 36.0
-margin_top = 426.0
-margin_right = 95.0
-margin_bottom = 445.0
-custom_colors/font_color = Color( 0.552941, 0.54902, 0.54902, 1 )
-custom_fonts/font = ExtResource( 50 )
-text = "Version:"
-
 [node name="VersionNumber" type="Label" parent="CanvasLayer/IntroDialog"]
-margin_left = 106.0
-margin_top = 426.0
-margin_right = 170.0
-margin_bottom = 445.0
-custom_colors/font_color = Color( 0.552941, 0.54902, 0.54902, 1 )
-custom_fonts/font = ExtResource( 50 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 36.0
+margin_top = -40.0
+margin_right = 103.0
+margin_bottom = -21.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+custom_colors/font_color = Color( 0.239216, 0.329412, 0.411765, 1 )
+text = "1.0.0"
 
 [node name="ChooseLanguage" type="WindowDialog" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -3663,6 +3655,9 @@ unique_name_in_owner = true
 script = ExtResource( 84 )
 
 [connection signal="pressed" from="CanvasLayer/IntroDialog/HSplitContainer/StartPractices" to="CanvasLayer/IntroDialog" method="_on_StartPractices_pressed"]
+[connection signal="gui_input" from="CanvasLayer/IntroDialog/VersionNumber" to="CanvasLayer/IntroDialog" method="_on_VersionNumber_gui_input"]
+[connection signal="mouse_entered" from="CanvasLayer/IntroDialog/VersionNumber" to="CanvasLayer/IntroDialog" method="_on_VersionNumber_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/IntroDialog/VersionNumber" to="CanvasLayer/IntroDialog" method="_on_VersionNumber_mouse_exited"]
 [connection signal="item_selected" from="CanvasLayer/ChooseLanguage/ScrollContainer/Panel/ItemList" to="CanvasLayer/ChooseLanguage" method="_on_ItemList_item_selected"]
 [connection signal="pressed" from="CanvasLayer/ChooseLanguage/HSplitContainer/StartIntro" to="CanvasLayer/ChooseLanguage" method="_on_StartIntro_pressed"]
 [connection signal="pressed" from="CanvasLayer/HighScores/ContinueToStartGame" to="CanvasLayer/HighScores" method="_on_ContinueToStartGame_pressed"]
