@@ -256,7 +256,9 @@ func doStart(startItemId):
 	
 	if startItemId==Constants.StartItem.Start:
 		sendStartOnWaterMessage=true
-	
+	else:
+		sendStartOnWaterMessage=false
+
 	boat.resetCrashed()
 	var Command=Constants.Command
 	
