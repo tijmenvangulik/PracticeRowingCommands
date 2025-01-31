@@ -186,9 +186,16 @@ func logEndPractice(success : bool):
 		$"%LogActivityRequest".logFinishedActivity(currentName,success)
 
 func _crashDetected():
+	var extraWaitTime=0;
+	if practiceIsActive && currentStartPos==Constants.StartItem.SlalomPractice  && boat.stateOars== Constants.StateOars.Roeien:
+		var text=tr("DoNotForgetToMoveOarsOutOfTheWay")
+		text=Utilities.replaceCommandsInText(text,false)
+		extraWaitTime=4;
+		boat.showError(text,6)
+		
 	if practiceIsActive && currentStartPos!=Constants.StartItem.StarGame :
 		practiceIsActive=false
-		var t=Utilities.startTimer(2)
+		var t=Utilities.startTimer(2+extraWaitTime)
 		yield(t, "timeout")
 		Utilities.removeTimer(t)
 		$"%EndCrashPracticeDialog".start()

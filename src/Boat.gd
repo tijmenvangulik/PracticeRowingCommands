@@ -147,16 +147,20 @@ func setForwardsPosition(delta):
 func resetCrashed():
 	crashState=false
 	isDuckCrash=false
-	
-func showError(message:String):
-	
+
+var _errorTimer=null
+
+func showError(message:String,time=2):
+		if _errorTimer!=null:
+			Utilities.removeTimer(_errorTimer)
+		
 		var label=$"../CanvasLayer/errorLabel"
 		label.text=tr(message)
 		#remove the error message after 2 secons
-		var t=Utilities.startTimer(2)
-		yield(t, "timeout")
-		Utilities.removeTimer(t)
-		
+		_errorTimer=Utilities.startTimer(time)
+		yield(_errorTimer, "timeout")
+		Utilities.removeTimer(_errorTimer)
+		_errorTimer=null
 		label.text=""
 
 	
