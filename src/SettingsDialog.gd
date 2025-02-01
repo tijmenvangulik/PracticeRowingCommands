@@ -236,7 +236,8 @@ func getSettings(removePrivate=false):
 	  "finishedPractices":Settings.finishedPractices,
 	  "usePushAway": Settings.usePushAway,
 	  "waterAnimation":Settings.waterAnimation,
-	  "disabledPractices":Settings.disabledPractices
+	  "disabledPractices":Settings.disabledPractices,
+	  "successCount":Settings.successCount
 	}
 	if removePrivate:
 		removePrivateSettings(save_dict)
@@ -246,6 +247,7 @@ func removePrivateSettings(settings):
 	settings.erase("highScore")
 	settings.erase("finishedPractices")
 	settings.erase("waterAnimation")
+	settings.erase("successCount")
 	
 func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFromUrl=false):
 	if removePrivate:
@@ -254,6 +256,9 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 	if dict.has("highScore"):
 		Settings.highScore=dict["highScore"]
 	
+	if dict.has("successCount"):
+		Settings.successCount=dict["successCount"]
+		
 	var 	isScull=true
 	if dict.has("isScull"): 
 		 isScull=dict["isScull"]

@@ -176,14 +176,21 @@ func endPractice():
 
 			if  recorder.isRecording:
 				recorder.stopRecording()
-			else:  
-				$"%EndPracticeDialog".start(earnedStar)
+			else:
 				logEndPractice(true)
+				var askFeedback=false
+				Settings.successCount+=1
+				GameEvents.settingsChanged()
+				
+				if Settings.successCount==3:
+					$"%EndPracticeFeedbackDialog".start(earnedStar)
+				else:
+					$"%EndPracticeDialog".start(earnedStar)
 		
 func logEndPractice(success : bool):
 	var currentName= Constants.StartItem.keys()[currentStartPos] ;
 	if ( !OS.is_debug_build() ):
-		$"%LogActivityRequest".logFinishedActivity(currentName,success)
+		$"%LogActivityRequest".logFinishedActivity(currentName,success,Settings.isScull)
 
 func _crashDetected():
 	var extraWaitTime=0;

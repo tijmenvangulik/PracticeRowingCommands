@@ -16,7 +16,7 @@ var finishedPractices=[]
 var usePushAway = Constants.DefaultYesNo.Default;
 var waterAnimation = false
 var disabledPractices=[]
-
+var successCount =0 
 
 func usePushAwayActive():
 	if  Settings.usePushAway == Constants.DefaultYesNo.Default:

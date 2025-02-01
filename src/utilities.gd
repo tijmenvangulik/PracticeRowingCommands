@@ -114,3 +114,7 @@ func startTimer(time):
 func removeTimer(t):
 	remove_child(t)
 	t.queue_free()
+
+func boolToSting(value : bool):
+	if value: return "true"
+	return "false"
