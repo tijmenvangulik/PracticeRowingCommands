@@ -254,6 +254,14 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 	if dict.has("highScore"):
 		Settings.highScore=dict["highScore"]
 	
+	var 	isScull=true
+	if dict.has("isScull"): 
+		 isScull=dict["isScull"]
+	if Settings.isScull!=isScull:
+		Settings.isScull=isScull
+		
+	isScullButton.set_pressed(isScull)
+	
 	if  dict.has("language"):
 		Settings.currentLang=dict["language"]
 		GameState.languageSetFromSettingsOrUl=true
@@ -305,12 +313,6 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 		 shotCutsOn=dict["showShortCutsInButtons"]
 	Settings.showShortCutsInButtons=shotCutsOn
 	showShortCutsInButtons.set_pressed(shotCutsOn)
-
-	var 	isScull=true
-	if dict.has("isScull"): 
-		 isScull=dict["isScull"]
-	Settings.isScull=isScull
-	isScullButton.set_pressed(isScull)
 	
 	var customButtonSet=[]
 	if dict.has("customButtonSet"):
@@ -511,7 +513,7 @@ func _on_Scull_toggled(button_pressed):
 	if GameState.useDefaultButtonSet:
 		GameState.currentButtonSet=GameState.getDefaultButtonSet()
 	GameEvents.languageChanged()
-
+	GameEvents.practicesChanged()
 
 func _on_ResetPractices_pressed():
 	$"%OptionStart".resetFinishedPractices()

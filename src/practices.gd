@@ -38,6 +38,8 @@ func _ready():
 var languageDisabledPractices=[]
 
 func practiceIsVisible(startItem :int):
+	if !Settings.isScull && startItem==Constants.StartItem.SlalomPractice:
+		return false
 	return  practiceIsEnabled(startItem) && practiceIsLanguageEnabled(startItem)
 
 func practiceIsEnabled(startItem :int):

@@ -167,7 +167,11 @@ func getDemo(practice : int):
 	if practice==Constants.StartItem.Aanleggen:
 		return "{\"endTime\":39616047,\"practice\":5,\"recording_commands\":[30,25,0,20,10,1],\"recording_time\":[1026486,9381274,20652835,22594850,26002433,33514992]}"
 	if practice==Constants.StartItem.AanleggenWal:
-	    return "{\"endTime\":33749327,\"practice\":8,\"recording_commands\":[30,25,0,18,10,1],\"recording_time\":[978477,2776212,14046524,15512073,17039580,24109740]}"
+		if Settings.isScull:
+		    return "{\"endTime\":33749327,\"practice\":8,\"recording_commands\":[30,25,0,18,10,1],\"recording_time\":[978477,2776212,14046524,15512073,17039580,24109740]}"
+		else:
+			return "{\"endTime\":31184142,\"practice\":8,\"recording_commands\":[30,25,0,32,10,10,1,1],\"recording_time\":[2261241,9414567,13557799,15150357,17263784,17564205,23206055,24132887]}"
+		   # return "{\"endTime\":33749327,\"practice\":8,\"recording_commands\":[30,25,0,32,10,1],\"recording_time\":[978477,2776212,14046524,15512073,17039580,24109740]}"
 	if practice==Constants.StartItem.Aangelegd:
 			if Settings.usePushAwayActive():
 				return "{\"endTime\":17807845,\"practice\":6,\"recording_commands\":[13,3,1,8,30],\"recording_time\":[1259870,3562523,6307884,8362506,9635747]}"
@@ -176,7 +180,10 @@ func getDemo(practice : int):
 	if practice==Constants.StartItem.StartStrijkendAanleggen:
 	    return "{\"endTime\":30391879,\"practice\":7,\"recording_commands\":[5,0,20,10,1],\"recording_time\":[1060051,13583198,15202473,17221924,21862261]}"
 	if practice==Constants.StartItem.StartStrijkendAanleggenWal:
-	    return "{\"endTime\":26744325,\"practice\":9,\"recording_commands\":[5,0,18,10,1],\"recording_time\":[1658809,10490074,12263792,14622827,19332902]}"
+		if Settings.isScull:
+		    return "{\"endTime\":26744325,\"practice\":9,\"recording_commands\":[5,0,18,10,1],\"recording_time\":[1658809,10490074,12263792,14622827,19332902]}"
+		else:
+		    return "{\"endTime\":26744325,\"practice\":9,\"recording_commands\":[5,0,32,10,1],\"recording_time\":[1658809,10490074,12263792,14622827,19332902]}"
 	if practice==Constants.StartItem.SlalomPractice:
 		return "{\"endTime\":205476266,\"practice\":14,\"recording_commands\":[4,1,2,1,3,1,7,1,3,1,7,1,3,1,6,1,5,1,8,2,0,17,22,2,1,9,1,4,1,6,1,4,1,6,1,4,1,3,1,2,0,17,22,2,1,10,1,3,1,7,1,3,1,7,1,3,1,2,0],\"recording_time\":[1501275,8802006,10179120,14029510,16405376,19912247,21669659,25717064,27071160,30371671,32642665,35702251,37620464,40410455,45092220,46763751,49771996,52338378,54343659,56584510,62886463,64106885,78619945,80879638,84028246,85207267,93331720,96003091,98224682,99871827,103335811,105718730,108343904,110767200,115207040,117939976,119605743,124252726,125462170,128142120,133595929,134869753,151751820,154324905,156905084,159665617,164782260,165995008,171408422,172976799,176502711,178029401,180794748,183951085,186828854,189515123,190798172,193652146,204454519]}"
 	if practice==Constants.StartItem.MoringHarbour:

@@ -88,7 +88,7 @@ func _introSignal(isVisible : bool):
 
 func _practicesChanged():
 	loadItems()
-
+	
 func _doCommandSignal(command:int):
 	if sendStartOnWaterMessage:
 		#for start on water log on first stroke
