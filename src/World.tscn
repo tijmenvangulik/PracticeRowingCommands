@@ -1,4 +1,4 @@
-[gd_scene load_steps=131 format=2]
+[gd_scene load_steps=133 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://assets/megaphone.svg" type="Texture" id=22]
 [ext_resource path="res://FeedbackButton.gd" type="Script" id=23]
 [ext_resource path="res://assets/sad2.svg" type="Texture" id=24]
+[ext_resource path="res://assets/SwitchOff.png" type="Texture" id=25]
 [ext_resource path="res://EndCollectGame.gd" type="Script" id=26]
 [ext_resource path="res://assets/trophy.png" type="Texture" id=27]
 [ext_resource path="res://ExportSettingsButton.gd" type="Script" id=28]
@@ -64,6 +65,7 @@
 [ext_resource path="res://Speak.gd" type="Script" id=63]
 [ext_resource path="res://StyleButtonDarkGray.tres" type="StyleBox" id=64]
 [ext_resource path="res://GridButtonContainer.tscn" type="PackedScene" id=65]
+[ext_resource path="res://assets/SwitchOn.png" type="Texture" id=66]
 [ext_resource path="res://assets/incommingenvelope.svg" type="Texture" id=68]
 [ext_resource path="res://QuickFeedbackDialog.gd" type="Script" id=69]
 [ext_resource path="res://assets/arrow.png" type="Texture" id=70]
@@ -3197,9 +3199,9 @@ custom_constants/hseparation = 10
 custom_fonts/font = ExtResource( 50 )
 
 [node name="Label" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_top = 45.0
+margin_top = 41.0
 margin_right = 196.0
-margin_bottom = 64.0
+margin_bottom = 60.0
 custom_fonts/font = ExtResource( 50 )
 text = "ShowTooltipSettingLabel"
 
@@ -3207,48 +3209,54 @@ text = "ShowTooltipSettingLabel"
 margin_left = 216.0
 margin_top = 35.0
 margin_right = 366.0
-margin_bottom = 75.0
+margin_bottom = 66.0
+custom_icons/off = ExtResource( 25 )
+custom_icons/on = ExtResource( 66 )
 pressed = true
 
 [node name="Label2" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_top = 95.0
+margin_top = 82.0
 margin_right = 196.0
-margin_bottom = 114.0
+margin_bottom = 101.0
 custom_fonts/font = ExtResource( 50 )
 text = "ShowShortCutsInButtons"
 
 [node name="ShowShortCutsInButtons" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_left = 216.0
-margin_top = 85.0
+margin_top = 76.0
 margin_right = 366.0
-margin_bottom = 125.0
+margin_bottom = 107.0
+custom_icons/off = ExtResource( 25 )
+custom_icons/on = ExtResource( 66 )
 
 [node name="Label3" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_top = 145.0
+margin_top = 123.0
 margin_right = 196.0
-margin_bottom = 164.0
+margin_bottom = 142.0
 custom_fonts/font = ExtResource( 50 )
 text = "Scull"
 
 [node name="Scull" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_left = 216.0
-margin_top = 135.0
+margin_top = 117.0
 margin_right = 366.0
-margin_bottom = 175.0
+margin_bottom = 148.0
+custom_icons/off = ExtResource( 25 )
+custom_icons/on = ExtResource( 66 )
 pressed = true
 
 [node name="Label4" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_top = 191.0
+margin_top = 164.0
 margin_right = 196.0
-margin_bottom = 210.0
+margin_bottom = 183.0
 custom_fonts/font = ExtResource( 50 )
 text = "Reset"
 
 [node name="ResetPractices" type="Button" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_left = 216.0
-margin_top = 185.0
+margin_top = 158.0
 margin_right = 366.0
-margin_bottom = 217.0
+margin_bottom = 190.0
 rect_min_size = Vector2( 150, 32 )
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 52 )
@@ -3258,17 +3266,17 @@ custom_styles/normal = ExtResource( 64 )
 text = "ResetPractices"
 
 [node name="UsePushAwayLabel" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_top = 230.0
+margin_top = 203.0
 margin_right = 196.0
-margin_bottom = 249.0
+margin_bottom = 222.0
 custom_fonts/font = ExtResource( 50 )
 text = "UsePushAwayOption"
 
 [node name="UsePushAwayOption" type="OptionButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_left = 216.0
-margin_top = 227.0
+margin_top = 200.0
 margin_right = 366.0
-margin_bottom = 252.0
+margin_bottom = 225.0
 theme = ExtResource( 29 )
 custom_constants/hseparation = 10
 custom_fonts/font = ExtResource( 50 )
@@ -3329,9 +3337,9 @@ custom_fonts/font = ExtResource( 50 )
 text = "RestartWarning"
 
 [node name="Label5" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer"]
-margin_top = 45.0
+margin_top = 41.0
 margin_right = 122.0
-margin_bottom = 64.0
+margin_bottom = 60.0
 custom_fonts/font = ExtResource( 50 )
 text = "AnimatedWater"
 
@@ -3339,11 +3347,13 @@ text = "AnimatedWater"
 margin_left = 142.0
 margin_top = 35.0
 margin_right = 446.0
-margin_bottom = 75.0
+margin_bottom = 66.0
 
 [node name="WaterAnimationButton" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/HBoxContainer2"]
-margin_right = 76.0
-margin_bottom = 40.0
+margin_right = 69.0
+margin_bottom = 31.0
+custom_icons/off = ExtResource( 25 )
+custom_icons/on = ExtResource( 66 )
 
 [node name="CommandTranslateTab" type="Tabs" parent="CanvasLayer/SettingsDialog/TabContainer"]
 visible = false
