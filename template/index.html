@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns='http://www.w3.org/1999/xhtml' lang='' xml:lang=''>
+<html xmlns='http://www.w3.org/1999/xhtml' lang='en' xml:lang=''>
 <head>
 	<meta charset='utf-8' />
-	<meta name='viewport' content='width=device-width, user-scalable=no' />
+	<meta name='viewport' content='width=device-width, initial-scale=1' />
 	<title>Practice rowing commands</title>
 	<meta name="description" content="Learn rowing (coxing) commands online">
     <meta name="keywords" content="Rowing, coxing, Practice, commands,rowing simulation,online training, Roeien, sturen, trainen,oefenen, commando's,serious game">
@@ -16,6 +16,7 @@
 			padding: 0;
 			text-align: center;
 			background-color: black;
+			color: #ffffff; /* Ensure text color has sufficient contrast */
 		}
 
 		#canvas {
@@ -140,7 +141,7 @@
 			align-items: center;
 			background-color: #fff3cd;		
 			border-color: #ffeeba;
-			color: #856404;
+			color: #302504; /* Ensure text color has sufficient contrast */
 			border-radius: 12px;
 			border-style: solid;
 			border-width: 2px;
@@ -161,9 +162,9 @@
 		.close-warning {
 			font-size: 20px;
 			padding: 12px;
-			background-color: #007bff;
-			color: white;
-			border-color: #014ea0;
+			background-color: #1f3d5c; 
+			color: #ffffff;
+			border-color: #566a81;
 			border-radius: 12px;
 			border-style: solid;
 			margin-bottom: 20px;
@@ -179,11 +180,11 @@
 
 </head>
 <body>
-	<canvas id='canvas'>
+	<canvas id='canvas' role="img" aria-label="HTML5 canvas for rowing commands simulation">
 		HTML5 canvas appears to be unsupported in the current browser.<br />
 		Please try updating or use a different browser.
 	</canvas>
-	<div id='status'>
+	<div id='status' role="status" >
 		<div id='status-progress' style='display: none;' oncontextmenu='event.preventDefault();'><div id ='status-progress-inner'></div></div>
 		<div id='status-indeterminate' style='display: none;' oncontextmenu='event.preventDefault();'>
 			<div></div>
@@ -212,7 +213,7 @@
 			 <a href="https://github.com/tijmenvangulik/PracticeRowingCommands">Broncode en projectpagina </a>
 		</p>
 	</div>
-	<div  id="phone-warning-overlay" class="phone-warning-overlay">
+	<div  id="phone-warning-overlay" class="phone-warning-overlay" role="alert">
 		<div class="phone-warning-panel">
   		  <div class="phone-warning-text"><span>Warning!<br>This web app is designed for larger screens (tablet,laptop or monitor).<span></div>
 		  <button  class="close-warning" onclick="document.all['phone-warning-overlay'].remove()" >I will still give it a try</button>
