@@ -1,4 +1,4 @@
-[gd_scene load_steps=133 format=2]
+[gd_scene load_steps=135 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -66,6 +66,7 @@
 [ext_resource path="res://StyleButtonDarkGray.tres" type="StyleBox" id=64]
 [ext_resource path="res://GridButtonContainer.tscn" type="PackedScene" id=65]
 [ext_resource path="res://assets/SwitchOn.png" type="Texture" id=66]
+[ext_resource path="res://RightTopButtons.gd" type="Script" id=67]
 [ext_resource path="res://assets/incommingenvelope.svg" type="Texture" id=68]
 [ext_resource path="res://QuickFeedbackDialog.gd" type="Script" id=69]
 [ext_resource path="res://assets/arrow.png" type="Texture" id=70]
@@ -94,6 +95,9 @@
 [ext_resource path="res://ChooseLanguage.gd" type="Script" id=93]
 [ext_resource path="res://FeedBackContainer.tscn" type="PackedScene" id=94]
 [ext_resource path="res://EndPracticeFeedbackDialog.gd" type="Script" id=95]
+[ext_resource path="res://StyleStartButtonFocus.tres" type="StyleBox" id=96]
+[ext_resource path="res://StyleStartButtonHover.tres" type="StyleBox" id=97]
+[ext_resource path="res://StyleStartButton.tres" type="StyleBox" id=98]
 
 [sub_resource type="ShaderMaterial" id=43]
 shader = ExtResource( 80 )
@@ -841,52 +845,6 @@ corner_radius_bottom_left = 5
 shadow_color = Color( 0, 0, 0, 0.270588 )
 shadow_size = 3
 shadow_offset = Vector2( 2, 2 )
-
-[sub_resource type="StyleBoxFlat" id=41]
-content_margin_left = 8.0
-content_margin_right = 8.0
-content_margin_top = 4.0
-content_margin_bottom = 4.0
-bg_color = Color( 0.235294, 0.360784, 0.466667, 0.768627 )
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color( 0.396078, 0.607843, 0.396078, 0.780392 )
-border_blend = true
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-expand_margin_left = 4.0
-expand_margin_right = 4.0
-expand_margin_top = 4.0
-expand_margin_bottom = 4.0
-shadow_color = Color( 0.227451, 0.231373, 0.341176, 0.6 )
-shadow_offset = Vector2( 1, 1 )
-
-[sub_resource type="StyleBoxFlat" id=40]
-content_margin_left = 8.0
-content_margin_right = 8.0
-content_margin_top = 4.0
-content_margin_bottom = 4.0
-bg_color = Color( 0.196078, 0.305882, 0.396078, 0.768627 )
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color( 0.396078, 0.607843, 0.396078, 0.780392 )
-border_blend = true
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-expand_margin_left = 4.0
-expand_margin_right = 4.0
-expand_margin_top = 4.0
-expand_margin_bottom = 4.0
-shadow_color = Color( 0.227451, 0.231373, 0.341176, 0.6 )
-shadow_offset = Vector2( 1, 1 )
 
 [sub_resource type="StyleBoxFlat" id=37]
 content_margin_left = 8.0
@@ -2868,6 +2826,7 @@ margin_top = 8.0
 margin_right = 588.0
 margin_bottom = 38.0
 custom_constants/separation = 8
+script = ExtResource( 67 )
 
 [node name="OptionStart" type="OptionButton" parent="CanvasLayer/RightTopButtons"]
 unique_name_in_owner = true
@@ -2875,10 +2834,10 @@ margin_right = 80.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 80, 0 )
 theme = ExtResource( 29 )
-custom_styles/hover = SubResource( 41 )
-custom_styles/pressed = SubResource( 41 )
-custom_styles/focus = SubResource( 41 )
-custom_styles/normal = SubResource( 40 )
+custom_styles/hover = ExtResource( 97 )
+custom_styles/pressed = ExtResource( 97 )
+custom_styles/focus = ExtResource( 96 )
+custom_styles/normal = ExtResource( 98 )
 shortcut_in_tooltip = false
 text = "Start"
 expand_icon = true
@@ -3355,6 +3314,25 @@ margin_bottom = 31.0
 custom_icons/off = ExtResource( 25 )
 custom_icons/on = ExtResource( 66 )
 
+[node name="Label7" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer"]
+margin_top = 82.0
+margin_right = 122.0
+margin_bottom = 101.0
+custom_fonts/font = ExtResource( 50 )
+text = "HighContrast"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer"]
+margin_left = 142.0
+margin_top = 76.0
+margin_right = 446.0
+margin_bottom = 107.0
+
+[node name="HighContrastButton" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/HBoxContainer3"]
+margin_right = 69.0
+margin_bottom = 31.0
+custom_icons/off = ExtResource( 25 )
+custom_icons/on = ExtResource( 66 )
+
 [node name="CommandTranslateTab" type="Tabs" parent="CanvasLayer/SettingsDialog/TabContainer"]
 visible = false
 anchor_right = 1.0
@@ -3754,6 +3732,7 @@ script = ExtResource( 84 )
 [connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/UsePushAwayOption" to="CanvasLayer/SettingsDialog" method="_on_UsePushAwayOption_item_selected"]
 [connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/HBoxContainer/Resolution" to="CanvasLayer/SettingsDialog" method="_on_Resolution_item_selected"]
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/HBoxContainer2/WaterAnimationButton" to="CanvasLayer/SettingsDialog" method="_on_WaterAnimationButton_toggled"]
+[connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/HBoxContainer3/HighContrastButton" to="CanvasLayer/SettingsDialog" method="_on_HighContrastButton_toggled"]
 [connection signal="item_rect_changed" from="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab/ScrollContainerHeader/GridContainerHeader" to="CanvasLayer/SettingsDialog" method="_on_GridContainerHeader_item_rect_changed"]
 [connection signal="item_rect_changed" from="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab/ScrollContainerCommands/GridContainerCommands" to="CanvasLayer/SettingsDialog" method="_on_GridContainerCommands_item_rect_changed"]
 [connection signal="item_rect_changed" from="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab/ScrollContainer/GridContainer" to="CanvasLayer/SettingsDialog" method="_on_GridContainer_item_rect_changed"]

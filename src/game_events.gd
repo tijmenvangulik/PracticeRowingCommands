@@ -38,6 +38,8 @@ signal startPlay
 
 signal isScullChangedSignal
 
+signal highContrastChangedSignal
+
 signal crash
 
 signal practicesChanged
@@ -96,6 +98,9 @@ func doCommand(command:int):
 func isScullChanged(isScull:bool):
 	emit_signal("isScullChangedSignal",isScull)
 
+func highContrastChanged(highContrast:bool):
+	emit_signal("highContrastChangedSignal",highContrast)
+	
 func crash():
 	emit_signal("crash")
 

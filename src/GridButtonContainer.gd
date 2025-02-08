@@ -17,7 +17,8 @@ func _ready():
 	GameEvents.connect("customCommandTextChanged",self,"_on_EditCommandText_customCommandTextChanged")
 	GameEvents.connect("customTooltipTextChanged",self,"_on_EditCommandText_customTooltipTextChanged")
 	GameEvents.connect("customShortcutTextChanged",self,"_on_EditCommandText_customShortcutTextChanged")
-
+	GameEvents.connect("highContrastChangedSignal",self,"_highContrastChangedSignal")
+	
 
 func calcShortCut(buttonText):
 	if customShortcut!="":
@@ -104,58 +105,20 @@ func init(newCommandName):
 		
 		button.add_font_override("font",load("res://Font.tres"))
 		
-		var styleNr= Constants.commandStyles[command]
-		var style=null
-		match styleNr:
-			Constants.CommandStyle.StyleButtonDarkGray:
-				style = preload("res://StyleButtonDarkGray.tres")
-			Constants.CommandStyle.StyleButtonSB:
-				style = preload("res://StyleButtonSB.tres")
-			Constants.CommandStyle.StyleButtonBB:
-				style = preload("res://StyleButtonBB.tres")
-			Constants.CommandStyle.StyleButtonGray:
-				 style= preload("res://StyleButtonGray.tres")
-		button.add_stylebox_override("normal",style)
-		
-		match styleNr:
-			Constants.CommandStyle.StyleButtonDarkGray:
-				style = preload("res://StyleButtonDarkGrayFocus.tres")
-			Constants.CommandStyle.StyleButtonSB:
-				style = preload("res://StyleButtonSBFocus.tres")
-			Constants.CommandStyle.StyleButtonBB:
-				style = preload("res://StyleButtonBBFocus.tres")
-			_:
-				 style= preload("res://StyleButtonGrayFocus.tres")	
-		button.add_stylebox_override("focus",style)
-		
-		match styleNr:
-			Constants.CommandStyle.StyleButtonDarkGray:
-				style = preload("res://StyleButtonDarkGrayPressed.tres")
-			Constants.CommandStyle.StyleButtonSB:
-				style = preload("res://StyleButtonSBPressed.tres")
-			Constants.CommandStyle.StyleButtonBB:
-				style = preload("res://StyleButtonBBPressed.tres")
-			_:
-				 style= preload("res://StyleButtonGrayPressed.tres")
-		button.add_stylebox_override("pressed",style)
-		
-		match styleNr:
-			Constants.CommandStyle.StyleButtonDarkGray:
-				style = preload("res://StyleButtonDarkGrayHover.tres")
-			Constants.CommandStyle.StyleButtonSB:
-				style = preload("res://StyleButtonSBHover.tres")
-			Constants.CommandStyle.StyleButtonBB:
-				style = preload("res://StyleButtonBBHover.tres")
-			_:
-				 style= preload("res://StyleButtonGrayHover.tres")	
-		button.add_stylebox_override("hover",style)
-
-		style= preload("res://ButtonDisabled.tres")
-		button.add_stylebox_override("disabled",style)
+		setStyle()
 	else:
 		
 		var button=$GridButton
 		button.visible=false
 
+func setStyle():
+	var button=$GridButton
+	var styleNr= Constants.commandStyles[command]
+	Styles.setButtonStyle(styleNr,button)
+	
+	
 
 	
+func _highContrastChangedSignal(highContrast):
+
+	setStyle()

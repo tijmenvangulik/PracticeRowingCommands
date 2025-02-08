@@ -9,6 +9,7 @@ var step=0.5
 func _ready():
 	GameEvents.connect("settingsChangedSignal",self,"_settings_changed_signal")
 	GameEvents.connect("introSignal",self,"_introSignal")
+	GameEvents.connect("highContrastChangedSignal",self,"_highContrastChangedSignal")
 
 func _introSignal(isVisible : bool):
 	visible=!isVisible
@@ -52,3 +53,7 @@ func _settings_changed_signal():
 		camera.zoom.x=Settings.zoom
 		camera.zoom.y=Settings.zoom
 		GameEvents.zoomChanged()
+
+func _highContrastChangedSignal(highContrast):
+	
+	Styles.setFontColorOverride($ZoomLabel)

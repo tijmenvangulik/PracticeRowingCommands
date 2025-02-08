@@ -22,6 +22,8 @@ func _init():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameEvents.connect("settingsChangedSignal",self,"_settings_changedSignal")
+	GameEvents.connect("highContrastChangedSignal",self,"_highContrastChangedSignal")
+	GameEvents.connect("introSignal",self,"_introSignal")
 	var i=0;
 	for item in Constants.languageLongItems:
 		var flagName=Constants.flags[i]
@@ -32,10 +34,26 @@ func _ready():
 	
 	connect("item_selected",self,"selected")
 	setLanguage(Settings.currentLang)	
-	var styleDropDown= preload("res://MainDropDown.tres")
-	var pm=get_popup()
-	pm.add_stylebox_override("panel",styleDropDown)
+	
+	setStyle(Settings.highContrast)
 	Utilities.styleDropDown(self)
+	
+	
+func setStyle(highContrast):
+	var pm=get_popup()
+	if highContrast:
+		pm.add_stylebox_override("panel",Styles.styleMainDropDownHighContrast)
+	else:
+		pm.add_stylebox_override("panel",Styles.styleMainDropDown)
+
+func _introSignal(isVisible):
+	if isVisible:
+		setStyle(true)
+	else:
+		setStyle(Settings.highContrast)
+
+func _highContrastChangedSignal(highContrast):
+	setStyle(Settings.highContrast)
 	
 func setLanguage(langKey):
 	var indexNr=Constants.languageKeys.find(langKey)

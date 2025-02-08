@@ -31,6 +31,9 @@ var practicePoints = 0
 
 var sendStartOnWaterMessage= false
 
+var styleDropDown= preload("res://MainDropDownPopup.tres")
+var styleDropDownHighContrast = Styles.newDarkenStyle(styleDropDown,Styles.amount)
+
 func loadItems():
 	clear()
 	for startItem in Practices.practices:
@@ -60,9 +63,8 @@ func _ready():
 	connect("item_selected",self,"selected")
 	
 	#improve style
-	var styleDropDown= preload("res://MainDropDownPopup.tres")
+	setStyle()
 	var pm=get_popup()
-	pm.add_stylebox_override("panel",styleDropDown)	
 	pm.connect("id_pressed",self,"_menuItemClicked")
 	GameEvents.connect("introSignal",self,"_introSignal")
 	GameEvents.register_tooltip(self,"OptionStartTooltip")
@@ -70,8 +72,18 @@ func _ready():
 	GameEvents.connect("collectGameStateChangedSignal",self,"_collectGameStateChangedSignal")
 	GameEvents.connect("practicesChanged",self,"_practicesChanged");
 	GameEvents.connect("doCommandSignal",self,"_doCommandSignal")
-	
+	GameEvents.connect("highContrastChangedSignal",self,"_highContrastChangedSignal")
 
+func setStyle():	
+	var pm=get_popup()
+	if Settings.highContrast:
+		pm.add_stylebox_override("panel",styleDropDownHighContrast)
+	else:
+		pm.add_stylebox_override("panel",styleDropDown)
+
+func _highContrastChangedSignal(highContrast):
+	setStyle()
+	
 func _menuItemClicked(itemId):
 	$"%Recorder".cancelReplay()
 	doStart(itemId)

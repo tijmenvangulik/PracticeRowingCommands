@@ -237,7 +237,8 @@ func getSettings(removePrivate=false):
 	  "usePushAway": Settings.usePushAway,
 	  "waterAnimation":Settings.waterAnimation,
 	  "disabledPractices":Settings.disabledPractices,
-	  "successCount":Settings.successCount
+	  "successCount":Settings.successCount,
+	  "highContrast":Settings.highContrast
 	}
 	if removePrivate:
 		removePrivateSettings(save_dict)
@@ -329,6 +330,15 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 	Settings.waterAnimation=waterAnimationOn
 	var waterAnimationButton=$TabContainer/DisplayTab/GridContainer/HBoxContainer2/WaterAnimationButton
 	waterAnimationButton.set_pressed(waterAnimationOn)
+
+	var 	highContrastOn=false
+	if dict.has("highContrast"): 
+		 highContrastOn=dict["highContrast"]
+	if Settings.highContrast!=highContrastOn:
+		Settings.highContrast=highContrastOn
+		GameEvents.highContrastChanged(highContrastOn)
+	var highContrastButton=$TabContainer/DisplayTab/GridContainer/HBoxContainer3/HighContrastButton
+	highContrastButton.set_pressed(highContrastOn)
 
 	var disabledPractices=[]
 	if dict.has("disabledPractices"):
@@ -599,3 +609,9 @@ func _on_Resolution_item_selected(index):
 	JavaScript.eval("localStorage.setItem('resolution','"+value+"');")
 	JavaScript.eval("window.location.reload()")
 
+
+
+func _on_HighContrastButton_toggled(button_pressed):
+	Settings.highContrast=button_pressed
+	GameEvents.settingsChanged()
+	GameEvents.highContrastChanged(button_pressed)

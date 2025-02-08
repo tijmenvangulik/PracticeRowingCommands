@@ -194,7 +194,7 @@ func setCustomButtonSet(newButtonSet):
 
 func _languageChangedSignal():
 	initButtons()
-
+	
 func _disableCommandSignal(commandName:String,disabled:bool):
 	disableCommand(commandName,disabled)
 

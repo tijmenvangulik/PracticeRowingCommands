@@ -130,6 +130,7 @@ Settings="*res://settings.gd"
 GameState="*res://game_state.gd"
 CalcSecurityCode="*res://calcSecurityCode.gd"
 Practices="*res://practices.gd"
+Styles="*res://styles.gd"
 
 [display]
 
@@ -154,6 +155,7 @@ clear=false
 collis=false
 ray=false
 path=false
+Global=false
 
 [importer_defaults]
 
