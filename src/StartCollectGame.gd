@@ -11,7 +11,9 @@ func _ready():
 
 func handleShow():
 	GameState.dialogIsOpen=visible
-		
+	if visible:
+		$HSplitContainer/StartGame.grab_focus()
+
 func _init():
 	connect("visibility_changed",self,"handleShow");
 

@@ -33,7 +33,6 @@ func init(time:String,isHighScore:bool):
 	$Sad2.visible=false
 	
 	$EndGameText.text=text
-	
 
 func initCrashed():
 	var text=tr("GameOverCrash")
@@ -55,3 +54,4 @@ func _collectGameStateChangedSignal(state):
 			
 			$"../PublishHighscoreCollectGame".start()
 		else :show_modal(true)
+	$HBoxContainer/StartGame.grab_focus()

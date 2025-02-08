@@ -7,6 +7,7 @@ func _ready():
 
 func start():
 	if !GameState.isReplaying:
+		$HBoxContainer/StartSamePractice.grab_focus()
 		show_modal(true)
 	
 func _on_StartSamePractice_pressed():

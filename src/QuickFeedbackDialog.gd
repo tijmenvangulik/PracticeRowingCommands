@@ -12,7 +12,6 @@ func handleShow():
 func _init():
 	connect("visibility_changed",self,"handleShow");
 
-
 func _on_CancelFeedback_pressed():
 	hide()
 

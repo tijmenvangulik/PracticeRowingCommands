@@ -25,6 +25,7 @@ func start():
 	$"NameRequiredError".visible=false;
 	$"EndGameText".text=tr("PublishScoreQuestion") % GameState.publicHighScorePositon
 	show_modal(true)
+	$NameContainer/Name.grab_focus()
 	
 func _on_PublishScore_pressed():
 	var name=$"NameContainer/Name".text

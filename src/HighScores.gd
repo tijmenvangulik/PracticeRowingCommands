@@ -35,6 +35,7 @@ func start():
 	setMyHighScore()
 	show_modal(true)
 	loadHighScores()
+	$ContinueToStartGame.grab_focus()
 	
 func stop():
 	visible=false

@@ -43,7 +43,7 @@ func _ready():
 	GameEvents.connect("disableCommandSignal",self,"_disableCommandSignal");
 	GameEvents.connect("customButtonSetChangedSignal",self,"_customButtonSetChangedSignal")
 	GameEvents.connect("showButtonsSignal",self,"_showButtonsSignal")
-	#GameEvents.connect("startPlay",self,"_startPlaySignal")
+	GameEvents.connect("startPlay",self,"_startPlaySignal")
 
 func setChildNodeText(node,commandName,value):
 	for N in node.get_children():
@@ -60,12 +60,11 @@ func setChildNodeDisable(node,commandName,disabled:bool):
 		else:
 			if N.name=="GridButton" && N.owner.commandName==commandName:
 				N.disabled=disabled
-#				if disabled:
-#					var button : Button=N
-#					if disabled:
-#						button.enabled_focus_mode=Control.FOCUS_NONE
-#					else:
-#						button.enabled_focus_mode=Control.FOCUS_ALL
+				var button : Button=N
+				if disabled:
+					button.focus_mode=Control.FOCUS_NONE
+				else:
+					button.focus_mode=Control.FOCUS_ALL
 
 func focusChildCommandFocus(node,commandName):
 	for N in node.get_children():
@@ -139,8 +138,8 @@ func gotoNextButton(button : GridButtonContainer,pressedChar : String):
 		i=i+1
 	pass
 	
-#func _startPlaySignal():
-#	focusFirstCommand()
+func _startPlaySignal():
+	focusFirstCommand()
 
 func focusFirstCommand():
 	if GameState.dialogIsOpen:

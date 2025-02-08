@@ -23,7 +23,9 @@ var settingsFile="user://settings.save"
 
 func handleShow():
 	GameState.dialogIsOpen=visible
-
+	if visible:
+		$TabContainer/GeneralSettingsTab/GridContainer/RuleSetDropDown.grab_focus()
+		
 func _highContrastChangedSignal(highContrastOn):
 	var highContrastButton=$TabContainer/DisplayTab/GridContainer/HBoxContainer3/HighContrastButton
 	highContrastButton.set_pressed(highContrastOn)

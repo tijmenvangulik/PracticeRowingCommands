@@ -63,7 +63,9 @@ func ShowStep():
 	if isLastStep:
 		$"%OptionStart".logEndPractice(true)
 		$"%OptionStart".savePractice()
-	
+		$HSplitContainer/StartPractices.grab_focus()
+	else:
+		$HSplitContainer/TourNext.grab_focus()
 	$HSplitContainer/TourNext.visible=!isLastStep
 	$HSplitContainer/StartPractices.visible=isLastStep
 

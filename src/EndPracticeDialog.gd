@@ -12,6 +12,7 @@ func _ready():
 
 func start(earnedStar):
 	$EndPracticeStar.visible=earnedStar
+	$HBoxContainer/StartNextPractice.grab_focus()
 	show_modal(true)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
