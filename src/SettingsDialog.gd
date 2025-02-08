@@ -23,7 +23,11 @@ var settingsFile="user://settings.save"
 
 func handleShow():
 	GameState.dialogIsOpen=visible
-		
+
+func _highContrastChangedSignal(highContrastOn):
+	var highContrastButton=$TabContainer/DisplayTab/GridContainer/HBoxContainer3/HighContrastButton
+	highContrastButton.set_pressed(highContrastOn)
+
 func _init():
 	connect("visibility_changed",self,"handleShow");
 
@@ -70,7 +74,8 @@ func _ready():
 	GameEvents.connect("customTooltipTextChanged",self,"_on_EditTooltipText_customTooltipTextChanged")
 	GameEvents.connect("customShortcutTextChanged",self,"_on_EditTooltipText_customShortcutTextChanged")
 	GameEvents.connect("settingsChangedSignal",self,"_handleSettingsChanged")
-	
+	GameEvents.connect("highContrastChangedSignal",self,"_highContrastChangedSignal")
+
 	var pushAwayOption=$TabContainer/GeneralSettingsTab/GridContainer/UsePushAwayOption
 	pushAwayOption.add_item("Default",Constants.DefaultYesNo.Default)
 	pushAwayOption.add_item("Yes",Constants.DefaultYesNo.Yes)
@@ -337,8 +342,6 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 	if Settings.highContrast!=highContrastOn:
 		Settings.highContrast=highContrastOn
 		GameEvents.highContrastChanged(highContrastOn)
-	var highContrastButton=$TabContainer/DisplayTab/GridContainer/HBoxContainer3/HighContrastButton
-	highContrastButton.set_pressed(highContrastOn)
 
 	var disabledPractices=[]
 	if dict.has("disabledPractices"):

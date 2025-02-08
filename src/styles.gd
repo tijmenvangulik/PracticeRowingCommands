@@ -76,6 +76,9 @@ var styleStartButtonHighContrast = newDarkenStyle(styleStartButton,amount)
 var styleStartButtonHoverHighContrast = newDarkenStyle(styleStartButtonHover,amount)
 var styleStartButtonFocusHighContrast = newDarkenStyle(styleStartButtonFocus,amount)
 
+var styleDropDown= preload("res://MainDropDownPopup.tres")
+var styleDropDownHighContrast = newDarkenStyle(styleDropDown,amount)
+
 func newDarkenStyle(style : StyleBoxFlat,amount)-> StyleBoxFlat:
 	style=style.duplicate(true)
 	
@@ -217,3 +220,15 @@ func setFontColorOverride(label):
 		label.add_color_override("font_color",Color("#121317"))
 	else:
 		label.remove_color_override("font_color")
+
+func SetPopupPanelDropDownStyle(panel):
+	if Settings.highContrast:
+		panel.add_stylebox_override("panel",styleDropDownHighContrast)
+	else:
+		panel.add_stylebox_override("panel",styleDropDown)
+
+func SetPanelDropDownStyle(panel):
+	if Settings.highContrast:
+		panel.add_stylebox_override("panel",styleMainDropDownHighContrast)
+	else:
+		panel.add_stylebox_override("panel",styleMainDropDown)

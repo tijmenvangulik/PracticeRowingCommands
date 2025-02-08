@@ -31,9 +31,6 @@ var practicePoints = 0
 
 var sendStartOnWaterMessage= false
 
-var styleDropDown= preload("res://MainDropDownPopup.tres")
-var styleDropDownHighContrast = Styles.newDarkenStyle(styleDropDown,Styles.amount)
-
 func loadItems():
 	clear()
 	for startItem in Practices.practices:
@@ -76,10 +73,7 @@ func _ready():
 
 func setStyle():	
 	var pm=get_popup()
-	if Settings.highContrast:
-		pm.add_stylebox_override("panel",styleDropDownHighContrast)
-	else:
-		pm.add_stylebox_override("panel",styleDropDown)
+	Styles.SetPopupPanelDropDownStyle(pm)
 
 func _highContrastChangedSignal(highContrast):
 	setStyle()
