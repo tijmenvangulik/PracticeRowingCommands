@@ -17,15 +17,17 @@ func _ready():
 
 func handleShow():
 	GameState.dialogIsOpen=visible
-		
+	if visible:
+		ShowStep()
+
 func _init():
 	connect("visibility_changed",self,"handleShow");
 
 func _on_startTour():
 	tourStep=1
 	isLastStep=false
-	ShowStep()
-	visible=true
+	show_modal(true)
+	
 
 func _on_languageChanged():
 	if visible:
@@ -60,14 +62,14 @@ func ShowStep():
 		$"TourText".set_bbcode(Utilities.replaceCommandsInText( tr(tourTexts[tourStep-1]),true))
 	else:
 		stopTour()
+	$HSplitContainer/TourNext.visible=!isLastStep
+	$HSplitContainer/StartPractices.visible=isLastStep
 	if isLastStep:
 		$"%OptionStart".logEndPractice(true)
 		$"%OptionStart".savePractice()
 		$HSplitContainer/StartPractices.grab_focus()
 	else:
 		$HSplitContainer/TourNext.grab_focus()
-	$HSplitContainer/TourNext.visible=!isLastStep
-	$HSplitContainer/StartPractices.visible=isLastStep
 
 
 func _on_StartPractices_pressed():

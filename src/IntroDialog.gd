@@ -11,7 +11,7 @@ var inIntro=false
 func handleShow():
 	GameState.dialogIsOpen=visible
 	if visible:
-		$HSplitContainer/StartPractices.grab_focus()
+		$HSplitContainer/StartPractices.call_deferred("grab_focus")
 
 func get_version():
 	if OS.has_feature('JavaScript'):

@@ -30,7 +30,8 @@ func showDialog():
 	var itemIndex=$"%OptionLanguage".selected;
 	list.select(itemIndex)
 	show_modal(true)
-
+	$ScrollContainer/Panel/ItemList.grab_focus()
+	
 func _on_StartIntro_pressed():
 	hide()
 	$"%RightTopButtons".visible=true
