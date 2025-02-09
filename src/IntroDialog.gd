@@ -18,7 +18,8 @@ func get_version():
 		var value= JavaScript.eval("appVersion")
 		return value
 	return "0.0.0"
-	
+
+
 func _init():
 	connect("visibility_changed",self,"handleShow");
 	GameEvents.connect("settingsLoadedSignal",self,"_settingsLoaded");

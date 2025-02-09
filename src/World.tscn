@@ -1,4 +1,4 @@
-[gd_scene load_steps=136 format=2]
+[gd_scene load_steps=139 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -99,6 +99,7 @@
 [ext_resource path="res://StyleStartButtonHover.tres" type="StyleBox" id=97]
 [ext_resource path="res://StyleStartButton.tres" type="StyleBox" id=98]
 [ext_resource path="res://OptionHighContrast.gd" type="Script" id=99]
+[ext_resource path="res://EscapeShortcut.tres" type="ShortCut" id=100]
 
 [sub_resource type="ShaderMaterial" id=43]
 shader = ExtResource( 80 )
@@ -846,6 +847,11 @@ corner_radius_bottom_left = 5
 shadow_color = Color( 0, 0, 0, 0.270588 )
 shadow_size = 3
 shadow_offset = Vector2( 2, 2 )
+
+[sub_resource type="InputEventAction" id=51]
+
+[sub_resource type="ShortCut" id=52]
+shortcut = SubResource( 51 )
 
 [sub_resource type="StyleBoxFlat" id=37]
 content_margin_left = 8.0
@@ -1624,6 +1630,7 @@ custom_styles/hover = ExtResource( 52 )
 custom_styles/pressed = ExtResource( 53 )
 custom_styles/focus = ExtResource( 34 )
 custom_styles/normal = ExtResource( 64 )
+shortcut = ExtResource( 100 )
 text = "CloseIntro"
 script = ExtResource( 42 )
 __meta__ = {
@@ -1889,6 +1896,7 @@ custom_styles/hover = ExtResource( 52 )
 custom_styles/pressed = ExtResource( 53 )
 custom_styles/focus = ExtResource( 52 )
 custom_styles/normal = ExtResource( 64 )
+shortcut = ExtResource( 100 )
 text = "CancelGameButton"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1991,6 +1999,7 @@ custom_styles/hover = ExtResource( 17 )
 custom_styles/pressed = ExtResource( 53 )
 custom_styles/focus = ExtResource( 17 )
 custom_styles/normal = ExtResource( 64 )
+shortcut = ExtResource( 100 )
 text = "CancelGameButton"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2086,6 +2095,7 @@ custom_styles/hover = ExtResource( 17 )
 custom_styles/pressed = ExtResource( 53 )
 custom_styles/focus = ExtResource( 17 )
 custom_styles/normal = ExtResource( 64 )
+shortcut = ExtResource( 100 )
 text = "CancelNextPractice"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2421,6 +2431,7 @@ custom_styles/hover = ExtResource( 52 )
 custom_styles/pressed = ExtResource( 53 )
 custom_styles/focus = ExtResource( 17 )
 custom_styles/normal = ExtResource( 64 )
+shortcut = ExtResource( 100 )
 text = "CancelSend"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2506,6 +2517,7 @@ custom_styles/hover = ExtResource( 52 )
 custom_styles/pressed = ExtResource( 53 )
 custom_styles/focus = ExtResource( 17 )
 custom_styles/normal = ExtResource( 64 )
+shortcut = ExtResource( 100 )
 text = "CancelNextPractice"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2683,6 +2695,7 @@ custom_styles/hover = ExtResource( 52 )
 custom_styles/pressed = ExtResource( 53 )
 custom_styles/focus = ExtResource( 17 )
 custom_styles/normal = ExtResource( 64 )
+shortcut = ExtResource( 100 )
 text = "TourStop"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2843,6 +2856,7 @@ custom_styles/pressed = ExtResource( 97 )
 custom_styles/focus = ExtResource( 96 )
 custom_styles/normal = ExtResource( 98 )
 shortcut_in_tooltip = false
+shortcut = SubResource( 52 )
 text = "Start"
 expand_icon = true
 script = ExtResource( 40 )
@@ -3585,6 +3599,7 @@ custom_styles/hover = ExtResource( 11 )
 custom_styles/pressed = ExtResource( 10 )
 custom_styles/focus = ExtResource( 34 )
 custom_styles/normal = ExtResource( 10 )
+shortcut = ExtResource( 100 )
 text = "Close"
 
 [node name="ShareSettings" type="Button" parent="CanvasLayer/SettingsDialog"]
