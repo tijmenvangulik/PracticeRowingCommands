@@ -14,6 +14,10 @@ func handleShow():
 func _init():
 	connect("visibility_changed",self,"handleShow");
 
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		visible=false
+	
 # Called when the node enters the scene tree for the first time.
 func showDialog(explainText,showLessButonsArray):
 	var practice=$"%OptionStart".currentStartPos
