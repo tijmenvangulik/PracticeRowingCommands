@@ -11,6 +11,8 @@ func setSettingInUrl():
 	var urlSettings= to_json(settings).percent_encode()
 	var hasShare=JavaScript.eval("typeof navigator.share=='function'");
 	var urlScript="window.location.protocol + '//' + window.location.host + window.location.pathname + '?lang="+urlLang+"&settings="+urlSettings+"'"
+	JavaScript.eval("history.pushState({}, null, "+urlScript+")");
+	JavaScript.eval("if (typeof navigator.clipboard=='object' && typeof navigator.clipboard.writeText=='function' ) navigator.clipboard.writeText("+urlScript+");")
 	if hasShare:
 		JavaScript.eval("navigator.share({url:"+urlScript+"})");
 		return false
