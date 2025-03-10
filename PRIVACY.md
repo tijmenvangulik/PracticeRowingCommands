@@ -9,3 +9,4 @@ Wat is collected:
   * Date/time
   * De practice name
   * The language
+* When sharing your settings the settings are stored on the server. You can work around this by un checking the "short settings link" in the settings. When you do this all the settings are placed in the url. This prevents sending your settings to the server.
