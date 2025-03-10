@@ -18,6 +18,7 @@ var waterAnimation = false
 var disabledPractices=[]
 var successCount =0 
 var highContrast=false
+var shortSettingsInUrl = true
 
 func usePushAwayActive():
 	if  Settings.usePushAway == Constants.DefaultYesNo.Default:

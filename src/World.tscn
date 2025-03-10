@@ -1682,7 +1682,7 @@ margin_right = 103.0
 margin_bottom = -21.0
 mouse_filter = 0
 mouse_default_cursor_shape = 2
-custom_colors/font_color = Color( 0.239216, 0.329412, 0.411765, 1 )
+custom_colors/font_color = Color( 0.294118, 0.403922, 0.501961, 1 )
 text = "1.0.0"
 
 [node name="ChooseLanguage" type="WindowDialog" parent="CanvasLayer"]
@@ -3228,14 +3228,14 @@ columns = 2
 
 [node name="RuleSetLabel" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_top = 3.0
-margin_right = 196.0
+margin_right = 198.0
 margin_bottom = 22.0
 custom_fonts/font = ExtResource( 50 )
 text = "RuleSetLabel"
 
 [node name="RuleSetDropDown" type="OptionButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_left = 216.0
-margin_right = 366.0
+margin_left = 218.0
+margin_right = 368.0
 margin_bottom = 25.0
 theme = ExtResource( 29 )
 custom_constants/hseparation = 10
@@ -3243,15 +3243,15 @@ custom_fonts/font = ExtResource( 50 )
 
 [node name="Label" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_top = 41.0
-margin_right = 196.0
+margin_right = 198.0
 margin_bottom = 60.0
 custom_fonts/font = ExtResource( 50 )
 text = "ShowTooltipSettingLabel"
 
 [node name="ShowCommandTooltips" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_left = 216.0
+margin_left = 218.0
 margin_top = 35.0
-margin_right = 366.0
+margin_right = 368.0
 margin_bottom = 66.0
 custom_icons/off = ExtResource( 25 )
 custom_icons/on = ExtResource( 66 )
@@ -3259,30 +3259,30 @@ pressed = true
 
 [node name="Label2" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_top = 82.0
-margin_right = 196.0
+margin_right = 198.0
 margin_bottom = 101.0
 custom_fonts/font = ExtResource( 50 )
 text = "ShowShortCutsInButtons"
 
 [node name="ShowShortCutsInButtons" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_left = 216.0
+margin_left = 218.0
 margin_top = 76.0
-margin_right = 366.0
+margin_right = 368.0
 margin_bottom = 107.0
 custom_icons/off = ExtResource( 25 )
 custom_icons/on = ExtResource( 66 )
 
 [node name="Label3" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_top = 123.0
-margin_right = 196.0
+margin_right = 198.0
 margin_bottom = 142.0
 custom_fonts/font = ExtResource( 50 )
 text = "Scull"
 
 [node name="Scull" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_left = 216.0
+margin_left = 218.0
 margin_top = 117.0
-margin_right = 366.0
+margin_right = 368.0
 margin_bottom = 148.0
 custom_icons/off = ExtResource( 25 )
 custom_icons/on = ExtResource( 66 )
@@ -3290,15 +3290,15 @@ pressed = true
 
 [node name="Label4" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_top = 164.0
-margin_right = 196.0
+margin_right = 198.0
 margin_bottom = 183.0
 custom_fonts/font = ExtResource( 50 )
 text = "Reset"
 
 [node name="ResetPractices" type="Button" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_left = 216.0
+margin_left = 218.0
 margin_top = 158.0
-margin_right = 366.0
+margin_right = 368.0
 margin_bottom = 190.0
 rect_min_size = Vector2( 150, 32 )
 custom_fonts/font = ExtResource( 50 )
@@ -3310,19 +3310,35 @@ text = "ResetPractices"
 
 [node name="UsePushAwayLabel" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_top = 203.0
-margin_right = 196.0
+margin_right = 198.0
 margin_bottom = 222.0
 custom_fonts/font = ExtResource( 50 )
 text = "UsePushAwayOption"
 
 [node name="UsePushAwayOption" type="OptionButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_left = 216.0
+margin_left = 218.0
 margin_top = 200.0
-margin_right = 366.0
+margin_right = 368.0
 margin_bottom = 225.0
 theme = ExtResource( 29 )
 custom_constants/hseparation = 10
 custom_fonts/font = ExtResource( 50 )
+
+[node name="ShortSharedSettingsLabel" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
+margin_top = 241.0
+margin_right = 198.0
+margin_bottom = 260.0
+custom_fonts/font = ExtResource( 50 )
+text = "ShareSettingsUsingServer"
+
+[node name="ShortSharedSettings" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
+margin_left = 218.0
+margin_top = 235.0
+margin_right = 368.0
+margin_bottom = 266.0
+custom_icons/off = ExtResource( 25 )
+custom_icons/on = ExtResource( 66 )
+pressed = true
 
 [node name="DisplayTab" type="Tabs" parent="CanvasLayer/SettingsDialog/TabContainer"]
 visible = false
@@ -3737,6 +3753,10 @@ shortcut_in_tooltip = false
 text = "ShareSettingsClose"
 icon_align = 2
 
+[node name="HTTPRequest" type="HTTPRequest" parent="CanvasLayer/ShareSettingsDialog"]
+
+[node name="HTTPRequestLoad" type="HTTPRequest" parent="CanvasLayer/ShareSettingsDialog"]
+
 [node name="Tooltip" parent="CanvasLayer" instance=ExtResource( 38 )]
 margin_left = -23.0
 margin_top = -753.0
@@ -3822,6 +3842,7 @@ texture = ExtResource( 101 )
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/Scull" to="CanvasLayer/SettingsDialog" method="_on_Scull_toggled"]
 [connection signal="pressed" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/ResetPractices" to="CanvasLayer/SettingsDialog" method="_on_ResetPractices_pressed"]
 [connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/UsePushAwayOption" to="CanvasLayer/SettingsDialog" method="_on_UsePushAwayOption_item_selected"]
+[connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/ShortSharedSettings" to="CanvasLayer/SettingsDialog" method="_on_ShortSharedSettings_toggled"]
 [connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/HBoxContainer/Resolution" to="CanvasLayer/SettingsDialog" method="_on_Resolution_item_selected"]
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/HBoxContainer2/WaterAnimationButton" to="CanvasLayer/SettingsDialog" method="_on_WaterAnimationButton_toggled"]
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/HBoxContainer3/HighContrastButton" to="CanvasLayer/SettingsDialog" method="_on_HighContrastButton_toggled"]

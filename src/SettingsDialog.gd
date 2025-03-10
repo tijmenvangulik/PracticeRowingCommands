@@ -245,7 +245,8 @@ func getSettings(removePrivate=false):
 	  "waterAnimation":Settings.waterAnimation,
 	  "disabledPractices":Settings.disabledPractices,
 	  "successCount":Settings.successCount,
-	  "highContrast":Settings.highContrast
+	  "highContrast":Settings.highContrast,
+	  "shortSettingsInUrl":Settings.shortSettingsInUrl
 	}
 	if removePrivate:
 		removePrivateSettings(save_dict)
@@ -314,6 +315,10 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 	
 	if dict.has("usePushAway"):
 		Settings.usePushAway= dict["usePushAway"]
+
+	if dict.has("shortSettingsInUrl"):
+		Settings.shortSettingsInUrl= dict["shortSettingsInUrl"]
+		$TabContainer/GeneralSettingsTab/GridContainer/ShortSharedSettings.pressed=Settings.shortSettingsInUrl
 		
 	var 	tooltipsOn=true
 	if dict.has("showCommandTooltips"): 
@@ -462,7 +467,11 @@ func loadSettings():
 			setSettings(dict,true,false)
 			settingFromUrl=true
 	
+	var settingsId=get_parameter("settingId")
 
+	if settingsId!=null && settingsId!="":
+		$"%ShareSettingsDialog".loadSettings(settingsId)
+	
 	var save_game = File.new()
 	if  save_game.file_exists(settingsFile):
 		save_game.open(settingsFile, File.READ)
@@ -482,6 +491,13 @@ func loadSettings():
 			Settings.currentLang=Constants.languageKeys[urlLangIndex]
 			GameState.languageSetFromSettingsOrUl=true
 
+	afterLoadedSettings(settingFromUrl)
+
+func setSettingsFromShortSettings(settings):
+	setSettings(settings)
+	afterLoadedSettings(true)
+			
+func afterLoadedSettings(settingFromUrl):
 	GameEvents.settingsChanged()
 	if settingFromUrl && hasJavascript():
 		clearSettingsInUrl();
@@ -620,3 +636,8 @@ func _on_HighContrastButton_toggled(button_pressed):
 	Settings.highContrast=button_pressed
 	GameEvents.settingsChanged()
 	GameEvents.highContrastChanged(button_pressed)
+
+
+func _on_ShortSharedSettings_toggled(button_pressed):
+	Settings.shortSettingsInUrl=button_pressed
+	GameEvents.settingsChanged()
