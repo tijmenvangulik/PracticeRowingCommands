@@ -19,6 +19,8 @@ var disabledPractices=[]
 var successCount =0 
 var highContrast=false
 var shortSettingsInUrl = true
+var copiedFromSettingId=""
+var copiedTimestamp=0
 
 func usePushAwayActive():
 	if  Settings.usePushAway == Constants.DefaultYesNo.Default:

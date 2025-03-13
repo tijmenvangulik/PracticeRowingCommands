@@ -1,6 +1,8 @@
 extends WindowDialog
 
 
+var loadSettingId="";
+
 func _ready():
 	$HTTPRequest.connect("request_completed", self, "_onReadSettingId")
 	$HTTPRequestLoad.connect("request_completed", self, "_onLoadSettings")
@@ -17,7 +19,7 @@ func _onReadSettingId(result, response_code, headers, body):
 
 func setSettingInUrl():
 	if Settings.shortSettingsInUrl:
-		var settings=$"%SettingsDialog".getSettings(true)
+		var settings=$"%SettingsDialog".getSettings(true)	
 		var urlSettings=to_json(settings).percent_encode()
 		var url=Constants.serverUrl+"/saveSharedSetting?data="+urlSettings
 		$HTTPRequest.request(url, [], true, HTTPClient.METHOD_GET) 
@@ -28,6 +30,8 @@ func setSettingInUrl():
 
 func setFullSettingsinUrl():
 	var settings=$"%SettingsDialog".getSettings(true)
+	var time=Time.get_unix_time_from_system()
+	settings["copiedTimestamp"]=time;
 	var urlSettings=to_json(settings).percent_encode()
 	if sendSettingsToBrowser("&settings="+urlSettings+"'"):
 		show_modal(true)
@@ -38,9 +42,19 @@ func _onLoadSettings(result, response_code, headers, body):
 	if response_code==200:
 		var json = JSON.parse(text)
 		if json!=null:
-			$"%SettingsDialog".setSettingsFromShortSettings(json.result)
+			# when link is re-used do not overwirte again when already used
+			# this way the user can re-use the link which is send to hime
+			# without lossing his own settings
+
+			if Settings.copiedFromSettingId!=loadSettingId:
+				var settings=json.result;
+				settings["copiedFromSettingId"]=loadSettingId
+				$"%SettingsDialog".setSettingsFromShortSettings(settings)
+				
 	
 func loadSettings(settingsId):
+	loadSettingId=settingsId;
+
 	var urlSettings='{"id":"'+settingsId+'"}'
 	var url=Constants.serverUrl+"/getSharedSetting?data="+urlSettings
 	$HTTPRequestLoad.request(url, [], true, HTTPClient.METHOD_GET) 

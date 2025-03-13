@@ -16,6 +16,8 @@ func handleShow():
 func get_version():
 	if OS.has_feature('JavaScript'):
 		var value= JavaScript.eval("appVersion")
+		if value==null:
+			return "0.0.0"
 		return value
 	return "0.0.0"
 

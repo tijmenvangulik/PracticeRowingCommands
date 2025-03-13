@@ -246,7 +246,9 @@ func getSettings(removePrivate=false):
 	  "disabledPractices":Settings.disabledPractices,
 	  "successCount":Settings.successCount,
 	  "highContrast":Settings.highContrast,
-	  "shortSettingsInUrl":Settings.shortSettingsInUrl
+	  "shortSettingsInUrl":Settings.shortSettingsInUrl,
+	  "copiedFromSettingId":Settings.copiedFromSettingId,
+	  "copiedTimestamp":Settings.copiedTimestamp
 	}
 	if removePrivate:
 		removePrivateSettings(save_dict)
@@ -258,7 +260,7 @@ func removePrivateSettings(settings):
 	settings.erase("waterAnimation")
 	settings.erase("successCount")
 	
-func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFromUrl=false):
+func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 	if removePrivate:
 		removePrivateSettings(dict)
 		
@@ -293,9 +295,6 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 			#finishedPractices=[0,1,2,3,4,5,6,7,8,9,10]
 			Settings.finishedPractices=finishedPractices
 			
-			
-	if alreadySetFromUrl:
-		return
 	
 	var translations={}
 	if dict.has("translations"):
@@ -315,7 +314,17 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true,alreadySetFro
 	
 	if dict.has("usePushAway"):
 		Settings.usePushAway= dict["usePushAway"]
+		
+	if dict.has("copiedFromSettingId"):
+		Settings.copiedFromSettingId= dict["copiedFromSettingId"]
+	else:
+		Settings.copiedFromSettingId=""
 
+	if dict.has("copiedTimestamp"):
+		Settings.copiedTimestamp= dict["copiedTimestamp"]
+	else:
+		Settings.copiedTimestamp=0
+	
 	if dict.has("shortSettingsInUrl"):
 		Settings.shortSettingsInUrl= dict["shortSettingsInUrl"]
 		$TabContainer/GeneralSettingsTab/GridContainer/ShortSharedSettings.pressed=Settings.shortSettingsInUrl
@@ -458,20 +467,6 @@ func saveSettings():
 	
 func loadSettings():
 	
-	
-	var settingFromUrl=false
-	var settings=get_parameter("settings")
-	if settings!=null && settings!="":
-		var dict=parse_json(settings);
-		if dict!=null:
-			setSettings(dict,true,false)
-			settingFromUrl=true
-	
-	var settingsId=get_parameter("settingId")
-
-	if settingsId!=null && settingsId!="":
-		$"%ShareSettingsDialog".loadSettings(settingsId)
-	
 	var save_game = File.new()
 	if  save_game.file_exists(settingsFile):
 		save_game.open(settingsFile, File.READ)
@@ -480,8 +475,30 @@ func loadSettings():
 			var dict2 = parse_json(save_game.get_line())
 			#only load the high score here when set from the url
 			# never call the setting changed
-			setSettings(dict2,false,false,settingFromUrl)
+			setSettings(dict2,false,false)
 		save_game.close()
+		
+	var settingFromUrl=false
+	var settings=get_parameter("settings")
+	if settings!=null && settings!="":
+		var dict=parse_json(settings);
+		settingFromUrl=true
+		if dict!=null:
+			var copiedTimestamp=-1
+			
+			if dict.has("copiedTimestamp"):
+				copiedTimestamp=dict["copiedTimestamp"]
+			# when link is re-used do not overwirte again when already used
+			# this way the user can re-use the link which is send to hime
+			# without lossing his own settings
+			if copiedTimestamp!=Settings.copiedTimestamp:
+				setSettings(dict,true,false)
+	
+	var settingsId=get_parameter("settingId")
+	if settingsId!=null && settingsId!="":
+		settingFromUrl=true
+		$"%ShareSettingsDialog".loadSettings(settingsId)
+	
 	
 	#override the lang with the url lang
 	var urlLang=get_parameter("lang");
@@ -494,7 +511,7 @@ func loadSettings():
 	afterLoadedSettings(settingFromUrl)
 
 func setSettingsFromShortSettings(settings):
-	setSettings(settings)
+	setSettings(settings)	
 	afterLoadedSettings(true)
 			
 func afterLoadedSettings(settingFromUrl):
