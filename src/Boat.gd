@@ -26,7 +26,7 @@ var bestExtraRotation=1.5
 var bestState : int= Constants.BestState.Normal
 var lowNoRowingSpeed=lightPaddleFactor*max_speed
 
-var speedDirectErrorLevel=15
+var speedDirectErrorLevel=10
 var speedCommandSwitchErrorLevel=20
 var speedIsStopped=4
 var newRotation_degrees=-1.0;

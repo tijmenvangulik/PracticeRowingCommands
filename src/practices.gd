@@ -11,9 +11,10 @@ Constants.StartItem.AanleggenWal,
 Constants.StartItem.Aangelegd,
 Constants.StartItem.StartStrijkendAanleggen,
 Constants.StartItem.StartStrijkendAanleggenWal,
+Constants.StartItem.BridgePractice,
 Constants.StartItem.MoringHarbour,
 Constants.StartItem.SlalomPractice,
-Constants.StartItem.StarGame
+Constants.StartItem.StarGame,
 ]
 
 var practiceNames = [
@@ -27,6 +28,7 @@ var practiceNames = [
 "StartAangelegd",
 "StartStrijkendAanleggen",
 "StartStrijkendAanleggenWal",
+"StartBridgePractice",
 "StartMoringHarbour",
 "StartSlalomPractice",
 "StartStarGame"

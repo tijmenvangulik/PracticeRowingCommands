@@ -374,6 +374,12 @@ func doStart(startItemId):
 			$"%CollectableSlalomPractice".reset()
 			var showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.VastroeienSB,Constants.Command.HalenBB,Constants.Command.HalenSB,Constants.Command.StrijkenBeidenBoorden,Constants.Command.StrijkenBB,Constants.Command.StrijkenSB,Constants.Command.HalenBeideBoorden,Constants.Command.VastroeienBB,Constants.Command.VastroeienBeideBoorden,Constants.Command.SlippenBB,Constants.Command.Slippen,Constants.Command.SlippenSB,Constants.Command.UitbrengenBB,Constants.Command.Uitbrengen,Constants.Command.UitbrengenSB,Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt]
 			explainPopup.showDialog("StartSlalomPracticeExplainText",showOnlyButonsArray)
+		Constants.StartItem.BridgePractice: 
+			boat.setNewBoatPosition(1915,110,270,Constants.StateOars.Roeien,true)
+			$"%CollectableBridgePractice".reset()
+			var showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.SlagklaarAf,Constants.Command.Slippen,Constants.Command.Uitbrengen,Constants.Command.PakMaarWeerOp]	
+			explainPopup.showDialog("BridgeExplainText",showOnlyButonsArray)
+			
 	if GameState.isForwards!=forwards:
 		GameState.changeForwards(forwards)
 	

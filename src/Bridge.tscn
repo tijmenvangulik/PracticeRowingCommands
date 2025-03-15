@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/Bridge.png" type="Texture" id=1]
+[ext_resource path="res://assets/BridgeTransparent.png" type="Texture" id=2]
+[ext_resource path="res://Bridge.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 33, 32.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 119.5, 56.5 )
+
+[node name="Bridge" type="StaticBody2D"]
+script = ExtResource( 3 )
+
+[node name="Bridge" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+
+[node name="BridgeTransparent" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 2 )
+
+[node name="BridgeLeft" type="CollisionShape2D" parent="."]
+position = Vector2( -82, 21.5 )
+shape = SubResource( 1 )
+
+[node name="BridgeRight" type="CollisionShape2D" parent="."]
+position = Vector2( 82, 22 )
+shape = SubResource( 1 )
+
+[node name="TransparentArea" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransparentArea"]
+position = Vector2( 2.5, -0.5 )
+shape = SubResource( 2 )
+
+[connection signal="area_shape_entered" from="TransparentArea" to="." method="_on_TransparentArea_area_shape_entered"]
+[connection signal="area_shape_exited" from="TransparentArea" to="." method="_on_TransparentArea_area_shape_exited"]

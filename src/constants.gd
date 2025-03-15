@@ -196,7 +196,8 @@ enum StartItem {
   Start,
   Intro,
   MoringHarbour,
-  SlalomPractice
+  SlalomPractice,
+  BridgePractice
 }
 
 const serverUrl="https://ergometer-space.org/manager"
