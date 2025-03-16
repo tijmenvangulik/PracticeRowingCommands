@@ -248,7 +248,7 @@ EndCrashPracticeText;Jammer gebotst;Jammer gebotst;Too bad collided;Too bad coll
 StartSamePractice;Nog een keer;Nog een keer;Again;Again;Again
 CancelNextPractice;Annuleer oefeningen;Annuleer oefeningen;Cancel practices;Cancel practices;Cancel practices
 Reset;Reset;Reset;Reset;Reset;Reset
-ResetPractices;Reset oefeningen;Reset oefeningen;Reset practices;Reset practices;Reset practices
+ResetPractices;Reset voltooide oefeningen;Reset voltooide oefeningen;Reset finished practices;Reset finished practices;Reset finished practices
 EndPracticeStar;Je hebt een ster verdiend;Je hebt een ster verdiend;You earned a star;You earned a star;You earned a star
 UsePushAway;FALSE;TRUE;TRUE;TRUE;FALSE
 Default;Standaard;Standaard;Default;Default;Default
