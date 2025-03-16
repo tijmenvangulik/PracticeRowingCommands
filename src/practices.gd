@@ -9,6 +9,7 @@ Constants.StartItem.AchteruitBochtOefenening,
 Constants.StartItem.Aanleggen,
 Constants.StartItem.AanleggenWal,
 Constants.StartItem.Aangelegd,
+Constants.StartItem.AangelegdUitzetten,
 Constants.StartItem.StartStrijkendAanleggen,
 Constants.StartItem.StartStrijkendAanleggenWal,
 Constants.StartItem.BridgePractice,
@@ -26,6 +27,7 @@ var practiceNames = [
 "StartAanleggen",
 "StartAanleggenWal",
 "StartAangelegd",
+"StartAangelegdUitzetten",
 "StartStrijkendAanleggen",
 "StartStrijkendAanleggenWal",
 "StartBridgePractice",
@@ -42,16 +44,12 @@ var languageDisabledPractices=[]
 func practiceIsVisible(startItem :int):
 	if !Settings.isScull && startItem==Constants.StartItem.SlalomPractice:
 		return false
-	return  practiceIsEnabled(startItem) && practiceIsLanguageEnabled(startItem)
+	return  practiceIsEnabled(startItem) 
 
 func practiceIsEnabled(startItem :int):
+	if Settings.disabledPracticesUseDefault:
+		return  Practices.languageDisabledPractices.find(startItem)<0 
 	return  Settings.disabledPractices.find(startItem)<0 
-
-func practiceIsLanguageEnabled(startItem :int):
-	if !Settings.isScull && startItem==Constants.StartItem.SlalomPractice:
-		return false
-	return  Practices.languageDisabledPractices.find(startItem)<0 
-
 
 func getPracticeName(startItem :int):
 	var ind=practices.find(startItem)

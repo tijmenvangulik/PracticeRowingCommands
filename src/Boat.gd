@@ -26,7 +26,9 @@ var bestExtraRotation=1.5
 var bestState : int= Constants.BestState.Normal
 var lowNoRowingSpeed=lightPaddleFactor*max_speed
 
-var speedDirectErrorLevel=10
+var speedDirectErrorLevel=15
+var speedDirectErrorLevelBridge=10
+
 var speedCommandSwitchErrorLevel=20
 var speedIsStopped=4
 var newRotation_degrees=-1.0;
@@ -317,12 +319,16 @@ func setSpeedAndDirection(speedFactor:float,turnFactor:float,newForceMultiplier:
 	forceMultiplier=newForceMultiplier
 	sideWays=newSideWays;
 	
-	
+func getSpeedDirectErrorLevel():
+	if 	$"%OptionStart".currentStartPos==Constants.StartItem.BridgePractice:
+		return speedDirectErrorLevelBridge
+	return speedDirectErrorLevel
+
 func boatInRest():
 	return state==Constants.RowState.LaatLopen ||	state==Constants.RowState.Bedankt 	 || isLowSpeed()
 
 func isLowSpeed():
-	return abs(linear_velocity.length())<speedDirectErrorLevel
+	return abs(linear_velocity.length())<getSpeedDirectErrorLevel()
 
 func isLowSpeedCommandSwitch():
 	return abs(linear_velocity.length())<speedCommandSwitchErrorLevel

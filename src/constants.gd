@@ -182,22 +182,23 @@ enum CollectableSpriteStyle {
 
 # never change the order of these enums
 enum StartItem {
-  StartTour,
-  StilleggenOefenening,
-  BochtOefenening,
-  AchteruitvarenOefenening,
-  AchteruitBochtOefenening
-  Aanleggen,
-  Aangelegd,
-  StartStrijkendAanleggen,
-  AanleggenWal,
-  StartStrijkendAanleggenWal,
-  StarGame,
-  Start,
-  Intro,
-  MoringHarbour,
-  SlalomPractice,
-  BridgePractice
+  StartTour,  #0
+  StilleggenOefenening, #1
+  BochtOefenening, #2
+  AchteruitvarenOefenening, #3
+  AchteruitBochtOefenening #4
+  Aanleggen, #5
+  Aangelegd, #6
+  StartStrijkendAanleggen, #7
+  AanleggenWal, #8
+  StartStrijkendAanleggenWal, #9
+  StarGame, #10
+  Start, #11
+  Intro, #12
+  MoringHarbour, #13
+  SlalomPractice, #14
+  BridgePractice, #15
+  AangelegdUitzetten #16
 }
 
 const serverUrl="https://ergometer-space.org/manager"

@@ -172,11 +172,10 @@ func getDemo(practice : int):
 		else:
 			return "{\"endTime\":31184142,\"practice\":8,\"recording_commands\":[30,25,0,32,10,10,1,1],\"recording_time\":[2261241,9414567,13557799,15150357,17263784,17564205,23206055,24132887]}"
 		   # return "{\"endTime\":33749327,\"practice\":8,\"recording_commands\":[30,25,0,32,10,1],\"recording_time\":[978477,2776212,14046524,15512073,17039580,24109740]}"
+	if practice==Constants.StartItem.AangelegdUitzetten:
+		return "{\"endTime\":17807845,\"practice\":6,\"recording_commands\":[13,3,1,8,30],\"recording_time\":[1259870,3562523,6307884,8362506,9635747]}"
 	if practice==Constants.StartItem.Aangelegd:
-			if Settings.usePushAwayActive():
-				return "{\"endTime\":17807845,\"practice\":6,\"recording_commands\":[13,3,1,8,30],\"recording_time\":[1259870,3562523,6307884,8362506,9635747]}"
-			else:
-				return  "{\"endTime\":32715542,\"practice\":6,\"recording_commands\":[11,1,23,7,1,30],\"recording_time\":[1210222,7357798,8721827,11092707,18236843,20845239]}"
+		return  "{\"endTime\":32715542,\"practice\":6,\"recording_commands\":[11,1,23,7,1,30],\"recording_time\":[1210222,7357798,8721827,11092707,18236843,20845239]}"
 	if practice==Constants.StartItem.StartStrijkendAanleggen:
 	    return "{\"endTime\":30391879,\"practice\":7,\"recording_commands\":[5,0,20,10,1],\"recording_time\":[1060051,13583198,15202473,17221924,21862261]}"
 	if practice==Constants.StartItem.StartStrijkendAanleggenWal:
@@ -190,6 +189,8 @@ func getDemo(practice : int):
 		return "{\"endTime\":56244182,\"practice\":13,\"recording_commands\":[30,0,9,1,6,1,4,1,2,0,20,1],\"recording_time\":[875401,7977137,13557136,21923764,23716607,25790049,27821040,29816913,33953220,36299118,37486814,42123153]}"
 	if practice==Constants.StartItem.Intro:
 		return "{\"endTime\":318448363,\"practice\":11,\"recording_commands\":[2,0,3,1,2,28,29,27,29,0,10,1,3,1,3,1,4,1,2,28,29,27,29,27,29,0,10,1,2,1,4,1,2,0,3,1,2,0,3,1,2,0],\"recording_time\":[835107,36722319,39110817,49338655,52059375,85179880,89291502,104625784,107684459,110400243,116169546,123018008,124166614,128093456,132523353,135403680,140538840,141654656,143176203,149077423,151659213,155730999,157933091,162338301,165555823,177755440,180321872,195099806,197720687,209898975,212752875,221883392,223858105,232835151,239608661,249517169,251461273,288164784,290030661,300663554,302729815,314321995]}"
+	if practice==Constants.StartItem.BridgePractice:
+		return "{\"endTime\":36557132,\"practice\":15,\"recording_commands\":[30,0,17,22,31],\"recording_time\":[850996,13805980,14830692,22589337,23865157]}"
 	return ""
 	
 func cancelReplay():

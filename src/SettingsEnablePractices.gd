@@ -14,7 +14,6 @@ func _ready():
 
 func addCheckbox(text : String,startItem : int):
 	var isVisible=Practices.practiceIsEnabled(startItem)
-	var isEnabled=Practices.practiceIsLanguageEnabled(startItem)
 	
 	var container=$GridContainer
 	var new_checkBox = CheckBox.new()
@@ -23,11 +22,12 @@ func addCheckbox(text : String,startItem : int):
 	new_checkBox.add_font_override("font",load("res://Font.tres"))
 	new_checkBox.margin_top=8
 	new_checkBox.name=str(startItem)
-	new_checkBox.disabled=!isEnabled
+	new_checkBox.disabled=Settings.disabledPracticesUseDefault
 	container.add_child(new_checkBox)
 	return new_checkBox
 
 func loadPractices():
+	$UseDefaultPractices.pressed=Settings.disabledPracticesUseDefault
 	var children = $GridContainer.get_children()
 	for child in children:
 		child.free()
@@ -39,12 +39,14 @@ func init():
 	loadPractices()
 
 func savePractices():
+	
 	var disabledPractices=[]
-	for i in $GridContainer.get_child_count():
-		var checkItem=$GridContainer.get_child(i)
-		if !checkItem.pressed:
-			var startItem=int( checkItem.name)
-			disabledPractices.append(startItem)
+	if !Settings.disabledPracticesUseDefault:
+		for i in $GridContainer.get_child_count():
+			var checkItem=$GridContainer.get_child(i)
+			if !checkItem.pressed:
+				var startItem=int( checkItem.name)
+				disabledPractices.append(startItem)
 	
 	if disabledPractices!=Settings.disabledPractices:
 		Settings.disabledPractices=disabledPractices
@@ -59,3 +61,18 @@ func _on_SettingsDialog_visibility_changed():
 		savePractices()
 	else:
 		loadPractices()
+
+
+func _on_UseDefaultPractices_toggled(button_pressed):
+	pass
+
+
+func _on_UseDefaultPractices_pressed():
+	Settings.disabledPracticesUseDefault=$UseDefaultPractices.pressed
+	if Settings.disabledPracticesUseDefault:
+		Settings.disabledPractices=[]
+	else:
+		Settings.disabledPractices=Practices.languageDisabledPractices
+	GameEvents.practicesChanged()
+	GameEvents.settingsChanged()
+	loadPractices()

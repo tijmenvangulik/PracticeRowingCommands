@@ -13,17 +13,12 @@ var showCommandTooltips=false
 var showShortCutsInButtons=false
 var isScull =true;
 var finishedPractices=[]
-var usePushAway = Constants.DefaultYesNo.Default;
 var waterAnimation = false
 var disabledPractices=[]
+var disabledPracticesUseDefault = true
 var successCount =0 
 var highContrast=false
 var shortSettingsInUrl = true
 var copiedFromSettingId=""
 var copiedTimestamp=0
 
-func usePushAwayActive():
-	if  Settings.usePushAway == Constants.DefaultYesNo.Default:
-		var val=tr("UsePushAway")
-		return val=="TRUE"
-	return Settings.usePushAway  == Constants.DefaultYesNo.Yes;

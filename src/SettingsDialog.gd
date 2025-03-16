@@ -77,11 +77,6 @@ func _ready():
 	GameEvents.connect("customShortcutTextChanged",self,"_on_EditTooltipText_customShortcutTextChanged")
 	GameEvents.connect("settingsChangedSignal",self,"_handleSettingsChanged")
 	GameEvents.connect("highContrastChangedSignal",self,"_highContrastChangedSignal")
-
-	var pushAwayOption=$TabContainer/GeneralSettingsTab/GridContainer/UsePushAwayOption
-	pushAwayOption.add_item("Default",Constants.DefaultYesNo.Default)
-	pushAwayOption.add_item("Yes",Constants.DefaultYesNo.Yes)
-	pushAwayOption.add_item("No",Constants.DefaultYesNo.No)
 	
 	get_close_button().hide()
 	
@@ -112,8 +107,6 @@ func _ready():
 	loadSettings()
 	
 	GameEvents.settingsLoaded()
-
-	pushAwayOption.select(Settings.usePushAway)
 	
 	#https://www.tilcode.com/godot-3-centering-a-grid-of-evenly-spaced-buttons-on-screen/
 	#https://docs.godotengine.org/en/stable/getting_started/step_by_step/ui_game_user_interface.html
@@ -241,9 +234,9 @@ func getSettings(removePrivate=false):
 	  "showShortCutsInButtons":Settings.showShortCutsInButtons,
 	  "isScull":Settings.isScull,
 	  "finishedPractices":Settings.finishedPractices,
-	  "usePushAway": Settings.usePushAway,
 	  "waterAnimation":Settings.waterAnimation,
 	  "disabledPractices":Settings.disabledPractices,
+	  "disabledPracticesUseDefault":Settings.disabledPracticesUseDefault,
 	  "successCount":Settings.successCount,
 	  "highContrast":Settings.highContrast,
 	  "shortSettingsInUrl":Settings.shortSettingsInUrl,
@@ -311,9 +304,6 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 	var shortcuts={}
 	if dict.has("shortcuts"):
 		shortcuts=dict["shortcuts"]
-	
-	if dict.has("usePushAway"):
-		Settings.usePushAway= dict["usePushAway"]
 		
 	if dict.has("copiedFromSettingId"):
 		Settings.copiedFromSettingId= dict["copiedFromSettingId"]
@@ -367,8 +357,15 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 				var practice=int(disabledPractices[i])
 				disabledPractices[i]=practice
 	
-	if Settings.disabledPractices!=disabledPractices:
+	var disabledPracticesUseDefault=true
+	if dict.has("disabledPracticesUseDefault"):
+		disabledPracticesUseDefault=dict["disabledPracticesUseDefault"]
+	else:
+		disabledPracticesUseDefault=disabledPractices.size()==0
+		
+	if Settings.disabledPractices!=disabledPractices || disabledPracticesUseDefault!=Settings.disabledPracticesUseDefault:
 		Settings.disabledPractices=disabledPractices
+		Settings.disabledPracticesUseDefault=disabledPracticesUseDefault;
 		GameEvents.practicesChanged()
 	#else:
 	#	customButtonSet=GameState.defaultButtonSet
@@ -571,15 +568,6 @@ func _on_Scull_toggled(button_pressed):
 func _on_ResetPractices_pressed():
 	$"%OptionStart".resetFinishedPractices()
 	
-
-
-func _on_UsePushAwayOption_item_selected(index):
-	Settings.usePushAway= index;
-	
-
-
-
-
 
 func hideScrollBars():
 	var commands=$TabContainer/CommandTranslateTab/ScrollContainerCommands

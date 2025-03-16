@@ -2,6 +2,7 @@ extends PanelContainer
 
 var enabled=true
 
+
 func loadButtonsSetFromResources():
 	var buttonSet=tr("ButtonSet")
 	if buttonSet!=null && buttonSet!="ButtonSet" && buttonSet!="":
@@ -164,11 +165,40 @@ func addButton(container,commandName :String):
 	var innerButton=button.get_node("GridButton")
 	innerButton.connect( "gui_input",self,"buttonInput",[button])
 	button.init(commandName)
+
+func forcePushAwayReplace(commandNames,forcePushAway,commandName):
+	if forcePushAway==Constants.DefaultYesNo.Default:
+		return commandName;
+	if forcePushAway==Constants.DefaultYesNo.Yes:
+		if commandName=="PeddelendStrijkenBB" && commandNames.find("UitzettenBB",0)<0:
+			return "UitzettenBB"
+		if commandName=="PeddelendStrijkenSB" && commandNames.find("UitzettenSB",0)<0:
+			return "UitzettenSB"
+	else:
+		if commandName=="UitzettenBB" && commandNames.find("PeddelendStrijkenBB",0)<0:
+			return "PeddelendStrijkenBB"
+		if commandName=="UitzettenSB" && commandNames.find("PeddelendStrijkenSB",0)<0:
+			return "PeddelendStrijkenSB" 
+	return commandName
+
+func getAllConmmands():
+	var allCommands=[]
+	for item in GameState.currentButtonSet:
+		if typeof(item)==TYPE_STRING:
+			var commandNames=item.split(",")
+			if commandNames.size()>1:
+				for buttonItem in commandNames:
+					allCommands.append(buttonItem)
+			else: if commandNames.size()==1:
+				var buttonItem=commandNames[0]
+				allCommands.append(buttonItem)				
+	return allCommands
 	
-func loadButtons():
+func loadButtons(forcePushAway= Constants.DefaultYesNo.Default):
 	clearGrid()
 	var container =$"GridContainer"
 	var i=0;
+	var allCommands=getAllConmmands()
 	for item in GameState.currentButtonSet:
 		if typeof(item)==TYPE_STRING:
 			var commandNames=item.split(",")
@@ -177,9 +207,12 @@ func loadButtons():
 				box.alignment=box.ALIGN_CENTER;
 				container.add_child(box)
 				for buttonItem in commandNames:
-					addButton(box,buttonItem)
+					var newButtonItem=forcePushAwayReplace(allCommands,forcePushAway,buttonItem)
+					addButton(box,newButtonItem)
 			else: if commandNames.size()==1:
-				addButton(container,commandNames[0])
+				var buttonItem=commandNames[0]
+				buttonItem=forcePushAwayReplace(allCommands,forcePushAway,buttonItem)
+				addButton(container,buttonItem)
 		
 
 func setCustomButtonSet(newButtonSet):

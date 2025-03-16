@@ -31,6 +31,8 @@ var practicePoints = 0
 
 var sendStartOnWaterMessage= false
 
+var replacedPushAwayButtons = false
+
 func loadItems():
 	clear()
 	for startItem in Practices.practices:
@@ -291,6 +293,11 @@ func doStart(startItemId):
 	currentStartPos=startItemId;
 	if isPractice(currentStartPos):
 		practiceIsActive=true
+
+	if replacedPushAwayButtons:
+		$"%ButtonsContainer".loadButtons(Constants.DefaultYesNo.Default)
+		replacedPushAwayButtons=false
+
 	match startItemId:
 		Constants.StartItem.Start: 
 			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)
@@ -323,17 +330,19 @@ func doStart(startItemId):
 			var showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.RiemenHoogSB,Constants.Command.VastroeienBB]	
 			explainPopup.showDialog("MoringExplainRaftText",showOnlyButonsArray)
 		Constants.StartItem.Aangelegd:
-			var showOnlyButonsArray=[]
-			if Settings.usePushAwayActive(): 
-				boat.setNewBoatPosition(1124,2608,0,Constants.StateOars.RiemenHoogSB,true)
-				showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.HalenSB,Constants.Command.UitzettenSB,Constants.Command.VastroeienBeideBoorden]
-				$"%CollectableSailAwayPractice3".reset()
-				explainPopup.showDialog("SailAwayExplainPushAwayText",showOnlyButonsArray)
-			else:
-				boat.setNewBoatPosition(1124,2596,0,Constants.StateOars.SlippenSB,true)
-				showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.PeddelendStrijkenSB,Constants.Command.StrijkenBB,Constants.Command.HalenSB,Constants.Command.UitbrengenSB]	
-				$"%CollectableSailAwayPractice2".reset()			
-				explainPopup.showDialog("SailAwayExplainText",showOnlyButonsArray)
+			$"%ButtonsContainer".loadButtons(Constants.DefaultYesNo.No)
+			replacedPushAwayButtons=true
+			boat.setNewBoatPosition(1124,2596,0,Constants.StateOars.SlippenSB,true)
+			var showOnlyButonsArray  =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.PeddelendStrijkenSB,Constants.Command.StrijkenBB,Constants.Command.HalenSB,Constants.Command.UitbrengenSB]	
+			$"%CollectableSailAwayPractice2".reset()			
+			explainPopup.showDialog("SailAwayExplainText",showOnlyButonsArray)
+		Constants.StartItem.AangelegdUitzetten:
+			$"%ButtonsContainer".loadButtons(Constants.DefaultYesNo.Yes)
+			replacedPushAwayButtons=true
+			boat.setNewBoatPosition(1124,2608,0,Constants.StateOars.RiemenHoogSB,true)
+			var showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.HalenSB,Constants.Command.UitzettenSB,Constants.Command.VastroeienBeideBoorden]
+			$"%CollectableSailAwayPractice3".reset()
+			explainPopup.showDialog("SailAwayExplainPushAwayText",showOnlyButonsArray)
 		Constants.StartItem.Intro:
 			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)		
 			$"%IntroDialog".start()
@@ -386,6 +395,3 @@ func doStart(startItemId):
 	if callStartPlay: 
 		GameEvents.startPlay()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
