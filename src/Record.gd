@@ -173,7 +173,7 @@ func getDemo(practice : int):
 			return "{\"endTime\":31184142,\"practice\":8,\"recording_commands\":[30,25,0,32,10,10,1,1],\"recording_time\":[2261241,9414567,13557799,15150357,17263784,17564205,23206055,24132887]}"
 		   # return "{\"endTime\":33749327,\"practice\":8,\"recording_commands\":[30,25,0,32,10,1],\"recording_time\":[978477,2776212,14046524,15512073,17039580,24109740]}"
 	if practice==Constants.StartItem.AangelegdUitzetten:
-		return "{\"endTime\":17807845,\"practice\":6,\"recording_commands\":[13,3,1,8,30],\"recording_time\":[1259870,3562523,6307884,8362506,9635747]}"
+		return "{\"endTime\":17807845,\"practice\":16,\"recording_commands\":[13,3,1,8,30],\"recording_time\":[1259870,3562523,6307884,8362506,9635747]}"
 	if practice==Constants.StartItem.Aangelegd:
 		return  "{\"endTime\":32715542,\"practice\":6,\"recording_commands\":[11,1,23,7,1,30],\"recording_time\":[1210222,7357798,8721827,11092707,18236843,20845239]}"
 	if practice==Constants.StartItem.StartStrijkendAanleggen:

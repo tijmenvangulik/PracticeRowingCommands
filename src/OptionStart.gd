@@ -340,7 +340,7 @@ func doStart(startItemId):
 			$"%ButtonsContainer".loadButtons(Constants.DefaultYesNo.Yes)
 			replacedPushAwayButtons=true
 			boat.setNewBoatPosition(1124,2608,0,Constants.StateOars.RiemenHoogSB,true)
-			var showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.HalenSB,Constants.Command.UitzettenSB,Constants.Command.VastroeienBeideBoorden]
+			var showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.HalenSB,Constants.Command.UitzettenSB,Constants.Command.VastroeienBeideBoorden,Constants.Command.UitbrengenSB]
 			$"%CollectableSailAwayPractice3".reset()
 			explainPopup.showDialog("SailAwayExplainPushAwayText",showOnlyButonsArray)
 		Constants.StartItem.Intro:
