@@ -21,6 +21,7 @@ func setSettingInUrl():
 	if Settings.shortSettingsInUrl:
 		var settings=$"%SettingsDialog".getSettings(true)	
 		var urlSettings=to_json(settings).percent_encode()
+		print(urlSettings)
 		var url=Constants.serverUrl+"/saveSharedSetting?data="+urlSettings
 		$HTTPRequest.request(url, [], true, HTTPClient.METHOD_GET) 
 		return false
@@ -33,6 +34,7 @@ func setFullSettingsinUrl():
 	var time=Time.get_unix_time_from_system()
 	settings["copiedTimestamp"]=time;
 	var urlSettings=to_json(settings).percent_encode()
+	print(urlSettings)
 	if sendSettingsToBrowser("&settings="+urlSettings+"'"):
 		show_modal(true)
 	
