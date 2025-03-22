@@ -81,15 +81,34 @@ func getPracticeTranslation(startPos:int)->String:
 	if startPos>=0 && startPos<Settings.practiceTranslations.size():
 		return Settings.practiceTranslations[startPos]
 	return ""
+
+func getPracticeExplainText(startPos:int):
+	var result=getPracticeExplainTranslation(startPos)
+	if result=="" && startPos<Constants.practiceExplainTexts.size():
+		result=Constants.practiceExplainTexts[startPos]
+	return result
 	
+func getPracticeExplainTranslation(startPos:int)->String:
+	if startPos>=0 && startPos<Settings.practiceExplainTranslations.size():
+		return Settings.practiceExplainTranslations[startPos]
+	return ""
+
 func setPracticeTranslation(startPos:int,title : String):	
 	Settings.practiceTranslations=calcSetPracticeTranslation(Settings.practiceTranslations,startPos,title)
 
+func setPracticeExplainTranslation(startPos:int,text : String):	
+	Settings.practiceExplainTranslations=calcSetPracticeExplainTranslation(Settings.practiceExplainTranslations,startPos,text)
+
+func calcArraySetUpdate(items ,startPos:int,value : String):
+	if value!="":
+		while startPos>=items.size():
+			items.append("")
+	if startPos<items.size():
+		items[startPos]=value
+	return items
+
 func calcSetPracticeTranslation(practiceTranslations ,startPos:int,title : String):
-	if title!="":
-		while startPos>=practiceTranslations.size():
-			practiceTranslations.append("")
-	if startPos<practiceTranslations.size():
-		practiceTranslations[startPos]=title
-	return practiceTranslations
+	return calcArraySetUpdate(practiceTranslations,startPos,title)
 	
+func calcSetPracticeExplainTranslation(practiceEplainTranslations ,startPos:int,text : String):
+	return calcArraySetUpdate(practiceEplainTranslations,startPos,text)

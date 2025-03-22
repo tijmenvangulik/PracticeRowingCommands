@@ -3801,10 +3801,10 @@ icon_align = 2
 
 [node name="ModifyPracticeDialog" type="WindowDialog" parent="CanvasLayer"]
 unique_name_in_owner = true
-margin_left = 135.0
-margin_top = 190.0
+margin_left = 115.0
+margin_top = 145.0
 margin_right = 879.0
-margin_bottom = 401.0
+margin_bottom = 581.0
 theme = ExtResource( 29 )
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
 custom_styles/panel = ExtResource( 33 )
@@ -3827,19 +3827,41 @@ valign = 1
 [node name="ModifiedTitleCheckBox" type="CheckButton" parent="CanvasLayer/ModifyPracticeDialog"]
 anchor_right = 0.045
 anchor_bottom = 0.158
-margin_left = 13.0
-margin_top = 62.0
-margin_right = 131.52
-margin_bottom = 68.662
+margin_left = 66.0
+margin_top = 66.0
+margin_right = 184.52
+margin_bottom = 29.112
+grow_horizontal = 0
 custom_icons/off = ExtResource( 25 )
 custom_icons/on = ExtResource( 66 )
 text = "NewTitle"
+align = 2
+
+[node name="ModifiedExplainTextCheckBox" type="CheckButton" parent="CanvasLayer/ModifyPracticeDialog"]
+anchor_right = 0.045
+anchor_bottom = 0.158
+margin_left = 66.0
+margin_top = 106.0
+margin_right = 184.52
+margin_bottom = 68.112
+grow_horizontal = 0
+custom_icons/off = ExtResource( 25 )
+custom_icons/on = ExtResource( 66 )
+text = "NewText"
+align = 2
 
 [node name="ModifiedTitle" type="TextEdit" parent="CanvasLayer/ModifyPracticeDialog"]
-margin_left = 198.0
+margin_left = 219.0
 margin_top = 69.0
-margin_right = 710.0
+margin_right = 731.0
 margin_bottom = 94.0
+readonly = true
+
+[node name="ModifiedExplainText" type="TextEdit" parent="CanvasLayer/ModifyPracticeDialog"]
+margin_left = 219.0
+margin_top = 109.0
+margin_right = 731.0
+margin_bottom = 382.0
 readonly = true
 
 [node name="HSplitContainer" type="HSplitContainer" parent="CanvasLayer/ModifyPracticeDialog"]
@@ -3981,6 +4003,7 @@ script = ExtResource( 84 )
 [connection signal="pressed" from="CanvasLayer/SettingsDialog/ShareSettings" to="CanvasLayer/SettingsDialog" method="_on_ShareSettings_pressed"]
 [connection signal="pressed" from="CanvasLayer/ShareSettingsDialog/CloseDialog" to="CanvasLayer/ShareSettingsDialog" method="_on_CloseDialog_pressed"]
 [connection signal="pressed" from="CanvasLayer/ModifyPracticeDialog/ModifiedTitleCheckBox" to="CanvasLayer/ModifyPracticeDialog" method="_on_ModifiedTitleCheckBox_pressed"]
+[connection signal="pressed" from="CanvasLayer/ModifyPracticeDialog/ModifiedExplainTextCheckBox" to="CanvasLayer/ModifyPracticeDialog" method="_on_ModifiedTextCheckBox_pressed"]
 [connection signal="pressed" from="CanvasLayer/ModifyPracticeDialog/HSplitContainer/Cancel" to="CanvasLayer/ModifyPracticeDialog" method="_on_Cancel_pressed"]
 [connection signal="pressed" from="CanvasLayer/ModifyPracticeDialog/HSplitContainer/Ok" to="CanvasLayer/ModifyPracticeDialog" method="_on_Ok_pressed"]
 [connection signal="pressed" from="CanvasLayer/TestEndGame" to="CanvasLayer/TestEndGame" method="_on_TestEndGame_pressed"]

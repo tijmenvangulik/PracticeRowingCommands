@@ -74,16 +74,19 @@ func savePractices():
 					disabledPractices.append(startItem)
 					
 	var practiceTranslations=[]
+	var practiceExplainTranslations=[]
 	for i in grid.get_child_count():
 		#for the 3de column
 		if i>=grid.columns && i % grid.columns == 2:
 			var buttonTextItem=grid.get_child(i)
 			practiceTranslations=Practices.calcSetPracticeTranslation(practiceTranslations, buttonTextItem.startPos,buttonTextItem.modifiedTitle)
+			practiceExplainTranslations=Practices.calcSetPracticeExplainTranslation(practiceExplainTranslations,buttonTextItem.startPos,buttonTextItem.modifiedExplainText)
 
-		
-	if disabledPractices!=Settings.disabledPractices || practiceTranslations!=Settings.practiceTranslations:
+	
+	if disabledPractices!=Settings.disabledPractices || practiceTranslations!=Settings.practiceTranslations || Settings.practiceExplainTranslations!=practiceExplainTranslations:
 		Settings.disabledPractices=disabledPractices
 		Settings.practiceTranslations=practiceTranslations;
+		Settings.practiceExplainTranslations=practiceExplainTranslations
 		GameEvents.practicesChanged()
 		GameEvents.settingsChanged()
 		

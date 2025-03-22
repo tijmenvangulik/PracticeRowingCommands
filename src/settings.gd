@@ -22,3 +22,4 @@ var shortSettingsInUrl = true
 var copiedFromSettingId=""
 var copiedTimestamp=0
 var practiceTranslations= [""]
+var practiceExplainTranslations= [""]

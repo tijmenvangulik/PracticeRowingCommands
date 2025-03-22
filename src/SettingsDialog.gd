@@ -243,7 +243,8 @@ func getSettings(removePrivate=false):
 	  "shortSettingsInUrl":Settings.shortSettingsInUrl,
 	  "copiedFromSettingId":Settings.copiedFromSettingId,
 	  "copiedTimestamp":Settings.copiedTimestamp,
-	  "practiceTranslations":Settings.practiceTranslations
+	  "practiceTranslations":Settings.practiceTranslations,
+	  "practiceExplainTranslations":Settings.practiceExplainTranslations
 	}
 	if removePrivate:
 		removePrivateSettings(save_dict)
@@ -351,7 +352,12 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 	if Settings.highContrast!=highContrastOn:
 		Settings.highContrast=highContrastOn
 		GameEvents.highContrastChanged(highContrastOn)
-
+    
+	var practiceExplainTranslations=[]
+	if dict.has("practiceExplainTranslations"):
+		practiceExplainTranslations=dict["practiceExplainTranslations"]
+	Settings.practiceExplainTranslations=practiceExplainTranslations
+	
 	var disabledPractices=[]
 	if dict.has("disabledPractices"):
 		disabledPractices=dict["disabledPractices"]

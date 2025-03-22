@@ -19,14 +19,14 @@ func _input(event):
 		visible=false
 	
 # Called when the node enters the scene tree for the first time.
-func showDialog(explainText,showLessButonsArray):
+func showDialog(startItemPos,showLessButonsArray):
 	_practice=$"%OptionStart".currentStartPos
 	$HBoxContainer/StartDemo.visible=$"%Recorder".hasDemo(_practice)
 	var recorder=$"%Recorder";
 	if GameState.isReplaying:
 		_on_StartLessButtons_pressed()
 	else:
-		_explainText=explainText
+		_explainText=Practices.getPracticeExplainText(startItemPos)
 		_showLessButtonsArray=showLessButonsArray
 		showText()
 		show_modal(true)
@@ -34,7 +34,7 @@ func showDialog(explainText,showLessButonsArray):
 	
 func showText():
 	var title=Practices.getTranslatedPracticeName(_practice)
-	var text="[color=#4986c5][u]"+tr(title)+"[/u][/color]\n"
+	var text="[color=#84a9c9][u]"+tr(title)+"[/u][/color]\n"
 	text=text+tr(_explainText);
 	if text!=null && text!="" && text!=_explainText :
 		$PracticeExplain.set_bbcode(Utilities.replaceCommandsInText(text,true))

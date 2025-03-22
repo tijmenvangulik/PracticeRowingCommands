@@ -42,7 +42,7 @@ func replaceCommandText(commandText :String) ->String:
 			return translation
 	return tr(commandText)
 	
-func replaceCommandsInText(text:String,decorate=false ) ->String:
+func replaceCommandsInText(text:String,decorate=false) ->String:
 	var lastPos=0
 	while lastPos>=0:
 		lastPos=text.find("{",lastPos);

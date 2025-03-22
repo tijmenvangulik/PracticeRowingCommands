@@ -307,43 +307,43 @@ func doStart(startItemId):
 			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)
 			var showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.VastroeienBeideBoorden,Constants.Command.Bedankt]	
 			$"%CollectableStopBoatPractice".reset()
-			explainPopup.showDialog("StopBoatPracticeExplainText",showOnlyButonsArray)
+			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 		Constants.StartItem.AchteruitvarenOefenening:
 			forwards=false
 			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,false)
 			var showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.VastroeienBeideBoorden,Constants.Command.Bedankt,Constants.Command.StrijkenBeidenBoorden]	
 			$"%CollectableBackDownPractice".reset()
-			explainPopup.showDialog("BackdownPracticeExplainText",showOnlyButonsArray)
+			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 		Constants.StartItem.BochtOefenening:
 			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)
 			var showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.VastroeienBeideBoorden,Constants.Command.Bedankt,Constants.Command.HalenSB,Constants.Command.HalenBB,Constants.Command.HalenBeideBoorden,Constants.Command.VastroeienBB,Constants.Command.VastroeienSB]	
 			$"%CollectableMakeTurnPractice".reset()
-			explainPopup.showDialog("TurnPracticeExplainText",showOnlyButonsArray)
+			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 		Constants.StartItem.AchteruitBochtOefenening:
 			forwards=false
 			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,false)
 			var showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.StrijkenBeidenBoorden,Constants.Command.VastroeienBeideBoorden,Constants.Command.Bedankt,Constants.Command.StrijkenSB,Constants.Command.StrijkenBB]	
 			$"%CollectableBackDownTurnPractice".reset()
-			explainPopup.showDialog("BackdownTurnPracticeExplainText",showOnlyButonsArray)
+			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 		Constants.StartItem.Aanleggen:
 			boat.setNewBoatPosition(702.307,2145.531,45,Constants.StateOars.Roeien,true)
 			$"%CollectableMooringPractice".reset()			
 			var showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.RiemenHoogSB,Constants.Command.VastroeienBB]	
-			explainPopup.showDialog("MoringExplainRaftText",showOnlyButonsArray)
+			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 		Constants.StartItem.Aangelegd:
 			$"%ButtonsContainer".loadButtons(Constants.DefaultYesNo.No)
 			replacedPushAwayButtons=true
 			boat.setNewBoatPosition(1124,2596,0,Constants.StateOars.SlippenSB,true)
 			var showOnlyButonsArray  =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.PeddelendStrijkenSB,Constants.Command.StrijkenBB,Constants.Command.HalenSB,Constants.Command.UitbrengenSB]	
 			$"%CollectableSailAwayPractice2".reset()			
-			explainPopup.showDialog("SailAwayExplainText",showOnlyButonsArray)
+			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 		Constants.StartItem.AangelegdUitzetten:
 			$"%ButtonsContainer".loadButtons(Constants.DefaultYesNo.Yes)
 			replacedPushAwayButtons=true
 			boat.setNewBoatPosition(1124,2608,0,Constants.StateOars.RiemenHoogSB,true)
 			var showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.HalenSB,Constants.Command.UitzettenSB,Constants.Command.VastroeienBeideBoorden,Constants.Command.UitbrengenSB]
 			$"%CollectableSailAwayPractice3".reset()
-			explainPopup.showDialog("SailAwayExplainPushAwayText",showOnlyButonsArray)
+			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 		Constants.StartItem.Intro:
 			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)		
 			$"%IntroDialog".start()
@@ -354,19 +354,19 @@ func doStart(startItemId):
 			boat.setNewBoatPosition(1589.091,2426.734,-30,Constants.StateOars.Roeien,false)
 			$"%CollectableBackDownMooringPractice2".reset()			
 			var showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.StrijkenBeidenBoorden,Constants.Command.RiemenHoogSB,Constants.Command.VastroeienBB]	
-			explainPopup.showDialog("BackwardsMoringRaftExplainText",showOnlyButonsArray)
+			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 		Constants.StartItem.AanleggenWal: 
 			boat.setNewBoatPosition(2082.239,2042.082,-45,Constants.StateOars.Roeien,true)
 			$"%CollectableMooringHighWallPractice".reset()
 			var showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.SlippenSB,Constants.Command.VastroeienBB,Constants.Command.IntrekkenSB]	
-			explainPopup.showDialog("MoringExplainText",showOnlyButonsArray)
+			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 		Constants.StartItem.StartStrijkendAanleggenWal: 
 			forwards=false
 			
 			boat.setNewBoatPosition(2220.23,1472.777,-120,Constants.StateOars.Roeien,false)
 			$"%CollectableBackDownMooringHighWallPractice".reset()
 			var showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.StrijkenBeidenBoorden,Constants.Command.SlippenSB,Constants.Command.VastroeienBB,Constants.Command.IntrekkenSB]	
-			explainPopup.showDialog("BackwardsMoringExplainText",showOnlyButonsArray)
+			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 		Constants.StartItem.StarGame:
 			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)
 			GameState.changeCollectGameState(Constants.CollectGameState.ShowHighScores)
@@ -377,18 +377,18 @@ func doStart(startItemId):
 			$"%CollectableMooringHarbourPractice2".reset()
 			$"%CollectableMooringHarbourPractice3".reset()
 			var showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.RiemenHoogSB,Constants.Command.VastroeienSB,Constants.Command.HalenBB,Constants.Command.HalenSB,Constants.Command.StrijkenBeidenBoorden,Constants.Command.StrijkenBB,Constants.Command.StrijkenSB,Constants.Command.HalenBeideBoorden,Constants.Command.VastroeienBB,Constants.Command.VastroeienBeideBoorden]	
-			explainPopup.showDialog("MoringHarbourExplainText",showOnlyButonsArray)
+			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 		Constants.StartItem.SlalomPractice: 
 			boat.setNewBoatPosition(945,2160,0,Constants.StateOars.Roeien,true)
 			$"%SlalomPracticeItems".changeVisible(true)
 			$"%CollectableSlalomPractice".reset()
 			var showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.VastroeienSB,Constants.Command.HalenBB,Constants.Command.HalenSB,Constants.Command.StrijkenBeidenBoorden,Constants.Command.StrijkenBB,Constants.Command.StrijkenSB,Constants.Command.HalenBeideBoorden,Constants.Command.VastroeienBB,Constants.Command.VastroeienBeideBoorden,Constants.Command.SlippenBB,Constants.Command.Slippen,Constants.Command.SlippenSB,Constants.Command.UitbrengenBB,Constants.Command.Uitbrengen,Constants.Command.UitbrengenSB,Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt]
-			explainPopup.showDialog("StartSlalomPracticeExplainText",showOnlyButonsArray)
+			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 		Constants.StartItem.BridgePractice: 
 			boat.setNewBoatPosition(1915,110,270,Constants.StateOars.Roeien,true)
 			$"%CollectableBridgePractice".reset()
 			var showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.SlagklaarAf,Constants.Command.Slippen,Constants.Command.Uitbrengen,Constants.Command.PakMaarWeerOp]	
-			explainPopup.showDialog("BridgeExplainText",showOnlyButonsArray)
+			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 			
 	if GameState.isForwards!=forwards:
 		GameState.changeForwards(forwards)

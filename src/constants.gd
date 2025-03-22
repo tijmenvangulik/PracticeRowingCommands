@@ -201,4 +201,23 @@ enum StartItem {
   AangelegdUitzetten #16
 }
 
+var practiceExplainTexts= [
+  "",#StartTour,  #0
+  "StopBoatPracticeExplainText",#StilleggenOefenening, #1
+  "TurnPracticeExplainText",#BochtOefenening, #2
+  "BackdownPracticeExplainText",#AchteruitvarenOefenening, #3
+  "BackdownTurnPracticeExplainText",#AchteruitBochtOefenening #4
+  "MoringExplainRaftText",#Aanleggen, #5
+  "SailAwayExplainText",#Aangelegd, #6
+  "BackwardsMoringRaftExplainText",#StartStrijkendAanleggen, #7
+  "MoringExplainText",#AanleggenWal, #8
+  "BackwardsMoringExplainText",#StartStrijkendAanleggenWal, #9
+  "",#StarGame, #10
+  "",#Start, #11
+  "",#Intro, #12
+  "MoringHarbourExplainText",#MoringHarbour, #13
+  "StartSlalomPracticeExplainText",#SlalomPractice, #14
+  "BridgeExplainText",#BridgePractice, #15
+  "SailAwayExplainPushAwayText"#AangelegdUitzetten #16
+]
 const serverUrl="https://ergometer-space.org/manager"
