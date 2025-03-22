@@ -33,7 +33,7 @@ func getCommandShortcut(command:int)->String:
 	if command>=0 && command<Settings.shortcutTranslations.size():
 		return Settings.shortcutTranslations[command]
 	return ""
-	
+
 func replaceCommandText(commandText :String) ->String:
 	var command=commandNameToCommand(commandText)
 	if command>=0:
@@ -55,7 +55,7 @@ func replaceCommandsInText(text:String,decorate=false ) ->String:
 					commandText="[color=#33eab4][u]"+commandText+"[/u][/color]"
 				text=text.substr(0,lastPos)+commandText+text.substr(posEnd+1,text.length())
 	return text
-	
+
 func formatTime(minutes,seconds,miliSeconds):
 	var minStr=String(minutes)
 	if minStr.length()==1:

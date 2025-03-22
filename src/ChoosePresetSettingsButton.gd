@@ -38,5 +38,5 @@ func selected(itemIndex : int):
 		$"..".setSettings(settings,true)
 
 		resetSelected()
-
+		$"..".loadTabs()
 	

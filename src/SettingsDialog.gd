@@ -25,6 +25,7 @@ func handleShow():
 	GameState.dialogIsOpen=visible
 	if visible:
 		$TabContainer/GeneralSettingsTab/GridContainer/RuleSetDropDown.grab_focus()
+		loadTabs()
 		
 func _highContrastChangedSignal(highContrastOn):
 	var highContrastButton=$TabContainer/DisplayTab/GridContainer/HBoxContainer3/HighContrastButton
@@ -241,7 +242,8 @@ func getSettings(removePrivate=false):
 	  "highContrast":Settings.highContrast,
 	  "shortSettingsInUrl":Settings.shortSettingsInUrl,
 	  "copiedFromSettingId":Settings.copiedFromSettingId,
-	  "copiedTimestamp":Settings.copiedTimestamp
+	  "copiedTimestamp":Settings.copiedTimestamp,
+	  "practiceTranslations":Settings.practiceTranslations
 	}
 	if removePrivate:
 		removePrivateSettings(save_dict)
@@ -292,6 +294,7 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 	var translations={}
 	if dict.has("translations"):
 		translations=dict["translations"]
+	
 	
 	var textTranslations={}
 	if dict.has("textTranslations"):
@@ -362,10 +365,16 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 		disabledPracticesUseDefault=dict["disabledPracticesUseDefault"]
 	else:
 		disabledPracticesUseDefault=disabledPractices.size()==0
-		
-	if Settings.disabledPractices!=disabledPractices || disabledPracticesUseDefault!=Settings.disabledPracticesUseDefault:
+	
+	var practiceTranslations=[]
+	if dict.has("practiceTranslations"):
+		practiceTranslations=dict["practiceTranslations"]
+	
+	
+	if Settings.disabledPractices!=disabledPractices || disabledPracticesUseDefault!=Settings.disabledPracticesUseDefault || Settings.practiceTranslations!=practiceTranslations:
 		Settings.disabledPractices=disabledPractices
 		Settings.disabledPracticesUseDefault=disabledPracticesUseDefault;
+		Settings.practiceTranslations=practiceTranslations
 		GameEvents.practicesChanged()
 	#else:
 	#	customButtonSet=GameState.defaultButtonSet
@@ -599,6 +608,7 @@ func _on_GridContainerHeader_item_rect_changed():
 
 
 func saveAndClose():
+	saveTabs()
 	GameEvents.settingsChanged()	
 	visible=false
 	GameEvents.startPlay()
@@ -646,3 +656,8 @@ func _on_HighContrastButton_toggled(button_pressed):
 func _on_ShortSharedSettings_toggled(button_pressed):
 	Settings.shortSettingsInUrl=button_pressed
 	GameEvents.settingsChanged()
+
+func saveTabs():
+	$TabContainer/EnablePracticesTab.savePractices()
+func loadTabs():
+	$TabContainer/EnablePracticesTab.loadPractices()

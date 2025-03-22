@@ -57,6 +57,12 @@ func getPracticeName(startItem :int):
 		return practiceNames[ind]
 	return ""
 	
+func getTranslatedPracticeName(startItem : int):
+	var title=getPracticeTranslation(startItem)
+	if title=="":
+		title=getPracticeName(startItem)
+	return title
+	
 func loadLanguageDisabledPractices():
 	var disabledPractices=tr("DisabledPractices")
 	if disabledPractices!=null && disabledPractices!="DisabledPractices" && disabledPractices!="":		
@@ -70,4 +76,20 @@ func loadLanguageDisabledPractices():
 
 func _languageChangedSignal():
 	Practices.loadLanguageDisabledPractices()
+
+func getPracticeTranslation(startPos:int)->String:
+	if startPos>=0 && startPos<Settings.practiceTranslations.size():
+		return Settings.practiceTranslations[startPos]
+	return ""
+	
+func setPracticeTranslation(startPos:int,title : String):	
+	Settings.practiceTranslations=calcSetPracticeTranslation(Settings.practiceTranslations,startPos,title)
+
+func calcSetPracticeTranslation(practiceTranslations ,startPos:int,title : String):
+	if title!="":
+		while startPos>=practiceTranslations.size():
+			practiceTranslations.append("")
+	if startPos<practiceTranslations.size():
+		practiceTranslations[startPos]=title
+	return practiceTranslations
 	

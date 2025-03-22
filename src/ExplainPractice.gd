@@ -1,7 +1,7 @@
 extends WindowDialog
 
 var _explainText=""
-
+var _practice=-1
 var _showLessButtonsArray=[]
 
 func _ready():
@@ -20,8 +20,8 @@ func _input(event):
 	
 # Called when the node enters the scene tree for the first time.
 func showDialog(explainText,showLessButonsArray):
-	var practice=$"%OptionStart".currentStartPos
-	$HBoxContainer/StartDemo.visible=$"%Recorder".hasDemo(practice)
+	_practice=$"%OptionStart".currentStartPos
+	$HBoxContainer/StartDemo.visible=$"%Recorder".hasDemo(_practice)
 	var recorder=$"%Recorder";
 	if GameState.isReplaying:
 		_on_StartLessButtons_pressed()
@@ -33,7 +33,9 @@ func showDialog(explainText,showLessButonsArray):
 		$HBoxContainer/StartLessButtons.grab_focus()
 	
 func showText():
-	var text=tr(_explainText);
+	var title=Practices.getTranslatedPracticeName(_practice)
+	var text="[color=#4986c5][u]"+tr(title)+"[/u][/color]\n"
+	text=text+tr(_explainText);
 	if text!=null && text!="" && text!=_explainText :
 		$PracticeExplain.set_bbcode(Utilities.replaceCommandsInText(text,true))
 	

@@ -37,7 +37,8 @@ func loadItems():
 	clear()
 	for startItem in Practices.practices:
 		if Practices.practiceIsVisible(startItem):
-			add_item(Practices.getPracticeName(startItem),startItem)
+			var title=Practices.getTranslatedPracticeName(startItem)
+			add_item(title,startItem)
 	add_separator()
 	add_item("StartOpWater",Constants.StartItem.Start)
 	add_item("ShowIntroText",Constants.StartItem.Intro)
@@ -138,7 +139,7 @@ func setIcons():
 		
 		if itemText=="":
 			itemId = -1
-		if isPractice(itemId):
+		if isPractice(itemId):		
 			if itemId!=Constants.StartItem.StartTour: 
 				nrOfPractices=nrOfPractices+1
 			var iconIndex=1

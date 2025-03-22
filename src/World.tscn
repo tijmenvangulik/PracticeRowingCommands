@@ -1,4 +1,4 @@
-[gd_scene load_steps=140 format=2]
+[gd_scene load_steps=142 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -101,6 +101,8 @@
 [ext_resource path="res://OptionHighContrast.gd" type="Script" id=99]
 [ext_resource path="res://EscapeShortcut.tres" type="ShortCut" id=100]
 [ext_resource path="res://Bridge.tscn" type="PackedScene" id=101]
+[ext_resource path="res://PracticeEditTextButton.tscn" type="PackedScene" id=102]
+[ext_resource path="res://ModifyPracticeDialog.gd" type="Script" id=103]
 
 [sub_resource type="ShaderMaterial" id=43]
 shader = ExtResource( 80 )
@@ -3351,17 +3353,17 @@ custom_styles/normal = ExtResource( 64 )
 text = "ResetPractices"
 
 [node name="ShortSharedSettingsLabel" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_top = 241.0
+margin_top = 206.0
 margin_right = 198.0
-margin_bottom = 260.0
+margin_bottom = 225.0
 custom_fonts/font = ExtResource( 50 )
 text = "ShareSettingsUsingServer"
 
 [node name="ShortSharedSettings" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_left = 218.0
-margin_top = 235.0
+margin_top = 200.0
 margin_right = 368.0
-margin_bottom = 266.0
+margin_bottom = 231.0
 custom_icons/off = ExtResource( 25 )
 custom_icons/on = ExtResource( 66 )
 pressed = true
@@ -3621,40 +3623,37 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="ExplainEnablePractices" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/EnablePracticesTab"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/SettingsDialog/TabContainer/EnablePracticesTab"]
 margin_left = 14.0
-margin_top = 11.0
-margin_right = 543.0
-margin_bottom = 31.0
-rect_min_size = Vector2( 240, 20 )
-size_flags_horizontal = 0
-custom_fonts/font = ExtResource( 50 )
-text = "ExplainVisiblePracticesText"
+margin_top = 45.0
+margin_right = 957.0
+margin_bottom = 483.0
+scroll_horizontal_enabled = false
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/SettingsDialog/TabContainer/EnablePracticesTab"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 69.0
-margin_right = 10.0
-margin_bottom = -15.0
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/SettingsDialog/TabContainer/EnablePracticesTab/ScrollContainer"]
+custom_constants/vseparation = 4
+custom_constants/hseparation = 20
+columns = 3
 
 [node name="UseDefaultPractices" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/EnablePracticesTab"]
 margin_left = 6.0
-margin_top = 34.0
+margin_top = 4.0
 margin_right = 82.0
-margin_bottom = 74.0
+margin_bottom = 44.0
 custom_icons/off = ExtResource( 25 )
 custom_icons/on = ExtResource( 66 )
 pressed = true
 
 [node name="Label" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/EnablePracticesTab"]
 margin_left = 85.0
-margin_top = 44.0
+margin_top = 14.0
 margin_right = 293.0
-margin_bottom = 63.0
+margin_bottom = 33.0
 custom_fonts/font = ExtResource( 50 )
 text = "VisiblePracticesUseDefault"
+
+[node name="PracticeEditTextButton" parent="CanvasLayer/SettingsDialog/TabContainer/EnablePracticesTab" instance=ExtResource( 102 )]
+visible = false
 
 [node name="EditCommandText" parent="CanvasLayer/SettingsDialog" instance=ExtResource( 59 )]
 visible = false
@@ -3800,6 +3799,93 @@ icon_align = 2
 
 [node name="HTTPRequestLoad" type="HTTPRequest" parent="CanvasLayer/ShareSettingsDialog"]
 
+[node name="ModifyPracticeDialog" type="WindowDialog" parent="CanvasLayer"]
+unique_name_in_owner = true
+margin_left = 135.0
+margin_top = 190.0
+margin_right = 879.0
+margin_bottom = 401.0
+theme = ExtResource( 29 )
+custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
+custom_styles/panel = ExtResource( 33 )
+resizable = true
+script = ExtResource( 103 )
+
+[node name="Title" type="Label" parent="CanvasLayer/ModifyPracticeDialog"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -20.0
+margin_top = 21.0
+margin_right = 20.0
+margin_bottom = 40.0
+grow_horizontal = 2
+custom_fonts/font = ExtResource( 50 )
+text = "Titel"
+align = 1
+valign = 1
+
+[node name="ModifiedTitleCheckBox" type="CheckButton" parent="CanvasLayer/ModifyPracticeDialog"]
+anchor_right = 0.045
+anchor_bottom = 0.158
+margin_left = 13.0
+margin_top = 62.0
+margin_right = 131.52
+margin_bottom = 68.662
+custom_icons/off = ExtResource( 25 )
+custom_icons/on = ExtResource( 66 )
+text = "NewTitle"
+
+[node name="ModifiedTitle" type="TextEdit" parent="CanvasLayer/ModifyPracticeDialog"]
+margin_left = 198.0
+margin_top = 69.0
+margin_right = 710.0
+margin_bottom = 94.0
+readonly = true
+
+[node name="HSplitContainer" type="HSplitContainer" parent="CanvasLayer/ModifyPracticeDialog"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -164.0
+margin_top = -44.0
+margin_right = 164.0
+margin_bottom = -10.0
+grow_horizontal = 2
+custom_constants/separation = 8
+
+[node name="Cancel" type="Button" parent="CanvasLayer/ModifyPracticeDialog/HSplitContainer"]
+margin_right = 160.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 52 )
+custom_styles/pressed = ExtResource( 53 )
+custom_styles/focus = ExtResource( 52 )
+custom_styles/normal = ExtResource( 64 )
+shortcut_in_tooltip = false
+shortcut = ExtResource( 100 )
+text = "Cancel"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ok" type="Button" parent="CanvasLayer/ModifyPracticeDialog/HSplitContainer"]
+margin_left = 168.0
+margin_right = 328.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 34 )
+custom_styles/focus = ExtResource( 34 )
+custom_styles/normal = ExtResource( 10 )
+text = "Ok"
+icon_align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Tooltip" parent="CanvasLayer" instance=ExtResource( 38 )]
 margin_left = -23.0
 margin_top = -753.0
@@ -3874,7 +3960,6 @@ script = ExtResource( 84 )
 [connection signal="pressed" from="CanvasLayer/RightTopButtons/ZoomContainer/ZoomPlus" to="CanvasLayer/RightTopButtons/ZoomContainer" method="_on_ZoomPlus_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightTopButtons/ZoomContainer/ZoomMin" to="CanvasLayer/RightTopButtons/ZoomContainer" method="_on_ZoomMin_pressed"]
 [connection signal="visibility_changed" from="CanvasLayer/SettingsDialog" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_SettingsDialog_visibility_changed"]
-[connection signal="visibility_changed" from="CanvasLayer/SettingsDialog" to="CanvasLayer/SettingsDialog/TabContainer/EnablePracticesTab" method="_on_SettingsDialog_visibility_changed"]
 [connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/RuleSetDropDown" to="CanvasLayer/SettingsDialog" method="_on_RuleSetDropDown_item_selected"]
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/ShowCommandTooltips" to="CanvasLayer/SettingsDialog" method="_on_ShowCommandTooltips_toggled"]
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons" to="CanvasLayer/SettingsDialog" method="_on_ShowShortCutsInButtons_toggled"]
@@ -3895,6 +3980,9 @@ script = ExtResource( 84 )
 [connection signal="pressed" from="CanvasLayer/SettingsDialog/CloseSettingsButton" to="CanvasLayer/SettingsDialog" method="_on_CloseSettingsButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/SettingsDialog/ShareSettings" to="CanvasLayer/SettingsDialog" method="_on_ShareSettings_pressed"]
 [connection signal="pressed" from="CanvasLayer/ShareSettingsDialog/CloseDialog" to="CanvasLayer/ShareSettingsDialog" method="_on_CloseDialog_pressed"]
+[connection signal="pressed" from="CanvasLayer/ModifyPracticeDialog/ModifiedTitleCheckBox" to="CanvasLayer/ModifyPracticeDialog" method="_on_ModifiedTitleCheckBox_pressed"]
+[connection signal="pressed" from="CanvasLayer/ModifyPracticeDialog/HSplitContainer/Cancel" to="CanvasLayer/ModifyPracticeDialog" method="_on_Cancel_pressed"]
+[connection signal="pressed" from="CanvasLayer/ModifyPracticeDialog/HSplitContainer/Ok" to="CanvasLayer/ModifyPracticeDialog" method="_on_Ok_pressed"]
 [connection signal="pressed" from="CanvasLayer/TestEndGame" to="CanvasLayer/TestEndGame" method="_on_TestEndGame_pressed"]
 [connection signal="toggled" from="CanvasLayer/Recorder" to="CanvasLayer/Recorder" method="_on_Record_toggled"]
 [connection signal="pressed" from="CanvasLayer/Replay" to="CanvasLayer/Recorder" method="_on_Replay_pressed"]
