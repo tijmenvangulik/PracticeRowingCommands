@@ -42,7 +42,7 @@ func setButtonText(newText):
 func _on_EditCommandText_customCommandTextChanged(changed_command,changed_commandName, changed_value):
 	if  changed_command==command:
 		var button=$GridButton
-		setButtonText(changed_value)
+		setButtonTextFromCommand(changed_value)
 
 func _on_EditCommandText_customShortcutTextChanged(changed_command,changed_commandName, changed_value):
 	if  changed_command==command:
@@ -84,7 +84,18 @@ func get_tooltip_text(node):
 		returnTooltip=returnTooltip+tr("Shortcut")+": "+shortcut
 	
 	return returnTooltip
-	
+
+func setButtonTextFromCommand(commandName):
+	var altButtonCommandName=commandName+"_buttonOnly";
+	var buttonResource=tr(altButtonCommandName)
+	if buttonResource  && buttonResource!="-" && buttonResource!="" && buttonResource!=altButtonCommandName:
+		setButtonText(buttonResource)
+	else:
+		setButtonText(commandName)
+	var alterNativeText=Utilities.getCommandTranslation(command)
+	if alterNativeText && alterNativeText!="":
+		setButtonText(alterNativeText)
+		
 func init(newCommandName):
 	commandName=newCommandName;
 	GameEvents.register_allways_tooltip($GridButton,self,true)
@@ -92,15 +103,7 @@ func init(newCommandName):
 	command=Utilities.commandNameToCommand(commandName)
 	if command>=0:
 		var button=$GridButton
-		var altButtonCommandName=commandName+"_buttonOnly";
-		var buttonResource=tr(altButtonCommandName)
-		if buttonResource  && buttonResource!="-" && buttonResource!="" && buttonResource!=altButtonCommandName:
-			setButtonText(buttonResource)
-		else:
-			setButtonText(commandName)
-		var alterNativeText=Utilities.getCommandTranslation(command)
-		if alterNativeText && alterNativeText!="":
-			setButtonText(alterNativeText)
+		setButtonTextFromCommand(commandName)
 		button.visible=true
 
 		
