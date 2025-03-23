@@ -102,7 +102,7 @@ func showOnlyButtons(var commands):
 
 func styleDropDown(dropdown):
 	dropdown.get_popup().add_constant_override("vseparation",10)
-	
+
 func startTimer(time):
 	var t = Timer.new()
 	t.set_wait_time(time)

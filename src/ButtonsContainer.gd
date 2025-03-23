@@ -61,6 +61,7 @@ func setChildNodeDisable(node,commandName,disabled:bool):
 		else:
 			if N.name=="GridButton" && N.owner.commandName==commandName:
 				N.disabled=disabled
+				
 				var button : Button=N
 				if disabled:
 					button.focus_mode=Control.FOCUS_NONE

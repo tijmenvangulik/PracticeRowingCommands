@@ -20,6 +20,7 @@ func _ready():
 	GameEvents.connect("highContrastChangedSignal",self,"_highContrastChangedSignal")
 	
 
+	
 func calcShortCut(buttonText):
 	if customShortcut!="":
 		shortcut=customShortcut
@@ -75,7 +76,7 @@ func get_tooltip_text(node):
 		var tootipTextName=commandName+extension;
 		var tootip=tr(tootipTextName)
 			
-		if tootip!=tootipTextName:
+		if tootip!=tootipTextName && tootip!="-":
 			returnTooltip=tootip
 	if shortcut!="" && GameState.showTooltips :
 		if returnTooltip!="": 
@@ -93,7 +94,7 @@ func init(newCommandName):
 		var button=$GridButton
 		var altButtonCommandName=commandName+"_buttonOnly";
 		var buttonResource=tr(altButtonCommandName)
-		if buttonResource && buttonResource!="" && buttonResource!=altButtonCommandName:
+		if buttonResource  && buttonResource!="-" && buttonResource!="" && buttonResource!=altButtonCommandName:
 			setButtonText(buttonResource)
 		else:
 			setButtonText(commandName)

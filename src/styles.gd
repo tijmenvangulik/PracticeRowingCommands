@@ -186,9 +186,11 @@ func setButtonStyle(styleNr, button):
 	if Settings.highContrast:
 		button.add_color_override("font_color_hover",Color(1,1,1))
 		button.add_color_override("font_color_focus",Color(1,1,1))
+		button.add_color_override("font_color_disabled",Color(1,1,1,0.9))
 	else:
 		button.remove_color_override("font_color_hover")
 		button.remove_color_override("font_color_focus")
+		button.add_color_override("font_color_disabled",Color(1,1,1,0.7))
 		
 		
 func SetMainDropDownStyle(button):

@@ -38,7 +38,6 @@ func _ready():
 	setStyle(Settings.highContrast)
 	Utilities.styleDropDown(self)
 	
-	
 func setStyle(highContrast):
 	var pm=get_popup()
 	if highContrast:
@@ -64,6 +63,11 @@ func setLanguage(langKey):
 			currentLang=langKey
 			Settings.currentLang=langKey
 			GameEvents.languageChanged()
+#			var langDefaultSettings=tr("SettingsOverride")
+#			if langDefaultSettings!="" && currentLang!="nl_NL":
+#				var settings = parse_json(langDefaultSettings)
+#				$"%SettingsDialog".setSettings(settings,true)
+				
 	text=""
 
 func selected(itemIndex : int):

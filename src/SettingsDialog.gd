@@ -487,7 +487,8 @@ func loadSettings():
 			var dict2 = parse_json(save_game.get_line())
 			#only load the high score here when set from the url
 			# never call the setting changed
-			setSettings(dict2,false,false)
+			if dict2!=null:
+				setSettings(dict2,false,false)
 		save_game.close()
 		
 	var settingFromUrl=false

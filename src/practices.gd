@@ -1,5 +1,6 @@
 extends Node
 
+# keep in same order as practiceNames
 var practices = [
 Constants.StartItem.StartTour,
 Constants.StartItem.StilleggenOefenening,
@@ -8,8 +9,8 @@ Constants.StartItem.AchteruitvarenOefenening,
 Constants.StartItem.AchteruitBochtOefenening,
 Constants.StartItem.Aanleggen,
 Constants.StartItem.AanleggenWal,
-Constants.StartItem.Aangelegd,
 Constants.StartItem.AangelegdUitzetten,
+Constants.StartItem.Aangelegd,
 Constants.StartItem.StartStrijkendAanleggen,
 Constants.StartItem.StartStrijkendAanleggenWal,
 Constants.StartItem.BridgePractice,
@@ -18,6 +19,7 @@ Constants.StartItem.SlalomPractice,
 Constants.StartItem.StarGame,
 ]
 
+# keep in same order as practices
 var practiceNames = [
 "StartTour",
 "StartStilleggenOefenening",
@@ -26,8 +28,8 @@ var practiceNames = [
 "StartAchteruitBochtOefenening",
 "StartAanleggen",
 "StartAanleggenWal",
-"StartAangelegd",
 "StartAangelegdUitzetten",
+"StartAangelegd",
 "StartStrijkendAanleggen",
 "StartStrijkendAanleggenWal",
 "StartBridgePractice",
