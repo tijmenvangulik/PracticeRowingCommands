@@ -80,11 +80,13 @@ func button_dropped_source(droppedInfo,dropped):
 		enableDisableSourceButtons()
 	
 func button_dropped_dest(droppedInfo,dropped):
+	droppedInfo.dragButton.get_parent().remove_child(droppedInfo.dragButton)
 	addGridButton(dropped.get_node(".."),droppedInfo.commandName,false)
 	customButtonSetChanged=true
 	enableDisableSourceButtons()
 	
 func button_droppedOnGrouper(droppedInfo,groupItem):
+	droppedInfo.dragButton.get_parent().remove_child(droppedInfo.dragButton)
 	addGridButton(groupItem.getHorizontalGroup(),droppedInfo.commandName,false)
 	customButtonSetChanged=true
 	enableDisableSourceButtons()
