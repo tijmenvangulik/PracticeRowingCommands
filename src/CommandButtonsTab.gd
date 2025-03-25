@@ -27,9 +27,12 @@ func addGridGrouper(container):
 
 	return grouper;
 	
-func addGridButton(container,commandName :String, isSource : bool):
+func addGridButton(container,commandName :String, isSource : bool,insertIndex):
 	var buttonContainer = preload("res://GridButtonContainer.tscn").instance()
 	container.add_child(buttonContainer)
+	if insertIndex!=null:
+		container.move_child(buttonContainer,insertIndex)
+
 	buttonContainer.visible=true;
 	buttonContainer.canClickButton=false
 	buttonContainer.init(commandName)
@@ -44,7 +47,7 @@ func addGridButton(container,commandName :String, isSource : bool):
 func loadCommandSet():
 	for i in range(0,Constants.commandNames.size()):
 		var commandName=Constants.commandNames[i]
-		addGridButton(commandContainerSource,commandName,true)
+		addGridButton(commandContainerSource,commandName,true,null)
 	
 func clearDestGrid():
 	for N in commandContainerDest.get_children():
@@ -67,7 +70,7 @@ func loadDestButtons():
 		if typeof(item)==TYPE_STRING:
 			var commandNames=item.split(",")
 			for buttonItem in commandNames:
-				addGridButton(horiz,buttonItem,false)
+				addGridButton(horiz,buttonItem,false,null)
 	var totalGridItems=commandContainerDest.columns*5;
 	for item in range(buttonSet.size(),totalGridItems):
 		addGridGrouper(commandContainerDest)
@@ -80,14 +83,16 @@ func button_dropped_source(droppedInfo,dropped):
 		enableDisableSourceButtons()
 	
 func button_dropped_dest(droppedInfo,dropped):
-	droppedInfo.dragButton.get_parent().remove_child(droppedInfo.dragButton)
-	addGridButton(dropped.get_node(".."),droppedInfo.commandName,false)
-	customButtonSetChanged=true
-	enableDisableSourceButtons()
+	var beforeIndex=dropped.get_index()
+	if droppedInfo.dragButton!=dropped:
+		droppedInfo.dragButton.get_parent().remove_child(droppedInfo.dragButton)
+		addGridButton(dropped.get_node(".."),droppedInfo.commandName,false,beforeIndex)
+		customButtonSetChanged=true
+		enableDisableSourceButtons()
 	
 func button_droppedOnGrouper(droppedInfo,groupItem):
 	droppedInfo.dragButton.get_parent().remove_child(droppedInfo.dragButton)
-	addGridButton(groupItem.getHorizontalGroup(),droppedInfo.commandName,false)
+	addGridButton(groupItem.getHorizontalGroup(),droppedInfo.commandName,false,null)
 	customButtonSetChanged=true
 	enableDisableSourceButtons()
 	
