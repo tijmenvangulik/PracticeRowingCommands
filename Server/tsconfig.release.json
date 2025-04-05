@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "declaration": false,
+    "outDir": "build",
+    "removeComments": true,
+    "jsx": "react"
+  },
+  "include": [
+    "src/**/*"
+  ]
+}

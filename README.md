@@ -55,6 +55,10 @@ To self host the app download the ![distribute.zip](distribute.zip) file and ext
 
 In the zip file there is also an index.wasm.br file. This is not a required but this is a brotli compressed file of the wasm file. When you enable brotli compression on your web server this file can speed up downloading the app.
 
+## Self hosting a server for data storage
+It is not required to host the server for data storage. All data is send to my server on ergometer-space.org. If you want to store all the data on your own server you can build the server project:
+[Server project](Server/README.md)
+
 # Thank you 
 
 * Godot for the free user friendly game engine [link](https://godotengine.org/)

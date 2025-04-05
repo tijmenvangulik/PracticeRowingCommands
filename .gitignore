@@ -28,3 +28,8 @@ art/examples tutorial/tileset_guide/tileset_guide_ground_and_walls.svg
 art/original_RPGpack.svg
 src/calcSecurityCodeDoNotCommit.gd
 src/calcSecurityCodeForGit.gd
+Server/**/*.js
+Server/**/*.map
+Server/build
+Server/src/SecretsGit.json
+Server/src/SecretsGitDoNotCommit.json
