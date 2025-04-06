@@ -48,7 +48,7 @@ export class GameManager {
         new Game( GameType.StarGame,5,secrets.StarGameKey,false)
         
     ]
-    private HASH_SHARED_SECRET : string= secrets.GameSharedHash;
+    private HASH_SHARED_SECRET : string= secrets.GameSharedKey;
 
     private _lastQuery : number;
     //this.serverSessionId ,value.timeStamp, value.endDistance,value.endDuration)

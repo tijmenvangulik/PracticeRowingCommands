@@ -29,3 +29,15 @@ export function checkBoolean(attributeName : string,isRequired : boolean,value? 
     else if ( typeof value === "boolean"  && (!check || check(value))) return value
     else throw "Atrribute "+attributeName+" has wrong value: '"+(<any>value).toString()+"'";
 }
+
+export function checkPropertiesExists(data :object,properties : string[]) : boolean {
+
+    for (let i=0;i<properties.length;i++) {
+        let name=properties[i];
+        if (!data.hasOwnProperty(name))  {
+            console.debug("missing property: "+name);
+            return false;
+        }
+    }
+    return true;
+}

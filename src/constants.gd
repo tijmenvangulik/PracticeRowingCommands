@@ -221,3 +221,4 @@ var practiceExplainTexts= [
   "SailAwayExplainPushAwayText"#AangelegdUitzetten #16
 ]
 const serverUrl="https://ergometer-space.org/manager"
+#const serverUrl="http://localhost:2024"

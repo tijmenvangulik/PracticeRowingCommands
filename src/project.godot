@@ -137,6 +137,7 @@ GameState="*res://game_state.gd"
 CalcSecurityCode="*res://calcSecurityCode.gd"
 Practices="*res://practices.gd"
 Styles="*res://styles.gd"
+Secrets="*res://secrets.gd"
 
 [display]
 

@@ -184,6 +184,31 @@ async  function main() {
                 throw "Data to long or not present";
             }
             var dataObj =JSON.parse(req.query.data);
+            if (typeof dataObj != 'object' || dataObj.length> 0) {
+                throw "Data is not an object";
+            }
+            //do not allow special mongo db properties
+            for (var prop in dataObj) {
+                if (prop=="_id" || prop.indexOf("$")>=0) {
+                    throw "Illegal property name "+prop;
+                }
+            }
+            //ensure the basic settings properties are present
+            if (!utilities.checkPropertiesExists(dataObj,[
+                "customButtonSet",
+                "ruleset",
+                "zoom",
+                "language",
+                "tooltips",
+                "shortcuts",
+                "textTranslations",
+                "showCommandTooltips",
+                "showShortCutsInButtons",
+                "isScull",
+                "disabledPractices",
+                "disabledPracticesUseDefault"])) {
+                  throw "Missing properties in shared setting";
+            }
             
             var repository=getDefaultRepository();
             var returnId=await repository.saveSharedSetting(dataObj);
