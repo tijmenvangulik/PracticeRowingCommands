@@ -2986,12 +2986,6 @@ focus_mode = 0
 custom_icons/off = ExtResource( 25 )
 custom_icons/on = ExtResource( 66 )
 
-[node name="CheckBox" type="CheckBox" parent="CanvasLayer/RightTopButtons/OptionHighContrast/OptionHighContrastHorz"]
-margin_left = 173.0
-margin_right = 251.0
-margin_bottom = 31.0
-text = "hj hgjjgj"
-
 [node name="HdButton" type="Button" parent="CanvasLayer/RightTopButtons"]
 visible = false
 margin_left = 222.0
