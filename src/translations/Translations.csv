@@ -302,3 +302,7 @@ VastroeienBB_buttonOnly;-;-;-;-;-;BB
 VastroeienSB_buttonOnly;-;-;-;-;-;SB
 BakboortBest_buttonOnly;-;-;-;-;-;BB Best
 StuurboordBest_buttonOnly;-;-;-;-;-;SB Sterk
+StartSpinTurnPractice;Rondmaken oefening (v.a. les 3);Rondmaken oefening;Spin turn practice;Spin turn practice;Spin turn practice;Rondmaken oefening
+SpinTurnPracticeExplainText;Vaar naar de ster en gebruik eerst {RondmakenBB} en bij de bocht {RondmakenSB} om de boot te draaien.;Vaar naar de ster en gebruik eerst {RondmakenBB} en bij de bocht {RondmakenSB} om de boot te draaien.;Sail towards the star and first use {RondmakenBB}, then use {RondmakenSB} at the bend to turn the boat.;Sail towards the star and first use {RondmakenBB}, then use {RondmakenSB} at the bend to turn the boat.;Sail towards the star and first use {RondmakenBB}, then use {RondmakenSB} at the bend to turn the boat.;Vaar naar de ster en gebruik eerst {RondmakenBB} en bij de bocht {RondmakenSB} om de boot te draaien.
+RondmakenBB_shorttooltip;Rondmaken over BB, beginnen strijken BB vanaf... nu;Rondmaken over BB, beginnen strijken BB vanaf... nu;-;-;Rondmaken over BB, beginnen strijken BB vanaf... nu;-
+RondmakenSB_shorttooltip;Rondmaken over SB, beginnen strijken SB vanaf...nu;Rondmaken over SB, beginnen strijken SB vanaf...nu;-;-;Rondmaken over SB, beginnen strijken SB vanaf...nu;-

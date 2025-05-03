@@ -182,6 +182,13 @@ func forcePushAwayReplace(commandNames,forcePushAway,commandName):
 			return "PeddelendStrijkenSB" 
 	return commandName
 
+func forceSpinTurnReplace(commandNames,commandName):
+	if commandName=="HalenSB" && commandNames.find("RondmakenSB",0)<0:
+		return "RondmakenSB"
+	if commandName=="HalenBB" && commandNames.find("RondmakenBB",0)<0:
+		return "RondmakenBB"
+	return commandName
+	
 func getAllConmmands():
 	var allCommands=[]
 	for item in GameState.currentButtonSet:
@@ -195,7 +202,7 @@ func getAllConmmands():
 				allCommands.append(buttonItem)				
 	return allCommands
 	
-func loadButtons(forcePushAway= Constants.DefaultYesNo.Default):
+func loadButtons(forcePushAway= Constants.DefaultYesNo.Default,forceSpinTurnReplace=false):
 	clearGrid()
 	var container =$"GridContainer"
 	var i=0;
@@ -209,10 +216,14 @@ func loadButtons(forcePushAway= Constants.DefaultYesNo.Default):
 				container.add_child(box)
 				for buttonItem in commandNames:
 					var newButtonItem=forcePushAwayReplace(allCommands,forcePushAway,buttonItem)
+					if (forceSpinTurnReplace):
+						newButtonItem=forceSpinTurnReplace(allCommands,newButtonItem)
 					addButton(box,newButtonItem)
 			else: if commandNames.size()==1:
 				var buttonItem=commandNames[0]
 				buttonItem=forcePushAwayReplace(allCommands,forcePushAway,buttonItem)
+				if (forceSpinTurnReplace):
+					buttonItem=forceSpinTurnReplace(allCommands,buttonItem)
 				addButton(container,buttonItem)
 		
 

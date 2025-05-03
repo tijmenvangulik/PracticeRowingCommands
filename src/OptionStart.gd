@@ -31,7 +31,7 @@ var practicePoints = 0
 
 var sendStartOnWaterMessage= false
 
-var replacedPushAwayButtons = false
+var tempReplacedButtons = false
 
 func loadItems():
 	clear()
@@ -295,9 +295,9 @@ func doStart(startItemId):
 	if isPractice(currentStartPos):
 		practiceIsActive=true
 
-	if replacedPushAwayButtons:
+	if tempReplacedButtons:
 		$"%ButtonsContainer".loadButtons(Constants.DefaultYesNo.Default)
-		replacedPushAwayButtons=false
+		tempReplacedButtons=false
 
 	match startItemId:
 		Constants.StartItem.Start: 
@@ -332,14 +332,14 @@ func doStart(startItemId):
 			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 		Constants.StartItem.Aangelegd:
 			$"%ButtonsContainer".loadButtons(Constants.DefaultYesNo.No)
-			replacedPushAwayButtons=true
+			tempReplacedButtons=true
 			boat.setNewBoatPosition(1124,2596,0,Constants.StateOars.SlippenSB,true)
 			var showOnlyButonsArray  =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.PeddelendStrijkenSB,Constants.Command.StrijkenBB,Constants.Command.HalenSB,Constants.Command.UitbrengenSB]	
 			$"%CollectableSailAwayPractice2".reset()			
 			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 		Constants.StartItem.AangelegdUitzetten:
 			$"%ButtonsContainer".loadButtons(Constants.DefaultYesNo.Yes)
-			replacedPushAwayButtons=true
+			tempReplacedButtons=true
 			boat.setNewBoatPosition(1124,2608,0,Constants.StateOars.RiemenHoogSB,true)
 			var showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.HalenSB,Constants.Command.UitzettenSB,Constants.Command.VastroeienBeideBoorden,Constants.Command.UitbrengenSB]
 			$"%CollectableSailAwayPractice3".reset()
@@ -388,6 +388,14 @@ func doStart(startItemId):
 			boat.setNewBoatPosition(1915,110,270,Constants.StateOars.Roeien,true)
 			$"%CollectableBridgePractice".reset()
 			var showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.SlagklaarAf,Constants.Command.Slippen,Constants.Command.Uitbrengen,Constants.Command.PakMaarWeerOp]	
+			explainPopup.showDialog(startItemId,showOnlyButonsArray)
+		Constants.StartItem.SpinTurnPractice: 
+			#make sure that the spin turn is in the command set
+			$"%ButtonsContainer".loadButtons(Constants.DefaultYesNo.Default,true)
+			tempReplacedButtons=true
+			boat.setNewBoatPosition(1915,-1021,0,Constants.StateOars.Roeien,true)
+			$"%CollectableSpinTurnPractice".reset()
+			var showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.HalenBeideBoorden,Constants.Command.RondmakenBB,Constants.Command.RondmakenSB,Constants.Command.VastroeienBeideBoorden,Constants.Command.Bedankt]	
 			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 			
 	if GameState.isForwards!=forwards:

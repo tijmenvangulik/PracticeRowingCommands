@@ -198,7 +198,8 @@ enum StartItem {
   MoringHarbour, #13
   SlalomPractice, #14
   BridgePractice, #15
-  AangelegdUitzetten #16
+  AangelegdUitzetten, #16
+  SpinTurnPractice #17
 }
 
 var practiceExplainTexts= [
@@ -218,7 +219,8 @@ var practiceExplainTexts= [
   "MoringHarbourExplainText",#MoringHarbour, #13
   "StartSlalomPracticeExplainText",#SlalomPractice, #14
   "BridgeExplainText",#BridgePractice, #15
-  "SailAwayExplainPushAwayText"#AangelegdUitzetten #16
+  "SailAwayExplainPushAwayText",#AangelegdUitzetten #16
+  "SpinTurnPracticeExplainText"#SpinTurnPractice #17
 ]
 const serverUrl="https://ergometer-space.org/manager"
 #const serverUrl="http://localhost:2024"
