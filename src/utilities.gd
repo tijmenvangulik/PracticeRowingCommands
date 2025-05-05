@@ -102,7 +102,9 @@ func showOnlyButtons(var commands):
 
 func styleDropDown(dropdown):
 	dropdown.get_popup().add_constant_override("vseparation",10)
-
+	var font= preload("res://Font.tres")
+	dropdown.get_popup().add_font_override("font",font)
+	
 func startTimer(time):
 	var t = Timer.new()
 	t.set_wait_time(time)

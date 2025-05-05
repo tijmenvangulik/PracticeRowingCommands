@@ -3257,7 +3257,7 @@ commandTranslationsCommandsGrid = NodePath("TabContainer/CommandTranslateTab/Scr
 showCommandTooltips = NodePath("TabContainer/GeneralSettingsTab/GridContainer/ShowCommandTooltips")
 commandButtonsTab = NodePath("TabContainer/CommandButtonsTab")
 showShortCutsInButtons = NodePath("TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons")
-isScullButton = NodePath("TabContainer/GeneralSettingsTab/GridContainer/Scull")
+boatTypeButton = NodePath("TabContainer/GeneralSettingsTab/GridContainer/BoatType")
 enablePracticesTab = NodePath("TabContainer/EnablePracticesTab")
 resolutionButton = NodePath("TabContainer/DisplayTab/GridContainer/HBoxContainer/Resolution")
 
@@ -3337,34 +3337,35 @@ margin_bottom = 107.0
 custom_icons/off = ExtResource( 25 )
 custom_icons/on = ExtResource( 66 )
 
-[node name="Label3" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_top = 123.0
+[node name="BoatTypeLabel" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
+margin_top = 120.0
 margin_right = 198.0
-margin_bottom = 142.0
+margin_bottom = 139.0
 custom_fonts/font = ExtResource( 50 )
-text = "Scull"
+text = "BoatType"
 
-[node name="Scull" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
+[node name="BoatType" type="OptionButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_left = 218.0
 margin_top = 117.0
 margin_right = 368.0
-margin_bottom = 148.0
-custom_icons/off = ExtResource( 25 )
-custom_icons/on = ExtResource( 66 )
-pressed = true
+margin_bottom = 142.0
+custom_fonts/font = ExtResource( 50 )
+text = "Default"
+items = [ "Default", null, false, 0, null, "Scull", null, false, 1, null, "Sweep", null, false, 2, null ]
+selected = 0
 
 [node name="Label4" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_top = 164.0
+margin_top = 158.0
 margin_right = 198.0
-margin_bottom = 183.0
+margin_bottom = 177.0
 custom_fonts/font = ExtResource( 50 )
 text = "Reset"
 
 [node name="ResetPractices" type="Button" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_left = 218.0
-margin_top = 158.0
+margin_top = 152.0
 margin_right = 368.0
-margin_bottom = 190.0
+margin_bottom = 184.0
 rect_min_size = Vector2( 150, 32 )
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 52 )
@@ -3374,17 +3375,17 @@ custom_styles/normal = ExtResource( 64 )
 text = "ResetPractices"
 
 [node name="ShortSharedSettingsLabel" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_top = 206.0
+margin_top = 200.0
 margin_right = 198.0
-margin_bottom = 225.0
+margin_bottom = 219.0
 custom_fonts/font = ExtResource( 50 )
 text = "ShareSettingsUsingServer"
 
 [node name="ShortSharedSettings" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_left = 218.0
-margin_top = 200.0
+margin_top = 194.0
 margin_right = 368.0
-margin_bottom = 231.0
+margin_bottom = 225.0
 custom_icons/off = ExtResource( 25 )
 custom_icons/on = ExtResource( 66 )
 pressed = true
@@ -4006,7 +4007,7 @@ script = ExtResource( 84 )
 [connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/RuleSetDropDown" to="CanvasLayer/SettingsDialog" method="_on_RuleSetDropDown_item_selected"]
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/ShowCommandTooltips" to="CanvasLayer/SettingsDialog" method="_on_ShowCommandTooltips_toggled"]
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons" to="CanvasLayer/SettingsDialog" method="_on_ShowShortCutsInButtons_toggled"]
-[connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/Scull" to="CanvasLayer/SettingsDialog" method="_on_Scull_toggled"]
+[connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/BoatType" to="CanvasLayer/SettingsDialog" method="_on_BoatType_item_selected"]
 [connection signal="pressed" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/ResetPractices" to="CanvasLayer/SettingsDialog" method="_on_ResetPractices_pressed"]
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/ShortSharedSettings" to="CanvasLayer/SettingsDialog" method="_on_ShortSharedSettings_toggled"]
 [connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/HBoxContainer/Resolution" to="CanvasLayer/SettingsDialog" method="_on_Resolution_item_selected"]

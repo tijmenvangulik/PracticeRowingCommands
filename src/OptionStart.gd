@@ -199,7 +199,7 @@ func endPractice():
 func logEndPractice(success : bool):
 	var currentName= Constants.StartItem.keys()[currentStartPos] ;
 	if ( !OS.is_debug_build() ):
-		$"%LogActivityRequest".logFinishedActivity(currentName,success,Settings.isScull)
+		$"%LogActivityRequest".logFinishedActivity(currentName,success,GameState.isScull)
 
 func _crashDetected():
 	var extraWaitTime=0;

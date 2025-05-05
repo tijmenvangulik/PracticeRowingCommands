@@ -73,7 +73,11 @@ enum CollectGameState {
 	Crashed,
 	Stop
 }
-
+enum BoatType {
+	Default,
+	Scull,
+	Sweep
+}
 var commandNames = [
   "LaatLopen",
   "Bedankt",

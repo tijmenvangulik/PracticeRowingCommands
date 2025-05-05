@@ -8,15 +8,15 @@ func determineOarsState(boat: Boat,command,oarsCommand )-> int:
 	var stateOars=boat.stateOars
 	match oarsCommand:
 		Constants.OarsCommand2.Slippen:
-			if !Settings.isScull:
+			if !GameState.isScull:
 				return stateOars
 			return Constants.StateOars.Slippen
 		Constants.OarsCommand2.Uitbrengen:
-			if !Settings.isScull:
+			if !GameState.isScull:
 				return stateOars
 			return Constants.StateOars.Roeien
 		Constants.OarsCommand2.SlippenBB:
-			if !Settings.isScull:
+			if !GameState.isScull:
 				return stateOars
 			if stateOars==Constants.StateOars.SlippenSB:
 				return Constants.StateOars.Slippen
@@ -30,7 +30,7 @@ func determineOarsState(boat: Boat,command,oarsCommand )-> int:
 			else:
 				return Constants.StateOars.Roeien
 		Constants.OarsCommand2.SlippenSB:
-			if !Settings.isScull:
+			if !GameState.isScull:
 				return stateOars
 			if stateOars==Constants.StateOars.SlippenBB:
 				return Constants.StateOars.Slippen

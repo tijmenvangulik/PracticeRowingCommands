@@ -13,7 +13,7 @@ export (NodePath) onready var showCommandTooltips = get_node(showCommandTooltips
 export (NodePath) onready var commandButtonsTab = get_node(commandButtonsTab) as CommandButtonsTab
 
 export (NodePath) onready var showShortCutsInButtons = get_node(showShortCutsInButtons) as Button
-export (NodePath) onready var isScullButton = get_node(isScullButton) as Button
+export (NodePath) onready var boatTypeButton = get_node(boatTypeButton) as OptionButton
 
 export (NodePath) onready var enablePracticesTab = get_node(enablePracticesTab) as EnablePracticesTab 
 export (NodePath) onready var resolutionButton = get_node(resolutionButton) as OptionButton 
@@ -82,11 +82,12 @@ func _ready():
 	get_close_button().hide()
 	
 	GameEvents.register_allways_tooltip($TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons,"ShortCutTourText")
-	GameEvents.register_allways_tooltip($TabContainer/GeneralSettingsTab/GridContainer/Scull,"ScullTooltip")
+	GameEvents.register_allways_tooltip($TabContainer/GeneralSettingsTab/GridContainer/BoatTypeLabel,"ScullTooltip")
 	
 	Utilities.styleDropDown($TabContainer/GeneralSettingsTab/GridContainer/RuleSetDropDown)
 	Utilities.styleDropDown($ChoosePresetSettingsButton)
 	Utilities.styleDropDown(resolutionButton)
+	Utilities.styleDropDown(boatTypeButton)
 	
 	var commands=Constants.commandNames
 	while Settings.commandTranslations.size()<commands.size():
@@ -233,7 +234,7 @@ func getSettings(removePrivate=false):
 	  "textTranslations":commandTextDict,
 	  "showCommandTooltips":Settings.showCommandTooltips,
 	  "showShortCutsInButtons":Settings.showShortCutsInButtons,
-	  "isScull":Settings.isScull,
+	  "boatType":Settings.boatType,
 	  "finishedPractices":Settings.finishedPractices,
 	  "waterAnimation":Settings.waterAnimation,
 	  "disabledPractices":Settings.disabledPractices,
@@ -266,13 +267,22 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 	if dict.has("successCount"):
 		Settings.successCount=dict["successCount"]
 		
-	var 	isScull=true
-	if dict.has("isScull"): 
-		 isScull=dict["isScull"]
-	if Settings.isScull!=isScull:
-		Settings.isScull=isScull
+	var 	boatType=Constants.BoatType.Default
+	if dict.has("isScull"):
+		var isScull=dict["isScull"]
+		if !isScull:
+			boatType=Constants.BoatType.Sweep
+	elif dict.has("boatType"):
+		 boatType=dict["boatType"]
 		
-	isScullButton.set_pressed(isScull)
+	if Settings.boatType!=boatType:
+		Settings.boatType=boatType
+		GameState.recalcIsScull()
+		_on_BoatType_item_selected(boatType)
+
+
+	
+	boatTypeButton.select(Settings.boatType)
 	
 	if  dict.has("language"):
 		Settings.currentLang=dict["language"]
@@ -573,14 +583,6 @@ func _on_ShowShortCutsInButtons_toggled(button_pressed):
 	GameEvents.languageChanged()
 
 
-func _on_Scull_toggled(button_pressed):
-	Settings.isScull=button_pressed
-	GameEvents.isScullChanged(Settings.isScull)
-	if GameState.useDefaultButtonSet:
-		GameState.currentButtonSet=GameState.getDefaultButtonSet()
-	GameEvents.languageChanged()
-	GameEvents.practicesChanged()
-
 func _on_ResetPractices_pressed():
 	$"%OptionStart".resetFinishedPractices()
 	
@@ -668,3 +670,13 @@ func saveTabs():
 	$TabContainer/EnablePracticesTab.savePractices()
 func loadTabs():
 	$TabContainer/EnablePracticesTab.loadPractices()
+
+
+func _on_BoatType_item_selected(index):
+	Settings.boatType=index
+	GameState.recalcIsScull()
+	GameEvents.isScullChanged(GameState.isScull)
+	if GameState.useDefaultButtonSet:
+		GameState.currentButtonSet=GameState.getDefaultButtonSet()
+	GameEvents.languageChanged()
+	GameEvents.practicesChanged()

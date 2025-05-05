@@ -76,14 +76,14 @@ func determineOarsState(boat: Boat,command,oarsCommand : int)-> int:
 				else: 
 					setError("CommandIsAlreadyActive")
 			Constants.OarsCommand2.Uitbrengen:
-				if !Settings.isScull:
+				if !GameState.isScull:
 					setError("CommandoNietMogelijk")
 				elif stateOars==Constants.StateOars.Slippen:
 					return Constants.StateOars.Roeien
 				else:
 					setError("EerstSlippen")
 			Constants.OarsCommand2.SlippenBB:
-				if !Settings.isScull:
+				if !GameState.isScull:
 					setError("CommandoNietMogelijk")
 				elif stateOars==Constants.StateOars.Roeien:
 					return Constants.StateOars.SlippenBB
@@ -99,7 +99,7 @@ func determineOarsState(boat: Boat,command,oarsCommand : int)-> int:
 					return Constants.StateOars.SlippenSB
 				else: setError("EerstSlippen")
 			Constants.OarsCommand2.SlippenSB:
-				if !Settings.isScull:
+				if !GameState.isScull:
 					setError("CommandoNietMogelijk")
 				elif stateOars==Constants.StateOars.Roeien:
 					return Constants.StateOars.SlippenSB

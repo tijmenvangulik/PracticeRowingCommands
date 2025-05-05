@@ -20,6 +20,7 @@ var backgroundReplay = false
 
 var languageSetFromSettingsOrUl = false
 
+var isScull = true
 
 func changeCollectGameState(newState):
 	if collectGameState!=newState:
@@ -33,7 +34,7 @@ func changeForwards(newForwards):
 	GameEvents.forwardBackwardsChanged()
 
 func getDefaultButtonSet():
-	if Settings.isScull:
+	if GameState.isScull:
 		return defaultButtonSet
 	# translate to not scull
 	var result :Array=[]
@@ -52,3 +53,14 @@ func getDefaultButtonSet():
 		else:
 			result.append("")
 	return result
+
+func recalcIsScull():
+	var boatType=Settings.boatType;
+	if boatType==Constants.BoatType.Default:
+		var langBoatType=tr("DefaultBoatType")
+		if langBoatType=="Sweep": 
+			boatType=Constants.BoatType.Sweep
+		else:
+			boatType=Constants.BoatType.Scull
+		
+	isScull=boatType!=Constants.BoatType.Sweep
