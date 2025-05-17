@@ -22,6 +22,7 @@ func _ready():
 
 	
 func calcShortCut(buttonText):
+	customShortcut=Utilities.getCommandShortcut(command)
 	if customShortcut!="":
 		shortcut=customShortcut
 	else:
@@ -65,7 +66,7 @@ func callButtonDropped(droppedInfo):
 func get_tooltip_text(node):
 	if !GameState.showTooltips && !Settings.showCommandTooltips:
 		return ""
-	
+	customTooltipText=Utilities.getCommandTooltip(command)
 	var returnTooltip=""
 	if customTooltipText!='' && !GameState.showTooltips:
 		returnTooltip= customTooltipText

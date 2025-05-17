@@ -20,8 +20,8 @@ func init(titleTextPrm,startPosNr,modifyDialogPopup):
 	titleText=titleTextPrm
 	startPos=startPosNr
 	modifyDialog=modifyDialogPopup
-	modifiedTitle=Practices.getPracticeTranslation(startPosNr)
-	modifiedExplainText=Practices.getPracticeExplainTranslation(startPosNr)
+	modifiedTitle=Practices.getPracticeTranslation(startPosNr,false)
+	modifiedExplainText=Practices.getPracticeExplainTranslation(startPosNr,false)
 	setModifiedText()
 	
 func setModifiedText():

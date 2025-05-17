@@ -54,6 +54,7 @@ func loadPractices():
 	for practice in Practices.practices:
 		if practice!= Constants.StartItem.StartTour && practice!= Constants.StartItem.StarGame:
 			var practiceText=Practices.getPracticeName(practice)
+			
 			addLabel(grid,practiceText,"")
 			addCheckbox(practice)
 			addButton(grid,practiceText,practice)

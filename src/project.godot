@@ -138,6 +138,7 @@ CalcSecurityCode="*res://calcSecurityCode.gd"
 Practices="*res://practices.gd"
 Styles="*res://styles.gd"
 Secrets="*res://secrets.gd"
+BaseSettings="*res://baseSettings.gd"
 
 [display]
 

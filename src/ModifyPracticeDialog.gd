@@ -63,5 +63,5 @@ func _on_ModifiedTitleCheckBox_pressed():
 func _on_ModifiedTextCheckBox_pressed():
 	enableDisable()
 	if $ModifiedExplainTextCheckBox.pressed:
-		var explainText=Constants.practiceExplainTexts[startPos]
+		var explainText=Practices.getPracticeExplainText(startPos)
 		$ModifiedExplainText.text=Utilities.replaceCommandsInText(tr(explainText),true)

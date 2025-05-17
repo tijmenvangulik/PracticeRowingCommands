@@ -15,24 +15,34 @@ func commandIsUsed(commandName : String)->bool:
 	return found
 	
 func getCommandTranslation(command:int)->String:
+	var result=""
 	if command>=0 && command<Settings.commandTranslations.size():
-		return Settings.commandTranslations[command]
-	return ""
+		result= Settings.commandTranslations[command]
+	if result!="":return result
+	return getDefaultDictonaryValueSetting("CommandTranslations",Constants.commandNames[command])
+
 	
 func getCommandTextTranslation(command:int)->String:
+	var result=""
 	if command>=0 && command<Settings.commandTextTranslations.size():
-		return Settings.commandTextTranslations[command]
-	return ""
+		result= Settings.commandTextTranslations[command]
+	if result!="":return result	
+	return getDefaultDictonaryValueSetting("CommandTextTranslations",Constants.commandNames[command])
 	
 func getCommandTooltip(command:int)->String:
+	var result=""
 	if command>=0 && command<Settings.tooltipTranslations.size():
-		return Settings.tooltipTranslations[command]
-	return ""
+		result=Settings.tooltipTranslations[command]
+	if result!="":return result
+		
+	return getDefaultDictonaryValueSetting("TooltipTranslations",Constants.commandNames[command])
 	
 func getCommandShortcut(command:int)->String:
+	var result=""
 	if command>=0 && command<Settings.shortcutTranslations.size():
-		return Settings.shortcutTranslations[command]
-	return ""
+		result=Settings.shortcutTranslations[command]
+	if result!="":return result
+	return getDefaultDictonaryValueSetting("ShortcutTranslations",Constants.commandNames[command])
 
 func replaceCommandText(commandText :String) ->String:
 	var command=commandNameToCommand(commandText)
@@ -120,3 +130,144 @@ func removeTimer(t):
 func boolToSting(value : bool):
 	if value: return "true"
 	return "false"
+
+func getDefaultArrayValueSetting(name : String, index : int) -> String:
+	var array=[]
+	var settings=BaseSettings.activeBaseSettings
+	match name:
+		"PracticeTranslations": 
+			if settings.has("practiceTranslations"):
+				array=settings.get("practiceTranslations")
+		"PracticeExplainTranslations":
+			if settings.has("practiceExplainTranslations"):
+				array=settings.get("practiceExplainTranslations")
+	if array!=null && index>=0 && typeof(array)==TYPE_ARRAY && index<array.size():
+		var result= array[index]
+		if result==null:
+			return ""
+		return result
+	return "";
+
+func getDefaultDictonaryValueSetting(name : String, key : String) -> String:
+	var dictonary={}
+	var settings=BaseSettings.activeBaseSettings
+	match name:
+		"CommandTranslations":
+			if settings.has("translations"):
+				dictonary=settings.get("translations")
+		"CommandTextTranslations":
+			if settings.has("textTranslations"):
+				dictonary=settings.get("textTranslations")
+		"TooltipTranslations":
+			if settings.has("tooltips"):
+				dictonary=settings.get("tooltips")
+		"ShortcutTranslations":
+			if settings.has("shortcuts"):
+				dictonary=settings.get("shortcuts")
+	if dictonary!=null && dictonary.has(key):
+		var result= dictonary.get(key)
+		if result==null:
+			return ""
+		return result;
+	return "";
+	
+func getDefaultSetting(name : String):
+	var result="";
+	var parseJson=false;
+	var settings=BaseSettings.activeBaseSettings
+	match name:
+		"DefaultBoatType":
+			if settings.has("boatType"):
+				result=settings.get("boatType")
+				if result==2: 
+					result="Sweep"
+				else:
+					result="Scull"
+# do not do the ruleset
+#		"LanguageRuleSet":
+#			if settings.has("ruleset"):
+#				result=settings.get("ruleset")
+	
+	if result=="" || result==null:
+		result=tr(name)
+		if result==name || result==null:
+			result=""
+	return result
+	
+func getDefaultJsonSetting(name : String):
+	var result=null;
+	var settings=BaseSettings.activeBaseSettings
+	match name:
+		"DisabledPractices":
+			if settings.has("disabledPractices") && settings.has("disabledPracticesUseDefault"):
+				if !settings.get("disabledPracticesUseDefault"):
+					result=settings.get("disabledPractices")
+		"ButtonSet":
+			if  settings.has("customButtonSet"):
+				result=settings.get("customButtonSet")
+				
+	
+	if result==null || result.size()==0:
+		var resultStr=tr(name)
+		if resultStr!=name && resultStr!=null && resultStr!="":
+			result=JSON.parse(resultStr).result
+	return result
+
+func mergeSettingsValue(name : String,emptyValue ,settings : Dictionary,sharedSettings : Dictionary ):
+	var value=emptyValue
+	if sharedSettings!=null && sharedSettings.has(name):
+		value=sharedSettings[name]
+	if settings!=null && settings.has(name) && settings[name]!=emptyValue:
+		value=settings[name]
+	return value
+
+func mergeSettingsArray(name : String,emptyValue ,settings : Dictionary,sharedSettings : Dictionary):
+	
+	var result=null
+	if settings.has(name):
+		result=settings[name]
+	if result!=null:
+		result=result.duplicate()
+	else: result=[]
+	
+	var sharedSettingsValue=null
+	if sharedSettings.has(name):
+		sharedSettingsValue=sharedSettings[name]
+	
+	if sharedSettingsValue!=null:
+		var max_cnt=max(result.size(),sharedSettingsValue.size())
+		for i in max_cnt:
+			if i<result.size():
+				var value=result[i]
+				if i<sharedSettingsValue.size() && ( value==emptyValue || value==null):
+					var sharedDefault=sharedSettingsValue[i]
+					if sharedDefault!=emptyValue && sharedDefault!=null:
+						result[i]=sharedDefault
+			else:
+				result.append(sharedSettingsValue[i])
+		
+	return result
+	
+func mergeSettingsDict(name : String,emptyValue ,settings : Dictionary,sharedSettings : Dictionary):
+	var result =null
+	if sharedSettings!=null && sharedSettings.has(name):
+		result=sharedSettings[name]
+	if result!=null:
+		result=result.duplicate()
+	else: result={}
+	
+	if settings!=null:
+		var settingsValue=null
+		if settings.has(name):
+			settingsValue=settings[name]
+		
+		if settingsValue!=null:
+			result.merge(settingsValue,true)
+	return result
+
+func getLanguageFromSettings(settings : Dictionary):
+	var result="nl"
+	if settings.has("language"):
+		result=settings["language"]
+	return result
+	

@@ -16,8 +16,8 @@ func getRuleset()->BaseRuleset :
 	var rulset=currentRulleset
 	if GameState.collectGameState==Constants.CollectGameState.DoStart:
 		return $RulesetDefault as BaseRuleset
-	if rulset==defaultRuleset:
-		rulset==tr("LanguageRuleSet")	
+#	if rulset==defaultRuleset:
+#		rulset=Utilities.getDefaultSetting("LanguageRuleSet")	
 	var ruleset=get_node(rulset)
 	if ruleset==null:
 		ruleset=$RulesetDefault

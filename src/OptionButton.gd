@@ -18,26 +18,32 @@ func _init():
 		Settings.currentLang="en"
 	GameEvents.register_tooltip(self,"OptionLanguageTooltip")
 
-	
+
+func addLanguageItem(i):
+	var flagName=Constants.flags[i]
+	var texture=load("res://assets/flags/"+flagName+".svg")		
+	add_icon_item(texture,Constants.languageLongItems[i],i)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameEvents.connect("settingsChangedSignal",self,"_settings_changedSignal")
 	GameEvents.connect("highContrastChangedSignal",self,"_highContrastChangedSignal")
 	GameEvents.connect("introSignal",self,"_introSignal")
-	var i=0;
-	for item in Constants.languageLongItems:
-		var flagName=Constants.flags[i]
-		var texture=load("res://assets/flags/"+flagName+".svg")
-		
-		add_icon_item(texture,item,i)
-		i=i+1
+	GameEvents.connect("loadedSharedSettings",self,"_loadedSharedSettings");
+	
+	for i in Constants.languageLongItems.size():
+		addLanguageItem(i)
 	
 	connect("item_selected",self,"selected")
 	setLanguage(Settings.currentLang)	
 	
 	setStyle(Settings.highContrast)
 	Utilities.styleDropDown(self)
-	
+
+func _loadedSharedSettings():
+	loadedSharedSettings()
+	setLanguage(Constants.sharedSettingLangKey)
+
 func setStyle(highContrast):
 	var pm=get_popup()
 	if highContrast:
@@ -53,30 +59,61 @@ func _introSignal(isVisible):
 
 func _highContrastChangedSignal(highContrast):
 	setStyle(Settings.highContrast)
-	
+
+func recalcFromBaseSettingSwitch():
+	$"%SettingsDialog".recalcIsScullFromSettings()
+
+func loadedSharedSettings():
+	var index=BaseSettings.loadedSharedSettings()
+	if index>=0:
+		if index+1>= get_item_count():
+			remove_item(index)
+		addLanguageItem(Constants.languageKeys.size()-1)
+
+		
 func setLanguage(langKey):
+	var  customSet=false
+	var recalc=false;
 	var indexNr=Constants.languageKeys.find(langKey)
 	if indexNr>=0:
-		TranslationServer.set_locale(langKey)
+		var realLang=langKey
+		var baseSettings=Constants.baseConfigs[indexNr]
+		if langKey==Constants.sharedSettingLangKey:
+			BaseSettings.activateSharedSetting()
+			realLang=BaseSettings.language
+			customSet=true
+			recalc=true
+		elif baseSettings!="":
+			BaseSettings.loadBaseSetings(baseSettings)
+			realLang=BaseSettings.language
+#			var customItemIndex=Constants.languageKeys.find(Constants.sharedSettingLangKey)
+#			if customItemIndex>=0:
+#				set_item_text(customItemIndex,BaseSettings.settingsName)
+			customSet=true
+			recalc=true
+		else:
+			if BaseSettings.active:
+				BaseSettings.clearBaseSettings()
+				recalc=true
+	
+		TranslationServer.set_locale(realLang)
 		select(indexNr)
-		if currentLang!=langKey:
-			currentLang=langKey
-			Settings.currentLang=langKey
-			GameEvents.languageChanged()
+	
+		Settings.currentLang=langKey
+		GameEvents.languageChanged()
 #			var langDefaultSettings=tr("SettingsOverride")
 #			if langDefaultSettings!="" && currentLang!="nl_NL":
 #				var settings = parse_json(langDefaultSettings)
 #				$"%SettingsDialog".setSettings(settings,true)
-				
+	if recalc:
+		recalcFromBaseSettingSwitch()
 	text=""
 
 func selected(itemIndex : int):
-	
 	if itemIndex>=0:
 		var langKey=Constants.languageKeys[itemIndex]		
 		setLanguage(langKey)
 		GameEvents.settingsChanged()
-		
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

@@ -19,6 +19,8 @@ func loadLanguages():
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	GameEvents.connect("loadedSharedSettings",self,"_loadedSharedSettings");
+	
 	loadLanguages()
 	get_close_button().hide()
 
@@ -42,3 +44,7 @@ func _on_StartIntro_pressed():
 
 func _on_ItemList_item_selected(index):
 	$"%OptionLanguage".selected(index)
+
+func _loadedSharedSettings():
+	if visible:
+		_on_StartIntro_pressed()

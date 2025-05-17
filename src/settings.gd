@@ -9,7 +9,7 @@ var highScore=0.0
 var currentLang="nl_NL"
 var zoom=-1
 var customButtonSet=[]
-var showCommandTooltips=false
+var showCommandTooltips=true
 var showShortCutsInButtons=false
 var boatType = Constants.BoatType.Default;
 var finishedPractices=[]
@@ -19,7 +19,6 @@ var disabledPracticesUseDefault = true
 var successCount =0 
 var highContrast=false
 var shortSettingsInUrl = true
-var copiedFromSettingId=""
-var copiedTimestamp=0
 var practiceTranslations= [""]
 var practiceExplainTranslations= [""]
+var sharedSettings : Dictionary

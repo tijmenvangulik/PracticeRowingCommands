@@ -57,7 +57,7 @@ func getDefaultButtonSet():
 func recalcIsScull():
 	var boatType=Settings.boatType;
 	if boatType==Constants.BoatType.Default:
-		var langBoatType=tr("DefaultBoatType")
+		var langBoatType=Utilities.getDefaultSetting("DefaultBoatType")
 		if langBoatType=="Sweep": 
 			boatType=Constants.BoatType.Sweep
 		else:

@@ -41,7 +41,7 @@ var practiceNames = [
 ]
 
 func _ready():
-		GameEvents.connect("languageChangedSignal",self,"_languageChangedSignal");
+	GameEvents.connect("languageChangedSignal",self,"_languageChangedSignal");
 		
 var languageDisabledPractices=[]
 
@@ -56,6 +56,9 @@ func practiceIsEnabled(startItem :int):
 	return  Settings.disabledPractices.find(startItem)<0 
 
 func getPracticeName(startItem :int):
+	var result=Utilities.getDefaultArrayValueSetting("PracticeTranslations",startItem)
+	if result!="":
+		return result
 	var ind=practices.find(startItem)
 	if ind>=0:
 		return practiceNames[ind]
@@ -68,31 +71,40 @@ func getTranslatedPracticeName(startItem : int):
 	return title
 	
 func loadLanguageDisabledPractices():
-	var disabledPractices=tr("DisabledPractices")
-	if disabledPractices!=null && disabledPractices!="DisabledPractices" && disabledPractices!="":		
-		var p= JSON.parse(disabledPractices)
-		if typeof(p.result)==TYPE_ARRAY:
-			for i in p.result.size():
-				p.result[i]=int(p.result[i])
-			if languageDisabledPractices!=p.result:
-				languageDisabledPractices=p.result
+	var disabledPractices=Utilities.getDefaultJsonSetting("DisabledPractices")
+	if disabledPractices!=null:
+		if typeof(disabledPractices)==TYPE_ARRAY:
+			for i in disabledPractices.size():
+				disabledPractices[i]=int(disabledPractices[i])
+			if languageDisabledPractices!=disabledPractices:
+				languageDisabledPractices=disabledPractices
 				GameEvents.practicesChanged()
 
 func _languageChangedSignal():
 	Practices.loadLanguageDisabledPractices()
 
-func getPracticeTranslation(startPos:int)->String:
+func getPracticeTranslation(startPos:int,useDefaultSettings=true)->String:
+	var result=""
+	if useDefaultSettings:
+		result=Utilities.getDefaultArrayValueSetting("PracticeTranslations",startPos)
+	if result!="":
+		return result
 	if startPos>=0 && startPos<Settings.practiceTranslations.size():
 		return Settings.practiceTranslations[startPos]
 	return ""
 
-func getPracticeExplainText(startPos:int):
-	var result=getPracticeExplainTranslation(startPos)
+func getPracticeExplainText(startPos:int,useDefaultSettings =true):
+	var result=getPracticeExplainTranslation(startPos,useDefaultSettings)
 	if result=="" && startPos<Constants.practiceExplainTexts.size():
 		result=Constants.practiceExplainTexts[startPos]
 	return result
 	
-func getPracticeExplainTranslation(startPos:int)->String:
+func getPracticeExplainTranslation(startPos:int,useDefaultSettings =true)->String:
+	var result=""
+	if useDefaultSettings:
+		result=Utilities.getDefaultArrayValueSetting("PracticeExplainTranslations",startPos)
+	if result!="":
+		return result
 	if startPos>=0 && startPos<Settings.practiceExplainTranslations.size():
 		return Settings.practiceExplainTranslations[startPos]
 	return ""

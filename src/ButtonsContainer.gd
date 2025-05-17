@@ -4,12 +4,10 @@ var enabled=true
 
 
 func loadButtonsSetFromResources():
-	var buttonSet=tr("ButtonSet")
-	if buttonSet!=null && buttonSet!="ButtonSet" && buttonSet!="":
-		
-		var p= JSON.parse(buttonSet)
-		if typeof(p.result)==TYPE_ARRAY:
-			GameState.defaultButtonSet=p.result
+	var buttonSet=Utilities.getDefaultJsonSetting("ButtonSet")
+	if buttonSet!=null:
+		if typeof(buttonSet)==TYPE_ARRAY:
+			GameState.defaultButtonSet=buttonSet
 			if GameState.useDefaultButtonSet:
 				GameState.currentButtonSet=GameState.getDefaultButtonSet()
 			

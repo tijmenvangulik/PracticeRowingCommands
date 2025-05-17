@@ -2,6 +2,7 @@ extends WindowDialog
 
 
 var loadSettingId="";
+var settingsName="";
 
 func _ready():
 	$HTTPRequest.connect("request_completed", self, "_onReadSettingId")
@@ -19,7 +20,7 @@ func _onReadSettingId(result, response_code, headers, body):
 
 func setSettingInUrl():
 	if Settings.shortSettingsInUrl:
-		var settings=$"%SettingsDialog".getSettings(true)	
+		var settings=$"%SettingsDialog".getSharedSettings(settingsName)	
 		var urlSettings=to_json(settings).percent_encode()
 		print(urlSettings)
 		var url=Constants.serverUrl+"/saveSharedSetting?data="+urlSettings
@@ -30,30 +31,20 @@ func setSettingInUrl():
 		
 
 func setFullSettingsinUrl():
-	var settings=$"%SettingsDialog".getSettings(true)
+	var settings=$"%SettingsDialog".getSharedSettings(settingsName)	
 	var time=Time.get_unix_time_from_system()
-	settings["copiedTimestamp"]=time;
+	
 	var urlSettings=to_json(settings).percent_encode()
 	print(urlSettings)
+		
 	if sendSettingsToBrowser("&settings="+urlSettings+"'"):
 		show_modal(true)
 	
-
 func _onLoadSettings(result, response_code, headers, body):
 	var text=body.get_string_from_utf8()
 	if response_code==200:
-		var json = JSON.parse(text)
-		if json!=null:
-			# when link is re-used do not overwirte again when already used
-			# this way the user can re-use the link which is send to hime
-			# without lossing his own settings
-
-			if Settings.copiedFromSettingId!=loadSettingId:
-				var settings=json.result;
-				settings["copiedFromSettingId"]=loadSettingId
-				$"%SettingsDialog".setSettingsFromShortSettings(settings)
-				
-	
+		BaseSettings.loadSharedSetings(text,true)
+		
 func loadSettings(settingsId):
 	loadSettingId=settingsId;
 
@@ -78,11 +69,9 @@ func sendSettingsToBrowser(urlSettingParam):
 		JavaScript.eval("if (typeof navigator.clipboard=='object' && typeof navigator.clipboard.writeText=='function' ) navigator.clipboard.writeText("+urlScript+");")
 	return true
 	
-func start():
-	
+func start(name : String):
+	settingsName=name
 	setSettingInUrl()
-		
-
 
 func _on_CloseDialog_pressed():
 	$"%SettingsDialog".clearSettingsInUrl()

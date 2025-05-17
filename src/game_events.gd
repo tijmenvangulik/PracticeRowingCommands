@@ -46,6 +46,8 @@ signal practicesChanged
 
 signal settingsLoadedSignal
 
+signal loadedSharedSettings 
+
 func sendCommandChanged(command : int,commandName :String,value : String) -> void:
 	emit_signal("customCommandTextChanged",command,commandName,value)
 
@@ -72,6 +74,9 @@ func languageChanged():
 func zoomChanged():
 	emit_signal("zoomChangedSignal")
 
+func loadedSharedSettings():
+	emit_signal("loadedSharedSettings")
+	
 func forwardBackwardsChanged():
 	emit_signal("forwardBackwardsChangedSignal")
 

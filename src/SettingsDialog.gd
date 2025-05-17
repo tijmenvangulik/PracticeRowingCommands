@@ -21,6 +21,8 @@ export (NodePath) onready var resolutionButton = get_node(resolutionButton) as O
 
 var settingsFile="user://settings.save"
 
+var labelsCommandGrid=[]
+
 func handleShow():
 	GameState.dialogIsOpen=visible
 	if visible:
@@ -33,7 +35,7 @@ func _highContrastChangedSignal(highContrastOn):
 
 func _init():
 	connect("visibility_changed",self,"handleShow");
-
+	
 func addLabel(container,text):
 	var new_label = Label.new()
 	new_label.text=text
@@ -69,6 +71,20 @@ func setRuleset(ruleset):
 	var index=ruleSets.find(ruleset)
 	if index>=0:
 		ruleSetDropDown.select(index)
+
+func calcCommandGridLabelText(command):
+	var commandLabelText=Utilities.getDefaultDictonaryValueSetting("CommandTextTranslations",command)
+	if commandLabelText=="":
+		commandLabelText=command
+	return commandLabelText
+
+func calcCommandGridLabels():
+	for label in labelsCommandGrid:
+		var text=calcCommandGridLabelText(label.command)
+		label.setText(text)
+		
+func _languageChangedSignal():
+	calcCommandGridLabels()
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -78,7 +94,8 @@ func _ready():
 	GameEvents.connect("customShortcutTextChanged",self,"_on_EditTooltipText_customShortcutTextChanged")
 	GameEvents.connect("settingsChangedSignal",self,"_handleSettingsChanged")
 	GameEvents.connect("highContrastChangedSignal",self,"_highContrastChangedSignal")
-	
+	GameEvents.connect("languageChangedSignal",self,"_languageChangedSignal");
+		
 	get_close_button().hide()
 	
 	GameEvents.register_allways_tooltip($TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons,"ShortCutTourText")
@@ -122,8 +139,12 @@ func _ready():
 	commandButtonsTab.init()
 	enablePracticesTab.init()
 	for command in commands:
-		
-		var label=addLabelCommandsGrid(commandTranslationsCommandsGrid,command)
+		var commandLabelText=calcCommandGridLabelText(command)
+
+		var label :Label=addLabelCommandsGrid(commandTranslationsCommandsGrid,commandLabelText)
+		var labelContainer=label.get_parent()
+		labelContainer.command=command
+		labelsCommandGrid.append(labelContainer)
 		
 		var tootipTextName=command+"_tooltip";
 		label.mouse_filter=Control.MOUSE_FILTER_STOP
@@ -223,6 +244,7 @@ func getSettings(removePrivate=false):
 			shortcutDict[commandName]=translation
 	
 	var ruleset=rulesetManager.currentRulleset
+	
 	var save_dict = {"translations" : commandDict,
 	  "customButtonSet":Settings.customButtonSet,
 	  "ruleset":ruleset,
@@ -242,21 +264,51 @@ func getSettings(removePrivate=false):
 	  "successCount":Settings.successCount,
 	  "highContrast":Settings.highContrast,
 	  "shortSettingsInUrl":Settings.shortSettingsInUrl,
-	  "copiedFromSettingId":Settings.copiedFromSettingId,
-	  "copiedTimestamp":Settings.copiedTimestamp,
 	  "practiceTranslations":Settings.practiceTranslations,
-	  "practiceExplainTranslations":Settings.practiceExplainTranslations
+	  "practiceExplainTranslations":Settings.practiceExplainTranslations,
+	  "sharedSettings":Settings.sharedSettings
 	}
 	if removePrivate:
 		removePrivateSettings(save_dict)
 	return save_dict
-	
+
+
+func getSharedSettings(name : String):
+	var currentSettings=getSettings()
+	# merge the current settings with the shared settings (if there is any)
+	var save_dict = { "name":name,
+	  "language":TranslationServer.get_locale(),
+	  "boatType":Utilities.mergeSettingsValue("boatType",null,currentSettings,BaseSettings.activeBaseSettings),
+	  "translations" : Utilities.mergeSettingsDict("translations","",currentSettings,BaseSettings.activeBaseSettings),
+	  "customButtonSet":Utilities.mergeSettingsValue("customButtonSet",null,currentSettings,BaseSettings.activeBaseSettings),
+	  "ruleset":Utilities.mergeSettingsValue("ruleset","",currentSettings,BaseSettings.activeBaseSettings),
+	  "tooltips":Utilities.mergeSettingsDict("tooltips","",currentSettings,BaseSettings.activeBaseSettings),
+	  "shortcuts":Utilities.mergeSettingsDict("shortcuts","",currentSettings,BaseSettings.activeBaseSettings),
+	  "textTranslations":Utilities.mergeSettingsDict("textTranslations","",currentSettings,BaseSettings.activeBaseSettings),
+	  "disabledPractices":Utilities.mergeSettingsValue("disabledPractices",null,currentSettings,BaseSettings.activeBaseSettings),
+	  "disabledPracticesUseDefault":Utilities.mergeSettingsValue("disabledPracticesUseDefault",null,currentSettings,BaseSettings.activeBaseSettings),
+	  "practiceTranslations":Utilities.mergeSettingsArray("practiceTranslations","",currentSettings,BaseSettings.activeBaseSettings),
+	  "practiceExplainTranslations":Utilities.mergeSettingsArray("practiceExplainTranslations","",currentSettings,BaseSettings.activeBaseSettings),
+	  "zoom":1, #dymmy just to get it accepted by the server, todo : remove from server
+	  "isScull":true, #dymmy
+	  "showShortCutsInButtons":false, #dummy
+      "showCommandTooltips":false
+	}
+	return save_dict
+
 func removePrivateSettings(settings):
 	settings.erase("highScore")
 	settings.erase("finishedPractices")
 	settings.erase("waterAnimation")
 	settings.erase("successCount")
+
+func recalcIsScullFromSettings():
 	
+	var isScull=GameState.isScull
+	GameState.recalcIsScull()
+	if isScull!=GameState.isScull:
+		_on_BoatType_item_selected(Settings.boatType)
+		
 func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 	if removePrivate:
 		removePrivateSettings(dict)
@@ -274,20 +326,26 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 			boatType=Constants.BoatType.Sweep
 	elif dict.has("boatType"):
 		 boatType=dict["boatType"]
-		
 	if Settings.boatType!=boatType:
 		Settings.boatType=boatType
-		GameState.recalcIsScull()
-		_on_BoatType_item_selected(boatType)
+	recalcIsScullFromSettings()
 
 
 	
 	boatTypeButton.select(Settings.boatType)
 	
+	if dict.has("sharedSettings"):
+		#here it is loaded into the settings and drop down
+		#it is not yet acivated, this depends on the language which actualy selected later
+		var sharedSettings=dict["sharedSettings"]
+		if sharedSettings!=null && typeof(sharedSettings)==TYPE_DICTIONARY:
+			Settings.sharedSettings=sharedSettings
+			GameEvents.loadedSharedSettings()
+
 	if  dict.has("language"):
 		Settings.currentLang=dict["language"]
 		GameState.languageSetFromSettingsOrUl=true
-	
+			
 	var finishedPractices=[]
 
 	if dict.has("finishedPractices"):
@@ -318,16 +376,6 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 	var shortcuts={}
 	if dict.has("shortcuts"):
 		shortcuts=dict["shortcuts"]
-		
-	if dict.has("copiedFromSettingId"):
-		Settings.copiedFromSettingId= dict["copiedFromSettingId"]
-	else:
-		Settings.copiedFromSettingId=""
-
-	if dict.has("copiedTimestamp"):
-		Settings.copiedTimestamp= dict["copiedTimestamp"]
-	else:
-		Settings.copiedTimestamp=0
 	
 	if dict.has("shortSettingsInUrl"):
 		Settings.shortSettingsInUrl= dict["shortSettingsInUrl"]
@@ -500,23 +548,16 @@ func loadSettings():
 			if dict2!=null:
 				setSettings(dict2,false,false)
 		save_game.close()
-		
+	
+	# now just for testing because there is no url
+	#if (OS.is_debug_build()):
+	#	BaseSettings.loadTestBaseSettins()
+	
 	var settingFromUrl=false
 	var settings=get_parameter("settings")
 	if settings!=null && settings!="":
-		var dict=parse_json(settings);
-		settingFromUrl=true
-		if dict!=null:
-			var copiedTimestamp=-1
-			
-			if dict.has("copiedTimestamp"):
-				copiedTimestamp=dict["copiedTimestamp"]
-			# when link is re-used do not overwirte again when already used
-			# this way the user can re-use the link which is send to hime
-			# without lossing his own settings
-			if copiedTimestamp!=Settings.copiedTimestamp:
-				setSettings(dict,true,false)
-	
+		BaseSettings.loadSharedSetings(settings.percent_decode(),true)
+		
 	var settingsId=get_parameter("settingId")
 	if settingsId!=null && settingsId!="":
 		settingFromUrl=true
@@ -525,7 +566,7 @@ func loadSettings():
 	
 	#override the lang with the url lang
 	var urlLang=get_parameter("lang");
-	if urlLang!=null:
+	if urlLang!=null && (settings==null || settings==""):
 		var urlLangIndex=Constants.urlKeys.find(urlLang)
 		if urlLangIndex>=0:
 			Settings.currentLang=Constants.languageKeys[urlLangIndex]
@@ -618,16 +659,18 @@ func _on_GridContainerHeader_item_rect_changed():
 
 func saveAndClose():
 	saveTabs()
-	GameEvents.settingsChanged()	
 	visible=false
+	GameEvents.settingsChanged()	
 	GameEvents.startPlay()
 	
 func _on_CloseSettingsButton_pressed():
 	saveAndClose()
 
 func _on_ShareSettings_pressed():
-	saveAndClose()
-	$"%ShareSettingsDialog".start()
+	ensureButtonsetSaved()
+	saveAndClose()	
+	$"%ShareSettingsName".start()
+	
 
 
 func _on_WaterAnimationButton_toggled(button_pressed):
