@@ -5,9 +5,20 @@ extends WindowDialog
 # var a = 2
 # var b = "text"
 
+var nameControl :TextEdit
+var previewTextControl :Label
+var colorPicker : ColorPickerButton
+
+func _ready():
+	nameControl= $GridContainer/Name
+	previewTextControl = $GridContainer/Panel/PreviewText
+	colorPicker=$GridContainer/Panel2/ColorPickerButton
 
 # Called when the node enters the scene tree for the first time.
 func start():
+	setBladeColor(GameState.sharedSettingsBladeColor)
+	colorPicker.color=GameState.sharedSettingsBladeColor
+	setPreviewText()
 	show_modal(true)
 
 
@@ -18,8 +29,29 @@ func start():
 
 func _on_ShareSettings_pressed():
 	hide()
-	$"%ShareSettingsDialog".start($NameContainer/Name.text)
+	$"%ShareSettingsDialog".start(nameControl.text)
 
 
 func _on_Cancel_pressed():
 	hide()
+	
+func setBladeColor(color):
+	
+	GameState.sharedSettingsBladeColor=color
+	var preview=$GridContainer/Panel/CustomBladePreview
+	var flag=Utilities.languageToFlag(TranslationServer.get_locale())	
+	preview.texture=Utilities.getColoredBlade(color,flag)
+
+func _on_ColorPickerButton_color_changed(color):
+	setBladeColor(color)
+	
+
+func setPreviewText():
+
+	if nameControl.text=="":
+		previewTextControl.text=tr("SharedSettings")
+	else:
+		previewTextControl.text=nameControl.text
+	
+func _on_Name_text_changed():
+	setPreviewText()

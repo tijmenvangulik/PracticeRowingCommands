@@ -292,7 +292,9 @@ func getSharedSettings(name : String):
 	  "zoom":1, #dymmy just to get it accepted by the server, todo : remove from server
 	  "isScull":true, #dymmy
 	  "showShortCutsInButtons":false, #dummy
-      "showCommandTooltips":false
+	  "showCommandTooltips":false,
+	  "bladeColor":"#"+GameState.sharedSettingsBladeColor.to_html(false)
+		
 	}
 	return save_dict
 
@@ -559,6 +561,8 @@ func loadSettings():
 		BaseSettings.loadSharedSetings(settings.percent_decode(),true)
 		
 	var settingsId=get_parameter("settingId")
+	#settingsId="682b633cea44240d8d388d35"
+	
 	if settingsId!=null && settingsId!="":
 		settingFromUrl=true
 		$"%ShareSettingsDialog".loadSettings(settingsId)
@@ -567,9 +571,9 @@ func loadSettings():
 	#override the lang with the url lang
 	var urlLang=get_parameter("lang");
 	if urlLang!=null && (settings==null || settings==""):
-		var urlLangIndex=Constants.urlKeys.find(urlLang)
+		var urlLangIndex=Languages.urlKeys.find(urlLang)
 		if urlLangIndex>=0:
-			Settings.currentLang=Constants.languageKeys[urlLangIndex]
+			Settings.currentLang=Languages.languageKeys[urlLangIndex]
 			GameState.languageSetFromSettingsOrUl=true
 
 	afterLoadedSettings(settingFromUrl)

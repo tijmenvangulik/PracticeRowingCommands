@@ -1,4 +1,4 @@
-[gd_scene load_steps=143 format=2]
+[gd_scene load_steps=146 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -104,6 +104,7 @@
 [ext_resource path="res://PracticeEditTextButton.tscn" type="PackedScene" id=102]
 [ext_resource path="res://ModifyPracticeDialog.gd" type="Script" id=103]
 [ext_resource path="res://ShareSettingsName.gd" type="Script" id=104]
+[ext_resource path="res://assets/flags/nl_mask.png" type="Texture" id=105]
 
 [sub_resource type="ShaderMaterial" id=43]
 shader = ExtResource( 80 )
@@ -902,6 +903,12 @@ corner_radius_bottom_left = 5
 shadow_color = Color( 0, 0, 0, 0.270588 )
 shadow_size = 4
 shadow_offset = Vector2( 4, 4 )
+
+[sub_resource type="StyleBoxFlat" id=53]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="StyleBoxFlat" id=54]
+bg_color = Color( 0.301961, 0.32549, 0.352941, 1 )
 
 [node name="World" type="Node2D"]
 script = ExtResource( 1 )
@@ -3774,10 +3781,11 @@ __meta__ = {
 
 [node name="ShareSettingsName" type="WindowDialog" parent="CanvasLayer"]
 unique_name_in_owner = true
-margin_left = 176.0
-margin_top = 189.0
-margin_right = 874.0
-margin_bottom = 421.0
+visible = true
+margin_left = 190.0
+margin_top = 190.0
+margin_right = 888.0
+margin_bottom = 462.0
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
 custom_styles/panel = ExtResource( 33 )
 script = ExtResource( 104 )
@@ -3786,8 +3794,8 @@ script = ExtResource( 104 )
 anchor_top = 0.35
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_top = -39.2
-margin_bottom = -49.0
+margin_top = -73.2
+margin_bottom = -83.0
 grow_horizontal = 2
 custom_fonts/font = ExtResource( 50 )
 text = "ShareSettingsText"
@@ -3836,40 +3844,34 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NameContainer" type="HBoxContainer" parent="CanvasLayer/ShareSettingsName"]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/ShareSettingsName"]
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -210.0
-margin_top = -135.0
-margin_right = 230.0
-margin_bottom = -110.0
-size_flags_horizontal = 2
-size_flags_vertical = 2
+anchor_bottom = 0.5
+margin_left = -258.0
+margin_top = -64.0
+margin_right = 284.0
+margin_bottom = 69.0
+grow_horizontal = 2
+custom_constants/vseparation = 8
+custom_constants/hseparation = 30
+columns = 2
 
-[node name="PlayAgainNameLabel" type="Label" parent="CanvasLayer/ShareSettingsName/NameContainer"]
-margin_top = 3.0
+[node name="PlayAgainNameLabel" type="Label" parent="CanvasLayer/ShareSettingsName/GridContainer"]
+margin_top = 5.0
 margin_right = 152.0
-margin_bottom = 22.0
+margin_bottom = 24.0
 custom_fonts/font = ExtResource( 50 )
 text = "ShareSettingsName"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 2
+valign = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/ShareSettingsName/NameContainer"]
-margin_left = 156.0
-margin_top = 5.0
-margin_right = 176.0
-margin_bottom = 19.0
-text = ":    "
-
-[node name="Name" type="TextEdit" parent="CanvasLayer/ShareSettingsName/NameContainer"]
-margin_left = 180.0
-margin_right = 440.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 250, 0 )
+[node name="Name" type="TextEdit" parent="CanvasLayer/ShareSettingsName/GridContainer"]
+margin_left = 182.0
+margin_right = 542.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 250, 30 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 50 )
@@ -3877,20 +3879,77 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CanvasLayer/ShareSettingsName"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -81.5
-margin_top = 21.0
-margin_right = 81.5
-margin_bottom = 40.0
+[node name="Label3" type="Label" parent="CanvasLayer/ShareSettingsName/GridContainer"]
+margin_top = 38.0
+margin_right = 152.0
+margin_bottom = 57.0
+grow_horizontal = 2
+custom_colors/font_color = Color( 0.686275, 0.682353, 0.682353, 1 )
+custom_fonts/font = ExtResource( 50 )
+align = 1
+
+[node name="Label4" type="Label" parent="CanvasLayer/ShareSettingsName/GridContainer"]
+margin_left = 182.0
+margin_top = 38.0
+margin_right = 542.0
+margin_bottom = 57.0
 grow_horizontal = 2
 custom_colors/font_color = Color( 0.686275, 0.682353, 0.682353, 1 )
 custom_fonts/font = ExtResource( 50 )
 text = "ShareSettingsExplain"
 align = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/ShareSettingsName/GridContainer"]
+margin_top = 70.0
+margin_right = 152.0
+margin_bottom = 89.0
+custom_fonts/font = ExtResource( 50 )
+text = "Blad kleur:"
+align = 2
+valign = 1
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/ShareSettingsName/GridContainer"]
+margin_left = 182.0
+margin_top = 65.0
+margin_right = 542.0
+margin_bottom = 95.0
+rect_min_size = Vector2( 0, 30 )
+custom_styles/panel = SubResource( 53 )
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="CanvasLayer/ShareSettingsName/GridContainer/Panel2"]
+margin_right = 35.0
+margin_bottom = 30.0
+color = Color( 1, 1, 1, 1 )
+edit_alpha = false
+
+[node name="Label2" type="Label" parent="CanvasLayer/ShareSettingsName/GridContainer"]
+margin_top = 108.0
+margin_right = 152.0
+margin_bottom = 127.0
+custom_fonts/font = ExtResource( 50 )
+text = "Preview"
+align = 2
+valign = 1
+
+[node name="Panel" type="Panel" parent="CanvasLayer/ShareSettingsName/GridContainer"]
+margin_left = 182.0
+margin_top = 103.0
+margin_right = 542.0
+margin_bottom = 133.0
+rect_min_size = Vector2( 100, 30 )
+custom_styles/panel = SubResource( 54 )
+
+[node name="CustomBladePreview" type="Sprite" parent="CanvasLayer/ShareSettingsName/GridContainer/Panel"]
+position = Vector2( 8, 2 )
+texture = ExtResource( 105 )
+centered = false
+
+[node name="PreviewText" type="Label" parent="CanvasLayer/ShareSettingsName/GridContainer/Panel"]
+margin_left = 99.0
+margin_top = 3.0
+margin_right = 136.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 50 )
 
 [node name="ShareSettingsDialog" type="WindowDialog" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -4144,6 +4203,8 @@ script = ExtResource( 84 )
 [connection signal="pressed" from="CanvasLayer/SettingsDialog/ShareSettings" to="CanvasLayer/SettingsDialog" method="_on_ShareSettings_pressed"]
 [connection signal="pressed" from="CanvasLayer/ShareSettingsName/HBoxContainer/Cancel" to="CanvasLayer/ShareSettingsName" method="_on_Cancel_pressed"]
 [connection signal="pressed" from="CanvasLayer/ShareSettingsName/HBoxContainer/ShareSettings" to="CanvasLayer/ShareSettingsName" method="_on_ShareSettings_pressed"]
+[connection signal="text_changed" from="CanvasLayer/ShareSettingsName/GridContainer/Name" to="CanvasLayer/ShareSettingsName" method="_on_Name_text_changed"]
+[connection signal="color_changed" from="CanvasLayer/ShareSettingsName/GridContainer/Panel2/ColorPickerButton" to="CanvasLayer/ShareSettingsName" method="_on_ColorPickerButton_color_changed"]
 [connection signal="pressed" from="CanvasLayer/ShareSettingsDialog/CloseDialog" to="CanvasLayer/ShareSettingsDialog" method="_on_CloseDialog_pressed"]
 [connection signal="pressed" from="CanvasLayer/ModifyPracticeDialog/ModifiedTitleCheckBox" to="CanvasLayer/ModifyPracticeDialog" method="_on_ModifiedTitleCheckBox_pressed"]
 [connection signal="pressed" from="CanvasLayer/ModifyPracticeDialog/ModifiedExplainTextCheckBox" to="CanvasLayer/ModifyPracticeDialog" method="_on_ModifiedTextCheckBox_pressed"]

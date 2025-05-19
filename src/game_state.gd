@@ -22,6 +22,9 @@ var languageSetFromSettingsOrUl = false
 
 var isScull = true
 
+var sharedSettingsBladeColorDefault=Color("#ffffff")
+var sharedSettingsBladeColor=sharedSettingsBladeColorDefault
+
 func changeCollectGameState(newState):
 	if collectGameState!=newState:
 		collectGameState=newState

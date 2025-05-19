@@ -33,7 +33,7 @@ func loadSharedSetings(settingStr : String,activate=true):
 	GameEvents.loadedSharedSettings()
 	if activate:
 		activateSharedSetting()
-		Settings.currentLang=Constants.sharedSettingLangKey
+		Settings.currentLang=Languages.sharedSettingLangKey
 		GameEvents.settingsChanged()
 		GameEvents.languageChanged()
 
@@ -50,25 +50,26 @@ func loadedSharedSettings():
 	var indexNr=-1;
 	if Settings.sharedSettings!=null && Settings.sharedSettings.keys().size()>0: 
 		
-		indexNr=Constants.languageKeys.find(Constants.sharedSettingLangKey)
+		indexNr=Languages.languageKeys.find(Languages.sharedSettingLangKey)
 		if indexNr<0:
-			Constants.languageKeys.append(Constants.sharedSettingLangKey)
-			Constants.urlKeys.append("shared_setting")
-			Constants.flags.append("")	
-			Constants.languageLongItems.append("")
-			Constants.baseConfigs.append("")
-			indexNr=Constants.languageKeys.size()-1
+			Languages.languageKeys.append(Languages.sharedSettingLangKey)
+			Languages.urlKeys.append("shared_setting")
+			Languages.flags.append("")	
+			Languages.languageLongItems.append("")
+			Languages.baseConfigs.append("")
+			indexNr=Languages.languageKeys.size()-1
 		var lang : String=Settings.sharedSettings["language"]
-		if lang!=null && lang.begins_with("en"):
-			Constants.flags[indexNr]="gb"
-		else:
-			Constants.flags[indexNr]="nl" #pick a generic flag for a custom set
+		Languages.flags[indexNr]=Utilities.languageToFlag(lang)
 		var settingsName=""
 		if Settings.sharedSettings.has("name"):
 			settingsName=Settings.sharedSettings.get("name")
 		if settingsName=="" || settingsName==null:
 			settingsName="SharedSettings"
-
-		Constants.languageLongItems[indexNr]=settingsName
+		if Settings.sharedSettings.has("bladeColor"):
+			GameState.sharedSettingsBladeColor= Color(Settings.sharedSettings["bladeColor"])
+		else:
+			GameState.sharedSettingsBladeColor= GameState.sharedSettingsBladeColorDefault
+		
+		Languages.languageLongItems[indexNr]=settingsName
 	return indexNr
-#	var customItemIndex=Constants.languageKeys.find(Constants.sharedSettingLangKey)
+#	var customItemIndex=Languages.languageKeys.find(Languages.sharedSettingLangKey)

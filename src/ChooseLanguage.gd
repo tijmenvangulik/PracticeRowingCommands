@@ -9,8 +9,8 @@ extends WindowDialog
 func loadLanguages():
 	var list=$ScrollContainer/Panel/ItemList
 	var i=0;
-	for item in Constants.languageLongItems:
-		var flagName=Constants.flags[i]
+	for item in Languages.languageLongItems:
+		var flagName=Languages.flags[i]
 		var texture=load("res://assets/flags/"+flagName+".svg")
 		list.add_item(item,texture)
 		#list.set_item_metadata(1,)

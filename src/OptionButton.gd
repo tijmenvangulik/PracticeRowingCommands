@@ -20,9 +20,14 @@ func _init():
 
 
 func addLanguageItem(i):
-	var flagName=Constants.flags[i]
+	var flagName=Languages.flags[i]
 	var texture=load("res://assets/flags/"+flagName+".svg")		
-	add_icon_item(texture,Constants.languageLongItems[i],i)
+	add_icon_item(texture,Languages.languageLongItems[i],i)
+
+func addCustomLanguageItem(i):
+	var flagName=Languages.flags[i]
+	var newTexture=Utilities.getColoredBlade(GameState.sharedSettingsBladeColor,flagName)
+	add_icon_item(newTexture,Languages.languageLongItems[i],i)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,7 +36,7 @@ func _ready():
 	GameEvents.connect("introSignal",self,"_introSignal")
 	GameEvents.connect("loadedSharedSettings",self,"_loadedSharedSettings");
 	
-	for i in Constants.languageLongItems.size():
+	for i in Languages.languageLongItems.size():
 		addLanguageItem(i)
 	
 	connect("item_selected",self,"selected")
@@ -42,7 +47,7 @@ func _ready():
 
 func _loadedSharedSettings():
 	loadedSharedSettings()
-	setLanguage(Constants.sharedSettingLangKey)
+	setLanguage(Languages.sharedSettingLangKey)
 
 func setStyle(highContrast):
 	var pm=get_popup()
@@ -68,17 +73,17 @@ func loadedSharedSettings():
 	if index>=0:
 		if index+1>= get_item_count():
 			remove_item(index)
-		addLanguageItem(Constants.languageKeys.size()-1)
+		addCustomLanguageItem(Languages.languageKeys.size()-1)
 
 		
 func setLanguage(langKey):
 	var  customSet=false
 	var recalc=false;
-	var indexNr=Constants.languageKeys.find(langKey)
+	var indexNr=Languages.languageKeys.find(langKey)
 	if indexNr>=0:
 		var realLang=langKey
-		var baseSettings=Constants.baseConfigs[indexNr]
-		if langKey==Constants.sharedSettingLangKey:
+		var baseSettings=Languages.baseConfigs[indexNr]
+		if langKey==Languages.sharedSettingLangKey:
 			BaseSettings.activateSharedSetting()
 			realLang=BaseSettings.language
 			customSet=true
@@ -86,7 +91,7 @@ func setLanguage(langKey):
 		elif baseSettings!="":
 			BaseSettings.loadBaseSetings(baseSettings)
 			realLang=BaseSettings.language
-#			var customItemIndex=Constants.languageKeys.find(Constants.sharedSettingLangKey)
+#			var customItemIndex=Languages.languageKeys.find(Languages.sharedSettingLangKey)
 #			if customItemIndex>=0:
 #				set_item_text(customItemIndex,BaseSettings.settingsName)
 			customSet=true
@@ -111,7 +116,7 @@ func setLanguage(langKey):
 
 func selected(itemIndex : int):
 	if itemIndex>=0:
-		var langKey=Constants.languageKeys[itemIndex]		
+		var langKey=Languages.languageKeys[itemIndex]		
 		setLanguage(langKey)
 		GameEvents.settingsChanged()
 		

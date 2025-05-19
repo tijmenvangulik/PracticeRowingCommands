@@ -139,6 +139,7 @@ Practices="*res://practices.gd"
 Styles="*res://styles.gd"
 Secrets="*res://secrets.gd"
 BaseSettings="*res://baseSettings.gd"
+Languages="*res://Languages.gd"
 
 [display]
 

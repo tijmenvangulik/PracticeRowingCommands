@@ -270,4 +270,45 @@ func getLanguageFromSettings(settings : Dictionary):
 	if settings.has("language"):
 		result=settings["language"]
 	return result
+
+var	maskImage : StreamTexture=preload( "res://assets/flags/nl_mask.png")
+var flag_nl : StreamTexture=preload("res://assets/flags/nl.svg")
+var flag_gb : StreamTexture=preload("res://assets/flags/gb.svg")
+
+func getColoredBlade(color : Color,flag : String) -> Texture:
+	var image : Image = maskImage.get_data()
+	var width=image.get_width()
+	var height=image.get_height()
+	replace_color_in_texture(image,Color("#000000"), color)
+	image.resize(width*0.7,height*0.7)
 	
+	var flagImageStream : StreamTexture= flag_nl;
+	if flag=="gb":
+		flagImageStream=flag_gb;
+	var imageFlag : Image = flagImageStream.get_data()
+	var widthFlag=imageFlag.get_width()
+	var heightFlag=imageFlag.get_height()
+	image.blend_rect(imageFlag, Rect2(0,0,imageFlag.get_width(),imageFlag.get_height()), Vector2(0,0))
+	
+	var texture = ImageTexture.new()
+	texture.create_from_image(image)
+	return texture
+	
+func replace_color_in_texture(image, from_color: Color, to_color: Color):
+	
+	image.lock()  # Je moet de image locken voor bewerken
+
+	for y in image.get_height():
+		for x in image.get_width():
+			var color = image.get_pixel(x, y)
+			if color.r == from_color.r and color.g == from_color.g and color.b == from_color.b:
+				# vervang alleen RGB, behoud alpha
+				image.set_pixel(x, y, Color(to_color.r, to_color.g, to_color.b, color.a))
+
+	image.unlock()
+
+
+func languageToFlag(lang : String) -> String:
+	if lang!=null && lang.begins_with("en"):
+		return "gb"
+	return "nl"

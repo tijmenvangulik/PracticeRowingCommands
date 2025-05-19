@@ -55,9 +55,9 @@ func loadSettings(settingsId):
 func sendSettingsToBrowser(urlSettingParam):
 	var urlLang=""
 	var lang=Settings.currentLang
-	var indexNr=Constants.languageKeys.find(lang)
+	var indexNr=Languages.languageKeys.find(lang)
 	if indexNr>=0:
-		urlLang=Constants.urlKeys[indexNr]
+		urlLang=Languages.urlKeys[indexNr]
 	
 	var hasShare=JavaScript.eval("typeof navigator.share=='function'");
 	var urlScript="window.location.protocol + '//' + window.location.host + window.location.pathname + '?lang="+urlLang+urlSettingParam
