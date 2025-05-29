@@ -3781,7 +3781,6 @@ __meta__ = {
 
 [node name="ShareSettingsName" type="WindowDialog" parent="CanvasLayer"]
 unique_name_in_owner = true
-visible = true
 margin_left = 190.0
 margin_top = 190.0
 margin_right = 888.0

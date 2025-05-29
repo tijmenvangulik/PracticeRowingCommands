@@ -558,6 +558,7 @@ func loadSettings():
 	var settingFromUrl=false
 	var settings=get_parameter("settings")
 	if settings!=null && settings!="":
+		settingFromUrl=true
 		BaseSettings.loadSharedSetings(settings.percent_decode(),true)
 		
 	var settingsId=get_parameter("settingId")

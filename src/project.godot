@@ -165,6 +165,7 @@ collis=false
 ray=false
 path=false
 Global=false
+type=false
 
 [importer_defaults]
 
