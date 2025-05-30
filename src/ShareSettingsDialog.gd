@@ -3,7 +3,7 @@ extends WindowDialog
 
 var loadSettingId="";
 var settingsName="";
-
+var shortSettingsInUrl=true
 func _ready():
 	$HTTPRequest.connect("request_completed", self, "_onReadSettingId")
 	$HTTPRequestLoad.connect("request_completed", self, "_onLoadSettings")
@@ -19,7 +19,7 @@ func _onReadSettingId(result, response_code, headers, body):
 		setFullSettingsinUrl()
 
 func setSettingInUrl():
-	if Settings.shortSettingsInUrl:
+	if shortSettingsInUrl:
 		var settings=$"%SettingsDialog".getSharedSettings(settingsName)	
 		var urlSettings=to_json(settings).percent_encode()
 		print(urlSettings)
@@ -69,8 +69,9 @@ func sendSettingsToBrowser(urlSettingParam):
 		JavaScript.eval("if (typeof navigator.clipboard=='object' && typeof navigator.clipboard.writeText=='function' ) navigator.clipboard.writeText("+urlScript+");")
 	return true
 	
-func start(name : String):
+func start(name : String,p_shortSettingsInUrl : bool):
 	settingsName=name
+	shortSettingsInUrl=p_shortSettingsInUrl
 	setSettingInUrl()
 
 func _on_CloseDialog_pressed():

@@ -45,3 +45,17 @@ func _on_Love_pressed():
 	smlileyState=SmlileyState.Love
 	saveState="Love"
 	updateEmoticon()
+
+
+func _on_QuickFeedbackQuestion3_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		JavaScript.eval("window.open('mailto:tijmen@vangulik.org')")
+
+
+
+func _on_QuickFeedbackQuestion3_mouse_entered() -> void:
+	$QuickFeedbackQuestion3.add_color_override("font_color",Color("ffffff"))
+
+
+func _on_QuickFeedbackQuestion3_mouse_exited() -> void:
+	$QuickFeedbackQuestion3.add_color_override("font_color",Color("acaeb1"))

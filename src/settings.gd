@@ -18,7 +18,6 @@ var disabledPractices=[]
 var disabledPracticesUseDefault = true
 var successCount =0 
 var highContrast=false
-var shortSettingsInUrl = true
 var practiceTranslations= [""]
 var practiceExplainTranslations= [""]
 var sharedSettings : Dictionary

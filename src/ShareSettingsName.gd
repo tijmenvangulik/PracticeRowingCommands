@@ -29,7 +29,8 @@ func start():
 
 func _on_ShareSettings_pressed():
 	hide()
-	$"%ShareSettingsDialog".start(nameControl.text)
+	var shortSettings=$GridContainer/Panel4/ShortSharedSettings.pressed
+	$"%ShareSettingsDialog".start(nameControl.text,shortSettings)
 
 
 func _on_Cancel_pressed():

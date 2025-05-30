@@ -263,7 +263,6 @@ func getSettings(removePrivate=false):
 	  "disabledPracticesUseDefault":Settings.disabledPracticesUseDefault,
 	  "successCount":Settings.successCount,
 	  "highContrast":Settings.highContrast,
-	  "shortSettingsInUrl":Settings.shortSettingsInUrl,
 	  "practiceTranslations":Settings.practiceTranslations,
 	  "practiceExplainTranslations":Settings.practiceExplainTranslations,
 	  "sharedSettings":Settings.sharedSettings
@@ -379,9 +378,6 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 	if dict.has("shortcuts"):
 		shortcuts=dict["shortcuts"]
 	
-	if dict.has("shortSettingsInUrl"):
-		Settings.shortSettingsInUrl= dict["shortSettingsInUrl"]
-		$TabContainer/GeneralSettingsTab/GridContainer/ShortSharedSettings.pressed=Settings.shortSettingsInUrl
 		
 	var 	tooltipsOn=true
 	if dict.has("showCommandTooltips"): 
@@ -709,10 +705,6 @@ func _on_HighContrastButton_toggled(button_pressed):
 	GameEvents.settingsChanged()
 	GameEvents.highContrastChanged(button_pressed)
 
-
-func _on_ShortSharedSettings_toggled(button_pressed):
-	Settings.shortSettingsInUrl=button_pressed
-	GameEvents.settingsChanged()
 
 func saveTabs():
 	$TabContainer/EnablePracticesTab.savePractices()

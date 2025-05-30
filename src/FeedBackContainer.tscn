@@ -9,7 +9,7 @@
 
 [node name="FeedBackContainer" type="Panel"]
 margin_right = 410.0
-margin_bottom = 248.0
+margin_bottom = 268.0
 script = ExtResource( 6 )
 
 [node name="EmoticonSelection" type="HBoxContainer" parent="."]
@@ -52,9 +52,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -185.5
-margin_top = -12.5
+margin_top = -24.5
 margin_right = 185.5
-margin_bottom = 6.5
+margin_bottom = -5.5
 grow_horizontal = 2
 custom_fonts/font = ExtResource( 1 )
 text = "CommentLabel"
@@ -66,12 +66,28 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -192.0
-margin_top = -104.0
+margin_top = -124.0
 margin_right = 193.0
-margin_bottom = -10.0
+margin_bottom = -30.0
 custom_fonts/font = ExtResource( 1 )
 wrap_enabled = true
 caret_blink = true
+
+[node name="QuickFeedbackQuestion3" type="Label" parent="."]
+anchor_top = 0.35
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 1.0
+margin_top = 150.1
+margin_right = 1.0
+margin_bottom = 128.9
+grow_horizontal = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+custom_colors/font_color = Color( 0.67451, 0.682353, 0.694118, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "MailQuestion"
+align = 1
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 timeout = 20.0
@@ -80,3 +96,6 @@ timeout = 20.0
 [connection signal="pressed" from="EmoticonSelection/Meh" to="." method="_on_Meh_pressed"]
 [connection signal="pressed" from="EmoticonSelection/Smile" to="." method="_on_Smile_pressed"]
 [connection signal="pressed" from="EmoticonSelection/Love" to="." method="_on_Love_pressed"]
+[connection signal="gui_input" from="QuickFeedbackQuestion3" to="." method="_on_QuickFeedbackQuestion3_gui_input"]
+[connection signal="mouse_entered" from="QuickFeedbackQuestion3" to="." method="_on_QuickFeedbackQuestion3_mouse_entered"]
+[connection signal="mouse_exited" from="QuickFeedbackQuestion3" to="." method="_on_QuickFeedbackQuestion3_mouse_exited"]

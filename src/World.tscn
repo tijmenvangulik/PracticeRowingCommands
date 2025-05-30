@@ -2479,10 +2479,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -268.5
-margin_top = -177.0
-margin_right = 268.5
-margin_bottom = 177.0
+margin_left = -270.0
+margin_top = -203.0
+margin_right = 267.0
+margin_bottom = 185.0
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
 custom_styles/panel = ExtResource( 33 )
 script = ExtResource( 69 )
@@ -2505,10 +2505,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -217.0
-margin_top = -123.5
-margin_right = 217.0
-margin_bottom = 123.5
+margin_left = -216.5
+margin_top = -123.0
+margin_right = 217.5
+margin_bottom = 145.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/QuickFeedbackDialog"]
 anchor_left = 0.5
@@ -2565,9 +2565,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -280.0
-margin_top = -210.5
+margin_top = -210.0
 margin_right = 280.0
-margin_bottom = 210.5
+margin_bottom = 264.0
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
 custom_styles/panel = ExtResource( 33 )
 script = ExtResource( 95 )
@@ -2662,9 +2662,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -205.0
-margin_top = -97.5
+margin_top = -103.0
 margin_right = 205.0
-margin_bottom = 149.5
+margin_bottom = 170.0
 
 [node name="ExplainPracticeDialog" type="WindowDialog" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -3382,22 +3382,6 @@ custom_styles/focus = ExtResource( 17 )
 custom_styles/normal = ExtResource( 64 )
 text = "ResetPractices"
 
-[node name="ShortSharedSettingsLabel" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_top = 200.0
-margin_right = 198.0
-margin_bottom = 219.0
-custom_fonts/font = ExtResource( 50 )
-text = "ShareSettingsUsingServer"
-
-[node name="ShortSharedSettings" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_left = 218.0
-margin_top = 194.0
-margin_right = 368.0
-margin_bottom = 225.0
-custom_icons/off = ExtResource( 25 )
-custom_icons/on = ExtResource( 66 )
-pressed = true
-
 [node name="DisplayTab" type="Tabs" parent="CanvasLayer/SettingsDialog/TabContainer"]
 visible = false
 margin_right = 40.0
@@ -3781,10 +3765,10 @@ __meta__ = {
 
 [node name="ShareSettingsName" type="WindowDialog" parent="CanvasLayer"]
 unique_name_in_owner = true
-margin_left = 190.0
-margin_top = 190.0
-margin_right = 888.0
-margin_bottom = 462.0
+margin_left = 186.0
+margin_top = 129.0
+margin_right = 884.0
+margin_bottom = 470.0
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
 custom_styles/panel = ExtResource( 33 )
 script = ExtResource( 104 )
@@ -3793,8 +3777,8 @@ script = ExtResource( 104 )
 anchor_top = 0.35
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_top = -73.2
-margin_bottom = -83.0
+margin_top = -71.35
+margin_bottom = -91.5
 grow_horizontal = 2
 custom_fonts/font = ExtResource( 50 )
 text = "ShareSettingsText"
@@ -3859,7 +3843,7 @@ columns = 2
 
 [node name="PlayAgainNameLabel" type="Label" parent="CanvasLayer/ShareSettingsName/GridContainer"]
 margin_top = 5.0
-margin_right = 152.0
+margin_right = 198.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 50 )
 text = "ShareSettingsName"
@@ -3867,7 +3851,7 @@ align = 2
 valign = 1
 
 [node name="Name" type="TextEdit" parent="CanvasLayer/ShareSettingsName/GridContainer"]
-margin_left = 182.0
+margin_left = 228.0
 margin_right = 542.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 250, 30 )
@@ -3880,7 +3864,7 @@ __meta__ = {
 
 [node name="Label3" type="Label" parent="CanvasLayer/ShareSettingsName/GridContainer"]
 margin_top = 38.0
-margin_right = 152.0
+margin_right = 198.0
 margin_bottom = 57.0
 grow_horizontal = 2
 custom_colors/font_color = Color( 0.686275, 0.682353, 0.682353, 1 )
@@ -3888,7 +3872,7 @@ custom_fonts/font = ExtResource( 50 )
 align = 1
 
 [node name="Label4" type="Label" parent="CanvasLayer/ShareSettingsName/GridContainer"]
-margin_left = 182.0
+margin_left = 228.0
 margin_top = 38.0
 margin_right = 542.0
 margin_bottom = 57.0
@@ -3900,7 +3884,7 @@ align = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/ShareSettingsName/GridContainer"]
 margin_top = 70.0
-margin_right = 152.0
+margin_right = 198.0
 margin_bottom = 89.0
 custom_fonts/font = ExtResource( 50 )
 text = "Blad kleur:"
@@ -3908,7 +3892,7 @@ align = 2
 valign = 1
 
 [node name="Panel2" type="Panel" parent="CanvasLayer/ShareSettingsName/GridContainer"]
-margin_left = 182.0
+margin_left = 228.0
 margin_top = 65.0
 margin_right = 542.0
 margin_bottom = 95.0
@@ -3923,7 +3907,7 @@ edit_alpha = false
 
 [node name="Label2" type="Label" parent="CanvasLayer/ShareSettingsName/GridContainer"]
 margin_top = 108.0
-margin_right = 152.0
+margin_right = 198.0
 margin_bottom = 127.0
 custom_fonts/font = ExtResource( 50 )
 text = "Preview"
@@ -3931,7 +3915,7 @@ align = 2
 valign = 1
 
 [node name="Panel" type="Panel" parent="CanvasLayer/ShareSettingsName/GridContainer"]
-margin_left = 182.0
+margin_left = 228.0
 margin_top = 103.0
 margin_right = 542.0
 margin_bottom = 133.0
@@ -3949,6 +3933,29 @@ margin_top = 3.0
 margin_right = 136.0
 margin_bottom = 22.0
 custom_fonts/font = ExtResource( 50 )
+
+[node name="ShortSharedSettingsLabel" type="Label" parent="CanvasLayer/ShareSettingsName/GridContainer"]
+margin_top = 146.0
+margin_right = 198.0
+margin_bottom = 165.0
+custom_fonts/font = ExtResource( 50 )
+text = "ShareSettingsUsingServer"
+align = 2
+
+[node name="Panel4" type="Panel" parent="CanvasLayer/ShareSettingsName/GridContainer"]
+margin_left = 228.0
+margin_top = 141.0
+margin_right = 542.0
+margin_bottom = 171.0
+rect_min_size = Vector2( 0, 30 )
+custom_styles/panel = SubResource( 53 )
+
+[node name="ShortSharedSettings" type="CheckButton" parent="CanvasLayer/ShareSettingsName/GridContainer/Panel4"]
+margin_right = 69.0
+margin_bottom = 31.0
+custom_icons/off = ExtResource( 25 )
+custom_icons/on = ExtResource( 66 )
+pressed = true
 
 [node name="ShareSettingsDialog" type="WindowDialog" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -4186,7 +4193,6 @@ script = ExtResource( 84 )
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons" to="CanvasLayer/SettingsDialog" method="_on_ShowShortCutsInButtons_toggled"]
 [connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/BoatType" to="CanvasLayer/SettingsDialog" method="_on_BoatType_item_selected"]
 [connection signal="pressed" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/ResetPractices" to="CanvasLayer/SettingsDialog" method="_on_ResetPractices_pressed"]
-[connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/ShortSharedSettings" to="CanvasLayer/SettingsDialog" method="_on_ShortSharedSettings_toggled"]
 [connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/HBoxContainer/Resolution" to="CanvasLayer/SettingsDialog" method="_on_Resolution_item_selected"]
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/HBoxContainer2/WaterAnimationButton" to="CanvasLayer/SettingsDialog" method="_on_WaterAnimationButton_toggled"]
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/HBoxContainer3/HighContrastButton" to="CanvasLayer/SettingsDialog" method="_on_HighContrastButton_toggled"]
