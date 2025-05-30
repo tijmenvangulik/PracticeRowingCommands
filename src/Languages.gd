@@ -22,6 +22,13 @@ const initalSettings = [
 		"baseConfig":""
 	},
 	{
+		"key": "nl",
+		"urlKey": "nl",
+		"flag":"nl",
+		"displayName":"Nederlands / Generiek",
+		"baseConfig":""
+	},
+	{
 		"key": "en",
 		"urlKey": "en",
 		"flag":"gb",
