@@ -23,6 +23,10 @@ var settingsFile="user://settings.save"
 
 var labelsCommandGrid=[]
 
+func start(tabIndex =0 ):
+	$TabContainer.current_tab=tabIndex
+	show()
+	
 func handleShow():
 	GameState.dialogIsOpen=visible
 	if visible:

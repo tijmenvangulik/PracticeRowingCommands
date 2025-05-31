@@ -244,4 +244,9 @@ func _customButtonSetChangedSignal():
 	setCustomButtonSet(Settings.customButtonSet)
 
 func _showButtonsSignal(show : bool):
+	setVisible(show)
+	
+func setVisible(show : bool):
 	visible=show
+	$"%EditButtons".visible=show
+	

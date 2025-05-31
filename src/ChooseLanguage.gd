@@ -37,7 +37,7 @@ func showDialog():
 func _on_StartIntro_pressed():
 	hide()
 	$"%RightTopButtons".visible=true
-	$"%ButtonsContainer".visible=true
+	$"%ButtonsContainer".setVisible(true)
 
 	$"%IntroDialog".start()
 

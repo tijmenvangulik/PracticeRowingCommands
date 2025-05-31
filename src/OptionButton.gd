@@ -8,6 +8,8 @@ extends OptionButton
 
 var currentLang=""
 
+var editIcon=load("res://assets/editIconLong.png")
+
 
 func _init():
 	# get the default language from javascript
@@ -17,7 +19,7 @@ func _init():
 	else:
 		Settings.currentLang="en"
 	GameEvents.register_tooltip(self,"OptionLanguageTooltip")
-
+	
 
 func addLanguageItem(i):
 	var flagName=Languages.flags[i]
@@ -28,7 +30,12 @@ func addCustomLanguageItem(i):
 	var flagName=Languages.flags[i]
 	var newTexture=Utilities.getColoredBlade(GameState.sharedSettingsBladeColor,flagName)
 	add_icon_item(newTexture,Languages.languageLongItems[i],i)
-
+	
+func addModifyIcon():
+	add_icon_item(editIcon,"ModifyLanguages",-2)
+	var pm=get_popup()
+	pm.set_item_as_radio_checkable(pm.get_item_count()-1, false)
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameEvents.connect("settingsChangedSignal",self,"_settings_changedSignal")
@@ -38,6 +45,7 @@ func _ready():
 	
 	for i in Languages.languageLongItems.size():
 		addLanguageItem(i)
+	addModifyIcon()
 	
 	connect("item_selected",self,"selected")
 	setLanguage(Settings.currentLang)	
@@ -71,10 +79,15 @@ func recalcFromBaseSettingSwitch():
 func loadedSharedSettings():
 	var index=BaseSettings.loadedSharedSettings()
 	if index>=0:
-		if index+1>= get_item_count():
+		# remove the edit icon		
+		var itemId=get_item_id(get_item_count()-1)
+		if itemId==-2:
+			remove_item(get_item_count()-1)
+		# when there is an custom item rmove it
+		if get_item_id(get_item_count()-1)==index:
 			remove_item(index)
 		addCustomLanguageItem(Languages.languageKeys.size()-1)
-
+		addModifyIcon()
 		
 func setLanguage(langKey):
 	var  customSet=false
@@ -115,10 +128,13 @@ func setLanguage(langKey):
 	text=""
 
 func selected(itemIndex : int):
-	if itemIndex>=0:
-		var langKey=Languages.languageKeys[itemIndex]		
+	var itemId=get_item_id(itemIndex)
+	if itemId>=0 :
+		var langKey=Languages.languageKeys[itemId]		
 		setLanguage(langKey)
 		GameEvents.settingsChanged()
+	else:
+		$"%SettingsDialog".start(2)
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

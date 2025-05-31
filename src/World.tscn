@@ -1,4 +1,4 @@
-[gd_scene load_steps=146 format=2]
+[gd_scene load_steps=150 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -105,6 +105,10 @@
 [ext_resource path="res://ModifyPracticeDialog.gd" type="Script" id=103]
 [ext_resource path="res://ShareSettingsName.gd" type="Script" id=104]
 [ext_resource path="res://assets/flags/nl_mask.png" type="Texture" id=105]
+[ext_resource path="res://assets/editIconButton.png" type="Texture" id=106]
+[ext_resource path="res://EditButtons.gd" type="Script" id=107]
+[ext_resource path="res://StyleButtonRound.tres" type="StyleBox" id=108]
+[ext_resource path="res://StyleButtonRoundHover.tres" type="StyleBox" id=109]
 
 [sub_resource type="ShaderMaterial" id=43]
 shader = ExtResource( 80 )
@@ -1603,6 +1607,24 @@ boat = NodePath("../Boat")
 position = Vector2( 1922, -400 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="EditButtons" type="Button" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -41.0
+margin_top = -42.0
+margin_right = -5.0
+margin_bottom = -7.0
+custom_styles/hover = ExtResource( 109 )
+custom_styles/pressed = ExtResource( 109 )
+custom_styles/focus = ExtResource( 109 )
+custom_styles/normal = ExtResource( 108 )
+icon = ExtResource( 106 )
+icon_align = 1
+script = ExtResource( 107 )
 
 [node name="errorLabel" type="Label" parent="CanvasLayer"]
 anchor_left = 0.5
@@ -4154,6 +4176,7 @@ text = "Replay"
 unique_name_in_owner = true
 script = ExtResource( 84 )
 
+[connection signal="pressed" from="CanvasLayer/EditButtons" to="CanvasLayer/EditButtons" method="_on_EditButtons_pressed"]
 [connection signal="pressed" from="CanvasLayer/IntroDialog/HSplitContainer/StartPractices" to="CanvasLayer/IntroDialog" method="_on_StartPractices_pressed"]
 [connection signal="gui_input" from="CanvasLayer/IntroDialog/VersionNumber" to="CanvasLayer/IntroDialog" method="_on_VersionNumber_gui_input"]
 [connection signal="mouse_entered" from="CanvasLayer/IntroDialog/VersionNumber" to="CanvasLayer/IntroDialog" method="_on_VersionNumber_mouse_entered"]

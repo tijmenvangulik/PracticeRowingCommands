@@ -25,6 +25,8 @@ var stepArrowIcons=[stepArrowTop,stepArrowMid,stepArrowBot]
 
 var iconBoat=load("res://assets/iconBoat.png")
 var infoIcon=load("res://assets/infoIcon.png")
+var editIcon=load("res://assets/editIcon.png")
+
 var practiceIsActive = false;
 
 var practicePoints = 0
@@ -39,6 +41,7 @@ func loadItems():
 		if Practices.practiceIsVisible(startItem):
 			var title=Practices.getTranslatedPracticeName(startItem)
 			add_item(title,startItem)
+	add_item("ModifyPractices",Constants.StartItem.StartModifyPractices)
 	add_separator()
 	add_item("StartOpWater",Constants.StartItem.Start)
 	add_item("ShowIntroText",Constants.StartItem.Intro)
@@ -162,6 +165,8 @@ func setIcons():
 			set_item_icon(i,infoIcon)
 		if itemId==Constants.StartItem.Start:
 			set_item_icon(i,iconBoat)
+		if itemId==Constants.StartItem.StartModifyPractices:
+			set_item_icon(i,editIcon)
 	icon=null
 	$"%PracticeCounter".setCount( practicePoints, nrOfPractices)
 	
@@ -397,7 +402,9 @@ func doStart(startItemId):
 			$"%CollectableSpinTurnPractice".reset()
 			var showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.HalenBeideBoorden,Constants.Command.RondmakenBB,Constants.Command.RondmakenSB,Constants.Command.VastroeienBeideBoorden,Constants.Command.Bedankt]	
 			explainPopup.showDialog(startItemId,showOnlyButonsArray)
-			
+		Constants.StartItem.StartModifyPractices:
+			$"%SettingsDialog".start(4)
+	
 	if GameState.isForwards!=forwards:
 		GameState.changeForwards(forwards)
 	

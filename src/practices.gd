@@ -17,7 +17,7 @@ Constants.StartItem.StartStrijkendAanleggenWal,
 Constants.StartItem.BridgePractice,
 Constants.StartItem.MoringHarbour,
 Constants.StartItem.SlalomPractice,
-Constants.StartItem.StarGame,
+Constants.StartItem.StarGame
 ]
 
 # keep in same order as practices

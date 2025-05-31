@@ -54,14 +54,14 @@ func _settingsLoaded():
 #	if true:
 	if !GameState.languageSetFromSettingsOrUl:
 		$"%RightTopButtons".visible=false
-		$"%ButtonsContainer".visible=false
+		$"%ButtonsContainer".setVisible(false)
 		setIntroState(true)
 		$"%ChooseLanguage".showDialog()
 	else:
 		start()
 
 func hideShowControls(visible):
-	$"%ButtonsContainer"	.visible=visible
+	$"%ButtonsContainer".setVisible(visible)
 	$"%TooltipHelp".visible=visible
 	
 func start():
