@@ -224,7 +224,21 @@
 		var resolution=localStorage.getItem('resolution');
 		if (resolution=="Normal" || (resolution!="High" && window.window.devicePixelRatio!=2 )) {
 			window.window.devicePixelRatio=1;
-		}		
+		}
+		fetch('version.json?v='+new Date().getTime().toString)
+		  .then(response => response.text())
+		  .then(result => {
+			var versionLoaded=JSON.parse(result).version;
+			var lastReadVersion=localStorage.getItem('version');
+			if (versionLoaded && lastReadVersion!=versionLoaded && versionLoaded!=appVersion) {
+				//prevent from loading again the same version, so remember the version
+  			    localStorage.setItem('version', versionLoaded);
+				location.reload();
+			}
+			else {
+				localStorage.setItem('version', versionLoaded);
+			}
+		});		
 	</script>
 	<script type='text/javascript' src='index.js?v={{version}}'></script>
 	<script type='text/javascript'>//<![CDATA[

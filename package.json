@@ -1,6 +1,6 @@
 {
   "name": "practicerowingcommands",
-  "version": "6.7.3",
+  "version": "6.7.4",
   "description": "practice rowing commands",
   "main": "index.js",
   "dependencies": {
@@ -11,8 +11,9 @@
   "scripts": {
     "compress": "gzipper compress ./bin/html/index.wasm --brotli ",
     "updatehtml": "mustache package.json template/index.html > bin/html/index.html",
+    "updateversion": "mustache package.json template/version.json > bin/html/version.json",
     "copyjs": "mustache package.json template/index.js > bin/html/index.js",
-    "build": "npm run compress && npm run updatehtml && npm run copyjs",
+    "build": "npm run compress && npm run updatehtml && npm run updateversion && npm run copyjs",
     "deploy": "rsync -rvu --exclude \".*\" bin/html/ /Volumes/www.vangulik.org/PracticeRowingCommands/",
     "deployHD": "rsync -rvu --exclude \".*\" bin/html/ /Volumes/www.vangulik.org/PracticeRowingCommandsHD/",
     "buildAndDeploy":"npm run build && npm run deploy",
