@@ -79,6 +79,13 @@ var styleStartButtonFocusHighContrast = newDarkenStyle(styleStartButtonFocus,amo
 var styleDropDown= preload("res://MainDropDownPopup.tres")
 var styleDropDownHighContrast = newDarkenStyle(styleDropDown,amount)
 
+var styleButtonRound = preload("res://StyleButtonRound.tres")
+var styleButtonRoundHover = preload("res://StyleButtonRoundHover.tres")
+
+var styleButtonRoundHighContrast = newDarkenStyle(styleButtonRound,amount)
+var styleButtonRoundHoverHighContrast = newDarkenStyle(styleButtonRoundHover,amount)
+
+
 func newDarkenStyle(style : StyleBoxFlat,amount)-> StyleBoxFlat:
 	style=style.duplicate(true)
 	
@@ -205,6 +212,21 @@ func SetMainDropDownStyle(button):
 		button.add_stylebox_override("focus",Styles.styleMainDropDownFocus)
 		button.add_stylebox_override("pressed",Styles.styleMainDropDownFocus)
 
+
+func SetRoundedButtonStyle(button):
+	if Settings.highContrast:
+		button.add_stylebox_override("normal",Styles.styleButtonRoundHighContrast)
+		button.add_stylebox_override("hover",Styles.styleButtonRoundHoverHighContrast)
+		button.add_stylebox_override("focus",Styles.styleButtonRoundHoverHighContrast)
+		button.add_stylebox_override("pressed",Styles.styleButtonRoundHoverHighContrast)
+	else:
+		button.add_stylebox_override("normal",Styles.styleButtonRound)
+		button.add_stylebox_override("hover",Styles.styleButtonRoundHover)
+		button.add_stylebox_override("focus",Styles.styleButtonRoundHover)
+		button.add_stylebox_override("pressed",Styles.styleButtonRoundHover)
+	
+	pass
+	
 func SetStartButtonStyle(button):
 	if Settings.highContrast:
 		button.add_stylebox_override("normal",Styles.styleStartButtonHighContrast)
