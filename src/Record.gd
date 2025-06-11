@@ -166,6 +166,9 @@ func getDemo(practice : int):
 		return "{\"endTime\":17996807,\"practice\":4,\"recording_commands\":[7,0,5],\"recording_time\":[1048286,6620116,8976585]}"
 	if practice==Constants.StartItem.Aanleggen:
 		return "{\"endTime\":39616047,\"practice\":5,\"recording_commands\":[30,25,0,20,10,1],\"recording_time\":[1026486,9381274,20652835,22594850,26002433,33514992]}"
+	if practice==Constants.StartItem.AanleggenBB:
+		return "{\"endTime\":38831083,\"practice\":19,\"recording_commands\":[30,25,0,21,9,1],\"recording_time\":[1040069,10832990,19605008,22940528,24681859,32107127]}"
+	
 	if practice==Constants.StartItem.AanleggenWal:
 		if GameState.isScull:
 		    return "{\"endTime\":33749327,\"practice\":8,\"recording_commands\":[30,25,0,18,10,1],\"recording_time\":[978477,2776212,14046524,15512073,17039580,24109740]}"

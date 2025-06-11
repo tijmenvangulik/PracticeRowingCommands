@@ -1556,7 +1556,7 @@ requiredCollectable = NodePath("../Collectable1")
 
 [node name="Boat" parent="." instance=ExtResource( 3 )]
 unique_name_in_owner = true
-position = Vector2( 1643, 297 )
+position = Vector2( 1755, 2146 )
 mass = 1.2
 physics_material_override = SubResource( 21 )
 linear_damp = 0.1

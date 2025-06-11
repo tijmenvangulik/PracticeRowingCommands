@@ -335,6 +335,11 @@ func doStart(startItemId):
 			$"%CollectableMooringPractice".reset()			
 			var showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.RiemenHoogSB,Constants.Command.VastroeienBB]	
 			explainPopup.showDialog(startItemId,showOnlyButonsArray)
+		Constants.StartItem.AanleggenBB:
+			boat.setNewBoatPosition(1755,2145.531,135,Constants.StateOars.Roeien,true)
+			$"%CollectableMooringPractice".reset()			
+			var showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.RiemenHoogBB,Constants.Command.VastroeienSB]	
+			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 		Constants.StartItem.Aangelegd:
 			$"%ButtonsContainer".loadButtons(Constants.DefaultYesNo.No)
 			tempReplacedButtons=true
