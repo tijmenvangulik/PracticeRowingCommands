@@ -84,8 +84,8 @@ func _ready():
 	
 	
 func _isScullSignal(isScull):
-	$"OarSB1".visible=isScull
-	$"OarBB2".visible=isScull
+	$"OarBB1".visible=isScull
+	$"OarSB2".visible=isScull
 	
 func _physics_process(delta):
 	setForwardsPosition(delta)
