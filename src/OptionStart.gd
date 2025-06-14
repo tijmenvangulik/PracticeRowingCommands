@@ -347,11 +347,25 @@ func doStart(startItemId):
 			var showOnlyButonsArray  =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.PeddelendStrijkenSB,Constants.Command.StrijkenBB,Constants.Command.HalenSB,Constants.Command.UitbrengenSB]	
 			$"%CollectableSailAwayPractice2".reset()			
 			explainPopup.showDialog(startItemId,showOnlyButonsArray)
+		Constants.StartItem.AangelegdBB:
+			$"%ButtonsContainer".loadButtons(Constants.DefaultYesNo.No)
+			tempReplacedButtons=true
+			boat.setNewBoatPosition(1484,2596,180,Constants.StateOars.SlippenBB,true)
+			var showOnlyButonsArray  =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.PeddelendStrijkenBB,Constants.Command.StrijkenSB,Constants.Command.HalenBB,Constants.Command.UitbrengenBB]	
+			$"%CollectableSailAwayPractice2".reset()			
+			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 		Constants.StartItem.AangelegdUitzetten:
 			$"%ButtonsContainer".loadButtons(Constants.DefaultYesNo.Yes)
 			tempReplacedButtons=true
 			boat.setNewBoatPosition(1124,2608,0,Constants.StateOars.RiemenHoogSB,true)
 			var showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.HalenSB,Constants.Command.UitzettenSB,Constants.Command.VastroeienBeideBoorden,Constants.Command.UitbrengenSB]
+			$"%CollectableSailAwayPractice3".reset()
+			explainPopup.showDialog(startItemId,showOnlyButonsArray)
+		Constants.StartItem.AangelegdUitzettenBB:
+			$"%ButtonsContainer".loadButtons(Constants.DefaultYesNo.Yes)
+			tempReplacedButtons=true
+			boat.setNewBoatPosition(1682,2608,180,Constants.StateOars.RiemenHoogBB,true)
+			var showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.HalenBB,Constants.Command.UitzettenBB,Constants.Command.VastroeienBeideBoorden,Constants.Command.UitbrengenBB]
 			$"%CollectableSailAwayPractice3".reset()
 			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 		Constants.StartItem.Intro:
@@ -386,7 +400,15 @@ func doStart(startItemId):
 			$"%CollectableMooringHarbourPractice".reset()
 			$"%CollectableMooringHarbourPractice2".reset()
 			$"%CollectableMooringHarbourPractice3".reset()
-			var showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.RiemenHoogSB,Constants.Command.VastroeienSB,Constants.Command.HalenBB,Constants.Command.HalenSB,Constants.Command.StrijkenBeidenBoorden,Constants.Command.StrijkenBB,Constants.Command.StrijkenSB,Constants.Command.HalenBeideBoorden,Constants.Command.VastroeienBB,Constants.Command.VastroeienBeideBoorden]	
+			var showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.RiemenHoogSB,Constants.Command.VastroeienSB,Constants.Command.HalenBB,Constants.Command.HalenSB,Constants.Command.StrijkenBeidenBoorden,Constants.Command.StrijkenBB,Constants.Command.StrijkenSB,Constants.Command.HalenBeideBoorden,Constants.Command.VastroeienBB,Constants.Command.VastroeienBeideBoorden,Command.BakboortBest,Command.StuurboordBest,Command.BestBedankt]	
+			explainPopup.showDialog(startItemId,showOnlyButonsArray)
+		Constants.StartItem.MoringHarbourBB: 
+			
+			boat.setNewBoatPosition(241,1219,90,Constants.StateOars.Roeien,true)
+			$"%CollectableMooringHarbourPracticeBB".reset()
+			$"%CollectableMooringHarbourPracticeBB2".reset()
+			$"%CollectableMooringHarbourPracticeBB3".reset()
+			var showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.RiemenHoogBB,Constants.Command.VastroeienSB,Constants.Command.HalenBB,Constants.Command.HalenSB,Constants.Command.StrijkenBeidenBoorden,Constants.Command.StrijkenBB,Constants.Command.StrijkenSB,Constants.Command.HalenBeideBoorden,Constants.Command.VastroeienBB,Constants.Command.VastroeienBeideBoorden,Command.BakboortBest,Command.StuurboordBest,Command.BestBedankt]	
 			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 		Constants.StartItem.SlalomPractice: 
 			boat.setNewBoatPosition(945,2160,0,Constants.StateOars.Roeien,true)

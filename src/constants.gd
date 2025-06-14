@@ -22,46 +22,46 @@ enum OarWaveState {None,Bedankt,Vastroeien}
 
 
 enum Command {
-  LaatLopen,
-  Bedankt,
-  HalenBeideBoorden,
-  HalenSB,
-  HalenBB,
-  StrijkenBeidenBoorden,
-  StrijkenSB,
-  StrijkenBB,
-  VastroeienBeideBoorden,
-  VastroeienSB,
-  VastroeienBB,
-  PeddelendStrijkenSB,
-  PeddelendStrijkenBB,
-  UitzettenSB,
-  UitzettenBB,
-  RondmakenSB,
-  RondmakenBB,
-  Slippen,
-  SlippenSB,
-  SlippenBB,
-  RiemenHoogSB,
-  RiemenHoogBB,
-  Uitbrengen,
-  UitbrengenSB,
-  UitbrengenBB,
-  LightPaddle,
-  LightPaddleBedankt,
-  StuurboordBest,
-  BakboortBest,
-  BestBedankt,
-  SlagklaarAf,
-  PakMaarWeerOp,
-  IntrekkenSB,
-  IntrekkenBB,
-  HaalSB,
-  HaalBB,
-  StrijkSB,
-  StrijkBB,
-  Haal,
-  Strijk
+  LaatLopen, #0
+  Bedankt, #1
+  HalenBeideBoorden, #2
+  HalenSB, #3
+  HalenBB, #4
+  StrijkenBeidenBoorden, #5
+  StrijkenSB, #6
+  StrijkenBB, #7
+  VastroeienBeideBoorden, #8
+  VastroeienSB, #9
+  VastroeienBB, #10
+  PeddelendStrijkenSB, #11
+  PeddelendStrijkenBB, #12
+  UitzettenSB, #13
+  UitzettenBB, #14
+  RondmakenSB, #15
+  RondmakenBB, #16
+  Slippen, #17
+  SlippenSB, #18
+  SlippenBB, #19
+  RiemenHoogSB, #20
+  RiemenHoogBB, #21
+  Uitbrengen, #22
+  UitbrengenSB, #23
+  UitbrengenBB, #24
+  LightPaddle, #25
+  LightPaddleBedankt, #26
+  StuurboordBest, #27
+  BakboortBest, #28
+  BestBedankt, #29
+  SlagklaarAf, #30
+  PakMaarWeerOp, #31
+  IntrekkenSB, #32
+  IntrekkenBB, #33
+  HaalSB, #34
+  HaalBB, #35
+  StrijkSB, #36
+  StrijkBB, #37
+  Haal, #38
+  Strijk #39
 }
 enum CollectGameState {
 	None,
@@ -197,9 +197,12 @@ enum StartItem {
   SlalomPractice, #14
   BridgePractice, #15
   AangelegdUitzetten, #16
-  SpinTurnPractice #17
-  StartModifyPractices #18
-  AanleggenBB #19
+  SpinTurnPractice, #17
+  StartModifyPractices, #18
+  AanleggenBB, #19
+  AangelegdBB, #20
+  AangelegdUitzettenBB, #21
+  MoringHarbourBB, #22
 }
 
 var practiceExplainTexts= [
@@ -221,8 +224,11 @@ var practiceExplainTexts= [
   "BridgeExplainText",#BridgePractice, #15
   "SailAwayExplainPushAwayText",#AangelegdUitzetten #16
   "SpinTurnPracticeExplainText",#SpinTurnPractice #17
-  "", #StartModifyPractices
-  "MoringBBExplainRaftText"
+  "", #StartModifyPractices #18
+  "MoringBBExplainRaftText", #19
+  "SailAwayBBExplainText", #20
+  "SailAwayExplainPushAwayBBText", #21
+  "MoringHarbourBBExplainText",#MoringHarbour, #22
 ]
 const serverUrl="https://ergometer-space.org/manager"
 #const serverUrl="http://localhost:2024"

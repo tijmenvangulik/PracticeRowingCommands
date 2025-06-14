@@ -115,7 +115,7 @@ func canPushSB():
 	return result
 	
 func canPushBB():
-	var ray=$RayCastSB
+	var ray=$RayCastBB
 	ray.enabled=true
 	ray.force_raycast_update()
 	var result=ray.is_colliding()
