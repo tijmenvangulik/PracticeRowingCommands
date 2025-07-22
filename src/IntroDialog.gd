@@ -25,7 +25,7 @@ func get_version():
 func _init():
 	connect("visibility_changed",self,"handleShow");
 	GameEvents.connect("settingsLoadedSignal",self,"_settingsLoaded");
-	
+	GameEvents.connect("windowSizeChanged",self,"_sizeChanged");
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,6 +33,10 @@ func _ready():
 	get_close_button().hide()
 	$VersionNumber.text=get_version();
 	
+	if GameState.mobileMode:
+		$IntroText.get_font("font", "Label").size = 24
+	
+
 func setText():
 	var intro=$"IntroText"
 	intro.set_bbcode(tr("IntroText"))
@@ -62,8 +66,15 @@ func _settingsLoaded():
 
 func hideShowControls(visible):
 	$"%ButtonsContainer".setVisible(visible)
-	$"%TooltipHelp".visible=visible
+	$"%TooltipHelp".visible=visible && !GameState.mobileMode
 	
+
+func setWidth():
+	margin_right=0
+	
+func _sizeChanged():
+	setWidth()
+
 func start():
 	hideShowControls(false)
 	visible=true;

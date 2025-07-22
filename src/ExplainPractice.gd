@@ -7,6 +7,15 @@ var _showLessButtonsArray=[]
 func _ready():
 #	get_close_button().hide()
 	GameEvents.connect("languageChangedSignal",self,"_on_languageChanged")
+	if GameState.mobileMode:
+		var extraSize=100
+		margin_left-=extraSize
+		margin_right+=extraSize
+		margin_bottom+=50
+		
+		$PracticeExplain.margin_right+=extraSize*2
+		$HBoxContainer.margin_top-=10
+		$HBoxContainer.margin_bottom-=10
 
 func handleShow():
 	GameState.dialogIsOpen=visible

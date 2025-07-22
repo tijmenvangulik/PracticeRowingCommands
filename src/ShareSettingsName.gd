@@ -13,6 +13,10 @@ func _ready():
 	nameControl= $GridContainer/Name
 	previewTextControl = $GridContainer/Panel/PreviewText
 	colorPicker=$GridContainer/Panel2/ColorPickerButton
+	if GameState.mobileMode:
+		margin_left-=150
+		margin_right+=100
+		margin_bottom+=50
 
 # Called when the node enters the scene tree for the first time.
 func start():

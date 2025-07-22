@@ -14,7 +14,9 @@ func _ready():
 	GameEvents.connect("languageChangedSignal",self,"_on_languageChanged")
 	
 	get_close_button().hide()
-
+	if GameState.mobileMode:
+		margin_bottom=498
+		$TourText.margin_bottom=297
 func handleShow():
 	GameState.dialogIsOpen=visible
 	if visible:
@@ -43,6 +45,8 @@ func _on_TourStop_pressed():
 func _on_TourNext_pressed():
 	
 	tourStep=tourStep+1
+	if GameState.mobileMode && tourStep==3:
+		tourStep=tourStep+1
 	ShowStep()
 
 func stopTour():
@@ -52,12 +56,19 @@ func stopTour():
 	
 func ShowStep():
 	isLastStep=tourStep>=tourTexts.size()
-	$"PointToLanguage".visible=tourStep==1
-	$"PointToStart".visible=tourStep==2
-	$"PointToHelp".visible=tourStep==3
-	$"PointToOptions".visible=tourStep==4
-	$"PointToBackwards".visible=tourStep==5
-	$"PointToCommands".visible=tourStep==6 || tourStep==7
+	if GameState.mobileMode:
+		$"PointToLanguageMobile".visible=tourStep==1 
+		$"PointToStartMobile".visible=tourStep==2
+		$"PointToOptionsMobile".visible=tourStep==4
+		$"PointToBackwardsMobile".visible=tourStep==5
+		$"PointToCommandsMobile".visible=tourStep==6 || tourStep==7
+	else:
+		$"PointToLanguage".visible=tourStep==1 
+		$"PointToStart".visible=tourStep==2
+		$"PointToHelp".visible=tourStep==3
+		$"PointToOptions".visible=tourStep==4
+		$"PointToBackwards".visible=tourStep==5
+		$"PointToCommands".visible=tourStep==6 || tourStep==7
 	if tourStep<=tourTexts.size():
 		$"TourText".set_bbcode(Utilities.replaceCommandsInText( tr(tourTexts[tourStep-1]),true))
 	else:

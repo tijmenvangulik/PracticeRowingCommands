@@ -52,9 +52,18 @@ var backwardsPosition=-200
 var currentPositionX=0;
 var moveStep=1000
 var isDuckCrash = false
+var postionY=0
 
-func _ready():
+func forwardsPositon():
+	if GameState.mobileMode:
+		return 180
+	return 150
 	
+func _ready():
+	if GameState.mobileMode:
+		forwardsPositon=300
+		postionY=450
+		
 	setForwardsPosition(0)
 	GameEvents.connect("zoomChangedSignal",self,"_zoomChangedSignal")
 	GameEvents.connect("doCommandSignal",self,"_doCommandSignal")
@@ -142,7 +151,7 @@ func setForwardsPosition(delta):
 		if currentPositionX>forwardsPositon: currentPositionX=forwardsPositon
 		if currentPositionX<backwardsPosition: currentPositionX=backwardsPosition
 		var zoomDif=$"Camera2D2".zoom.x-0.5;
-		$"Camera2D2".position= Vector2(currentPositionX*zoomDif,0)
+		$"Camera2D2".position= Vector2(currentPositionX*zoomDif,postionY)
 		
 		
 

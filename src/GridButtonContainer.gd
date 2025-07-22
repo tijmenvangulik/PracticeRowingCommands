@@ -97,30 +97,41 @@ func setButtonTextFromCommand(commandName):
 	if alterNativeText && alterNativeText!="":
 		setButtonText(alterNativeText)
 		
-func init(newCommandName):
+func init(newCommandName,enabled):
 	commandName=newCommandName;
 	GameEvents.register_allways_tooltip($GridButton,self,true)
 
 	command=Utilities.commandNameToCommand(commandName)
+	var button=$GridButton
 	if command>=0:
-		var button=$GridButton
 		setButtonTextFromCommand(commandName)
 		button.visible=true
 
-		
-		button.add_font_override("font",load("res://Font.tres"))
+		if  GameState.mobileMode:
+			button.add_font_override("font",load("res://FontMobile.tres"))
+		else:
+			button.add_font_override("font",load("res://Font.tres"))
 		
 		setStyle()
 	else:
 		
-		var button=$GridButton
+		
 		button.visible=false
-
+	
+	button.disabled=!enabled
+	
+	if GameState.mobileMode:
+		#add more margin to botton for mobile
+		$GridButton.margin_bottom=5
+		self.rect_min_size.y=45
+		self.rect_min_size.x=90
+		
 func setStyle():
 	var button=$GridButton
 	var styleNr= Constants.commandStyles[command]
 	Styles.setButtonStyle(styleNr,button)
-	
+  
+		
 	
 
 	

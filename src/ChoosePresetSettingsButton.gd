@@ -24,8 +24,11 @@ func _ready():
 	connect("item_selected",self,"selected")
 	resetSelected()
 	var font= preload("res://Font.tres")
-	get_popup().add_font_override("font",font)
-	
+	var pm=get_popup()
+	pm.add_font_override("font",font)	
+	#if GameState.mobileMode:
+	#	pm.add_constant_override("vseparation",16)
+
 func resetSelected():
 	selected=-1	
 	text="ChoosePresetSettings"

@@ -35,7 +35,7 @@ func addGridButton(container,commandName :String, isSource : bool,insertIndex):
 
 	buttonContainer.visible=true;
 	buttonContainer.canClickButton=false
-	buttonContainer.init(commandName)
+	buttonContainer.init(commandName,true)
 	buttonContainer.canDrag=true;
 	if isSource:
 		buttonContainer.connect("button_dropped",self,"button_dropped_source")

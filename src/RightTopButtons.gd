@@ -10,7 +10,10 @@ extends HBoxContainer
 func _ready():
 	GameEvents.connect("highContrastChangedSignal",self,"_highContrastChangedSignal")
 	setStyleButtons()
-
+	if GameState.mobileMode:
+		add_constant_override("separation",24)
+		margin_top=14
+	
 func _highContrastChangedSignal(highContrast):
 	setStyleButtons()
 

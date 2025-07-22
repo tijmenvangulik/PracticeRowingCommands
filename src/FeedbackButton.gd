@@ -10,7 +10,9 @@ export (NodePath) onready var feedbackDialog = get_node(feedbackDialog) as Windo
 func _ready():
 	GameEvents.connect("introSignal",self,"_introSignal")
 	GameEvents.register_allways_tooltip(self,"QuickFeedback")
-
+	if GameState.mobileMode:
+		$Megaphone.offset.y+=10
+		
 func _introSignal(isVisible : bool):
 	visible=!isVisible
 

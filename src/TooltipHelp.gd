@@ -11,7 +11,6 @@ var tooltipText="ShowHideTootipsTooltip"
 func _ready():
 	GameEvents.register_allways_tooltip(self,tooltipText)
 
-
 func _pressed():
 	if !self.pressed:
 		GameEvents._on_hide_tooltip(self,"")

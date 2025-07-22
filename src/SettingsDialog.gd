@@ -39,6 +39,13 @@ func _highContrastChangedSignal(highContrastOn):
 
 func _init():
 	connect("visibility_changed",self,"handleShow");
+	GameEvents.connect("windowSizeChanged",self,"_sizeChanged");
+
+func setWidth():
+	margin_right=0
+	
+func _sizeChanged():
+	setWidth()
 	
 func addLabel(container,text):
 	var new_label = Label.new()
@@ -205,7 +212,8 @@ func _ready():
 		commandIndex=commandIndex+1
 
 	hideScrollBars()
-	
+	if GameState.mobileMode:
+		$CloseSettingsButton.anchor_left=0.6
 	
 	
 func hasJavascript():
@@ -520,6 +528,8 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 		setRuleset(ruleset)
 	
 	var zoom = 2.1
+	if GameState.mobileMode:
+		zoom= 1.771
 	if dict.has("zoom"):
 		zoom =dict["zoom"]
 	

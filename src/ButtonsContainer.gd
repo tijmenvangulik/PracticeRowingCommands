@@ -2,6 +2,8 @@ extends PanelContainer
 
 var enabled=true
 
+export (NodePath) onready var grid = get_node(grid) as GridContainer
+
 
 func loadButtonsSetFromResources():
 	var buttonSet=Utilities.getDefaultJsonSetting("ButtonSet")
@@ -39,11 +41,24 @@ func _input(event):
 func _ready():
 	initButtons()
 	GameEvents.connect("languageChangedSignal",self,"_languageChangedSignal");
-	GameEvents.connect("disableCommandSignal",self,"_disableCommandSignal");
 	GameEvents.connect("customButtonSetChangedSignal",self,"_customButtonSetChangedSignal")
 	GameEvents.connect("showButtonsSignal",self,"_showButtonsSignal")
 	GameEvents.connect("startPlay",self,"_startPlaySignal")
+	GameEvents.connect("commandsChanged",self,"_commandsChanged");
 
+	
+	if GameState.mobileMode:
+		grid.columns=1
+		anchor_left=1
+		anchor_top=0.1
+		anchor_right=0.99
+		anchor_bottom=1
+		grow_horizontal=GROW_DIRECTION_BEGIN
+		grow_vertical=Control.GROW_DIRECTION_END
+		$ScrollContainer.scroll_vertical_enabled=true
+
+		
+		
 func setChildNodeText(node,commandName,value):
 	for N in node.get_children():
 		if N.get_child_count() > 0:
@@ -57,7 +72,7 @@ func setChildNodeDisable(node,commandName,disabled:bool):
 		if N.get_child_count() > 0:
 			setChildNodeDisable(N,commandName,disabled)
 		else:
-			if N.name=="GridButton" && N.owner.commandName==commandName:
+			if N.name=="GridButton" && N.owner.commandName==commandName:				
 				N.disabled=disabled
 				
 				var button : Button=N
@@ -74,17 +89,14 @@ func focusChildCommandFocus(node,commandName):
 			if N.name=="GridButton" && N.owner.commandName==commandName:
 				N.grab_focus()
 				
-func disableCommand(commandName:String,disabled:bool):
-	setChildNodeDisable($GridContainer,commandName,disabled)
 
 func focusCommand(commandName:String):
-	focusChildCommandFocus($GridContainer,commandName)
+	focusChildCommandFocus(grid,commandName)
 
 	
 func clearGrid():
-	var node=$"GridContainer"
-	for N in node.get_children():
-		node.remove_child(N)
+	for N in grid.get_children():
+		grid.remove_child(N)
 
 func findNextFocus(skippNode,node :Node, allowBack = true):
 	#find_next_valid_focus does not work when the node it selves does not have the focus
@@ -105,7 +117,7 @@ func findNextFocus(skippNode,node :Node, allowBack = true):
 			
 		index=index+1
 	if allowBack:
-		if parent==$GridContainer:
+		if parent==grid:
 			 return findNextFocus(node,children[0],false)
 	
 		return findNextFocus(parent,parent)
@@ -145,7 +157,7 @@ func focusFirstCommand():
 	if GameState.dialogIsOpen:
 		return null
 
-	var button=findNextFocus($GridContainer,$GridContainer.get_children()[0],false)
+	var button=findNextFocus(grid,grid.get_children()[0],false)
 	if button!=null:
 		button.grab_focus()
 	return button;
@@ -157,13 +169,14 @@ func buttonInput(event,button):
 #				gotoNextButton(button,pressedChar)
 	pass	
 
-func addButton(container,commandName :String):
+func addButton(container,commandName :String, enabled):
 	var button = preload("res://GridButtonContainer.tscn").instance()
 	container.add_child(button)
 	button.visible=true;
+	
 	var innerButton=button.get_node("GridButton")
 	innerButton.connect( "gui_input",self,"buttonInput",[button])
-	button.init(commandName)
+	button.init(commandName,enabled)
 
 func forcePushAwayReplace(commandNames,forcePushAway,commandName):
 	if forcePushAway==Constants.DefaultYesNo.Default:
@@ -199,31 +212,66 @@ func getAllConmmands():
 				var buttonItem=commandNames[0]
 				allCommands.append(buttonItem)				
 	return allCommands
+
+func commandIsEnabled(command : String) -> bool:
+	if command==null || command=="":
+		return false
+	return GameState.enabledCommands.size()==0 || GameState.enabledCommands.find(command)>=0
 	
 func loadButtons(forcePushAway= Constants.DefaultYesNo.Default,forceSpinTurnReplace=false):
 	clearGrid()
-	var container =$"GridContainer"
+	var container =grid
 	var i=0;
 	var allCommands=getAllConmmands()
+	
 	for item in GameState.currentButtonSet:
 		if typeof(item)==TYPE_STRING:
 			var commandNames=item.split(",")
 			if commandNames.size()>1:
+				var allButtonsDisabled=true
 				var box= HBoxContainer.new();
 				box.alignment=box.ALIGN_CENTER;
 				container.add_child(box)
-				for buttonItem in commandNames:
-					var newButtonItem=forcePushAwayReplace(allCommands,forcePushAway,buttonItem)
-					if (forceSpinTurnReplace):
-						newButtonItem=forceSpinTurnReplace(allCommands,newButtonItem)
-					addButton(box,newButtonItem)
+				if commandNames.size()>1:
+					for buttonItem in commandNames:
+						var newButtonItem=forcePushAwayReplace(allCommands,forcePushAway,buttonItem)
+						if (forceSpinTurnReplace):
+							newButtonItem=forceSpinTurnReplace(allCommands,newButtonItem)
+						var enabled=commandIsEnabled(buttonItem)
+						if enabled:
+							allButtonsDisabled=false
+						addButton(box,newButtonItem,enabled)
+				if GameState.mobileMode && allButtonsDisabled:
+					container.remove_child(box)
+					box.queue_free()
 			else: if commandNames.size()==1:
 				var buttonItem=commandNames[0]
 				buttonItem=forcePushAwayReplace(allCommands,forcePushAway,buttonItem)
 				if (forceSpinTurnReplace):
 					buttonItem=forceSpinTurnReplace(allCommands,buttonItem)
-				addButton(container,buttonItem)
-		
+				var enabled=commandIsEnabled(buttonItem)
+				if (!GameState.mobileMode || enabled ):
+					addButton(container,buttonItem,enabled)
+	
+	if GameState.mobileMode:
+		if grid.get_child_count()<6:
+			margin_top=50
+			incMargins(grid,12)
+		elif grid.get_child_count()<8:
+			margin_top=10
+			incMargins(grid,12)
+		else:
+			margin_top=5
+			incMargins(grid,5)
+	
+func incMargins(conainer,amount):
+	for c in conainer.get_child_count():
+		var item=conainer.get_child(c)
+		if item is GridButtonContainer:
+			item.get_child(0).margin_bottom=amount
+			item.rect_min_size.y=40+amount
+		else:
+			incMargins(item,amount)
 
 func setCustomButtonSet(newButtonSet):
 	if newButtonSet.size()==0: 
@@ -234,19 +282,20 @@ func setCustomButtonSet(newButtonSet):
 		GameState.useDefaultButtonSet=false
 	loadButtons()
 
+func _commandsChanged(commandArray):
+	loadButtons()
+	
+
+
+	
 func _languageChangedSignal():
 	initButtons()
-	
-func _disableCommandSignal(commandName:String,disabled:bool):
-	disableCommand(commandName,disabled)
 
-func _customButtonSetChangedSignal():
-	setCustomButtonSet(Settings.customButtonSet)
 
 func _showButtonsSignal(show : bool):
 	setVisible(show)
 	
 func setVisible(show : bool):
 	visible=show
-	$"%EditButtons".visible=show
+	$"%EditButtons".visible=show && !GameState.mobileMode
 	

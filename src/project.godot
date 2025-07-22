@@ -145,7 +145,7 @@ Languages="*res://Languages.gd"
 
 window/dpi/allow_hidpi=true
 window/stretch/mode="2d"
-window/stretch/aspect="keep"
+window/stretch/aspect="keep_height"
 
 [global]
 

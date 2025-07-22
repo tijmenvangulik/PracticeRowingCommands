@@ -16,11 +16,10 @@ signal forwardBackwardsChangedSignal
 
 signal collectGameStateChangedSignal(newState)
 
-signal commandsChangedSignal(commandArray)
+signal commandsChanged(commandArray)
 
 signal introSignal(isVisible)
 
-signal disableCommandSignal(name,disabled)
 
 signal customButtonSetChangedSignal
 
@@ -47,6 +46,8 @@ signal practicesChanged
 signal settingsLoadedSignal
 
 signal loadedSharedSettings 
+
+signal windowSizeChanged
 
 func sendCommandChanged(command : int,commandName :String,value : String) -> void:
 	emit_signal("customCommandTextChanged",command,commandName,value)
@@ -84,13 +85,10 @@ func collectGameStateChanged(newState ):
 	call_deferred("emit_signal","collectGameStateChangedSignal",newState)
 
 func commandsChanged(commandArray : Array):
-	emit_signal("commandsChangedSignal",commandArray)
+	emit_signal("commandsChanged",commandArray)
 
 func intro(isVisible:bool):
 	call_deferred("emit_signal","introSignal",isVisible)
-
-func disableCommand(name:String,disabled:bool):
-	emit_signal("disableCommandSignal",name,disabled)
 
 func customButtonSetChanged():
 	emit_signal("customButtonSetChangedSignal")
@@ -149,3 +147,9 @@ func startTour():
 
 func settingsLoaded():
 	emit_signal("settingsLoadedSignal")
+
+func _sizeChanged():
+	emit_signal("windowSizeChanged")
+
+func _ready():
+	get_tree().get_root().connect("size_changed",self,"_sizeChanged")

@@ -63,6 +63,8 @@ func setStyle(highContrast):
 		pm.add_stylebox_override("panel",Styles.styleMainDropDownHighContrast)
 	else:
 		pm.add_stylebox_override("panel",Styles.styleMainDropDown)
+	#if GameState.mobileMode:
+	#	pm.add_constant_override("vseparation",13)
 
 func _introSignal(isVisible):
 	if isVisible:

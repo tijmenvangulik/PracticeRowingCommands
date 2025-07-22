@@ -23,7 +23,9 @@ func _ready():
 	
 	loadLanguages()
 	get_close_button().hide()
-
+	if GameState.mobileMode:
+		var list=$ScrollContainer/Panel/ItemList
+		list.add_constant_override("vseparation",10)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

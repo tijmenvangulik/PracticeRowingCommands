@@ -1,0 +1,20 @@
+{
+    "display":      "fullscreen",
+    "orientation":  "landscape",
+    "name":         "Practice Rowing Commands",
+    "short_name":   "Rowing Commands",
+    "start_url":    "index.html",
+    "description":  "Learn rowing (coxing) commands online",
+    "icons": [
+        {
+            "src": "icon.png",
+            "sizes": "28x28",
+            "type": "image/png"
+        },
+        {
+            "src": "index.apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        }
+    ]
+}

@@ -6,7 +6,9 @@ export (NodePath) onready var settingsDialog = get_node(settingsDialog) as Windo
 func _ready():
 	GameEvents.connect("introSignal",self,"_introSignal")
 	GameEvents.register_allways_tooltip(self,"SettingsButtonTooltip")
-
+	if GameState.mobileMode:
+		$options_icon.offset.y+=10
+		
 func _introSignal(isVisible : bool):
 	visible=!isVisible
 

@@ -95,23 +95,20 @@ func formatScore(time,includeMiliSeconds):
 	var seconds =  timeParts[1]
 	var miliSeconds=timeParts[2]
 	return formatTime(minutes,seconds,miliSeconds)
-
-func disableCommand(name:String,disabled:bool):
-	#"../ButtonsContainer/GridContainer/HalenBeideBoorden"
-	#var itemNr=grid.find(name)
-	GameEvents.disableCommand(name,disabled)
 	
-func showOnlyButtons(var commands):
-	
-	for commandName in Constants.commandNames:
-		disableCommand(commandName,len(commands)!=0)
-	
+func showOnlyButtons(var commands : Array):
+	var commandToSend=[]
 	for command in commands:
-		disableCommand(Constants.commandNames[command],false)
+		commandToSend.append(Constants.commandNames[command])
+	GameState.enabledCommands=commandToSend
+	
 	GameEvents.commandsChanged(commands)
 
 func styleDropDown(dropdown):
-	dropdown.get_popup().add_constant_override("vseparation",10)
+	if GameState.mobileMode:
+		dropdown.get_popup().add_constant_override("vseparation",20)
+	else:
+		dropdown.get_popup().add_constant_override("vseparation",10)
 	var font= preload("res://Font.tres")
 	dropdown.get_popup().add_font_override("font",font)
 	

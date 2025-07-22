@@ -1,4 +1,4 @@
-[gd_scene load_steps=150 format=2]
+[gd_scene load_steps=152 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -109,6 +109,8 @@
 [ext_resource path="res://EditButtons.gd" type="Script" id=107]
 [ext_resource path="res://StyleButtonRound.tres" type="StyleBox" id=108]
 [ext_resource path="res://StyleButtonRoundHover.tres" type="StyleBox" id=109]
+[ext_resource path="res://FontMobile.tres" type="DynamicFont" id=110]
+[ext_resource path="res://CanvasLayer.gd" type="Script" id=111]
 
 [sub_resource type="ShaderMaterial" id=43]
 shader = ExtResource( 80 )
@@ -792,8 +794,8 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 450, 185, -232.76, 24.288, 232.76, -24.288, 1031, 231, -214.544, -105.248, 214.544, 105.248, 2031, 181, 72.864, -163.944, -72.864, 163.944, 2118, 729, 139.656, 127.512, -139.656, -127.512, 827, 847, 54.648, 180.136, -54.648, -180.136, 191, 707, -99.1759, 121.44, 99.1759, -121.44, 195, 276, 0, 0, 0, 0, 450, 185 )
 }
 
-[sub_resource type="StyleBoxFlat" id=22]
-bg_color = Color( 0.192157, 0.254902, 0.52549, 0 )
+[sub_resource type="StyleBoxFlat" id=55]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
 [sub_resource type="StyleBoxFlat" id=32]
 content_margin_left = 10.0
@@ -1628,6 +1630,7 @@ boat = NodePath("../Boat")
 position = Vector2( 1922, -400 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource( 111 )
 
 [node name="EditButtons" type="Button" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -1662,7 +1665,7 @@ size_flags_horizontal = 4
 custom_colors/font_color = Color( 0.933333, 0.368627, 0.368627, 1 )
 custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
 custom_constants/shadow_as_outline = 1
-custom_fonts/font = ExtResource( 50 )
+custom_fonts/font = ExtResource( 110 )
 align = 1
 
 [node name="replayCommandText" type="Label" parent="CanvasLayer"]
@@ -1680,7 +1683,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_fonts/font = ExtResource( 50 )
+custom_fonts/font = ExtResource( 110 )
 align = 1
 
 [node name="ControlPanel" parent="CanvasLayer" instance=ExtResource( 4 )]
@@ -1698,22 +1701,33 @@ anchor_top = 0.75
 anchor_right = 0.5
 anchor_bottom = 0.75
 grow_horizontal = 2
-custom_styles/panel = SubResource( 22 )
+custom_styles/panel = SubResource( 55 )
 script = ExtResource( 60 )
+grid = NodePath("ScrollContainer/GridContainer")
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/ButtonsContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/ButtonsContainer"]
+grow_horizontal = 2
+follow_focus = true
+scroll_horizontal_enabled = false
+scroll_vertical_enabled = false
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/ButtonsContainer/ScrollContainer"]
 custom_constants/vseparation = 5
 custom_constants/hseparation = 10
 columns = 5
 
 [node name="GridButtonContainer" parent="CanvasLayer/ButtonsContainer" instance=ExtResource( 65 )]
 visible = false
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 19.0
+margin_bottom = 42.0
 script = null
 
 [node name="Speak" type="Button" parent="CanvasLayer/ButtonsContainer"]
 visible = false
-margin_right = 52.0
-margin_bottom = 40.0
+margin_right = 12.0
+margin_bottom = 20.0
 script = ExtResource( 63 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1721,32 +1735,35 @@ __meta__ = {
 
 [node name="IntroDialog" type="WindowDialog" parent="CanvasLayer"]
 unique_name_in_owner = true
-margin_left = 21.0
-margin_top = 58.0
-margin_right = 991.0
-margin_bottom = 522.0
+anchor_left = 0.02
+anchor_top = 0.5
+anchor_right = 0.98
+anchor_bottom = 0.5
+margin_top = -252.0
+margin_bottom = 283.0
 theme = ExtResource( 29 )
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
 custom_styles/panel = SubResource( 32 )
 script = ExtResource( 43 )
 
 [node name="IntroText" type="RichTextLabel" parent="CanvasLayer/IntroDialog"]
-margin_left = 40.0
-margin_top = 34.0
-margin_right = 931.0
-margin_bottom = 411.0
+anchor_right = 1.0
+margin_left = 22.0
+margin_top = 16.0
+margin_right = -25.04
+margin_bottom = 386.0
 custom_constants/line_separation = 7
 bbcode_enabled = true
 text = "IntroText"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Links" type="RichTextLabel" parent="CanvasLayer/IntroDialog"]
-margin_left = 36.0
-margin_top = 357.0
-margin_right = 916.0
-margin_bottom = 407.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 18.0
+margin_top = -134.0
+margin_right = -17.04
+margin_bottom = -70.0
 bbcode_enabled = true
 text = "IntroText"
 script = ExtResource( 55 )
@@ -1813,10 +1830,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -218.5
-margin_top = -232.0
-margin_right = 218.5
-margin_bottom = 232.0
+margin_left = -345.0
+margin_top = -254.0
+margin_right = 338.0
+margin_bottom = 274.0
 theme = ExtResource( 29 )
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
 custom_styles/panel = SubResource( 32 )
@@ -1833,16 +1850,16 @@ custom_styles/bg = SubResource( 48 )
 scroll_horizontal_enabled = false
 
 [node name="Panel" type="Panel" parent="CanvasLayer/ChooseLanguage/ScrollContainer"]
-margin_right = 400.0
-margin_bottom = 361.0
+margin_right = 646.0
+margin_bottom = 425.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 50 )
 
 [node name="ItemList" type="ItemList" parent="CanvasLayer/ChooseLanguage/ScrollContainer/Panel"]
 margin_left = 10.0
-margin_top = 15.0
-margin_right = 390.0
+margin_top = 36.0
+margin_right = 646.0
 margin_bottom = 352.0
 rect_min_size = Vector2( 380, 0 )
 size_flags_horizontal = 3
@@ -1882,16 +1899,18 @@ __meta__ = {
 [node name="Label" type="Label" parent="CanvasLayer/ChooseLanguage"]
 margin_left = 26.0
 margin_top = 17.0
-margin_right = 222.0
-margin_bottom = 36.0
+margin_right = 660.0
+margin_bottom = 61.0
 custom_fonts/font = ExtResource( 50 )
 text = "ChooseLanguageAndClub"
+valign = 1
+autowrap = true
 
 [node name="HighScores" type="WindowDialog" parent="CanvasLayer"]
 margin_left = 189.0
 margin_top = 102.0
 margin_right = 854.0
-margin_bottom = 424.0
+margin_bottom = 457.0
 custom_styles/panel = ExtResource( 33 )
 script = ExtResource( 46 )
 grid = NodePath("HighScoresGrid")
@@ -1948,12 +1967,12 @@ custom_fonts/font = ExtResource( 50 )
 text = "LoadingHighScores"
 
 [node name="Trophy" type="Sprite" parent="CanvasLayer/HighScores"]
-position = Vector2( 56, 152 )
+position = Vector2( 56, 181 )
 scale = Vector2( 0.76, 0.8 )
 texture = ExtResource( 27 )
 
 [node name="Trophy2" type="Sprite" parent="CanvasLayer/HighScores"]
-position = Vector2( 610, 149 )
+position = Vector2( 610, 178 )
 scale = Vector2( 0.76, 0.8 )
 texture = ExtResource( 27 )
 
@@ -2371,12 +2390,16 @@ script = ExtResource( 49 )
 anchor_top = 0.35
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_top = -25.25
-margin_bottom = -25.5
+margin_left = 106.0
+margin_top = -77.15
+margin_right = -115.0
+margin_bottom = -50.5
 grow_horizontal = 2
 custom_fonts/font = ExtResource( 50 )
 text = "PublishScoreQuestion"
 align = 1
+valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2443,6 +2466,7 @@ margin_left = -200.0
 margin_top = -184.0
 margin_right = 202.0
 margin_bottom = -153.0
+custom_constants/separation = 10
 
 [node name="PlayAgainNameLabel" type="Label" parent="CanvasLayer/PublishHighscoreCollectGame/NameContainer"]
 margin_top = 6.0
@@ -2456,8 +2480,8 @@ __meta__ = {
 }
 
 [node name="Name" type="TextEdit" parent="CanvasLayer/PublishHighscoreCollectGame/NameContainer"]
-margin_left = 144.0
-margin_right = 394.0
+margin_left = 150.0
+margin_right = 400.0
 margin_bottom = 31.0
 rect_min_size = Vector2( 250, 0 )
 custom_fonts/font = ExtResource( 50 )
@@ -2474,6 +2498,7 @@ margin_left = -200.0
 margin_top = -136.0
 margin_right = 202.0
 margin_bottom = -105.0
+custom_constants/separation = 10
 
 [node name="RowingClubLabel" type="Label" parent="CanvasLayer/PublishHighscoreCollectGame/RowingClubContainer"]
 margin_top = 6.0
@@ -2487,8 +2512,8 @@ __meta__ = {
 }
 
 [node name="RowingClub" type="TextEdit" parent="CanvasLayer/PublishHighscoreCollectGame/RowingClubContainer"]
-margin_left = 142.0
-margin_right = 392.0
+margin_left = 148.0
+margin_right = 398.0
 margin_bottom = 31.0
 rect_min_size = Vector2( 250, 0 )
 custom_fonts/font = ExtResource( 50 )
@@ -2522,10 +2547,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -270.0
+margin_left = -299.0
 margin_top = -203.0
-margin_right = 267.0
-margin_bottom = 185.0
+margin_right = 333.0
+margin_bottom = 202.0
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
 custom_styles/panel = ExtResource( 33 )
 script = ExtResource( 69 )
@@ -2535,9 +2560,9 @@ anchor_top = 0.35
 anchor_right = 1.0
 anchor_bottom = 0.5
 margin_left = 1.0
-margin_top = -102.9
+margin_top = -118.9
 margin_right = 1.0
-margin_bottom = -120.0
+margin_bottom = -136.0
 grow_horizontal = 2
 custom_fonts/font = ExtResource( 50 )
 text = "QuickFeedbackQuestion"
@@ -2548,10 +2573,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -216.5
-margin_top = -123.0
-margin_right = 217.5
-margin_bottom = 145.0
+margin_left = -284.5
+margin_top = -129.5
+margin_right = 287.5
+margin_bottom = 150.5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/QuickFeedbackDialog"]
 anchor_left = 0.5
@@ -2607,9 +2632,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -280.0
+margin_left = -390.0
 margin_top = -210.0
-margin_right = 280.0
+margin_right = 351.0
 margin_bottom = 264.0
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
 custom_styles/panel = ExtResource( 33 )
@@ -2620,9 +2645,9 @@ anchor_top = 0.35
 anchor_right = 1.0
 anchor_bottom = 0.5
 margin_left = 1.0
-margin_top = -92.35
+margin_top = -110.35
 margin_right = 1.0
-margin_bottom = -127.5
+margin_bottom = -145.5
 grow_horizontal = 2
 custom_fonts/font = ExtResource( 50 )
 text = "EndPracticeFeedbackQuestion"
@@ -2634,9 +2659,9 @@ anchor_top = 0.35
 anchor_right = 1.0
 anchor_bottom = 0.5
 margin_left = 1.0
-margin_top = -64.35
+margin_top = -82.35
 margin_right = 1.0
-margin_bottom = -99.5
+margin_bottom = -117.5
 grow_horizontal = 2
 custom_fonts/font = ExtResource( 50 )
 text = "EndPracticeFeedbackQuestion2"
@@ -2692,8 +2717,8 @@ __meta__ = {
 anchor_top = 0.35
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_top = -122.35
-margin_bottom = -157.5
+margin_top = -140.35
+margin_bottom = -175.5
 grow_horizontal = 2
 custom_fonts/font = ExtResource( 50 )
 text = "EndPracticeText"
@@ -2704,10 +2729,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -205.0
+margin_left = -332.5
 margin_top = -103.0
-margin_right = 205.0
-margin_bottom = 170.0
+margin_right = 341.5
+margin_bottom = 179.0
 
 [node name="ExplainPracticeDialog" type="WindowDialog" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -2793,7 +2818,7 @@ icon_align = 2
 [node name="PracticeExplain" type="RichTextLabel" parent="CanvasLayer/ExplainPracticeDialog"]
 margin_left = 37.0
 margin_top = 36.0
-margin_right = 665.0
+margin_right = 678.0
 margin_bottom = 380.0
 custom_constants/line_separation = 8
 bbcode_enabled = true
@@ -2802,20 +2827,22 @@ __meta__ = {
 }
 
 [node name="TourDialog" type="WindowDialog" parent="CanvasLayer"]
-margin_left = 180.0
-margin_top = 156.0
-margin_right = 806.0
-margin_bottom = 384.0
+margin_left = 122.0
+margin_top = 165.0
+margin_right = 850.0
+margin_bottom = 390.0
 theme = ExtResource( 29 )
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
 custom_styles/panel = SubResource( 33 )
 script = ExtResource( 71 )
 
 [node name="TourText" type="RichTextLabel" parent="CanvasLayer/TourDialog"]
-margin_left = 36.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -327.0
 margin_top = 21.0
-margin_right = 586.0
-margin_bottom = 182.0
+margin_right = 324.0
+margin_bottom = 171.0
 custom_constants/line_separation = 7
 bbcode_enabled = true
 __meta__ = {
@@ -2886,7 +2913,7 @@ __meta__ = {
 
 [node name="PointToStart" type="Line2D" parent="CanvasLayer/TourDialog"]
 visible = false
-position = Vector2( -209.849, -148.331 )
+position = Vector2( -166.849, -148.331 )
 rotation = -0.685914
 scale = Vector2( 0.481814, 0.80976 )
 points = PoolVector2Array( 104, 108, 224.248, 347.521 )
@@ -2894,6 +2921,23 @@ default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
 joint_mode = 2
 
 [node name="Line2D2" type="Line2D" parent="CanvasLayer/TourDialog/PointToStart"]
+position = Vector2( -149, -132 )
+points = PoolVector2Array( 294.021, 262.201, 254.339, 241.583, 237.505, 268.19 )
+default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PointToStartMobile" type="Line2D" parent="CanvasLayer/TourDialog"]
+visible = false
+position = Vector2( -139, -141 )
+rotation = -0.522135
+scale = Vector2( 0.471631, 0.630162 )
+points = PoolVector2Array( 104, 108, 156.781, 213.133, 224.248, 347.521 )
+default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
+joint_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="CanvasLayer/TourDialog/PointToStartMobile"]
 position = Vector2( -149, -132 )
 points = PoolVector2Array( 294.021, 262.201, 254.339, 241.583, 237.505, 268.19 )
 default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
@@ -2917,9 +2961,26 @@ joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 
+[node name="PointToCommandsMobile" type="Line2D" parent="CanvasLayer/TourDialog"]
+visible = false
+position = Vector2( 835, 256.541 )
+rotation = -1.5708
+scale = Vector2( 0.482, 0.482 )
+points = PoolVector2Array( 421.325, -102.5, 421.325, -186.667, 421.325, -222.288 )
+default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
+joint_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="CanvasLayer/TourDialog/PointToCommandsMobile"]
+position = Vector2( -149, -132 )
+points = PoolVector2Array( 605.608, -0.137939, 570.325, 27.0306, 537.117, -1.37286 )
+default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
 [node name="PointToLanguage" type="Line2D" parent="CanvasLayer/TourDialog"]
 visible = false
-position = Vector2( -108, -152 )
+position = Vector2( -48, -152 )
 rotation = -0.685914
 scale = Vector2( 0.481814, 0.80976 )
 points = PoolVector2Array( 104, 108, 99.2102, 292.482 )
@@ -2934,12 +2995,29 @@ joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 
+[node name="PointToLanguageMobile" type="Line2D" parent="CanvasLayer/TourDialog"]
+visible = false
+position = Vector2( -44.5412, -139.222 )
+rotation = -0.685914
+scale = Vector2( 0.481814, 0.75517 )
+points = PoolVector2Array( 104, 108, 99.2102, 292.482 )
+default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
+joint_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="CanvasLayer/TourDialog/PointToLanguageMobile"]
+position = Vector2( -149, -132 )
+points = PoolVector2Array( 282.452, 270.006, 254.339, 241.583, 224.396, 270.006 )
+default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
 [node name="PointToHelp" type="Line2D" parent="CanvasLayer/TourDialog"]
 visible = false
-position = Vector2( -37, -152 )
+position = Vector2( 20, -152 )
 rotation = -0.685914
 scale = Vector2( 0.481814, 0.80976 )
-points = PoolVector2Array( 104, 108, 99.2102, 292.482 )
+points = PoolVector2Array( 104, 108, 101.983, 185.681, 101.002, 223.457, 99.2102, 292.482 )
 default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
 joint_mode = 2
 
@@ -2953,7 +3031,7 @@ end_cap_mode = 2
 
 [node name="PointToOptions" type="Line2D" parent="CanvasLayer/TourDialog"]
 visible = false
-position = Vector2( 2.00001, -152 )
+position = Vector2( 43, -152 )
 rotation = -0.685914
 scale = Vector2( 0.481814, 0.80976 )
 points = PoolVector2Array( 104, 108, 99.2102, 292.482 )
@@ -2963,6 +3041,40 @@ joint_mode = 2
 [node name="Line2D2" type="Line2D" parent="CanvasLayer/TourDialog/PointToOptions"]
 position = Vector2( -149, -132 )
 points = PoolVector2Array( 282.452, 270.006, 254.339, 241.583, 224.396, 270.006 )
+default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PointToOptionsMobile" type="Line2D" parent="CanvasLayer/TourDialog"]
+visible = false
+position = Vector2( 53, -152 )
+rotation = -0.685914
+scale = Vector2( 0.481814, 0.80976 )
+points = PoolVector2Array( 104, 108, 99.2102, 292.482 )
+default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
+joint_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="CanvasLayer/TourDialog/PointToOptionsMobile"]
+position = Vector2( -149, -132 )
+points = PoolVector2Array( 282.452, 270.006, 254.339, 241.583, 224.396, 270.006 )
+default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="PointToBackwardsMobile" type="Line2D" parent="CanvasLayer/TourDialog"]
+visible = false
+position = Vector2( 311, -150 )
+rotation = -0.685914
+scale = Vector2( 0.481814, 0.80976 )
+points = PoolVector2Array( 104, 108, -169.3, 160.119 )
+default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
+joint_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="CanvasLayer/TourDialog/PointToBackwardsMobile"]
+position = Vector2( -149, -132 )
+points = PoolVector2Array( 230.735, 267.557, 254.339, 241.583, 195.555, 224.89 )
 default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
 joint_mode = 2
 begin_cap_mode = 2
@@ -3294,9 +3406,9 @@ text = "0"
 
 [node name="SettingsDialog" type="WindowDialog" parent="CanvasLayer"]
 unique_name_in_owner = true
-margin_left = 14.0
+anchor_left = 0.02
+anchor_right = 0.98
 margin_top = 11.0
-margin_right = 1010.0
 margin_bottom = 591.0
 custom_styles/panel = ExtResource( 33 )
 script = ExtResource( 58 )
@@ -3344,14 +3456,14 @@ columns = 2
 
 [node name="RuleSetLabel" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_top = 3.0
-margin_right = 198.0
+margin_right = 196.0
 margin_bottom = 22.0
 custom_fonts/font = ExtResource( 50 )
 text = "RuleSetLabel"
 
 [node name="RuleSetDropDown" type="OptionButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_left = 218.0
-margin_right = 368.0
+margin_left = 216.0
+margin_right = 366.0
 margin_bottom = 25.0
 theme = ExtResource( 29 )
 custom_constants/hseparation = 10
@@ -3359,15 +3471,15 @@ custom_fonts/font = ExtResource( 50 )
 
 [node name="Label" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_top = 41.0
-margin_right = 198.0
+margin_right = 196.0
 margin_bottom = 60.0
 custom_fonts/font = ExtResource( 50 )
 text = "ShowTooltipSettingLabel"
 
 [node name="ShowCommandTooltips" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_left = 218.0
+margin_left = 216.0
 margin_top = 35.0
-margin_right = 368.0
+margin_right = 366.0
 margin_bottom = 66.0
 custom_icons/off = ExtResource( 25 )
 custom_icons/on = ExtResource( 66 )
@@ -3375,30 +3487,30 @@ pressed = true
 
 [node name="Label2" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_top = 82.0
-margin_right = 198.0
+margin_right = 196.0
 margin_bottom = 101.0
 custom_fonts/font = ExtResource( 50 )
 text = "ShowShortCutsInButtons"
 
 [node name="ShowShortCutsInButtons" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_left = 218.0
+margin_left = 216.0
 margin_top = 76.0
-margin_right = 368.0
+margin_right = 366.0
 margin_bottom = 107.0
 custom_icons/off = ExtResource( 25 )
 custom_icons/on = ExtResource( 66 )
 
 [node name="BoatTypeLabel" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_top = 120.0
-margin_right = 198.0
+margin_right = 196.0
 margin_bottom = 139.0
 custom_fonts/font = ExtResource( 50 )
 text = "BoatType"
 
 [node name="BoatType" type="OptionButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_left = 218.0
+margin_left = 216.0
 margin_top = 117.0
-margin_right = 368.0
+margin_right = 366.0
 margin_bottom = 142.0
 custom_fonts/font = ExtResource( 50 )
 text = "Default"
@@ -3407,15 +3519,15 @@ selected = 0
 
 [node name="Label4" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_top = 158.0
-margin_right = 198.0
+margin_right = 196.0
 margin_bottom = 177.0
 custom_fonts/font = ExtResource( 50 )
 text = "Reset"
 
 [node name="ResetPractices" type="Button" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_left = 218.0
+margin_left = 216.0
 margin_top = 152.0
-margin_right = 368.0
+margin_right = 366.0
 margin_bottom = 184.0
 rect_min_size = Vector2( 150, 32 )
 custom_fonts/font = ExtResource( 50 )
@@ -3426,7 +3538,6 @@ custom_styles/normal = ExtResource( 64 )
 text = "ResetPractices"
 
 [node name="DisplayTab" type="Tabs" parent="CanvasLayer/SettingsDialog/TabContainer"]
-visible = false
 margin_right = 40.0
 margin_bottom = 24.0
 
@@ -3442,7 +3553,7 @@ autowrap = true
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab"]
 margin_left = 22.0
-margin_top = 101.0
+margin_top = 129.0
 margin_right = 631.0
 margin_bottom = 487.0
 custom_constants/vseparation = 10
@@ -3571,15 +3682,13 @@ commandContainerSource = NodePath("CommandSelectScrollContainer/CommandContainer
 commandContainerDest = NodePath("CommandSelectScrollContainerDest/CommandContainerDest")
 
 [node name="CommandSelectScrollContainer" type="ScrollContainer" parent="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab"]
+anchor_right = 1.0
 margin_left = 5.0
 margin_top = 10.0
-margin_right = 950.0
+margin_right = -15.04
 margin_bottom = 213.0
 rect_min_size = Vector2( 930, 180 )
 custom_styles/bg = SubResource( 30 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CommandContainerSource" type="GridContainer" parent="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/CommandSelectScrollContainer"]
 margin_left = 2.0
@@ -3600,20 +3709,20 @@ rect_min_size = Vector2( 240, 20 )
 size_flags_horizontal = 0
 custom_fonts/font = ExtResource( 50 )
 text = "DragButtonExplain"
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CommandSelectScrollContainerDest" type="ScrollContainer" parent="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 5.0
 margin_top = 262.0
-margin_right = 948.0
-margin_bottom = 432.0
+margin_right = -15.04
+margin_bottom = -10.0
 rect_min_size = Vector2( 900, 162 )
 custom_styles/bg = SubResource( 30 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CommandContainerDest" type="GridContainer" parent="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/CommandSelectScrollContainerDest"]
 margin_left = 2.0
@@ -3681,10 +3790,12 @@ __meta__ = {
 }
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/SettingsDialog/TabContainer/EnablePracticesTab"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 14.0
 margin_top = 45.0
-margin_right = 957.0
-margin_bottom = 483.0
+margin_right = -21.04
+margin_bottom = -8.0
 scroll_horizontal_enabled = false
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/SettingsDialog/TabContainer/EnablePracticesTab/ScrollContainer"]
@@ -3718,7 +3829,7 @@ visible = false
 [node name="DisplayHeaderCommand" parent="CanvasLayer/SettingsDialog" instance=ExtResource( 87 )]
 
 [node name="Label" parent="CanvasLayer/SettingsDialog/DisplayHeaderCommand" index="0"]
-margin_right = 330.0
+margin_right = 326.0
 
 [node name="EditCommandText2" parent="CanvasLayer/SettingsDialog" instance=ExtResource( 73 )]
 
@@ -3736,10 +3847,15 @@ text = "ChoosePresetSettings"
 script = ExtResource( 20 )
 
 [node name="CloseSettingsButton" type="Button" parent="CanvasLayer/SettingsDialog"]
-margin_left = 449.0
-margin_top = 536.0
-margin_right = 545.0
-margin_bottom = 567.0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -48.0
+margin_top = -39.0
+margin_right = 48.0
+margin_bottom = -8.0
+grow_horizontal = 2
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 11 )
 custom_styles/pressed = ExtResource( 10 )
@@ -3750,10 +3866,15 @@ shortcut = ExtResource( 100 )
 text = "Close"
 
 [node name="ShareSettings" type="Button" parent="CanvasLayer/SettingsDialog"]
-margin_left = 781.0
-margin_top = 536.0
-margin_right = 978.0
-margin_bottom = 568.0
+anchor_left = 0.98
+anchor_top = 1.0
+anchor_right = 0.98
+anchor_bottom = 1.0
+margin_left = -172.0
+margin_top = -40.0
+margin_right = -1.0
+margin_bottom = -8.0
+grow_horizontal = 0
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 11 )
 custom_styles/pressed = ExtResource( 10 )
@@ -3833,14 +3954,11 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -165.0
-margin_top = -40.0
+margin_top = -48.0
 margin_right = 165.0
-margin_bottom = -10.0
+margin_bottom = -18.0
 grow_horizontal = 2
 custom_constants/separation = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Cancel" type="Button" parent="CanvasLayer/ShareSettingsName/HBoxContainer"]
 margin_right = 160.0
@@ -4005,7 +4123,7 @@ unique_name_in_owner = true
 margin_left = 184.0
 margin_top = 189.0
 margin_right = 845.0
-margin_bottom = 424.0
+margin_bottom = 479.0
 theme = ExtResource( 29 )
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
 custom_styles/panel = SubResource( 34 )
@@ -4016,11 +4134,11 @@ anchor_top = 0.35
 anchor_right = 1.0
 anchor_bottom = 0.5
 margin_left = 38.0
-margin_top = -40.25
+margin_top = -60.25
 margin_right = -33.0
-margin_bottom = -5.5
+margin_bottom = -25.5
 grow_horizontal = 2
-text = "ShareSettingsExplain"
+text = "ShareSettingsExplainResult"
 align = 1
 autowrap = true
 
@@ -4050,9 +4168,9 @@ icon_align = 2
 
 [node name="ModifyPracticeDialog" type="WindowDialog" parent="CanvasLayer"]
 unique_name_in_owner = true
-margin_left = 115.0
+margin_left = 82.0
 margin_top = 145.0
-margin_right = 879.0
+margin_right = 953.0
 margin_bottom = 581.0
 theme = ExtResource( 29 )
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
@@ -4076,9 +4194,9 @@ valign = 1
 [node name="ModifiedTitleCheckBox" type="CheckButton" parent="CanvasLayer/ModifyPracticeDialog"]
 anchor_right = 0.045
 anchor_bottom = 0.158
-margin_left = 66.0
+margin_left = 47.0
 margin_top = 66.0
-margin_right = 184.52
+margin_right = 216.62
 margin_bottom = 29.112
 grow_horizontal = 0
 custom_icons/off = ExtResource( 25 )
@@ -4089,10 +4207,10 @@ align = 2
 [node name="ModifiedExplainTextCheckBox" type="CheckButton" parent="CanvasLayer/ModifyPracticeDialog"]
 anchor_right = 0.045
 anchor_bottom = 0.158
-margin_left = 66.0
-margin_top = 106.0
-margin_right = 184.52
-margin_bottom = 68.112
+margin_left = 47.0
+margin_top = 109.0
+margin_right = 216.62
+margin_bottom = 71.112
 grow_horizontal = 0
 custom_icons/off = ExtResource( 25 )
 custom_icons/on = ExtResource( 66 )
@@ -4100,17 +4218,17 @@ text = "NewText"
 align = 2
 
 [node name="ModifiedTitle" type="TextEdit" parent="CanvasLayer/ModifyPracticeDialog"]
-margin_left = 219.0
+margin_left = 251.0
 margin_top = 69.0
-margin_right = 731.0
+margin_right = 763.0
 margin_bottom = 94.0
 readonly = true
 
 [node name="ModifiedExplainText" type="TextEdit" parent="CanvasLayer/ModifyPracticeDialog"]
-margin_left = 219.0
-margin_top = 109.0
-margin_right = 731.0
-margin_bottom = 382.0
+margin_left = 251.0
+margin_top = 112.0
+margin_right = 763.0
+margin_bottom = 368.0
 readonly = true
 
 [node name="HSplitContainer" type="HSplitContainer" parent="CanvasLayer/ModifyPracticeDialog"]

@@ -25,6 +25,22 @@ var isScull = true
 var sharedSettingsBladeColorDefault=Color("#ffffff")
 var sharedSettingsBladeColor=sharedSettingsBladeColorDefault
 
+var mobileMode = false
+
+var enabledCommands=[]
+
+func checkIsMobileMode():
+	if OS.has_feature('JavaScript'):
+		var result=JavaScript.eval("isMobileMode()")
+		return result==true;
+	return GameState.mobileMode
+	
+func _ready():
+	GameState.mobileMode=checkIsMobileMode()
+	if mobileMode:
+		var font= preload("res://Font.tres")
+		font.size=24
+	
 func changeCollectGameState(newState):
 	if collectGameState!=newState:
 		collectGameState=newState

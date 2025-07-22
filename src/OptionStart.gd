@@ -35,24 +35,61 @@ var sendStartOnWaterMessage= false
 
 var tempReplacedButtons = false
 
+var childmenu=null
+const maxMobileItems=13
+
+const mobileVertSeparation= 13
+
 func loadItems():
 	clear()
+	var pm=get_popup()
+	if (GameState.mobileMode):
+		if childmenu==null:			
+			childmenu = PopupMenu.new()
+			childmenu.name = "submenu"
+			pm.add_child(childmenu)
+		else: 
+			childmenu.clear()
+			(childmenu as PopupMenu).rect_size.y=0
+	
+	var visibleCount=0
 	for startItem in Practices.practices:
 		if Practices.practiceIsVisible(startItem):
 			var title=Practices.getTranslatedPracticeName(startItem)
-			add_item(title,startItem)
-	add_item("ModifyPractices",Constants.StartItem.StartModifyPractices)
-	add_separator()
-	add_item("StartOpWater",Constants.StartItem.Start)
-	add_item("ShowIntroText",Constants.StartItem.Intro)
+			visibleCount=visibleCount+1
+			if GameState.mobileMode && visibleCount>maxMobileItems:
+				childmenu.add_item(title,startItem)
+			else:
+				add_item(title,startItem)
 	
-	var pm=get_popup()
-	pm.add_constant_override("vseparation",-1)
+	if (GameState.mobileMode):		
+		pm.add_submenu_item("MoreSubMenu","submenu",-1)
+		childmenu.connect("id_pressed",self,"_submenuItemClicked")
+	else:
+		childmenu=self;
+	
+	
+	childmenu.add_item("ModifyPractices",Constants.StartItem.StartModifyPractices)
+	childmenu.add_separator()
+		
+	childmenu.add_item("StartOpWater",Constants.StartItem.Start)
+	childmenu.add_item("ShowIntroText",Constants.StartItem.Intro)
+	if GameState.mobileMode:
+		childmenu.add_item("",9999)
+	
+	if GameState.mobileMode:
+		pm.add_constant_override("vseparation",mobileVertSeparation)
+		childmenu.add_constant_override("vseparation",mobileVertSeparation)
+		#here apply to the childmenu the same style as in the the current popup
+		Styles.SetPopupPanelDropDownStyle(childmenu)
+		
+	else:
+		pm.add_constant_override("vseparation",-1)
 	# hide the radio
 	for i in pm.get_item_count():
 	        if pm.is_item_radio_checkable(i):
 	            pm.set_item_as_radio_checkable(i, false)
-
+	
 	setIcons()
 	text="StartPositie"
 	icon=null;
@@ -88,6 +125,10 @@ func _menuItemClicked(itemId):
 	$"%Recorder".cancelReplay()
 	doStart(itemId)
 
+func _submenuItemClicked(itemId):
+	$"%Recorder".cancelReplay()
+	doStart(itemId)
+	
 func _collectGameStateChangedSignal(state):
 	if state==Constants.CollectGameState.Finished:
 		savePractice()
@@ -131,16 +172,17 @@ func setStarStyle(startPos ,style):
 		if c.practiceStartPosNr==startPos:
 			c.setIconStyle(style)
 
-func setIcons():
-	practicePoints=0
-	var nrOfPractices=0
-	var firstNotDone=-1;
-	for i in get_item_count():
-	   
-		var itemId=get_item_id(i)
-		var itemText=get_item_text(i)
+var nrOfPractices=0
+var firstNotDone=-1;
+
+func setIconInMenu(menu):
+	for i in menu.get_item_count():
 		
-		if itemText=="":
+			
+		var itemId=menu.get_item_id(i)
+		var itemText=menu.get_item_text(i)
+		
+		if itemText=="" || itemText=="MoreSubMenu":
 			itemId = -1
 		if isPractice(itemId):		
 			if itemId!=Constants.StartItem.StartTour: 
@@ -153,25 +195,34 @@ func setIcons():
 			if practiceIsFinished(itemId):
 				if itemId!=Constants.StartItem.StartTour: 
 					practicePoints=practicePoints+1
-				set_item_icon( i,stepCheckIcons[iconIndex])
+				menu.set_item_icon( i,stepCheckIcons[iconIndex])
 				setStarStyle(itemId,Constants.CollectableSpriteStyle.PracticeCollected)
 			else:
 				setStarStyle(itemId,Constants.CollectableSpriteStyle.Practice)
-				set_item_icon( i,stepDisabledIcons[iconIndex])
+				menu.set_item_icon( i,stepDisabledIcons[iconIndex])
 				if firstNotDone<0:
 					firstNotDone=i
-					set_item_icon( i,stepArrowIcons[iconIndex])
+					menu.set_item_icon( i,stepArrowIcons[iconIndex])
 		if itemId==Constants.StartItem.Intro:
-			set_item_icon(i,infoIcon)
+			menu.set_item_icon(i,infoIcon)
 		if itemId==Constants.StartItem.Start:
-			set_item_icon(i,iconBoat)
+			menu.set_item_icon(i,iconBoat)
 		if itemId==Constants.StartItem.StartModifyPractices:
-			set_item_icon(i,editIcon)
+			menu.set_item_icon(i,editIcon)
+	
+func setIcons():
+	practicePoints=0
+	nrOfPractices=0
+	firstNotDone=-1;
+	setIconInMenu(self)
+			
+	if GameState.mobileMode:
+		setIconInMenu(childmenu)
 	icon=null
 	$"%PracticeCounter".setCount( practicePoints, nrOfPractices)
 	
 func isPractice(pos):
-	return pos>=0 && pos!=Constants.StartItem.Start && pos!=Constants.StartItem.Intro
+	return pos>=0 && pos!=Constants.StartItem.Start && pos!=Constants.StartItem.Intro && pos!=Constants.StartItem.StartModifyPractices
 
 func endPractice():
 
