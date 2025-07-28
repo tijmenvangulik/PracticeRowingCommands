@@ -8,6 +8,7 @@ extends WindowDialog
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_close_button().hide()
 	pass # Replace with function body.
 
 func start(earnedStar):

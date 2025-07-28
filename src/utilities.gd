@@ -309,3 +309,62 @@ func languageToFlag(lang : String) -> String:
 	if lang!=null && lang.begins_with("en"):
 		return "gb"
 	return "nl"
+
+var closeIconTexture=load("res://assets/starPractice.png")
+
+func modifyCloseButton(dlg : WindowDialog):
+	if GameState.mobileMode:
+		var button : TextureButton=dlg.get_close_button()
+		button.margin_left=-30
+		button.rect_scale.x=2
+		button.rect_scale.y=2
+
+
+func MobileScrollConainer(scroll : ScrollContainer):
+
+	pass
+	
+	#var h_scroll = scroll.get_h_scrollbar()
+	#var scrollbar_thickness = 50
+	#var theme = Theme.new()
+	#var style = StyleBoxFlat.new()
+	#style.set_default_margin(MARGIN_LEFT, scrollbar_thickness / 2)
+	#style.set_default_margin(MARGIN_RIGHT, scrollbar_thickness / 2)
+	#h_scroll.add_stylebox_override("scroll", style)
+
+	
+	#var h_scroll = scroll.get_h_scrollbar()
+	
+	#var v_scroll = scroll.get_v_scrollbar()
+	#v_scroll.rect_min_size.x = 30
+	#h_scroll.rect_min_size.y = 30
+	#h_scroll.set_scale(Vector2(1,1.5))
+	#v_scroll.set_scale(Vector2(1.5,1))
+	
+    # Option 1: Create and assign a new StyleBox with custom margin
+	#var style = StyleBoxFlat.new()
+#	style.content_margin_left=40
+#	style.content_margin_right=40
+	#style.border_width_right=30
+	#style.border_width_bottom=30
+	
+	#style.bg_color = Color(0.6, 0.6, 0.6) # optional: set color
+	#style.set_default_margin(Margin.LEFT, 0)
+	#style.set_default_margin(Margin.TOP, 0)
+	#style.set_default_margin(Margin.RIGHT, 0)
+	#style.set_default_margin(Margin.BOTTOM, 0)
+
+    # Set the min size (this controls the scrollbar thickness)
+	#h_scroll.rect_min_size.y=30 # height for horizontal
+	#v_scroll.rect_min_size.x=30 # width for vertical
+
+    # Apply the style (optional, but ensures it's visible)
+	#h_scroll.add_stylebox_override("grabber", style)
+	#v_scroll.add_stylebox_override("grabber", style)
+	
+	#style = StyleBoxFlat.new()
+	#style.content_margin_right=30
+	#style.content_margin_bottom=30
+	
+	#h_scroll.add_stylebox_override("scroll", style)
+	#v_scroll.add_stylebox_override("scroll", style)

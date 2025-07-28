@@ -1735,12 +1735,11 @@ __meta__ = {
 
 [node name="IntroDialog" type="WindowDialog" parent="CanvasLayer"]
 unique_name_in_owner = true
-anchor_left = 0.02
+anchor_left = 0.08
 anchor_top = 0.5
-anchor_right = 0.98
-anchor_bottom = 0.5
+anchor_right = 0.92
+anchor_bottom = 0.96
 margin_top = -252.0
-margin_bottom = 283.0
 theme = ExtResource( 29 )
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
 custom_styles/panel = SubResource( 32 )
@@ -3422,7 +3421,8 @@ commandButtonsTab = NodePath("TabContainer/CommandButtonsTab")
 showShortCutsInButtons = NodePath("TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons")
 boatTypeButton = NodePath("TabContainer/GeneralSettingsTab/GridContainer/BoatType")
 enablePracticesTab = NodePath("TabContainer/EnablePracticesTab")
-resolutionButton = NodePath("TabContainer/DisplayTab/GridContainer/HBoxContainer/Resolution")
+resolutionButton = NodePath("TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer/Resolution")
+waterAnimationButton = NodePath("TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer2/WaterAnimationButton")
 
 [node name="TabContainer" type="TabContainer" parent="CanvasLayer/SettingsDialog"]
 anchor_right = 1.0
@@ -3538,41 +3538,50 @@ custom_styles/normal = ExtResource( 64 )
 text = "ResetPractices"
 
 [node name="DisplayTab" type="Tabs" parent="CanvasLayer/SettingsDialog/TabContainer"]
+visible = false
 margin_right = 40.0
 margin_bottom = 24.0
 
-[node name="Label" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab"]
-margin_left = 22.437
-margin_top = 46.0
-margin_right = 943.437
-margin_bottom = 94.0
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 916.0
+margin_bottom = 490.0
+size_flags_vertical = 2
+custom_constants/vseparation = 20
+
+[node name="Label" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer"]
+anchor_right = 1.0
+margin_right = -50.0
+margin_bottom = 19.0
 custom_colors/font_color = Color( 0.780392, 0.792157, 0.803922, 1 )
 custom_fonts/font = ExtResource( 50 )
 text = "DisplayTabWarning"
 autowrap = true
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab"]
-margin_left = 22.0
-margin_top = 129.0
-margin_right = 631.0
-margin_bottom = 487.0
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer"]
+margin_top = 39.0
+margin_right = 446.0
+margin_bottom = 146.0
 custom_constants/vseparation = 10
 custom_constants/hseparation = 20
 columns = 2
 
-[node name="Label6" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer"]
+[node name="Label6" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer"]
 margin_top = 3.0
 margin_right = 122.0
 margin_bottom = 22.0
 custom_fonts/font = ExtResource( 50 )
 text = "ForceHiDef"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer"]
 margin_left = 142.0
 margin_right = 446.0
 margin_bottom = 25.0
 
-[node name="Resolution" type="OptionButton" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/HBoxContainer"]
+[node name="Resolution" type="OptionButton" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer"]
 margin_right = 178.0
 margin_bottom = 25.0
 theme = ExtResource( 29 )
@@ -3582,7 +3591,7 @@ text = "ResolutionDefault"
 items = [ "ResolutionDefault", null, false, 0, null, "ResolutionNormal", null, false, 1, null, "ResolutionHigh", null, false, 2, null ]
 selected = 0
 
-[node name="Label" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer"]
 margin_left = 182.0
 margin_top = 3.0
 margin_right = 304.0
@@ -3591,39 +3600,39 @@ custom_colors/font_color = Color( 0.780392, 0.792157, 0.803922, 1 )
 custom_fonts/font = ExtResource( 50 )
 text = "RestartWarning"
 
-[node name="Label5" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer"]
+[node name="Label5" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer"]
 margin_top = 41.0
 margin_right = 122.0
 margin_bottom = 60.0
 custom_fonts/font = ExtResource( 50 )
 text = "AnimatedWater"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer"]
 margin_left = 142.0
 margin_top = 35.0
 margin_right = 446.0
 margin_bottom = 66.0
 
-[node name="WaterAnimationButton" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/HBoxContainer2"]
+[node name="WaterAnimationButton" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer2"]
 margin_right = 69.0
 margin_bottom = 31.0
 custom_icons/off = ExtResource( 25 )
 custom_icons/on = ExtResource( 66 )
 
-[node name="Label7" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer"]
+[node name="Label7" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer"]
 margin_top = 82.0
 margin_right = 122.0
 margin_bottom = 101.0
 custom_fonts/font = ExtResource( 50 )
 text = "HighContrast"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer"]
 margin_left = 142.0
 margin_top = 76.0
 margin_right = 446.0
 margin_bottom = 107.0
 
-[node name="HighContrastButton" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/HBoxContainer3"]
+[node name="HighContrastButton" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer3"]
 margin_right = 69.0
 margin_bottom = 31.0
 custom_icons/off = ExtResource( 25 )
@@ -4355,9 +4364,9 @@ script = ExtResource( 84 )
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons" to="CanvasLayer/SettingsDialog" method="_on_ShowShortCutsInButtons_toggled"]
 [connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/BoatType" to="CanvasLayer/SettingsDialog" method="_on_BoatType_item_selected"]
 [connection signal="pressed" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/ResetPractices" to="CanvasLayer/SettingsDialog" method="_on_ResetPractices_pressed"]
-[connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/HBoxContainer/Resolution" to="CanvasLayer/SettingsDialog" method="_on_Resolution_item_selected"]
-[connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/HBoxContainer2/WaterAnimationButton" to="CanvasLayer/SettingsDialog" method="_on_WaterAnimationButton_toggled"]
-[connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/HBoxContainer3/HighContrastButton" to="CanvasLayer/SettingsDialog" method="_on_HighContrastButton_toggled"]
+[connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer/Resolution" to="CanvasLayer/SettingsDialog" method="_on_Resolution_item_selected"]
+[connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer2/WaterAnimationButton" to="CanvasLayer/SettingsDialog" method="_on_WaterAnimationButton_toggled"]
+[connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer3/HighContrastButton" to="CanvasLayer/SettingsDialog" method="_on_HighContrastButton_toggled"]
 [connection signal="item_rect_changed" from="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab/ScrollContainerHeader/GridContainerHeader" to="CanvasLayer/SettingsDialog" method="_on_GridContainerHeader_item_rect_changed"]
 [connection signal="item_rect_changed" from="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab/ScrollContainerCommands/GridContainerCommands" to="CanvasLayer/SettingsDialog" method="_on_GridContainerCommands_item_rect_changed"]
 [connection signal="item_rect_changed" from="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab/ScrollContainer/GridContainer" to="CanvasLayer/SettingsDialog" method="_on_GridContainer_item_rect_changed"]

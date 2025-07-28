@@ -35,8 +35,11 @@ func _ready():
 	
 	if GameState.mobileMode:
 		$IntroText.get_font("font", "Label").size = 24
-	
-
+		anchor_left=0.02
+		anchor_right=0.98
+		anchor_bottom=0.98
+		anchor_top=0.5
+		
 func setText():
 	var intro=$"IntroText"
 	intro.set_bbcode(tr("IntroText"))

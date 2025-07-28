@@ -10,7 +10,8 @@ extends WindowDialog
 func _ready():
 	get_close_button().hide()
 	$HTTPRequest.connect("request_completed", self, "_onUploadRequest")
-
+	get_close_button().hide()
+	
 func handleShow():
 	GameState.dialogIsOpen=visible
 		

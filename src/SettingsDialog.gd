@@ -17,6 +17,7 @@ export (NodePath) onready var boatTypeButton = get_node(boatTypeButton) as Optio
 
 export (NodePath) onready var enablePracticesTab = get_node(enablePracticesTab) as EnablePracticesTab 
 export (NodePath) onready var resolutionButton = get_node(resolutionButton) as OptionButton 
+export (NodePath) onready var waterAnimationButton  = get_node(waterAnimationButton) as CheckButton 
 
 
 var settingsFile="user://settings.save"
@@ -213,9 +214,7 @@ func _ready():
 
 	hideScrollBars()
 	if GameState.mobileMode:
-		$CloseSettingsButton.anchor_left=0.6
-	
-	
+		$CloseSettingsButton.anchor_left=0.6		
 func hasJavascript():
 	return OS.has_feature('JavaScript')
 	
@@ -411,7 +410,7 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 	if dict.has("waterAnimation"): 
 		 waterAnimationOn=dict["waterAnimation"]
 	Settings.waterAnimation=waterAnimationOn
-	var waterAnimationButton=$TabContainer/DisplayTab/GridContainer/HBoxContainer2/WaterAnimationButton
+	
 	waterAnimationButton.set_pressed(waterAnimationOn)
 
 	var 	highContrastOn=false

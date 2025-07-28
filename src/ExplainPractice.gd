@@ -16,9 +16,12 @@ func _ready():
 		$PracticeExplain.margin_right+=extraSize*2
 		$HBoxContainer.margin_top-=10
 		$HBoxContainer.margin_bottom-=10
-
+	
+	
+	
 func handleShow():
 	GameState.dialogIsOpen=visible
+	Utilities.modifyCloseButton(self);
 		
 func _init():
 	connect("visibility_changed",self,"handleShow");

@@ -11,6 +11,10 @@ func _ready():
 	GameEvents.connect("customButtonSetChangedSignal",self,"_customButtonSetChangedSignal")
 	GameEvents.connect("languageChangedSignal",self,"_languageChangedSignal");
 	
+#	if GameState.mobileMode:
+#		commandContainerSource.columns=2
+#		commandContainerDest.columns=1
+
 func init():
 	loadCommandSet()
 	loadDestButtons()
@@ -62,6 +66,7 @@ func loadDestButtons():
 	if buttonSet.size()==0:
 		buttonSet=GameState.getDefaultButtonSet()
 	for item in buttonSet:
+#		if !GameState.mobileMode || item!='' && item!=null:
 		var grouper=addGridGrouper(commandContainerDest)
 		
 		var horiz=grouper.getHorizontalGroup()
@@ -71,6 +76,7 @@ func loadDestButtons():
 			var commandNames=item.split(",")
 			for buttonItem in commandNames:
 				addGridButton(horiz,buttonItem,false,null)
+#	if !GameState.mobileMode:	
 	var totalGridItems=commandContainerDest.columns*5;
 	for item in range(buttonSet.size(),totalGridItems):
 		addGridGrouper(commandContainerDest)

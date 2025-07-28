@@ -10,6 +10,7 @@ var previewTextControl :Label
 var colorPicker : ColorPickerButton
 
 func _ready():
+	get_close_button().hide()
 	nameControl= $GridContainer/Name
 	previewTextControl = $GridContainer/Panel/PreviewText
 	colorPicker=$GridContainer/Panel2/ColorPickerButton
