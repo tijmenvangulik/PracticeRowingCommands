@@ -166,6 +166,9 @@ ray=false
 path=false
 Global=false
 type=false
+framerate=false
+frps=false
+fps=false
 
 [importer_defaults]
 

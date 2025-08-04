@@ -28,6 +28,7 @@ var sharedSettingsBladeColor=sharedSettingsBladeColorDefault
 var mobileMode = false
 
 var enabledCommands=[]
+var isHighRes=true
 
 func checkIsMobileMode():
 	if OS.has_feature('JavaScript'):

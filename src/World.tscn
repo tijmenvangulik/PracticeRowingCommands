@@ -1,4 +1,4 @@
-[gd_scene load_steps=152 format=2]
+[gd_scene load_steps=155 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -111,6 +111,8 @@
 [ext_resource path="res://StyleButtonRoundHover.tres" type="StyleBox" id=109]
 [ext_resource path="res://FontMobile.tres" type="DynamicFont" id=110]
 [ext_resource path="res://CanvasLayer.gd" type="Script" id=111]
+[ext_resource path="res://CheckFrameRateTimer.gd" type="Script" id=112]
+[ext_resource path="res://LowFrameRateDialog.gd" type="Script" id=113]
 
 [sub_resource type="ShaderMaterial" id=43]
 shader = ExtResource( 80 )
@@ -793,6 +795,18 @@ _data = {
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 450, 185, -232.76, 24.288, 232.76, -24.288, 1031, 231, -214.544, -105.248, 214.544, 105.248, 2031, 181, 72.864, -163.944, -72.864, 163.944, 2118, 729, 139.656, 127.512, -139.656, -127.512, 827, 847, 54.648, 180.136, -54.648, -180.136, 191, 707, -99.1759, 121.44, 99.1759, -121.44, 195, 276, 0, 0, 0, 0, 450, 185 )
 }
+
+[sub_resource type="StyleBoxFlat" id=56]
+bg_color = Color( 0.945098, 0.847059, 0.160784, 0.686275 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.784314, 0.482353, 0.0470588, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id=55]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
@@ -1693,6 +1707,45 @@ margin_top = 44.4202
 margin_right = 3.75546
 margin_bottom = 44.4202
 boat = NodePath("../../Boat")
+
+[node name="LowFrameRateDialog" type="WindowDialog" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -265.0
+margin_top = 18.0
+margin_right = -18.0
+margin_bottom = 110.0
+custom_constants/close_h_ofs = 20
+custom_constants/close_v_ofs = -4
+custom_styles/panel = SubResource( 56 )
+script = ExtResource( 113 )
+
+[node name="Label" type="Label" parent="CanvasLayer/LowFrameRateDialog"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -113.5
+margin_top = 23.0
+margin_right = 118.5
+margin_bottom = 42.0
+grow_horizontal = 2
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 50 )
+text = "SlowUpdateSpeedDetected"
+align = 1
+valign = 1
+
+[node name="SwitchToLow" type="Button" parent="CanvasLayer/LowFrameRateDialog"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.92
+margin_left = -100.5
+margin_top = 52.0
+margin_right = 100.5
+margin_bottom = -0.639999
+grow_horizontal = 2
+custom_fonts/font = ExtResource( 50 )
+text = "SwitchToLowResolution"
 
 [node name="ButtonsContainer" type="PanelContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -3553,8 +3606,7 @@ size_flags_vertical = 2
 custom_constants/vseparation = 20
 
 [node name="Label" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer"]
-anchor_right = 1.0
-margin_right = -50.0
+margin_right = 305.0
 margin_bottom = 19.0
 custom_colors/font_color = Color( 0.780392, 0.792157, 0.803922, 1 )
 custom_fonts/font = ExtResource( 50 )
@@ -3563,7 +3615,7 @@ autowrap = true
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer"]
 margin_top = 39.0
-margin_right = 446.0
+margin_right = 305.0
 margin_bottom = 146.0
 custom_constants/vseparation = 10
 custom_constants/hseparation = 20
@@ -3578,23 +3630,21 @@ text = "ForceHiDef"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer"]
 margin_left = 142.0
-margin_right = 446.0
+margin_right = 305.0
 margin_bottom = 25.0
 
 [node name="Resolution" type="OptionButton" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer"]
-margin_right = 178.0
+margin_right = 37.0
 margin_bottom = 25.0
 theme = ExtResource( 29 )
 custom_constants/hseparation = 10
 custom_fonts/font = ExtResource( 50 )
-text = "ResolutionDefault"
-items = [ "ResolutionDefault", null, false, 0, null, "ResolutionNormal", null, false, 1, null, "ResolutionHigh", null, false, 2, null ]
-selected = 0
+items = [ "ResolutionHigh", null, false, 1, null, "ResolutionNormal", null, false, 2, null ]
 
 [node name="Label" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer"]
-margin_left = 182.0
+margin_left = 41.0
 margin_top = 3.0
-margin_right = 304.0
+margin_right = 163.0
 margin_bottom = 22.0
 custom_colors/font_color = Color( 0.780392, 0.792157, 0.803922, 1 )
 custom_fonts/font = ExtResource( 50 )
@@ -3610,7 +3660,7 @@ text = "AnimatedWater"
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer"]
 margin_left = 142.0
 margin_top = 35.0
-margin_right = 446.0
+margin_right = 305.0
 margin_bottom = 66.0
 
 [node name="WaterAnimationButton" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer2"]
@@ -3629,7 +3679,7 @@ text = "HighContrast"
 [node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer"]
 margin_left = 142.0
 margin_top = 76.0
-margin_right = 446.0
+margin_right = 305.0
 margin_bottom = 107.0
 
 [node name="HighContrastButton" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer3"]
@@ -4324,7 +4374,12 @@ text = "Replay"
 unique_name_in_owner = true
 script = ExtResource( 84 )
 
+[node name="CheckFrameRateTimer" type="Timer" parent="."]
+autostart = true
+script = ExtResource( 112 )
+
 [connection signal="pressed" from="CanvasLayer/EditButtons" to="CanvasLayer/EditButtons" method="_on_EditButtons_pressed"]
+[connection signal="pressed" from="CanvasLayer/LowFrameRateDialog/SwitchToLow" to="CanvasLayer/LowFrameRateDialog" method="_on_SwitchToLow_pressed"]
 [connection signal="pressed" from="CanvasLayer/IntroDialog/HSplitContainer/StartPractices" to="CanvasLayer/IntroDialog" method="_on_StartPractices_pressed"]
 [connection signal="gui_input" from="CanvasLayer/IntroDialog/VersionNumber" to="CanvasLayer/IntroDialog" method="_on_VersionNumber_gui_input"]
 [connection signal="mouse_entered" from="CanvasLayer/IntroDialog/VersionNumber" to="CanvasLayer/IntroDialog" method="_on_VersionNumber_mouse_entered"]
@@ -4389,5 +4444,6 @@ script = ExtResource( 84 )
 [connection signal="pressed" from="CanvasLayer/TestEndGame" to="CanvasLayer/TestEndGame" method="_on_TestEndGame_pressed"]
 [connection signal="toggled" from="CanvasLayer/Recorder" to="CanvasLayer/Recorder" method="_on_Record_toggled"]
 [connection signal="pressed" from="CanvasLayer/Replay" to="CanvasLayer/Recorder" method="_on_Replay_pressed"]
+[connection signal="timeout" from="CheckFrameRateTimer" to="CheckFrameRateTimer" method="_on_CheckFrameRateTimer_timeout"]
 
 [editable path="CanvasLayer/SettingsDialog/DisplayHeaderCommand"]

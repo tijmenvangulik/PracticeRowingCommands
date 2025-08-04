@@ -276,7 +276,8 @@ func getSettings(removePrivate=false):
 	  "highContrast":Settings.highContrast,
 	  "practiceTranslations":Settings.practiceTranslations,
 	  "practiceExplainTranslations":Settings.practiceExplainTranslations,
-	  "sharedSettings":Settings.sharedSettings
+	  "sharedSettings":Settings.sharedSettings,
+	  "checkFrameRateDisabled":Settings.checkFrameRateDisabled
 	}
 	if removePrivate:
 		removePrivateSettings(save_dict)
@@ -535,6 +536,9 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 	if( zoom>0 && zoom<100) || zoom==-1:
 		Settings.zoom=zoom;
 	
+	if dict.has("checkFrameRateDisabled"):
+		Settings.checkFrameRateDisabled=dict["checkFrameRateDisabled"]==true
+	
 	if callSettingsChanged:
 		GameEvents.settingsChanged()
 	
@@ -697,19 +701,21 @@ func loadResolution():
 	var resolution=0
 	if resolutionStr=="Normal":
 		resolution=1
-	elif  resolutionStr=="High":
-		resolution=2
+	GameState.isHighRes=(resolution==0)
 	resolutionButton.selected=resolution
 
-func _on_Resolution_item_selected(index):
-	saveAndClose()
+func switchResolution(index):
 	var value=""
-	if index==1:
-		value="Normal"
-	elif index==2:
+	if index==0:
 		value="High"
+	else:
+		value="Normal"
 	JavaScript.eval("localStorage.setItem('resolution','"+value+"');")
 	JavaScript.eval("window.location.reload()")
+	
+func _on_Resolution_item_selected(index):
+	saveAndClose()
+	switchResolution(index)
 
 
 

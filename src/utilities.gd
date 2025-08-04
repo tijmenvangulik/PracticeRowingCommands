@@ -315,7 +315,7 @@ var closeIconTexture=load("res://assets/starPractice.png")
 func modifyCloseButton(dlg : WindowDialog):
 	if GameState.mobileMode:
 		var button : TextureButton=dlg.get_close_button()
-		button.margin_left=-30
+		button.margin_left=-40
 		button.rect_scale.x=2
 		button.rect_scale.y=2
 

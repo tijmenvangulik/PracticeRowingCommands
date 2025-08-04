@@ -21,3 +21,4 @@ var highContrast=false
 var practiceTranslations= [""]
 var practiceExplainTranslations= [""]
 var sharedSettings : Dictionary
+var checkFrameRateDisabled = false
