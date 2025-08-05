@@ -1756,15 +1756,27 @@ anchor_bottom = 0.75
 grow_horizontal = 2
 custom_styles/panel = SubResource( 55 )
 script = ExtResource( 60 )
-grid = NodePath("ScrollContainer/GridContainer")
+grid = NodePath("ScrollContainer/MarginContainer/GridContainer")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/ButtonsContainer"]
+margin_right = 2.0
+margin_bottom = 4.0
 grow_horizontal = 2
 follow_focus = true
 scroll_horizontal_enabled = false
 scroll_vertical_enabled = false
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/ButtonsContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ButtonsContainer/ScrollContainer"]
+margin_right = 2.0
+margin_bottom = 4.0
+rect_min_size = Vector2( 0, 4 )
+custom_constants/margin_right = 2
+custom_constants/margin_top = 2
+custom_constants/margin_bottom = 2
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/ButtonsContainer/ScrollContainer/MarginContainer"]
+margin_top = 2.0
+margin_bottom = 2.0
 custom_constants/vseparation = 5
 custom_constants/hseparation = 10
 columns = 5
@@ -3639,7 +3651,9 @@ margin_bottom = 25.0
 theme = ExtResource( 29 )
 custom_constants/hseparation = 10
 custom_fonts/font = ExtResource( 50 )
+text = "ResolutionHigh"
 items = [ "ResolutionHigh", null, false, 1, null, "ResolutionNormal", null, false, 2, null ]
+selected = 0
 
 [node name="Label" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer"]
 margin_left = 41.0
