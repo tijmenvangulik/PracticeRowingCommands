@@ -18,7 +18,7 @@ func _ready() -> void:
 
 
 func _on_CheckFrameRateTimer_timeout() -> void:
-	print(Engine.get_frames_per_second())
+	#print(Engine.get_frames_per_second())
 	if GameState.isHighRes && !Settings.checkFrameRateDisabled:
 		var frameRate=Engine.get_frames_per_second();
 		if frameRate<45:
