@@ -41,7 +41,6 @@ func _input(event):
 func _ready():
 	initButtons()
 	GameEvents.connect("languageChangedSignal",self,"_languageChangedSignal");
-	GameEvents.connect("customButtonSetChangedSignal",self,"_customButtonSetChangedSignal")
 	GameEvents.connect("showButtonsSignal",self,"_showButtonsSignal")
 	GameEvents.connect("startPlay",self,"_startPlaySignal")
 	GameEvents.connect("commandsChanged",self,"_commandsChanged");
