@@ -1,4 +1,4 @@
-[gd_scene load_steps=155 format=2]
+[gd_scene load_steps=159 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -113,6 +113,10 @@
 [ext_resource path="res://CanvasLayer.gd" type="Script" id=111]
 [ext_resource path="res://CheckFrameRateTimer.gd" type="Script" id=112]
 [ext_resource path="res://LowFrameRateDialog.gd" type="Script" id=113]
+[ext_resource path="res://assets/increment.png" type="Texture" id=114]
+[ext_resource path="res://assets/incrementSelected.png" type="Texture" id=115]
+[ext_resource path="res://assets/decrement.png" type="Texture" id=116]
+[ext_resource path="res://assets/decrementSelected.png" type="Texture" id=117]
 
 [sub_resource type="ShaderMaterial" id=43]
 shader = ExtResource( 80 )
@@ -1656,6 +1660,7 @@ margin_left = -41.0
 margin_top = -42.0
 margin_right = -5.0
 margin_bottom = -7.0
+rect_min_size = Vector2( 36, 35 )
 custom_styles/hover = ExtResource( 109 )
 custom_styles/pressed = ExtResource( 109 )
 custom_styles/focus = ExtResource( 109 )
@@ -3497,6 +3502,10 @@ margin_top = 9.0
 margin_right = -10.0
 margin_bottom = -53.0
 custom_fonts/font = ExtResource( 50 )
+custom_icons/increment_highlight = ExtResource( 115 )
+custom_icons/increment = ExtResource( 114 )
+custom_icons/decrement_highlight = ExtResource( 117 )
+custom_icons/decrement = ExtResource( 116 )
 custom_styles/tab_fg = SubResource( 28 )
 custom_styles/panel = SubResource( 29 )
 tab_align = 0

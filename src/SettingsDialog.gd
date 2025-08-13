@@ -100,6 +100,11 @@ func _languageChangedSignal():
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if !GameState.mobileMode:
+		var tabConainer=$TabContainer
+		tabConainer.remove_stylebox_override("decrement")
+		tabConainer.remove_stylebox_override("increment")
+		
 	GameEvents.connect("customCommandTextChanged",self,"_on_EditCommandText_customCommandTextChanged")
 	GameEvents.connect("customCommandText2Changed",self,"_on_EditCommandText_customCommandText2Changed")
 	GameEvents.connect("customTooltipTextChanged",self,"_on_EditTooltipText_customTooltipTextChanged")
@@ -214,7 +219,15 @@ func _ready():
 
 	hideScrollBars()
 	if GameState.mobileMode:
-		$CloseSettingsButton.anchor_left=0.6		
+		$CloseSettingsButton.anchor_left=0.6	
+		
+	if GameState.mobileMode:
+		Utilities.MobileScrollConainer($TabContainer/CommandButtonsTab/CommandSelectScrollContainer)
+		Utilities.MobileScrollConainer($TabContainer/CommandButtonsTab/CommandSelectScrollContainerDest)
+		Utilities.MobileScrollConainer($TabContainer/CommandTranslateTab/ScrollContainer)
+		Utilities.MobileScrollConainerSpaceBottom($TabContainer/CommandTranslateTab/ScrollContainerCommands)
+		Utilities.MobileScrollConainerSpaceRight($TabContainer/CommandTranslateTab/ScrollContainerHeader)
+		
 func hasJavascript():
 	return OS.has_feature('JavaScript')
 	

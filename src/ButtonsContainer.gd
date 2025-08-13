@@ -296,5 +296,5 @@ func _showButtonsSignal(show : bool):
 	
 func setVisible(show : bool):
 	visible=show
-	$"%EditButtons".visible=show && !GameState.mobileMode
+	$"%EditButtons".visible=show 
 	

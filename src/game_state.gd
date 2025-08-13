@@ -31,6 +31,7 @@ var enabledCommands=[]
 var isHighRes=true
 
 func checkIsMobileMode():
+	#return true
 	if OS.has_feature('JavaScript'):
 		var result=JavaScript.eval("isMobileMode()")
 		return result==true;

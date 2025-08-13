@@ -320,31 +320,42 @@ func modifyCloseButton(dlg : WindowDialog):
 		button.rect_scale.y=2
 
 
+func MobileScrollConainerSpaceBottom(scroll : ScrollContainer):
+	var h_scroll = scroll.get_h_scrollbar()
+	h_scroll.rect_min_size.y = 30
+	
+func MobileScrollConainerSpaceRight(scroll : ScrollContainer):
+	var h_scroll = scroll.get_v_scrollbar()
+	h_scroll.rect_min_size.x = 30
+	
 func MobileScrollConainer(scroll : ScrollContainer):
-
-	pass
+	
+	
+#	pass
 	
 	#var h_scroll = scroll.get_h_scrollbar()
 	#var scrollbar_thickness = 50
 	#var theme = Theme.new()
 	#var style = StyleBoxFlat.new()
-	#style.set_default_margin(MARGIN_LEFT, scrollbar_thickness / 2)
+#	style.set_default_margin(MARGIN_LEFT, scrollbar_thickness / 2)
 	#style.set_default_margin(MARGIN_RIGHT, scrollbar_thickness / 2)
 	#h_scroll.add_stylebox_override("scroll", style)
 
 	
-	#var h_scroll = scroll.get_h_scrollbar()
+	var h_scroll = scroll.get_h_scrollbar()
 	
-	#var v_scroll = scroll.get_v_scrollbar()
-	#v_scroll.rect_min_size.x = 30
-	#h_scroll.rect_min_size.y = 30
-	#h_scroll.set_scale(Vector2(1,1.5))
-	#v_scroll.set_scale(Vector2(1.5,1))
+	var v_scroll = scroll.get_v_scrollbar()
+	v_scroll.rect_min_size.x = 30
+	h_scroll.rect_min_size.y = 30
+	h_scroll.set_scale(Vector2(1,-1))
+	v_scroll.set_scale(Vector2(-1,1))
+	v_scroll.margin_left=0
+	h_scroll.margin_top=0
 	
     # Option 1: Create and assign a new StyleBox with custom margin
 	#var style = StyleBoxFlat.new()
-#	style.content_margin_left=40
-#	style.content_margin_right=40
+	#style.content_margin_left=40
+	#style.content_margin_right=40
 	#style.border_width_right=30
 	#style.border_width_bottom=30
 	
@@ -355,16 +366,16 @@ func MobileScrollConainer(scroll : ScrollContainer):
 	#style.set_default_margin(Margin.BOTTOM, 0)
 
     # Set the min size (this controls the scrollbar thickness)
-	#h_scroll.rect_min_size.y=30 # height for horizontal
-	#v_scroll.rect_min_size.x=30 # width for vertical
+	#h_scroll.rect_min_size.y=50 # height for horizontal
+	#v_scroll.rect_min_size.x=50 # width for vertical
 
     # Apply the style (optional, but ensures it's visible)
 	#h_scroll.add_stylebox_override("grabber", style)
 	#v_scroll.add_stylebox_override("grabber", style)
 	
 	#style = StyleBoxFlat.new()
-	#style.content_margin_right=30
-	#style.content_margin_bottom=30
+	#style.content_margin_right=50
+	#style.content_margin_bottom=50
 	
 	#h_scroll.add_stylebox_override("scroll", style)
 	#v_scroll.add_stylebox_override("scroll", style)
