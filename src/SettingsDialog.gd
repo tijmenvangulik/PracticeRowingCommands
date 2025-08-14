@@ -162,11 +162,10 @@ func _ready():
 		var labelContainer=label.get_parent()
 		labelContainer.command=command
 		labelsCommandGrid.append(labelContainer)
-		
-		var tootipTextName=command+"_tooltip";
-		label.mouse_filter=Control.MOUSE_FILTER_STOP
-
-		GameEvents.register_allways_tooltip(label,tootipTextName)
+		if !GameState.mobileMode:
+			var tootipTextName=command+"_tooltip";
+			label.mouse_filter=Control.MOUSE_FILTER_STOP
+			GameEvents.register_allways_tooltip(label,tootipTextName)
 # button translation
 		var editBox = preload("res://EditCommandText.tscn").instance()
 		editBox.commandName=command
