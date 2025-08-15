@@ -1,7 +1,9 @@
 [gd_resource type="ShortCut" load_steps=2 format=2]
 
 [sub_resource type="InputEventAction" id=51]
+resource_name = "Escape"
 action = "ui_cancel"
 
 [resource]
+resource_name = "Escape"
 shortcut = SubResource( 51 )

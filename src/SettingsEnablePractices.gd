@@ -11,6 +11,8 @@ var grid : GridContainer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	grid=$ScrollContainer/GridContainer
+	if GameState.mobileMode:
+		grid.add_constant_override("vseparation",13)
 
 func addLabel(container,text,color):
 	var new_label = Label.new()

@@ -36,6 +36,7 @@ var sendStartOnWaterMessage= false
 var tempReplacedButtons = false
 
 var childmenu=null
+var eventChildMenuAdded=false
 const maxMobileItems=13
 
 const mobileVertSeparation= 13
@@ -43,6 +44,7 @@ const mobileVertSeparation= 13
 func loadItems():
 	clear()
 	var pm=get_popup()
+	
 	if (GameState.mobileMode):
 		if childmenu==null:			
 			childmenu = PopupMenu.new()
@@ -64,7 +66,9 @@ func loadItems():
 	
 	if (GameState.mobileMode):		
 		pm.add_submenu_item("MoreSubMenu","submenu",-1)
-		childmenu.connect("id_pressed",self,"_submenuItemClicked")
+		if !eventChildMenuAdded:
+			childmenu.connect("id_pressed",self,"_submenuItemClicked")
+			eventChildMenuAdded=true
 	else:
 		childmenu=self;
 	
