@@ -19,5 +19,6 @@ func logFinishedActivity(name : String, success : bool,isScull : bool):
 	url=url+"&data[language]="+lang.percent_encode()
 	url=url+"&data[success]="+Utilities.boolToSting(success)
 	url=url+"&data[isScull]="+Utilities.boolToSting(isScull)
+	url=url+"&data[isMobile]="+Utilities.boolToSting(GameState.mobileMode)
 	$"%LogActivityRequest".request(url, [], true, HTTPClient.METHOD_GET)
 	

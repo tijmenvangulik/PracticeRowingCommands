@@ -157,11 +157,13 @@ async  function main() {
             
             var success= utilities.checkString("success", false,params.success)==="true";
             var isScull= utilities.checkString("isScull", false,params.isScull)==="true";
+            var isMobile= utilities.checkString("isMobile", false,params.isMobile)==="true";
             activityLog.logText("PracticeRowingCommands","FinishedActivity",{
                 name:activityName,
                 success: success,
                 language:language,
-                isScull:isScull
+                isScull:isScull,
+                isMobile:isMobile
             })
                     
             res.send("");
