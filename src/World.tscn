@@ -950,8 +950,9 @@ script = ExtResource( 89 )
 position = Vector2( 2172, 1102 )
 scale = Vector2( 0.823077, 1.1034 )
 offset = Vector2( -2433.55, -1272.43 )
+antialiased = true
 texture = ExtResource( 88 )
-texture_scale = Vector2( 0.3, 0.3 )
+texture_scale = Vector2( 0.5, 0.5 )
 polygon = PoolVector2Array( -218.692, 271.886, 1981.59, 275.511, 1987.66, -542.868, 1993.54, -756.947, 1996.17, -984.231, 2268.32, -983.325, 3044.67, -982.419, 3049.53, -786.66, 2269.72, -776.713, 2276.82, 272.792, 2864.86, 271.886, 2895.23, 2741.52, -256.355, 2721.58, -217.477, 1918.61, -664.581, 1913.18, -665.796, 1672.1, -244.206, 1675.72 )
 
 [node name="BladeWaveSB1" parent="." instance=ExtResource( 83 )]
