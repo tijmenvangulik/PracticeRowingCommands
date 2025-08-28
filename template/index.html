@@ -258,7 +258,7 @@
 		if (resolution=="Normal" || (resolution!="High" && window.window.devicePixelRatio!=2 )) {
 			window.window.devicePixelRatio=1;
 		}
-		fetch('version.json?v='+new Date().getTime().toString)
+		fetch('version.json?v='+new Date().getTime().toString())
 		  .then(response => response.text())
 		  .then(result => {
 			var versionLoaded=JSON.parse(result).version;
