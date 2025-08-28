@@ -168,7 +168,7 @@ func buttonInput(event,button):
 #				gotoNextButton(button,pressedChar)
 	pass	
 
-func addButton(container,commandName :String, enabled):
+func addButton(container,commandName :String, enabled) -> GridButtonContainer:
 	var button = preload("res://GridButtonContainer.tscn").instance()
 	container.add_child(button)
 	button.visible=true;
@@ -176,6 +176,7 @@ func addButton(container,commandName :String, enabled):
 	var innerButton=button.get_node("GridButton")
 	innerButton.connect( "gui_input",self,"buttonInput",[button])
 	button.init(commandName,enabled)
+	return button
 
 func forcePushAwayReplace(commandNames,forcePushAway,commandName):
 	if forcePushAway==Constants.DefaultYesNo.Default:
@@ -222,7 +223,6 @@ func loadButtons(forcePushAway= Constants.DefaultYesNo.Default,forceSpinTurnRepl
 	var container =grid
 	var i=0;
 	var allCommands=getAllConmmands()
-	
 	for item in GameState.currentButtonSet:
 		if typeof(item)==TYPE_STRING:
 			var commandNames=item.split(",")
@@ -232,14 +232,19 @@ func loadButtons(forcePushAway= Constants.DefaultYesNo.Default,forceSpinTurnRepl
 				box.alignment=box.ALIGN_CENTER;
 				container.add_child(box)
 				if commandNames.size()>1:
+					var iButton=0
 					for buttonItem in commandNames:
-						var newButtonItem=forcePushAwayReplace(allCommands,forcePushAway,buttonItem)
+						var newButtonItem=forcePushAwayReplace(allCommands,forcePushAway,buttonItem)						
 						if (forceSpinTurnReplace):
 							newButtonItem=forceSpinTurnReplace(allCommands,newButtonItem)
 						var enabled=commandIsEnabled(buttonItem)
 						if enabled:
 							allButtonsDisabled=false
-						addButton(box,newButtonItem,enabled)
+						var buttonContainer=addButton(box,newButtonItem,enabled)
+						if GameState.mobileMode && iButton!=commandNames.size()-1:
+							buttonContainer.add_constant_override("margin_right",1)
+						iButton=iButton+1
+							#buttonContainer.rect_size.x=buttonContainer.rect_size.x+8
 				if GameState.mobileMode && allButtonsDisabled:
 					container.remove_child(box)
 					box.queue_free()
