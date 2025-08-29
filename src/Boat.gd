@@ -62,7 +62,7 @@ func forwardsPositon():
 func _ready():
 	if GameState.mobileMode:
 		forwardsPositon=300
-		postionY=600
+		postionY=560
 		
 	setForwardsPosition(0)
 	GameEvents.connect("zoomChangedSignal",self,"_zoomChangedSignal")
