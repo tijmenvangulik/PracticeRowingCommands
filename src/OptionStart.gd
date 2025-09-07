@@ -33,8 +33,6 @@ var practicePoints = 0
 
 var sendStartOnWaterMessage= false
 
-var tempReplacedButtons = false
-
 var childmenu=null
 var eventChildMenuAdded=false
 const maxMobileItems=13
@@ -355,9 +353,7 @@ func doStart(startItemId):
 	if isPractice(currentStartPos):
 		practiceIsActive=true
 
-	if tempReplacedButtons:
-		$"%ButtonsContainer".loadButtons(Constants.DefaultYesNo.Default)
-		tempReplacedButtons=false
+	$"%ButtonsContainer".loadButtons()
 
 	match startItemId:
 		Constants.StartItem.Start: 
@@ -396,29 +392,25 @@ func doStart(startItemId):
 			var showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.RiemenHoogBB,Constants.Command.VastroeienSB]	
 			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 		Constants.StartItem.Aangelegd:
-			$"%ButtonsContainer".loadButtons(Constants.DefaultYesNo.No)
-			tempReplacedButtons=true
+			$"%ButtonsContainer".loadButtons()
 			boat.setNewBoatPosition(1124,2596,0,Constants.StateOars.SlippenSB,true)
 			var showOnlyButonsArray  =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.PeddelendStrijkenSB,Constants.Command.StrijkenBB,Constants.Command.HalenSB,Constants.Command.UitbrengenSB]	
 			$"%CollectableSailAwayPractice2".reset()			
 			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 		Constants.StartItem.AangelegdBB:
-			$"%ButtonsContainer".loadButtons(Constants.DefaultYesNo.No)
-			tempReplacedButtons=true
+			$"%ButtonsContainer".loadButtons()
 			boat.setNewBoatPosition(1484,2596,180,Constants.StateOars.SlippenBB,true)
 			var showOnlyButonsArray  =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.PeddelendStrijkenBB,Constants.Command.StrijkenSB,Constants.Command.HalenBB,Constants.Command.UitbrengenBB]	
 			$"%CollectableSailAwayPractice2".reset()			
 			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 		Constants.StartItem.AangelegdUitzetten:
-			$"%ButtonsContainer".loadButtons(Constants.DefaultYesNo.Yes)
-			tempReplacedButtons=true
+			$"%ButtonsContainer".loadButtons()
 			boat.setNewBoatPosition(1124,2608,0,Constants.StateOars.RiemenHoogSB,true)
 			var showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.HalenSB,Constants.Command.UitzettenSB,Constants.Command.VastroeienBeideBoorden,Constants.Command.UitbrengenSB]
 			$"%CollectableSailAwayPractice3".reset()
 			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 		Constants.StartItem.AangelegdUitzettenBB:
-			$"%ButtonsContainer".loadButtons(Constants.DefaultYesNo.Yes)
-			tempReplacedButtons=true
+			$"%ButtonsContainer".loadButtons()
 			boat.setNewBoatPosition(1682,2608,180,Constants.StateOars.RiemenHoogBB,true)
 			var showOnlyButonsArray =[Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.HalenBB,Constants.Command.UitzettenBB,Constants.Command.VastroeienBeideBoorden,Constants.Command.UitbrengenBB]
 			$"%CollectableSailAwayPractice3".reset()
@@ -478,8 +470,7 @@ func doStart(startItemId):
 			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 		Constants.StartItem.SpinTurnPractice: 
 			#make sure that the spin turn is in the command set
-			$"%ButtonsContainer".loadButtons(Constants.DefaultYesNo.Default,true)
-			tempReplacedButtons=true
+			$"%ButtonsContainer".loadButtons()
 			boat.setNewBoatPosition(1915,-1021,0,Constants.StateOars.Roeien,true)
 			$"%CollectableSpinTurnPractice".reset()
 			var showOnlyButonsArray =[Constants.Command.LaatLopen,Constants.Command.HalenBeideBoorden,Constants.Command.RondmakenBB,Constants.Command.RondmakenSB,Constants.Command.VastroeienBeideBoorden,Constants.Command.Bedankt]	

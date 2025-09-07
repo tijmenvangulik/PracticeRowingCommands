@@ -218,7 +218,16 @@ func commandIsEnabled(command : String) -> bool:
 		return false
 	return GameState.enabledCommands.size()==0 || GameState.enabledCommands.find(command)>=0
 	
-func loadButtons(forcePushAway= Constants.DefaultYesNo.Default,forceSpinTurnReplace=false):
+func loadButtons():
+	var currentStartPos=$"%OptionStart".currentStartPos;
+	var forceSpinTurnReplace=currentStartPos==Constants.StartItem.SpinTurnPractice
+	
+	var forcePushAway= Constants.DefaultYesNo.Default
+	if currentStartPos==Constants.StartItem.Aangelegd || currentStartPos==Constants.StartItem.AangelegdBB:
+		forcePushAway=Constants.DefaultYesNo.No
+	elif currentStartPos==Constants.StartItem.AangelegdUitzetten || currentStartPos==Constants.StartItem.AangelegdUitzettenBB:
+		forcePushAway=Constants.DefaultYesNo.Yes
+	
 	clearGrid()
 	var container =grid
 	var i=0;
@@ -237,7 +246,7 @@ func loadButtons(forcePushAway= Constants.DefaultYesNo.Default,forceSpinTurnRepl
 						var newButtonItem=forcePushAwayReplace(allCommands,forcePushAway,buttonItem)						
 						if (forceSpinTurnReplace):
 							newButtonItem=forceSpinTurnReplace(allCommands,newButtonItem)
-						var enabled=commandIsEnabled(buttonItem)
+						var enabled=commandIsEnabled(newButtonItem)
 						if enabled:
 							allButtonsDisabled=false
 						var buttonContainer=addButton(box,newButtonItem,enabled)
