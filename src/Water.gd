@@ -14,7 +14,7 @@ func _ready():
 func _handleSettingsChanged():
 	
 	visible=Settings.waterAnimation
-	$"../WaterClasic".visible=!visible
+	#$"../WaterClasic".visible=!visible
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
