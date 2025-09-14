@@ -216,8 +216,8 @@
 	</div>
 	<div  id="phone-warning-overlay" class="phone-warning-overlay" role="alert">
 		<div class="phone-warning-panel">
-  		  <div class="phone-warning-text"><span>Warning!<br>This web app works best on larger screens (tablet,laptop or monitor) You can use it when you hold your phone horizontal.<span></div>
-		  <button  class="close-warning" onclick="return startMobile()" >I give it a try</button>
+  		  <div class="phone-warning-text"><span id="mobileWarningTitle">Warning!</span><br><span id="mobileWarningText">This web app works best on larger screens (tablet,laptop or monitor) You can use the app when you hold your phone horizontal.<span></div>
+		  <button  class="close-warning" onclick="return startMobile()" id="mobileButton" >Continue</button>
 		<div>  
 	</div>	
 	<script type='text/javascript'>
@@ -253,6 +253,15 @@
 	</script>
 	
 	<script>
+		var userLang = navigator.language || navigator.userLanguage || "en"; 
+		if (userLang.length>2) {
+			userLang=userLang.substring(0,2);
+		}
+		if (userLang=="nl") {
+			document.getElementById("mobileWarningTitle").innerText="Waarschuwing!";
+			document.getElementById("mobileWarningText").innerText="Deze web app werkt het beste op grotere schermen (tablet, laptop of monitor). Je kunt de app op een mobiel gebruiken als je je telefoon horizontaal houdt.";
+			document.getElementById("mobileButton").innerText="Ga door";
+		}
 		var appVersion="{{version}}";
 		var resolution=localStorage.getItem('resolution');
 		if (resolution=="Normal" || (resolution!="High" && window.window.devicePixelRatio!=2 )) {
