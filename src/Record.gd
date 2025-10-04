@@ -97,7 +97,7 @@ func doReplayRecord(i,recording_commands,recording_times,lastTime,practice,endTi
 				var commandName=Constants.commandNames[command]
 				$"%ButtonsContainer".focusCommand(commandName)
 				var commandReplayText=$"%replayCommandText"
-				commandReplayText.text=tr(commandName)
+				commandReplayText.text=Utilities.replaceCommandText(commandName)
 				commandReplayText.visible=true
 				
 				var shotTooltipKey=commandName+"_shorttooltip"
