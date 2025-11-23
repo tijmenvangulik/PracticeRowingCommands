@@ -50,8 +50,10 @@ func _collectGameStateChangedSignal(state):
 		show_modal(true)
 	elif state==Constants.CollectGameState.Finished:
 		init(GameState.collectGameLastTimeString,GameState.collectGameIsHighScore)
-		if GameState.publicHighScorePositon>0:
-			
-			$"../PublishHighscoreCollectGame".start()
-		else :show_modal(true)
+		#test if it is an high score
+		$"../PublishHighscoreCollectGame".publishScore("",GameState.game_time_elapsed,true)
+		# here first test if it is an public high score
+		
 	$HBoxContainer/StartGame.grab_focus()
+
+

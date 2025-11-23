@@ -8,6 +8,7 @@ extends WindowDialog
 var goToEndGameOnContine=false
 
 export (NodePath) onready var grid = get_node(grid) as GridContainer
+export (NodePath) onready var gridQuarter = get_node(gridQuarter) as GridContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,7 +23,7 @@ func _init():
 	connect("visibility_changed",self,"handleShow");
 
 func loadHighScores():
-	var url=Constants.serverUrl+"/gameHighScores?data[game]=1&data[level]=0"
+	var url=Constants.serverUrl+"/gameHighScores?data[game]=1&data[level]=0&data[secondary]=quarter"
 	$HTTPRequest.request(url, [], true, HTTPClient.METHOD_GET)
 
 func setMyHighScore():
@@ -48,20 +49,28 @@ func _onHighScoresRequest(result, response_code, headers, body):
 			var scores=json.result.scores
 			GameState.publicHighscores=[]
 			for score in scores:
-				GameState.publicHighscores.append({"name":score.name,"score":score.score/1000.0})
+				GameState.publicHighscores.append({"name":score.name,"score":score.score/1000.0,"level":score.level})
 				
 		refreshScoreGrid()
-	
-func refreshScoreGrid():
-	for N in grid.get_children():
-		grid.remove_child(N)
+
+func clearGrid(g):
+	for N in g.get_children():
+		g.remove_child(N)
 		N.free()
-	var i=1
+
+func refreshScoreGrid():	
+	clearGrid(grid)
+	clearGrid(gridQuarter)
+	
 	for score in GameState.publicHighscores:
-		addLabel(grid,str(i)+")")
-		addLabel(grid,Utilities.formatScore(score.score,true))
-		addLabel(grid,score.name)
-		i=i+1
+		var addGrid=grid;
+		if score.level>0:
+			addGrid=gridQuarter
+		var i=addGrid.get_child_count()/addGrid.columns
+		addLabel(addGrid,str(1+addGrid.get_child_count()/3)+")")
+		addLabel(addGrid,Utilities.formatScore(score.score,true))
+		addLabel(addGrid,score.name)
+	
 func _collectGameStateChangedSignal(state):
 	if state==Constants.CollectGameState.ShowHighScores:
 		start()

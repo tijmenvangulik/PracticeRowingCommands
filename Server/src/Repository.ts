@@ -27,6 +27,7 @@ export interface IRepository {
 
   saveSharedSetting(settings : object) : Promise<string>
   getSharedSetting(id : string) : Promise<object> 
+  
 }
 
 var defaultRepository : IRepository =null;

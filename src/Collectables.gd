@@ -14,7 +14,8 @@ var lastTimeString=""
 var crashedState=false;
 
 func testEndGame():
-	time_elapsed=393044 #230.10
+#	time_elapsed=393044 #230.10
+	time_elapsed=60*5+60+0.100 #230.10
 	GameState.changeCollectGameState(Constants.CollectGameState.Finish)
 	gameFinish()
 	
@@ -95,18 +96,9 @@ func stopGame():
 	gameStarted=false
 	GameState.changeCollectGameState(Constants.CollectGameState.None)
 	
-func highScorePosition(newScore):
-	var result=false
-	var i=1
-	for score in GameState.publicHighscores:
-		if newScore<score.score:
-			return i
-		i=i+1
-	if i<=5: 
-		return i
-	return 0
-	
 func gameFinish():
+	if !gameStarted:
+		return
 	gameStarted=false
 	var crashed=crashedState
 	
@@ -134,12 +126,10 @@ func gameFinish():
 	if crashed:
 		GameState.changeCollectGameState(Constants.CollectGameState.Crashed)
 	else:
+		GameState.game_time_elapsed=time_elapsed
 		GameState.collectGameLastTimeString =lastTimeString
 		GameState.collectGameIsHighScore=isHighScore
 		
-		GameState.publicHighScorePositon=highScorePosition(time_elapsed)
-		if GameState.publicHighScorePositon>0:
-			isHighScore=true
 		GameState.changeCollectGameState(Constants.CollectGameState.Finished)
 	
 func getHighScore():

@@ -125,7 +125,8 @@ HighScoreNone;Nog geen;Nog geen;Not yet;Not yet
 OwnHighscore;Eigen hoogste score;Eigen hoogste score;Own high score;Own high score
 PublicHighscores;Gepubliceerde hoogste scores;Gepubliceerde hoogste scores;Public high scores;Public high scores
 GameContinue;Doorgaan;Doorgaan;Continue;Continue
-PublishScoreQuestion;Je bent nummer %d op de publieke score lijst. Je mag je score op de lijst zetten.;Je bent nummer %d op de publieke score lijst. Je mag je score op de lijst zetten.;You are number %d on the public score list. You can publish your score.;You are number %d on the public score list. You can publish your score.
+PublishScoreQuestion;Je bent nummer %d op de publieke hoogste score lijst. Je mag je score op de lijst zetten.;Je bent nummer %d op de publieke hoogste score lijst. Je mag je score op de lijst zetten.;You are number %d on the public high score list. You can publish your score.;You are number %d on the public high score list. You can publish your score.
+PublishQuarterScoreQuestion;Je bent nummer %d op de publieke hoogste kwartaal score lijst. Je mag je score op de lijst zetten.;Je bent nummer %d op de publieke hoogste kwartaal score lijst. Je mag je score op de lijst zetten.;You are number %d on the public quarter high score list. You can publish your score.;You are number %d on the public quarter high score list. You can publish your score.
 PublishCoreName;Naam of alias;Naam of alias;Name or alias;Name or alias
 PublishScore;Publiceer score;Publiceer score;Publish score;Publish score
 NoPublishScore;Niet publiceren;Niet publiceren;Do not publish;Do not publish
@@ -334,3 +335,4 @@ BladeColor;Kleur blad:;Blad kleur:;Blade color:;Blade color:
 MoreSubMenu;Meer...;Meer...;More...;More...
 SlowUpdateSpeedDetected;Beeldverversing is traag;Beeldverversing is traag;Screen refresh is slow;Screen refresh is slow
 SwitchToLowResolution;Verlaag schermresolutie;Verlaag schermresolutie;Lower screen resolution;Lower screen resolution
+QuarterHighscores;Hoogste scores van dit kwartaal;Hoogste scores van dit kwartaal;Higscores of the quarter;Higscores of the quarter

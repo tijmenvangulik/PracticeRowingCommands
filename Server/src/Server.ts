@@ -59,15 +59,26 @@ async  function main() {
                 console.log("read activity log");
             addCrossOrginHeader(res);
             var params=req.query.data;
+            var loadQuarter=params.secondary==="quarter";
             var queryData : messages.GameHighScoreQuery ={
                 game:parseInt(params.game),
                 level:parseInt(params.level)
             }
             
             var gameType=utilities.checkNumber("game", false,queryData.game,(v)=>messages.GameType.Shark>=0&&v<=messages.GameType.StarGame);
-            var level=utilities.checkNumber("level", false,queryData.level);
-            var  scores= gameManager.queryHighScores(gameType,level);
+            var level=utilities.checkNumber("level", false,queryData.level);            
+            if (gameType===gm.GameType.StarGame) {
+                level=0;                
+            }
             
+            var  scores= gameManager.queryHighScores(gameType,level);
+ 
+            if (gameType===gm.GameType.StarGame && loadQuarter) {
+                let monthLevel = gameManager.calcQuarterHighScoreLevel();    
+                let monthScores= gameManager.queryHighScores(gameType,monthLevel);
+                scores.concat(monthScores);
+            }
+          
             var resultList : messages.GameHighScoresResult= {
                 scores:[]
 
@@ -87,7 +98,7 @@ async  function main() {
             res.send("Can not query high scores: "+err);
         }
     });
-    app.get('/newGameHighScore',jsonParser, function(req, res){
+     app.get('/newGameHighScore',jsonParser, function(req, res){
         try {
             
             addCrossOrginHeader(res);
@@ -107,8 +118,11 @@ async  function main() {
             var checkOnly=utilities.checkBoolean("checkOnly", false,data.checkOnly);
             highScore.name=checkOnly?"":utilities.checkString("name", true,data.name,value=>value.length<150 &&value.length>0);
             highScore.timeStamp=new Date().getTime();
-            var result=gameManager.newHighScore(gameType,highScore,data.hash,checkOnly)
-            res.send({ranking:result});
+
+            highScore.level=utilities.checkNumber("level", false,data.level);
+                
+            var { ranking, quarterRanking } = gameManager.newMultiHighScore(gameType, highScore, data.hash, checkOnly);
+            res.send({ranking,quarterRanking});
         }
         catch (err)  {
             if (req && req.query)

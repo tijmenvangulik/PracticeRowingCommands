@@ -1990,12 +1990,13 @@ autowrap = true
 
 [node name="HighScores" type="WindowDialog" parent="CanvasLayer"]
 margin_left = 189.0
-margin_top = 102.0
+margin_top = 68.0
 margin_right = 854.0
-margin_bottom = 457.0
+margin_bottom = 574.0
 custom_styles/panel = ExtResource( 33 )
 script = ExtResource( 46 )
 grid = NodePath("HighScoresGrid")
+gridQuarter = NodePath("QuarterHighScoresGrid")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="CanvasLayer/HighScores"]
 timeout = 10.0
@@ -2038,9 +2039,6 @@ margin_top = 121.0
 margin_right = 435.0
 margin_bottom = 250.0
 columns = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Loading" type="Label" parent="CanvasLayer/HighScores/HighScoresGrid"]
 margin_right = 148.0
@@ -2048,13 +2046,35 @@ margin_bottom = 19.0
 custom_fonts/font = ExtResource( 50 )
 text = "LoadingHighScores"
 
+[node name="PublicHighscoresLabel2" type="Label" parent="CanvasLayer/HighScores"]
+margin_left = 141.0
+margin_top = 268.0
+margin_right = 387.0
+margin_bottom = 295.0
+custom_colors/font_color = Color( 0.780392, 0.866667, 0.913725, 1 )
+custom_fonts/font = ExtResource( 50 )
+text = "QuarterHighscores"
+
+[node name="QuarterHighScoresGrid" type="GridContainer" parent="CanvasLayer/HighScores"]
+margin_left = 140.0
+margin_top = 300.0
+margin_right = 430.0
+margin_bottom = 429.0
+columns = 3
+
+[node name="Loading" type="Label" parent="CanvasLayer/HighScores/QuarterHighScoresGrid"]
+margin_right = 148.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 50 )
+text = "LoadingHighScores"
+
 [node name="Trophy" type="Sprite" parent="CanvasLayer/HighScores"]
-position = Vector2( 56, 181 )
+position = Vector2( 60, 244 )
 scale = Vector2( 0.76, 0.8 )
 texture = ExtResource( 27 )
 
 [node name="Trophy2" type="Sprite" parent="CanvasLayer/HighScores"]
-position = Vector2( 610, 178 )
+position = Vector2( 606, 244 )
 scale = Vector2( 0.76, 0.8 )
 texture = ExtResource( 27 )
 

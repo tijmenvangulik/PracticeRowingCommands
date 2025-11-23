@@ -7,5 +7,6 @@
     "maxLog":1000,
     "saveLog":60000,   
     "publicPort": 2024,
-    "loadGamesTime":3600000
+    "loadGamesTime":3600000,
+    "dataBaseName": "ergometer-space"
 }

@@ -22,3 +22,6 @@ var practiceTranslations= [""]
 var practiceExplainTranslations= [""]
 var sharedSettings : Dictionary
 var checkFrameRateDisabled = false
+var highScoreName=""
+var highScoreClub=""
+

@@ -289,7 +289,9 @@ func getSettings(removePrivate=false):
 	  "practiceTranslations":Settings.practiceTranslations,
 	  "practiceExplainTranslations":Settings.practiceExplainTranslations,
 	  "sharedSettings":Settings.sharedSettings,
-	  "checkFrameRateDisabled":Settings.checkFrameRateDisabled
+	  "checkFrameRateDisabled":Settings.checkFrameRateDisabled,
+	  "highScoreName":Settings.highScoreName,
+	  "highScoreClub":Settings.highScoreClub
 	}
 	if removePrivate:
 		removePrivateSettings(save_dict)
@@ -401,8 +403,8 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 	var shortcuts={}
 	if dict.has("shortcuts"):
 		shortcuts=dict["shortcuts"]
+
 	
-		
 	var 	tooltipsOn=true
 	if dict.has("showCommandTooltips"): 
 		 tooltipsOn=dict["showCommandTooltips"]	
@@ -456,6 +458,10 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 	if dict.has("practiceTranslations"):
 		practiceTranslations=dict["practiceTranslations"]
 	
+	if dict.has("highScoreName"):
+		Settings.highScoreName=dict["highScoreName"]
+	if dict.has("highScoreClub"):
+		Settings.highScoreClub=dict["highScoreClub"]
 	
 	if Settings.disabledPractices!=disabledPractices || disabledPracticesUseDefault!=Settings.disabledPracticesUseDefault || Settings.practiceTranslations!=practiceTranslations:
 		Settings.disabledPractices=disabledPractices

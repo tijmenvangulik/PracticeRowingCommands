@@ -2,6 +2,7 @@ import * as crypto from "crypto";
 import {getDefaultRepository, IRepository, StoredHighScore} from "./Repository.js";
 import * as configuration from './Configuration.json';
 import * as secrets from './Secrets.json';
+import * as utilities from './Utilities.js';
 
 export enum GameType {
     None=0,
@@ -12,6 +13,10 @@ export class HighScore {
   score : number;
   name : string;
   timeStamp : number;
+}
+export interface IMultiHighScoreResult  {
+    ranking : number;
+    quarterRanking: number;
 } 
 
 export class Game {
@@ -105,13 +110,15 @@ export class GameManager {
         
     }
     
-    public newHighScore(gameType: GameType,score : HighScore,hashCheck : string,checkOnly :boolean) : number {
+    public newHighScore(gameType: GameType,score : HighScore,hashCheck : string,checkOnly :boolean,skipCheck=false,skipSave=false) : number {
         var result=-1;
         let game= this.getGame(gameType);
-        let calcHash=this.calcHash(gameType,score);
-        if (calcHash != hashCheck) {
-            throw "High score not accepted"
-        }   
+        if (!skipCheck) {
+            let calcHash=this.calcHash(gameType,score);
+            if (calcHash != hashCheck) {
+                throw "High score not accepted"
+            }   
+        }
         
         var addAtEnd=false;
         let levelCount=0;
@@ -212,20 +219,41 @@ export class GameManager {
               game.add(score);  
             }
         }
-        if (result && !checkOnly) this.saveHighScores(game);
+        if (result>=0 && !checkOnly && !skipSave) this.saveHighScores(game);
         return result;
         
+    }
+    public newMultiHighScore(gameType: number, highScore: HighScore, hash : string,checkOnly: boolean) : IMultiHighScoreResult {
+        var game= this.getGame(gameType);
+        if (gameType === GameType.StarGame) {
+            highScore.level = 0;//auto determine level never let the user set the level, because this is used for quarter ranking rankings
+        }
+        this.cleanUpHighScores(game);
+        var ranking = this.newHighScore(gameType, highScore, hash, checkOnly, false, true);
+        var quarterRanking = -1;
+        if (gameType === GameType.StarGame) {
+            
+            var quarterHighScore: HighScore = utilities.clone(highScore);
+            let quarterLevel = this.calcQuarterHighScoreLevel();
+            quarterHighScore.level = quarterLevel;
+            quarterRanking = this.newHighScore(gameType, quarterHighScore, hash, checkOnly, true, true);
+        }
+        if (!checkOnly && (ranking >= 0 || quarterRanking >= 0)) {
+            this.saveHighScores(game);
+        }
+        return { ranking,  quarterRanking };
     }
 
     protected saveHighScores(game : Game) {
         var highscores  : StoredHighScore[]= [];
+        //clean old month high scores from memory and the database, the old
         game.highScores.forEach(s=>{
             highscores.push({
-                name:s.name,
-                level:s.level,
-                score:s.score,
-                isoDateTime:new Date(s.timeStamp)
-            });
+                    name:s.name,
+                    level:s.level,
+                    score:s.score,
+                    isoDateTime:new Date(s.timeStamp)
+                });
         })
         if (this._repository) {
             this._repository.saveGameHighScores({
@@ -237,6 +265,15 @@ export class GameManager {
         
     }
     
+    private cleanUpHighScores(game: Game) {
+        if (game.game == GameType.StarGame) {
+            var currentLevel = this.calcQuarterHighScoreLevel();
+            //keep only scores which are not from level 0 and not from the current level
+            game.highScores = game.highScores.filter((score) => 
+                (score.level == 0 || score.level === currentLevel));;
+        }
+    }
+
     public checkReload() {
         //more than one hour 
         let loadDelay=configuration.loadGamesTime||3600000;
@@ -249,8 +286,17 @@ export class GameManager {
     public queryHighScores(game : GameType,level? :number) : HighScore[] {
         this.checkReload();
         let gameObj=this.getGame(game);
+        this.cleanUpHighScores(gameObj);
         return gameObj.highScores.filter( score=>(!level || score.level===level))
        
     }
     
+    public calcQuarterHighScoreLevel() : number {
+        //return 202601;
+        var date = new Date();
+        //calc start of quater year
+        var month=  Math.floor((date.getMonth() - 1) / 3) * 3 + 1
+        var level = month+ date.getFullYear() * 100;
+        return level;
+    }
 }

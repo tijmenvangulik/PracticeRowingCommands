@@ -3,8 +3,7 @@ import {Collection, Db, MongoClient,MongoClientOptions,ObjectId} from "mongodb";
 import {ActivityLog} from "./ActivityLog.js";
 import {GameType} from "./MessageData.js"
 import * as secrets from './Secrets.json';
-
-const DATABASE_NAME ="ergometer-space";
+import * as config from './Configuration.json';
 
 interface SharedSetting {
   timeStamp : Date;
@@ -39,7 +38,7 @@ export class RepositoryMongo  implements IRepository {
       this._connected=false;
       this._client= await MongoClient.connect(secrets.mongoDbConnect,<MongoClientOptions>{  });
       this._connected=true; 
-      this._db=  this._client.db(DATABASE_NAME);
+      this._db=  this._client.db(config.dataBaseName||"ergometer-space");
 //      this._client.on('open', _=>{
  //     });
       this._client.on('topologyClosed', _=>{ this._connected=false;});

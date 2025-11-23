@@ -7,7 +7,9 @@ var collectGameState= Constants.CollectGameState.None
 var collectGameLastTimeString =""
 var collectGameIsHighScore=false
 var publicHighScorePositon=0
+var publicQuarterHighScorePositon=0
 var publicHighscores = []
+var game_time_elapsed =0
 
 var defaultButtonSet=["SlagklaarAf","LaatLopen,Bedankt","VastroeienSB","HalenSB","StrijkenSB","StrijkenBeidenBoorden","VastroeienBeideBoorden","VastroeienBB","HalenBB","StrijkenBB","Slippen","SlippenSB","UitbrengenSB","UitzettenSB","RondmakenSB","Uitbrengen","SlippenBB","UitbrengenBB","UitzettenBB","RondmakenBB","HalenBeideBoorden","LightPaddle","LightPaddleBedankt","RiemenHoogBB","RiemenHoogSB"]
 var currentButtonSet=defaultButtonSet
