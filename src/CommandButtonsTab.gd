@@ -82,23 +82,35 @@ func loadDestButtons():
 	for item in range(buttonSet.size(),totalGridItems):
 		addGridGrouper(commandContainerDest)
 	enableDisableSourceButtons()
+
+func getParentGrid(item):
+	var grid=item.get_parent()
+	if !(grid is GridContainer):
+		grid=grid.get_parent()
+	return grid;
 	
 func button_dropped_source(droppedInfo,dropped):
-	if droppedInfo.dragButton.get_parent()!=commandContainerSource :
+	var grid=getParentGrid(droppedInfo.dragButton)
+	if grid!=commandContainerSource :
 		droppedInfo.dragButton.get_parent().remove_child(droppedInfo.dragButton)
-		customButtonSetChanged=true
-		enableDisableSourceButtons()
+	customButtonSetChanged=true
+	enableDisableSourceButtons()
 	
 func button_dropped_dest(droppedInfo,dropped):
 	var beforeIndex=dropped.get_index()
+
 	if droppedInfo.dragButton!=dropped:
-		droppedInfo.dragButton.get_parent().remove_child(droppedInfo.dragButton)
+		var grid=getParentGrid(droppedInfo.dragButton)
+		if grid!=commandContainerSource:
+			droppedInfo.dragButton.get_parent().remove_child(droppedInfo.dragButton)
 		addGridButton(dropped.get_node(".."),droppedInfo.commandName,false,beforeIndex)
 		customButtonSetChanged=true
 		enableDisableSourceButtons()
 	
 func button_droppedOnGrouper(droppedInfo,groupItem):
-	droppedInfo.dragButton.get_parent().remove_child(droppedInfo.dragButton)
+	var grid=getParentGrid(droppedInfo.dragButton)
+	if grid!=commandContainerSource:
+		droppedInfo.dragButton.get_parent().remove_child(droppedInfo.dragButton)
 	addGridButton(groupItem.getHorizontalGroup(),droppedInfo.commandName,false,null)
 	customButtonSetChanged=true
 	enableDisableSourceButtons()
@@ -113,7 +125,8 @@ func enableDisableSourceButtons():
 	var destDict=GetCustomButtonFlatDict()
 	var sourceButtons=commandContainerSource.get_children()
 	for  button in sourceButtons:
-		button.get_node("GridButton").disabled=destDict.has(button.commandName)
+		var disabled=destDict.has(button.commandName)
+		button.get_node("GridButton").disabled=disabled
 		
 func updateCustomButtonSet():
 	Settings.customButtonSet=[]

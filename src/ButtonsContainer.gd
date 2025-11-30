@@ -236,36 +236,29 @@ func loadButtons():
 	for item in GameState.currentButtonSet:
 		if typeof(item)==TYPE_STRING:
 			var commandNames=item.split(",")
-			if commandNames.size()>1:
-				var allButtonsDisabled=true
-				var box= HBoxContainer.new();
-				box.alignment=box.ALIGN_CENTER;
-				container.add_child(box)
-				if commandNames.size()>1:
-					var iButton=0
-					for buttonItem in commandNames:
-						var newButtonItem=forcePushAwayReplace(allCommands,forcePushAway,buttonItem)						
-						if (forceSpinTurnReplace):
-							newButtonItem=forceSpinTurnReplace(allCommands,newButtonItem)
-						var enabled=commandIsEnabled(newButtonItem)
-						if enabled:
-							allButtonsDisabled=false
-						var buttonContainer=addButton(box,newButtonItem,enabled)
-						if GameState.mobileMode && iButton!=commandNames.size()-1:
-							buttonContainer.add_constant_override("margin_right",1)
-						iButton=iButton+1
-							#buttonContainer.rect_size.x=buttonContainer.rect_size.x+8
-				if GameState.mobileMode && allButtonsDisabled:
-					container.remove_child(box)
-					box.queue_free()
-			else: if commandNames.size()==1:
-				var buttonItem=commandNames[0]
-				buttonItem=forcePushAwayReplace(allCommands,forcePushAway,buttonItem)
+
+			var allButtonsDisabled=true
+			var box= HBoxContainer.new();
+			box.alignment=box.ALIGN_CENTER;
+			container.add_child(box)
+
+			var iButton=0
+			for buttonItem in commandNames:
+				var newButtonItem=forcePushAwayReplace(allCommands,forcePushAway,buttonItem)						
 				if (forceSpinTurnReplace):
-					buttonItem=forceSpinTurnReplace(allCommands,buttonItem)
-				var enabled=commandIsEnabled(buttonItem)
-				if (!GameState.mobileMode || enabled ):
-					addButton(container,buttonItem,enabled)
+					newButtonItem=forceSpinTurnReplace(allCommands,newButtonItem)
+				var enabled=commandIsEnabled(newButtonItem)
+				if enabled:
+					allButtonsDisabled=false
+				var buttonContainer=addButton(box,newButtonItem,enabled)
+				if GameState.mobileMode && iButton!=commandNames.size()-1:
+					buttonContainer.add_constant_override("margin_right",1)
+				iButton=iButton+1
+						#buttonContainer.rect_size.x=buttonContainer.rect_size.x+8
+			if GameState.mobileMode && allButtonsDisabled:
+				container.remove_child(box)
+				box.queue_free()
+			
 	
 	if GameState.mobileMode:
 		if grid.get_child_count()<6:
