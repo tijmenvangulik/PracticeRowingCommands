@@ -111,7 +111,8 @@ func _on_CommandContainerSource_button_droppedOnSourceGrid(droppedInfo):
 	
 func enableDisableSourceButtons():
 	var destDict=GetCustomButtonFlatDict()
-	for  button in commandContainerSource.get_children():
+	var sourceButtons=commandContainerSource.get_children()
+	for  button in sourceButtons:
 		button.get_node("GridButton").disabled=destDict.has(button.commandName)
 		
 func updateCustomButtonSet():

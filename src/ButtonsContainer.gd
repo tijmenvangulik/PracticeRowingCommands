@@ -39,12 +39,13 @@ func _input(event):
 				gotoNextButton(focused_node.find_parent("*GridButtonContainer*"),pressedChar)
 				
 func _ready():
+
 	initButtons()
 	GameEvents.connect("languageChangedSignal",self,"_languageChangedSignal");
 	GameEvents.connect("showButtonsSignal",self,"_showButtonsSignal")
 	GameEvents.connect("startPlay",self,"_startPlaySignal")
 	GameEvents.connect("commandsChanged",self,"_commandsChanged");
-
+	GameEvents.connect("customButtonSetChangedSignal",self,"_customButtonSetChangedSignal")
 	
 	if GameState.mobileMode:
 		grid.columns=1
@@ -312,3 +313,5 @@ func setVisible(show : bool):
 	visible=show
 	$"%EditButtons".visible=show 
 	
+func _customButtonSetChangedSignal():
+	setCustomButtonSet(Settings.customButtonSet)
