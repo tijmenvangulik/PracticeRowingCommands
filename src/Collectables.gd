@@ -13,6 +13,7 @@ var lastMinutes=0
 var lastTimeString=""
 var crashedState=false;
 var startPlayTime=0
+var updateDelta: float=0.0
 
 func testEndGame():
 #	time_elapsed=393044 #230.10
@@ -30,7 +31,13 @@ func getTime():
 		
 func _process(delta: float) -> void:
 	if gameStarted:
-		updateTime(false)
+		updateDelta=updateDelta+delta
+		#do not update the time every frame
+		#there is a sys call to get the time involved
+		if updateDelta>0.2:
+			updateDelta=0.0
+			updateTime(false)
+			
 		if boat.crashState && !crashedState:
 			crashedState=true;
 			GameState.changeCollectGameState(Constants.CollectGameState.Finish)
@@ -69,6 +76,7 @@ func reset():
 	for c in get_children():
 		c.reset()
 	time_elapsed=0.0
+	updateDelta=0.0
 	startPlayTime = getTime()
 	
 func hideAll():
