@@ -21,7 +21,14 @@ func handleShow():
 		
 func _init():
 	connect("visibility_changed",self,"handleShow");
+	GameEvents.connect("windowSizeChanged",self,"_sizeChanged");
 
+func setWidth():
+	margin_right=0
+	
+func _sizeChanged():
+	setWidth()
+	
 func loadHighScores():
 	var url=Constants.serverUrl+"/gameHighScores?data[game]=1&data[level]=0&data[secondary]=quarter"
 	$HTTPRequest.request(url, [], true, HTTPClient.METHOD_GET)

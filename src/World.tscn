@@ -1,4 +1,4 @@
-[gd_scene load_steps=158 format=2]
+[gd_scene load_steps=159 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -850,6 +850,8 @@ bg_color = Color( 0.14902, 0.176471, 0.196078, 0.501961 )
 bg_color = Color( 0.145098, 0.145098, 0.164706, 0 )
 border_color = Color( 0.8, 0.8, 0.8, 0 )
 
+[sub_resource type="StyleBoxEmpty" id=57]
+
 [sub_resource type="StyleBoxFlat" id=33]
 content_margin_left = 10.0
 content_margin_right = 10.0
@@ -945,7 +947,7 @@ bg_color = Color( 0.301961, 0.32549, 0.352941, 1 )
 script = ExtResource( 1 )
 
 [node name="WaterClasic" type="Polygon2D" parent="."]
-position = Vector2( 2172, 1102 )
+position = Vector2( 2160, 1102 )
 scale = Vector2( 0.823077, 1.1034 )
 offset = Vector2( -2433.55, -1272.43 )
 antialiased = true
@@ -1989,10 +1991,12 @@ valign = 1
 autowrap = true
 
 [node name="HighScores" type="WindowDialog" parent="CanvasLayer"]
-margin_left = 189.0
-margin_top = 68.0
-margin_right = 854.0
-margin_bottom = 574.0
+anchor_left = 0.02
+anchor_right = 0.98
+anchor_bottom = 0.98
+margin_top = 54.0
+margin_right = 0.47998
+margin_bottom = -22.0
 custom_styles/panel = ExtResource( 33 )
 script = ExtResource( 46 )
 grid = NodePath("HighScoresGrid")
@@ -2073,11 +2077,6 @@ position = Vector2( 60, 244 )
 scale = Vector2( 0.76, 0.8 )
 texture = ExtResource( 27 )
 
-[node name="Trophy2" type="Sprite" parent="CanvasLayer/HighScores"]
-position = Vector2( 606, 244 )
-scale = Vector2( 0.76, 0.8 )
-texture = ExtResource( 27 )
-
 [node name="ContinueToStartGame" type="Button" parent="CanvasLayer/HighScores"]
 anchor_left = 0.5
 anchor_top = 1.0
@@ -2096,6 +2095,21 @@ custom_styles/normal = ExtResource( 10 )
 text = "GameContinue"
 icon = ExtResource( 70 )
 icon_align = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/HighScores"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -127.0
+margin_top = -64.0
+margin_bottom = 54.0
+custom_styles/panel = SubResource( 57 )
+
+[node name="Trophy2" type="Sprite" parent="CanvasLayer/HighScores/PanelContainer"]
+position = Vector2( 61, 61 )
+scale = Vector2( 0.76, 0.8 )
+texture = ExtResource( 27 )
 
 [node name="StartCollectGame" type="WindowDialog" parent="CanvasLayer"]
 margin_left = 21.0
@@ -3510,7 +3524,9 @@ text = "0"
 unique_name_in_owner = true
 anchor_left = 0.02
 anchor_right = 0.98
+margin_left = -20.48
 margin_top = 11.0
+margin_right = -20.48
 margin_bottom = 591.0
 custom_styles/panel = ExtResource( 33 )
 script = ExtResource( 58 )
