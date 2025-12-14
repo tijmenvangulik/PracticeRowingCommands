@@ -41,7 +41,6 @@ func _highContrastChangedSignal(highContrastOn):
 func _init():
 	connect("visibility_changed",self,"handleShow");
 	GameEvents.connect("windowSizeChanged",self,"_sizeChanged");
-
 func setWidth():
 	margin_right=0
 	
@@ -100,6 +99,7 @@ func _languageChangedSignal():
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
 	if !GameState.mobileMode:
 		var tabConainer=$TabContainer
 		tabConainer.remove_stylebox_override("decrement")
