@@ -1991,8 +1991,8 @@ valign = 1
 autowrap = true
 
 [node name="HighScores" type="WindowDialog" parent="CanvasLayer"]
-anchor_left = 0.02
-anchor_right = 0.98
+anchor_left = 0.08
+anchor_right = 0.92
 anchor_bottom = 0.98
 margin_top = 54.0
 margin_right = 0.47998
@@ -2107,7 +2107,7 @@ margin_bottom = 54.0
 custom_styles/panel = SubResource( 57 )
 
 [node name="Trophy2" type="Sprite" parent="CanvasLayer/HighScores/PanelContainer"]
-position = Vector2( 61, 61 )
+position = Vector2( 61, 55 )
 scale = Vector2( 0.76, 0.8 )
 texture = ExtResource( 27 )
 
