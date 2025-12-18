@@ -175,20 +175,22 @@ func _ready():
 		editBox.visible=true;
 		
 		commandTranslationsGrid.add_child(editBox)
-		if altText!=null && altText!="":
-			editBox.setText(altText)
+		if altText==null:
+			altText=""
+		editBox.setText(altText)
 
 # text translation
 		editBox = preload("res://EditCommandText2.tscn").instance()
 		editBox.commandName=command
 		editBox.command=commandIndex
-		
+		editBox.originalText=commandLabelText
 		altText=Settings.commandTextTranslations[commandIndex];
 		editBox.visible=true;
 		
 		commandTranslationsGrid.add_child(editBox)
-		if altText!=null && altText!="":
-			editBox.setText(altText)
+		if altText==null:
+			altText=""
+		editBox.setText(altText)
 
 # tooltip		
 		var editTooltipBox = preload("res://EditTooltipText.tscn").instance()
@@ -199,8 +201,10 @@ func _ready():
 		editTooltipBox.visible=true;
 		
 		commandTranslationsGrid.add_child(editTooltipBox)
-		if altTooltipText!=null && altTooltipText!="":
-			editTooltipBox.setText(altTooltipText)
+		if altTooltipText==null:
+			 altTooltipText=""
+		
+		editTooltipBox.setText(altTooltipText)
 
 # shortcut		
 		var editShortcutBox = preload("res://EditShortcutText.tscn").instance()
@@ -211,8 +215,9 @@ func _ready():
 		editShortcutBox.visible=true;
 		
 		commandTranslationsGrid.add_child(editShortcutBox)
-		if altShortcutText!=null && altShortcutText!="":
-			editShortcutBox.setText(altShortcutText)
+		if altShortcutText==null:
+			altShortcutText=""
+		editShortcutBox.setText(altShortcutText)
 					
 		commandIndex=commandIndex+1
 

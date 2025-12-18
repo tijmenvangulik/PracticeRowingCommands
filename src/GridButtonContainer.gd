@@ -22,15 +22,8 @@ func _ready():
 
 	
 func calcShortCut(buttonText):
-	customShortcut=Utilities.getCommandShortcut(command)
-	if customShortcut!="":
-		shortcut=customShortcut
-	else:
-		var shortresourceName=commandName+"_shortcut"
-		shortcut=tr(shortresourceName)
-		#get the shortcut from the caption
-		if shortcut=="" || shortcut==shortresourceName :
-			shortcut=tr(buttonText).substr(0,1).to_lower()
+	shortcut=Utilities.calcShortCut(command,commandName,buttonText)
+	
 	
 func setButtonText(newText):
 	orgText=newText
@@ -86,16 +79,11 @@ func get_tooltip_text(node):
 	
 	return returnTooltip
 
+
+	
 func setButtonTextFromCommand(commandName):
-	var altButtonCommandName=commandName+"_buttonOnly";
-	var buttonResource=tr(altButtonCommandName)
-	if buttonResource  && buttonResource!="-" && buttonResource!="" && buttonResource!=altButtonCommandName:
-		setButtonText(buttonResource)
-	else:
-		setButtonText(commandName)
-	var alterNativeText=Utilities.getCommandTranslation(command)
-	if alterNativeText && alterNativeText!="":
-		setButtonText(alterNativeText)
+	var text=Utilities.calcButtonTextFromCommand(commandName,command)
+	setButtonText(text)
 		
 func init(newCommandName,enabled):
 	commandName=newCommandName;

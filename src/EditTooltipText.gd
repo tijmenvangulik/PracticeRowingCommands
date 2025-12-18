@@ -10,9 +10,19 @@ func _ready():
 func setText(text):
 	$"LineEdit".text=text
 	GameEvents.sendTooltipChanged(command,commandName,text)
+	recalcOrignalText()
 
 func _on_LineEdit_text_changed(new_text):
 	var textValue=$ "LineEdit".text;
 	GameEvents.sendTooltipChanged(command,commandName,textValue)
-	
+	recalcOrignalText()
 
+func recalcOrignalText():
+	if $"LineEdit".text=="":
+		$LineEdit/OriginalText.text=Utilities.calcOriginalTooltipText(command,commandName)
+	else:
+		$LineEdit/OriginalText.text=""
+
+
+func _on_LineEdit_gui_input(event: InputEvent) -> void:
+	recalcOrignalText()

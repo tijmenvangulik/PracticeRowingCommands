@@ -36,6 +36,16 @@ func getCommandTooltip(command:int)->String:
 	if result!="":return result
 		
 	return getDefaultDictonaryValueSetting("TooltipTranslations",Constants.commandNames[command])
+
+func calcOriginalTooltipText(command,commandName):
+	var tooltip=Utilities.getCommandTooltip(command)
+	if tooltip!="" && tooltip!=null:
+		return tooltip
+	var shotTooltipKey=commandName+"_shorttooltip"
+	tooltip=tr(shotTooltipKey)
+	if tooltip==shotTooltipKey:
+		return ""
+	return tooltip
 	
 func getCommandShortcut(command:int)->String:
 	var result=""
@@ -44,6 +54,18 @@ func getCommandShortcut(command:int)->String:
 	if result!="":return result
 	return getDefaultDictonaryValueSetting("ShortcutTranslations",Constants.commandNames[command])
 
+func calcShortCut(command:int,commandName : String, buttonText : String)->String:
+	var shortcut=""
+	var customShortcut=getCommandShortcut(command)
+	if customShortcut!="":
+		shortcut=customShortcut
+	else:
+		var shortresourceName=commandName+"_shortcut"
+		shortcut=tr(shortresourceName)
+		if shortcut=="" || shortcut==shortresourceName :
+			shortcut=tr(buttonText).substr(0,1).to_lower()
+	return shortcut
+	
 func replaceCommandText(commandText :String) ->String:
 	var command=commandNameToCommand(commandText)
 	if command>=0:
@@ -66,6 +88,19 @@ func replaceCommandsInText(text:String,decorate=false) ->String:
 				text=text.substr(0,lastPos)+commandText+text.substr(posEnd+1,text.length())
 	return text
 
+func calcButtonTextFromCommand(commandName,command):
+	var result=""
+	var altButtonCommandName=commandName+"_buttonOnly";
+	var buttonResource=tr(altButtonCommandName)
+	if buttonResource  && buttonResource!="-" && buttonResource!="" && buttonResource!=altButtonCommandName:
+		result=buttonResource
+	else:
+		result=commandName
+	var alterNativeText=Utilities.getCommandTranslation(command)
+	if alterNativeText && alterNativeText!="":
+		result=alterNativeText
+	return result
+	
 func formatTime(minutes,seconds,miliSeconds):
 	var minStr=String(minutes)
 	if minStr.length()==1:
