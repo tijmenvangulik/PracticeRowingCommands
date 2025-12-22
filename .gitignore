@@ -33,3 +33,5 @@ Server/**/*.map
 Server/build
 Server/src/SecretsGit.json
 Server/src/SecretsGitDoNotCommit.json
+template/patchExportSecret.patch
+template/patchExportSecretRevert.patch

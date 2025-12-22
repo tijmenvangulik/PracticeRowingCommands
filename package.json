@@ -1,6 +1,6 @@
 {
   "name": "practicerowingcommands",
-  "version": "7.5.0",
+  "version": "7.5.1",
   "description": "practice rowing commands",
   "main": "index.js",
   "dependencies": {
@@ -12,15 +12,20 @@
     "compress": "gzipper compress ./bin/html/index.wasm --brotli ",
     "updatehtml": "mustache package.json template/index.html > bin/html/index.html",
     "updateversion": "mustache package.json template/version.json > bin/html/version.json",
-    "copyjs": "mustache package.json template/index.js > bin/html/index.js",
+    "copyjs": "cp ./template/index.js ./bin/html/index.js",
+    "copywasm": "cp ./template/index.wasm ./bin/html/index.wasm",
+    "patchexport":"git apply ./template/patchExportSecret.patch",
+    "patchexport-revert":"git apply ./template/patchExportSecretRevert.patch",
     "build": "npm run compress && npm run updatehtml && npm run updateversion && npm run copyjs",
+    "build-encrypted": "npm run copywasm && npm run compress && npm run updatehtml && npm run updateversion && npm run copyjs",
     "deploy": "rsync -rvu --exclude \".*\" bin/html/ /Volumes/www.vangulik.org/PracticeRowingCommands/",
     "deployHD": "rsync -rvu --exclude \".*\" bin/html/ /Volumes/www.vangulik.org/PracticeRowingCommandsHD/",
     "buildAndDeploy":"npm run build && npm run deploy",
     "buildAndDeployHD":"npm run build && npm run deployHD",
-    "createzip":"rm distribute.zip && cd ./bin/html && zip  -vr ../../distribute.zip . -x \"*.DS_Store\" -q  ",
-    "prepare-git-commit":"cp src/secretsForGit.gd src/secrets.gd && cp Server/src/SecretsGit.json Server/src/Secrets.json && npm run createzip ",
-    "prepare-build":"cp src/secretsDoNotCommit.gd src/secrets.gd && cp Server/src/SecretsGitDoNotCommit.json Server/src/Secrets.json "
+    "createzip":"rm distribute.zip && cd ./bin/html && zip  -vr ../../distribute.zip . -x \"*.DS_Store\" -q ",
+    "prepare-git-commit":"cp src/secretsForGit.gd src/secrets.gd && cp Server/src/SecretsGit.json Server/src/Secrets.json && npm run createzip && npm run patchexport-revert",
+    "prepare-build":"cp src/secretsDoNotCommit.gd src/secrets.gd && cp Server/src/SecretsGitDoNotCommit.json Server/src/Secrets.json && npm run patchexport",
+    "copy-custom-build":"cp /Users/tijmen/Code/godotengine/bin/godot.javascript.opt.wasm ./bin/html/index.wasm && cp /Users/tijmen/Code/godotengine/bin/godot.javascript.opt.wasm ./template/index.wasm && cp /Users/tijmen/Code/godotengine/bin/godot.javascript.opt.wrapped.js ./bin/html/index.js && cp /Users/tijmen/Code/godotengine/bin/godot.javascript.opt.wrapped.js ./template/index.js "
   },
   "repository": {
     "type": "git",

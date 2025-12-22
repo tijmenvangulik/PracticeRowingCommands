@@ -18,7 +18,7 @@ var last_time_elapsed=0.0
 
 func testEndGame():
 #	time_elapsed=393044 #230.10
-	time_elapsed=60*5+60+0.100 #230.10
+	time_elapsed=60*6+60+0.100 #230.10
 	startPlayTime=getTime()-time_elapsed
 	GameState.changeCollectGameState(Constants.CollectGameState.Finish)
 	gameFinish()
