@@ -25,6 +25,13 @@ The website:
 
 Written in godot (3.5.0, https://godotengine.org)
 
+To build a release:
+* run npm install in the root
+* open the godot project in the src folder
+* export all from godot
+* run the npm build script
+* The bin/html folder contains the game ready for release
+
 The default language is dutch. Most commands are translated to English. You can improve or add a translation by editing the  Translations.csv file.
 The translations can be found [here](/src/translations/Translations.csv) This is a csv file which you can load in a spread sheet. You can send the translated version to me.
 To make a short cut for a button in the resources you can extend the command name with:
