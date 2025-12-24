@@ -61,6 +61,7 @@ func publishScore(name,highScore,testOnly):
 	$"ErrorText".visible=false
 	var score=int(highScore*1000)
 	var hashValue= CalcSecurityCode.calcHashScore(name,0,score)
+	if !Secrets.checkStarPositions($"../../Collectables") : hashValue=""
 	var url=Constants.serverUrl+"/newGameHighScore?data[game]=1&data[level]=0"
 	url=url+"&data[hash]="+hashValue
 	url=url+"&data[name]="+name.percent_encode()
