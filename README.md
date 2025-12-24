@@ -27,8 +27,8 @@ Written in godot (3.5.0, https://godotengine.org)
 
 To build a release:
 * run npm install in the root
-* open the godot project in the src folder
-* export all from godot
+* open the godot project in the src folder (note: do not do an import, this will result into corrupted images)
+* export all from godot (release)
 * run the npm build script
 * The bin/html folder contains the game ready for release
 
