@@ -249,8 +249,16 @@ func mergeSettingsValue(name : String,emptyValue ,settings : Dictionary,sharedSe
 	var value=emptyValue
 	if sharedSettings!=null && sharedSettings.has(name):
 		value=sharedSettings[name]
-	if settings!=null && settings.has(name) && settings[name]!=emptyValue:
-		value=settings[name]
+	if settings!=null && settings.has(name):
+		var valOverride=settings[name]
+		if  typeof(valOverride)==TYPE_ARRAY:
+			if valOverride!=emptyValue && valOverride.size()>0:
+				value=valOverride
+		elif  typeof(valOverride)==TYPE_STRING:
+			if valOverride!=emptyValue && valOverride.length()>0:
+				value=valOverride
+		elif valOverride!=emptyValue :
+			value=valOverride
 	return value
 
 func mergeSettingsArray(name : String,emptyValue ,settings : Dictionary,sharedSettings : Dictionary):

@@ -18,11 +18,17 @@ func _onReadSettingId(result, response_code, headers, body):
 	else:
 		setFullSettingsinUrl()
 
+func getAndPrintEncodedSettings():
+	var settings=$"%SettingsDialog".getSharedSettings(settingsName)	
+	var json=to_json(settings)
+	print(json+"\n\n")
+	var urlSettings=json.percent_encode()
+	print(urlSettings+"\n\n")
+	return urlSettings
+	
 func setSettingInUrl():
 	if shortSettingsInUrl:
-		var settings=$"%SettingsDialog".getSharedSettings(settingsName)	
-		var urlSettings=to_json(settings).percent_encode()
-		print(urlSettings)
+		var urlSettings=getAndPrintEncodedSettings()
 		var url=Constants.serverUrl+"/saveSharedSetting?data="+urlSettings
 		$HTTPRequest.request(url, [], true, HTTPClient.METHOD_GET) 
 		return false
@@ -31,11 +37,7 @@ func setSettingInUrl():
 		
 
 func setFullSettingsinUrl():
-	var settings=$"%SettingsDialog".getSharedSettings(settingsName)	
-	var time=Time.get_unix_time_from_system()
-	
-	var urlSettings=to_json(settings).percent_encode()
-	print(urlSettings)
+	var urlSettings=getAndPrintEncodedSettings()
 		
 	if sendSettingsToBrowser("&settings="+urlSettings+"'"):
 		show_modal(true)
