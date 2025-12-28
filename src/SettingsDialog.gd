@@ -19,6 +19,8 @@ export (NodePath) onready var enablePracticesTab = get_node(enablePracticesTab) 
 export (NodePath) onready var resolutionButton = get_node(resolutionButton) as OptionButton 
 export (NodePath) onready var waterAnimationButton  = get_node(waterAnimationButton) as CheckButton 
 
+export (NodePath) onready var searchText = get_node(searchText) as LineEdit 
+	
 
 var settingsFile="user://settings.save"
 
@@ -762,3 +764,45 @@ func _on_BoatType_item_selected(index):
 		GameState.currentButtonSet=GameState.getDefaultButtonSet()
 	GameEvents.languageChanged()
 	GameEvents.practicesChanged()
+	
+func _on_Search_gui_input(event: InputEvent) -> void:
+	var commands=commandTranslationsCommandsGrid
+	
+	var commandsScroll=$TabContainer/CommandTranslateTab/ScrollContainerCommands
+	var search=searchText.text
+	var found=false
+	var highlightColor=Color("ffff00")
+	if search=='':
+		clearSearchHighLight()
+	else:
+		search=search.to_lower()
+		for i in range(0, commands.get_child_count()):
+			var item=commands.get_child(i);
+			var label : Label=item.get_node("Label")
+			var text : String=tr(label.text).to_lower()
+			var isMatch=text.find(search)>=0
+			if isMatch:
+				if !found:
+					Utilities.scrollToGridItem(item,commandsScroll,commands)					
+					found=true				
+				label.add_color_override("font_color",highlightColor)
+			else:
+				label.remove_color_override("font_color")
+	#grid.scroll_vertical=commands.scroll_vertical
+
+func clearSearchHighLight():
+	var commands=commandTranslationsCommandsGrid
+	for i in range(0, commands.get_child_count()):
+		var item=commands.get_child(i);
+		var label : Label=item.get_node("Label")
+		label.remove_color_override("font_color")
+	
+func clearSearch():
+	searchText.text=""
+	clearSearchHighLight()
+	
+func _on_Search_focus_entered() -> void:
+	clearSearch()
+
+func _on_Search_focus_exited() -> void:
+	clearSearch()

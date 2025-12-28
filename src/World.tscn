@@ -1,4 +1,4 @@
-[gd_scene load_steps=159 format=2]
+[gd_scene load_steps=160 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -117,6 +117,7 @@
 [ext_resource path="res://assets/incrementSelected.png" type="Texture" id=115]
 [ext_resource path="res://assets/decrement.png" type="Texture" id=116]
 [ext_resource path="res://assets/decrementSelected.png" type="Texture" id=117]
+[ext_resource path="res://assets/Search.png" type="Texture" id=118]
 
 [sub_resource type="ShaderMaterial" id=43]
 shader = ExtResource( 80 )
@@ -3542,6 +3543,7 @@ boatTypeButton = NodePath("TabContainer/GeneralSettingsTab/GridContainer/BoatTyp
 enablePracticesTab = NodePath("TabContainer/EnablePracticesTab")
 resolutionButton = NodePath("TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer/Resolution")
 waterAnimationButton = NodePath("TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer2/WaterAnimationButton")
+searchText = NodePath("TabContainer/CommandTranslateTab/Search")
 
 [node name="TabContainer" type="TabContainer" parent="CanvasLayer/SettingsDialog"]
 anchor_right = 1.0
@@ -3560,6 +3562,7 @@ custom_styles/panel = SubResource( 29 )
 tab_align = 0
 
 [node name="GeneralSettingsTab" type="Tabs" parent="CanvasLayer/SettingsDialog/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 29.0
@@ -3765,6 +3768,14 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 29.0
+
+[node name="Search" type="LineEdit" parent="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab"]
+margin_left = 5.0
+margin_top = 9.0
+margin_right = 286.0
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 50 )
+right_icon = ExtResource( 118 )
 
 [node name="ScrollContainerHeader" type="ScrollContainer" parent="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab"]
 anchor_right = 1.0
@@ -4488,6 +4499,9 @@ script = ExtResource( 112 )
 [connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer/Resolution" to="CanvasLayer/SettingsDialog" method="_on_Resolution_item_selected"]
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer2/WaterAnimationButton" to="CanvasLayer/SettingsDialog" method="_on_WaterAnimationButton_toggled"]
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer3/HighContrastButton" to="CanvasLayer/SettingsDialog" method="_on_HighContrastButton_toggled"]
+[connection signal="focus_entered" from="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab/Search" to="CanvasLayer/SettingsDialog" method="_on_Search_focus_entered"]
+[connection signal="focus_exited" from="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab/Search" to="CanvasLayer/SettingsDialog" method="_on_Search_focus_exited"]
+[connection signal="gui_input" from="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab/Search" to="CanvasLayer/SettingsDialog" method="_on_Search_gui_input"]
 [connection signal="item_rect_changed" from="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab/ScrollContainerHeader/GridContainerHeader" to="CanvasLayer/SettingsDialog" method="_on_GridContainerHeader_item_rect_changed"]
 [connection signal="item_rect_changed" from="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab/ScrollContainerCommands/GridContainerCommands" to="CanvasLayer/SettingsDialog" method="_on_GridContainerCommands_item_rect_changed"]
 [connection signal="item_rect_changed" from="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab/ScrollContainer/GridContainer" to="CanvasLayer/SettingsDialog" method="_on_GridContainer_item_rect_changed"]

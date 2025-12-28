@@ -422,3 +422,12 @@ func MobileScrollConainer(scroll : ScrollContainer):
 	
 	#h_scroll.add_stylebox_override("scroll", style)
 	#v_scroll.add_stylebox_override("scroll", style)
+
+func scrollToGridItem(item,scrollContainer,grid):
+	var item_y = item.rect_position.y
+	var item_h = item.rect_size.y
+	var view_h = scrollContainer.rect_size.y
+	var content_h = grid.rect_size.y
+	var target = item_y - (view_h - item_h) / 2
+	var max_scroll = max(0, content_h - view_h)
+	scrollContainer.scroll_vertical = clamp(target, 0, max_scroll)
