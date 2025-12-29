@@ -100,6 +100,12 @@ func calcButtonTextFromCommand(commandName,command):
 	if alterNativeText && alterNativeText!="":
 		result=alterNativeText
 	return result
+
+func calcCommandGridLabelText(commandName):
+	var commandLabelText=getDefaultDictonaryValueSetting("CommandTextTranslations",commandName)
+	if commandLabelText=="":
+		commandLabelText=commandName
+	return commandLabelText
 	
 func formatTime(minutes,seconds,miliSeconds):
 	var minStr=String(minutes)

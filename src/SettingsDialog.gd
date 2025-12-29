@@ -85,15 +85,9 @@ func setRuleset(ruleset):
 	if index>=0:
 		ruleSetDropDown.select(index)
 
-func calcCommandGridLabelText(command):
-	var commandLabelText=Utilities.getDefaultDictonaryValueSetting("CommandTextTranslations",command)
-	if commandLabelText=="":
-		commandLabelText=command
-	return commandLabelText
-
 func calcCommandGridLabels():
 	for label in labelsCommandGrid:
-		var text=calcCommandGridLabelText(label.command)
+		var text=Utilities.calcCommandGridLabelText(label.command)
 		label.setText(text)
 		
 func _languageChangedSignal():
@@ -158,7 +152,7 @@ func _ready():
 	commandButtonsTab.init()
 	enablePracticesTab.init()
 	for command in commands:
-		var commandLabelText=calcCommandGridLabelText(command)
+		var commandLabelText=Utilities.calcCommandGridLabelText(command)
 
 		var label :Label=addLabelCommandsGrid(commandTranslationsCommandsGrid,commandLabelText)
 		var labelContainer=label.get_parent()
@@ -185,7 +179,7 @@ func _ready():
 		editBox = preload("res://EditCommandText2.tscn").instance()
 		editBox.commandName=command
 		editBox.command=commandIndex
-		editBox.originalText=commandLabelText
+		
 		altText=Settings.commandTextTranslations[commandIndex];
 		editBox.visible=true;
 		

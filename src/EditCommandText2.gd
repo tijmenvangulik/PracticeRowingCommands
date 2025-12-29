@@ -6,7 +6,11 @@ var originalText=""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	GameEvents.connect("languageChangedSignal",self,"_languageChangedSignal");
+
+func _languageChangedSignal():
+	recalcOrignalText()
+
 
 func setText(text):
 	$"LineEdit".text=text
@@ -23,6 +27,7 @@ func _on_LineEdit_text_changed(new_text):
 	recalcOrignalText()
 	
 func recalcOrignalText():
+	originalText=Utilities.calcCommandGridLabelText(commandName)
 	if $"LineEdit".text=="":
 		$LineEdit/OriginalText.text=originalText
 	else:
