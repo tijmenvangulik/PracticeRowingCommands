@@ -1,3 +1,5 @@
+![Logo](art/PracticeRowingLogoGlow2.png)
+
 # App to practice (coxing) commands for rowing
 ## (App voor het oefenen van roei stuur commando's) 
 
