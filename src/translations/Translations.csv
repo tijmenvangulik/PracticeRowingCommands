@@ -336,3 +336,6 @@ MoreSubMenu;Meer...;Meer...;More...;More...
 SlowUpdateSpeedDetected;Beeldverversing is traag;Beeldverversing is traag;Screen refresh is slow;Screen refresh is slow
 SwitchToLowResolution;Verlaag schermresolutie;Verlaag schermresolutie;Lower screen resolution;Lower screen resolution
 QuarterHighscores;Hoogste scores van dit kwartaal;Hoogste scores van dit kwartaal;Higscores of the quarter;Higscores of the quarter
+VastroeienSterk;Vastroeien nu!;Houden nu!;Hold now!;Vastroeien nu!
+VastroeienSterk_tooltip;Vastroeien nu!\nNoodstop;Houden nu!\n(Noodstop);Hold now!\nEmergency break;Vastroeien nu!\nEmergency break
+VastroeienSterk_shortcut;o;o;o;o

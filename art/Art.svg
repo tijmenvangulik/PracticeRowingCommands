@@ -6132,7 +6132,7 @@
      inkscape:groupmode="layer"
      id="layer1"
      inkscape:label="background"
-     style="display:none;opacity:1"><g
+     style="display:inline;opacity:1"><g
        id="g2510"
        transform="matrix(-1.0704715,0.04311927,0.04527524,1.0194967,609.14289,-463.18549)"
        inkscape:export-filename="../src/assets/tiles.png"
@@ -13088,8 +13088,8 @@
          id="path1-7"
          style="fill:#ffffff;stroke:#ffffff;stroke-width:0.755907;stroke-dasharray:none;stroke-opacity:1"
          inkscape:export-filename="../src/assets/Search.png"
-         inkscape:export-xdpi="160.48978"
-         inkscape:export-ydpi="160.48978" /></g></g><g
+         inkscape:export-xdpi="106.99319"
+         inkscape:export-ydpi="106.99319" /></g></g><g
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="Lines"

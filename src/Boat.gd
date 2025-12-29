@@ -384,6 +384,9 @@ func doCommand(command:int):
 		Constants.Command.VastroeienBeideBoorden:
 			setStateOars(Constants.StateOars.Roeien,false);
 			changeState(command,Constants.RowState.VastroeienBeideBoorden,0)
+		Constants.Command.VastroeienSterk:
+			setStateOars(Constants.StateOars.Roeien,false);
+			changeState(command,Constants.RowState.VastroeienSterk,0)
 		Constants.Command.HalenBB:
 			changeState(command,Constants.RowState.HalenBB,1)
 		Constants.Command.StrijkenBB:
@@ -560,6 +563,12 @@ func changeState(command:int,newState:int,direction:int,direct=false,doOneStroke
 				oarBB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct,true,Constants.OarWaveState.Vastroeien)
 			if !slippenSB && !oarSB.pulledIn:
 				oarSB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct,true,Constants.OarWaveState.Vastroeien)
+		Constants.RowState.VastroeienSterk:
+			setSpeedAndDirection(0,0,0.8,false)
+			if !slippenBB && !oarBB.pulledIn:
+				oarBB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct,true,Constants.OarWaveState.Vastroeien)
+			if !slippenSB && !oarSB.pulledIn:
+				oarSB.setNewScheme(true,oarBB.rotation_rest,oarBB.rotation_rest,direct,true,Constants.OarWaveState.Vastroeien)				
 		Constants.RowState.VastroeienSB:
 			setSpeedAndDirection(0,0.5,0.3,false)
 			if !slippenSB:

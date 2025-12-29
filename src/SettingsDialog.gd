@@ -246,28 +246,28 @@ func get_parameter(parameter):
 				
 func getSettings(removePrivate=false):
 	var commandDict={}
-	for i in range(0,Settings.commandTranslations.size()-1):
+	for i in range(0,Settings.commandTranslations.size()):
 		var commandName=Constants.commandNames[i]
 		var translation=Settings.commandTranslations[i]
 		if translation!=null && translation!="":
 			commandDict[commandName]=translation
 	
 	var commandTextDict={}
-	for i in range(0,Settings.commandTextTranslations.size()-1):
+	for i in range(0,Settings.commandTextTranslations.size()):
 		var commandName=Constants.commandNames[i]
 		var translation=Settings.commandTextTranslations[i]
 		if translation!=null && translation!="":
 			commandTextDict[commandName]=translation
 			
 	var tooltipDict={}
-	for i in range(0,Settings.tooltipTranslations.size()-1):
+	for i in range(0,Settings.tooltipTranslations.size()):
 		var commandName=Constants.commandNames[i]
 		var translation=Settings.tooltipTranslations[i]
 		if translation!=null && translation!="":
 			tooltipDict[commandName]=translation
 
 	var shortcutDict={}
-	for i in range(0,Settings.shortcutTranslations.size()-1):
+	for i in range(0,Settings.shortcutTranslations.size()):
 		var commandName=Constants.commandNames[i]
 		var translation=Settings.shortcutTranslations[i]
 		if translation!=null && translation!="":
