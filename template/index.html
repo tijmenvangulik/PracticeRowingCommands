@@ -39,14 +39,6 @@
 			box-shadow: 0 0 1px 1px #2f2d35;
 		}
 
-		.logo {
-			visibility: visible;
-			position: absolute;
-			top: 0%;
-			height: 50%;
-			aspect-ratio: 1;
-			width: auto;
-		}
 		/* Status display
 		 * ============== */
 
@@ -59,8 +51,21 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			top: 75%;
+			bottom: auto;
+			transform: translateY(-50%);
 			/* don't consume click events - make children visible explicitly */
 			visibility: hidden;
+		}
+		.logo {
+			visibility: none;
+			position: absolute;
+			top: 5%;
+			left: 50%;
+			transform: translateX(-50%);
+			height: 70%;
+			aspect-ratio: 1;
+			width: auto;
 		}
 
 		#status-progress {
@@ -192,8 +197,8 @@
 		HTML5 canvas appears to be unsupported in the current browser.<br />
 		Please try updating or use a different browser.
 	</canvas>
+	<img src="PraciceRowingCommandsLogoNew.png?v=2" id="logo" class="logo" width="200ox" height="200px">
 	<div id='status' role="status" >
-		<img src="PraciceRowingCommandsLogoNew.png?v=2" id="logo" class="logo" width="200ox" height="200px">
 		<div id='status-progress' style='display: none;' oncontextmenu='event.preventDefault();'><div id ='status-progress-inner'></div></div>
 		<div id='status-indeterminate' style='display: none;' oncontextmenu='event.preventDefault();'>
 			<div></div>
