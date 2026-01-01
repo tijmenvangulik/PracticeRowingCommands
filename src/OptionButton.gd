@@ -135,6 +135,8 @@ func selected(itemIndex : int):
 		var langKey=Languages.languageKeys[itemId]		
 		setLanguage(langKey)
 		GameEvents.settingsChanged()
+		print("Set url selected")
+		Utilities.resetUrlPameters()
 	else:
 		$"%SettingsDialog".start(2)
 		

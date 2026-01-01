@@ -53,14 +53,11 @@ func loadSettings(settingsId):
 	var urlSettings='{"id":"'+settingsId+'"}'
 	var url=Constants.serverUrl+"/getSharedSetting?data="+urlSettings
 	$HTTPRequestLoad.request(url, [], true, HTTPClient.METHOD_GET) 
+
+
 	
 func sendSettingsToBrowser(urlSettingParam):
-	var urlLang=""
-	var lang=Settings.currentLang
-	var indexNr=Languages.languageKeys.find(lang)
-	if indexNr>=0:
-		urlLang=Languages.urlKeys[indexNr]
-	
+	var urlLang=Utilities.getUrlLang()
 	var hasShare=JavaScript.eval("typeof navigator.share=='function'");
 	var urlScript="window.location.protocol + '//' + window.location.host + window.location.pathname + '?lang="+urlLang+urlSettingParam
 	if hasShare:
@@ -77,5 +74,5 @@ func start(name : String,p_shortSettingsInUrl : bool):
 	setSettingInUrl()
 
 func _on_CloseDialog_pressed():
-	$"%SettingsDialog".clearSettingsInUrl()
+	Utilities.resetUrlPameters()
 	hide()

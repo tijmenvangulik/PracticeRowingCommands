@@ -1,6 +1,6 @@
 {
   "name": "practicerowingcommands",
-  "version": "7.6.5",
+  "version": "7.6.6",
   "description": "practice rowing commands",
   "main": "index.js",
   "dependencies": {
@@ -9,16 +9,16 @@
   },
   "devDependencies": {},
   "scripts": {
-    "compress": "gzipper compress ./bin/html/index.wasm --brotli ",
+    "compress": "gzipper compress ./template/index.wasm --brotli ",
     "updatehtml": "mustache package.json template/index.html > bin/html/index.html",
     "updateversion": "mustache package.json template/version.json > bin/html/version.json",
     "copyjs": "cp ./template/index.js ./bin/html/index.js",
     "copyjs_godot_build": "cp ./template/index_godot_build.js ./bin/html/index.js",
-    "copywasm": "cp ./template/index.wasm ./bin/html/index.wasm",
+    "copywasm": "cp ./template/index.wasm ./bin/html/index.wasm && cp ./template/index.wasm.br ./bin/html/index.wasm.br",
     "patchexport":"git apply ./template/patchExportSecret.patch",
     "patchexport-revert":"git apply ./template/patchExportSecretRevert.patch",
-    "build": "npm run compress && npm run updatehtml && npm run updateversion && npm run copyjs_godot_build",
-    "build-encrypted": "npm run copywasm && npm run compress && npm run updatehtml && npm run updateversion && npm run copyjs",
+    "build": "npm run updatehtml && npm run updateversion && npm run copyjs_godot_build",
+    "build-encrypted": "npm run copywasm && npm run updatehtml && npm run updateversion && npm run copyjs",
     "deploy": "rsync -rvu --exclude \".*\" bin/html/ /Volumes/www.vangulik.org/PracticeRowingCommands/",
     "deployHD": "rsync -rvu --exclude \".*\" bin/html/ /Volumes/www.vangulik.org/PracticeRowingCommandsHD/",
     "buildAndDeploy":"npm run build && npm run deploy",

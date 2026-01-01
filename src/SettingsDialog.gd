@@ -25,6 +25,7 @@ export (NodePath) onready var searchText = get_node(searchText) as LineEdit
 var settingsFile="user://settings.save"
 
 var labelsCommandGrid=[]
+var langloadedFromParam = false
 
 func start(tabIndex =0 ):
 	$TabContainer.current_tab=tabIndex
@@ -92,6 +93,9 @@ func calcCommandGridLabels():
 		
 func _languageChangedSignal():
 	calcCommandGridLabels()
+	#only reset the url after it is loaded fully so the original is never lost
+	if langloadedFromParam:
+		Utilities.resetUrlPameters()
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -370,7 +374,7 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 			Settings.sharedSettings=sharedSettings
 			GameEvents.loadedSharedSettings()
 
-	if  dict.has("language"):
+	if  dict.has("language") && !GameState.languageSetFromSettingsOrUl:
 		Settings.currentLang=dict["language"]
 		GameState.languageSetFromSettingsOrUl=true
 			
@@ -594,21 +598,27 @@ func loadSettings():
 		BaseSettings.loadSharedSetings(settings.percent_decode(),true)
 		
 	var settingsId=get_parameter("settingId")
-	#settingsId="682b633cea44240d8d388d35"
+	#settingsId="69554e80bd189b0a14289a24"
 	
 	if settingsId!=null && settingsId!="":
 		settingFromUrl=true
 		$"%ShareSettingsDialog".loadSettings(settingsId)
+		
+		
 	
 	
 	#override the lang with the url lang
 	var urlLang=get_parameter("lang");
 	if urlLang!=null && (settings==null || settings==""):
-		var urlLangIndex=Languages.urlKeys.find(urlLang)
-		if urlLangIndex>=0:
-			Settings.currentLang=Languages.languageKeys[urlLangIndex]
+		if urlLang==Languages.sharedSettingLangKey:
+			Settings.currentLang=urlLang
 			GameState.languageSetFromSettingsOrUl=true
-
+		else:
+			var urlLangIndex=Languages.urlKeys.find(urlLang)
+			if urlLangIndex>=0:
+				Settings.currentLang=Languages.languageKeys[urlLangIndex]
+				GameState.languageSetFromSettingsOrUl=true
+	langloadedFromParam=true
 	afterLoadedSettings(settingFromUrl)
 
 func setSettingsFromShortSettings(settings):
@@ -617,9 +627,6 @@ func setSettingsFromShortSettings(settings):
 			
 func afterLoadedSettings(settingFromUrl):
 	GameEvents.settingsChanged()
-	if settingFromUrl && hasJavascript():
-		clearSettingsInUrl();
-	
 	loadResolution()
 	
 func _on_EditCommandText_customCommandTextChanged(command, commandName, value):
@@ -641,10 +648,6 @@ func _on_EditTooltipText_customShortcutTextChanged(command, commandName, value):
 func _handleSettingsChanged():
 	saveSettings()
 	
-
-func clearSettingsInUrl():
-	JavaScript.eval("history.pushState({}, null, window.location.protocol + '//' + window.location.host + window.location.pathname)");
-
 
 func ensureButtonsetSaved():
 	commandButtonsTab.ensureButtonsetSaved()

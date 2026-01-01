@@ -437,3 +437,18 @@ func scrollToGridItem(item,scrollContainer,grid):
 	var target = item_y - (view_h - item_h) / 2
 	var max_scroll = max(0, content_h - view_h)
 	scrollContainer.scroll_vertical = clamp(target, 0, max_scroll)
+
+func getUrlLang():
+	var urlLang=""
+	var lang=Settings.currentLang
+	if lang==Languages.sharedSettingLangKey:
+		urlLang=lang
+	else:
+		var indexNr=Languages.languageKeys.find(lang)
+		if indexNr>=0:
+			urlLang=Languages.urlKeys[indexNr]
+	return urlLang;
+
+func resetUrlPameters():
+	var urlLang=Utilities.getUrlLang()
+	JavaScript.eval("history.pushState({}, null, window.location.protocol + '//' + window.location.host + window.location.pathname+'?lang="+urlLang+"' )");
