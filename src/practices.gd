@@ -2,26 +2,26 @@ extends Node
 
 # keep in same order as practiceNames
 var practices = [
-Constants.StartItem.StartTour,
-Constants.StartItem.StilleggenOefenening,
-Constants.StartItem.BochtOefenening,
-Constants.StartItem.AchteruitvarenOefenening,
-Constants.StartItem.AchteruitBochtOefenening,
-Constants.StartItem.SpinTurnPractice,
-Constants.StartItem.Aanleggen,
-Constants.StartItem.AanleggenBB,
-Constants.StartItem.AanleggenWal,
-Constants.StartItem.AangelegdUitzetten,
-Constants.StartItem.AangelegdUitzettenBB,
-Constants.StartItem.Aangelegd,
+Constants.StartItem.StartTour, #0
+Constants.StartItem.StilleggenOefenening, #1
+Constants.StartItem.BochtOefenening, #2
+Constants.StartItem.AchteruitvarenOefenening, #3
+Constants.StartItem.AchteruitBochtOefenening, #4
+Constants.StartItem.SpinTurnPractice, #5
+Constants.StartItem.Aanleggen, #6
+Constants.StartItem.AanleggenBB, #7
+Constants.StartItem.AanleggenWal, #8
+Constants.StartItem.AangelegdUitzetten, #9
+Constants.StartItem.AangelegdUitzettenBB, #10
+Constants.StartItem.Aangelegd, #11
 Constants.StartItem.AangelegdBB,
-Constants.StartItem.StartStrijkendAanleggen,
-Constants.StartItem.StartStrijkendAanleggenWal,
-Constants.StartItem.BridgePractice,
-Constants.StartItem.MoringHarbour,
-Constants.StartItem.MoringHarbourBB,
-Constants.StartItem.SlalomPractice,
-Constants.StartItem.StarGame
+Constants.StartItem.StartStrijkendAanleggen, #12
+Constants.StartItem.StartStrijkendAanleggenWal, #13
+Constants.StartItem.BridgePractice, #14
+Constants.StartItem.MoringHarbour, #15
+Constants.StartItem.MoringHarbourBB, #16
+Constants.StartItem.SlalomPractice,  #17
+Constants.StartItem.StarGame #18
 ]
 
 # keep in same order as practices
