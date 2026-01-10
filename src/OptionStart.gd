@@ -282,7 +282,7 @@ func startPractices():
 	yield(t, "timeout")
 	Utilities.removeTimer(t)
 	# for now start the first practice
-	doStart(currentStartPos)
+	doStart(currentStartPos,true)
 
 func findNotFinishedPractice(startItem):
 	 
@@ -331,7 +331,7 @@ func selected(itemIndex : int):
 	icon=null
 
 
-func doStart(startItemId):
+func doStart(startItemId,autoStart=false):
 	if GameState.collectGameState!=Constants.CollectGameState.None:
 		GameState.changeCollectGameState(Constants.CollectGameState.Stop)
 	
@@ -418,7 +418,7 @@ func doStart(startItemId):
 		Constants.StartItem.Intro:
 			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)		
 			$"%IntroDialog".start()
-		Constants.StartItem.StartTour: GameEvents.startTour()
+		Constants.StartItem.StartTour: GameEvents.startTour(autoStart)
 		Constants.StartItem.StartStrijkendAanleggen: 
 			forwards=false
 			

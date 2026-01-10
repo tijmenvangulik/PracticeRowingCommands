@@ -6,4 +6,4 @@ extends Button
 
 func _pressed():
 	GameEvents.intro(false)
-	GameEvents.startTour()
+	GameEvents.startTour(true)

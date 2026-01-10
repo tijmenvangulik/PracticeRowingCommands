@@ -142,8 +142,8 @@ func _on_allways_show_tooltip(node,tooltip_type):
 func _on_allways_hide_tooltip(node,tooltip_type):
 		emit_signal("toggle_tooltip",false, node, tooltip_type)
 
-func startTour():
-	emit_signal("startTour")
+func startTour(firstTour):
+	emit_signal("startTour",firstTour)
 
 func settingsLoaded():
 	emit_signal("settingsLoadedSignal")

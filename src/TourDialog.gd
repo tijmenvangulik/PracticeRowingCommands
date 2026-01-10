@@ -5,6 +5,7 @@ extends WindowDialog
 # var a = 2
 # var b = "text"
 var isLastStep=false
+var isAutoStarted=false
 
 var tourStep=1
 var tourTexts= ["OptionLanguageTooltip","OptionStartTooltip","ShowHideTootipsTooltip","SettingsButtonTooltip","ForwardsBackwardsTooltip","CommandsTourText","ShortCutTourText"]
@@ -25,9 +26,14 @@ func handleShow():
 func _init():
 	connect("visibility_changed",self,"handleShow");
 
-func _on_startTour():
+func _on_startTour(autoStared=false):
 	tourStep=1
 	isLastStep=false
+	isAutoStarted=autoStared
+	if isAutoStarted:
+		$HSplitContainer/TourStop.text="TourSkip"
+	else:
+		$HSplitContainer/TourStop.text="TourStop"
 	show_modal(true)
 	
 
@@ -39,6 +45,7 @@ func _on_languageChanged():
 #	pass
 
 func _on_TourStop_pressed():
+		
 	stopTour()
 
 
@@ -51,8 +58,11 @@ func _on_TourNext_pressed():
 
 func stopTour():
 	visible=false
-	
-	$"%OptionStart".startOnWater()
+	if isAutoStarted:
+		savePracticeAsDone()
+		$"%OptionStart".nextPractice()
+	else:
+		$"%OptionStart".startOnWater()
 	
 func ShowStep():
 	isLastStep=tourStep>=tourTexts.size()
@@ -76,13 +86,14 @@ func ShowStep():
 	$HSplitContainer/TourNext.visible=!isLastStep
 	$HSplitContainer/StartPractices.visible=isLastStep
 	if isLastStep:
-		$"%OptionStart".logEndPractice(true)
-		$"%OptionStart".savePractice()
+		savePracticeAsDone()
 		$HSplitContainer/StartPractices.grab_focus()
 	else:
 		$HSplitContainer/TourNext.grab_focus()
 
-
+func savePracticeAsDone():
+	$"%OptionStart".logEndPractice(true)
+	$"%OptionStart".savePractice()
 func _on_StartPractices_pressed():
 	visible=false
 	$"%OptionStart".nextPractice()
