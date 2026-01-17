@@ -1775,6 +1775,8 @@ anchor_top = 0.75
 anchor_right = 0.5
 anchor_bottom = 0.75
 grow_horizontal = 2
+size_flags_horizontal = 5
+size_flags_vertical = 5
 custom_styles/panel = SubResource( 55 )
 script = ExtResource( 60 )
 grid = NodePath("ScrollContainer/MarginContainer/GridContainer")
@@ -1808,7 +1810,6 @@ margin_left = 7.0
 margin_top = 7.0
 margin_right = 19.0
 margin_bottom = 42.0
-script = null
 
 [node name="Speak" type="Button" parent="CanvasLayer/ButtonsContainer"]
 visible = false

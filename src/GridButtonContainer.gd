@@ -126,3 +126,11 @@ func setStyle():
 func _highContrastChangedSignal(highContrast):
 
 	setStyle()
+	
+func can_drop_data(_pos, data):
+	var dragButtonParent=data.dragButton.get_parent()
+	var grid=self.get_parent()
+	return typeof(data) == TYPE_DICTIONARY && data["command"]!=null && dragButtonParent!=grid
+
+func drop_data(_pos, data):
+	get_parent().emit_signal("button_droppedOnSourceGrid",data)

@@ -46,6 +46,9 @@ func _ready():
 	GameEvents.connect("startPlay",self,"_startPlaySignal")
 	GameEvents.connect("commandsChanged",self,"_commandsChanged");
 	GameEvents.connect("customButtonSetChangedSignal",self,"_customButtonSetChangedSignal")
+	#
+	
+	get_viewport().connect("size_changed",self,"_viewPortSizeChanged")
 	
 	if GameState.mobileMode:
 		grid.columns=1
@@ -271,6 +274,20 @@ func loadButtons():
 			margin_top=5
 			incMargins(grid,5)
 	
+	delay_scaleToScreenWidth()
+
+var resizing=false
+
+func delay_scaleToScreenWidth():
+	if resizing:
+		return
+	resizing=true
+	var t=Utilities.startTimer(0.2)
+	yield(t, "timeout")
+	Utilities.removeTimer(t)
+	scaleToScreenWidth()
+	resizing=false
+	
 func incMargins(conainer,amount):
 	for c in conainer.get_child_count():
 		var item=conainer.get_child(c)
@@ -308,3 +325,28 @@ func setVisible(show : bool):
 	
 func _customButtonSetChangedSignal():
 	setCustomButtonSet(Settings.customButtonSet)
+
+func _viewPortSizeChanged():
+	scaleToScreenWidth()
+	
+func scaleToScreenWidth():
+	if !GameState.mobileMode:
+		var buttons=$ScrollContainer/MarginContainer
+		var newScale=1
+		var width=self.rect_size.x
+		var screenWidth=get_viewport_rect().size.x
+		#OS.window_size.x
+		if width>screenWidth || self.rect_scale.x!=1:
+			newScale=screenWidth/width
+			if newScale>1: 
+				newScale=1
+			rect_pivot_offset.x=width/2
+			self.rect_scale.x=newScale
+			self.rect_scale.y=newScale
+
+			
+			#margin_left=0.5
+			#margin_right=0.5
+			
+		
+
