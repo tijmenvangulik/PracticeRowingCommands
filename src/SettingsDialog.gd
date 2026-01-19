@@ -275,6 +275,7 @@ func getSettings(removePrivate=false):
 	
 	var save_dict = {"translations" : commandDict,
 	  "customButtonSet":Settings.customButtonSet,
+	  "customButtonSetMobile": Settings.customButtonSetMobile,
 	  "ruleset":ruleset,
 	  "highScore":Settings.highScore,
 	  "zoom":Settings.zoom,
@@ -311,6 +312,7 @@ func getSharedSettings(name : String):
 	  "boatType":Utilities.mergeSettingsValue("boatType",null,currentSettings,BaseSettings.activeBaseSettings),
 	  "translations" : Utilities.mergeSettingsDict("translations","",currentSettings,BaseSettings.activeBaseSettings),
 	  "customButtonSet":Utilities.mergeSettingsValue("customButtonSet",null,currentSettings,BaseSettings.activeBaseSettings),
+	  "customButtonSetMobile":Utilities.mergeSettingsValue("customButtonSetMobile",null,currentSettings,BaseSettings.activeBaseSettings),
 	  "ruleset":Utilities.mergeSettingsValue("ruleset","",currentSettings,BaseSettings.activeBaseSettings),
 	  "tooltips":Utilities.mergeSettingsDict("tooltips","",currentSettings,BaseSettings.activeBaseSettings),
 	  "shortcuts":Utilities.mergeSettingsDict("shortcuts","",currentSettings,BaseSettings.activeBaseSettings),
@@ -425,6 +427,9 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 	var customButtonSet=[]
 	if dict.has("customButtonSet"):
 		customButtonSet=dict["customButtonSet"]
+	var customButtonSetMobile=[]
+	if dict.has("customButtonSetMobile"):
+		customButtonSetMobile=dict["customButtonSetMobile"]
 	
 	var 	waterAnimationOn=false
 	if dict.has("waterAnimation"): 
@@ -478,11 +483,16 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 	
 	
 		
-	
+	var buttonSetChanged=false
 	if typeof(customButtonSet)==TYPE_ARRAY:
 		Settings.customButtonSet=customButtonSet
+		buttonSetChanged=true
+	if typeof(customButtonSetMobile)==TYPE_ARRAY:
+		Settings.customButtonSetMobile=customButtonSetMobile
+		buttonSetChanged=true
+	if buttonSetChanged:
 		GameEvents.customButtonSetChanged()
-	
+		
 	#clear translations and tooltips
 	for i in range(0,commandTranslationsGrid.get_child_count()):
 		var obj=commandTranslationsGrid.get_child(i);
@@ -598,7 +608,9 @@ func loadSettings():
 		BaseSettings.loadSharedSetings(settings.percent_decode(),true)
 		
 	var settingsId=get_parameter("settingId")
-	#settingsId="69554e80bd189b0a14289a24"
+	#if (OS.is_debug_build()):
+		#settingsId="696d1260b8c0dce46706c511"
+		#settingsId="696d2c6cb8c0dce46706c512"
 	
 	if settingsId!=null && settingsId!="":
 		settingFromUrl=true

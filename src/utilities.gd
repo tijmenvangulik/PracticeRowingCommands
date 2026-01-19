@@ -243,7 +243,15 @@ func getDefaultJsonSetting(name : String):
 		"ButtonSet":
 			if  settings.has("customButtonSet"):
 				result=settings.get("customButtonSet")
-				
+			if GameState.mobileMode && settings.has("customButtonSetMobile"):
+				var mobileSettings=settings.get("customButtonSetMobile")
+				if mobileSettings!=null && mobileSettings.size()>0:
+					result=mobileSettings
+		"ButtonSetMobile":
+			if settings.has("customButtonSetMobile"):
+				var mobileSettings=settings.get("customButtonSetMobile")
+				if mobileSettings!=null && mobileSettings.size()>0:
+					result=mobileSettings
 	
 	if result==null || result.size()==0:
 		var resultStr=tr(name)

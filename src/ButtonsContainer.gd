@@ -324,7 +324,10 @@ func setVisible(show : bool):
 	$"%EditButtons".visible=show 
 	
 func _customButtonSetChangedSignal():
-	setCustomButtonSet(Settings.customButtonSet)
+	var buttonSet=Settings.customButtonSet
+	if GameState.mobileMode && Settings.customButtonSetMobile.size()>0:
+		buttonSet=Settings.customButtonSetMobile
+	setCustomButtonSet(buttonSet)
 
 func _viewPortSizeChanged():
 	scaleToScreenWidth()

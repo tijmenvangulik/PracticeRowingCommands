@@ -6,21 +6,25 @@ export (NodePath) onready var commandContainerSource = get_node(commandContainer
 export (NodePath) onready var commandContainerDest = get_node(commandContainerDest) as GridContainer
 
 var customButtonSetChanged=false;
+var mobileLayout=false
 
 func _ready():
 	GameEvents.connect("customButtonSetChangedSignal",self,"_customButtonSetChangedSignal")
 	GameEvents.connect("languageChangedSignal",self,"_languageChangedSignal");
 	
-#	if GameState.mobileMode:
-#		commandContainerSource.columns=2
-#		commandContainerDest.columns=1
+	if GameState.mobileMode:
+		mobileLayout=true
+		$GridContainer/DestkopMobileSwitch.pressed=true
+		$Label.text="DragButtonExplainMobile"
+	else:
+		GameEvents.register_allways_tooltip($GridContainer/DestkopMobileSwitch,"DestkopMobileSwitchTooltip")
 
 func init():
 	loadCommandSet()
 	loadDestButtons()
-
 	
 func _languageChangedSignal():
+	$GridContainer.margin_left=-200
 	loadDestButtons()
 
 func addGridGrouper(container):
@@ -62,25 +66,53 @@ func clearDestGrid():
 
 func loadDestButtons():
 	clearDestGrid()
-	
+	if mobileLayout:
+		commandContainerDest.columns=1
+	else:
+		commandContainerDest.columns=5
+		
 	var buttonSet=Settings.customButtonSet
-	if buttonSet.size()==0:
-		buttonSet=GameState.getDefaultButtonSet()
+	if mobileLayout:
+		if Settings.customButtonSetMobile.size()>0:
+			buttonSet=Settings.customButtonSetMobile
+		if buttonSet==null || buttonSet.size()==0:
+		  buttonSet=Utilities.getDefaultJsonSetting("ButtonSetMobile")
+	else:
+		if buttonSet.size()==0:
+			buttonSet=GameState.getDefaultButtonSet()
+	var cnt=0
 	for item in buttonSet:
-#		if !GameState.mobileMode || item!='' && item!=null:
-		var grouper=addGridGrouper(commandContainerDest)
-		
-		var horiz=grouper.getHorizontalGroup()
-		
-		horiz.alignment=horiz.ALIGN_CENTER;
+		var commandNames=[]
 		if typeof(item)==TYPE_STRING:
-			var commandNames=item.split(",")
-			for buttonItem in commandNames:
-				addGridButton(horiz,buttonItem,false,null)
-#	if !GameState.mobileMode:	
-	var totalGridItems=commandContainerDest.columns*5;
-	for item in range(buttonSet.size(),totalGridItems):
-		addGridGrouper(commandContainerDest)
+			commandNames=item.split(",")
+		var allEmpty=true
+		for buttonName in commandNames:
+			if buttonName!=null && buttonName!="":
+				allEmpty=false
+				break
+		if !allEmpty || !mobileLayout:
+			var grouper=addGridGrouper(commandContainerDest)
+			
+			var horiz=grouper.getHorizontalGroup()
+			
+			horiz.alignment=horiz.ALIGN_CENTER;
+			if commandNames.size()>0:
+				for buttonItem in commandNames:
+					addGridButton(horiz,buttonItem,false,null)
+			cnt=cnt+1
+	
+	if mobileLayout:
+		var totalGridItems=5*4;
+		while cnt< totalGridItems:
+			var grouper=addGridGrouper(commandContainerDest)
+			var horiz=grouper.getHorizontalGroup()			
+			horiz.alignment=horiz.ALIGN_CENTER;
+			cnt=cnt+1
+	else:
+		var totalGridItems=commandContainerDest.columns*5;
+		for item in range(buttonSet.size(),totalGridItems):
+			addGridGrouper(commandContainerDest)
+		
 	enableDisableSourceButtons()
 
 func getParentGrid(item):
@@ -129,15 +161,19 @@ func enableDisableSourceButtons():
 		button.get_node("GridButton").disabled=disabled
 		
 func updateCustomButtonSet():
-	Settings.customButtonSet=[]
+	var buttonsSet=[]
 	for  grouper in commandContainerDest.get_children():
 		var buttonNames=""		
 		for  button in grouper.get_node("GridItemGrouperHoriz2").get_children():
 			if buttonNames!="":
 				buttonNames=buttonNames+","
 			buttonNames=buttonNames+button.commandName
-		Settings.customButtonSet.append(buttonNames)
-	
+		buttonsSet.append(buttonNames)
+	if mobileLayout:
+		Settings.customButtonSetMobile=buttonsSet
+	else:
+		Settings.customButtonSet=buttonsSet
+		
 func GetCustomButtonFlatDict():
 	var result={}
 	for  grouper in commandContainerDest.get_children():
@@ -153,7 +189,10 @@ func ensureButtonsetSaved():
 
 
 func _on_DefaultCustomButtons_pressed():
-	Settings.customButtonSet=[]
+	if mobileLayout:
+		Settings.customButtonSetMobile=[]
+	else:
+		Settings.customButtonSet=[]
 	loadDestButtons();
 	customButtonSetChanged=false
 	GameEvents.customButtonSetChanged()
@@ -161,10 +200,14 @@ func _on_DefaultCustomButtons_pressed():
 
 	
 func _on_ClearCustomButtons_pressed():
-	Settings.customButtonSet=[]
-	var totalGridItems=5*5;
+	var buttonsSet=[]
 	for item in range(1,5):
-		Settings.customButtonSet.append("")
+		buttonsSet.append("")
+		
+	if mobileLayout:
+		Settings.customButtonSetMobile=buttonsSet
+	else:
+		Settings.customButtonSet=buttonsSet
 	loadDestButtons();
 	customButtonSetChanged=true
 
@@ -177,3 +220,9 @@ func _on_SettingsDialog_visibility_changed():
 	else:
 		customButtonSetChanged=false
 		loadDestButtons();
+
+
+func _on_DestkopMobileSwitch_toggled(button_pressed: bool) -> void:
+	ensureButtonsetSaved()
+	mobileLayout=button_pressed
+	loadDestButtons()

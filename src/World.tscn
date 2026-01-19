@@ -1,4 +1,4 @@
-[gd_scene load_steps=160 format=2]
+[gd_scene load_steps=162 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -118,6 +118,8 @@
 [ext_resource path="res://assets/decrement.png" type="Texture" id=116]
 [ext_resource path="res://assets/decrementSelected.png" type="Texture" id=117]
 [ext_resource path="res://assets/Search.png" type="Texture" id=118]
+[ext_resource path="res://assets/Mobile.png" type="Texture" id=119]
+[ext_resource path="res://assets/desktop.png" type="Texture" id=120]
 
 [sub_resource type="ShaderMaterial" id=43]
 shader = ExtResource( 80 )
@@ -3881,18 +3883,19 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -50.0
-margin_top = 17.5
+margin_left = -479.04
+margin_top = 13.5
 margin_right = -14.04
 margin_bottom = 53.5
 grow_horizontal = 0
 size_flags_horizontal = 11
 custom_constants/hseparation = 5
-columns = 2
+columns = 3
 
 [node name="ClearCustomButtons" type="Button" parent="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/GridContainer"]
-margin_right = 182.0
-margin_bottom = 30.0
+margin_left = 87.0
+margin_right = 269.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 0, 30 )
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 11 )
@@ -3905,15 +3908,21 @@ __meta__ = {
 }
 
 [node name="DefaultCustomButtons" type="Button" parent="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/GridContainer"]
-margin_left = 187.0
-margin_right = 378.0
-margin_bottom = 30.0
+margin_left = 274.0
+margin_right = 465.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 0, 30 )
 custom_fonts/font = ExtResource( 50 )
 text = "DefaultCustomButtons"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="DestkopMobileSwitch" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/GridContainer"]
+margin_right = 82.0
+margin_bottom = 40.0
+custom_icons/off = ExtResource( 120 )
+custom_icons/on = ExtResource( 119 )
 
 [node name="EnablePracticesTab" type="Tabs" parent="CanvasLayer/SettingsDialog/TabContainer"]
 visible = false
@@ -4508,6 +4517,7 @@ script = ExtResource( 112 )
 [connection signal="button_droppedOnSourceGrid" from="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/CommandSelectScrollContainer/CommandContainerSource" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_CommandContainerSource_button_droppedOnSourceGrid"]
 [connection signal="pressed" from="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/GridContainer/ClearCustomButtons" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_ClearCustomButtons_pressed"]
 [connection signal="pressed" from="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/GridContainer/DefaultCustomButtons" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_DefaultCustomButtons_pressed"]
+[connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/GridContainer/DestkopMobileSwitch" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_DestkopMobileSwitch_toggled"]
 [connection signal="pressed" from="CanvasLayer/SettingsDialog/TabContainer/EnablePracticesTab/UseDefaultPractices" to="CanvasLayer/SettingsDialog/TabContainer/EnablePracticesTab" method="_on_UseDefaultPractices_pressed"]
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/EnablePracticesTab/UseDefaultPractices" to="CanvasLayer/SettingsDialog/TabContainer/EnablePracticesTab" method="_on_UseDefaultPractices_toggled"]
 [connection signal="pressed" from="CanvasLayer/SettingsDialog/CloseSettingsButton" to="CanvasLayer/SettingsDialog" method="_on_CloseSettingsButton_pressed"]
