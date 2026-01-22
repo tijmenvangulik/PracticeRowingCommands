@@ -3893,9 +3893,8 @@ custom_constants/hseparation = 5
 columns = 3
 
 [node name="ClearCustomButtons" type="Button" parent="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/GridContainer"]
-margin_left = 87.0
-margin_right = 269.0
-margin_bottom = 40.0
+margin_right = 182.0
+margin_bottom = 36.0
 rect_min_size = Vector2( 0, 30 )
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 11 )
@@ -3908,21 +3907,28 @@ __meta__ = {
 }
 
 [node name="DefaultCustomButtons" type="Button" parent="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/GridContainer"]
-margin_left = 274.0
-margin_right = 465.0
-margin_bottom = 40.0
+margin_left = 187.0
+margin_right = 386.0
+margin_bottom = 36.0
 rect_min_size = Vector2( 0, 30 )
 custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 11 )
+custom_styles/focus = ExtResource( 34 )
+custom_styles/normal = ExtResource( 10 )
 text = "DefaultCustomButtons"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="DestkopMobileSwitch" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab/GridContainer"]
-margin_right = 82.0
-margin_bottom = 40.0
+margin_left = 391.0
+margin_right = 481.0
+margin_bottom = 36.0
 custom_icons/off = ExtResource( 120 )
 custom_icons/on = ExtResource( 119 )
+custom_styles/hover = ExtResource( 11 )
+custom_styles/focus = ExtResource( 34 )
+custom_styles/normal = ExtResource( 10 )
 
 [node name="EnablePracticesTab" type="Tabs" parent="CanvasLayer/SettingsDialog/TabContainer"]
 visible = false
