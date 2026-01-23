@@ -16,6 +16,7 @@ func _ready():
 		mobileLayout=true
 		$GridContainer/DestkopMobileSwitch.pressed=true
 		$Label.text="DragButtonExplainMobile"
+		commandContainerSource.columns=3
 	else:
 		GameEvents.register_allways_tooltip($GridContainer/DestkopMobileSwitch,"DestkopMobileSwitchTooltip")
 

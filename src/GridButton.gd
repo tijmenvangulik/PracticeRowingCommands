@@ -10,6 +10,8 @@ func get_drag_data(_pos):
 	var cpb = Button.new()
 	cpb.rect_size = Vector2(100, 30)
 	if GameState.mobileMode:
+		cpb.rect_pivot_offset.x=cpb.rect_size.x
+		cpb.rect_pivot_offset.y=cpb.rect_size.y
 		cpb.rect_scale.x=2
 		cpb.rect_scale.y=2
 	cpb.text=text

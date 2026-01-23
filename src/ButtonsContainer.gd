@@ -243,6 +243,7 @@ func loadButtons():
 			var allButtonsDisabled=true
 			var box= HBoxContainer.new();
 			box.alignment=box.ALIGN_CENTER;
+			
 			container.add_child(box)
 
 			var iButton=0

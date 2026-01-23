@@ -32,7 +32,10 @@ func setButtonText(newText):
 		$GridButton.text=tr(newText)+" "+shortcut
 	else:
 		$GridButton.text=newText
-	
+	rect_min_size.x=0
+	var parent=get_parent()
+	if parent!=null:
+		parent.rect_min_size.x=0
 func _on_EditCommandText_customCommandTextChanged(changed_command,changed_commandName, changed_value):
 	if  changed_command==command:
 		var button=$GridButton
