@@ -76,10 +76,12 @@ func loadDestButtons():
 		if Settings.customButtonSetMobile.size()>0:
 			buttonSet=Settings.customButtonSetMobile
 		if buttonSet==null || buttonSet.size()==0:
-		  buttonSet=Utilities.getDefaultJsonSetting("ButtonSetMobile")
-	else:
-		if buttonSet.size()==0:
-			buttonSet=GameState.getDefaultButtonSet()
+			var mobileSet=Utilities.getDefaultJsonSetting("ButtonSetMobile")
+			if mobileSet!=null && mobileSet.size()>0:
+				buttonSet=mobileSet
+	
+	if buttonSet.size()==0:
+		buttonSet=GameState.getDefaultButtonSet()
 	var cnt=0
 	for item in buttonSet:
 		var commandNames=[]
@@ -173,6 +175,7 @@ func updateCustomButtonSet():
 		Settings.customButtonSetMobile=buttonsSet
 	else:
 		Settings.customButtonSet=buttonsSet
+	customButtonSetChanged=false
 		
 func GetCustomButtonFlatDict():
 	var result={}
