@@ -1,4 +1,4 @@
-[gd_scene load_steps=162 format=2]
+[gd_scene load_steps=163 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -120,6 +120,7 @@
 [ext_resource path="res://assets/Search.png" type="Texture" id=118]
 [ext_resource path="res://assets/Mobile.png" type="Texture" id=119]
 [ext_resource path="res://assets/desktop.png" type="Texture" id=120]
+[ext_resource path="res://mobileTooltip.gd" type="Script" id=121]
 
 [sub_resource type="ShaderMaterial" id=43]
 shader = ExtResource( 80 )
@@ -1705,9 +1706,23 @@ custom_constants/shadow_as_outline = 1
 custom_fonts/font = ExtResource( 110 )
 align = 1
 
+[node name="mobileTooltip" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+modulate = Color( 1, 1, 1, 0.85098 )
+margin_left = 10.0
+margin_top = 74.0
+margin_right = 460.0
+margin_bottom = 114.0
+grow_vertical = 2
+size_flags_horizontal = 8
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 110 )
+align = 1
+autowrap = true
+script = ExtResource( 121 )
+
 [node name="replayCommandText" type="Label" parent="CanvasLayer"]
 unique_name_in_owner = true
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

@@ -29,3 +29,15 @@ func can_drop_data(_pos, data):
 
 func drop_data(_pos, data):
 	owner.callButtonDropped(data)
+
+
+func _on_GridButton_focus_exited() -> void:
+	if GameState.mobileMode && owner.canClickButton:
+		GameEvents.showMobileTooltip("")
+
+
+func _on_GridButton_focus_entered() -> void:
+	if GameState.mobileMode && owner.canClickButton:
+		var tooltip=owner.calcClickableButtonTooltip()
+		GameEvents.showMobileTooltip(tooltip)
+		

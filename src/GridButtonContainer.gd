@@ -20,7 +20,6 @@ func _ready():
 	GameEvents.connect("highContrastChangedSignal",self,"_highContrastChangedSignal")
 	
 
-	
 func calcShortCut(buttonText):
 	shortcut=Utilities.calcShortCut(command,commandName,buttonText)
 	
@@ -55,15 +54,15 @@ func _on_EditCommandText_customTooltipTextChanged(changed_command,changed_comman
 func execCommand():
 	if canClickButton && !GameState.isReplaying:
 		GameEvents.doCommand(command)
-		
+			
+
 func callButtonDropped(droppedInfo):
 	emit_signal("button_dropped",droppedInfo,self)
 
-func get_tooltip_text(node):
-	if !GameState.showTooltips && !Settings.showCommandTooltips:
-		return ""
-	customTooltipText=Utilities.getCommandTooltip(command)
+func calcClickableButtonTooltip():
 	var returnTooltip=""
+	customTooltipText=Utilities.getCommandTooltip(command)
+	
 	if customTooltipText!='' && !GameState.showTooltips:
 		returnTooltip= customTooltipText
 	else:
@@ -81,7 +80,20 @@ func get_tooltip_text(node):
 		returnTooltip=returnTooltip+tr("Shortcut")+": "+shortcut
 	
 	return returnTooltip
-
+	
+func get_tooltip_text(node):
+	if (!canDrag && GameState.mobileMode )|| ( !GameState.showTooltips && !Settings.showCommandTooltips ) :
+		return ""
+# for drag drop use the normal whole command as tooltip	
+	if canDrag:
+		var returnTooltip=""
+		returnTooltip=Utilities.getCommandTextTranslation(command)
+		if returnTooltip==tr($GridButton.text):
+			returnTooltip=""
+		return returnTooltip
+	if canClickButton:
+		return calcClickableButtonTooltip()
+	return ""
 
 	
 func setButtonTextFromCommand(commandName):

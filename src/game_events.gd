@@ -49,6 +49,8 @@ signal loadedSharedSettings
 
 signal windowSizeChanged
 
+signal showMobileTooltip(tooltipText)
+
 func sendCommandChanged(command : int,commandName :String,value : String) -> void:
 	emit_signal("customCommandTextChanged",command,commandName,value)
 
@@ -109,7 +111,10 @@ func crash():
 
 func practicesChanged():
 	emit_signal("practicesChanged")
-	
+
+func showMobileTooltip(tooltipText):
+	emit_signal("showMobileTooltip",tooltipText)
+
 #you can put other stuff here, like maybe a path to a custom panel to put
 #into the tooltip scene. I have basiscs like which type it is and where it should
 #be positioned.

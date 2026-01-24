@@ -20,3 +20,6 @@ size_flags_vertical = 0
 custom_fonts/font = SubResource( 1 )
 action_mode = 0
 script = ExtResource( 1 )
+
+[connection signal="focus_entered" from="GridButton" to="GridButton" method="_on_GridButton_focus_entered"]
+[connection signal="focus_exited" from="GridButton" to="GridButton" method="_on_GridButton_focus_exited"]
