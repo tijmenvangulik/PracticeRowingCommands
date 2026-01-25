@@ -61,6 +61,8 @@ func callButtonDropped(droppedInfo):
 
 func calcClickableButtonTooltip():
 	var returnTooltip=""
+	if $GridButton.disabled:
+		return ""
 	customTooltipText=Utilities.getCommandTooltip(command)
 	
 	if customTooltipText!='' && !GameState.showTooltips:
@@ -122,7 +124,9 @@ func init(newCommandName,enabled):
 		button.visible=false
 	
 	button.disabled=!enabled
-	
+	if !enabled:
+		button.focus_mode=Control.FOCUS_NONE
+		
 	if GameState.mobileMode:
 		#add more margin to botton for mobile
 		$GridButton.margin_bottom=5

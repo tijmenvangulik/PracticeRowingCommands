@@ -60,7 +60,8 @@ func _ready():
 		grow_vertical=Control.GROW_DIRECTION_END
 		$ScrollContainer.scroll_vertical_enabled=true
 
-		
+		#Utilities.MobileScrollConainer($ScrollContainer)
+
 		
 func setChildNodeText(node,commandName,value):
 	for N in node.get_children():
