@@ -31,5 +31,5 @@ func recalcOrignalText():
 		$LineEdit/OriginalText.text=""
 		
 
-func _on_EditTooltipText_gui_input(event: InputEvent) -> void:
+func _on_LineEdit_gui_input(event: InputEvent) -> void:
 	recalcOrignalText()
