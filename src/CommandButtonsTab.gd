@@ -143,10 +143,18 @@ func button_dropped_dest(droppedInfo,dropped):
 		enableDisableSourceButtons()
 	
 func button_droppedOnGrouper(droppedInfo,groupItem):
+	
+	var groupItemGlobal = groupItem.rect_global_position + groupItem.get_rect().size/2
+	var mousePos=get_viewport().get_mouse_position()
+	var droppedLeft=mousePos.x<groupItemGlobal.x
+
 	var grid=getParentGrid(droppedInfo.dragButton)
 	if grid!=commandContainerSource:
 		droppedInfo.dragButton.get_parent().remove_child(droppedInfo.dragButton)
-	addGridButton(groupItem.getHorizontalGroup(),droppedInfo.commandName,false,null)
+	if droppedLeft:
+		addGridButton(groupItem.getHorizontalGroup(),droppedInfo.commandName,false,0)
+	else:
+		addGridButton(groupItem.getHorizontalGroup(),droppedInfo.commandName,false,null)
 	customButtonSetChanged=true
 	enableDisableSourceButtons()
 	
