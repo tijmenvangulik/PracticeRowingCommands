@@ -28,8 +28,8 @@
      inkscape:cy="374.38242"
      inkscape:window-width="1360"
      inkscape:window-height="831"
-     inkscape:window-x="337"
-     inkscape:window-y="69"
+     inkscape:window-x="82"
+     inkscape:window-y="57"
      inkscape:window-maximized="0"
      inkscape:snap-global="true"
      showguides="false"
@@ -41,7 +41,7 @@
      inkscape:document-units="mm"
      inkscape:showpageshadow="2"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:current-layer="svg3686"><inkscape:grid
+     inkscape:current-layer="layer2"><inkscape:grid
        type="xygrid"
        id="grid2171"
        dotted="true"
@@ -7451,8 +7451,8 @@
      transform="matrix(0.03717509,0,0,0.03717509,891.30678,406.19391)"
      style="display:inline;fill:#ffffff"
      inkscape:export-filename="../src/assets/exitfullscreen.png"
-     inkscape:export-xdpi="100.87376"
-     inkscape:export-ydpi="100.87376"><g
+     inkscape:export-xdpi="90.786385"
+     inkscape:export-ydpi="90.786385"><g
        id="icomoon-ignore-3"
        style="fill:#ffffff" /><path
        fill="#000000"
@@ -13211,8 +13211,8 @@
        transform="matrix(0.04843621,0,0,0.04843621,739.48297,444.80372)"
        style="fill:#ffffff"
        inkscape:export-filename="../src/assets/fullscreen.png"
-       inkscape:export-xdpi="112.20094"
-       inkscape:export-ydpi="112.20094"><g
+       inkscape:export-xdpi="102.09204"
+       inkscape:export-ydpi="102.09204"><g
          id="icomoon-ignore"
          style="fill:#ffffff" /><path
          fill="#000000"
