@@ -51,6 +51,8 @@ signal windowSizeChanged
 
 signal showMobileTooltip(tooltipText)
 
+signal javaScriptMessage
+
 func sendCommandChanged(command : int,commandName :String,value : String) -> void:
 	emit_signal("customCommandTextChanged",command,commandName,value)
 
@@ -158,3 +160,6 @@ func _sizeChanged():
 
 func _ready():
 	get_tree().get_root().connect("size_changed",self,"_sizeChanged")
+
+func sendJavascriptMessage(data):
+	emit_signal('javaScriptMessage', data)

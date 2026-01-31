@@ -67,7 +67,12 @@
 			aspect-ratio: 1.45;
 			width: auto;
 		}
-
+		.rotate-phone-icon {
+			opacity: 0.7;
+			width: 60px;
+			height: 60px;
+			padding-top: 20px;
+		}
 		#status-progress {
 			width: 366px;
 			height: 7px;
@@ -229,7 +234,8 @@
 	</div>
 	<div  id="phone-warning-overlay" class="phone-warning-overlay" role="alert">
 		<div class="phone-warning-panel">
-  		  <div class="phone-warning-text"><span id="mobileWarningTitle">Attention!</span><br><span id="mobileWarningText">This web app works best on larger screens (tablet,laptop or monitor) You can use the app when you hold your phone horizontal.<span></div>
+		  <img src="rotate-phone.png" class="rotate-phone-icon" alt="rotate phone">
+  		  <div class="phone-warning-text"><span id="mobileWarningText">This web app works best on larger screens (tablet,laptop or monitor) You can use the app when you hold your phone horizontal.<span></div>
 		  <button  class="close-warning" onclick="return startMobile()" id="mobileButton" >Continue</button>
 		<div>  
 	</div>	
@@ -244,23 +250,57 @@
 			var height=max(document.documentElement.clientHeight, window.innerHeight || 0);
 			return width <= maxPixels || height <= maxPixels;
 		}
+		function hasFullScreen() {
+			let doc = window.document;	
+			let docEl = doc.documentElement;
 		
+			let requestFullScreen = docEl.requestFullscreen ||	docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+			return typeof requestFullScreen == "function";
+		}
+		function fullScreenActive() {
+			let doc = window.document;	
+			if  (doc.fullscreenElement || doc.mozFullScreenElement || doc.webkitFullscreenElement || doc.msFullscreenElement) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		var fullScreenHandlerRegistred=false;
 		function fullscreen(){
 			let doc = window.document;
 			let docEl = doc.documentElement;
 			
 			let requestFullScreen = docEl.requestFullscreen ||	docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+			hasFullScreenFeature=requestFullScreen;
+			if (typeof requestFullScreen == "function")	{
+				hasFullScreen=true;
+				requestFullScreen.call(docEl).then(function() {
+					window.postMessage('toGodot:fullScreenChanged','*');
+					if (!fullScreenHandlerRegistred) {
+						fullScreenHandlerRegistred=true;
+						docEl.addEventListener("fullscreenchange", fullscreenchangeHandler);
+					}
+				});
+			}			
+		}
+		function fullscreenchangeHandler() {
+			window.postMessage('toGodot:fullScreenChanged','*');
+		}
+		function cancelFullScreen() {
+			let doc = window.document;
 			let cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen ||	doc.msExitFullscreen;
-			if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
-					requestFullScreen.call(docEl);
-			}
-			else {
-				cancelFullScreen.call(doc);
+			if (typeof cancelFullScreen == "function")	{
+				cancelFullScreen.call(doc).then(function() {
+					window.postMessage('toGodot:fullScreenChanged','*');
+				});
 			}
 		}
 		function startMobile() {
 			document.all['phone-warning-overlay'].remove();
-			fullscreen();
+			if (hasFullScreen) {
+				fullscreen();
+			}
 			return false;
 		}
 	</script>
