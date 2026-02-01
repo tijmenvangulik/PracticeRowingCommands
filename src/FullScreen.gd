@@ -47,6 +47,7 @@ func _ready() -> void:
 		#GameEvents.connect("windowSizeChanged",self,"_sizeChanged");
 		GameEvents.connect("javaScriptMessage",self,"_javaScriptMessage")
 	updateButtonState()
+	GameEvents.register_allways_tooltip(self,"FullScreen")
 
 func _on_FullScreen_toggled(button_pressed: bool) -> void:
 	pass

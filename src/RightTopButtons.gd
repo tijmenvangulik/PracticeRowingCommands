@@ -13,6 +13,7 @@ func _ready():
 	if GameState.mobileMode:
 		add_constant_override("separation",24)
 		margin_top=14
+		margin_left=20
 	
 func _highContrastChangedSignal(highContrast):
 	setStyleButtons()

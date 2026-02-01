@@ -3361,7 +3361,7 @@ offset = Vector2( 0, 4 )
 [node name="FullScreen" type="Button" parent="CanvasLayer/RightTopButtons"]
 visible = false
 margin_left = 439.0
-margin_right = 451.0
+margin_right = 473.0
 margin_bottom = 30.0
 custom_styles/hover = ExtResource( 18 )
 custom_styles/pressed = ExtResource( 35 )

@@ -69,9 +69,14 @@
 		}
 		.rotate-phone-icon {
 			opacity: 0.7;
-			width: 60px;
-			height: 60px;
+			width: 50px;
+			height: 50px;
 			padding-top: 20px;
+		}
+		@media only screen and (orientation: landscape) {
+          .rotate-phone-icon {
+			display: none;
+		  }
 		}
 		#status-progress {
 			width: 366px;
@@ -165,7 +170,8 @@
 			border-width: 2px;
 			padding-left: 10px;
 			padding-right: 10px;
-		
+			height: 100%;
+			overflow-y: scroll;
 		}
 		.phone-warning-text {
 			display: flex;
@@ -176,6 +182,11 @@
 			font-size: 20px;
 			padding-top: 20px;
 			padding-bottom: 20px;
+		}
+		@media only screen and (orientation: landscape) {
+          .rotate-phone-icon {
+			font-size: 18px;
+		  }
 		}
 		.close-warning {
 			font-size: 20px;
@@ -310,10 +321,21 @@
 		if (userLang.length>2) {
 			userLang=userLang.substring(0,2);
 		}
+		var mobileWarningTextElement=document.getElementById("mobileWarningText");
+		
 		if (userLang=="nl") {
-			document.getElementById("mobileWarningTitle").innerText="Let op!";
-			document.getElementById("mobileWarningText").innerText="Deze web app werkt het beste op grotere schermen (tablet, laptop of monitor). Je kunt de app op een mobiel gebruiken als je je telefoon horizontaal houdt.";
+			mobileWarningTextElement.innerText="Deze web app werkt het beste op grotere schermen (tablet, laptop of monitor). Je kunt de app op een mobiel gebruiken als je je telefoon horizontaal houdt.";
 			document.getElementById("mobileButton").innerText="Ga door";
+		}
+		if (!hasFullScreen() && navigator.platform.includes("iPhone") ) {
+			var addMobileText=""
+			if (userLang=="nl") {
+				addMobileText="Voor volledige scherm ondersteuning op iPhones, voeg deze web app toe aan je startscherm en open hem van daaruit.";
+			}
+			else {
+				addMobileText="For full screen support on iPhones, please add this web app to your home screen and open it from there.";
+			}
+			mobileWarningTextElement.innerText+="\n"+addMobileText;
 		}
 		var appVersion="{{version}}";
 		var resolution=localStorage.getItem('resolution');
