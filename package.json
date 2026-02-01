@@ -10,7 +10,7 @@
   "devDependencies": {},
   "scripts": {
     "compress": "gzipper compress ./template/index.wasm --brotli ",
-    "updatehtml": "mustache package.json template/index.html > bin/html/index.html",
+    "updatehtml": "mustache package.json template/index.html > bin/html/index.html && cp ./template/index.apple-touch-icon.png ./bin/html/index.apple-touch-icon.png ",
     "updateversion": "mustache package.json template/version.json > bin/html/version.json",
     "copyjs": "cp ./template/index.js ./bin/html/index.js",
     "copyjs_godot_build": "cp ./template/index_godot_build.js ./bin/html/index.js",
