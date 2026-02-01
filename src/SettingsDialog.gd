@@ -38,7 +38,7 @@ func handleShow():
 		loadTabs()
 		
 func _highContrastChangedSignal(highContrastOn):
-	var highContrastButton=$TabContainer/DisplayTab/GridContainer/HBoxContainer3/HighContrastButton
+	var highContrastButton=$TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer3/HighContrastButton
 	highContrastButton.set_pressed(highContrastOn)
 
 func _init():

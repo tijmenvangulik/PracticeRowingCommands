@@ -28,3 +28,4 @@ func setStyleButtons():
 	Styles.SetMainDropDownStyle($ZoomContainer/ZoomPlus)
 	Styles.SetMainDropDownStyle($ZoomContainer/ZoomMin)
 	Styles.SetMainDropDownStyle($ForwardsBackwards)
+	Styles.SetMainDropDownStyle($FullScreen)
