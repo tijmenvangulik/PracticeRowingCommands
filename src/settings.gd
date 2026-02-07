@@ -25,4 +25,5 @@ var sharedSettings : Dictionary
 var checkFrameRateDisabled = false
 var highScoreName=""
 var highScoreClub=""
-
+var speakCommands = Constants.SpeakCommandsType.Default;
+var speechCultureCode=""

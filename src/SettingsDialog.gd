@@ -9,11 +9,15 @@ export (NodePath) onready var commandTranslationsHeaderGrid = get_node(commandTr
 export (NodePath) onready var commandTranslationsCommandsGrid = get_node(commandTranslationsCommandsGrid) as GridContainer
 
 export (NodePath) onready var showCommandTooltips = get_node(showCommandTooltips) as Button
+export (NodePath) onready var isoCultureCodeEditBox = get_node(isoCultureCodeEditBox) as TextEdit
+
+
 
 export (NodePath) onready var commandButtonsTab = get_node(commandButtonsTab) as CommandButtonsTab
 
 export (NodePath) onready var showShortCutsInButtons = get_node(showShortCutsInButtons) as Button
 export (NodePath) onready var boatTypeButton = get_node(boatTypeButton) as OptionButton
+export (NodePath) onready var speakCommandsButton = get_node(speakCommandsButton) as OptionButton
 
 export (NodePath) onready var enablePracticesTab = get_node(enablePracticesTab) as EnablePracticesTab 
 export (NodePath) onready var resolutionButton = get_node(resolutionButton) as OptionButton 
@@ -117,11 +121,14 @@ func _ready():
 	
 	GameEvents.register_allways_tooltip($TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons,"ShortCutTourText")
 	GameEvents.register_allways_tooltip($TabContainer/GeneralSettingsTab/GridContainer/BoatTypeLabel,"ScullTooltip")
-	
+	GameEvents.register_allways_tooltip($TabContainer/GeneralSettingsTab/GridContainer/SpeakCommandsLabel,"SpeakCommandsTooltip")
+	GameEvents.register_allways_tooltip($TabContainer/GeneralSettingsTab/GridContainer/IsoCultureCodeLabel,"IsoCultureCodeTooltip")
+		
 	Utilities.styleDropDown($TabContainer/GeneralSettingsTab/GridContainer/RuleSetDropDown)
 	Utilities.styleDropDown($ChoosePresetSettingsButton)
 	Utilities.styleDropDown(resolutionButton)
 	Utilities.styleDropDown(boatTypeButton)
+	Utilities.styleDropDown(speakCommandsButton)
 	
 	var commands=Constants.commandNames
 	while Settings.commandTranslations.size()<commands.size():
@@ -297,7 +304,9 @@ func getSettings(removePrivate=false):
 	  "sharedSettings":Settings.sharedSettings,
 	  "checkFrameRateDisabled":Settings.checkFrameRateDisabled,
 	  "highScoreName":Settings.highScoreName,
-	  "highScoreClub":Settings.highScoreClub
+	  "highScoreClub":Settings.highScoreClub,
+	  "speakCommands":Settings.speakCommands,
+	  "speechCultureCode":Settings.speechCultureCode
 	}
 	if removePrivate:
 		removePrivateSettings(save_dict)
@@ -310,6 +319,8 @@ func getSharedSettings(name : String):
 	var save_dict = { "name":name,
 	  "language":TranslationServer.get_locale(),
 	  "boatType":Utilities.mergeSettingsValue("boatType",null,currentSettings,BaseSettings.activeBaseSettings),
+	  "speakCommands":Utilities.mergeSettingsValue("speakCommands",0,currentSettings,BaseSettings.activeBaseSettings),
+	  "speechCultureCode":Utilities.mergeSettingsValue("speechCultureCode","",currentSettings,BaseSettings.activeBaseSettings),
 	  "translations" : Utilities.mergeSettingsDict("translations","",currentSettings,BaseSettings.activeBaseSettings),
 	  "customButtonSet":Utilities.mergeSettingsValue("customButtonSet",null,currentSettings,BaseSettings.activeBaseSettings),
 	  "customButtonSetMobile":Utilities.mergeSettingsValue("customButtonSetMobile",null,currentSettings,BaseSettings.activeBaseSettings),
@@ -362,11 +373,23 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 		 boatType=dict["boatType"]
 	if Settings.boatType!=boatType:
 		Settings.boatType=boatType
+	
 	recalcIsScullFromSettings()
-
-
 	
 	boatTypeButton.select(Settings.boatType)
+	
+	var speakCommands=Constants.SpeakCommandsType.Default
+	if dict.has("speakCommands"):
+		speakCommands=dict["speakCommands"]
+	Settings.speakCommands=speakCommands
+	speakCommandsButton.select(speakCommands)
+	
+	var speechCultureCode=""
+	if dict.has("speechCultureCode"):
+		speechCultureCode=dict["speechCultureCode"]
+	Settings.speechCultureCode=speechCultureCode
+	isoCultureCodeEditBox.text=speechCultureCode
+	hideShowIsoCultureCodeEditBox()
 	
 	if dict.has("sharedSettings"):
 		#here it is loaded into the settings and drop down
@@ -417,7 +440,7 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 		 tooltipsOn=dict["showCommandTooltips"]	
 	Settings.showCommandTooltips=tooltipsOn
 	showCommandTooltips.set_pressed(tooltipsOn)
-
+	
 	var 	shotCutsOn=false
 	if dict.has("showShortCutsInButtons"): 
 		 shotCutsOn=dict["showShortCutsInButtons"]
@@ -611,7 +634,8 @@ func loadSettings():
 	#if (OS.is_debug_build()):
 		#settingsId="696d1260b8c0dce46706c511"
 		#settingsId="696d2c6cb8c0dce46706c512"
-	
+		#settingsId="698785fdb64303eb6b7d801a"
+		
 	if settingsId!=null && settingsId!="":
 		settingFromUrl=true
 		$"%ShareSettingsDialog".loadSettings(settingsId)
@@ -815,3 +839,37 @@ func _on_Search_focus_entered() -> void:
 
 func _on_Search_focus_exited() -> void:
 	clearSearch()
+
+
+
+func _on_SpeakCommands_item_selected(index: int) -> void:
+	Settings.speakCommands=index
+	hideShowIsoCultureCodeEditBox()
+
+func hideShowIsoCultureCodeEditBox():
+	var  isVisible= Settings.speakCommands==Constants.SpeakCommandsType.IsoCultureCode
+	isoCultureCodeEditBox.visible=isVisible
+	$TabContainer/GeneralSettingsTab/GridContainer/IsoCultureCodeLabel.visible=isVisible
+	isCultureSupportedWarning()
+	
+func isCultureSupportedWarning():
+	var supported=true
+	if $"%SpeakCommand".speakCommandsOn() && OS.has_feature('JavaScript'):
+		var culture=$"%SpeakCommand".getSpeachCultureCode()
+		if culture!="" && culture!=null:
+			culture=culture.replace("'","")
+			supported=JavaScript.eval("speakSupportsLanguage('"+culture+"')")
+	
+	var visible= !(supported==true);
+
+	$TabContainer/GeneralSettingsTab/GridContainer/WarningCultureNotSupported.visible=visible
+	$TabContainer/GeneralSettingsTab/GridContainer/Label5.visible=visible
+
+func _on_IsoCultureCode_text_changed() -> void:
+	Settings.speechCultureCode=isoCultureCodeEditBox.text
+	isCultureSupportedWarning()
+
+
+func _on_SettingsDialog_visibility_changed() -> void:
+	if visible:
+		isCultureSupportedWarning()

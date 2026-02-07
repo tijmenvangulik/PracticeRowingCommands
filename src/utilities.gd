@@ -13,7 +13,14 @@ func commandIsUsed(commandName : String)->bool:
 			break
 			
 	return found
-	
+
+func getFullCommand(commandId : int) -> String:
+	var commandName=Constants.commandNames[commandId]
+	var text=Utilities.getCommandTextTranslation(commandId)
+	if text=="":
+		text=tr(commandName)
+	return text
+
 func getCommandTranslation(command:int)->String:
 	var result=""
 	if command>=0 && command<Settings.commandTranslations.size():
@@ -214,6 +221,13 @@ func getDefaultSetting(name : String):
 	var parseJson=false;
 	var settings=BaseSettings.activeBaseSettings
 	match name:
+		"SpeakCommandsActive":
+			if settings.has("speakCommands"):
+				result=settings.get("speakCommands")
+				if result==0 || result==1: 
+					result="false"
+				else:
+					result="true"
 		"DefaultBoatType":
 			if settings.has("boatType"):
 				result=settings.get("boatType")

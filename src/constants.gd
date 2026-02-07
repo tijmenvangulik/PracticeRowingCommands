@@ -79,6 +79,12 @@ enum BoatType {
 	Scull,
 	Sweep
 }
+enum SpeakCommandsType {
+	Default,
+	Off,
+	On,
+	IsoCultureCode
+}
 var commandNames = [
   "LaatLopen",
   "Bedankt",

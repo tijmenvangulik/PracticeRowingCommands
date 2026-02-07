@@ -358,7 +358,58 @@
 		});		
 	</script>
 	<script type='text/javascript' src='index.js?v={{version}}'></script>
-	
+	<script type='text/javascript'>
+  function getSpeechSynthesisUtterance() {
+    return window.SpeechSynthesisUtterance ||
+        window.webkitSpeechSynthesisUtterance ||
+        window.mozSpeechSynthesisUtterance ||
+        window.msSpeechSynthesisUtterance ||
+        window.oSpeechSynthesisUtterance;
+  }
+
+  function isSpeachSupported() {
+    if (getSpeechSynthesisUtterance()) return true
+    else return false;
+  }
+
+    
+  function speakSupportsLanguage(langId) {
+    var result = false;
+    if (isSpeachSupported()) {
+
+      var voices = window.speechSynthesis.getVoices();
+      //work arround bug that voices returns empty array
+      if (voices.length == 0)
+        voices = window.speechSynthesis.getVoices();
+      if (voices.length == 0) result = true //bug stil there
+      else {
+        voices.every((voice) => {
+          if (voice.lang.toLowerCase() == langId.toLowerCase()) {
+            result = true;
+            return false;//stops loop
+          }
+          else return true; //continue loop
+        })
+      }
+
+    }
+    return result;
+  }
+
+  //specs in https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html#tts-section
+  function speak(text,lang) {
+	 console.log("speak",text,lang);
+    //do not put too much into the queue , otherwise it will delay
+    var speechSynthesis = window.speechSynthesis;
+    //if (!speechSynthesis.pending && !speechSynthesis.speaking && !speechSynthesis.paused) {
+      var SpeechSynthesisUtterance = getSpeechSynthesisUtterance();
+      var utterance = new SpeechSynthesisUtterance(text);  
+      utterance.lang = lang;
+      speechSynthesis.speak(utterance);
+  
+    //}
+  }
+	</script>
 	<script type='text/javascript'>//<![CDATA[
 
 		const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":1188512,"index.wasm":13788612},"focusCanvas":true,"gdnativeLibs":[]};

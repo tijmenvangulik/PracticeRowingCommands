@@ -1,4 +1,4 @@
-[gd_scene load_steps=166 format=2]
+[gd_scene load_steps=167 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -125,6 +125,7 @@
 [ext_resource path="res://FullScreen.gd" type="Script" id=123]
 [ext_resource path="res://assets/fullscreen.png" type="Texture" id=124]
 [ext_resource path="res://StyleButtonActive.tres" type="StyleBox" id=125]
+[ext_resource path="res://SpeakCommand.gd" type="Script" id=126]
 
 [sub_resource type="ShaderMaterial" id=43]
 shader = ExtResource( 80 )
@@ -3558,9 +3559,11 @@ commandTranslationsGrid = NodePath("TabContainer/CommandTranslateTab/ScrollConta
 commandTranslationsHeaderGrid = NodePath("TabContainer/CommandTranslateTab/ScrollContainerHeader/GridContainerHeader")
 commandTranslationsCommandsGrid = NodePath("TabContainer/CommandTranslateTab/ScrollContainerCommands/GridContainerCommands")
 showCommandTooltips = NodePath("TabContainer/GeneralSettingsTab/GridContainer/ShowCommandTooltips")
+isoCultureCodeEditBox = NodePath("TabContainer/GeneralSettingsTab/GridContainer/IsoCultureCode")
 commandButtonsTab = NodePath("TabContainer/CommandButtonsTab")
 showShortCutsInButtons = NodePath("TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons")
 boatTypeButton = NodePath("TabContainer/GeneralSettingsTab/GridContainer/BoatType")
+speakCommandsButton = NodePath("TabContainer/GeneralSettingsTab/GridContainer/SpeakCommands")
 enablePracticesTab = NodePath("TabContainer/EnablePracticesTab")
 resolutionButton = NodePath("TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer/Resolution")
 waterAnimationButton = NodePath("TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer2/WaterAnimationButton")
@@ -3635,6 +3638,7 @@ pressed = true
 margin_top = 82.0
 margin_right = 196.0
 margin_bottom = 101.0
+rect_pivot_offset = Vector2( 99.8611, 7.608 )
 custom_fonts/font = ExtResource( 50 )
 text = "ShowShortCutsInButtons"
 
@@ -3647,34 +3651,83 @@ custom_icons/off = ExtResource( 25 )
 custom_icons/on = ExtResource( 66 )
 
 [node name="BoatTypeLabel" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_top = 120.0
+margin_top = 161.0
 margin_right = 196.0
-margin_bottom = 139.0
+margin_bottom = 180.0
+mouse_filter = 0
 custom_fonts/font = ExtResource( 50 )
 text = "BoatType"
 
 [node name="BoatType" type="OptionButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_left = 216.0
-margin_top = 117.0
+margin_top = 158.0
 margin_right = 366.0
-margin_bottom = 142.0
+margin_bottom = 183.0
 custom_fonts/font = ExtResource( 50 )
 text = "Default"
 items = [ "Default", null, false, 0, null, "Scull", null, false, 1, null, "Sweep", null, false, 2, null ]
 selected = 0
 
-[node name="Label4" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_top = 158.0
+[node name="SpeakCommandsLabel" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
+margin_top = 123.0
 margin_right = 196.0
-margin_bottom = 177.0
+margin_bottom = 142.0
+rect_pivot_offset = Vector2( 99.8611, 7.608 )
+mouse_filter = 0
+custom_fonts/font = ExtResource( 50 )
+text = "SpeakCommandsLabel"
+
+[node name="SpeakCommands" type="OptionButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
+margin_left = 216.0
+margin_top = 158.0
+margin_right = 434.0
+margin_bottom = 183.0
+custom_fonts/font = ExtResource( 50 )
+text = "SpeakCommandsDefault"
+items = [ "SpeakCommandsDefault", null, false, 0, null, "SpeakCommandsOff", null, false, 1, null, "SpeakCommandsOn", null, false, 2, null, "SpeakCommandsCustom", null, false, 3, null ]
+selected = 0
+
+[node name="IsoCultureCodeLabel" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
+visible = false
+margin_top = 123.0
+margin_right = 196.0
+margin_bottom = 142.0
+rect_pivot_offset = Vector2( 99.8611, 7.608 )
+mouse_filter = 0
+custom_fonts/font = ExtResource( 50 )
+text = "IsoCultureCodeLabel"
+
+[node name="IsoCultureCode" type="TextEdit" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 50 )
+
+[node name="Label5" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
+margin_top = 199.0
+margin_right = 196.0
+margin_bottom = 218.0
+custom_fonts/font = ExtResource( 50 )
+
+[node name="WarningCultureNotSupported" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
+margin_right = 209.0
+margin_bottom = 19.0
+custom_colors/font_color = Color( 0.823529, 0.611765, 0.266667, 1 )
+custom_fonts/font = ExtResource( 50 )
+text = "ErrorCultureNotSupported"
+
+[node name="Label4" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
+margin_top = 199.0
+margin_right = 196.0
+margin_bottom = 218.0
 custom_fonts/font = ExtResource( 50 )
 text = "Reset"
 
 [node name="ResetPractices" type="Button" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_left = 216.0
-margin_top = 152.0
+margin_top = 193.0
 margin_right = 366.0
-margin_bottom = 184.0
+margin_bottom = 225.0
 rect_min_size = Vector2( 150, 32 )
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 52 )
@@ -4493,6 +4546,10 @@ script = ExtResource( 84 )
 autostart = true
 script = ExtResource( 112 )
 
+[node name="SpeakCommand" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 126 )
+
 [connection signal="pressed" from="CanvasLayer/EditButtons" to="CanvasLayer/EditButtons" method="_on_EditButtons_pressed"]
 [connection signal="pressed" from="CanvasLayer/LowFrameRateDialog/SwitchToLow" to="CanvasLayer/LowFrameRateDialog" method="_on_SwitchToLow_pressed"]
 [connection signal="pressed" from="CanvasLayer/IntroDialog/HSplitContainer/StartPractices" to="CanvasLayer/IntroDialog" method="_on_StartPractices_pressed"]
@@ -4529,11 +4586,14 @@ script = ExtResource( 112 )
 [connection signal="pressed" from="CanvasLayer/RightTopButtons/FullScreen" to="CanvasLayer/RightTopButtons/FullScreen" method="_on_FullScreen_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightTopButtons/ZoomContainer/ZoomPlus" to="CanvasLayer/RightTopButtons/ZoomContainer" method="_on_ZoomPlus_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightTopButtons/ZoomContainer/ZoomMin" to="CanvasLayer/RightTopButtons/ZoomContainer" method="_on_ZoomMin_pressed"]
+[connection signal="visibility_changed" from="CanvasLayer/SettingsDialog" to="CanvasLayer/SettingsDialog" method="_on_SettingsDialog_visibility_changed"]
 [connection signal="visibility_changed" from="CanvasLayer/SettingsDialog" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_SettingsDialog_visibility_changed"]
 [connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/RuleSetDropDown" to="CanvasLayer/SettingsDialog" method="_on_RuleSetDropDown_item_selected"]
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/ShowCommandTooltips" to="CanvasLayer/SettingsDialog" method="_on_ShowCommandTooltips_toggled"]
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons" to="CanvasLayer/SettingsDialog" method="_on_ShowShortCutsInButtons_toggled"]
 [connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/BoatType" to="CanvasLayer/SettingsDialog" method="_on_BoatType_item_selected"]
+[connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/SpeakCommands" to="CanvasLayer/SettingsDialog" method="_on_SpeakCommands_item_selected"]
+[connection signal="text_changed" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/IsoCultureCode" to="CanvasLayer/SettingsDialog" method="_on_IsoCultureCode_text_changed"]
 [connection signal="pressed" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/ResetPractices" to="CanvasLayer/SettingsDialog" method="_on_ResetPractices_pressed"]
 [connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer/Resolution" to="CanvasLayer/SettingsDialog" method="_on_Resolution_item_selected"]
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer2/WaterAnimationButton" to="CanvasLayer/SettingsDialog" method="_on_WaterAnimationButton_toggled"]
