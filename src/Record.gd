@@ -99,7 +99,7 @@ func doReplayRecord(i,recording_commands,recording_times,lastTime,practice,endTi
 				var commandReplayText=$"%replayCommandText"
 				commandReplayText.text=Utilities.replaceCommandText(commandName)
 				commandReplayText.visible=true
-				
+				$"%SpeakCommand"._doCommandSignal(command)
 				var shotTooltipKey=commandName+"_shorttooltip"
 				var shortTooltipText=tr(shotTooltipKey)
 				if shortTooltipText!=shotTooltipKey:
