@@ -92,7 +92,7 @@ func get_tooltip_text(node):
 		returnTooltip=Utilities.getCommandTextTranslation(command)
 		if returnTooltip==tr($GridButton.text):
 			returnTooltip=""
-		return returnTooltip
+		return Utilities.removeTagsFromText(returnTooltip)
 	if canClickButton:
 		return calcClickableButtonTooltip()
 	return ""

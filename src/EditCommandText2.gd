@@ -27,7 +27,7 @@ func _on_LineEdit_text_changed(new_text):
 	recalcOrignalText()
 	
 func recalcOrignalText():
-	originalText=Utilities.calcCommandGridLabelText(commandName)
+	originalText=Utilities.calcCommandGridLabelText(commandName,false)
 	if $"LineEdit".text=="":
 		$LineEdit/OriginalText.text=originalText
 	else:

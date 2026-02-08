@@ -76,10 +76,10 @@ func calcShortCut(command:int,commandName : String, buttonText : String)->String
 func replaceCommandText(commandText :String) ->String:
 	var command=commandNameToCommand(commandText)
 	if command>=0:
-		var translation=getCommandTextTranslation(command)
+		var translation= getCommandTextTranslation(command)
 		if  translation!=null && translation.length()>0 :
 			return translation
-	return tr(commandText)
+	return removeTagsFromText(tr(commandText))
 	
 func replaceCommandsInText(text:String,decorate=false) ->String:
 	var lastPos=0
@@ -108,10 +108,12 @@ func calcButtonTextFromCommand(commandName,command):
 		result=alterNativeText
 	return result
 
-func calcCommandGridLabelText(commandName):
+func calcCommandGridLabelText(commandName,withoutTags=true):
 	var commandLabelText=getDefaultDictonaryValueSetting("CommandTextTranslations",commandName)
 	if commandLabelText=="":
 		commandLabelText=commandName
+	if withoutTags:
+		commandLabelText=removeTagsFromText( tr(commandLabelText))
 	return commandLabelText
 	
 func formatTime(minutes,seconds,miliSeconds):
@@ -481,3 +483,19 @@ func arrays_have_same_content(array1, array2):
 		if !array2.has(item): return false
 		if array1.count(item) != array2.count(item): return false
 	return true
+
+func removeTagsFromText(textValue):
+	# here remove all tags starting with {{ and ending with }}
+	
+	var result=textValue
+	var startPos=result.find("{{")
+	#if startPos<0:
+	#	return textValue
+	while startPos>=0:
+		var endPos=result.find("}}",startPos)
+		if endPos>startPos:
+			result=result.substr(0,startPos)+result.substr(endPos+2,result.length())
+		else:
+			break
+		startPos=result.find("{{",startPos)
+	return result

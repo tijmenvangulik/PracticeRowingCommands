@@ -21,11 +21,30 @@ func getSpeachCultureCode():
 		language=Settings.speechCultureCode
 	return language
 
+func speak(text , language):
+	text=text.replace("'","")
+	language=language.replace("'","")
+#	print("speak "+language+" "+text)
+	JavaScript.eval("speak('"+text+"','"+language+"')")
+	
 func _doCommandSignal(commandId : int):
 	if speakCommandsOn() :
 		var text=Utilities.getFullCommand(commandId)
 		var language=getSpeachCultureCode()
-		text=text.replace("'","")
-		language=language.replace("'","")
-		JavaScript.eval("speak('"+text+"','"+language+"')")
+		
+		var startPos=text.find("{{")
 
+		while startPos>=0:
+			var endPos=text.find("}}",startPos)
+			if endPos>startPos:
+				var speakText=text.substr(0,startPos)
+				if speakText!="":
+					speak(speakText,language)
+				language=text.substr(startPos+2,endPos-startPos-2)
+				text=text.substr(endPos+2,text.length())
+			else:
+				break
+			startPos=text.find("{{",startPos)
+		
+		if text!="":
+			speak(text,language)
