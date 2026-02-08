@@ -130,7 +130,7 @@ LightPaddle_buttonOnly;Light paddle;-;-;Light paddle
 LightPaddle_shortcut;g;c;u;g
 LightPaddle_tooltip;Laat de boot minder snel gaan. Gebruik light paddle bedankt om dit te beëindigen;Laat de boot minder snel gaan. Gebruik light paddle bedankt om dit te beëindigen;Move forwards slowly. End the command with light paddle off.;Move forwards slowly. End the command with light paddle off.
 LightPaddleBedankt;{{en-GB}}Light paddle {{nl-NL}}bedankt;Lichte haal bedankt;Even pressure;{{en-GB}}Light paddle {{nl-NL}}bedankt
-LightPaddleBedankt_buttonOnly;Light paddle bedankt;-;-;
+LightPaddleBedankt_buttonOnly;Light paddle bedankt;-;-;Light paddle bedankt
 LightPaddleBedankt_shortcut;g;c;u;g
 LightPaddleBedankt_tooltip;Ga weer naar normale snelheid.;Ga weer naar normale snelheid.;Go back to normal speed.;Go back to normal speed.
 Links;[center]Broncode en projectpagina:[/center]\n[center] [url=https://github.com/tijmenvangulik/PracticeRowingCommands]https://github.com/tijmenvangulik/PracticeRowingCommands[/url][/center];[center]Broncode en projectpagina:[/center]\n[center] [url=https://github.com/tijmenvangulik/PracticeRowingCommands]https://github.com/tijmenvangulik/PracticeRowingCommands[/url][/center];[center]Source code and project:[/center]\n[center] [url=https://github.com/tijmenvangulik/PracticeRowingCommands]https://github.com/tijmenvangulik/PracticeRowingCommands[/url][/center];[center]Source code and project:[/center]\n[center] [url=https://github.com/tijmenvangulik/PracticeRowingCommands]https://github.com/tijmenvangulik/PracticeRowingCommands[/url][/center]
