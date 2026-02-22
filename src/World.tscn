@@ -3356,8 +3356,8 @@ script = ExtResource( 57 )
 settingsDialog = NodePath("../../SettingsDialog")
 
 [node name="options_icon" type="Sprite" parent="CanvasLayer/RightTopButtons/SettingsButton"]
-position = Vector2( 15, 14.5 )
-scale = Vector2( 0.19, 0.19 )
+position = Vector2( 15, 12.5 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 56 )
 offset = Vector2( 0, 4 )
 
