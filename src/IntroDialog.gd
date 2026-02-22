@@ -30,6 +30,7 @@ func _init():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	setText()
+	
 	get_close_button().hide()
 	$VersionNumber.text=get_version();
 	
@@ -38,7 +39,9 @@ func _ready():
 		anchor_left=0.02
 		anchor_right=0.98
 		anchor_bottom=0.98
-		anchor_top=0.5
+		anchor_top=0.51
+		
+		$IntroText.rect_size.y=$IntroText.rect_size.y-10
 		
 func setText():
 	var intro=$"IntroText"

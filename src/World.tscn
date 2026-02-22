@@ -1837,6 +1837,7 @@ anchor_bottom = 0.96
 margin_top = -252.0
 theme = ExtResource( 29 )
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
+custom_constants/title_height = 0
 custom_styles/panel = SubResource( 32 )
 script = ExtResource( 43 )
 
@@ -3290,6 +3291,7 @@ margin_top = 6.0
 margin_right = 104.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 80, 0 )
+mouse_filter = 0
 size_flags_horizontal = 11
 custom_fonts/font = ExtResource( 50 )
 text = "HighContrast"
@@ -4581,6 +4583,7 @@ script = ExtResource( 126 )
 [connection signal="pressed" from="CanvasLayer/TourDialog/HSplitContainer/TourStop" to="CanvasLayer/TourDialog" method="_on_TourStop_pressed"]
 [connection signal="pressed" from="CanvasLayer/TourDialog/HSplitContainer/TourNext" to="CanvasLayer/TourDialog" method="_on_TourNext_pressed"]
 [connection signal="pressed" from="CanvasLayer/TourDialog/HSplitContainer/StartPractices" to="CanvasLayer/TourDialog" method="_on_StartPractices_pressed"]
+[connection signal="gui_input" from="CanvasLayer/RightTopButtons/OptionHighContrast/OptionHighContrastHorz/HighContrastLabel" to="CanvasLayer/RightTopButtons/OptionHighContrast" method="_on_HighContrastLabel_gui_input"]
 [connection signal="toggled" from="CanvasLayer/RightTopButtons/OptionHighContrast/OptionHighContrastHorz/HighContrastSwitch" to="CanvasLayer/RightTopButtons/OptionHighContrast" method="_on_HighContrastSwitch_toggled"]
 [connection signal="toggled" from="CanvasLayer/RightTopButtons/HdButton" to="CanvasLayer/RightTopButtons/HdButton" method="_on_HdButton_toggled"]
 [connection signal="pressed" from="CanvasLayer/RightTopButtons/FullScreen" to="CanvasLayer/RightTopButtons/FullScreen" method="_on_FullScreen_pressed"]

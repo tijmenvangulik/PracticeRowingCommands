@@ -9,12 +9,22 @@ extends HBoxContainer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameEvents.connect("highContrastChangedSignal",self,"_highContrastChangedSignal")
+	GameEvents.connect("introSignal",self,"_introSignal")
 	setStyleButtons()
 	if GameState.mobileMode:
 		add_constant_override("separation",24)
-		margin_top=14
 		margin_left=20
-	
+		_introSignal(false)
+
+
+func _introSignal(isVisible : bool):
+	if GameState.mobileMode:
+		if isVisible:
+			margin_top=14
+		else:
+			margin_top=20
+		
+
 func _highContrastChangedSignal(highContrast):
 	setStyleButtons()
 
