@@ -35,21 +35,6 @@ To build a release:
 * run the npm build script
 * The bin/html folder contains the game ready for release
 
-The default language is dutch. Most commands are translated to English. You can improve or add a translation by editing the  Translations.csv file.
-The translations can be found [here](/src/translations/Translations.csv) This is a csv file which you can load in a spread sheet. You can send the translated version to me.
-To make a short cut for a button in the resources you can extend the command name with:
-* [commandname]_tooltip (long tooltips when tooltips are actie)
-* [commandname]_shorttooltip (short tooltips always shown)
-* [commandname]_buttonOnly (show text the the button)
-* [commandname]_shortcut (a single character for a short cut)
-
-
-You can also define a button set in this file for each language.
-
-Possible localization codes:
-[locals](https://docs.godotengine.org/en/3.5/tutorials/i18n/locales.html)
-
-Some help needed translating the app to different languages and rowing club slang.
 
 Press f1 in the game for debug mode
 
@@ -59,6 +44,24 @@ Some highlights
 * Physics engine is used to simulate the boat movement
 * Easy to add new rules sets from code. Default rules set can be configured in the translation.csv file
 * User defined buttons sets and default button sets in the translation file.
+
+## Translating
+
+The default language is dutch. Most commands are translated to English. You can improve or add a translation by editing the  Translations.csv file.
+The translations can be found [here](/src/translations/Translations.csv) This is a csv file which you can load in a spread sheet. You can send the translated version to me.
+To make a short cut for a button in the resources you can extend the command name with:
+* [commandname]_tooltip (long tooltips when tooltips are actie)
+* [commandname]_shorttooltip (short tooltips always shown)
+* [commandname]_buttonOnly (show text the the button)
+* [commandname]_shortcut (a single character for a short cut)
+
+You can also define a button set in this file for each language.
+
+Possible localization codes for in the resource file:
+[locals](https://docs.godotengine.org/en/3.5/tutorials/i18n/locales.html)
+
+The app can speak out the commands. The end user can select to correct voice for the spoken language. However for some commands you can make an exception to use a different voice for a specific command. You can do this by adding a tag inside the text where you specify an iso culture code. For example:
+ {{en-GB}}Light paddle
 
 # Self hosting
 To self host the app download the ![distribute.zip](distribute.zip) file and extract the files in a folder on your website. The app is mostly a static web app which does not require server interaction. There are two features in the app which require a server: The high scores and the feedback feature. The app will use my own server for these features. For communication with my server you need security codes which are not included in the source code. When my server is down or you do not want to use these features just ignore them ore remove it from the code. 
