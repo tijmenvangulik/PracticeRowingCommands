@@ -26,7 +26,7 @@ func updateIcon():
 func _on_ToolButton_pressed() -> void:
 	setPaused(!GameState.isPaused)
 	 
-func setPaused(value,frozenWater=false):
+func setPaused(value,frozenWater=true):
 	if GameState.isPaused!=value:
 		GameState.isPaused=value;
 		get_tree().set_pause(value)
@@ -34,6 +34,8 @@ func setPaused(value,frozenWater=false):
 		updateIcon()
 		if frozenWater:
 			$"%WaterClasicFrozen".visible=value
+		else:
+			$"%WaterClasicFrozen".visible=false
 	
 func _on_Pause_toggled(button_pressed: bool) -> void:
   setPaused(button_pressed)
