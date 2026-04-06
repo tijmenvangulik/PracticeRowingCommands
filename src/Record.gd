@@ -2,6 +2,7 @@ extends Button
 
 export (NodePath) onready var boat = get_node(boat) as Boat
 
+signal resumeStep
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -91,6 +92,9 @@ func doReplayRecord(i,recording_commands,recording_times,lastTime,practice,endTi
 		_replayTimer=null
 		if GameState.isReplaying:
 			var command=int(recording_commands[i])
+			if GameState.replayStepByStep:
+				$"%StepByStep".waitStep(command,self)
+				yield(self,"resumeStep")
 			boat.doCommand(command)
 			
 			if !GameState.backgroundReplay: 
@@ -109,7 +113,8 @@ func doReplayRecord(i,recording_commands,recording_times,lastTime,practice,endTi
 			replayEnded(lastTime,practice,endTime)
 	else:
 		replayEnded(lastTime,practice,endTime)
-
+	
+	
 func replayEnded(lastTime,practice,endTime):
 	
 	if GameState.backgroundReplay:
@@ -134,8 +139,9 @@ func replayEnded(lastTime,practice,endTime):
 		_replayTimer=null
 		
 		GameState.isReplaying=false
+		if GameState.replayStepByStep:
+			$"%StepByStep".stop()
 		optionsStart.doStart(practice)
-		
 	$"%ButtonsContainer".enabled=true
 	commandReplayText.visible=false
 	
@@ -213,9 +219,11 @@ func cancelReplay():
 
 func hasDemo(practice : int):
 	return getDemo(practice)!=""
+
 	
-func replayDemo(practice : int, isBackgroudReplay = false):
+func replayDemo(practice : int, isBackgroudReplay = false,replayStepByStep =false):
 	GameState.backgroundReplay=isBackgroudReplay
+	GameState.replayStepByStep=replayStepByStep
 	var demo=getDemo(practice)
 	if demo!="":
 		replay(demo)

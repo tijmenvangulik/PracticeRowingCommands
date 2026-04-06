@@ -375,3 +375,6 @@ SpeakCommandsTooltip;Spraak is afhankelijk van je browser. Klopt de uitspraak ni
 IsoCultureCodeTooltip;Bijvoorbeeld: nl-NL of en-GB;Bijvoorbeeld: nl-NL of en-GB;For example: nl-NL or en-GB;For example: nl-NL or en-GB
 ErrorCultureNotSupported;Waarschuwing: Spraak culture niet ondersteund door de browser;Waarschuwing: Spraak culture niet ondersteund door de browser;Warning: speech culture not supported by your browser;Warning: speech culture not supported by your browser
 PauseTooltip;Bevries (pauzeer);Bevries (pauzeer);Freeze (pause);Freeze (pause)
+StepByStep;Stap voor stap;Stap voor stap;Step by step;Step by step
+StepByStepNextCommand;Druk op een knop voor het volgende commando;Druk op een knop voor het volgende commando;Press a button for the next command;Press a button for the next command
+StepByStepWrongcommand;Verkeerde commando probeer een andere;Verkeerde commando probeer een andere;Wrong command try another one;Wrong command try another one

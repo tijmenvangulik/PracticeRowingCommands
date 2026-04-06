@@ -19,7 +19,7 @@ var dialogIsOpen = false;
 
 var isReplaying = false
 var backgroundReplay = false
-
+var replayStepByStep = false
 var languageSetFromSettingsOrUl = false
 
 var isScull = true

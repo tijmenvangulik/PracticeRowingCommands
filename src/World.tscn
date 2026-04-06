@@ -1,4 +1,4 @@
-[gd_scene load_steps=169 format=2]
+[gd_scene load_steps=171 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -128,6 +128,8 @@
 [ext_resource path="res://SpeakCommand.gd" type="Script" id=126]
 [ext_resource path="res://Pause.gd" type="Script" id=127]
 [ext_resource path="res://assets/pause.png" type="Texture" id=128]
+[ext_resource path="res://FontExtraLarge.tres" type="DynamicFont" id=129]
+[ext_resource path="res://StepByStep.gd" type="Script" id=130]
 
 [sub_resource type="ShaderMaterial" id=43]
 shader = ExtResource( 80 )
@@ -1742,6 +1744,26 @@ custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = ExtResource( 110 )
 align = 1
 
+[node name="StepByStep" type="CenterContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 86.0
+margin_bottom = -245.0
+script = ExtResource( 130 )
+
+[node name="Label" type="Label" parent="CanvasLayer/StepByStep"]
+margin_left = 440.0
+margin_top = 115.0
+margin_right = 583.0
+margin_bottom = 153.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 129 )
+text = "NextStep"
+align = 1
+valign = 1
+
 [node name="ControlPanel" parent="CanvasLayer" instance=ExtResource( 4 )]
 visible = false
 margin_left = 3.75546
@@ -2877,10 +2899,11 @@ margin_bottom = 179.0
 
 [node name="ExplainPracticeDialog" type="WindowDialog" parent="CanvasLayer"]
 unique_name_in_owner = true
-margin_left = 157.0
+margin_left = 118.0
 margin_top = 80.0
-margin_right = 878.0
+margin_right = 947.0
 margin_bottom = 527.0
+size_flags_horizontal = 5
 theme = ExtResource( 29 )
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
 custom_styles/panel = SubResource( 34 )
@@ -2891,9 +2914,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -80.5
+margin_left = -278.5
 margin_top = -40.0
-margin_right = 79.5
+margin_right = 311.5
 margin_bottom = -10.0
 grow_horizontal = 2
 custom_constants/separation = 10
@@ -2908,6 +2931,22 @@ custom_styles/pressed = ExtResource( 53 )
 custom_styles/focus = ExtResource( 17 )
 custom_styles/normal = ExtResource( 64 )
 text = "Demo"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartStepByStep" type="Button" parent="CanvasLayer/ExplainPracticeDialog/HBoxContainer"]
+visible = false
+margin_left = 90.0
+margin_right = 183.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 80, 0 )
+custom_fonts/font = ExtResource( 50 )
+custom_styles/hover = ExtResource( 52 )
+custom_styles/pressed = ExtResource( 53 )
+custom_styles/focus = ExtResource( 17 )
+custom_styles/normal = ExtResource( 64 )
+text = "StepByStep"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -4605,6 +4644,7 @@ script = ExtResource( 126 )
 [connection signal="pressed" from="CanvasLayer/EndPracticeFeedbackDialog/HBoxContainer/CancelNextPractice" to="CanvasLayer/EndPracticeFeedbackDialog" method="_on_CancelNextPractice_pressed"]
 [connection signal="pressed" from="CanvasLayer/EndPracticeFeedbackDialog/HBoxContainer/StartNextPractice" to="CanvasLayer/EndPracticeFeedbackDialog" method="_on_StartNextPractice_pressed"]
 [connection signal="pressed" from="CanvasLayer/ExplainPracticeDialog/HBoxContainer/StartDemo" to="CanvasLayer/ExplainPracticeDialog" method="_on_StartDemo_pressed"]
+[connection signal="pressed" from="CanvasLayer/ExplainPracticeDialog/HBoxContainer/StartStepByStep" to="CanvasLayer/ExplainPracticeDialog" method="_on_StartStepByStep_pressed"]
 [connection signal="pressed" from="CanvasLayer/ExplainPracticeDialog/HBoxContainer/SkipPractice" to="CanvasLayer/ExplainPracticeDialog" method="_on_SkipPractice_pressed"]
 [connection signal="pressed" from="CanvasLayer/ExplainPracticeDialog/HBoxContainer/StartAllButtons" to="CanvasLayer/ExplainPracticeDialog" method="_on_Start_pressed"]
 [connection signal="pressed" from="CanvasLayer/ExplainPracticeDialog/HBoxContainer/StartLessButtons" to="CanvasLayer/ExplainPracticeDialog" method="_on_StartLessButtons_pressed"]

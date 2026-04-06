@@ -53,6 +53,8 @@ signal showMobileTooltip(tooltipText)
 
 signal javaScriptMessage
 
+signal doCheckCommand
+
 func sendCommandChanged(command : int,commandName :String,value : String) -> void:
 	emit_signal("customCommandTextChanged",command,commandName,value)
 
@@ -159,7 +161,11 @@ func _sizeChanged():
 	emit_signal("windowSizeChanged")
 
 func _ready():
+	pause_mode=Node.PAUSE_MODE_PROCESS
 	get_tree().get_root().connect("size_changed",self,"_sizeChanged")
 
 func sendJavascriptMessage(data):
 	emit_signal('javaScriptMessage', data)
+
+func doCheckCommand(command : int):
+	emit_signal("doCheckCommand",command)

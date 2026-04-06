@@ -33,6 +33,10 @@ func _input(event):
 # Called when the node enters the scene tree for the first time.
 func showDialog(startItemPos,showLessButonsArray):
 	_practice=$"%OptionStart".currentStartPos
+	
+	var stepByStep= Practices.stepByStepPractices.find(startItemPos)>=0
+	$HBoxContainer/StartStepByStep.visible=stepByStep
+	
 	$HBoxContainer/StartDemo.visible=$"%Recorder".hasDemo(_practice)
 	var recorder=$"%Recorder";
 	if GameState.isReplaying:
@@ -43,7 +47,8 @@ func showDialog(startItemPos,showLessButonsArray):
 		showText()
 		show_modal(true)
 		$HBoxContainer/StartLessButtons.grab_focus()
-	
+		
+
 func showText():
 	var title=Practices.getTranslatedPracticeName(_practice)
 	var text="[color=#84a9c9][u]"+tr(title)+"[/u][/color]\n"
@@ -69,10 +74,16 @@ func _on_languageChanged():
 func _on_StartDemo_pressed():
 	hide()
 	var practice=$"%OptionStart".currentStartPos
-	$"%Recorder".replayDemo(practice)
+	$"%Recorder".replayDemo(practice,false)
 	
 
 
 func _on_SkipPractice_pressed():
 	visible=false
 	$"%OptionStart".skipPractice()
+
+
+func _on_StartStepByStep_pressed() -> void:
+	hide()
+	var practice=$"%OptionStart".currentStartPos
+	$"%StepByStep".start(practice)

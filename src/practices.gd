@@ -48,6 +48,18 @@ var practiceNames = [
 "StartStarGame"
 ]
 
+var stepByStepPractices = [Constants.StartItem.SpinTurnPractice, #5
+Constants.StartItem.Aanleggen, #6
+Constants.StartItem.AanleggenBB, #7
+Constants.StartItem.AanleggenWal, #8
+Constants.StartItem.AangelegdUitzetten, #9
+Constants.StartItem.AangelegdUitzettenBB, #10
+Constants.StartItem.Aangelegd, #11
+Constants.StartItem.AangelegdBB,
+Constants.StartItem.StartStrijkendAanleggen, #12
+Constants.StartItem.StartStrijkendAanleggenWal, #13
+Constants.StartItem.BridgePractice, #14
+]
 func _ready():
 	GameEvents.connect("languageChangedSignal",self,"_languageChangedSignal");
 		

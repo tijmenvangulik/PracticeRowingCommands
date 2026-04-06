@@ -125,6 +125,8 @@ func _highContrastChangedSignal(highContrast):
 	
 func _menuItemClicked(itemId):
 	$"%Recorder".cancelReplay()
+	if GameState.replayStepByStep:
+		$"%StepByStep".stop()
 	doStart(itemId)
 
 func _submenuItemClicked(itemId):
@@ -357,7 +359,7 @@ func doStart(startItemId,autoStart=false):
 	
 	if GameState.isPaused:
 		$"%Pause".setPaused(false)
-		
+
 	match startItemId:
 		Constants.StartItem.Start: 
 			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)
