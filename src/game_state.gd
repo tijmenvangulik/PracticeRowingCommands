@@ -28,7 +28,7 @@ var sharedSettingsBladeColorDefault=Color("#ffffff")
 var sharedSettingsBladeColor=sharedSettingsBladeColorDefault
 
 var mobileMode = false
-
+var isPaused =false
 var enabledCommands=[]
 var isHighRes=true
 

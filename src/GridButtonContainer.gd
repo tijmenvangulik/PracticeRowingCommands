@@ -52,7 +52,7 @@ func _on_EditCommandText_customTooltipTextChanged(changed_command,changed_comman
 		customTooltipText=changed_value
 	
 func execCommand():
-	if canClickButton && !GameState.isReplaying:
+	if canClickButton && !GameState.isReplaying && !GameState.isPaused:
 		GameEvents.doCommand(command)
 			
 

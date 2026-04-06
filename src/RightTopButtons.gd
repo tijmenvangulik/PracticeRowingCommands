@@ -39,3 +39,5 @@ func setStyleButtons():
 	Styles.SetMainDropDownStyle($ZoomContainer/ZoomMin)
 	Styles.SetMainDropDownStyle($ForwardsBackwards)
 	Styles.SetMainDropDownStyle($FullScreen)
+	Styles.SetMainDropDownStyle($"%Pause")
+	

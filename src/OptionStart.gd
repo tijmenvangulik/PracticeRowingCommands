@@ -354,7 +354,10 @@ func doStart(startItemId,autoStart=false):
 		practiceIsActive=true
 
 	$"%ButtonsContainer".loadButtons()
-
+	
+	if GameState.isPaused:
+		$"%Pause".setPaused(false)
+		
 	match startItemId:
 		Constants.StartItem.Start: 
 			boat.setNewBoatPosition(984.05,1995.76,0,Constants.StateOars.Roeien,true)

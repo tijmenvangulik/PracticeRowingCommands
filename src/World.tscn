@@ -1,4 +1,4 @@
-[gd_scene load_steps=167 format=2]
+[gd_scene load_steps=169 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -126,6 +126,8 @@
 [ext_resource path="res://assets/fullscreen.png" type="Texture" id=124]
 [ext_resource path="res://StyleButtonActive.tres" type="StyleBox" id=125]
 [ext_resource path="res://SpeakCommand.gd" type="Script" id=126]
+[ext_resource path="res://Pause.gd" type="Script" id=127]
+[ext_resource path="res://assets/pause.png" type="Texture" id=128]
 
 [sub_resource type="ShaderMaterial" id=43]
 shader = ExtResource( 80 )
@@ -962,6 +964,17 @@ __meta__ = {
 "_edit_group_": true
 }
 
+[node name="WaterClasicFrozen" type="Polygon2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2( 2160, 1102 )
+scale = Vector2( 0.823077, 1.1034 )
+color = Color( 0.91, 0.91, 0.91, 0.494118 )
+offset = Vector2( -2433.55, -1272.43 )
+antialiased = true
+texture_scale = Vector2( 0.5, 0.5 )
+polygon = PoolVector2Array( -218.692, 271.886, 1981.59, 275.511, 1987.66, -542.868, 1993.54, -756.947, 1996.17, -984.231, 2268.32, -983.325, 3044.67, -982.419, 3049.53, -786.66, 2269.72, -776.713, 2276.82, 272.792, 2864.86, 271.886, 2895.23, 2741.52, -256.355, 2721.58, -217.477, 1918.61, -664.581, 1913.18, -665.796, 1672.1, -244.206, 1675.72 )
+
 [node name="BladeWaveSB1" parent="." instance=ExtResource( 83 )]
 unique_name_in_owner = true
 visible = false
@@ -1657,6 +1670,7 @@ boat = NodePath("../Boat")
 position = Vector2( 1922, -400 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+pause_mode = 2
 script = ExtResource( 111 )
 
 [node name="EditButtons" type="Button" parent="CanvasLayer"]
@@ -3469,6 +3483,21 @@ custom_styles/normal = ExtResource( 35 )
 text = "Backwards"
 script = ExtResource( 32 )
 
+[node name="Pause" type="Button" parent="CanvasLayer/RightTopButtons"]
+pause_mode = 2
+unique_name_in_owner = true
+visible = false
+margin_left = 692.0
+margin_right = 717.0
+margin_bottom = 30.0
+custom_styles/hover = ExtResource( 18 )
+custom_styles/pressed = ExtResource( 18 )
+custom_styles/focus = ExtResource( 36 )
+custom_styles/normal = ExtResource( 35 )
+toggle_mode = true
+icon = ExtResource( 128 )
+script = ExtResource( 127 )
+
 [node name="CollectedCounter" type="HBoxContainer" parent="CanvasLayer/RightTopButtons"]
 visible = false
 margin_right = 55.0
@@ -4589,6 +4618,7 @@ script = ExtResource( 126 )
 [connection signal="pressed" from="CanvasLayer/RightTopButtons/FullScreen" to="CanvasLayer/RightTopButtons/FullScreen" method="_on_FullScreen_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightTopButtons/ZoomContainer/ZoomPlus" to="CanvasLayer/RightTopButtons/ZoomContainer" method="_on_ZoomPlus_pressed"]
 [connection signal="pressed" from="CanvasLayer/RightTopButtons/ZoomContainer/ZoomMin" to="CanvasLayer/RightTopButtons/ZoomContainer" method="_on_ZoomMin_pressed"]
+[connection signal="toggled" from="CanvasLayer/RightTopButtons/Pause" to="CanvasLayer/RightTopButtons/Pause" method="_on_Pause_toggled"]
 [connection signal="visibility_changed" from="CanvasLayer/SettingsDialog" to="CanvasLayer/SettingsDialog" method="_on_SettingsDialog_visibility_changed"]
 [connection signal="visibility_changed" from="CanvasLayer/SettingsDialog" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_SettingsDialog_visibility_changed"]
 [connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/RuleSetDropDown" to="CanvasLayer/SettingsDialog" method="_on_RuleSetDropDown_item_selected"]
