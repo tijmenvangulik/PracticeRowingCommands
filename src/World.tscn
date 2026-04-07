@@ -1,4 +1,4 @@
-[gd_scene load_steps=171 format=2]
+[gd_scene load_steps=173 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -150,6 +150,62 @@ shader_param/surf_angle = 1.57
 shader_param/surf_magnitude = 0.0
 shader_param/s11 = 2.221
 shader_param/sinpowder = 8.0
+
+[sub_resource type="Animation" id=58]
+resource_name = "FrozenFadeIn"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
+
+[sub_resource type="Animation" id=59]
+resource_name = "FrozenFadeOut"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 127.753, 29.8996, 117.154, 24.3315, 109.015, 13.8659, 105.688, 0, 128, 0 )
@@ -976,6 +1032,12 @@ offset = Vector2( -2433.55, -1272.43 )
 antialiased = true
 texture_scale = Vector2( 0.5, 0.5 )
 polygon = PoolVector2Array( -218.692, 271.886, 1981.59, 275.511, 1987.66, -542.868, 1993.54, -756.947, 1996.17, -984.231, 2268.32, -983.325, 3044.67, -982.419, 3049.53, -786.66, 2269.72, -776.713, 2276.82, 272.792, 2864.86, 271.886, 2895.23, 2741.52, -256.355, 2721.58, -217.477, 1918.61, -664.581, 1913.18, -665.796, 1672.1, -244.206, 1675.72 )
+
+[node name="WaterClasicFrozenAnimation" type="AnimationPlayer" parent="WaterClasicFrozen"]
+pause_mode = 2
+unique_name_in_owner = true
+anims/FrozenFadeIn = SubResource( 58 )
+anims/FrozenFadeOut = SubResource( 59 )
 
 [node name="BladeWaveSB1" parent="." instance=ExtResource( 83 )]
 unique_name_in_owner = true

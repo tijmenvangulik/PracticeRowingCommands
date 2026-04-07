@@ -22,7 +22,14 @@ func updateIcon():
 	else:
 		icon=pauseSprite 
 	
-
+func hideShowWater(doShow):
+	var water=$"%WaterClasicFrozen";
+	if water.visible!=doShow:
+		if doShow:
+			$"%WaterClasicFrozenAnimation".play("FrozenFadeIn")
+		else:
+			$"%WaterClasicFrozenAnimation".play("FrozenFadeOut")
+			
 func _on_ToolButton_pressed() -> void:
 	setPaused(!GameState.isPaused)
 	 
@@ -33,9 +40,9 @@ func setPaused(value,frozenWater=true):
 		pressed=value;
 		updateIcon()
 		if frozenWater:
-			$"%WaterClasicFrozen".visible=value
+			hideShowWater(value)
 		else:
-			$"%WaterClasicFrozen".visible=false
+			hideShowWater(false)
 	
 func _on_Pause_toggled(button_pressed: bool) -> void:
   setPaused(button_pressed)
