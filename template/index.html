@@ -329,7 +329,8 @@
 			mobileWarningTextElement.innerText="Deze web app werkt het beste op grotere schermen (tablet, laptop of monitor). Je kunt de app op een mobiel gebruiken als je je telefoon horizontaal houdt.";
 			document.getElementById("mobileButton").innerText="Ga door";
 		}
-		if (!hasFullScreen() && navigator.platform.includes("iPhone") ) {
+		var isIphone=navigator.platform.includes("iPhone");
+		if (!hasFullScreen() && isIphone ) {
 			var addMobileText=""
 			if (userLang=="nl") {
 				addMobileText="Voor volledige scherm ondersteuning op iPhones, voeg deze web app toe aan je startscherm en open hem van daaruit.";
@@ -343,6 +344,12 @@
 		var resolution=localStorage.getItem('resolution');
 		if (resolution=="Normal" || (resolution!="High" && window.window.devicePixelRatio!=2 )) {
 			window.window.devicePixelRatio=1;
+		}
+		if ( !hasFullScreen() && isIphone) {
+			window.addEventListener("orientationchange", function() {
+	    
+			  document.scrollingElement.scrollTop = 0; 
+			});
 		}
 		fetch('version.json?v='+new Date().getTime().toString())
 		  .then(response => response.text())
