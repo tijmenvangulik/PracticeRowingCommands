@@ -29,7 +29,8 @@ func hideShowWater(doShow):
 			$"%WaterClasicFrozenAnimation".play("FrozenFadeIn")
 		else:
 			$"%WaterClasicFrozenAnimation".play("FrozenFadeOut")
-			
+
+
 func _on_ToolButton_pressed() -> void:
 	setPaused(!GameState.isPaused)
 	 
@@ -48,11 +49,11 @@ func _on_Pause_toggled(button_pressed: bool) -> void:
   setPaused(button_pressed)
 
 func _introSignal(isVisible : bool):
-	visible=!isVisible
+	visible=!isVisible && !GameState.mobileMode
 
 func _collectGameStateChangedSignal(state):
 	if state==Constants.CollectGameState.DoStart || state==Constants.CollectGameState.Start:
 		visible=false
 		setPaused(false)
 	elif state==Constants.CollectGameState.Stop || state==Constants.CollectGameState.Finish:
-			visible=true
+			visible=!GameState.mobileMode

@@ -10,7 +10,11 @@ func _ready():
 	GameEvents.connect("settingsChangedSignal",self,"_settings_changed_signal")
 	GameEvents.connect("introSignal",self,"_introSignal")
 	GameEvents.connect("highContrastChangedSignal",self,"_highContrastChangedSignal")
-
+	if GameState.mobileMode:
+		$ZoomPlus.rect_min_size.x=70
+		$ZoomPlus/Label.rect_position.x=29
+		$ZoomMin.rect_min_size.x=70
+		$ZoomMin/Label.rect_position.x=29
 func _introSignal(isVisible : bool):
 	visible=!isVisible
 	

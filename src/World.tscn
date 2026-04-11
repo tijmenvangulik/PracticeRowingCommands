@@ -3487,6 +3487,7 @@ custom_styles/focus = ExtResource( 36 )
 custom_styles/normal = ExtResource( 35 )
 toggle_mode = true
 icon = ExtResource( 124 )
+icon_align = 1
 script = ExtResource( 123 )
 
 [node name="FeedbackButton" type="Button" parent="CanvasLayer/RightTopButtons"]
@@ -3538,6 +3539,7 @@ margin_right = 17.0
 margin_bottom = 25.0
 custom_fonts/font = ExtResource( 50 )
 text = "+"
+align = 1
 
 [node name="ZoomLabel" type="Label" parent="CanvasLayer/RightTopButtons/ZoomContainer"]
 margin_left = 28.0
@@ -3571,6 +3573,7 @@ margin_right = 17.0
 margin_bottom = 23.0
 custom_fonts/font = ExtResource( 50 )
 text = "-"
+align = 1
 
 [node name="ForwardsBackwards" type="Button" parent="CanvasLayer/RightTopButtons"]
 margin_left = 585.0

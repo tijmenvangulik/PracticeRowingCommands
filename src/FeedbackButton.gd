@@ -12,6 +12,8 @@ func _ready():
 	GameEvents.register_allways_tooltip(self,"QuickFeedback")
 	if GameState.mobileMode:
 		$Megaphone.offset.y+=10
+		rect_min_size.x=80
+		$Megaphone.offset.x=44
 		
 func _introSignal(isVisible : bool):
 	visible=!isVisible

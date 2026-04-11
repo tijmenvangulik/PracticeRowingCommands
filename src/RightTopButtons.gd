@@ -12,7 +12,7 @@ func _ready():
 	GameEvents.connect("introSignal",self,"_introSignal")
 	setStyleButtons()
 	if GameState.mobileMode:
-		add_constant_override("separation",24)
+		add_constant_override("separation",10)
 		margin_left=20
 		_introSignal(false)
 
