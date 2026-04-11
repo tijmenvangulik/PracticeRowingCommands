@@ -300,6 +300,42 @@
 		function fullscreenchangeHandler() {
 			window.postMessage('toGodot:fullScreenChanged','*');
 		}
+		function initPinchZoom() {
+			var canvas = document.getElementById('canvas');
+			var lastDistance = 0;
+	
+			canvas.addEventListener('touchmove', function(event) {
+				if (event.touches.length === 2) {
+					var touch1 = event.touches[0];
+					var touch2 = event.touches[1];
+					var distance = Math.hypot(
+						touch2.clientX - touch1.clientX,
+						touch2.clientY - touch1.clientY
+					);
+					if (lastDistance > 0) {
+						event.preventDefault();
+						var zoomFactor = distance / lastDistance;
+
+						window.postMessage('toGodot:zoom_factor:' + zoomFactor, '*');
+					}
+					lastDistance = distance;
+				}
+			}, false);
+
+			canvas.addEventListener('touchend', function(event) {
+				lastDistance = 0;
+			}, false);
+
+			canvas.addEventListener('wheel', function(event) {
+				if (event.ctrlKey) {
+					event.preventDefault();
+					var zoomFactor = event.deltaY > 0 ? 0.95 : 1.05;
+					window.postMessage('toGodot:zoom_factor:' + zoomFactor, '*');
+				}
+			}, false);
+		}
+		initPinchZoom();
+
 		function cancelFullScreen() {
 			let doc = window.document;
 			let cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen ||	doc.msExitFullscreen;
@@ -364,7 +400,8 @@
 			else {
 				localStorage.setItem('version', versionLoaded);
 			}
-		});		
+		});	
+
 	</script>
 	<script type='text/javascript' src='index.js?v={{version}}'></script>
 	<script type='text/javascript'>

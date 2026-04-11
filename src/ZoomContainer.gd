@@ -5,6 +5,7 @@ export (NodePath) onready var camera = get_node(camera) as Camera2D
 
 var newZoom=-1
 var step=0.5
+var enabled=true
 
 func _ready():
 	GameEvents.connect("settingsChangedSignal",self,"_settings_changed_signal")
@@ -15,8 +16,13 @@ func _ready():
 		$ZoomPlus/Label.rect_position.x=29
 		$ZoomMin.rect_min_size.x=70
 		$ZoomMin/Label.rect_position.x=29
+		# hide use pinch zoom
+		enabled=false
+		
+	GameEvents.connect("javaScriptMessage",self,"_javaScriptMessage")
+	
 func _introSignal(isVisible : bool):
-	visible=!isVisible
+	visible=!isVisible && enabled
 	
 func directSetZoom(zoom):
 	if camera.zoom.x!=Settings.zoom:
@@ -27,10 +33,10 @@ func directSetZoom(zoom):
 		if zoom>0 && zoom<100:
 			Settings.zoom=zoom
 			GameEvents.settingsChanged()
-	
+			if GameState.mobileMode:
+				GameEvents.forwardBackwardsChanged()
 func _process(delta):
 	if newZoom!=-1:
-		
 		if camera.zoom.x< newZoom:
 			camera.zoom.x+=delta*step
 			camera.zoom.y= camera.zoom.x
@@ -59,5 +65,17 @@ func _settings_changed_signal():
 		GameEvents.zoomChanged()
 
 func _highContrastChangedSignal(highContrast):
-	
 	Styles.setFontColorOverride($ZoomLabel)
+
+func _javaScriptMessage(data : String):
+	if data.find('zoom_factor:') == 0:
+		data = data.replace('zoom_factor:', '')
+		var zoom=data.to_float()
+		changeZoomFromPinch(zoom)
+
+func changeZoomFromPinch(factor):	
+	if !GameState.dialogIsOpen && factor!=0 && factor!=1:
+		var newFactor=camera.zoom.x* (factor)
+		if newFactor>0.5 && newFactor< 8:
+			camera.zoom.x=newFactor
+			directSetZoom(newFactor)

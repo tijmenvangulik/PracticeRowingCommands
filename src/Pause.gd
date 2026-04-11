@@ -9,12 +9,15 @@ extends Button
 var pauseSprite=load("res://assets/pause.png")
 var playSprite=load("res://assets/play.png")
 
-
+var _allowPause = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameEvents.connect("introSignal",self,"_introSignal")
 	GameEvents.register_allways_tooltip(self,"PauseTooltip")
 	GameEvents.connect("collectGameStateChangedSignal",self,"_collectGameStateChangedSignal")
+	_allowPause=true #!GameState.mobileMode
+	if GameState.mobileMode:
+		rect_min_size.x=80
 
 func updateIcon():
 	if pressed:
@@ -49,11 +52,11 @@ func _on_Pause_toggled(button_pressed: bool) -> void:
   setPaused(button_pressed)
 
 func _introSignal(isVisible : bool):
-	visible=!isVisible && !GameState.mobileMode
+	visible=!isVisible && _allowPause
 
 func _collectGameStateChangedSignal(state):
 	if state==Constants.CollectGameState.DoStart || state==Constants.CollectGameState.Start:
 		visible=false
 		setPaused(false)
 	elif state==Constants.CollectGameState.Stop || state==Constants.CollectGameState.Finish:
-			visible=!GameState.mobileMode
+			visible=_allowPause

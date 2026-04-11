@@ -130,6 +130,16 @@ func canPushBB():
 	var result=ray.is_colliding()
 	ray.enabled=false
 	return result
+
+func calcpostionY():
+	var result=postionY
+	#compensate that in mobile mode the boat is positioned more the left
+	if GameState.mobileMode:
+		var zoom=Settings.zoom
+		if zoom==-1:
+			zoom=Constants.defaultMobileZoom
+		result+=(zoom-Constants.defaultMobileZoom)*(postionY/2)
+	return result
 	
 func setForwardsPosition(delta):
 	if delta!=0 && lastForwardsCommand!=lastCommand:
@@ -151,7 +161,7 @@ func setForwardsPosition(delta):
 		if currentPositionX>forwardsPositon: currentPositionX=forwardsPositon
 		if currentPositionX<backwardsPosition: currentPositionX=backwardsPosition
 		var zoomDif=$"Camera2D2".zoom.x-0.5;
-		$"Camera2D2".position= Vector2(currentPositionX*zoomDif,postionY)
+		$"Camera2D2".position= Vector2(currentPositionX*zoomDif,calcpostionY())
 		
 		
 

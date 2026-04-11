@@ -583,9 +583,9 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 	if ruleset!=null:
 		setRuleset(ruleset)
 	
-	var zoom = 2.1
+	var zoom = Constants.defaultZoom 
 	if GameState.mobileMode:
-		zoom= 1.771
+		zoom= Constants.defaultMobileZoom
 	if dict.has("zoom"):
 		zoom =dict["zoom"]
 	

@@ -241,3 +241,5 @@ var practiceExplainTexts= [
 ]
 const serverUrl="https://ergometer-space.org/manager"
 #const serverUrl="http://localhost:2024"
+const defaultMobileZoom= 1.771
+const defaultZoom= 2.1
