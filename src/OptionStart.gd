@@ -31,8 +31,6 @@ var practiceIsActive = false;
 
 var practicePoints = 0
 
-var sendStartOnWaterMessage= false
-
 var childmenu=null
 var eventChildMenuAdded=false
 const maxMobileItems=13
@@ -113,7 +111,6 @@ func _ready():
 	GameEvents.connect("settingsChangedSignal",self,"_handleSettingsChanged")
 	GameEvents.connect("collectGameStateChangedSignal",self,"_collectGameStateChangedSignal")
 	GameEvents.connect("practicesChanged",self,"_practicesChanged");
-	GameEvents.connect("doCommandSignal",self,"_doCommandSignal")
 	GameEvents.connect("highContrastChangedSignal",self,"_highContrastChangedSignal")
 
 func setStyle():	
@@ -145,12 +142,6 @@ func _introSignal(isVisible : bool):
 
 func _practicesChanged():
 	loadItems()
-	
-func _doCommandSignal(command:int):
-	if sendStartOnWaterMessage:
-		#for start on water log on first stroke
-		sendStartOnWaterMessage=false
-		logEndPractice(true)
 
 func _handleSettingsChanged():
 	setIcons()
@@ -256,10 +247,10 @@ func endPractice():
 				else:
 					$"%EndPracticeDialog".start(earnedStar)
 		
-func logEndPractice(success : bool):
+func logEndPractice(success : bool,cancel = false):
 	var currentName= Constants.StartItem.keys()[currentStartPos] ;
 	if ( !OS.is_debug_build() ):
-		$"%LogActivityRequest".logFinishedActivity(currentName,success,GameState.isScull)
+		$"%LogActivityRequest".logFinishedActivity(currentName,success,GameState.isScull,cancel)
 
 func _crashDetected():
 	var extraWaitTime=0;
@@ -337,11 +328,9 @@ func doStart(startItemId,autoStart=false):
 	if GameState.collectGameState!=Constants.CollectGameState.None:
 		GameState.changeCollectGameState(Constants.CollectGameState.Stop)
 	
-	if startItemId==Constants.StartItem.Start:
-		sendStartOnWaterMessage=true
-	else:
-		sendStartOnWaterMessage=false
-
+	if !boat.crashState && GameState.commandCount>=3:
+		logEndPractice(false,true)
+	GameState.commandCount=0
 	boat.resetCrashed()
 	var Command=Constants.Command
 	

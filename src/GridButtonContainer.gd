@@ -55,6 +55,7 @@ func execCommand():
 	if GameState.isPaused && GameState.replayStepByStep:
 		GameEvents.doCheckCommand(command)
 	elif canClickButton && !GameState.isReplaying && !GameState.isPaused:
+		GameState.commandCount=GameState.commandCount+1
 		GameEvents.doCommand(command)
 			
 

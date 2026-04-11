@@ -31,6 +31,7 @@ var mobileMode = false
 var isPaused =false
 var enabledCommands=[]
 var isHighRes=true
+var commandCount=0;
 
 func checkIsMobileMode():
 	#for debug mobile enable
