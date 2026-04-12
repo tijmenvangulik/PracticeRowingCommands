@@ -1,4 +1,4 @@
-[gd_scene load_steps=173 format=2]
+[gd_scene load_steps=174 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -954,6 +954,15 @@ corner_radius_bottom_left = 5
 shadow_color = Color( 0, 0, 0, 0.270588 )
 shadow_size = 3
 shadow_offset = Vector2( 2, 2 )
+
+[sub_resource type="StyleBoxFlat" id=60]
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color( 0.105882, 0.278431, 0.392157, 1 )
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="InputEventAction" id=51]
 
@@ -2523,7 +2532,7 @@ unique_name_in_owner = true
 margin_left = 184.0
 margin_top = 189.0
 margin_right = 845.0
-margin_bottom = 424.0
+margin_bottom = 408.0
 theme = ExtResource( 29 )
 custom_colors/title_color = Color( 0.235294, 0.396078, 0.219608, 1 )
 custom_styles/panel = SubResource( 34 )
@@ -2533,19 +2542,19 @@ script = ExtResource( 76 )
 anchor_top = 0.35
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_top = -9.5
-margin_bottom = 9.5
+margin_top = -15.5
+margin_bottom = 3.5
 grow_horizontal = 2
 text = "EndCrashPracticeText"
 align = 1
 
 [node name="Sad" type="Sprite" parent="CanvasLayer/EndCrashPracticeDialog"]
-position = Vector2( 66.01, 118.35 )
+position = Vector2( 66.01, 98.35 )
 scale = Vector2( 1.4, 1.4 )
 texture = ExtResource( 24 )
 
 [node name="Sad2" type="Sprite" parent="CanvasLayer/EndCrashPracticeDialog"]
-position = Vector2( 610, 119 )
+position = Vector2( 610, 99 )
 scale = Vector2( 1.4, 1.4 )
 texture = ExtResource( 24 )
 
@@ -2554,10 +2563,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -165.0
-margin_top = -40.0
-margin_right = 165.0
-margin_bottom = -10.0
+margin_left = -179.0
+margin_top = -94.0
+margin_right = 179.0
+margin_bottom = -64.0
 grow_horizontal = 2
 custom_constants/separation = 10
 
@@ -2602,6 +2611,21 @@ texture = ExtResource( 14 )
 visible = false
 position = Vector2( 623, 115 )
 texture = ExtResource( 14 )
+
+[node name="CrashTips" type="RichTextLabel" parent="CanvasLayer/EndCrashPracticeDialog"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -329.5
+margin_top = -42.0
+margin_right = 328.5
+margin_bottom = -2.0
+custom_styles/normal = SubResource( 60 )
+bbcode_enabled = true
+bbcode_text = "CrashTips"
+text = "CrashTips"
+scroll_active = false
 
 [node name="PublishHighscoreCollectGame" type="WindowDialog" parent="CanvasLayer"]
 margin_left = 47.0
@@ -4705,6 +4729,7 @@ script = ExtResource( 126 )
 [connection signal="pressed" from="CanvasLayer/EndPracticeDialog/HBoxContainer/StartNextPractice" to="CanvasLayer/EndPracticeDialog" method="_on_StartNextPractice_pressed"]
 [connection signal="pressed" from="CanvasLayer/EndCrashPracticeDialog/HBoxContainer/CancelPractice" to="CanvasLayer/EndCrashPracticeDialog" method="_on_CancelPractice_pressed"]
 [connection signal="pressed" from="CanvasLayer/EndCrashPracticeDialog/HBoxContainer/StartSamePractice" to="CanvasLayer/EndCrashPracticeDialog" method="_on_StartSamePractice_pressed"]
+[connection signal="meta_clicked" from="CanvasLayer/EndCrashPracticeDialog/CrashTips" to="CanvasLayer/EndCrashPracticeDialog" method="_on_RichTextLabel_meta_clicked"]
 [connection signal="pressed" from="CanvasLayer/PublishHighscoreCollectGame/HBoxContainer/PublishScoreContine" to="CanvasLayer/PublishHighscoreCollectGame" method="_on_PublishScoreContine_pressed"]
 [connection signal="pressed" from="CanvasLayer/PublishHighscoreCollectGame/HBoxContainer/PublishScore" to="CanvasLayer/PublishHighscoreCollectGame" method="_on_PublishScore_pressed"]
 [connection signal="pressed" from="CanvasLayer/QuickFeedbackDialog/HBoxContainer/CancelFeedback" to="CanvasLayer/QuickFeedbackDialog" method="_on_CancelFeedback_pressed"]

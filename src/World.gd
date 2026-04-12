@@ -8,7 +8,7 @@ var _callback = JavaScript.create_callback(self, "receivedMessage")
 
 func _ready():
 	subToMessages()	
-
+	
 func subToMessages():
 	if OS.has_feature('JavaScript'):
 		var window = JavaScript.get_interface("window")
