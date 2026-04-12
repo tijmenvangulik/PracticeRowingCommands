@@ -378,4 +378,61 @@ PauseTooltip;Bevries (pauzeer);Bevries (pauzeer);Freeze (pause);Freeze (pause)
 StepByStep;Stap voor stap;Stap voor stap;Step by step;Step by step
 StepByStepNextCommand;Druk op een knop voor het volgende commando;Druk op een knop voor het volgende commando;Press a button for the next command;Press a button for the next command
 StepByStepWrongcommand;Verkeerde commando probeer een andere;Verkeerde commando probeer een andere;Wrong command try another one;Wrong command try another one
-CrashTips;[center]Lastig? Probeer de demo of de stap voor stap optie. Meer tips klik [url=https://github.com/tijmenvangulik/PracticeRowingCommands/blob/main/tips-nl.md]hier[/url][/center];[center]Lastig? Probeer de demo of de stap voor stap optie. Meer tips klik [url=https://github.com/tijmenvangulik/PracticeRowingCommands/blob/main/tips-nl.md]hier[/url][/center];[center]Difficult? try the demo or the step by step option. More tips click [url=https://github.com/tijmenvangulik/PracticeRowingCommands/blob/main/tips-en.md]here[/url][/center];[center]Difficult? try the demo or the step by step option. More tips click [url=https://github.com/tijmenvangulik/PracticeRowingCommands/blob/main/tips-en.md]here[/url][/center]
+CrashTips;[center]Lastig? Probeer de demo of de stap voor stap optie. Meer tips klik [url=link][color=#67bed9]hier[/color][/url][/center];[center]Lastig? Probeer de demo of de stap voor stap optie. Meer tips klik [url=link][color=#67bed9]hier[/color][/url][/center];[center]Difficult? try the demo or the step by step option. More tips click [url=link][color=#67bed9]here[/color][/url][/center];[center]Difficult? try the demo or the step by step option. More tips click [url=link][color=#67bed9]here[/color][/url][/center]
+AllCrashTips;"[color=#84a9c9][center][u]Tips and tricks[/u][/center][/color]
+
+* Gebruik de demo-optie of de stap-voor-stap-optie om te zien wat je precies moet doen
+* Volg de volgende stappen:
+[indent]
+    * Lees goed de commando's door op de informatiepagina,
+    * Bekijk waar de knoppen zitten voordat je begint met roeien
+    * Beweeg de muis naar het volgende commando voordat je begint de oefening
+[/indent]
+* Neem de tijd, zorg ervoor dat de boot niet te veel vaart heeft.
+[indent]
+    * Gebruik {LightPaddle}
+    * Gebruik {HalenBeideBoorden} in de plaats van {SlagklaarAf}
+[/indent]
+* Moeite met de muis? Toetsenbordbediening of touchscreen werkt ook.";"[color=#84a9c9][center][u]Tips and tricks[/u][/center][/color]
+
+* Gebruik de demo-optie of de stap-voor-stap-optie om te zien wat je precies moet doen
+* Volg de volgende stappen:
+[indent]
+    * Lees goed de commando's door op de informatiepagina,
+    * Bekijk waar de knoppen zitten voordat je begint met roeien
+    * Beweeg de muis naar het volgende commando voordat je begint de oefening
+[/indent]
+* Neem de tijd, zorg ervoor dat de boot niet te veel vaart heeft.
+[indent]
+    * Gebruik {LightPaddle}
+    * Gebruik {HalenBeideBoorden} in de plaats van {SlagklaarAf}
+[/indent]
+* Moeite met de muis? Toetsenbordbediening of touchscreen werkt ook.";"[color=#84a9c9][center][u]Tips and tricks[/u][/center][/color]
+
+* Use the demo option or the step-by-step option to see exactly what to do
+* Follow these steps:
+[indent]
+    * Read the commands carefully on the information page
+    * Check where the buttons are before you start rowing
+    * Move the mouse to the next command before you start
+[/indent]
+* Take your time, make sure the boat is not going too fast
+[indent]
+    * Use {LightPaddle}
+    * Use {HalenBeideBoorden} instead of {SlagklaarAf}
+[/indent]
+* Trouble with the mouse? Keyboard control or touch screen works too.";"[color=#84a9c9][center][u]Tips and tricks[/u][/center][/color]
+
+* Use the demo option or the step-by-step option to see exactly what to do
+* Follow these steps:
+[indent]
+    * Read the commands carefully on the information page
+    * Check where the buttons are before you start rowing
+    * Move the mouse to the next command before you start
+[/indent]
+* Take your time, make sure the boat is not going too fast
+[indent]
+    * Use {LightPaddle}
+    * Use {HalenBeideBoorden} instead of {SlagklaarAf}
+[/indent]
+* Trouble with the mouse? Keyboard control or touch screen works too."

@@ -97,7 +97,6 @@ func closeIntro():
 	visible=false;
 	$"%OptionStart".doStart(Constants.StartItem.Start)
 
-
 func _on_StartPractices_pressed():
 	closeIntro()
 	$"%OptionStart".startPractices()
