@@ -3403,13 +3403,13 @@ visible = false
 position = Vector2( 311, -150 )
 rotation = -0.685914
 scale = Vector2( 0.481814, 0.80976 )
-points = PoolVector2Array( 104, 108, -169.3, 160.119 )
+points = PoolVector2Array( 62.616, 100.712, -169.3, 160.119 )
 default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
 joint_mode = 2
 
 [node name="Line2D2" type="Line2D" parent="CanvasLayer/TourDialog/PointToBackwardsMobile"]
-position = Vector2( -149, -132 )
-points = PoolVector2Array( 230.735, 267.557, 254.339, 241.583, 195.555, 224.89 )
+position = Vector2( -181.764, -142.78 )
+points = PoolVector2Array( 230.735, 267.557, 252.94, 241.666, 195.555, 224.89 )
 default_color = Color( 0.137255, 0.160784, 0.180392, 0.776471 )
 joint_mode = 2
 begin_cap_mode = 2
@@ -3417,7 +3417,7 @@ end_cap_mode = 2
 
 [node name="PointToBackwards" type="Line2D" parent="CanvasLayer/TourDialog"]
 visible = false
-position = Vector2( 216, -150 )
+position = Vector2( 256, -150 )
 rotation = -0.685914
 scale = Vector2( 0.481814, 0.80976 )
 points = PoolVector2Array( 104, 108, -169.3, 160.119 )
@@ -3479,6 +3479,7 @@ __meta__ = {
 }
 
 [node name="OptionHighContrast" type="Panel" parent="CanvasLayer/RightTopButtons"]
+visible = false
 margin_left = 281.0
 margin_right = 361.0
 margin_bottom = 30.0
@@ -3530,8 +3531,8 @@ script = ExtResource( 82 )
 
 [node name="TooltipHelp" type="Button" parent="CanvasLayer/RightTopButtons"]
 unique_name_in_owner = true
-margin_left = 369.0
-margin_right = 393.0
+margin_left = 281.0
+margin_right = 305.0
 margin_bottom = 30.0
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 18 )
@@ -3550,8 +3551,8 @@ custom_fonts/font = ExtResource( 50 )
 text = "?"
 
 [node name="SettingsButton" type="Button" parent="CanvasLayer/RightTopButtons"]
-margin_left = 401.0
-margin_right = 431.0
+margin_left = 313.0
+margin_right = 343.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 30, 0 )
 custom_fonts/font = ExtResource( 50 )
@@ -3584,8 +3585,8 @@ icon_align = 1
 script = ExtResource( 123 )
 
 [node name="FeedbackButton" type="Button" parent="CanvasLayer/RightTopButtons"]
-margin_left = 439.0
-margin_right = 469.0
+margin_left = 351.0
+margin_right = 381.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 30, 0 )
 custom_fonts/font = ExtResource( 50 )
@@ -3603,8 +3604,8 @@ texture = ExtResource( 22 )
 
 [node name="ZoomContainer" type="HBoxContainer" parent="CanvasLayer/RightTopButtons"]
 unique_name_in_owner = true
-margin_left = 477.0
-margin_right = 577.0
+margin_left = 389.0
+margin_right = 489.0
 margin_bottom = 30.0
 script = ExtResource( 31 )
 __meta__ = {
@@ -3670,8 +3671,8 @@ text = "-"
 align = 1
 
 [node name="ForwardsBackwards" type="Button" parent="CanvasLayer/RightTopButtons"]
-margin_left = 585.0
-margin_right = 684.0
+margin_left = 497.0
+margin_right = 596.0
 margin_bottom = 30.0
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 18 )
@@ -3747,8 +3748,8 @@ custom_fonts/font = ExtResource( 50 )
 
 [node name="PracticeCounter" type="HBoxContainer" parent="CanvasLayer/RightTopButtons"]
 unique_name_in_owner = true
-margin_left = 692.0
-margin_right = 730.0
+margin_left = 604.0
+margin_right = 642.0
 margin_bottom = 30.0
 script = ExtResource( 78 )
 
