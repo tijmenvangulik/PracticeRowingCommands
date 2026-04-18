@@ -233,6 +233,16 @@
 				visibility:hidden;
 			}
 		}
+		.block-ui {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 999;
+			opacity: 0.5;
+			background-color: black;
+		}
 	</style>
 <link id='-gd-engine-icon' rel='icon' type='image/png' href='index.icon.png' />
 <link rel='apple-touch-icon' href='index.apple-touch-icon.png'/>
@@ -243,6 +253,7 @@
 		HTML5 canvas appears to be unsupported in the current browser.<br />
 		Please try updating or use a different browser.
 	</canvas>
+	<div id="block-ui" style="display: none" class="block-ui" onclick="unblockUI();"></div>
 	<img src="PraciceRowingCommandsLogoNew.jpg?v=10" id="logo" class="logo" width="200ox" height="200px">
 	<div id='status' role="status" >
 		<div id='status-progress' style='display: none;' oncontextmenu='event.preventDefault();'><div id ='status-progress-inner'></div></div>
@@ -379,6 +390,27 @@
 				fullscreen();
 			}
 			return false;
+		}
+		function blockUI() {
+			document.getElementById("block-ui").style.display = "block";
+		}
+		function unblockUI() {
+			document.getElementById("block-ui").style.display = "none";
+		}
+		//patched in the godot js engine in the GodotDisplayVK
+		window.vkEvent = {
+			show: function() {
+				//show the block ui to prevent clicks on the game and show the keyboard
+				blockUI()
+			},
+			hide: function() {
+				//hide the block ui to allow clicks on the game and hide the keyboard
+				unblockUI()
+			},
+			clear: function() {
+				//hide the block ui to allow clicks on the game and hide the keyboard
+				unblockUI()
+			}
 		}
 	</script>
 	
