@@ -302,6 +302,8 @@
 			var height=max(document.documentElement.clientHeight, window.innerHeight || 0);
 			return width <= maxPixels || height <= maxPixels;
 		}
+		var isIphone=navigator.platform.includes("iPhone");
+
 		function hasFullScreen() {
 			let doc = window.document;	
 			let docEl = doc.documentElement;
@@ -397,20 +399,31 @@
 		function unblockUI() {
 			document.getElementById("block-ui").style.display = "none";
 		}
+		
 		//patched in the godot js engine in the GodotDisplayVK
 		window.vkEvent = {
 			show: function() {
 				//show the block ui to prevent clicks on the game and show the keyboard
-				blockUI()
+				blockUI();
 			},
 			hide: function() {
 				//hide the block ui to allow clicks on the game and hide the keyboard
-				unblockUI()
+				unblockUI();
 			},
 			clear: function() {
 				//hide the block ui to allow clicks on the game and hide the keyboard
 				unblockUI()
 			}
+		}
+		if (isMobileMode() && !isIphone) {
+			document.addEventListener('keyup', function(event) {
+				if (event.key === 'Enter' && event.target &&
+					event.target.tagName === 'INPUT') {
+					event.target.blur();
+				}
+			});
+		 
+
 		}
 	</script>
 	
@@ -425,7 +438,7 @@
 			mobileWarningTextElement.innerText="Deze web app werkt het beste op grotere schermen (tablet, laptop of monitor). Je kunt de app op een mobiel gebruiken als je je telefoon horizontaal houdt.";
 			document.getElementById("mobileButton").innerText="Ga door";
 		}
-		var isIphone=navigator.platform.includes("iPhone");
+		
 		if (!hasFullScreen() && isIphone ) {
 			var addMobileText=""
 			if (userLang=="nl") {
@@ -436,6 +449,7 @@
 			}
 			mobileWarningTextElement.innerText+="\n"+addMobileText;
 		}
+		
 		var appVersion="{{version}}";
 		var resolution=localStorage.getItem('resolution');
 		if (resolution=="Normal" || (resolution!="High" && window.window.devicePixelRatio!=2 )) {
