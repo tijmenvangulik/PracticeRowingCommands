@@ -5,13 +5,14 @@ The following code is patched in the godot index.js
 
 The loadFetch function has been patched to add cache buster to all file loads
 
-```
+``` javascript
  function loadFetch(file, tracker, fileSize, raw) {
 		tracker[file] = {
 			total: fileSize || 0,
 			loaded: 0,
 			done: false,
 		};
+        //patched!
 		var addVersion=typeof appVersion=="string"?"?v="+appVersion:"";
 		return fetch(file+addVersion).then(function (response) {
         
@@ -19,7 +20,7 @@ The loadFetch function has been patched to add cache buster to all file loads
 
 I have added calls to the window.vkEvent object to make changes to teh virtual keyboard behavior.
 
-```
+``` javascript
 var         v = {
             textinput: null,
             textarea: null,
