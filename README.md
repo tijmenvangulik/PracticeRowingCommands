@@ -45,6 +45,8 @@ Some highlights
 * Easy to add new rules sets from code. Default rules set can be configured in the translation.csv file
 * User defined buttons sets and default button sets in the translation file.
 
+[Some info on some patches](patched.md)
+
 ## Translating
 
 The default language is dutch. Most commands are translated to English. You can improve or add a translation by editing the  Translations.csv file.
