@@ -69,6 +69,13 @@
 			aspect-ratio: 1.45;
 			width: auto;
 		}
+		@media only screen and (orientation: portrait)  and (max-device-width:640px)  {
+          .logo {
+			width: 95%;
+			height: auto;
+			top: 20%;
+		  }
+		}
 		.rotate-phone-icon {
 			opacity: 0.7;
 			width: 50px;
@@ -288,7 +295,7 @@
 		<div class="phone-warning-panel">
 		  <img src="rotate-phone.png" class="rotate-phone-icon" alt="rotate phone">
   		  <div class="phone-warning-text"><span id="mobileWarningText">This web app works best on larger screens (tablet,laptop or monitor) You can use the app when you hold your phone horizontal.<span></div>
-		  <button  class="close-warning" onclick="return startMobile()" id="mobileButton" >Continue</button>
+		  <button  class="close-warning" onclick="return startMobile();" id="mobileButton" >Continue</button>
 		<div>  
 	</div>	
 	<script type='text/javascript'>
@@ -387,11 +394,12 @@
 			}
 		}
 		function startMobile() {
-			document.all['phone-warning-overlay'].remove();
+			document.getElementById('phone-warning-overlay').style.display = "none";
 			if (hasFullScreen) {
 				fullscreen();
-			}
+			}			
 			return false;
+			 
 		}
 		function blockUI() {
 			document.getElementById("block-ui").style.display = "block";
@@ -425,9 +433,6 @@
 		 
 
 		}
-	</script>
-	
-	<script>
 		var userLang = navigator.language || navigator.userLanguage || "en"; 
 		if (userLang.length>2) {
 			userLang=userLang.substring(0,2);
