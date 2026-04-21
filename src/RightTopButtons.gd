@@ -16,13 +16,14 @@ func _ready():
 		margin_left=20
 		_introSignal(false)
 
-
 func _introSignal(isVisible : bool):
 	if GameState.mobileMode:
 		if isVisible:
 			margin_top=14
+			margin_bottom=38
 		else:
 			margin_top=20
+			margin_bottom=66
 		
 
 func _highContrastChangedSignal(highContrast):

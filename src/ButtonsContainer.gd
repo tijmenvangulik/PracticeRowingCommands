@@ -53,7 +53,7 @@ func _ready():
 	if GameState.mobileMode:
 		grid.columns=1
 		anchor_left=1
-		anchor_top=0.1
+		anchor_top=0.12
 		anchor_right=0.99
 		anchor_bottom=1
 		grow_horizontal=GROW_DIRECTION_BEGIN
@@ -268,14 +268,17 @@ func loadButtons():
 	if GameState.mobileMode:
 		if grid.get_child_count()<6:
 			margin_top=50
-			incMargins(grid,12)
+			incMargins(grid,40)
+			incButtonHeight(grid)
 		elif grid.get_child_count()<8:
 			margin_top=10
-			incMargins(grid,12)
-		else:
+			incMargins(grid,29)
+			incButtonHeight(grid)		
+		elif grid.get_child_count()<11:
 			margin_top=5
 			incMargins(grid,5)
-	
+		else:
+			margin_top=5
 	delay_scaleToScreenWidth()
 
 var resizing=false
@@ -298,7 +301,15 @@ func incMargins(conainer,amount):
 			item.rect_min_size.y=40+amount
 		else:
 			incMargins(item,amount)
-
+			
+func incButtonHeight(container):
+	for c in container.get_child_count():
+		var item=container.get_child(c)
+		if item is GridButtonContainer:
+			item.get_child(0).rect_min_size.y=50
+		else:
+			incButtonHeight(item)
+			
 func setCustomButtonSet(newButtonSet):
 	if newButtonSet.size()==0: 
 		GameState.currentButtonSet=GameState.getDefaultButtonSet()

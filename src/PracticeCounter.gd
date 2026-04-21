@@ -10,7 +10,8 @@ extends HBoxContainer
 func _ready():
 	GameEvents.connect("introSignal",self,"_introSignal")
 	GameEvents.connect("highContrastChangedSignal",self,"_highContrastChangedSignal")
-
+	if GameState.mobileMode:
+		$CenterContainer2/Sprite.offset.y+=14
 func _introSignal(isVisible : bool):
 	visible=!isVisible
 	

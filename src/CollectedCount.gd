@@ -4,7 +4,8 @@ class_name CollectedCounter
 
 func _ready():
 	GameEvents.connect("highContrastChangedSignal",self,"_highContrastChangedSignal")
-	
+	if GameState.mobileMode:
+		$CenterContainer/Sprite.offset.y+=14
 func setCount(value,maxValue):
 	$"CountValue".text=String(value)+" / "+String(maxValue)
 

@@ -35,8 +35,8 @@ var commandCount=0;
 
 func checkIsMobileMode():
 	#for debug mobile enable
-#	if OS.is_debug_build():
-#		return true
+	#if OS.is_debug_build():
+	#	return true
 	if OS.has_feature('JavaScript'):
 		var result=JavaScript.eval("isMobileMode()")
 		return result==true;

@@ -112,7 +112,7 @@ func _ready():
 	GameEvents.connect("collectGameStateChangedSignal",self,"_collectGameStateChangedSignal")
 	GameEvents.connect("practicesChanged",self,"_practicesChanged");
 	GameEvents.connect("highContrastChangedSignal",self,"_highContrastChangedSignal")
-
+	
 func setStyle():	
 	var pm=get_popup()
 	Styles.SetPopupPanelDropDownStyle(pm)

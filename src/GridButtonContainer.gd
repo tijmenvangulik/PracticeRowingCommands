@@ -156,3 +156,5 @@ func can_drop_data(_pos, data):
 
 func drop_data(_pos, data):
 	get_parent().emit_signal("button_droppedOnSourceGrid",data)
+
+	

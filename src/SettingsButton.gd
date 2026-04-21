@@ -7,9 +7,11 @@ func _ready():
 	GameEvents.connect("introSignal",self,"_introSignal")
 	GameEvents.register_allways_tooltip(self,"SettingsButtonTooltip")
 	if GameState.mobileMode:
-		$options_icon.offset.y+=10
+		$options_icon.offset.y+=16
 		rect_min_size.x=80
 		$options_icon.offset.x=44
+	
+	
 func _introSignal(isVisible : bool):
 	visible=!isVisible
 

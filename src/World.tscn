@@ -3438,6 +3438,7 @@ margin_left = 8.0
 margin_top = 8.0
 margin_right = 588.0
 margin_bottom = 38.0
+size_flags_vertical = 3
 custom_constants/separation = 8
 script = ExtResource( 67 )
 
@@ -3446,6 +3447,7 @@ unique_name_in_owner = true
 margin_right = 80.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 80, 0 )
+size_flags_vertical = 3
 theme = ExtResource( 29 )
 custom_styles/hover = ExtResource( 97 )
 custom_styles/pressed = ExtResource( 97 )
@@ -3572,8 +3574,8 @@ offset = Vector2( 0, 4 )
 
 [node name="FullScreen" type="Button" parent="CanvasLayer/RightTopButtons"]
 visible = false
-margin_left = 439.0
-margin_right = 473.0
+margin_left = 351.0
+margin_right = 385.0
 margin_bottom = 30.0
 custom_styles/hover = ExtResource( 18 )
 custom_styles/pressed = ExtResource( 35 )
@@ -3700,7 +3702,8 @@ script = ExtResource( 127 )
 
 [node name="CollectedCounter" type="HBoxContainer" parent="CanvasLayer/RightTopButtons"]
 visible = false
-margin_right = 55.0
+margin_left = 604.0
+margin_right = 659.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 size_flags_horizontal = 3
