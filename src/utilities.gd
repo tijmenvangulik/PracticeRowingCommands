@@ -389,6 +389,7 @@ func modifyCloseButton(dlg : WindowDialog):
 	if GameState.mobileMode:
 		var button : TextureButton=dlg.get_close_button()
 		button.margin_left=-40
+		button.margin_top=-30
 		button.rect_scale.x=2
 		button.rect_scale.y=2
 

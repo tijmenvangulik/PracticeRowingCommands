@@ -8,6 +8,8 @@ var _callback = JavaScript.create_callback(self, "receivedMessage")
 
 func _ready():
 	subToMessages()	
+	if OS.has_feature('JavaScript'):
+		JavaScript.eval("godotLoaded()")
 	
 func subToMessages():
 	if OS.has_feature('JavaScript'):
@@ -17,7 +19,7 @@ func subToMessages():
 
 func receivedMessage(args):
 	# parse
-	var key
+	var key	
 	if args[0].message:
 		key = 'message'
 	else:

@@ -17,7 +17,7 @@ func doShow():
 	if GameState.mobileMode:
 		anchor_right=0
 		margin_left=18
-		margin_top=60		
+		margin_top=100		
 		rect_size.x=370
 		rect_size.y=110
 		$Label.margin_top=12

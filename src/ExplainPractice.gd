@@ -6,23 +6,23 @@ var _showLessButtonsArray=[]
 
 func _ready():
 #	get_close_button().hide()
+	GameEvents.connect("windowSizeChanged",self,"_sizeChanged");
+
 	GameEvents.connect("languageChangedSignal",self,"_on_languageChanged")
 	if GameState.mobileMode:
-		var extraSize=100
-		margin_left-=extraSize
-		margin_right+=extraSize
-		margin_bottom+=50
-		
-		$PracticeExplain.margin_right+=extraSize*2
-		$HBoxContainer.margin_top-=10
-		$HBoxContainer.margin_bottom-=10
-	
-	
+		anchor_left=0.02
+		anchor_right=0.96
 	
 func handleShow():
 	GameState.dialogIsOpen=visible
 	Utilities.modifyCloseButton(self);
-		
+
+func setWidth():
+	margin_right=0
+	
+func _sizeChanged():
+	setWidth()
+	
 func _init():
 	connect("visibility_changed",self,"handleShow");
 
@@ -35,9 +35,9 @@ func showDialog(startItemPos,showLessButonsArray):
 	_practice=$"%OptionStart".currentStartPos
 	
 	var stepByStep= Practices.stepByStepPractices.find(startItemPos)>=0
-	$HBoxContainer/StartStepByStep.visible=stepByStep
+	$CenterContainer/HBoxContainer/StartStepByStep.visible=stepByStep
 	
-	$HBoxContainer/StartDemo.visible=$"%Recorder".hasDemo(_practice)
+	$CenterContainer/HBoxContainer/StartDemo.visible=$"%Recorder".hasDemo(_practice)
 	var recorder=$"%Recorder";
 	if GameState.isReplaying:
 		_on_StartLessButtons_pressed()
@@ -46,7 +46,7 @@ func showDialog(startItemPos,showLessButonsArray):
 		_showLessButtonsArray=showLessButonsArray
 		showText()
 		show_modal(true)
-		$HBoxContainer/StartLessButtons.grab_focus()
+		$CenterContainer/HBoxContainer/StartLessButtons.grab_focus()
 		
 
 func showText():
