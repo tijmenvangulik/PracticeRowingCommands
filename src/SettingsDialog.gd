@@ -31,6 +31,8 @@ var settingsFile="user://settings.save"
 var labelsCommandGrid=[]
 var langloadedFromParam = false
 
+const mobileLineHeight=50
+
 func start(tabIndex =0 ):
 	$TabContainer.current_tab=tabIndex
 	show()
@@ -100,7 +102,11 @@ func _languageChangedSignal():
 	#only reset the url after it is loaded fully so the original is never lost
 	if langloadedFromParam:
 		Utilities.resetUrlPameters()
-	
+
+func alterCommandGridEditContainer(container):
+	if GameState.mobileMode:
+		container.rect_min_size.y=mobileLineHeight
+		
 # Called when the node enters the scene tree for the first time.
 func _ready():
 
@@ -162,6 +168,7 @@ func _ready():
 	
 	commandButtonsTab.init()
 	enablePracticesTab.init()
+	
 	for command in commands:
 		var commandLabelText=Utilities.calcCommandGridLabelText(command)
 
@@ -169,7 +176,10 @@ func _ready():
 		var labelContainer=label.get_parent()
 		labelContainer.command=command
 		labelsCommandGrid.append(labelContainer)
-		if !GameState.mobileMode:
+		if GameState.mobileMode:
+			label.rect_min_size.y=mobileLineHeight
+			labelContainer.rect_min_size.y=mobileLineHeight
+		else:
 			var tootipTextName=command+"_tooltip";
 			label.mouse_filter=Control.MOUSE_FILTER_STOP
 			GameEvents.register_allways_tooltip(label,tootipTextName)
@@ -177,7 +187,7 @@ func _ready():
 		var editBox = preload("res://EditCommandText.tscn").instance()
 		editBox.commandName=command
 		editBox.command=commandIndex
-		
+		alterCommandGridEditContainer(editBox)
 		var altText=Settings.commandTranslations[commandIndex];
 		editBox.visible=true;
 		
@@ -190,6 +200,7 @@ func _ready():
 		editBox = preload("res://EditCommandText2.tscn").instance()
 		editBox.commandName=command
 		editBox.command=commandIndex
+		alterCommandGridEditContainer(editBox)
 		
 		altText=Settings.commandTextTranslations[commandIndex];
 		editBox.visible=true;
@@ -203,6 +214,7 @@ func _ready():
 		var editTooltipBox = preload("res://EditTooltipText.tscn").instance()
 		editTooltipBox.commandName=command
 		editTooltipBox.command=commandIndex
+		alterCommandGridEditContainer(editTooltipBox)
 		
 		var altTooltipText=Settings.tooltipTranslations[commandIndex];
 		editTooltipBox.visible=true;
@@ -217,7 +229,8 @@ func _ready():
 		var editShortcutBox = preload("res://EditShortcutText.tscn").instance()
 		editShortcutBox.commandName=command
 		editShortcutBox.command=commandIndex
-		
+		alterCommandGridEditContainer(editShortcutBox)
+			
 		var altShortcutText=Settings.shortcutTranslations[commandIndex];
 		editShortcutBox.visible=true;
 		

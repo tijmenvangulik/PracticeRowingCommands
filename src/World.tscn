@@ -3852,7 +3852,7 @@ text = "RuleSetLabel"
 
 [node name="RuleSetDropDown" type="OptionButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_left = 216.0
-margin_right = 366.0
+margin_right = 434.0
 margin_bottom = 25.0
 theme = ExtResource( 29 )
 custom_constants/hseparation = 10
@@ -3868,7 +3868,7 @@ text = "ShowTooltipSettingLabel"
 [node name="ShowCommandTooltips" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_left = 216.0
 margin_top = 35.0
-margin_right = 366.0
+margin_right = 434.0
 margin_bottom = 66.0
 custom_icons/off = ExtResource( 25 )
 custom_icons/on = ExtResource( 66 )
@@ -3885,33 +3885,33 @@ text = "ShowShortCutsInButtons"
 [node name="ShowShortCutsInButtons" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_left = 216.0
 margin_top = 76.0
-margin_right = 366.0
+margin_right = 434.0
 margin_bottom = 107.0
 custom_icons/off = ExtResource( 25 )
 custom_icons/on = ExtResource( 66 )
 
 [node name="BoatTypeLabel" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_top = 161.0
+margin_top = 120.0
 margin_right = 196.0
-margin_bottom = 180.0
+margin_bottom = 139.0
 mouse_filter = 0
 custom_fonts/font = ExtResource( 50 )
 text = "BoatType"
 
 [node name="BoatType" type="OptionButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_left = 216.0
-margin_top = 158.0
-margin_right = 366.0
-margin_bottom = 183.0
+margin_top = 117.0
+margin_right = 434.0
+margin_bottom = 142.0
 custom_fonts/font = ExtResource( 50 )
 text = "Default"
 items = [ "Default", null, false, 0, null, "Scull", null, false, 1, null, "Sweep", null, false, 2, null ]
 selected = 0
 
 [node name="SpeakCommandsLabel" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_top = 123.0
+margin_top = 155.0
 margin_right = 196.0
-margin_bottom = 142.0
+margin_bottom = 174.0
 rect_pivot_offset = Vector2( 99.8611, 7.608 )
 mouse_filter = 0
 custom_fonts/font = ExtResource( 50 )
@@ -3919,9 +3919,9 @@ text = "SpeakCommandsLabel"
 
 [node name="SpeakCommands" type="OptionButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_left = 216.0
-margin_top = 158.0
+margin_top = 152.0
 margin_right = 434.0
-margin_bottom = 183.0
+margin_bottom = 177.0
 custom_fonts/font = ExtResource( 50 )
 text = "SpeakCommandsDefault"
 items = [ "SpeakCommandsDefault", null, false, 0, null, "SpeakCommandsOff", null, false, 1, null, "SpeakCommandsOn", null, false, 2, null, "SpeakCommandsCustom", null, false, 3, null ]
@@ -3944,30 +3944,32 @@ margin_bottom = 40.0
 custom_fonts/font = ExtResource( 50 )
 
 [node name="Label5" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_top = 199.0
+margin_top = 187.0
 margin_right = 196.0
-margin_bottom = 218.0
+margin_bottom = 206.0
 custom_fonts/font = ExtResource( 50 )
 
 [node name="WarningCultureNotSupported" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_right = 209.0
-margin_bottom = 19.0
+margin_left = 216.0
+margin_top = 187.0
+margin_right = 434.0
+margin_bottom = 206.0
 custom_colors/font_color = Color( 0.823529, 0.611765, 0.266667, 1 )
 custom_fonts/font = ExtResource( 50 )
 text = "ErrorCultureNotSupported"
 
 [node name="Label4" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_top = 199.0
+margin_top = 222.0
 margin_right = 196.0
-margin_bottom = 218.0
+margin_bottom = 241.0
 custom_fonts/font = ExtResource( 50 )
 text = "Reset"
 
 [node name="ResetPractices" type="Button" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_left = 216.0
-margin_top = 193.0
-margin_right = 366.0
-margin_bottom = 225.0
+margin_top = 216.0
+margin_right = 434.0
+margin_bottom = 248.0
 rect_min_size = Vector2( 150, 32 )
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 52 )
@@ -4110,6 +4112,7 @@ margin_right = 300.0
 margin_bottom = -25.0
 
 [node name="GridContainerCommands" type="GridContainer" parent="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab/ScrollContainerCommands"]
+mouse_filter = 2
 custom_constants/vseparation = 4
 custom_constants/hseparation = 4
 
