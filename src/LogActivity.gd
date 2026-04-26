@@ -5,7 +5,7 @@ extends HTTPRequest
 	
 # anonymous loging some usage info
 # log when a practice is finished with success or failed
-func logFinishedActivity(name : String, success : bool,isScull : bool,cancel=false):
+func logFinishedActivity(name : String, success : bool,isScull : bool,cancel=false,stepByStep=false):
 	var lang=Settings.currentLang
 	if lang==Languages.sharedSettingLangKey:
 		if Settings.sharedSettings!=null && Settings.sharedSettings.has("name"):
@@ -21,5 +21,7 @@ func logFinishedActivity(name : String, success : bool,isScull : bool,cancel=fal
 	url=url+"&data[isScull]="+Utilities.boolToSting(isScull)
 	url=url+"&data[isMobile]="+Utilities.boolToSting(GameState.mobileMode)
 	url=url+"&data[cancel]="+Utilities.boolToSting(cancel)
+	url=url+"&data[stepByStep]="+Utilities.boolToSting(stepByStep)
+	
 	$"%LogActivityRequest".request(url, [], true, HTTPClient.METHOD_GET)
 	

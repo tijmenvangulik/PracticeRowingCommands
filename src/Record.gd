@@ -140,6 +140,8 @@ func replayEnded(lastTime,practice,endTime):
 		
 		GameState.isReplaying=false
 		if GameState.replayStepByStep:
+			GameState.commandCount=0
+			$"%OptionStart".logEndPractice(true)
 			$"%StepByStep".stop()
 		optionsStart.doStart(practice)
 	$"%ButtonsContainer".enabled=true

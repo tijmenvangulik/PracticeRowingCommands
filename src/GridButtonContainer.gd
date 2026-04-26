@@ -53,12 +53,12 @@ func _on_EditCommandText_customTooltipTextChanged(changed_command,changed_comman
 	
 func execCommand():
 	if GameState.isPaused && GameState.replayStepByStep:
+		GameState.commandCount=GameState.commandCount+1
 		GameEvents.doCheckCommand(command)
-	elif canClickButton && !GameState.isReplaying && !GameState.isPaused:
+	elif canClickButton && !GameState.isReplaying  && !GameState.isPaused:
 		GameState.commandCount=GameState.commandCount+1
 		GameEvents.doCommand(command)
-			
-
+		
 func callButtonDropped(droppedInfo):
 	emit_signal("button_dropped",droppedInfo,self)
 

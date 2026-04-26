@@ -121,10 +121,14 @@ func _highContrastChangedSignal(highContrast):
 	setStyle()
 	
 func _menuItemClicked(itemId):
+	var wasReplaying=GameState.isReplaying
 	$"%Recorder".cancelReplay()
-	if GameState.replayStepByStep:
+	if wasReplaying && GameState.replayStepByStep:
+		if GameState.commandCount>=Constants.logCancelMinStepByStepCommandCount:
+			GameState.commandCount=0 #prefents logging again
+			logEndPractice(false,true)
 		$"%StepByStep".stop()
-	doStart(itemId)
+	doStart(itemId,false)
 
 func _submenuItemClicked(itemId):
 	$"%Recorder".cancelReplay()
@@ -226,6 +230,9 @@ func endPractice():
 	
 	if practiceIsActive:
 		practiceIsActive=false
+		if GameState.isReplaying && GameState.replayStepByStep:
+			logEndPractice(true)
+			
 		if !GameState.isReplaying:
 			var earnedStar=!practiceIsFinished(currentStartPos)
 			
@@ -250,7 +257,7 @@ func endPractice():
 func logEndPractice(success : bool,cancel = false):
 	var currentName= Constants.StartItem.keys()[currentStartPos] ;
 	if ( !OS.is_debug_build() ):
-		$"%LogActivityRequest".logFinishedActivity(currentName,success,GameState.isScull,cancel)
+		$"%LogActivityRequest".logFinishedActivity(currentName,success,GameState.isScull,cancel,GameState.replayStepByStep)
 
 func _crashDetected():
 	var extraWaitTime=0;
@@ -328,7 +335,7 @@ func doStart(startItemId,autoStart=false):
 	if GameState.collectGameState!=Constants.CollectGameState.None:
 		GameState.changeCollectGameState(Constants.CollectGameState.Stop)
 	
-	if !boat.crashState && GameState.commandCount>=3:
+	if !boat.crashState && GameState.commandCount>=Constants.logCancelMinCommandCount:
 		logEndPractice(false,true)
 	GameState.commandCount=0
 	boat.resetCrashed()
