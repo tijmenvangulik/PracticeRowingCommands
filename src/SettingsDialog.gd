@@ -9,6 +9,9 @@ export (NodePath) onready var commandTranslationsHeaderGrid = get_node(commandTr
 export (NodePath) onready var commandTranslationsCommandsGrid = get_node(commandTranslationsCommandsGrid) as GridContainer
 
 export (NodePath) onready var showCommandTooltips = get_node(showCommandTooltips) as Button
+export (NodePath) onready var includeBBAndSBWhenLessCommands = get_node(includeBBAndSBWhenLessCommands) as Button
+
+
 export (NodePath) onready var isoCultureCodeEditBox = get_node(isoCultureCodeEditBox) as TextEdit
 
 
@@ -319,7 +322,8 @@ func getSettings(removePrivate=false):
 	  "highScoreName":Settings.highScoreName,
 	  "highScoreClub":Settings.highScoreClub,
 	  "speakCommands":Settings.speakCommands,
-	  "speechCultureCode":Settings.speechCultureCode
+	  "speechCultureCode":Settings.speechCultureCode,
+	  "includeBBAndSBWhenLessCommands":Settings.includeBBAndSBWhenLessCommands
 	}
 	if removePrivate:
 		removePrivateSettings(save_dict)
@@ -349,7 +353,8 @@ func getSharedSettings(name : String):
 	  "isScull":true, #dymmy
 	  "showShortCutsInButtons":false, #dummy
 	  "showCommandTooltips":false,
-	  "bladeColor":"#"+GameState.sharedSettingsBladeColor.to_html(false)
+	  "bladeColor":"#"+GameState.sharedSettingsBladeColor.to_html(false),
+	  "includeBBAndSBWhenLessCommands":true
 		
 	}
 	return save_dict
@@ -453,6 +458,13 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 		 tooltipsOn=dict["showCommandTooltips"]	
 	Settings.showCommandTooltips=tooltipsOn
 	showCommandTooltips.set_pressed(tooltipsOn)
+	
+	var includeBBSB=true
+	if dict.has("includeBBAndSBWhenLessCommands"): 
+		 includeBBSB=dict["includeBBAndSBWhenLessCommands"]	
+	Settings.includeBBAndSBWhenLessCommands=includeBBSB
+	includeBBAndSBWhenLessCommands.set_pressed(includeBBSB)
+	
 	
 	var 	shotCutsOn=false
 	if dict.has("showShortCutsInButtons"): 
@@ -886,3 +898,7 @@ func _on_IsoCultureCode_text_changed() -> void:
 func _on_SettingsDialog_visibility_changed() -> void:
 	if visible:
 		isCultureSupportedWarning()
+
+
+func _on_IncludeBBAndSBWhenLessCommands_toggled(button_pressed: bool) -> void:
+	Settings.includeBBAndSBWhenLessCommands=button_pressed

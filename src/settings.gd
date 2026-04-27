@@ -27,3 +27,4 @@ var highScoreName=""
 var highScoreClub=""
 var speakCommands = Constants.SpeakCommandsType.Default;
 var speechCultureCode=""
+var includeBBAndSBWhenLessCommands =true

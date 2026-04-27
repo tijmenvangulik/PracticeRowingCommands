@@ -3799,6 +3799,7 @@ commandTranslationsGrid = NodePath("TabContainer/CommandTranslateTab/ScrollConta
 commandTranslationsHeaderGrid = NodePath("TabContainer/CommandTranslateTab/ScrollContainerHeader/GridContainerHeader")
 commandTranslationsCommandsGrid = NodePath("TabContainer/CommandTranslateTab/ScrollContainerCommands/GridContainerCommands")
 showCommandTooltips = NodePath("TabContainer/GeneralSettingsTab/GridContainer/ShowCommandTooltips")
+includeBBAndSBWhenLessCommands = NodePath("TabContainer/GeneralSettingsTab/GridContainer/IncludeBBAndSBWhenLessCommands")
 isoCultureCodeEditBox = NodePath("TabContainer/GeneralSettingsTab/GridContainer/IsoCultureCode")
 commandButtonsTab = NodePath("TabContainer/CommandButtonsTab")
 showShortCutsInButtons = NodePath("TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons")
@@ -3874,44 +3875,60 @@ custom_icons/off = ExtResource( 25 )
 custom_icons/on = ExtResource( 66 )
 pressed = true
 
-[node name="Label2" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
+[node name="Label3" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_top = 82.0
 margin_right = 196.0
 margin_bottom = 101.0
-rect_pivot_offset = Vector2( 99.8611, 7.608 )
 custom_fonts/font = ExtResource( 50 )
-text = "ShowShortCutsInButtons"
+text = "includeBBandSBLabel"
 
-[node name="ShowShortCutsInButtons" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
+[node name="IncludeBBAndSBWhenLessCommands" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_left = 216.0
 margin_top = 76.0
 margin_right = 434.0
 margin_bottom = 107.0
 custom_icons/off = ExtResource( 25 )
 custom_icons/on = ExtResource( 66 )
+pressed = true
+
+[node name="Label2" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
+margin_top = 123.0
+margin_right = 196.0
+margin_bottom = 142.0
+rect_pivot_offset = Vector2( 99.8611, 7.608 )
+custom_fonts/font = ExtResource( 50 )
+text = "ShowShortCutsInButtons"
+
+[node name="ShowShortCutsInButtons" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
+margin_left = 216.0
+margin_top = 117.0
+margin_right = 434.0
+margin_bottom = 148.0
+custom_icons/off = ExtResource( 25 )
+custom_icons/on = ExtResource( 66 )
 
 [node name="BoatTypeLabel" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_top = 120.0
+margin_top = 161.0
 margin_right = 196.0
-margin_bottom = 139.0
+margin_bottom = 180.0
 mouse_filter = 0
 custom_fonts/font = ExtResource( 50 )
 text = "BoatType"
 
 [node name="BoatType" type="OptionButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_left = 216.0
-margin_top = 117.0
+margin_top = 158.0
 margin_right = 434.0
-margin_bottom = 142.0
+margin_bottom = 183.0
 custom_fonts/font = ExtResource( 50 )
 text = "Default"
 items = [ "Default", null, false, 0, null, "Scull", null, false, 1, null, "Sweep", null, false, 2, null ]
 selected = 0
 
 [node name="SpeakCommandsLabel" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_top = 155.0
+margin_top = 196.0
 margin_right = 196.0
-margin_bottom = 174.0
+margin_bottom = 215.0
 rect_pivot_offset = Vector2( 99.8611, 7.608 )
 mouse_filter = 0
 custom_fonts/font = ExtResource( 50 )
@@ -3919,9 +3936,9 @@ text = "SpeakCommandsLabel"
 
 [node name="SpeakCommands" type="OptionButton" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_left = 216.0
-margin_top = 152.0
+margin_top = 193.0
 margin_right = 434.0
-margin_bottom = 177.0
+margin_bottom = 218.0
 custom_fonts/font = ExtResource( 50 )
 text = "SpeakCommandsDefault"
 items = [ "SpeakCommandsDefault", null, false, 0, null, "SpeakCommandsOff", null, false, 1, null, "SpeakCommandsOn", null, false, 2, null, "SpeakCommandsCustom", null, false, 3, null ]
@@ -3944,32 +3961,32 @@ margin_bottom = 40.0
 custom_fonts/font = ExtResource( 50 )
 
 [node name="Label5" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_top = 187.0
+margin_top = 228.0
 margin_right = 196.0
-margin_bottom = 206.0
+margin_bottom = 247.0
 custom_fonts/font = ExtResource( 50 )
 
 [node name="WarningCultureNotSupported" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_left = 216.0
-margin_top = 187.0
+margin_top = 228.0
 margin_right = 434.0
-margin_bottom = 206.0
+margin_bottom = 247.0
 custom_colors/font_color = Color( 0.823529, 0.611765, 0.266667, 1 )
 custom_fonts/font = ExtResource( 50 )
 text = "ErrorCultureNotSupported"
 
 [node name="Label4" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
-margin_top = 222.0
+margin_top = 263.0
 margin_right = 196.0
-margin_bottom = 241.0
+margin_bottom = 282.0
 custom_fonts/font = ExtResource( 50 )
 text = "Reset"
 
 [node name="ResetPractices" type="Button" parent="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer"]
 margin_left = 216.0
-margin_top = 216.0
+margin_top = 257.0
 margin_right = 434.0
-margin_bottom = 248.0
+margin_bottom = 289.0
 rect_min_size = Vector2( 150, 32 )
 custom_fonts/font = ExtResource( 50 )
 custom_styles/hover = ExtResource( 52 )
@@ -4838,6 +4855,7 @@ script = ExtResource( 126 )
 [connection signal="visibility_changed" from="CanvasLayer/SettingsDialog" to="CanvasLayer/SettingsDialog/TabContainer/CommandButtonsTab" method="_on_SettingsDialog_visibility_changed"]
 [connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/RuleSetDropDown" to="CanvasLayer/SettingsDialog" method="_on_RuleSetDropDown_item_selected"]
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/ShowCommandTooltips" to="CanvasLayer/SettingsDialog" method="_on_ShowCommandTooltips_toggled"]
+[connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/IncludeBBAndSBWhenLessCommands" to="CanvasLayer/SettingsDialog" method="_on_IncludeBBAndSBWhenLessCommands_toggled"]
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons" to="CanvasLayer/SettingsDialog" method="_on_ShowShortCutsInButtons_toggled"]
 [connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/BoatType" to="CanvasLayer/SettingsDialog" method="_on_BoatType_item_selected"]
 [connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/GeneralSettingsTab/GridContainer/SpeakCommands" to="CanvasLayer/SettingsDialog" method="_on_SpeakCommands_item_selected"]
