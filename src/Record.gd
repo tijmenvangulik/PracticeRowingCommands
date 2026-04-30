@@ -132,7 +132,10 @@ func replayEnded(lastTime,practice,endTime):
 			return
 		
 		boat.doCommand(Constants.Command.LaatLopen)
-		commandReplayText.text=tr("EndDemo")
+		if GameState.replayStepByStep:
+			commandReplayText.text=tr("EndStepByStep")
+		else: 
+			commandReplayText.text=tr("EndDemo")
 		_replayTimer= Utilities.startTimer(2.5)
 		yield(_replayTimer, "timeout")
 		Utilities.removeTimer(_replayTimer)
