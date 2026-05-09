@@ -1,5 +1,6 @@
 ![Logo](art/PraciceRowingCommandsLogoNew.png)
-# App to practice (coxing) commands for rowing
+# Practice Coxing Commands
+## Rowing Command Trainer
 ## (App voor het oefenen van roei stuur commando's) 
 
 Serious game to practice rowing coxing commands. This app is used by rowing club Viking in Utrecht to practice rowing commands for the steering instruction level 1. The app can be configured to also work for other rowing clubs.
@@ -9,7 +10,7 @@ Serious game to practice rowing coxing commands. This app is used by rowing club
 [Intro video:](https://www.youtube.com/shorts/3YI1xcJEyuc)
 
 The website:
-[https://www.vangulik.org/PracticeRowingCommands/](https://www.vangulik.org/PracticeRowingCommands)
+[https://www.vangulik.org/PracticeCoxingCommands/](https://www.vangulik.org/PracticeCoxingCommands)
 
 
 # License
