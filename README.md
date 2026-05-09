@@ -7,7 +7,7 @@ Serious game to practice rowing coxing commands. This app is used by rowing club
 
 ![Screenshot](art/Screenshot.jpg)
 
-[Intro video:](https://www.youtube.com/shorts/3YI1xcJEyuc)
+[Intro video:](https://youtube.com/shorts/2Rg2UDJAUQ0)
 
 The website:
 [https://www.vangulik.org/PracticeCoxingCommands/](https://www.vangulik.org/PracticeCoxingCommands)
