@@ -13,7 +13,8 @@ var _allowPause = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameEvents.connect("introSignal",self,"_introSignal")
-	GameEvents.register_allways_tooltip(self,"PauseTooltip")
+	if !GameState.mobileMode:
+		GameEvents.register_allways_tooltip(self,"PauseTooltip")
 	GameEvents.connect("collectGameStateChangedSignal",self,"_collectGameStateChangedSignal")
 	_allowPause=true #!GameState.mobileMode
 	if GameState.mobileMode:

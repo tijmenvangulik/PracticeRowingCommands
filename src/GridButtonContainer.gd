@@ -11,7 +11,7 @@ var customTooltipText=""
 var shortcut=""
 var orgText=""
 var customShortcut=""
-
+var alwaysShowTooltip=false
 func _ready():
 
 	GameEvents.connect("customCommandTextChanged",self,"_on_EditCommandText_customCommandTextChanged")
@@ -68,18 +68,18 @@ func calcClickableButtonTooltip():
 		return ""
 	customTooltipText=Utilities.getCommandTooltip(command)
 	
-	if customTooltipText!='' && !GameState.showTooltips:
+	if customTooltipText!='' && (!GameState.showTooltips) && !alwaysShowTooltip:
 		returnTooltip= customTooltipText
 	else:
 		var extension="_tooltip"
-		if !GameState.showTooltips :
+		if !GameState.showTooltips && !alwaysShowTooltip :
 			extension="_shorttooltip";
 		var tootipTextName=commandName+extension;
 		var tootip=tr(tootipTextName)
 			
 		if tootip!=tootipTextName && tootip!="-":
 			returnTooltip=tootip
-	if shortcut!="" && GameState.showTooltips :
+	if shortcut!="" && (GameState.showTooltips) && !alwaysShowTooltip :
 		if returnTooltip!="": 
 			returnTooltip=returnTooltip+"\n"
 		returnTooltip=returnTooltip+tr("Shortcut")+": "+shortcut
@@ -87,16 +87,13 @@ func calcClickableButtonTooltip():
 	return returnTooltip
 	
 func get_tooltip_text(node):
-	if (!canDrag && GameState.mobileMode )|| ( !GameState.showTooltips && !Settings.showCommandTooltips ) :
+	if get_viewport().gui_is_dragging():
+		return ""
+	if !alwaysShowTooltip && (!canDrag && GameState.mobileMode )|| ( !GameState.showTooltips && !Settings.showCommandTooltips ) :
 		return ""
 # for drag drop use the normal whole command as tooltip	
-	if canDrag:
-		var returnTooltip=""
-		returnTooltip=Utilities.getCommandTextTranslation(command)
-		if returnTooltip==tr($GridButton.text):
-			returnTooltip=""
-		return Utilities.removeTagsFromText(returnTooltip)
-	if canClickButton:
+	
+	if canClickButton || alwaysShowTooltip :
 		return calcClickableButtonTooltip()
 	return ""
 

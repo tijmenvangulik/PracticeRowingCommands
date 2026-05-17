@@ -42,11 +42,13 @@ func addGridButton(container,commandName :String, isSource : bool,insertIndex):
 	if insertIndex!=null:
 		container.move_child(buttonContainer,insertIndex)
 
+	if isSource && !GameState.mobileMode:
+		buttonContainer.alwaysShowTooltip=true
 	buttonContainer.visible=true;
 	buttonContainer.canClickButton=false
 	buttonContainer.init(commandName,true)
 	buttonContainer.canDrag=true;
-	
+
 	if isSource:
 		buttonContainer.connect("button_dropped",self,"button_dropped_source")
 	else:
