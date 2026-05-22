@@ -360,6 +360,9 @@
 						touch2.clientX - touch1.clientX,
 						touch2.clientY - touch1.clientY
 					);
+					if (lastDistance==0) {
+						window.postMessage('toGodot:pinchZoomStart', '*');
+					}
 					if (lastDistance > 0) {
 						event.preventDefault();
 						var zoomFactor = distance / lastDistance;
@@ -371,7 +374,11 @@
 			}, false);
 
 			canvas.addEventListener('touchend', function(event) {
+				if (lastDistance>0) {
+					window.postMessage('toGodot:pinchZoomEnd', '*');
+				}
 				lastDistance = 0;
+				
 			}, false);
 
 			canvas.addEventListener('wheel', function(event) {

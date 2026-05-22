@@ -3705,6 +3705,7 @@ toggle_mode = true
 icon = ExtResource( 128 )
 icon_align = 1
 script = ExtResource( 127 )
+animatedWater = NodePath("../../../Water")
 
 [node name="CollectedCounter" type="HBoxContainer" parent="CanvasLayer/RightTopButtons"]
 visible = false
@@ -4810,6 +4811,7 @@ script = ExtResource( 112 )
 unique_name_in_owner = true
 script = ExtResource( 126 )
 
+[connection signal="animation_finished" from="WaterClasicFrozen/WaterClasicFrozenAnimation" to="CanvasLayer/RightTopButtons/Pause" method="_on_WaterClasicFrozenAnimation_animation_finished"]
 [connection signal="pressed" from="CanvasLayer/EditButtons" to="CanvasLayer/EditButtons" method="_on_EditButtons_pressed"]
 [connection signal="pressed" from="CanvasLayer/LowFrameRateDialog/SwitchToLow" to="CanvasLayer/LowFrameRateDialog" method="_on_SwitchToLow_pressed"]
 [connection signal="pressed" from="CanvasLayer/IntroDialog/HSplitContainer/StartPractices" to="CanvasLayer/IntroDialog" method="_on_StartPractices_pressed"]

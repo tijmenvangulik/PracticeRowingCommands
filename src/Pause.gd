@@ -4,7 +4,7 @@ extends Button
 # Declare member variables here. Examples:
 # var a: int = 2
 # var b: String = "text"
-
+export (NodePath) onready var animatedWater = get_node(animatedWater) as Polygon2D
 
 var pauseSprite=load("res://assets/pause.png")
 var playSprite=load("res://assets/play.png")
@@ -61,3 +61,11 @@ func _collectGameStateChangedSignal(state):
 		setPaused(false)
 	elif state==Constants.CollectGameState.Stop || state==Constants.CollectGameState.Finish:
 			visible=_allowPause
+
+
+func _on_WaterClasicFrozenAnimation_animation_finished(anim_name: String) -> void:
+	if pressed:
+		animatedWater.visible=false
+	else:
+		animatedWater.visible=Settings.waterAnimation
+

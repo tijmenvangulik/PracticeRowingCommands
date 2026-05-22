@@ -54,6 +54,14 @@ var moveStep=1000
 var isDuckCrash = false
 var postionY=0
 
+# Add variables for camera drag functionality
+var camera_original_position = Vector2.ZERO
+var camera_drag_offset = Vector2.ZERO
+var is_dragging = false
+var moving_back=false
+#var multiTouch=false
+var pinchActive=false
+
 func forwardsPositon():
 	if GameState.mobileMode:
 		return 180
@@ -69,7 +77,8 @@ func _ready():
 	GameEvents.connect("doCommandSignal",self,"_doCommandSignal")
 	GameEvents.connect("isScullChangedSignal",self,"_isScullSignal")
 	GameEvents.connect("introSignal",self,"_introSignal")
-
+	GameEvents.connect("javaScriptMessage",self,"_javaScriptMessage")
+	
 	$"OarBB2".masterOar=$"OarBB1"
 	$"OarSB2".masterOar=$"OarSB1"
 	$"OarBB1".slaveOar=$"OarBB2"
@@ -99,7 +108,17 @@ func _isScullSignal(isScull):
 func _physics_process(delta):
 	setForwardsPosition(delta)
 	updateOarCollision()
-	
+	if not is_dragging && (camera_drag_offset.x!=0 || camera_drag_offset.y!=0):
+		moving_back=true
+		# Gradually move the camera back to its original position
+		camera_drag_offset = camera_drag_offset.linear_interpolate(Vector2.ZERO, 20 * delta)
+		if camera_drag_offset.x<0.01 && camera_drag_offset.x>-0.01:
+			camera_drag_offset.x=0
+		if camera_drag_offset.y<0.01 && camera_drag_offset.y>-0.01:
+			camera_drag_offset.y=0
+		$Camera2D2.position = camera_original_position + camera_drag_offset
+	else:
+		moving_back=false
 func updateOarCollision():
 	$"OarBB1Collision".rotation_degrees=$"OarBB1".rotation_degrees-90-180
 	$"OarBB2Collision".rotation_degrees=$"OarBB2".rotation_degrees-90-180
@@ -743,4 +762,49 @@ func calcRippleEffect():
 
 func _introSignal(isVisible : bool):
 	visible=!isVisible
-	
+
+func _javaScriptMessage(data : String):
+	if data=="pinchZoomStart":
+		pinchActive=true
+		if is_dragging:
+			is_dragging = false
+			moving_back=false
+			camera_drag_offset=Vector2(0,0)
+			$Camera2D2.position=camera_original_position;
+	elif data=="pinchZoomEnd":
+		pinchActive=false
+
+func _unhandled_input(event):
+	if !moving_back && !pinchActive:
+		#if OS.has_feature("mobile"):
+#		if GameState.mobileMode:
+#			if event is InputEventScreenDrag:
+#
+#
+#				if event.pressed:
+#					if event.index==0 && !is_dragging && !multiTouch:
+#						camera_original_position=$Camera2D2.position
+#						is_dragging = true
+#
+#
+#					elif event.index>=1 && is_dragging:
+#						is_dragging = false
+#						multiTouch=true
+#						moving_back=false
+#						camera_drag_offset=Vector2(0,0)
+#						$Camera2D2.position=camera_original_position;
+#				else:
+#					is_dragging = false
+#					multiTouch=false
+#		else:
+		if event is InputEventMouseButton:
+			if event.button_index == BUTTON_LEFT:
+				if event.pressed:
+					camera_original_position=$Camera2D2.position
+					is_dragging = true
+				else:
+					is_dragging = false
+		if event is InputEventMouseMotion and is_dragging:		
+			var relative = Vector2(event.relative.y,event.relative.x)
+			camera_drag_offset += (relative*2)
+			$Camera2D2.position = camera_original_position + camera_drag_offset
