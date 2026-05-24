@@ -113,7 +113,16 @@ func alterCommandGridEditContainer(container):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 
-	if !GameState.mobileMode:
+	if GameState.mobileMode:
+		var mobileGridSeparation=20
+		$TabContainer/DisplayTab/GridContainer.add_constant_override("vseparation",mobileGridSeparation)
+		$TabContainer/GeneralSettingsTab/GridContainer.add_constant_override("vseparation",mobileGridSeparation)
+		Utilities.setMobileSwitchStyle($TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer2/WaterAnimationButton)
+		Utilities.setMobileSwitchStyle($TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer3/HighContrastButton)
+		Utilities.setMobileSwitchStyle($TabContainer/GeneralSettingsTab/GridContainer/ShowCommandTooltips)
+		Utilities.setMobileSwitchStyle($TabContainer/GeneralSettingsTab/GridContainer/IncludeBBAndSBWhenLessCommands)
+		Utilities.setMobileSwitchStyle($TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons)
+	else:
 		var tabConainer=$TabContainer
 		tabConainer.remove_stylebox_override("decrement")
 		tabConainer.remove_stylebox_override("increment")

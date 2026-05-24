@@ -500,3 +500,8 @@ func removeTagsFromText(textValue):
 			break
 		startPos=result.find("{{",startPos)
 	return result
+
+func setMobileSwitchStyle(switchControl : Button):
+	switchControl.rect_min_size.x=100
+	switchControl.rect_min_size.y=40
+
