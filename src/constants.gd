@@ -211,7 +211,8 @@ enum StartItem {
   AanleggenBB, #19
   AangelegdBB, #20
   AangelegdUitzettenBB, #21
-  MoringHarbourBB, #22
+  MoringHarbourBB #22
+#  ,Aanleggen40, #23
 }
 
 var practiceExplainTexts= [
@@ -237,7 +238,8 @@ var practiceExplainTexts= [
   "MoringBBExplainRaftText", #19
   "SailAwayBBExplainText", #20
   "SailAwayExplainPushAwayBBText", #21
-  "MoringHarbourBBExplainText",#MoringHarbour, #22
+  "MoringHarbourBBExplainText"#MoringHarbour, #22
+#  "MoringExplainRaftText40",#Aanleggen40, #23
 ]
 const serverUrl="https://ergometer-space.org/manager"
 #const serverUrl="http://localhost:2024"

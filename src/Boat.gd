@@ -22,6 +22,8 @@ var lightPaddleDestTurnFactor=0.5
 var lightPaddleOn=false
 
 var bestExtraRotation=1.5
+var defaultBoatMass= 1.2
+var reducedBoatMass = 0.8 # for easier docking
 
 var bestState : int= Constants.BestState.Normal
 var lowNoRowingSpeed=lightPaddleFactor*max_speed
@@ -66,6 +68,12 @@ func forwardsPositon():
 	if GameState.mobileMode:
 		return 180
 	return 150
+	
+func setReducedBoatMass(on : bool):
+	if on:
+		mass= reducedBoatMass
+	else:
+		mass= defaultBoatMass
 	
 func _ready():
 	if GameState.mobileMode:
@@ -267,6 +275,17 @@ func _integrate_forces( statePhysics: Physics2DDirectBodyState):
 			#apply_torque_impulse(destinationTurnSpeed*30);
 			var extraTurnForce= Vector2(abs(destinationTurnSpeed)*0.5,0).rotated(rotation) #deg2rad(-45*sign(destinationTurnSpeed))
 			apply_impulse(Vector2(0,-50*sign(destinationTurnSpeed)).rotated(rotation),extraTurnForce)
+	else:
+		if (( stateOars== Constants.StateOars.RiemenHoogSB && ($OarBB1.waveState==Constants.OarWaveState.Bedankt || $OarBB1.waveState==Constants.OarWaveState.Vastroeien)) 
+			  || (stateOars== Constants.StateOars.RiemenHoogBB && ($OarSB1.waveState==Constants.OarWaveState.Bedankt || $OarSB1.waveState==Constants.OarWaveState.Vastroeien)) 
+			) && !isLowSpeed() :
+			# when oars on water and otherside is up boat starts to turn a bit
+			var turnFactor=0.6
+			if stateOars== Constants.StateOars.RiemenHoogSB:
+				apply_torque_impulse(-turnFactor);
+			else:
+				apply_torque_impulse(turnFactor);
+
 	#var collision = move_and_collide(velocity)
 	
 	# apply the breaking force
@@ -374,7 +393,7 @@ func isStopped():
 	return abs(linear_velocity.length())<speedIsStopped
 
 func isTurning():
-	return abs(get_angular_velocity())>0.05
+	return abs(get_angular_velocity())>0.1
 	
 func calcSpeed():
 	var result=linear_velocity.length()
@@ -451,9 +470,15 @@ func doCommand(command:int):
 		Constants.Command.LightPaddleBedankt:
 			setLightPaddle(command,false)
 		Constants.Command.RiemenHoogSB:
-			oarsCommand(command,Constants.OarsCommand2.RiemenHoogSB)
+			if oarsCommand(command,Constants.OarsCommand2.RiemenHoogSB):
+				pass
+				#if $OarBB1.waveState==Constants.OarWaveState.Bedankt:
+				#	forceMultiplier=0.5 #break less when one oar is up , does not yet work seems to only affect the turn factor
 		Constants.Command.RiemenHoogBB:
-			oarsCommand(command,Constants.OarsCommand2.RiemenHoogBB)
+			if oarsCommand(command,Constants.OarsCommand2.RiemenHoogBB):
+				pass
+				#if $OarSB1.waveState==Constants.OarWaveState.Bedankt:
+				#	forceMultiplier=0.5#break less when one oar is up does not yet work seems to only affect the turn factor
 		Constants.Command.StuurboordBest:
 			setBest(command,Constants.BestState.StuurboordBest)
 		Constants.Command.BakboortBest:
@@ -718,13 +743,15 @@ func RimenHoogSetDisabledBB(value):
 	$"OarBB1Collision".disabled=value
 	$"OarBB2Collision".disabled=value
 	
-func oarsCommand(command: int,oarsCommand: int):
+func oarsCommand(command: int,oarsCommand: int) ->bool:
+	var result=false
 	var rules=getRules()
 	var newOarsState=rules.determineOarsState(self,command,oarsCommand)
 	if rules.error!="": showError(rules.error)
 	else: 
+		result=true
 		if newOarsState!=stateOars: setStateOars(newOarsState,false)
-	
+	return result
 	
 func setNewBoatPosition(x:int,y:int,newRotation,newStateOars : int,newIsForwards):
 	GameState.isForwards=newIsForwards

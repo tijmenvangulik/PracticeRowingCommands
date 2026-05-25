@@ -1584,6 +1584,13 @@ triggerWhenBoatIsStopped = true
 spriteStyle = 1
 practiceStartPosNr = 5
 
+[node name="CollectableMooringPractice40" parent="PracticeCollectables" instance=ExtResource( 12 )]
+unique_name_in_owner = true
+position = Vector2( 1324, 2626 )
+triggerWhenBoatIsStopped = true
+spriteStyle = 1
+practiceStartPosNr = 23
+
 [node name="CollectableMooringHarbourPractice" parent="PracticeCollectables" instance=ExtResource( 12 )]
 unique_name_in_owner = true
 position = Vector2( -126, 1588 )

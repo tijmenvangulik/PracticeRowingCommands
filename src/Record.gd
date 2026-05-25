@@ -176,9 +176,9 @@ func getDemo(practice : int):
 	if practice==Constants.StartItem.AchteruitBochtOefenening:
 		return "{\"endTime\":17996807,\"practice\":4,\"recording_commands\":[7,0,5],\"recording_time\":[1048286,6620116,8976585]}"
 	if practice==Constants.StartItem.Aanleggen:
-		return "{\"endTime\":39616047,\"practice\":5,\"recording_commands\":[30,25,0,20,10,1],\"recording_time\":[1026486,9381274,20652835,22594850,26002433,33514992]}"
+		return "{\"endTime\":40399218,\"practice\":5,\"recording_commands\":[30,25,0,20,10,1],\"recording_time\":[925125,8816882,20883545,22500038,25550047,30364079]}"
 	if practice==Constants.StartItem.AanleggenBB:
-		return "{\"endTime\":39811480,\"practice\":19,\"recording_commands\":[30,25,0,21,9,1],\"recording_time\":[938407,12110992,20332284,22111907,24013594,30872625]}"
+		return "{\"endTime\":39552465,\"practice\":19,\"recording_commands\":[30,25,0,21,9,1],\"recording_time\":[1120203,10711811,20201222,22486718,25211743,29611668]}"
 	
 	if practice==Constants.StartItem.AanleggenWal:
 		if GameState.isScull:

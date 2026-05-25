@@ -9,19 +9,20 @@ Constants.StartItem.AchteruitvarenOefenening, #3
 Constants.StartItem.AchteruitBochtOefenening, #4
 Constants.StartItem.SpinTurnPractice, #5
 Constants.StartItem.Aanleggen, #6
-Constants.StartItem.AanleggenBB, #7
-Constants.StartItem.AanleggenWal, #8
-Constants.StartItem.AangelegdUitzetten, #9
-Constants.StartItem.AangelegdUitzettenBB, #10
-Constants.StartItem.Aangelegd, #11
-Constants.StartItem.AangelegdBB,
-Constants.StartItem.StartStrijkendAanleggen, #12
-Constants.StartItem.StartStrijkendAanleggenWal, #13
-Constants.StartItem.BridgePractice, #14
-Constants.StartItem.MoringHarbour, #15
-Constants.StartItem.MoringHarbourBB, #16
-Constants.StartItem.SlalomPractice,  #17
-Constants.StartItem.StarGame #18
+#Constants.StartItem.Aanleggen40, #7
+Constants.StartItem.AanleggenBB, #8
+Constants.StartItem.AanleggenWal, #9
+Constants.StartItem.AangelegdUitzetten, #10
+Constants.StartItem.AangelegdUitzettenBB, #11
+Constants.StartItem.Aangelegd, #12
+Constants.StartItem.AangelegdBB, #13
+Constants.StartItem.StartStrijkendAanleggen, #14
+Constants.StartItem.StartStrijkendAanleggenWal, #15
+Constants.StartItem.BridgePractice, #16
+Constants.StartItem.MoringHarbour, #17
+Constants.StartItem.MoringHarbourBB, #18
+Constants.StartItem.SlalomPractice,  #19
+Constants.StartItem.StarGame #20
 ]
 
 # keep in same order as practices
@@ -33,6 +34,7 @@ var practiceNames = [
 "StartAchteruitBochtOefenening",
 "StartSpinTurnPractice",
 "StartAanleggen",
+#"StartAanleggen40",
 "StartAanleggenBB",
 "StartAanleggenWal",
 "StartAangelegdUitzetten",
@@ -50,6 +52,7 @@ var practiceNames = [
 
 var stepByStepPractices = [Constants.StartItem.SpinTurnPractice, #5
 Constants.StartItem.Aanleggen, #6
+#Constants.StartItem.Aanleggen40,
 Constants.StartItem.AanleggenBB, #7
 Constants.StartItem.AanleggenWal, #8
 Constants.StartItem.AangelegdUitzetten, #9

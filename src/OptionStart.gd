@@ -338,6 +338,7 @@ func doStart(startItemId,autoStart=false):
 	if !boat.crashState && GameState.commandCount>=Constants.logCancelMinCommandCount:
 		logEndPractice(false,true)
 	GameState.commandCount=0
+	boat.setReducedBoatMass(false)
 	boat.resetCrashed()
 	var Command=Constants.Command
 	
@@ -383,13 +384,26 @@ func doStart(startItemId,autoStart=false):
 			$"%CollectableBackDownTurnPractice".reset()
 			explainPopup.showDialog(startItemId,showOnlyButonsArray)
 		Constants.StartItem.Aanleggen:
+			#reducing mass makes it a bit easier
+			boat.setReducedBoatMass(true)
 			boat.setNewBoatPosition(702.307,2145.531,45,Constants.StateOars.Roeien,true)
 			$"%CollectableMooringPractice".reset()			
 			var showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.RiemenHoogSB,Constants.Command.VastroeienBB]	
 			if Settings.includeBBAndSBWhenLessCommands:
 				showOnlyButonsArray.append_array([Constants.Command.RiemenHoogBB,Constants.Command.VastroeienSB])
 			explainPopup.showDialog(startItemId,showOnlyButonsArray)
+#		Constants.StartItem.Aanleggen40:
+#			#reducing mass makes it a bit easier
+#			boat.setReducedBoatMass(true)
+#			boat.setNewBoatPosition(702.307,2145.531,40,Constants.StateOars.Roeien,true)
+#			$"%CollectableMooringPractice40".reset()			
+#			var showOnlyButonsArray40 =[Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.RiemenHoogSB,Constants.Command.VastroeienBB]	
+#			if Settings.includeBBAndSBWhenLessCommands:
+#				showOnlyButonsArray40.append_array([Constants.Command.RiemenHoogBB,Constants.Command.VastroeienSB])
+#			explainPopup.showDialog(startItemId,showOnlyButonsArray40)
 		Constants.StartItem.AanleggenBB:
+			#reducing mass makes it a bit easier
+			boat.setReducedBoatMass(true)
 			boat.setNewBoatPosition(1755,2145.531,135,Constants.StateOars.Roeien,true)
 			$"%CollectableMooringPractice".reset()			
 			var showOnlyButonsArray =[Constants.Command.LightPaddle,Constants.Command.LightPaddleBedankt,Constants.Command.LaatLopen,Constants.Command.Bedankt,Constants.Command.SlagklaarAf,Constants.Command.RiemenHoogBB,Constants.Command.VastroeienSB]	
