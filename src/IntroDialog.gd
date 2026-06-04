@@ -42,6 +42,7 @@ func _ready():
 		anchor_top=0.51
 		
 		$IntroText.rect_size.y=$IntroText.rect_size.y-10
+		$HSplitContainer.margin_top-=10
 		
 func setText():
 	var intro=$"IntroText"

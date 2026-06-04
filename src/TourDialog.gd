@@ -16,6 +16,7 @@ func _ready():
 	
 	get_close_button().hide()
 	if GameState.mobileMode:
+		$HSplitContainer.margin_top-=15
 		margin_bottom=498
 		$TourText.margin_bottom=297
 func handleShow():

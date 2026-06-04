@@ -9,11 +9,14 @@ extends WindowDialog
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_close_button().hide()
-
+	if GameState.mobileMode:
+		$HBoxContainer.margin_top-=15
+		
 func start(earnedStar):
 	$EndPracticeStar.visible=earnedStar
 	$HBoxContainer/StartNextPractice.grab_focus()
 	show_modal(true)
+	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

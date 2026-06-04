@@ -122,6 +122,12 @@ func _ready():
 		Utilities.setMobileSwitchStyle($TabContainer/GeneralSettingsTab/GridContainer/ShowCommandTooltips)
 		Utilities.setMobileSwitchStyle($TabContainer/GeneralSettingsTab/GridContainer/IncludeBBAndSBWhenLessCommands)
 		Utilities.setMobileSwitchStyle($TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons)
+		$CloseSettingsButton.rect_size.y+=10
+		$CloseSettingsButton.rect_position.y-=15
+		$ShareSettings.rect_size.y+=10
+		$ShareSettings.rect_position.y-=15
+		$TabContainer.rect_size.y-=10
+		$ChoosePresetSettingsButton.rect_position.y-=5
 	else:
 		var tabConainer=$TabContainer
 		tabConainer.remove_stylebox_override("decrement")

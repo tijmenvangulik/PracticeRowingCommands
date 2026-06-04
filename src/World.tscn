@@ -2136,11 +2136,10 @@ autowrap = true
 
 [node name="HighScores" type="WindowDialog" parent="CanvasLayer"]
 anchor_left = 0.08
+anchor_top = 0.05
 anchor_right = 0.92
-anchor_bottom = 0.98
-margin_top = 54.0
+anchor_bottom = 0.95
 margin_right = 0.47998
-margin_bottom = -22.0
 custom_styles/panel = ExtResource( 33 )
 script = ExtResource( 46 )
 grid = NodePath("HighScoresGrid")

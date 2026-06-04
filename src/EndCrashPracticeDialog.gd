@@ -9,7 +9,7 @@ func _ready():
 		margin_bottom=480
 		$CrashTips.margin_top-=40
 		$HBoxContainer.margin_top-=50
-		$HBoxContainer.margin_bottom-=50
+		$HBoxContainer.margin_bottom-=30
 func start():
 	if !GameState.isReplaying:
 		$HBoxContainer/StartSamePractice.grab_focus()

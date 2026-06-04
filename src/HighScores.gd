@@ -15,6 +15,14 @@ func _ready():
 	$HTTPRequest.connect("request_completed", self, "_onHighScoresRequest")
 	GameEvents.connect("collectGameStateChangedSignal",self,"_collectGameStateChangedSignal")
 	loadHighScores()
+	if GameState.mobileMode:
+		anchor_top=0.02
+		anchor_bottom=0.98
+		$ContinueToStartGame.rect_size.y=40
+		$ContinueToStartGame.margin_top-=20
+		var shift=30
+		$PublicHighscoresLabel2.rect_position.y+=shift
+		$QuarterHighScoresGrid.rect_position.y+=shift
 
 func handleShow():
 	GameState.dialogIsOpen=visible
@@ -65,9 +73,20 @@ func clearGrid(g):
 		g.remove_child(N)
 		N.free()
 
+func addTestScores():
+	for i in range(0,5):
+		addLabel(grid,"1")
+		addLabel(grid,"2")
+		addLabel(grid,"Test dfgdfgdfg fdg dfgdfgfdg")
+		addLabel(gridQuarter,"1")
+		addLabel(gridQuarter,"2")
+		addLabel(gridQuarter,"est dfgdfgdfg fdg dfgdfgfdg")
+		
 func refreshScoreGrid():	
 	clearGrid(grid)
 	clearGrid(gridQuarter)
+	
+	#addTestScores()
 	
 	for score in GameState.publicHighscores:
 		var addGrid=grid;

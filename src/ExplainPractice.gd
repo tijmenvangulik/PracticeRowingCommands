@@ -12,7 +12,8 @@ func _ready():
 	if GameState.mobileMode:
 		anchor_left=0.02
 		anchor_right=0.96
-	
+		#$CenterContainer/HBoxContainer.margin_top=0
+		$CenterContainer/HBoxContainer.rect_min_size.y=45
 func handleShow():
 	GameState.dialogIsOpen=visible
 	Utilities.modifyCloseButton(self);

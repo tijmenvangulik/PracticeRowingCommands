@@ -10,7 +10,9 @@ extends WindowDialog
 func _ready():
 	get_close_button().hide()
 	GameEvents.connect("collectGameStateChangedSignal",self,"_collectGameStateChangedSignal")
-
+	if GameState.mobileMode:
+		$HBoxContainer.margin_top-=10
+		
 func _on_CancelGame_pressed():
 	self.visible=false;
 	GameState.changeCollectGameState( Constants.CollectGameState.None)

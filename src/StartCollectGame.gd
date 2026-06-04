@@ -8,7 +8,9 @@ export (NodePath) onready var collectables = get_node(collectables) as Collectab
 func _ready():
 	get_close_button().hide()
 	GameEvents.connect("collectGameStateChangedSignal",self,"_collectGameStateChangedSignal")
-
+	if GameState.mobileMode:
+		$HSplitContainer.margin_top-=20
+	
 func handleShow():
 	GameState.dialogIsOpen=visible
 	if visible:

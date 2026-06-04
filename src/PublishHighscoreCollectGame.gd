@@ -15,7 +15,9 @@ func _ready():
 	get_close_button().hide()
 	_nameTextBox=$"NameContainer/Name"
 	_clubTextBox=$RowingClubContainer/RowingClub
-	
+	if GameState.mobileMode:
+		$HBoxContainer.margin_top-=20
+		
 func handleShow():
 	GameState.dialogIsOpen=visible
 		
