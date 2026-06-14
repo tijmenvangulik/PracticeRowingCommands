@@ -7,6 +7,25 @@ var resumeObject
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameEvents.connect("doCheckCommand",self,"checkCommand")
+	GameEvents.connect("windowSizeChanged",self,"_sizeChanged");
+	
+func setSizeText():
+	if GameState.mobileMode:
+		var buttonContainerWidth=$"%ButtonsContainer".rect_size.x
+		var viewPortWidht=get_viewport_rect().size.x
+		var newWidth=viewPortWidht-buttonContainerWidth-15
+		#$Label.autowrap=true
+		$Label.rect_min_size.x=newWidth
+		$Label.align=Label.ALIGN_LEFT
+		$Label.valign=Label.VALIGN_TOP
+		$Label.autowrap=true 
+		$Label.rect_position.x=0
+		$"%StepByStep".rect_position.x=10
+		$"%StepByStep".rect_size.x=newWidth
+		
+func _sizeChanged():
+	if $"%StepByStep".visible:
+		setSizeText()
 
 func start(practice : int):
 	$"%ButtonsContainer".visible=false
@@ -31,6 +50,7 @@ func waitStep(command : int,resumeObj):
 	$"%Pause".setPaused(true,false)
 	visible=true
 	$"%ButtonsContainer".visible=true
+	setSizeText()
 	
 func resumeStep():
 	$"%Pause".setPaused(false)
