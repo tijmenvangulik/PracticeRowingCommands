@@ -19,6 +19,7 @@
     "patchexport-revert":"git apply ./template/patchExportSecretRevert.patch",
     "build": "npm run updatehtml && npm run updateversion && npm run copyjs_godot_build",
     "build-encrypted": "npm run copywasm && npm run updatehtml && npm run updateversion && npm run copyjs",
+    "godot-check": "sh -c '\"/Applications/Godot 2.app/Contents/MacOS/Godot\" --path src --check-only & pid=$!; sleep 3; kill $pid 2>/dev/null || true; wait $pid 2>/dev/null || true'",
     "deploy": "rsync -rvu --exclude \".*\" bin/html/ /Volumes/www.vangulik.org/PracticeRowingCommands/",
     "deployHD": "rsync -rvu --exclude \".*\" bin/html/ /Volumes/www.vangulik.org/PracticeRowingCommandsHD/",
     "buildAndDeploy":"npm run build && npm run deploy",
