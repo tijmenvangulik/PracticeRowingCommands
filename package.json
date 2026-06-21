@@ -1,6 +1,6 @@
 {
   "name": "practice-coxing-commands",
-  "version": "8.4.4",
+  "version": "8.4.5",
   "description": "Practice Coxing Commands – Rowing Command Trainer",
   "main": "index.js",
   "dependencies": {
@@ -8,6 +8,9 @@
     "mustache": "^4.2.0"
   },
   "devDependencies": {},
+  "config": {
+    "godotpath": "/Applications/Godot 2.app/Contents/MacOS/Godot"
+  },
   "scripts": {
     "compress": "gzipper compress ./template/index.wasm --brotli ",
     "updatehtml": "mustache package.json template/index.html > bin/html/index.html && cp ./template/index.apple-touch-icon.png ./bin/html/index.apple-touch-icon.png ",
@@ -17,9 +20,10 @@
     "copywasm": "cp ./template/index.wasm ./bin/html/index.wasm && cp ./template/index.wasm.br ./bin/html/index.wasm.br",
     "patchexport":"git apply ./template/patchExportSecret.patch",
     "patchexport-revert":"git apply ./template/patchExportSecretRevert.patch",
-    "build": "npm run updatehtml && npm run updateversion && npm run copyjs_godot_build",
-    "build-encrypted": "npm run copywasm && npm run updatehtml && npm run updateversion && npm run copyjs",
-    "godot-check": "sh -c '\"/Applications/Godot 2.app/Contents/MacOS/Godot\" --path src --check-only & pid=$!; sleep 3; kill $pid 2>/dev/null || true; wait $pid 2>/dev/null || true'",
+    "build": "npm run godot-export && npm run updatehtml && npm run updateversion && npm run copyjs_godot_build",
+    "build-encrypted": "npm run godot-export && npm run copywasm && npm run updatehtml && npm run updateversion && npm run copyjs",
+    "godot-check": "sh -c '\"$npm_package_config_godotpath\" --path src --check-only & pid=$!; sleep 3; kill $pid 2>/dev/null || true; wait $pid 2>/dev/null || true'",
+    "godot-export": "sh -c '\"$npm_package_config_godotpath\" --path src --no-window --verbose --export HTML5 --path bin/html'",
     "deploy": "rsync -rvu --exclude \".*\" bin/html/ /Volumes/www.vangulik.org/PracticeRowingCommands/",
     "deployHD": "rsync -rvu --exclude \".*\" bin/html/ /Volumes/www.vangulik.org/PracticeRowingCommandsHD/",
     "buildAndDeploy":"npm run build && npm run deploy",
