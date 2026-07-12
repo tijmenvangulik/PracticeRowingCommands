@@ -184,6 +184,8 @@ func _ready():
 	addLabelCommandsGrid(commandTranslationsHeaderGrid,"Tooltip")
 	addLabelCommandsGrid(commandTranslationsHeaderGrid,"Shortcut")
 	
+	if GameState.mobileMode:
+		$TabContainer/CommandTranslateTab/ScrollContainerHeader.rect_min_size.y=43
 	commandButtonsTab.init()
 	enablePracticesTab.init()
 	
