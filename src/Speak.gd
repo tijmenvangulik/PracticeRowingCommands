@@ -13,6 +13,9 @@ var commandDelay=0.5
 # rings rippling around the button while listening
 var listeningRings : ColorRect
 var ringScale=2.4
+# grayish red of the button and the rings while listening
+var listeningColor=Color(0.6,0.3,0.3)
+var listeningHoverColor=Color(0.7,0.4,0.4)
 
 func _ready() -> void:
 	GameEvents.connect("highContrastChangedSignal",self,"_highContrastChangedSignal")
@@ -41,6 +44,10 @@ func saveNormalLayout():
 
 # distance to the right border in mobile mode when the command buttons are hidden
 var mobileCenteredRightOffset=50
+# distance to the bottom border in desktop mode when the command buttons are hidden
+var centeredBottomOffset=25
+# scale of the button when the command buttons are hidden
+var centeredScale=2.0
 
 # centered when the command buttons are hidden: horizontally, in mobile mode vertically
 func setCentered(on : bool):
@@ -54,24 +61,34 @@ func setCentered(on : bool):
 	margin_top=normalLayout[5]
 	margin_right=normalLayout[6]
 	margin_bottom=normalLayout[7]
+	rect_scale=Vector2(1,1)
 	if GameState.mobileMode:
 		# without buttons the text can be centered
 		$"%speakCommandText".anchor_left=0.5 if on else 0.1
 	if !on:
 		return
 	var size=rect_size
+	# bigger button, scaled around its center
+	rect_pivot_offset=size/2
+	rect_scale=Vector2(centeredScale,centeredScale)
+	# the extra half size, to keep the same distance to the border
+	var scaledExtra=size*(centeredScale-1)/2
 	if GameState.mobileMode:
 		anchor_top=0.5
 		anchor_bottom=0.5
 		margin_top=-size.y/2
 		margin_bottom=size.y/2
-		margin_right=-mobileCenteredRightOffset
-		margin_left=-mobileCenteredRightOffset-size.x
+		margin_right=-mobileCenteredRightOffset-scaledExtra.x
+		margin_left=-mobileCenteredRightOffset-scaledExtra.x-size.x
 	else:
 		anchor_left=0.5
 		anchor_right=0.5
 		margin_left=-size.x/2
 		margin_right=size.x/2
+		anchor_top=1.0
+		anchor_bottom=1.0
+		margin_bottom=-centeredBottomOffset-scaledExtra.y
+		margin_top=-centeredBottomOffset-scaledExtra.y-size.y
 
 func createListeningRings():
 	listeningRings=ColorRect.new()
@@ -88,7 +105,7 @@ func setListening(on : bool):
 		var ringSize=max(rect_size.x,rect_size.y)*ringScale
 		listeningRings.rect_size=Vector2(ringSize,ringSize)
 		listeningRings.rect_position=(rect_size-listeningRings.rect_size)/2
-		var ringColor=Color.white if Settings.highContrast else Color("#33eab4")
+		var ringColor=Color.white if Settings.highContrast else listeningColor
 		listeningRings.material.set_shader_param("ring_color",ringColor)
 	listeningRings.visible=on
 	setListeningStyle(on)
@@ -102,7 +119,7 @@ func setListeningStyle(on : bool):
 		var style=get_stylebox(styleName)
 		if style is StyleBoxFlat:
 			style=style.duplicate()
-			var red=Color(0.6,0.3,0.3) if styleName=="normal" else Color(0.7,0.4,0.4)
+			var red=listeningColor if styleName=="normal" else listeningHoverColor
 			red.a=style.bg_color.a
 			style.bg_color=red
 			add_stylebox_override(styleName,style)
