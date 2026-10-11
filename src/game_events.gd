@@ -12,6 +12,8 @@ signal languageChangedSignal
 
 signal zoomChangedSignal
 
+signal commandButtonsHiddenChangedSignal
+
 signal forwardBackwardsChangedSignal
 
 signal collectGameStateChangedSignal(newState)
@@ -80,6 +82,9 @@ func languageChanged():
 	
 func zoomChanged():
 	emit_signal("zoomChangedSignal")
+
+func commandButtonsHiddenChanged():
+	emit_signal("commandButtonsHiddenChangedSignal")
 
 func loadedSharedSettings():
 	emit_signal("loadedSharedSettings")

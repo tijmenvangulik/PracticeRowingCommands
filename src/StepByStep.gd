@@ -36,7 +36,7 @@ func start(practice : int):
 func stop():
 	GameState.replayStepByStep=false
 	visible=false
-	$"%ButtonsContainer".visible=true
+	$"%ButtonsContainer".setVisible(true)
 	if GameState.pause_mode:
 		resumeStep()
 		$"%Pause".setPaused(false)

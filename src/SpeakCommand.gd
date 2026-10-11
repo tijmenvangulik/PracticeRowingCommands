@@ -15,10 +15,12 @@ func speakCommandsOn():
 		return value=="true"
 	return true
 
+# culture code for speaking commands and for the speech recognition (microphone):
+# the iso culture code setting when it is filled in, otherwise the default
 func getSpeachCultureCode():
 	var language=Utilities.getDefaultSetting("speechCultureCode")
-	if Settings.speakCommands==Constants.SpeakCommandsType.IsoCultureCode && Settings.speechCultureCode!="" && Settings.speechCultureCode!=null:
-		language=Settings.speechCultureCode
+	if Settings.speechCultureCode!=null && Settings.speechCultureCode.strip_edges()!="":
+		language=Settings.speechCultureCode.strip_edges()
 	return language
 
 func speak(text , language):

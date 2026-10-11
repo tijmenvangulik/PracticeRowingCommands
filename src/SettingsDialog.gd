@@ -19,6 +19,7 @@ export (NodePath) onready var isoCultureCodeEditBox = get_node(isoCultureCodeEdi
 export (NodePath) onready var commandButtonsTab = get_node(commandButtonsTab) as CommandButtonsTab
 
 export (NodePath) onready var showShortCutsInButtons = get_node(showShortCutsInButtons) as Button
+export (NodePath) onready var hideCommandButtons = get_node(hideCommandButtons) as Button
 export (NodePath) onready var boatTypeButton = get_node(boatTypeButton) as OptionButton
 export (NodePath) onready var speakCommandsButton = get_node(speakCommandsButton) as OptionButton
 
@@ -122,6 +123,7 @@ func _ready():
 		Utilities.setMobileSwitchStyle($TabContainer/GeneralSettingsTab/GridContainer/ShowCommandTooltips)
 		Utilities.setMobileSwitchStyle($TabContainer/GeneralSettingsTab/GridContainer/IncludeBBAndSBWhenLessCommands)
 		Utilities.setMobileSwitchStyle($TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons)
+		Utilities.setMobileSwitchStyle(hideCommandButtons)
 		$CloseSettingsButton.rect_size.y+=10
 		$CloseSettingsButton.rect_position.y-=15
 		$ShareSettings.rect_size.y+=10
@@ -142,6 +144,11 @@ func _ready():
 	GameEvents.connect("languageChangedSignal",self,"_languageChangedSignal");
 		
 	get_close_button().hide()
+	
+	# hiding the command buttons is only possible when they can be spoken
+	var speechSupported=Utilities.speechRecognitionSupported()
+	$TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer4.visible=speechSupported
+	$TabContainer/DisplayTab/GridContainer/GridContainer/HideCommandButtonsLabel.visible=speechSupported
 	
 	GameEvents.register_allways_tooltip($TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons,"ShortCutTourText")
 	GameEvents.register_allways_tooltip($TabContainer/GeneralSettingsTab/GridContainer/BoatTypeLabel,"ScullTooltip")
@@ -325,6 +332,8 @@ func getSettings(removePrivate=false):
 	  "textTranslations":commandTextDict,
 	  "showCommandTooltips":Settings.showCommandTooltips,
 	  "showShortCutsInButtons":Settings.showShortCutsInButtons,
+	  "hideCommandButtons":Settings.hideCommandButtons,
+	  "speechWarningShown":Settings.speechWarningShown,
 	  "boatType":Settings.boatType,
 	  "finishedPractices":Settings.finishedPractices,
 	  "waterAnimation":Settings.waterAnimation,
@@ -381,6 +390,8 @@ func removePrivateSettings(settings):
 	settings.erase("finishedPractices")
 	settings.erase("waterAnimation")
 	settings.erase("successCount")
+	settings.erase("hideCommandButtons")
+	settings.erase("speechWarningShown")
 
 func recalcIsScullFromSettings():
 	
@@ -416,6 +427,9 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 	var speakCommands=Constants.SpeakCommandsType.Default
 	if dict.has("speakCommands"):
 		speakCommands=dict["speakCommands"]
+	# the "on with alternate language code" option is removed, the culture code is now always used
+	if speakCommands==Constants.SpeakCommandsType.IsoCultureCode:
+		speakCommands=Constants.SpeakCommandsType.On
 	Settings.speakCommands=speakCommands
 	speakCommandsButton.select(speakCommands)
 	
@@ -488,6 +502,14 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 		 shotCutsOn=dict["showShortCutsInButtons"]
 	Settings.showShortCutsInButtons=shotCutsOn
 	showShortCutsInButtons.set_pressed(shotCutsOn)
+	
+	# personal settings, not shared: only change them when they are in the settings
+	if dict.has("speechWarningShown"):
+		Settings.speechWarningShown=dict["speechWarningShown"]
+	if dict.has("hideCommandButtons"): 
+		Settings.hideCommandButtons=dict["hideCommandButtons"]
+		hideCommandButtons.set_pressed(Settings.hideCommandButtons)
+		$"%ButtonsContainer".updateVisibility()
 	
 	var customButtonSet=[]
 	if dict.has("customButtonSet"):
@@ -741,6 +763,10 @@ func _on_ShowShortCutsInButtons_toggled(button_pressed):
 	Settings.showShortCutsInButtons=button_pressed
 	GameEvents.languageChanged()
 
+func _on_HideCommandButtons_toggled(button_pressed):
+	Settings.hideCommandButtons=button_pressed
+	$"%ButtonsContainer".updateVisibility()
+
 
 func _on_ResetPractices_pressed():
 	$"%OptionStart".resetFinishedPractices()
@@ -889,10 +915,18 @@ func _on_SpeakCommands_item_selected(index: int) -> void:
 	hideShowIsoCultureCodeEditBox()
 
 func hideShowIsoCultureCodeEditBox():
-	var  isVisible= Settings.speakCommands==Constants.SpeakCommandsType.IsoCultureCode
+	# used for speaking commands and for the speech recognition (microphone)
+	var  isVisible= $"%SpeakCommand".speakCommandsOn() || Utilities.speechRecognitionSupported()
 	isoCultureCodeEditBox.visible=isVisible
 	$TabContainer/GeneralSettingsTab/GridContainer/IsoCultureCodeLabel.visible=isVisible
+	updateDefaultIsoCultureCode()
 	isCultureSupportedWarning()
+
+# show the default culture code as placeholder while the edit box is empty
+func updateDefaultIsoCultureCode():
+	var defaultLabel=isoCultureCodeEditBox.get_node("DefaultIsoCultureCode")
+	defaultLabel.text=Utilities.getDefaultSetting("speechCultureCode")
+	defaultLabel.visible=isoCultureCodeEditBox.text==""
 	
 func isCultureSupportedWarning():
 	var supported=true
@@ -909,11 +943,13 @@ func isCultureSupportedWarning():
 
 func _on_IsoCultureCode_text_changed() -> void:
 	Settings.speechCultureCode=isoCultureCodeEditBox.text
+	updateDefaultIsoCultureCode()
 	isCultureSupportedWarning()
 
 
 func _on_SettingsDialog_visibility_changed() -> void:
 	if visible:
+		updateDefaultIsoCultureCode()
 		isCultureSupportedWarning()
 
 

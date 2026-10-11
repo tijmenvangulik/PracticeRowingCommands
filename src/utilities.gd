@@ -4,6 +4,16 @@ func commandNameToCommand(commandName : String)->int:
 	var result=Constants.commandNames.find(commandName)
 	return result
 	
+func speechRecognitionSupported()->bool:
+	if !OS.has_feature('JavaScript'):
+		return false
+	var result=JavaScript.eval("typeof speachInterface!='undefined' && speachInterface.supported")
+	return result==true
+
+# the command buttons can be hidden when the commands are spoken
+func commandButtonsHidden()->bool:
+	return Settings.hideCommandButtons && speechRecognitionSupported()
+
 func commandIsUsed(commandName : String)->bool:
 	var found=false
 

@@ -106,6 +106,7 @@ HalenSB;Halen stuurboord;Halen stuurboord;Stroke bow side;Halen stuurboord
 HalenSB_buttonOnly;Halen SB;Halen SB;-;Halen SB
 HalenSB_shortcut;h;a;s;h
 HalenSB_tooltip;Boot gaat vooruit en draait naar bakboord (links). Gebruik bedankt om dit te beëindigen.;Boot gaat vooruit en draait naar bakboord (links). Gebruik bedankt om dit te beëindigen.;Boat goes forwards and turns to port (left). Use “easy off” to end this.;Boat goes forwards and turns to port (left). Use “easy off” to end this.
+HideCommandButtons;Verberg commando's;Verberg commando's;Hide commands;Hide commands
 HighContrast;Hoog contrast;Hoog contrast;High contrast;High contrast
 HighScoreNone;Nog geen;Nog geen;Not yet;Not yet
 ImportSettings;Importeer instellingen;Importeer instellingen;Import settings;Import settings
@@ -256,6 +257,44 @@ SlippenSB_buttonOnly;Slippen SB;Slippen SB;-;Slippen SB
 SlippenSB_shortcut;s;s;a;s
 SlippenSB_tooltip;Breng stuurboord riemen langszij om aan een hoge wal aan te leggen. Gebruikt uitbrengen bakboord om dit te beëindigen;Breng stuurboord riemen langszij om aan een hoge wal aan te leggen. Gebruikt uitbrengen bakboord om dit te beëindigen;Bring the star board (right) oars alongside the boat to not let the oars bump into something;Bring the star board (right) oars alongside the boat to not let the oars bump into something
 SlowUpdateSpeedDetected;Beeldverversing is traag;Beeldverversing is traag;Screen refresh is slow;Screen refresh is slow
+SpeechExperimentalWarning;"[color=#84a9c9][center][u]Spraakbesturing[/u][/center][/color]
+
+Met de microfoonknop kun je de commando's uitspreken in plaats van op de knoppen te drukken.
+
+[color=#ff9f9f]Dit is een experimentele functie.[/color] Hoe goed de commando's worden verstaan hangt af van de microfoon van je apparaat en van je browser.
+
+* Druk op de microfoonknop en spreek een commando uit, bijvoorbeeld {LaatLopen}.
+* Je kunt ook meerdere commando's achter elkaar zeggen, bijvoorbeeld {LaatLopen} {Bedankt}.
+* Druk nog een keer op de knop om te stoppen met luisteren.
+* De eerste keer vraagt je browser toestemming om de microfoon te gebruiken.";"[color=#84a9c9][center][u]Spraakbesturing[/u][/center][/color]
+
+Met de microfoonknop kun je de commando's uitspreken in plaats van op de knoppen te drukken.
+
+[color=#ff9f9f]Dit is een experimentele functie.[/color] Hoe goed de commando's worden verstaan hangt af van de microfoon van je apparaat en van je browser.
+
+* Druk op de microfoonknop en spreek een commando uit, bijvoorbeeld {LaatLopen}.
+* Je kunt ook meerdere commando's achter elkaar zeggen, bijvoorbeeld {LaatLopen} {Bedankt}.
+* Druk nog een keer op de knop om te stoppen met luisteren.
+* De eerste keer vraagt je browser toestemming om de microfoon te gebruiken.";"[color=#84a9c9][center][u]Voice control[/u][/center][/color]
+
+With the microphone button you can speak the commands instead of pressing the buttons.
+
+[color=#ff9f9f]This is an experimental feature.[/color] How well the commands are understood depends on your device's microphone and on your browser.
+
+* Press the microphone button and say a command, for example {LaatLopen}.
+* You can also say several commands in a row, for example {LaatLopen} {Bedankt}.
+* Press the button again to stop listening.
+* The first time, your browser asks permission to use the microphone.";"[color=#84a9c9][center][u]Voice control[/u][/center][/color]
+
+With the microphone button you can speak the commands instead of pressing the buttons.
+
+[color=#ff9f9f]This is an experimental feature.[/color] How well the commands are understood depends on your device's microphone and on your browser.
+
+* Press the microphone button and say a command, for example {LaatLopen}.
+* You can also say several commands in a row, for example {LaatLopen} {Bedankt}.
+* Press the button again to stop listening.
+* The first time, your browser asks permission to use the microphone."
+SpeechNotSupported;Spraak wordt niet ondersteund in je browser;Spraak wordt niet ondersteund in je browser;Speech not supported in your browser;Speech not supported in your browser
 SpinTurnPracticeExplainText;Vaar naar de ster en gebruik eerst {RondmakenBB} en bij de bocht {RondmakenSB} om de boot te draaien. Leg de boot stil voor dat je gaat rondmaken.;Vaar naar de ster en gebruik eerst {RondmakenBB} en bij de bocht {RondmakenSB} om de boot te draaien. Leg de boot stil voor dat je gaat rondmaken.;Sail towards the star and first use {RondmakenBB}, then use {RondmakenSB} at the bend to turn the boat. Bring the boat to a stop before starting to turn.;Sail towards the star and first use {RondmakenBB}, then use {RondmakenSB} at the bend to turn the boat. Bring the boat to a stop before starting to turn.
 StartAangelegd;Wegvaren oefening (v.a. les 3);Wegvaren oefening (Slippend strijken);Sail away practice;Sail away practice
 StartAangelegdBB;Wegvaren oefening bakboord wal;Wegvaren oefening (Slippend strijken BB);Sail away practice port side;Sail away practice port side
@@ -372,7 +411,7 @@ SpeakCommandsDefault;Standaard;Standaard;Default;Default
 SpeakCommandsOn;Aan;Aan;On;On
 SpeakCommandsOff;Uit;Uit;Off;Off
 SpeakCommandsCustom;Aan met alternatieve taalcode;Aan met alternatieve taalcode;On with alternate language code;On with alternate language code
-IsoCultureCodeLabel;ISO culture code;ISO culture code;ISO culture code;ISO culture code
+IsoCultureCodeLabel;Spraak ISO culture code;Spraak ISO culture code;Speech ISO culture code;Speech ISO culture code
 SpeakCommandsTooltip;Spraak is afhankelijk van je browser. Klopt de uitspraak niet? Probeer een andere browser of voeg extra talen toe aan je bowser.;Spraak is afhankelijk van je browser. Klopt de uitspraak niet? Probeer een andere browser of voeg extra talen toe aan je bowser.;Speech is browser-dependent. Is the pronunciation incorrect? Try a different browser or add additional languages to your browser.;Speech is browser-dependent. Is the pronunciation incorrect? Try a different browser or add additional languages to your browser.
 IsoCultureCodeTooltip;Bijvoorbeeld: nl-NL of en-GB;Bijvoorbeeld: nl-NL of en-GB;For example: nl-NL or en-GB;For example: nl-NL or en-GB
 ErrorCultureNotSupported;Waarschuwing: Spraak culture niet ondersteund door de browser;Waarschuwing: Spraak culture niet ondersteund door de browser;Warning: speech culture not supported by your browser;Warning: speech culture not supported by your browser

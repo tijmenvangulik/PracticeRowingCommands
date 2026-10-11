@@ -82,6 +82,7 @@ func _ready():
 		
 	setForwardsPosition(0)
 	GameEvents.connect("zoomChangedSignal",self,"_zoomChangedSignal")
+	GameEvents.connect("commandButtonsHiddenChangedSignal",self,"_zoomChangedSignal")
 	GameEvents.connect("doCommandSignal",self,"_doCommandSignal")
 	GameEvents.connect("isScullChangedSignal",self,"_isScullSignal")
 	GameEvents.connect("introSignal",self,"_introSignal")
@@ -160,6 +161,9 @@ func canPushBB():
 
 func calcpostionY():
 	var result=postionY
+	# without command buttons the boat is centered, just like in desktop mode
+	if Utilities.commandButtonsHidden():
+		return 0
 	#compensate that in mobile mode the boat is positioned more the left
 	if GameState.mobileMode:
 		var zoom=Settings.zoom

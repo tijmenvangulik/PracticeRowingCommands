@@ -38,7 +38,11 @@ func _input(event):
 			if pressedChar!="":
 				gotoNextButton(focused_node.find_parent("*GridButtonContainer*"),pressedChar)
 				
+# the buttons are shown (before hiding them by the hide commands setting)
+var buttonsShown=true
+
 func _ready():
+	buttonsShown=visible
 
 	initButtons()
 	GameEvents.connect("languageChangedSignal",self,"_languageChangedSignal");
@@ -333,8 +337,16 @@ func _showButtonsSignal(show : bool):
 	setVisible(show)
 	
 func setVisible(show : bool):
-	visible=show
-	$"%EditButtons".visible=show 
+	buttonsShown=show
+	var showCommands=show && !Utilities.commandButtonsHidden()
+	visible=showCommands
+	$"%EditButtons".visible=showCommands
+	$"%Speak".setVisible(show)
+	$"%Speak".setCentered(Utilities.commandButtonsHidden())
+
+func updateVisibility():
+	setVisible(buttonsShown)
+	GameEvents.commandButtonsHiddenChanged()
 	
 func _customButtonSetChangedSignal():
 	var buttonSet=Settings.customButtonSet

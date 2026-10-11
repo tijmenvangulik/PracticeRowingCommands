@@ -1,155 +1,211 @@
 var notSupported = "Speech recognition not supported by this browser. Try to use Chrome / Edge / Safari"
 var lang="nl-NL"
 
+var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+var SpeechRecognitionPhrase = window.SpeechRecognitionPhrase;
 
-function soundex(stringToEncode)
-{
-    const arrayToEncode = stringToEncode.toLowerCase().split('');
+// Filled from Godot with setCommands(): every text (full command text and button text)
+// with the command number it belongs to.
+var commands = [];
+var commandNrs = [];
 
-    const codes         = {
-        a: '', e: '', i: '', o: '', u: '', y: '',
-        b: 1, f: 1, p: 1, v: 1,
-        c: 2, g: 2, j: 2, k: 2, q: 2, s: 2, x: 2, z: 2,
-        d: 3, t: 3,
-        l: 4,
-        m: 5, n: 5,
-        r: 6
-    };
+// minimal similarity (0..1) for a transcript to count as a command
+var minScore = 0.75;
 
-    //1. Save first letter and remove all occurrences of 'h' and 'w'
-    const firstLetter = arrayToEncode[0];
-    const encodedArray = arrayToEncode.filter(function(v)
-    {
-        return (v !== 'h' && v !== 'w');
-    })
+function normalizeWords(s) {
+    return s.toLowerCase().replace(/[.,!?]/g, "").split(/\s+/).filter(w => w);
+}
 
-    //2. Replace all consonants with digits
-    .map(function(v) {return codes[v];})
+function normalize(s) {
+    // ignore spaces so "vast roeien" matches "vastroeien"
+    return normalizeWords(s).join("");
+}
 
-    //3. Replace all adjacent same digits with one digit
-    .filter(function(v, i, a)
-    {
-        if (i === 0)
-            return true;
-        else
-            return v !== a[i - 1];
-    })
+function levenshtein(a, b) {
+    var prev = [];
+    for (var j = 0; j <= b.length; j++) prev[j] = j;
+    for (var i = 1; i <= a.length; i++) {
+        var cur = [i];
+        for (var j = 1; j <= b.length; j++) {
+            cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1,
+                              prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+        }
+        prev = cur;
+    }
+    return prev[b.length];
+}
 
-    //4. Remove all occurrences of a,e,i,o,u,y except first letter
-    .filter(function(v, i)
-    {
-        return ((v !== '') || (i === 0));
+var commandsNorm = [];
+
+// longest number of words in one spoken command
+var maxCommandWords = 6;
+
+// best matching command for a piece of text (spaces removed)
+function matchCommand(t) {
+    var best = {nr: -1, score: 0};
+    commandsNorm.forEach(function(m, nr) {
+        var score = 1 - levenshtein(t, m) / Math.max(t.length, m.length);
+        if (score > best.score) best = {nr: nr, score: score};
     });
-
-    //5. If first symbol is a digit, replace with firstLetter from step 1
-    encodedArray[0] = firstLetter;
-
-    //6. Append 3 zeros. Remove all but first letter and 3 digits after it
-    return (encodedArray.join('') + '000').slice(0, 4).toUpperCase();
-}
-function wordsSoundex(words) {
-    return words.split(" ").map(e=>soundex(e)).join("");
+    return best;
 }
 
-var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
-var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
-var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
-
-var moves = ['halen beide boorden','laat lopen', 'bedankt', 'vastroeien','vastroeien stuurboord','vastroeien bakboord', 'halen stuurboord','halen bakboord'];
-var movesIndex=moves.map(s=>wordsSoundex(s.toLowerCase()));
-
-var replacements = {
-    " bij de ":" beide ",
-    "borderij":"boorden",
-    "borden":"boorden",
-    "haren":"halen"
+// Split a sentence into a sequence of commands, e.g. "laat lopen bedankt".
+// Words which do not belong to a command are skipped.
+function matchSentence(text) {
+    var words = normalizeWords(text);
+    // best[i]: best result for the first i words
+    var best = [{total: 0, nrs: []}];
+    for (var i = 1; i <= words.length; i++) {
+        best[i] = best[i - 1]; // skip word i-1
+        for (var j = Math.max(0, i - maxCommandWords); j < i; j++) {
+            var chunk = words.slice(j, i).join("");
+            var match = matchCommand(chunk);
+            if (match.score < minScore) continue;
+            var total = best[j].total + match.score * chunk.length;
+            if (total > best[i].total) best[i] = {total: total, nrs: best[j].nrs.concat([match.nr])};
+        }
+    }
+    return {total: best[words.length].total, nrs: best[words.length].nrs, text: text};
 }
 
-var grammar = '#JSGF V1.0; grammar movesForGrammar; public <movesForGrammar> = ' + moves.join(' | ') + ' ;'
+function bestMatch(alternatives) {
+    var best = {total: 0, nrs: [], text: alternatives.length ? alternatives[0] : ""};
+    alternatives.forEach(function(alt) {
+        var match = matchSentence(alt);
+        if (match.total > best.total) best = match;
+    });
+    console.log("Best match", best, best.nrs.map(nr => commands[nr]));
+    return best;
+}
 
-console.log(grammar);
+// errors which mean speech recognition does not work in this browser (no speech service,
+// or speech/Siri disabled), for example in Vivaldi, Opera or Chromium
+var unsupportedErrors = ["network", "service-not-allowed"];
 
 class SpeachInterface {
     callbackFunc=null;
-    recognition;
-    supported=true;
-    constructor() {
-        var isFirefox = typeof InstallTrigger !== 'undefined';
-        var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
-        if (isOpera || isFirefox) {
-            this.supported=false;
-        }
+    recognition=null;
+    listening=false;
+    alternatives=[];
+    // Brave has the SpeechRecognition object, but its speech service is disabled (always a network error)
+    supported=!!SpeechRecognition && !navigator.brave;
+    // set when the browser reports phrases-not-supported, then phrases are never used again
+    phrasesNotSupported=false;
+    lastError="";
 
-        if (this.supported) this.initSpeach()
+    constructor() {
+        if (this.supported) this.initSpeach();
     }
     initSpeach() {
         var recognition = new SpeechRecognition();
-        var speechRecognitionList = new SpeechGrammarList();
-        speechRecognitionList.addFromString(grammar, 1);
-        recognition.grammars = speechRecognitionList;
         recognition.continuous = false;
         recognition.lang = lang;
         recognition.interimResults = false;
-        recognition.maxAlternatives = 3;
-        
-        recognition.onresult=this.recognitionResult.bind(this)
-        recognition.onspeechend = function() {
-    //    recognition.stop();
-        //           buttonStart.isEnabled = true;
-        //        buttonStart.children[0].text = "Ready!";
+        recognition.maxAlternatives = 5;
+
+        recognition.onresult = this.recognitionResult.bind(this);
+        recognition.onerror = this.recognitionError.bind(this);
+        recognition.onend = this.recognitionEnd.bind(this);
+        this.recognition = recognition;
+    }
+    // commandsJson: JSON array of {nr, text}, language: iso culture code like nl-NL
+    setCommands(commandsJson, language) {
+        var items = JSON.parse(commandsJson);
+        commands = [];
+        commandNrs = [];
+        items.forEach(function(c) {
+            var text = (c.text || "").toLowerCase().trim();
+            if (text && commands.indexOf(text) < 0) {
+                commands.push(text);
+                commandNrs.push(c.nr);
+            }
+        });
+        commandsNorm = commands.map(normalize);
+        if (language) lang = language;
+        if (!this.recognition) return;
+        this.recognition.lang = lang;
+        // Contextual biasing: the replacement for grammars (which Chrome ignores).
+        // Only supported in some browsers / with on-device recognition; ignore if not.
+        if (!this.phrasesNotSupported && SpeechRecognitionPhrase && "phrases" in this.recognition) {
+            try {
+                this.recognition.phrases = commands.map(m => new SpeechRecognitionPhrase(m, 5.0));
+            } catch (e) {
+                console.log("Phrases not supported", e);
+                this.phrasesNotSupported = true;
+            }
         }
-        
-        recognition.onnomatch = function(event) {
-        // diagnostic.textContent = "I didn't recognise that color.";
-        }
-        
-        recognition.onerror = function(event) {
-        //  diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
-        }
-        this.recognition=recognition;
     }
     recognitionResult(event) {
-        var results=result[0];
-        console.log(results);
-        var i=0;
-        var commandNr=-1;
-        var lowerText="";
-        while (i<results.length && commandNr<0) {
-            var result= results[i]
-            var recoResult = result.transcript;
-            console.log('Confidence: ' + result.confidence);
-            console.log(recoResult);
-            recoResult = recoResult.toLowerCase();
-            console.log(recoResult);
-        // Correction part :)
-            
-            //  Removing the last dot if exists
-            if(recoResult.substring(recoResult.length, recoResult.length - 1) == ".") {
-                recoResult = recoResult.substring(0, recoResult.length - 1);
-                console.log("The last dot removed - " + recoResult);
-            }
-            console.log(recoResult);
-        
-            
-            if(recoResult) {
-                lowerText=recoResult.toLowerCase();
-                for(var key in replacements)  {
-                    lowerText=lowerText.replace(key,replacements[key]);
-                }
-                commandNr=moves.indexOf(lowerText)
-                if (commandNr<0) {
-                    var indexString=wordsSoundex(lowerText);
-                    commandNr=movesIndex.indexOf(indexString);
-                }
-            }
-            i++
+        var result = event.results[event.resultIndex];
+        for (var i = 0; i < result.length; i++) {
+            console.log('Heard: "' + result[i].transcript + '" confidence: ' + result[i].confidence);
+            this.alternatives.push(result[i].transcript);
         }
-        
-        this.callbackFunc(commandNr,lowerText)
+    }
+    recognitionError(event) {
+        console.error('Error occurred in recognition: ' + event.error);
+        if (event.error == "phrases-not-supported" && !this.phrasesNotSupported) {
+            // retry without biasing, with a new recognition object (clearing phrases may throw)
+            this.phrasesNotSupported = true;
+            this.retry = true;
+            return;
+        }
+        if (event.error != "aborted") this.lastError = event.error;
+    }
+    recognitionEnd() {
+        this.listening = false;
+        if (this.cancelled) {
+            // stopped by the user: no result
+            this.cancelled = false;
+            return;
+        }
+        if (this.retry) {
+            this.retry = false;
+            this.initSpeach();
+            this.start();
+            return;
+        }
+        if (this.alternatives.length == 0 && this.lastError) {
+            // nothing heard because of an error, show the error
+            // 4th argument: the error means speech recognition does not work in this browser
+            var unsupported = unsupportedErrors.indexOf(this.lastError) >= 0;
+            if (this.callbackFunc) this.callbackFunc("[]", this.lastError, "", unsupported);
+            return;
+        }
+        var match = bestMatch(this.alternatives);
+        var nrs = match.nrs.map(nr => commandNrs[nr]);
+        var commandText = match.nrs.map(nr => commands[nr]).join(", ");
+        // callback(JSON array of command numbers, heard text, matched command texts)
+        if (this.callbackFunc) this.callbackFunc(JSON.stringify(nrs), match.text, commandText);
+    }
+    start() {
+        this.cancelled = false;
+        this.lastError = "";
+        this.alternatives = [];
+        this.listening = true;
+        try {
+            this.recognition.start();
+        } catch (e) {
+            console.error(e);
+            this.listening = false;
+            if (this.callbackFunc) this.callbackFunc("[]", String(e.message || e), "");
+        }
     }
     waitForCommand(callbackFunc) {
-        this.callbackFunc=callbackFunc;
-        this.recognition.start();
+        this.callbackFunc = callbackFunc;
+        if (!this.supported) {
+            if (callbackFunc) callbackFunc("[]", notSupported, "");
+            return;
+        }
+        if (this.listening) return;
+        this.start();
+    }
+    stopListening() {
+        if (!this.listening) return;
+        this.cancelled = true;
+        this.retry = false;
+        this.recognition.abort();
     }
 }
-var speachInterface= new SpeachInterface();
+var speachInterface = new SpeachInterface();
