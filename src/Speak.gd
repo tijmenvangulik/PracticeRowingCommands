@@ -211,8 +211,8 @@ func spoken(args):
 			if i>0:
 				yield(get_tree().create_timer(commandDelay),"timeout")
 			GameEvents.doCommand(int(commands[i]))
-	elif args.size()>3 && args[3]==true:
-		# the error means speech recognition does not work in this browser
-		setText(tr("SpeechNotSupported"),true,false)
+	elif args.size()>3 && str(args[3])!="":
+		# translation key with a message for the error
+		setText(tr(str(args[3])),true,false)
 	else:
 		setText( str(args[1]),true)

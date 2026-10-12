@@ -19,7 +19,6 @@ export (NodePath) onready var isoCultureCodeEditBox = get_node(isoCultureCodeEdi
 export (NodePath) onready var commandButtonsTab = get_node(commandButtonsTab) as CommandButtonsTab
 
 export (NodePath) onready var showShortCutsInButtons = get_node(showShortCutsInButtons) as Button
-export (NodePath) onready var hideCommandButtons = get_node(hideCommandButtons) as Button
 export (NodePath) onready var boatTypeButton = get_node(boatTypeButton) as OptionButton
 export (NodePath) onready var speakCommandsButton = get_node(speakCommandsButton) as OptionButton
 
@@ -123,7 +122,6 @@ func _ready():
 		Utilities.setMobileSwitchStyle($TabContainer/GeneralSettingsTab/GridContainer/ShowCommandTooltips)
 		Utilities.setMobileSwitchStyle($TabContainer/GeneralSettingsTab/GridContainer/IncludeBBAndSBWhenLessCommands)
 		Utilities.setMobileSwitchStyle($TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons)
-		Utilities.setMobileSwitchStyle(hideCommandButtons)
 		$CloseSettingsButton.rect_size.y+=10
 		$CloseSettingsButton.rect_position.y-=15
 		$ShareSettings.rect_size.y+=10
@@ -144,11 +142,6 @@ func _ready():
 	GameEvents.connect("languageChangedSignal",self,"_languageChangedSignal");
 		
 	get_close_button().hide()
-	
-	# hiding the command buttons is only possible when they can be spoken
-	var speechSupported=Utilities.speechRecognitionSupported()
-	$TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer4.visible=speechSupported
-	$TabContainer/DisplayTab/GridContainer/GridContainer/HideCommandButtonsLabel.visible=speechSupported
 	
 	GameEvents.register_allways_tooltip($TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons,"ShortCutTourText")
 	GameEvents.register_allways_tooltip($TabContainer/GeneralSettingsTab/GridContainer/BoatTypeLabel,"ScullTooltip")
@@ -508,7 +501,6 @@ func setSettings(dict,removePrivate=false,callSettingsChanged=true):
 		Settings.speechWarningShown=dict["speechWarningShown"]
 	if dict.has("hideCommandButtons"): 
 		Settings.hideCommandButtons=dict["hideCommandButtons"]
-		hideCommandButtons.set_pressed(Settings.hideCommandButtons)
 		$"%ButtonsContainer".updateVisibility()
 	
 	var customButtonSet=[]
@@ -762,10 +754,6 @@ func _on_ShowCommandTooltips_toggled(button_pressed):
 func _on_ShowShortCutsInButtons_toggled(button_pressed):
 	Settings.showShortCutsInButtons=button_pressed
 	GameEvents.languageChanged()
-
-func _on_HideCommandButtons_toggled(button_pressed):
-	Settings.hideCommandButtons=button_pressed
-	$"%ButtonsContainer".updateVisibility()
 
 
 func _on_ResetPractices_pressed():

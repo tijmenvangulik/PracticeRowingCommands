@@ -16,6 +16,9 @@ func _ready() -> void:
 		margin_right-=offset
 		rect_size.x+=12
 		rect_size.y+=12;	
+		# replaced by the ButtonsHideShow button in mobile mode
+		if Utilities.speechRecognitionSupported():
+			visible=false
 
 func _on_EditButtons_pressed() -> void:
 	$"%SettingsDialog".start(3)

@@ -79,9 +79,31 @@ function bestMatch(alternatives) {
     return best;
 }
 
-// errors which mean speech recognition does not work in this browser (no speech service,
-// or speech/Siri disabled), for example in Vivaldi, Opera or Chromium
-var unsupportedErrors = ["network", "service-not-allowed"];
+// translation keys (shown by Godot) for the recognition errors
+var errorKeys = {
+    // no speech service, or speech/Siri disabled, for example in Vivaldi, Opera or Chromium
+    "network": "SpeechNotSupported",
+    "service-not-allowed": "SpeechNotSupported",
+    "audio-capture": "SpeechNoMicrophone",
+    "not-allowed": "SpeechMicrophoneBlocked",
+    "no-speech": "SpeechNothingHeard",
+    "language-not-supported": "SpeechLanguageNotSupported"
+};
+
+// Chrome also reports a missing microphone as not-allowed: check if there is a microphone
+function hasMicrophone() {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) return Promise.resolve(true);
+    return navigator.mediaDevices.enumerateDevices()
+        .then(devices => devices.some(d => d.kind == "audioinput"))
+        .catch(() => true);
+}
+
+// translation key for an error ("" when there is none)
+function errorKey(error) {
+    var key = errorKeys[error] || "";
+    if (error != "not-allowed") return Promise.resolve(key);
+    return hasMicrophone().then(found => found ? key : "SpeechNoMicrophone");
+}
 
 class SpeachInterface {
     callbackFunc=null;
@@ -166,11 +188,13 @@ class SpeachInterface {
             this.start();
             return;
         }
-        if (this.alternatives.length == 0 && this.lastError) {
-            // nothing heard because of an error, show the error
-            // 4th argument: the error means speech recognition does not work in this browser
-            var unsupported = unsupportedErrors.indexOf(this.lastError) >= 0;
-            if (this.callbackFunc) this.callbackFunc("[]", this.lastError, "", unsupported);
+        if (this.alternatives.length == 0) {
+            // nothing heard (because of an error): 4th argument is the translation key of the message
+            var error = this.lastError || "no-speech";
+            var callbackFunc = this.callbackFunc;
+            errorKey(error).then(key => {
+                if (callbackFunc) callbackFunc("[]", error, "", key);
+            });
             return;
         }
         var match = bestMatch(this.alternatives);

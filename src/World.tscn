@@ -1,4 +1,4 @@
-[gd_scene load_steps=178 format=2]
+[gd_scene load_steps=180 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -133,6 +133,8 @@
 [ext_resource path="res://TipsAndTricks.gd" type="Script" id=131]
 [ext_resource path="res://assets/microphone.png" type="Texture" id=132]
 [ext_resource path="res://SpeechWarningDialog.gd" type="Script" id=133]
+[ext_resource path="res://assets/hide.png" type="Texture" id=134]
+[ext_resource path="res://ButtonsHideShow.gd" type="Script" id=135]
 
 [sub_resource type="ShaderMaterial" id=43]
 shader = ExtResource( 80 )
@@ -1810,6 +1812,25 @@ custom_styles/normal = ExtResource( 108 )
 icon = ExtResource( 132 )
 icon_align = 1
 script = ExtResource( 63 )
+
+[node name="ButtonsHideShow" type="Button" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -40.0
+margin_top = -143.0
+margin_right = -6.0
+margin_bottom = -112.0
+custom_styles/hover = ExtResource( 109 )
+custom_styles/pressed = ExtResource( 109 )
+custom_styles/focus = ExtResource( 109 )
+custom_styles/normal = ExtResource( 108 )
+toggle_mode = true
+icon = ExtResource( 134 )
+icon_align = 1
+script = ExtResource( 135 )
 
 [node name="errorLabel" type="Label" parent="CanvasLayer"]
 anchor_left = 0.5
@@ -3885,7 +3906,6 @@ includeBBAndSBWhenLessCommands = NodePath("TabContainer/GeneralSettingsTab/GridC
 isoCultureCodeEditBox = NodePath("TabContainer/GeneralSettingsTab/GridContainer/IsoCultureCode")
 commandButtonsTab = NodePath("TabContainer/CommandButtonsTab")
 showShortCutsInButtons = NodePath("TabContainer/GeneralSettingsTab/GridContainer/ShowShortCutsInButtons")
-hideCommandButtons = NodePath("TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer4/HideCommandButtons")
 boatTypeButton = NodePath("TabContainer/GeneralSettingsTab/GridContainer/BoatType")
 speakCommandsButton = NodePath("TabContainer/GeneralSettingsTab/GridContainer/SpeakCommands")
 enablePracticesTab = NodePath("TabContainer/EnablePracticesTab")
@@ -4183,28 +4203,6 @@ margin_right = 425.0
 margin_bottom = 107.0
 
 [node name="HighContrastButton" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer3"]
-margin_right = 69.0
-margin_bottom = 31.0
-custom_icons/off = ExtResource( 25 )
-custom_icons/on = ExtResource( 66 )
-align = 1
-icon_align = 1
-expand_icon = true
-
-[node name="HideCommandButtonsLabel" type="Label" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer"]
-margin_top = 123.0
-margin_right = 122.0
-margin_bottom = 142.0
-custom_fonts/font = ExtResource( 50 )
-text = "HideCommandButtons"
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer"]
-margin_left = 142.0
-margin_top = 117.0
-margin_right = 425.0
-margin_bottom = 148.0
-
-[node name="HideCommandButtons" type="CheckButton" parent="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer4"]
 margin_right = 69.0
 margin_bottom = 31.0
 custom_icons/off = ExtResource( 25 )
@@ -4930,6 +4928,7 @@ script = ExtResource( 126 )
 
 [connection signal="animation_finished" from="WaterClasicFrozen/WaterClasicFrozenAnimation" to="CanvasLayer/RightTopButtons/Pause" method="_on_WaterClasicFrozenAnimation_animation_finished"]
 [connection signal="pressed" from="CanvasLayer/EditButtons" to="CanvasLayer/EditButtons" method="_on_EditButtons_pressed"]
+[connection signal="toggled" from="CanvasLayer/ButtonsHideShow" to="CanvasLayer/ButtonsHideShow" method="_on_ButtonsHideShow_toggled"]
 [connection signal="pressed" from="CanvasLayer/LowFrameRateDialog/SwitchToLow" to="CanvasLayer/LowFrameRateDialog" method="_on_SwitchToLow_pressed"]
 [connection signal="pressed" from="CanvasLayer/IntroDialog/HSplitContainer/StartPractices" to="CanvasLayer/IntroDialog" method="_on_StartPractices_pressed"]
 [connection signal="gui_input" from="CanvasLayer/IntroDialog/VersionNumber" to="CanvasLayer/IntroDialog" method="_on_VersionNumber_gui_input"]
@@ -4984,7 +4983,6 @@ script = ExtResource( 126 )
 [connection signal="item_selected" from="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer/Resolution" to="CanvasLayer/SettingsDialog" method="_on_Resolution_item_selected"]
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer2/WaterAnimationButton" to="CanvasLayer/SettingsDialog" method="_on_WaterAnimationButton_toggled"]
 [connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer3/HighContrastButton" to="CanvasLayer/SettingsDialog" method="_on_HighContrastButton_toggled"]
-[connection signal="toggled" from="CanvasLayer/SettingsDialog/TabContainer/DisplayTab/GridContainer/GridContainer/HBoxContainer4/HideCommandButtons" to="CanvasLayer/SettingsDialog" method="_on_HideCommandButtons_toggled"]
 [connection signal="focus_entered" from="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab/Search" to="CanvasLayer/SettingsDialog" method="_on_Search_focus_entered"]
 [connection signal="focus_exited" from="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab/Search" to="CanvasLayer/SettingsDialog" method="_on_Search_focus_exited"]
 [connection signal="gui_input" from="CanvasLayer/SettingsDialog/TabContainer/CommandTranslateTab/Search" to="CanvasLayer/SettingsDialog" method="_on_Search_gui_input"]

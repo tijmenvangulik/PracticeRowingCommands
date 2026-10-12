@@ -340,9 +340,12 @@ func setVisible(show : bool):
 	buttonsShown=show
 	var showCommands=show && !Utilities.commandButtonsHidden()
 	visible=showCommands
-	$"%EditButtons".visible=showCommands
+	# in mobile mode the ButtonsHideShow button takes the place of the EditButtons button
+	var editButtonsReplaced=GameState.mobileMode && Utilities.speechRecognitionSupported()
+	$"%EditButtons".visible=showCommands && !editButtonsReplaced
 	$"%Speak".setVisible(show)
 	$"%Speak".setCentered(Utilities.commandButtonsHidden())
+	$"%ButtonsHideShow".setVisible(show)
 
 func updateVisibility():
 	setVisible(buttonsShown)

@@ -265,8 +265,7 @@ Met de microfoonknop kun je de commando's uitspreken in plaats van op de knoppen
 
 * Druk op de microfoonknop en spreek een commando uit, bijvoorbeeld {LaatLopen}.
 * Je kunt ook meerdere commando's achter elkaar zeggen, bijvoorbeeld {LaatLopen} {Bedankt}.
-* Druk nog een keer op de knop om te stoppen met luisteren.
-* De eerste keer vraagt je browser toestemming om de microfoon te gebruiken.";"[color=#84a9c9][center][u]Spraakbesturing[/u][/center][/color]
+* Chrome en Edge werken goed met spraak.";"[color=#84a9c9][center][u]Spraakbesturing[/u][/center][/color]
 
 Met de microfoonknop kun je de commando's uitspreken in plaats van op de knoppen te drukken.
 
@@ -274,8 +273,7 @@ Met de microfoonknop kun je de commando's uitspreken in plaats van op de knoppen
 
 * Druk op de microfoonknop en spreek een commando uit, bijvoorbeeld {LaatLopen}.
 * Je kunt ook meerdere commando's achter elkaar zeggen, bijvoorbeeld {LaatLopen} {Bedankt}.
-* Druk nog een keer op de knop om te stoppen met luisteren.
-* De eerste keer vraagt je browser toestemming om de microfoon te gebruiken.";"[color=#84a9c9][center][u]Voice control[/u][/center][/color]
+* Chrome en Edge werken goed met spraak.";"[color=#84a9c9][center][u]Voice control[/u][/center][/color]
 
 With the microphone button you can speak the commands instead of pressing the buttons.
 
@@ -283,8 +281,7 @@ With the microphone button you can speak the commands instead of pressing the bu
 
 * Press the microphone button and say a command, for example {LaatLopen}.
 * You can also say several commands in a row, for example {LaatLopen} {Bedankt}.
-* Press the button again to stop listening.
-* The first time, your browser asks permission to use the microphone.";"[color=#84a9c9][center][u]Voice control[/u][/center][/color]
+* Chrome and Edge work well with speech.";"[color=#84a9c9][center][u]Voice control[/u][/center][/color]
 
 With the microphone button you can speak the commands instead of pressing the buttons.
 
@@ -292,9 +289,12 @@ With the microphone button you can speak the commands instead of pressing the bu
 
 * Press the microphone button and say a command, for example {LaatLopen}.
 * You can also say several commands in a row, for example {LaatLopen} {Bedankt}.
-* Press the button again to stop listening.
-* The first time, your browser asks permission to use the microphone."
+* Chrome and Edge work well with speech."
+SpeechLanguageNotSupported;Taal niet ondersteund voor spraak;Taal niet ondersteund voor spraak;Language not supported for speech;Language not supported for speech
+SpeechMicrophoneBlocked;Microfoon is geblokkeerd, sta de microfoon toe in je browser;Microfoon is geblokkeerd, sta de microfoon toe in je browser;Microphone is blocked, allow the microphone in your browser;Microphone is blocked, allow the microphone in your browser
+SpeechNoMicrophone;Geen microfoon gevonden;Geen microfoon gevonden;No microphone found;No microphone found
 SpeechNotSupported;Spraak wordt niet ondersteund in je browser;Spraak wordt niet ondersteund in je browser;Speech not supported in your browser;Speech not supported in your browser
+SpeechNothingHeard;Niets gehoord;Niets gehoord;Nothing heard;Nothing heard
 SpinTurnPracticeExplainText;Vaar naar de ster en gebruik eerst {RondmakenBB} en bij de bocht {RondmakenSB} om de boot te draaien. Leg de boot stil voor dat je gaat rondmaken.;Vaar naar de ster en gebruik eerst {RondmakenBB} en bij de bocht {RondmakenSB} om de boot te draaien. Leg de boot stil voor dat je gaat rondmaken.;Sail towards the star and first use {RondmakenBB}, then use {RondmakenSB} at the bend to turn the boat. Bring the boat to a stop before starting to turn.;Sail towards the star and first use {RondmakenBB}, then use {RondmakenSB} at the bend to turn the boat. Bring the boat to a stop before starting to turn.
 StartAangelegd;Wegvaren oefening (v.a. les 3);Wegvaren oefening (Slippend strijken);Sail away practice;Sail away practice
 StartAangelegdBB;Wegvaren oefening bakboord wal;Wegvaren oefening (Slippend strijken BB);Sail away practice port side;Sail away practice port side
