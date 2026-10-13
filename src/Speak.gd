@@ -47,7 +47,8 @@ var mobileCenteredRightOffset=50
 # distance to the bottom border in desktop mode when the command buttons are hidden
 var centeredBottomOffset=25
 # scale of the button when the command buttons are hidden
-var centeredScale=2.0
+var centeredScale=1.5
+var mobileCenteredScale=2.0
 
 # centered when the command buttons are hidden: horizontally, in mobile mode vertically
 func setCentered(on : bool):
@@ -70,9 +71,10 @@ func setCentered(on : bool):
 	var size=rect_size
 	# bigger button, scaled around its center
 	rect_pivot_offset=size/2
-	rect_scale=Vector2(centeredScale,centeredScale)
+	var scale=mobileCenteredScale if GameState.mobileMode else centeredScale
+	rect_scale=Vector2(scale,scale)
 	# the extra half size, to keep the same distance to the border
-	var scaledExtra=size*(centeredScale-1)/2
+	var scaledExtra=size*(scale-1)/2
 	if GameState.mobileMode:
 		anchor_top=0.5
 		anchor_bottom=0.5
@@ -197,6 +199,16 @@ func setText(text : String, isError : bool, markError=true):
 		_commandTextTimer=null
 		label.text=""
 
+# execute a spoken command the same way as pressing a command button (GridButtonContainer.execCommand):
+# in step by step mode check the command, otherwise only when playing
+func execCommand(command : int):
+	if GameState.isPaused && GameState.replayStepByStep:
+		GameState.commandCount=GameState.commandCount+1
+		GameEvents.doCheckCommand(command)
+	elif !GameState.isReplaying && !GameState.isPaused:
+		GameState.commandCount=GameState.commandCount+1
+		GameEvents.doCommand(command)
+
 func spoken(args):
 	# args: [JSON array of command numbers, heard text, matched command texts]
 	print(args)
@@ -210,7 +222,7 @@ func spoken(args):
 		for i in range(0,commands.size()):
 			if i>0:
 				yield(get_tree().create_timer(commandDelay),"timeout")
-			GameEvents.doCommand(int(commands[i]))
+			execCommand(int(commands[i]))
 	elif args.size()>3 && str(args[3])!="":
 		# translation key with a message for the error
 		setText(tr(str(args[3])),true,false)

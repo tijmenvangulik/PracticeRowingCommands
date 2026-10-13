@@ -28,8 +28,10 @@ func _sizeChanged():
 		setSizeText()
 
 func start(practice : int):
-	$"%ButtonsContainer".visible=false
 	GameState.replayStepByStep=true
+	# show the command buttons layout again when they are hidden (normal speak button)
+	$"%ButtonsContainer".updateVisibility()
+	$"%ButtonsContainer".visible=false
 	$"%Recorder".replayDemo(practice,false,true)
 	$"%Pause".visible=false
 	
@@ -37,6 +39,8 @@ func stop():
 	GameState.replayStepByStep=false
 	visible=false
 	$"%ButtonsContainer".setVisible(true)
+	# hide the command buttons again when the setting is on
+	GameEvents.commandButtonsHiddenChanged()
 	if GameState.pause_mode:
 		resumeStep()
 		$"%Pause".setPaused(false)

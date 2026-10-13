@@ -59,7 +59,8 @@ func _highContrastChangedSignal(highContrast):
 	Styles.SetRoundedButtonStyle(self)
 
 func setVisible(show : bool):
-	visible=show && Utilities.speechRecognitionSupported()
+	# not in step by step mode, there the command buttons are always shown
+	visible=show && Utilities.speechRecognitionSupported() && !GameState.replayStepByStep
 	updateState()
 	updatePosition()
 

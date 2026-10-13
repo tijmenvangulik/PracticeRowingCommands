@@ -11,8 +11,9 @@ func speechRecognitionSupported()->bool:
 	return result==true
 
 # the command buttons can be hidden when the commands are spoken
+# (not in step by step mode, there the buttons are needed)
 func commandButtonsHidden()->bool:
-	return Settings.hideCommandButtons && speechRecognitionSupported()
+	return Settings.hideCommandButtons && speechRecognitionSupported() && !GameState.replayStepByStep
 
 func commandIsUsed(commandName : String)->bool:
 	var found=false
