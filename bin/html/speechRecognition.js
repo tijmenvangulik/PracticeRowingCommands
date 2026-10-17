@@ -21,30 +21,47 @@ function normalize(s) {
     return normalizeWords(s).join("");
 }
 
+// similar sounding letters are made equal,
+// so "light battle" or "light paddel" is close to "light paddle"
+function soundAlike(s) {
+    return s.replace(/ph/g, "f").replace(/ck/g, "k").replace(/c/g, "k")
+        .replace(/b/g, "p").replace(/d/g, "t").replace(/g/g, "k")
+        .replace(/v/g, "f").replace(/z/g, "s").replace(/y/g, "i");
+}
+
+// edit distance, two swapped letters count as one difference
 function levenshtein(a, b) {
-    var prev = [];
-    for (var j = 0; j <= b.length; j++) prev[j] = j;
-    for (var i = 1; i <= a.length; i++) {
-        var cur = [i];
+    var d = [];
+    for (var i = 0; i <= a.length; i++) {
+        d[i] = [i];
         for (var j = 1; j <= b.length; j++) {
-            cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1,
-                              prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+            if (i == 0) { d[i][j] = j; continue; }
+            d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1,
+                               d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+            if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1])
+                d[i][j] = Math.min(d[i][j], d[i - 2][j - 2] + 1);
         }
-        prev = cur;
     }
-    return prev[b.length];
+    return d[a.length][b.length];
+}
+
+function similarity(a, b) {
+    return 1 - levenshtein(a, b) / Math.max(a.length, b.length);
 }
 
 var commandsNorm = [];
+var commandsSound = [];
 
 // longest number of words in one spoken command
 var maxCommandWords = 6;
 
-// best matching command for a piece of text (spaces removed)
+// best matching command for a piece of text (spaces removed),
+// the best of the normal and the sound alike comparison
 function matchCommand(t) {
     var best = {nr: -1, score: 0};
+    var tSound = soundAlike(t);
     commandsNorm.forEach(function(m, nr) {
-        var score = 1 - levenshtein(t, m) / Math.max(t.length, m.length);
+        var score = Math.max(similarity(t, m), similarity(tSound, commandsSound[nr]));
         if (score > best.score) best = {nr: nr, score: score};
     });
     return best;
@@ -87,6 +104,8 @@ var errorKeys = {
     "audio-capture": "SpeechNoMicrophone",
     "not-allowed": "SpeechMicrophoneBlocked",
     "no-speech": "SpeechNothingHeard",
+    // aborted by the browser (a stop by the user is not reported): ask to repeat the command
+    "aborted": "SpeechRepeatCommand",
     "language-not-supported": "SpeechLanguageNotSupported"
 };
 
@@ -115,21 +134,44 @@ class SpeachInterface {
     // set when the browser reports phrases-not-supported, then phrases are never used again
     phrasesNotSupported=false;
     lastError="";
+    retry=false;
 
-    constructor() {
-        if (this.supported) this.initSpeach();
-    }
+    // a new recognition object for every start: an aborted object can stay unusable
     initSpeach() {
+        this.detach();
         var recognition = new SpeechRecognition();
         recognition.continuous = false;
         recognition.lang = lang;
         recognition.interimResults = false;
         recognition.maxAlternatives = 5;
-
-        recognition.onresult = this.recognitionResult.bind(this);
-        recognition.onerror = this.recognitionError.bind(this);
-        recognition.onend = this.recognitionEnd.bind(this);
+        // Contextual biasing: the replacement for grammars (which Chrome ignores).
+        // Only supported in some browsers / with on-device recognition; ignore if not.
+        if (!this.phrasesNotSupported && SpeechRecognitionPhrase && "phrases" in recognition) {
+            try {
+                recognition.phrases = commands.map(m => new SpeechRecognitionPhrase(m, 5.0));
+            } catch (e) {
+                console.log("Phrases not supported", e);
+                this.phrasesNotSupported = true;
+            }
+        }
+        // ignore events of an old recognition object
+        recognition.onresult = e => { if (recognition === this.recognition) this.recognitionResult(e); };
+        recognition.onerror = e => { if (recognition === this.recognition) this.recognitionError(e); };
+        recognition.onend = () => { if (recognition === this.recognition) this.recognitionEnd(); };
         this.recognition = recognition;
+    }
+    // stop the current recognition object without a result
+    detach() {
+        var recognition = this.recognition;
+        this.recognition = null;
+        if (!recognition) return;
+        recognition.onresult = null;
+        recognition.onerror = null;
+        recognition.onend = null;
+        try {
+            recognition.abort();
+        } catch (e) {
+        }
     }
     // commandsJson: JSON array of {nr, text}, language: iso culture code like nl-NL
     setCommands(commandsJson, language) {
@@ -144,19 +186,8 @@ class SpeachInterface {
             }
         });
         commandsNorm = commands.map(normalize);
+        commandsSound = commandsNorm.map(soundAlike);
         if (language) lang = language;
-        if (!this.recognition) return;
-        this.recognition.lang = lang;
-        // Contextual biasing: the replacement for grammars (which Chrome ignores).
-        // Only supported in some browsers / with on-device recognition; ignore if not.
-        if (!this.phrasesNotSupported && SpeechRecognitionPhrase && "phrases" in this.recognition) {
-            try {
-                this.recognition.phrases = commands.map(m => new SpeechRecognitionPhrase(m, 5.0));
-            } catch (e) {
-                console.log("Phrases not supported", e);
-                this.phrasesNotSupported = true;
-            }
-        }
     }
     recognitionResult(event) {
         var result = event.results[event.resultIndex];
@@ -168,23 +199,18 @@ class SpeachInterface {
     recognitionError(event) {
         console.error('Error occurred in recognition: ' + event.error);
         if (event.error == "phrases-not-supported" && !this.phrasesNotSupported) {
-            // retry without biasing, with a new recognition object (clearing phrases may throw)
+            // retry without biasing
             this.phrasesNotSupported = true;
             this.retry = true;
             return;
         }
-        if (event.error != "aborted") this.lastError = event.error;
+        this.lastError = event.error;
     }
     recognitionEnd() {
         this.listening = false;
-        if (this.cancelled) {
-            // stopped by the user: no result
-            this.cancelled = false;
-            return;
-        }
+        this.recognition = null;
         if (this.retry) {
             this.retry = false;
-            this.initSpeach();
             this.start();
             return;
         }
@@ -204,15 +230,17 @@ class SpeachInterface {
         if (this.callbackFunc) this.callbackFunc(JSON.stringify(nrs), match.text, commandText);
     }
     start() {
-        this.cancelled = false;
         this.lastError = "";
         this.alternatives = [];
+        this.retry = false;
+        this.initSpeach();
         this.listening = true;
         try {
             this.recognition.start();
         } catch (e) {
             console.error(e);
             this.listening = false;
+            this.detach();
             if (this.callbackFunc) this.callbackFunc("[]", String(e.message || e), "");
         }
     }
@@ -222,14 +250,14 @@ class SpeachInterface {
             if (callbackFunc) callbackFunc("[]", notSupported, "");
             return;
         }
-        if (this.listening) return;
+        // also when a previous recognition is still running (or stuck): start a new one
         this.start();
     }
+    // stopped by the user: no result
     stopListening() {
-        if (!this.listening) return;
-        this.cancelled = true;
+        this.listening = false;
         this.retry = false;
-        this.recognition.abort();
+        this.detach();
     }
 }
 var speachInterface = new SpeachInterface();

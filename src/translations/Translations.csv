@@ -295,6 +295,7 @@ SpeechMicrophoneBlocked;Microfoon is geblokkeerd, sta de microfoon toe in je bro
 SpeechNoMicrophone;Geen microfoon gevonden;Geen microfoon gevonden;No microphone found;No microphone found
 SpeechNotSupported;Spraak wordt niet ondersteund in je browser;Spraak wordt niet ondersteund in je browser;Speech not supported in your browser;Speech not supported in your browser
 SpeechNothingHeard;Niets gehoord;Niets gehoord;Nothing heard;Nothing heard
+SpeechRepeatCommand;Niet verstaan, herhaal het commando;Niet verstaan, herhaal het commando;Not understood, please repeat the command;Not understood, please repeat the command
 SpinTurnPracticeExplainText;Vaar naar de ster en gebruik eerst {RondmakenBB} en bij de bocht {RondmakenSB} om de boot te draaien. Leg de boot stil voor dat je gaat rondmaken.;Vaar naar de ster en gebruik eerst {RondmakenBB} en bij de bocht {RondmakenSB} om de boot te draaien. Leg de boot stil voor dat je gaat rondmaken.;Sail towards the star and first use {RondmakenBB}, then use {RondmakenSB} at the bend to turn the boat. Bring the boat to a stop before starting to turn.;Sail towards the star and first use {RondmakenBB}, then use {RondmakenSB} at the bend to turn the boat. Bring the boat to a stop before starting to turn.
 StartAangelegd;Wegvaren oefening (v.a. les 3);Wegvaren oefening (Slippend strijken);Sail away practice;Sail away practice
 StartAangelegdBB;Wegvaren oefening bakboord wal;Wegvaren oefening (Slippend strijken BB);Sail away practice port side;Sail away practice port side
