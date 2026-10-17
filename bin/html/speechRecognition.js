@@ -124,6 +124,46 @@ function errorKey(error) {
     return hasMicrophone().then(found => found ? key : "SpeechNoMicrophone");
 }
 
+// Android: when the microphone permission prompt is shown while in full screen, full screen
+// does not work anymore afterwards. So first leave full screen (completely) and then ask permission.
+var isAndroid = /android/i.test(navigator.userAgent || "");
+
+function microphonePermission() {
+    if (!navigator.permissions || !navigator.permissions.query) return Promise.resolve("prompt");
+    return navigator.permissions.query({name: "microphone"})
+        .then(status => status.state)
+        .catch(() => "prompt");
+}
+
+function exitFullScreenAndWait() {
+    return new Promise(resolve => {
+        var finished = false;
+        var done = () => {
+            if (finished) return;
+            finished = true;
+            fullScreenEvents.forEach(e => document.removeEventListener(e, changed));
+            // give android some time to finish leaving full screen
+            setTimeout(resolve, 500);
+        };
+        var changed = () => { if (!fullScreenActive()) done(); };
+        var fullScreenEvents = ["fullscreenchange", "webkitfullscreenchange"];
+        fullScreenEvents.forEach(e => document.addEventListener(e, changed));
+        // also continue when there is no event
+        setTimeout(done, 2000);
+        cancelFullScreen();
+    });
+}
+
+// resolves when the microphone permission can be asked
+function prepareMicrophone() {
+    if (!isAndroid || typeof fullScreenActive != "function" || typeof cancelFullScreen != "function" || !fullScreenActive())
+        return Promise.resolve();
+    return microphonePermission().then(state => {
+        if (state != "prompt") return;
+        return exitFullScreenAndWait();
+    });
+}
+
 class SpeachInterface {
     callbackFunc=null;
     recognition=null;
@@ -135,6 +175,7 @@ class SpeachInterface {
     phrasesNotSupported=false;
     lastError="";
     retry=false;
+    startId=0;
 
     // a new recognition object for every start: an aborted object can stay unusable
     initSpeach() {
@@ -251,10 +292,15 @@ class SpeachInterface {
             return;
         }
         // also when a previous recognition is still running (or stuck): start a new one
-        this.start();
+        var startId = ++this.startId;
+        prepareMicrophone().then(() => {
+            // not when stopped (or started again) in the meantime
+            if (startId == this.startId) this.start();
+        });
     }
     // stopped by the user: no result
     stopListening() {
+        this.startId++;
         this.listening = false;
         this.retry = false;
         this.detach();
