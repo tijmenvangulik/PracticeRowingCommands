@@ -56,8 +56,12 @@ func _on_FullScreen_toggled(button_pressed: bool) -> void:
 
 
 func _on_FullScreen_pressed() -> void:
-	if pressed:
-		fullscreen()
-	else:
+	# use the real state of the browser, it can leave full screen itself (for example for a permission prompt)
+	var active=fullScreenActive()
+	if active:
 		cancelFullScreen()
+	else:
+		fullscreen()
+	# expected new state, corrected by the fullScreenChanged message
+	pressed=!active
 	updateIcon()
