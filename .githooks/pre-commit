@@ -1,0 +1,44 @@
+#!/bin/sh
+# Prevents committing real secrets. The secret files may only be committed with the
+# git-safe values: run "npm run prepare-git-commit" before committing.
+# (bypass in an emergency with: git commit --no-verify)
+
+failed=0
+
+# secret file must be equal to its git-safe template (templates are not in git)
+check_template() {
+	file="$1"
+	template="$2"
+	if ! git diff --cached --name-only --diff-filter=AM | grep -qx "$file"; then
+		return
+	fi
+	if [ ! -f "$template" ]; then
+		echo "pre-commit: $file is staged, but the git-safe template $template is missing."
+		failed=1
+		return
+	fi
+	if [ "$(git rev-parse ":$file")" != "$(git hash-object "$template")" ]; then
+		echo "pre-commit: $file contains real secrets (it differs from $template)."
+		failed=1
+	fi
+}
+
+check_template "Server/src/Secrets.json" "Server/src/SecretsGit.json"
+check_template "src/secrets.gd" "src/secretsForGit.gd"
+
+# the export presets may not contain the script encryption key
+presets="src/export_presets.cfg"
+if git diff --cached --name-only --diff-filter=AM | grep -qx "$presets"; then
+	if git show ":$presets" | grep -q '^script_encryption_key="..*"'; then
+		echo "pre-commit: $presets contains the script encryption key."
+		failed=1
+	fi
+fi
+
+if [ $failed -ne 0 ]; then
+	echo ""
+	echo "Run \"npm run prepare-git-commit\" to restore the git-safe files, or unstage them:"
+	echo "  git restore --staged Server/src/Secrets.json src/secrets.gd src/export_presets.cfg"
+	exit 1
+fi
+exit 0

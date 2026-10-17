@@ -1,4 +1,4 @@
-[gd_scene load_steps=180 format=2]
+[gd_scene load_steps=178 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://CommandButtonsTab.gd" type="Script" id=2]
@@ -985,11 +985,6 @@ corner_radius_bottom_left = 5
 shadow_color = Color( 0, 0, 0, 0.270588 )
 shadow_size = 3
 shadow_offset = Vector2( 2, 2 )
-
-[sub_resource type="InputEventAction" id=51]
-
-[sub_resource type="ShortCut" id=52]
-shortcut = SubResource( 51 )
 
 [sub_resource type="StyleBoxFlat" id=28]
 bg_color = Color( 0.235294, 0.227451, 0.27451, 1 )
@@ -3562,7 +3557,6 @@ custom_styles/pressed = ExtResource( 97 )
 custom_styles/focus = ExtResource( 96 )
 custom_styles/normal = ExtResource( 98 )
 shortcut_in_tooltip = false
-shortcut = SubResource( 52 )
 text = "Start"
 expand_icon = true
 script = ExtResource( 40 )

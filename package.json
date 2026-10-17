@@ -1,6 +1,6 @@
 {
   "name": "practice-coxing-commands",
-  "version": "8.5.5",
+  "version": "8.5.6",
   "description": "Practice Coxing Commands – Rowing Command Trainer",
   "main": "index.js",
   "dependencies": {
@@ -12,6 +12,7 @@
     "godotpath": "/Applications/Godot 2.app/Contents/MacOS/Godot"
   },
   "scripts": {
+    "prepare": "git config core.hooksPath .githooks",
     "compress": "gzipper compress ./template/index.wasm --brotli ",
     "updatehtml": "mustache package.json template/index.html > bin/html/index.html && cp ./template/index.apple-touch-icon.png ./bin/html/index.apple-touch-icon.png ",
     "updateversion": "mustache package.json template/version.json > bin/html/version.json",
