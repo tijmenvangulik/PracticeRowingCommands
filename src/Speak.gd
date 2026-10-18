@@ -146,15 +146,25 @@ func _pressed():
 		speak.stopListening()
 		return
 	if !Settings.speechWarningShown:
-		# first time: explain the experimental feature, start listening after closing
+		# first time: explain the experimental feature, listening starts directly at the same time
 		Settings.speechWarningShown=true
 		$"%SettingsDialog".saveSettings()
-		var dialog=$"%SpeechWarningDialog"
-		dialog.start()
-		yield(dialog,"closed")
+		# remember full screen before the browser asks the microphone permission (which can leave full screen)
+		var wasFullScreen=JavaScript.eval("typeof fullScreenActive=='function' && fullScreenActive()")==true
+		$"%SpeechWarningDialog".start(wasFullScreen)
+	startListening()
+
+func startListening():
+	var speak = JavaScript.get_interface("speachInterface")
 	speak.setCommands(to_json(getCommandTexts()), $"%SpeakCommand".getSpeachCultureCode())
 	setListening(true)
 	speak.waitForCommand(speakCallBack)
+
+# start listening again when it has stopped (for example while the info dialog was open)
+func startListeningIfStopped():
+	if visible && !listeningRings.visible:
+		setText("",false)
+		startListening()
 
 func setStyleButtons():
 	Styles.SetRoundedButtonStyle(self)
