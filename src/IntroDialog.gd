@@ -30,6 +30,7 @@ func _init():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	setText()
+	$IntroText.connect("meta_clicked",Utilities,"openLink")
 	
 	get_close_button().hide()
 	$VersionNumber.text=get_version();
@@ -44,11 +45,29 @@ func _ready():
 		$IntroText.rect_size.y=$IntroText.rect_size.y-10
 		$HSplitContainer.margin_top-=10
 		
+# white icons with links to the project page (github) and the social media pages
+const socialMedia=[
+	["https://github.com/tijmenvangulik/PracticeRowingCommands","res://assets/github.png"],
+	["https://www.facebook.com/profile.php?id=61587116009649","res://assets/facebook.png"],
+	["https://www.instagram.com/tijmenvangulik/","res://assets/instagram.png"],
+	["https://nl.pinterest.com/tijmen0487/practice-coxing-commands/","res://assets/pinterest.png"],
+	["https://www.youtube.com/@tijmenvangulik","res://assets/youtube.png"]
+]
+
+func socialMediaIcons() -> String:
+	# mobile: bigger icons with more space between them, so they are easier to tap
+	var size=48 if GameState.mobileMode else 24
+	var space="      " if GameState.mobileMode else " "
+	var icons=""
+	for item in socialMedia:
+		icons+=space+"[url="+item[0]+"][img="+str(size)+"]"+item[1]+"[/img][/url]"+space
+	return "[center]"+icons+"[/center]"
+
 func setText():
 	var intro=$"IntroText"
-	intro.set_bbcode(tr("IntroText"))
+	intro.set_bbcode(Utilities.linkEmails(tr("IntroText")))
 	var links=$"Links"
-	links.set_bbcode(tr("Links"))
+	links.set_bbcode(socialMediaIcons())
 	lang=TranslationServer.get_locale()
 
 func _process(delta):

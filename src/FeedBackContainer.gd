@@ -47,15 +47,13 @@ func _on_Love_pressed():
 	updateEmoticon()
 
 
-func _on_QuickFeedbackQuestion3_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		JavaScript.eval("window.open('mailto:tijmen@vangulik.org')")
+# the mail question with a clickable email address
+func setMailQuestion():
+	$QuickFeedbackQuestion3.set_bbcode("[center]"+Utilities.linkEmails(tr("MailQuestion"))+"[/center]")
 
+func _ready():
+	setMailQuestion()
+	GameEvents.connect("languageChangedSignal",self,"setMailQuestion")
 
-
-func _on_QuickFeedbackQuestion3_mouse_entered() -> void:
-	$QuickFeedbackQuestion3.add_color_override("font_color",Color("ffffff"))
-
-
-func _on_QuickFeedbackQuestion3_mouse_exited() -> void:
-	$QuickFeedbackQuestion3.add_color_override("font_color",Color("acaeb1"))
+func _on_QuickFeedbackQuestion3_meta_clicked(meta) -> void:
+	Utilities.openLink(meta)

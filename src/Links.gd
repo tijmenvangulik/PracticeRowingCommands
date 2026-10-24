@@ -1,7 +1,9 @@
 extends RichTextLabel
 
+# open the clicked link (project page or social media icon)
 
-func _gui_input(event):
-	if event is InputEventMouseButton:
-		JavaScript.eval("window.open('https://github.com/tijmenvangulik/PracticeRowingCommands')")
- 
+func _ready():
+	connect("meta_clicked",self,"_on_meta_clicked")
+
+func _on_meta_clicked(meta):
+	Utilities.openLink(meta)

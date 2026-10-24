@@ -1,6 +1,6 @@
 {
   "name": "practice-coxing-commands",
-  "version": "8.5.18",
+  "version": "8.6.0",
   "description": "Practice Coxing Commands – Rowing Command Trainer",
   "main": "index.js",
   "dependencies": {

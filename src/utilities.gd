@@ -15,6 +15,22 @@ func speechRecognitionSupported()->bool:
 func commandButtonsHidden()->bool:
 	return Settings.hideCommandButtons && speechRecognitionSupported() && !GameState.replayStepByStep
 
+const contactEmail="tijmen@vangulik.org"
+
+# make the contact email address in a (bbcode) text clickable, the RichTextLabel calls openLink on meta_clicked
+func linkEmails(text : String) -> String:
+	return text.replace(contactEmail,"[url=mailto:"+contactEmail+"][u]"+contactEmail+"[/u][/url]")
+
+# open a link: mailto opens the mail program, other links in a new tab
+func openLink(link) -> void:
+	if !OS.has_feature('JavaScript'):
+		return
+	var url=str(link).replace("'","")
+	if url.begins_with("mailto:"):
+		JavaScript.eval("window.location.href='"+url+"'")
+	else:
+		JavaScript.eval("window.open('"+url+"')")
+
 func commandIsUsed(commandName : String)->bool:
 	var found=false
 
