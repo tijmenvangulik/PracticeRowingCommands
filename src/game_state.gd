@@ -28,6 +28,8 @@ var sharedSettingsBladeColorDefault=Color("#ffffff")
 var sharedSettingsBladeColor=sharedSettingsBladeColorDefault
 
 var mobileMode = false
+# running in a browser on an android device
+var isAndroid = false
 var isPaused =false
 var enabledCommands=[]
 var isHighRes=true
@@ -42,8 +44,15 @@ func checkIsMobileMode():
 		return result==true;
 	return GameState.mobileMode
 	
+func checkIsAndroid():
+	if OS.has_feature('JavaScript'):
+		var result=JavaScript.eval("/android/i.test(navigator.userAgent)")
+		return result==true
+	return false
+
 func _ready():
 	GameState.mobileMode=checkIsMobileMode()
+	GameState.isAndroid=checkIsAndroid()
 	if mobileMode:
 		var font= preload("res://Font.tres")
 		font.size=24

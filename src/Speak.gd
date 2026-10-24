@@ -146,12 +146,16 @@ func _pressed():
 		speak.stopListening()
 		return
 	if !Settings.speechWarningShown:
-		# first time: explain the experimental feature, listening starts directly at the same time
+		# first time: explain the experimental feature
 		Settings.speechWarningShown=true
 		$"%SettingsDialog".saveSettings()
 		# remember full screen before the browser asks the microphone permission (which can leave full screen)
 		var wasFullScreen=JavaScript.eval("typeof fullScreenActive=='function' && fullScreenActive()")==true
 		$"%SpeechWarningDialog".start(wasFullScreen)
+		if !GameState.isAndroid:
+			# listening starts when the dialog is closed (SpeechWarningDialog calls startListeningIfStopped)
+			return
+		# android: listening starts directly at the same time, the microphone permission is asked from the click
 	startListening()
 
 func startListening():
