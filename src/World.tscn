@@ -2216,7 +2216,7 @@ __meta__ = {
 [node name="OwnHighScoreValue" type="Label" parent="CanvasLayer/HighScores"]
 margin_left = 146.0
 margin_top = 51.0
-margin_right = 301.0
+margin_right = 705.0
 margin_bottom = 78.0
 custom_fonts/font = ExtResource( 50 )
 text = "HighScoreNone"
@@ -2227,7 +2227,7 @@ __meta__ = {
 [node name="HighScoresGrid" type="GridContainer" parent="CanvasLayer/HighScores"]
 margin_left = 145.0
 margin_top = 121.0
-margin_right = 435.0
+margin_right = 717.0
 margin_bottom = 250.0
 columns = 3
 
@@ -2249,7 +2249,7 @@ text = "QuarterHighscores"
 [node name="QuarterHighScoresGrid" type="GridContainer" parent="CanvasLayer/HighScores"]
 margin_left = 140.0
 margin_top = 300.0
-margin_right = 430.0
+margin_right = 714.0
 margin_bottom = 429.0
 columns = 3
 

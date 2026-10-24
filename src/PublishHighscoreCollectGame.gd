@@ -41,17 +41,18 @@ func start():
 	$NameContainer/Name.grab_focus()	
 
 func storeScoreNames():
-	Settings.highScoreName=_nameTextBox.text;
-	Settings.highScoreClub=_clubTextBox.text;
+	Settings.highScoreName=Utilities.singleLine(_nameTextBox.text);
+	Settings.highScoreClub=Utilities.singleLine(_clubTextBox.text);
 	GameEvents.settingsChanged()
 func readScoreNames():
 	_nameTextBox.text=Settings.highScoreName;
 	_clubTextBox.text=Settings.highScoreClub;
 	
 func _on_PublishScore_pressed():
-	var name=_nameTextBox.text
+	# the name and club text boxes can contain an enter: publish the name on one line
+	var name=Utilities.singleLine(_nameTextBox.text)
 	if name.length()>0:
-		var club= _clubTextBox.text;
+		var club=Utilities.singleLine(_clubTextBox.text);
 		if club!=null && club!='':
 			name=name+" / "+club;
 		storeScoreNames()

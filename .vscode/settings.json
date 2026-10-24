@@ -1,3 +1,5 @@
 {
-    "livePreview.defaultPreviewPath": "/bin/html/index.html"
+    "livePreview.defaultPreviewPath": "/bin/html/index.html",
+    "liveServer.settings.port": 5500,
+    "liveServer.settings.NoBrowser": true
 }

@@ -15,6 +15,13 @@ func speechRecognitionSupported()->bool:
 func commandButtonsHidden()->bool:
 	return Settings.hideCommandButtons && speechRecognitionSupported() && !GameState.replayStepByStep
 
+# text on one line: new lines (for example an enter in a TextEdit) are replaced by spaces
+func singleLine(text : String) -> String:
+	var result=text.replace("\r\n"," ").replace("\n"," ").replace("\r"," ")
+	while result.find("  ")>=0:
+		result=result.replace("  "," ")
+	return result.strip_edges()
+
 const contactEmail="tijmen@vangulik.org"
 
 # make the contact email address in a (bbcode) text clickable, the RichTextLabel calls openLink on meta_clicked

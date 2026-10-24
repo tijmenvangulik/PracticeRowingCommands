@@ -95,7 +95,8 @@ func refreshScoreGrid():
 		var i=addGrid.get_child_count()/addGrid.columns
 		addLabel(addGrid,str(1+addGrid.get_child_count()/3)+")")
 		addLabel(addGrid,Utilities.formatScore(score.score,true))
-		addLabel(addGrid,score.name)
+		# older published names can contain new lines
+		addLabel(addGrid,Utilities.singleLine(str(score.name)))
 	
 func _collectGameStateChangedSignal(state):
 	if state==Constants.CollectGameState.ShowHighScores:
